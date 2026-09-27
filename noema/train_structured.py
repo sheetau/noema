@@ -145,6 +145,8 @@ def train(dataset, cache_path, output, epochs=35, hidden=96, seed=71, decoder_na
                 "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used"}
     metadata["decoder"] = decoder_name
     metadata["unknown_span_supervision"] = sum(bool(r.get("unknown_spans")) for r in rows if r["split"] == "train")
+    metadata["known_context_supervision"] = sum("known_spans" in r for r in rows if r["split"] == "train")
+    metadata["target_builder_sha256"] = digest(Path(__file__).with_name("unknown_supervision.py"))
     if decoder_name == "joint-v1":
         metadata["joint_decoder_sha256"] = digest(Path(__file__).with_name("joint.py"))
     if regression_test:

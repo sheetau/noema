@@ -12,12 +12,17 @@ from noema.semantics import require
 from noema.training import save_json
 
 
-def add_reference_cases(rows):
+def add_reference_cases(rows, *, abstracts=None, stratified=False, id_prefix="confirmv3", reference_seeds=()):
+    abstracts = abstracts or {"ja": ("勇気", "幸運", "真実"), "en": ("Courage", "Luck", "Truth")}
     result = list(rows)
     seen = {(r["language"], r["text"]) for r in rows}
     for language in ("ja", "en"):
-        candidates = [r for r in rows if r["supported"] and r["language"] == language
+        candidates = [r for r in list(rows) + list(reference_seeds) if r["supported"] and r["language"] == language
                       and r["combination"][1] == "ag"]
+        if stratified:
+            grouped = [[r for r in candidates if r["combination"][0] == predicate] for predicate in ("ba", "bb", "bc", "bd", "be", "bf")]
+            require(all(len(group) >= 2 for group in grouped), "Need named subjects for all predicates")
+            candidates = [group[i] for i in range(2) for group in grouped]
         for category in ("anaphora", "ambiguous_name_or_abstract"):
             count = 0
             for original in candidates:
@@ -25,7 +30,7 @@ def add_reference_cases(rows):
                 if category == "anaphora":
                     word = "彼女" if language == "ja" else "her" if original["text"][:subject["start"]].endswith("by ") else "she"
                 else:
-                    word = {"ja": ("勇気", "幸運", "真実"), "en": ("Courage", "Luck", "Truth")}[language][count % 3]
+                    word = abstracts[language][count % len(abstracts[language])]
                 if language == "en" and subject["start"] == 0:
                     word = word[0].upper() + word[1:]
                 text = original["text"][:subject["start"]] + word + original["text"][subject["end"]:]
@@ -33,7 +38,7 @@ def add_reference_cases(rows):
                 if key in seen:
                     continue
                 seen.add(key)
-                identifier = f"confirmv3u{category}{language}{count:02d}"
+                identifier = f"{id_prefix}u{category}{language}{count:02d}"
                 result.append({**original, "id": identifier, "group": identifier, "supported": False,
                                "category": category, "combination": None, "text": text, "spans": [], "graph": None})
                 count += 1
