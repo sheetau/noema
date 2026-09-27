@@ -3,7 +3,6 @@
 Compatible with LIAAD's srl-en_xlmr-base and the published linear classifier:
 https://github.com/asofiaoliveira/srl_bert_pt
 """
-import json
 from pathlib import Path
 
 import torch
@@ -38,6 +37,11 @@ def decode_bio(probabilities, labels):
     require(probabilities.ndim == 2 and probabilities.shape[1] == len(labels) and probabilities.shape[0] > 0,
             "Invalid BIO score shape")
     require(bool(torch.isfinite(probabilities).all()), "Non-finite BIO scores")
+    return _decode_bio_scores(probabilities, labels)
+
+
+def _decode_bio_scores(probabilities, labels):
+    """Internal dynamic program also permits -inf for impossible word labels."""
     transitions, starts = bio_potentials(labels)
     scores = probabilities[0] + starts
     back = []
@@ -49,6 +53,41 @@ def decode_bio(probabilities, labels):
     for indices in reversed(back):
         path.append(int(indices[path[-1]]))
     return list(reversed(path))
+
+
+def decode_word_bio(probabilities, labels, starts, ends):
+    """Maximize the same subword score over whole-word, BIO-valid spans.
+
+    Boundaries are inclusive and cover every non-special token. A word's B-X
+    expands to B-X followed by I-X; I-X and O repeat across all its pieces.
+    CLS/SEP are O, whose scores are constant across candidate word sequences.
+    """
+    require(probabilities.ndim == 2 and probabilities.shape[1] == len(labels), "Invalid BIO score shape")
+    require(bool(torch.isfinite(probabilities).all()), "Non-finite BIO scores")
+    bio_potentials(labels)
+    index = {label: i for i, label in enumerate(labels)}
+    require(len(starts) == len(ends) and len(starts) > 0, "Invalid word boundaries")
+    previous = 0
+    for start, end in zip(starts, ends):
+        require(type(start) is int and type(end) is int and start == previous + 1
+                and start <= end < len(probabilities) - 1, "Invalid word boundaries")
+        previous = end
+    require(previous == len(probabilities) - 2, "Word boundaries must cover all non-special tokens")
+    continuation = [index.get("I-" + label[2:], -1) if label.startswith("B-") else i
+                    for i, label in enumerate(labels)]
+    scores = []
+    for start, end in zip(starts, ends):
+        candidate = probabilities[start] + probabilities[start + 1:end + 1, continuation].sum(dim=0)
+        # An absent I-X cannot be invented for a multi-piece B-X word.
+        if end > start:
+            candidate[torch.tensor(continuation) < 0] = float("-inf")
+        scores.append(candidate)
+    words = _decode_bio_scores(torch.stack(scores), labels)
+    pieces = [index["O"]] * len(probabilities)
+    for tag, start, end in zip(words, starts, ends):
+        pieces[start] = tag
+        pieces[start + 1:end + 1] = [continuation[tag]] * (end - start)
+    return words, pieces
 
 
 def spans_from_tags(tags, tokens, text):
@@ -116,19 +155,33 @@ class FrozenSpanSRL:
         return {"input_ids": torch.tensor([ids]), "token_type_ids": torch.tensor([indicator]),
                 "attention_mask": torch.ones(1, len(ids), dtype=torch.long)}, starts, ends
 
-    def predict(self, text, tokens, predicate):
-        encoded, starts, _ = self.encode([t["text"] for t in tokens], predicate)
+    def predict_variants(self, text, tokens, predicate, decoders=("published", "word_boundary")):
+        """Compare decoders on the same classifier output, with no gold inputs."""
+        require(bool(decoders) and len(set(decoders)) == len(decoders)
+                and all(d in ("published", "word_boundary") for d in decoders), "Unknown or repeated span decoder")
+        encoded, starts, ends = self.encode([t["text"] for t in tokens], predicate)
         with torch.inference_mode():
             logits = self.classifier(self.model(**encoded).last_hidden_state)[0]
-            indices = decode_bio(logits.softmax(-1), self.labels)
-        subword_tags = [self.labels[i] for i in indices]
-        tags = [subword_tags[i] for i in starts]
-        result = {"predicate_token": predicate, "word_tags": tags, "subword_tags": subword_tags}
-        try:
-            result.update(status="valid_bio", spans=spans_from_tags(tags, tokens, text))
-        except SemanticError as exc:
-            result.update(status="invalid_bio", spans=None, diagnostic=str(exc))
-        return result
+            probabilities = logits.softmax(-1)
+        results = {}
+        for decoder in decoders:
+            if decoder == "published":
+                indices = decode_bio(probabilities, self.labels)
+                word_indices = [indices[i] for i in starts]
+            else:
+                word_indices, indices = decode_word_bio(probabilities, self.labels, starts, ends)
+            tags = [self.labels[i] for i in word_indices]
+            result = {"predicate_token": predicate, "word_tags": tags,
+                      "subword_tags": [self.labels[i] for i in indices]}
+            try:
+                result.update(status="valid_bio", spans=spans_from_tags(tags, tokens, text))
+            except SemanticError as exc:
+                result.update(status="invalid_bio", spans=None, diagnostic=str(exc))
+            results[decoder] = result
+        return results
+
+    def predict(self, text, tokens, predicate):
+        return self.predict_variants(text, tokens, predicate, decoders=("published",))["published"]
 
     def annotate(self, dependency_prediction):
         text = dependency_prediction["text"]
