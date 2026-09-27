@@ -8,7 +8,7 @@ from .analyzer import Analyzer
 from .annotation_audit import audit
 from .dataset import load_dataset, digest
 from .encoder import deterministic
-from .evaluation import evaluate
+from .evaluation import evaluate, category_gates
 from .grammar import parse, format_graph
 from .semantics import require
 from .structured import character_features
@@ -23,6 +23,8 @@ def verify_inputs(dataset, manifest, checkpoint, protocol, selection):
                            (Path(checkpoint) / "metadata.json", "route_metadata_sha256"), (selection, "selection_sha256")):
         require(digest(path) == recorded[expected], f"Frozen confirmation input changed: {path}")
     rows = load_dataset(dataset)
+    if "review" in recorded:
+        require(digest(recorded["review"]) == recorded["review_sha256"], "Frozen annotation review changed")
     require(all(r["split"] == "test" for r in rows), "Confirmation must have no training or development partition")
     require(audit(rows) == recorded["audit"], "Confirmation annotation audit changed")
     return rows, recorded
@@ -63,6 +65,7 @@ def run(dataset, manifest, checkpoint, protocol, selection, output):
         print(json.dumps({"language": language, "evaluated": len(subset), "repetition": repetitions[language]}), flush=True)
     ordered = [predictions[r["id"]] for r in rows]
     metrics = evaluate(rows, ordered)
+    category_results = category_gates(rows, ordered, recorded.get("category_gates", {}))
     strata = {}
     for row, prediction in zip(rows, ordered):
         key = row["language"] + ":" + (row["pattern"] if row["supported"] else row["category"])
@@ -72,7 +75,9 @@ def run(dataset, manifest, checkpoint, protocol, selection, output):
         entry["exact"] += row["supported"] and prediction["graph"] == row["graph"]
     report = {"started_at": started, "completed_at": datetime.now(timezone.utc).isoformat(), "manifest": recorded,
               "models": models, "metrics": metrics, "strata": strata, "repetition": repetitions,
-              "passes_confirmation": all(metrics[l]["passes_provisional_gate"] and metrics[l]["unsupported_false_accept_rate"] <= .05 for l in ("ja", "en")),
+              "category_gates": category_results,
+              "passes_confirmation": (all(metrics[l]["passes_provisional_gate"] and metrics[l]["unsupported_false_accept_rate"] <= .05 for l in ("ja", "en"))
+                                      and all(result["passes"] for result in category_results.values())),
               "reasons": {l: dict(Counter(p["diagnostics"]["reason"] or "confirmed" for r, p in zip(rows, ordered) if r["language"] == l and r["supported"])) for l in ("ja", "en")},
               "scope": "Prospective synthetic confirmation; not independent human-authored free-text evaluation. No threshold or checkpoint selection used these predictions."}
     save_json(output / "report.json", report)

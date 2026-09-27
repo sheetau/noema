@@ -60,7 +60,7 @@ noema a a {
 
 ## 自然言語の解析と実験
 
-最新の分類器の実行方法と検証範囲は [実験報告](docs/surface-experiments.md) に記載した。この作業環境では次のコマンドで実行できる。重みはGit管理外のローカル成果物なので、別の環境では先に再現手順で学習する。
+確認評価を通ったv7の実行方法と検証範囲は [実験報告](docs/surface-experiments.md) に記載した。その後の [v8の対照実験](docs/reference-experiments.md) では代名詞などの誤確定を減らしたが、英語の確定率が49.83%に下がり、採用条件を満たさなかった。この作業環境ではv7を次のコマンドで実行できる。重みはGit管理外のローカル成果物なので、別の環境では先に再現手順で学習する。
 
 ```powershell
 python -m noema analyze --language ja --text "犬が猫を追う" --checkpoint artifacts/routed-v7 --offline

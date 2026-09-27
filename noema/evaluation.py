@@ -3,6 +3,24 @@ from collections import defaultdict
 from .semantics import normalize, ROLES
 
 
+def category_gates(rows, predictions, limits):
+    """Apply preregistered per-category OOD limits, failing if a stratum is absent."""
+    if len(rows) != len(predictions):
+        raise ValueError("Prediction count does not match dataset")
+    results = {}
+    for category, limit in limits.items():
+        if isinstance(limit, bool) or not isinstance(limit, (int, float)) or not 0 <= limit <= 1:
+            raise ValueError("Category gate must be a false acceptance rate in [0, 1]")
+        for language in ("ja", "en"):
+            subset = [p for r, p in zip(rows, predictions) if not r["supported"]
+                      and r["language"] == language and r.get("category") == category]
+            false_accepts = sum(p["status"] == "confirmed" for p in subset)
+            rate = false_accepts / len(subset) if subset else None
+            results[language + ":" + category] = {"total": len(subset), "false_accepts": false_accepts,
+                "false_accept_rate": rate, "limit": limit, "passes": rate is not None and rate <= limit}
+    return results
+
+
 def components(graph):
     graph = normalize(graph)
     nodes = {n["id"]: n for n in graph["nodes"]}
