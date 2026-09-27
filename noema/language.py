@@ -1,4 +1,4 @@
-"""Noema 0.2–0.5: written clauses, discourse references and explicit scope.
+"""Noema 0.2–0.6: written clauses, discourse references and explicit scope.
 
 This edition deliberately has its own document schema. The 0.1 graph remains
 supported; conversion to it must explicitly reject meanings it cannot express.
@@ -25,7 +25,7 @@ MAX_DEPTH = 64
 
 
 def policy(version):
-    require(version in ("0.2", "0.3", "0.4", "0.5"), "Unsupported written language version")
+    require(version in ("0.2", "0.3", "0.4", "0.5", "0.6"), "Unsupported written language version")
     if version == "0.2":
         return ROOTS, CONCEPTS, ROLE_WORDS, ROLES
     roots = {**ROOTS, **EXTENSION["roots"]}
@@ -69,13 +69,24 @@ def normalize_document(document):
     require(bool(document["utterances"]), "A document requires at least one utterance")
     entities = {}
     for entity in document["entities"]:
-        keys(entity, ("id", "kind", "concept", "quantity", "name", "qualifiers") if version in ("0.4", "0.5") else ("id", "kind", "concept", "quantity", "name"))
+        if isinstance(entity, dict) and entity.get("kind") == "group":
+            require(version == "0.6", "Groups require edition 0.6")
+            keys(entity, ("id", "kind", "members"))
+            ident, members = entity["id"], entity["members"]
+            require(isinstance(ident, str) and re.fullmatch(r"[a-z2-7]+", ident), "Invalid entity reference")
+            require(ident not in entities, "Duplicate entity reference")
+            require(isinstance(members, list) and len(members) >= 2
+                    and all(isinstance(m, str) for m in members), "Group requires at least two entity references")
+            require(len(set(members)) == len(members), "Duplicate group member reference")
+            entities[ident] = copy.deepcopy(entity)
+            continue
+        keys(entity, ("id", "kind", "concept", "quantity", "name", "qualifiers") if version in ("0.4", "0.5", "0.6") else ("id", "kind", "concept", "quantity", "name"))
         ident, concept = entity["id"], entity["concept"]
         require(isinstance(ident, str) and re.fullmatch(r"[a-z2-7]+", ident), "Invalid entity reference")
         require(ident not in entities, "Duplicate entity reference")
         require(isinstance(concept, str) and concept in ROOTS, "Unknown concept")
         require(entity["kind"] in ("entity", "place") and entity["kind"] == CONCEPTS[concept]["kind"], "Invalid entity type")
-        if version in ("0.4", "0.5"):
+        if version in ("0.4", "0.5", "0.6"):
             qualifiers = entity["qualifiers"]
             require(isinstance(qualifiers, list) and all(isinstance(q, str) and q in COMPOUNDS["attributive_states"] for q in qualifiers), "Compound requires supported attributive states")
             require(len(qualifiers) == len(set(qualifiers)), "Duplicate compound property")
@@ -95,9 +106,39 @@ def normalize_document(document):
             except UnicodeEncodeError as exc:
                 raise SemanticError("Name contains invalid Unicode") from exc
         entities[ident] = copy.deepcopy(entity)
-        if version in ("0.4", "0.5"):
+        if version in ("0.4", "0.5", "0.6"):
             entities[ident]["qualifiers"] = sorted(entity["qualifiers"])
     mapping, ordered = {}, []
+
+    type_cache, heights = {}, {}
+
+    def entity_types(ident, active=(), depth=0):
+        require(depth <= MAX_DEPTH, "Group nesting exceeds 64 levels")
+        require(ident in entities, "Dangling group member reference")
+        require(ident not in active, "Cyclic group membership")
+        if ident in type_cache:
+            require(depth + heights[ident] <= MAX_DEPTH, "Group nesting exceeds 64 levels")
+            return type_cache[ident]
+        entity = entities[ident]
+        if entity["kind"] != "group":
+            type_cache[ident], heights[ident] = {entity["kind"]}, 0
+            return {entity["kind"]}
+        kinds = set()
+        for member in entity["members"]:
+            kinds.update(entity_types(member, (*active, ident), depth + 1))
+        type_cache[ident], heights[ident] = kinds, 1 + max(heights[m] for m in entity["members"])
+        return kinds
+
+    types = {ident: entity_types(ident) for ident in entities}
+
+    def bind(ident):
+        if ident not in mapping:
+            mapping[ident] = "n" + number_word(len(mapping))
+            node = {**entities[ident], "id": mapping[ident]}
+            ordered.append(node)
+            if node["kind"] == "group":
+                node["members"] = [bind(member) for member in node["members"]]
+        return mapping[ident]
 
     def visit(expression, speech_act, depth=0):
         require(depth <= MAX_DEPTH, "Expression nesting exceeds 64 levels")
@@ -125,11 +166,8 @@ def normalize_document(document):
                 else:
                     require(isinstance(target, str) and target in entities, "Dangling entity reference")
                     allowed = spec.get("role_types", {}).get(role, ["place"] if role in ("location", "source", "destination") else ["entity"])
-                    require(entities[target]["kind"] in allowed, f"Entity type is incompatible with {role}")
-                    if target not in mapping:
-                        mapping[target] = "n" + number_word(len(mapping))
-                        ordered.append({**entities[target], "id": mapping[target]})
-                    output["roles"][role] = mapping[target]
+                    require(types[target] <= set(allowed), f"Entity type is incompatible with {role}")
+                    output["roles"][role] = bind(target)
             return output
         if kind == "not":
             keys(expression, ("kind", "body"))
@@ -179,7 +217,8 @@ def parse_document(text, compact=False):
         require(value.startswith('"'), "Expected a quoted literal")
         return json.loads(value)
 
-    def term():
+    def term(depth=0):
+        require(depth <= MAX_DEPTH, "Group nesting exceeds 64 levels")
         word = take()
         if word == "?":
             return None
@@ -189,12 +228,30 @@ def parse_document(text, compact=False):
             name = reference()
             require(name in bindings, f"Reference {name} has not been introduced")
             return bindings[name]
+        if word == "w":
+            require(version == "0.6", "Groups require edition 0.6")
+            members = []
+            while peek() == "[":
+                take("[")
+                member = term(depth + 1)
+                require(isinstance(member, str), "Group members must be specified entities")
+                members.append(member)
+                take("]")
+            require(len(members) >= 2, "Group requires at least two members")
+            node = {"id": "n" + number_word(len(entities)), "kind": "group", "members": members}
+            entities.append(node)
+            if peek() == "o":
+                take()
+                name = reference()
+                require(name not in bindings, f"Reference {name} is already defined")
+                bindings[name] = node["id"]
+            return node["id"]
         parts = word.split("-")
-        require(version in ("0.4", "0.5") or len(parts) == 1, "Compound words require edition 0.4 or later")
+        require(version in ("0.4", "0.5", "0.6") or len(parts) == 1, "Compound words require edition 0.4 or later")
         concept = CONCEPT_BY_WORD.get(parts[0])
         require(concept is not None and CONCEPTS[concept]["kind"] in ("entity", "place"), f"Expected an entity word, got {word}")
         node = {"id": "n" + number_word(len(entities)), "kind": CONCEPTS[concept]["kind"], "concept": concept, "quantity": None, "name": None}
-        if version in ("0.4", "0.5"):
+        if version in ("0.4", "0.5", "0.6"):
             node["qualifiers"] = [CONCEPT_BY_WORD.get(part) for part in parts[1:]]
         modifiers = set()
         while peek() in ("m", "n", "o"):
@@ -253,7 +310,7 @@ def parse_document(text, compact=False):
             elif compact and peek() is not None:
                 token = peek()
                 concept = CONCEPT_BY_WORD.get(token.split("-")[0])
-                is_term = token in ("p", "?", "c") or concept is not None and CONCEPTS[concept]["kind"] in ("entity", "place")
+                is_term = token in ("p", "?", "c") or version == "0.6" and token == "w" or concept is not None and CONCEPTS[concept]["kind"] in ("entity", "place")
                 if not is_term:
                     break
                 require(not explicit, "Unmarked arguments must precede explicit roles")
@@ -271,10 +328,10 @@ def parse_document(text, compact=False):
     else:
         take("noema")
         edition = take()
-    require(edition in ("b", "c", "d", "e"), "Unsupported written language edition")
+    require(edition in ("b", "c", "d", "e", "f"), "Unsupported written language edition")
     if not compact:
         take(edition)
-    version = {"b": "0.2", "c": "0.3", "d": "0.4", "e": "0.5"}[edition]
+    version = {"b": "0.2", "c": "0.3", "d": "0.4", "e": "0.5", "f": "0.6"}[edition]
     ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(version)
     CONCEPT_BY_WORD = {word: concept for concept, word in ROOTS.items()}
     utterances = []
@@ -292,12 +349,20 @@ def format_document(document, compact=False):
     ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(document["schema_version"])
     entities = {e["id"]: e for e in document["entities"]}
     seen, counts = set(), {}
+    expanded = set()
+
+    def count_term(ident):
+        counts[ident] = counts.get(ident, 0) + 1
+        if entities[ident]["kind"] == "group" and ident not in expanded:
+            expanded.add(ident)
+            for member in entities[ident]["members"]:
+                count_term(member)
 
     def count(expr):
         if expr["kind"] == "clause":
             for term in expr["roles"].values():
                 if isinstance(term, str):
-                    counts[term] = counts.get(term, 0) + 1
+                    count_term(term)
         elif expr["kind"] == "not":
             count(expr["body"])
         else:
@@ -317,12 +382,16 @@ def format_document(document, compact=False):
             return "p " + references[ident]
         seen.add(ident)
         entity = entities[ident]
-        words = ["-".join([ROOTS[entity["concept"]]] + [ROOTS[q] for q in entity.get("qualifiers", [])])]
-        if entity["quantity"] is not None:
-            words += ["m", number_word(entity["quantity"])]
-        if entity["name"] is not None:
-            literal = json.dumps(entity["name"], ensure_ascii=False)
-            words += ["n" + literal] if compact else ["n", literal]
+        if entity["kind"] == "group":
+            members = [term(member) for member in entity["members"]]
+            words = ["w" + "".join("[" + member + "]" for member in members)] if compact else ["w " + " ".join("[ " + member + " ]" for member in members)]
+        else:
+            words = ["-".join([ROOTS[entity["concept"]]] + [ROOTS[q] for q in entity.get("qualifiers", [])])]
+            if entity["quantity"] is not None:
+                words += ["m", number_word(entity["quantity"])]
+            if entity["name"] is not None:
+                literal = json.dumps(entity["name"], ensure_ascii=False)
+                words += ["n" + literal] if compact else ["n", literal]
         if counts[ident] > 1:
             words += ["o", references[ident]]
         return " ".join(words)
@@ -355,7 +424,7 @@ def format_document(document, compact=False):
                 words += [term(value)] if unmarked else [marker, term(value)]
         return " ".join(words)
 
-    marker = {"0.2": "b", "0.3": "c", "0.4": "d", "0.5": "e"}[document["schema_version"]]
+    marker = {"0.2": "b", "0.3": "c", "0.4": "d", "0.5": "e", "0.6": "f"}[document["schema_version"]]
     lines = [] if compact else [f"noema {marker} {marker}"]
     for utterance in document["utterances"]:
         mood = {"assertion": "", "question": "b ", "request": "d "}[utterance["speech_act"]]
@@ -381,7 +450,8 @@ def to_graph(document):
     """Only the exactly representable assertion subset can be lowered to 0.1."""
     from .semantics import normalize
     doc = normalize_document(document)
-    if doc["schema_version"] in ("0.4", "0.5"):
+    require(all(entity["kind"] != "group" for entity in doc["entities"]), "0.1 cannot represent groups")
+    if doc["schema_version"] in ("0.4", "0.5", "0.6"):
         require(all(not entity["qualifiers"] for entity in doc["entities"]), "0.1 cannot represent compound properties")
         for entity in doc["entities"]:
             del entity["qualifiers"]
@@ -412,16 +482,19 @@ def convert(document, version):
     if version == "0.1":
         return to_graph(source)
     _, _, _, roles = policy(version)
+    require(version == "0.6" or all(entity["kind"] != "group" for entity in source["entities"]), "Target edition cannot represent groups")
     for entity in source["entities"]:
-        if version in ("0.4", "0.5"):
+        if entity["kind"] == "group":
+            continue
+        if version in ("0.4", "0.5", "0.6"):
             entity.setdefault("qualifiers", [])
-        elif source["schema_version"] in ("0.4", "0.5"):
+        elif source["schema_version"] in ("0.4", "0.5", "0.6"):
             require(not entity["qualifiers"], "Target edition cannot represent compound properties")
             del entity["qualifiers"]
 
     def visit(expr):
         if expr["kind"] == "clause":
-            require(version == "0.5" or isinstance(expr["predicate"], str), "Target edition cannot represent derived predicates")
+            require(version in ("0.5", "0.6") or isinstance(expr["predicate"], str), "Target edition cannot represent derived predicates")
             require(all(value is None for role, value in expr["roles"].items() if role not in roles), "Target edition cannot represent extended roles")
             expr["roles"] = {r: v for r, v in expr["roles"].items() if r in roles}
         elif expr["kind"] == "not":

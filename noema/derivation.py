@@ -10,7 +10,7 @@ def predicate_spec(predicate, version, concepts):
     if isinstance(predicate, str):
         require(predicate in concepts and concepts[predicate]["kind"] in ("event", "state"), "Expected an event or state concept")
         return concepts[predicate]
-    require(version == "0.5", "Derived predicates require edition 0.5")
+    require(version in ("0.5", "0.6"), "Derived predicates require edition 0.5")
     keys(predicate, ("operator", "state"))
     operator, state = predicate["operator"], predicate["state"]
     require(isinstance(operator, str) and operator in DERIVATION["operators"], "Unknown derivation operator")
@@ -28,7 +28,7 @@ def parse_predicate(word, version, concepts, by_word):
     if len(parts) == 1:
         predicate = by_word.get(word)
     else:
-        require(version == "0.5", "Derived predicates require edition 0.5")
+        require(version in ("0.5", "0.6"), "Derived predicates require edition 0.5")
         operators = {v["marker"]: k for k, v in DERIVATION["operators"].items()}
         require(len(parts) == 2 and parts[0] in operators, "Expected operator-state word")
         predicate = {"operator": operators[parts[0]], "state": by_word.get(parts[1])}
