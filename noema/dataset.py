@@ -172,7 +172,11 @@ def write_dataset(path):
 
 def load_dataset(path):
     rows = [json.loads(line) for line in Path(path).read_text(encoding="utf-8").splitlines() if line.strip()]
-    validate_dataset(rows)
+    if rows and rows[0].get("corpus_version") == "0.2":
+        from .corpus_v2 import validate
+        validate(rows)
+    else:
+        validate_dataset(rows)
     return rows
 
 
