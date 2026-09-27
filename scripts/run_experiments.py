@@ -5,7 +5,7 @@ Run from the repository root: python -m scripts.run_experiments
 import argparse
 import json
 from pathlib import Path
-from noema.dataset import write_dataset
+from noema.dataset import write_dataset, digest
 from noema.training import cache_features, train, save_json
 
 
@@ -22,7 +22,13 @@ def main():
     summary = {}
     for model in args.models:
         cache = f"artifacts/{model}-features.pt"
-        if not Path(cache).exists():
+        stale = False
+        if Path(cache).exists():
+            import torch
+            stale = torch.load(cache, map_location="cpu", weights_only=True)["dataset_sha256"] != digest(dataset)
+            if stale and not args.rerun:
+                raise ValueError(f"Stale cache {cache}; regenerate with --rerun")
+        if not Path(cache).exists() or stale:
             cache_features(dataset, cache, model, args.device)
         for architecture, fraction in (("linear", .25), ("linear", 1.), ("mlp", 1.)):
             name = f"{model}-{architecture}-{int(fraction * 100)}"
@@ -30,7 +36,6 @@ def main():
             existing = path / "report.json"
             if existing.exists() and not args.rerun:
                 report = json.loads(existing.read_text(encoding="utf-8"))
-                from noema.dataset import digest
                 if report["metadata"]["dataset_sha256"] != digest(dataset) or report["metadata"]["epochs"] != args.epochs or report["metadata"].get("training_implementation") != 2:
                     raise ValueError(f"Stale run {path}; use a fresh artifacts directory")
             else:

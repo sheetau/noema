@@ -1,0 +1,3961 @@
+{
+  "minilm-linear-25": {
+    "metadata": {
+      "format": 1,
+      "schema_version": "0.1",
+      "lexicon_version": "0.1",
+      "labels": {
+        "span": [
+          "O",
+          "B-predicate",
+          "I-predicate",
+          "B-entity",
+          "I-entity",
+          "B-quantity",
+          "I-quantity",
+          "B-time",
+          "I-time",
+          "B-negation",
+          "I-negation"
+        ],
+        "concept": [
+          "none",
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "role": [
+          "none",
+          "agent",
+          "patient",
+          "recipient",
+          "location"
+        ],
+        "quantity": [
+          "unspecified",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "polarity": [
+          "affirmed",
+          "negated",
+          "unspecified"
+        ],
+        "time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ],
+        "support": [
+          "unsupported",
+          "supported"
+        ],
+        "sentence_concept": [
+          "none",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ]
+      },
+      "dimension": 384,
+      "architecture": "linear",
+      "encoder": {
+        "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+        "max_length": 128,
+        "key": "minilm",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "threshold": 0.9,
+      "seed": 17,
+      "training_fraction": 0.25,
+      "training_rows": 992,
+      "dataset_sha256": "6c65a3b117bcd0468777c89a40caeffa8cff0d9af0c989143bd8ad3159f30335",
+      "best_epoch": 13,
+      "epochs": 30,
+      "encoder_repeat_exact": true,
+      "encoder_batch_size": 16,
+      "elapsed_seconds": 3.204605199978687,
+      "weights_sha256": "fab46ac6fa4fc36d4c1538a89bcac5b6be069f3141a03fc75db7603afbf3054c",
+      "training_implementation": 2
+    },
+    "dev": {
+      "selective": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 624,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 2,
+          "exact": 2,
+          "coverage": 0.003205128205128205,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 622,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 209,
+          "exact": 89,
+          "coverage": 0.3349358974358974,
+          "confirmed_exact_match": 0.4258373205741627,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 118,
+            "patient": 102,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 415,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 355,
+          "exact": 182,
+          "coverage": 0.5689102564102564,
+          "confirmed_exact_match": 0.5126760563380282,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 173,
+            "patient": 167,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 269,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 126,
+          "equal_confirmed_groups": 111
+        }
+      },
+      "sentence_concept": {
+        "correct": 1245,
+        "total": 1248,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 5585,
+            "total": 7273,
+            "confusions": {
+              "B-entity -> O": 594,
+              "I-entity -> B-entity": 599,
+              "B-entity -> I-entity": 80,
+              "B-negation -> I-predicate": 66,
+              "I-predicate -> O": 79,
+              "I-predicate -> B-negation": 202,
+              "I-predicate -> B-predicate": 23,
+              "O -> I-entity": 14,
+              "O -> B-entity": 13,
+              "I-entity -> O": 2,
+              "O -> I-predicate": 6,
+              "B-entity -> B-predicate": 10
+            },
+            "accuracy": 0.7679087034236216
+          },
+          "concept": {
+            "correct": 3380,
+            "total": 3570,
+            "confusions": {
+              "ai -> ac": 33,
+              "ab -> ac": 1,
+              "ae -> ac": 1,
+              "bc -> ac": 18,
+              "ah -> ac": 6,
+              "bc -> ba": 22,
+              "bb -> ba": 59,
+              "ai -> bf": 5,
+              "ai -> aa": 3,
+              "ai -> ba": 3,
+              "bb -> ac": 20,
+              "bb -> be": 5,
+              "ah -> ad": 2,
+              "ac -> ad": 5,
+              "ae -> ad": 2,
+              "ac -> ab": 1,
+              "ai -> ad": 2,
+              "aa -> ac": 1,
+              "ac -> ae": 1
+            },
+            "accuracy": 0.9467787114845938
+          },
+          "role": {
+            "correct": 1438,
+            "total": 2382,
+            "confusions": {
+              "location -> agent": 226,
+              "patient -> agent": 403,
+              "agent -> patient": 313,
+              "location -> patient": 2
+            },
+            "accuracy": 0.6036943744752309
+          },
+          "quantity": {
+            "correct": 2178,
+            "total": 2382,
+            "confusions": {
+              "unspecified -> 2": 132,
+              "2 -> unspecified": 72
+            },
+            "accuracy": 0.9143576826196473
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 623,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 3,
+              "unsupported -> supported": 2
+            },
+            "accuracy": 0.9920382165605095
+          },
+          "sentence_concept": {
+            "correct": 622,
+            "total": 624,
+            "confusions": {
+              "bf -> bc": 1,
+              "bf -> ba": 1
+            },
+            "accuracy": 0.9967948717948718
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6856,
+            "total": 7058,
+            "confusions": {
+              "I-entity -> B-entity": 151,
+              "I-entity -> O": 10,
+              "O -> I-predicate": 10,
+              "I-predicate -> B-predicate": 10,
+              "O -> B-negation": 8,
+              "B-entity -> I-entity": 11,
+              "B-negation -> I-predicate": 1,
+              "B-predicate -> I-predicate": 1
+            },
+            "accuracy": 0.9713799943326722
+          },
+          "concept": {
+            "correct": 2892,
+            "total": 2892,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "role": {
+            "correct": 1406,
+            "total": 2076,
+            "confusions": {
+              "patient -> agent": 281,
+              "agent -> patient": 389
+            },
+            "accuracy": 0.6772639691714836
+          },
+          "quantity": {
+            "correct": 1971,
+            "total": 2076,
+            "confusions": {
+              "2 -> unspecified": 105
+            },
+            "accuracy": 0.9494219653179191
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 622,
+            "total": 624,
+            "confusions": {
+              "today -> unspecified": 2
+            },
+            "accuracy": 0.9967948717948718
+          },
+          "support": {
+            "correct": 623,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 4,
+              "unsupported -> supported": 1
+            },
+            "accuracy": 0.9920382165605095
+          },
+          "sentence_concept": {
+            "correct": 623,
+            "total": 624,
+            "confusions": {
+              "bf -> bc": 1
+            },
+            "accuracy": 0.9983974358974359
+          }
+        }
+      }
+    },
+    "test": {
+      "selective": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 4,
+          "exact": 4,
+          "coverage": 0.007220216606498195,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 550,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 166,
+          "exact": 81,
+          "coverage": 0.2996389891696751,
+          "confirmed_exact_match": 0.4879518072289157,
+          "unsupported": 7,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.14285714285714285,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 71,
+            "patient": 67,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 388,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 244,
+          "exact": 152,
+          "coverage": 0.4404332129963899,
+          "confirmed_exact_match": 0.6229508196721312,
+          "unsupported": 7,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.14285714285714285,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 92,
+            "patient": 81,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 310,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 88,
+          "equal_confirmed_groups": 58
+        }
+      },
+      "sentence_concept": {
+        "correct": 1103,
+        "total": 1108,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 5378,
+            "total": 6678,
+            "confusions": {
+              "B-time -> O": 399,
+              "I-time -> B-time": 400,
+              "O -> I-entity": 41,
+              "O -> B-entity": 35,
+              "I-predicate -> B-predicate": 50,
+              "B-negation -> I-predicate": 9,
+              "I-entity -> B-entity": 198,
+              "B-entity -> I-entity": 75,
+              "B-entity -> O": 69,
+              "O -> I-predicate": 2,
+              "O -> B-negation": 5,
+              "I-predicate -> B-negation": 3,
+              "I-entity -> O": 10,
+              "B-entity -> B-predicate": 2,
+              "B-predicate -> I-predicate": 1,
+              "B-time -> I-predicate": 1
+            },
+            "accuracy": 0.8053309374064092
+          },
+          "concept": {
+            "correct": 2528,
+            "total": 2551,
+            "confusions": {
+              "ac -> ad": 6,
+              "ac -> ba": 1,
+              "aa -> ab": 4,
+              "ag -> bb": 1,
+              "ac -> ab": 11
+            },
+            "accuracy": 0.990983927871423
+          },
+          "role": {
+            "correct": 1042,
+            "total": 1616,
+            "confusions": {
+              "agent -> patient": 250,
+              "patient -> agent": 320,
+              "recipient -> agent": 4
+            },
+            "accuracy": 0.6448019801980198
+          },
+          "quantity": {
+            "correct": 1481,
+            "total": 1616,
+            "confusions": {
+              "unspecified -> 2": 90,
+              "2 -> unspecified": 45
+            },
+            "accuracy": 0.9164603960396039
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 543,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 13,
+              "unsupported -> supported": 5
+            },
+            "accuracy": 0.9679144385026738
+          },
+          "sentence_concept": {
+            "correct": 553,
+            "total": 554,
+            "confusions": {
+              "be -> bc": 1
+            },
+            "accuracy": 0.9981949458483754
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6255,
+            "total": 6578,
+            "confusions": {
+              "O -> I-predicate": 104,
+              "I-entity -> B-entity": 81,
+              "O -> I-entity": 6,
+              "I-predicate -> B-predicate": 49,
+              "O -> B-negation": 57,
+              "I-entity -> O": 5,
+              "B-negation -> I-predicate": 5,
+              "O -> B-entity": 10,
+              "B-predicate -> I-predicate": 4,
+              "B-entity -> I-entity": 2
+            },
+            "accuracy": 0.9508969291577988
+          },
+          "concept": {
+            "correct": 2454,
+            "total": 2454,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "role": {
+            "correct": 1159,
+            "total": 1636,
+            "confusions": {
+              "patient -> agent": 270,
+              "agent -> patient": 207
+            },
+            "accuracy": 0.7084352078239609
+          },
+          "quantity": {
+            "correct": 1594,
+            "total": 1636,
+            "confusions": {
+              "2 -> unspecified": 41,
+              "unspecified -> 2": 1
+            },
+            "accuracy": 0.9743276283618582
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 553,
+            "total": 554,
+            "confusions": {
+              "today -> unspecified": 1
+            },
+            "accuracy": 0.9981949458483754
+          },
+          "support": {
+            "correct": 540,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 16,
+              "unsupported -> supported": 5
+            },
+            "accuracy": 0.9625668449197861
+          },
+          "sentence_concept": {
+            "correct": 550,
+            "total": 554,
+            "confusions": {
+              "be -> bb": 3,
+              "be -> ba": 1
+            },
+            "accuracy": 0.9927797833935018
+          }
+        }
+      }
+    }
+  },
+  "minilm-linear-100": {
+    "metadata": {
+      "format": 1,
+      "schema_version": "0.1",
+      "lexicon_version": "0.1",
+      "labels": {
+        "span": [
+          "O",
+          "B-predicate",
+          "I-predicate",
+          "B-entity",
+          "I-entity",
+          "B-quantity",
+          "I-quantity",
+          "B-time",
+          "I-time",
+          "B-negation",
+          "I-negation"
+        ],
+        "concept": [
+          "none",
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "role": [
+          "none",
+          "agent",
+          "patient",
+          "recipient",
+          "location"
+        ],
+        "quantity": [
+          "unspecified",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "polarity": [
+          "affirmed",
+          "negated",
+          "unspecified"
+        ],
+        "time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ],
+        "support": [
+          "unsupported",
+          "supported"
+        ],
+        "sentence_concept": [
+          "none",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ]
+      },
+      "dimension": 384,
+      "architecture": "linear",
+      "encoder": {
+        "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+        "max_length": 128,
+        "key": "minilm",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "threshold": 0.9,
+      "seed": 17,
+      "training_fraction": 1.0,
+      "training_rows": 3944,
+      "dataset_sha256": "6c65a3b117bcd0468777c89a40caeffa8cff0d9af0c989143bd8ad3159f30335",
+      "best_epoch": 4,
+      "epochs": 30,
+      "encoder_repeat_exact": true,
+      "encoder_batch_size": 16,
+      "elapsed_seconds": 8.575852899986785,
+      "weights_sha256": "3a7779a11d22879d7ba4aca34f4a346cd2a0501b7a14301ca0718cbd45f1debd",
+      "training_implementation": 2
+    },
+    "dev": {
+      "selective": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 624,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 3,
+          "exact": 3,
+          "coverage": 0.004807692307692308,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 621,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 216,
+          "exact": 97,
+          "coverage": 0.34615384615384615,
+          "confirmed_exact_match": 0.44907407407407407,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 114,
+            "patient": 104,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 408,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 284,
+          "exact": 164,
+          "coverage": 0.4551282051282051,
+          "confirmed_exact_match": 0.5774647887323944,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 120,
+            "patient": 120,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 340,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 116,
+          "equal_confirmed_groups": 105
+        }
+      },
+      "sentence_concept": {
+        "correct": 1248,
+        "total": 1248,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 5614,
+            "total": 7273,
+            "confusions": {
+              "B-entity -> O": 594,
+              "I-entity -> B-entity": 597,
+              "B-entity -> I-entity": 77,
+              "B-negation -> I-predicate": 76,
+              "I-predicate -> B-negation": 200,
+              "I-predicate -> O": 54,
+              "I-entity -> O": 11,
+              "I-predicate -> B-predicate": 10,
+              "O -> I-entity": 9,
+              "O -> I-predicate": 10,
+              "B-predicate -> I-predicate": 6,
+              "B-entity -> B-predicate": 11,
+              "O -> B-entity": 4
+            },
+            "accuracy": 0.7718960538979788
+          },
+          "concept": {
+            "correct": 3383,
+            "total": 3570,
+            "confusions": {
+              "ai -> ac": 38,
+              "ab -> ac": 1,
+              "ae -> ac": 1,
+              "bc -> ac": 18,
+              "ah -> ac": 9,
+              "bb -> ba": 53,
+              "bb -> be": 17,
+              "ai -> bf": 3,
+              "ai -> aa": 4,
+              "ai -> ba": 4,
+              "bb -> ac": 19,
+              "bc -> ba": 5,
+              "ah -> ad": 2,
+              "ac -> ad": 4,
+              "ac -> ab": 1,
+              "ai -> bc": 3,
+              "ai -> ad": 1,
+              "aa -> ac": 1,
+              "ac -> ae": 3
+            },
+            "accuracy": 0.9476190476190476
+          },
+          "role": {
+            "correct": 1420,
+            "total": 2382,
+            "confusions": {
+              "location -> agent": 242,
+              "patient -> agent": 366,
+              "agent -> patient": 350,
+              "location -> patient": 4
+            },
+            "accuracy": 0.5961376994122586
+          },
+          "quantity": {
+            "correct": 2186,
+            "total": 2382,
+            "confusions": {
+              "unspecified -> 2": 141,
+              "2 -> unspecified": 55
+            },
+            "accuracy": 0.9177162048698573
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 619,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 6,
+              "unsupported -> supported": 3
+            },
+            "accuracy": 0.9856687898089171
+          },
+          "sentence_concept": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6853,
+            "total": 7058,
+            "confusions": {
+              "I-entity -> B-entity": 148,
+              "I-entity -> O": 17,
+              "O -> I-predicate": 10,
+              "I-predicate -> B-predicate": 4,
+              "O -> B-negation": 7,
+              "B-entity -> I-entity": 7,
+              "B-predicate -> I-predicate": 11,
+              "O -> B-entity": 1
+            },
+            "accuracy": 0.9709549447435534
+          },
+          "concept": {
+            "correct": 2892,
+            "total": 2892,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "role": {
+            "correct": 1447,
+            "total": 2076,
+            "confusions": {
+              "patient -> agent": 177,
+              "agent -> patient": 452
+            },
+            "accuracy": 0.6970134874759152
+          },
+          "quantity": {
+            "correct": 1985,
+            "total": 2076,
+            "confusions": {
+              "2 -> unspecified": 91
+            },
+            "accuracy": 0.9561657032755299
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 619,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 8,
+              "unsupported -> supported": 1
+            },
+            "accuracy": 0.9856687898089171
+          },
+          "sentence_concept": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        }
+      }
+    },
+    "test": {
+      "selective": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 5,
+          "exact": 5,
+          "coverage": 0.009025270758122744,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 549,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 176,
+          "exact": 87,
+          "coverage": 0.3176895306859206,
+          "confirmed_exact_match": 0.4943181818181818,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 74,
+            "patient": 63,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 378,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 239,
+          "exact": 147,
+          "coverage": 0.4314079422382672,
+          "confirmed_exact_match": 0.6150627615062761,
+          "unsupported": 7,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.14285714285714285,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 92,
+            "patient": 88,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 315,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 89,
+          "equal_confirmed_groups": 57
+        }
+      },
+      "sentence_concept": {
+        "correct": 1107,
+        "total": 1108,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 5411,
+            "total": 6678,
+            "confusions": {
+              "B-time -> O": 393,
+              "I-time -> B-time": 400,
+              "O -> I-entity": 30,
+              "O -> B-entity": 37,
+              "I-predicate -> B-predicate": 26,
+              "B-negation -> I-predicate": 7,
+              "I-entity -> B-entity": 186,
+              "B-entity -> I-entity": 71,
+              "B-entity -> O": 74,
+              "B-time -> I-predicate": 7,
+              "O -> I-predicate": 5,
+              "O -> B-negation": 5,
+              "I-predicate -> B-negation": 2,
+              "I-entity -> O": 20,
+              "B-entity -> B-predicate": 2,
+              "B-predicate -> I-predicate": 2
+            },
+            "accuracy": 0.810272536687631
+          },
+          "concept": {
+            "correct": 2532,
+            "total": 2551,
+            "confusions": {
+              "ac -> ba": 1,
+              "ag -> ba": 1,
+              "aa -> ab": 4,
+              "ac -> ab": 11,
+              "ac -> ad": 2
+            },
+            "accuracy": 0.9925519404155233
+          },
+          "role": {
+            "correct": 1044,
+            "total": 1616,
+            "confusions": {
+              "agent -> patient": 279,
+              "patient -> agent": 289,
+              "recipient -> agent": 4
+            },
+            "accuracy": 0.6460396039603961
+          },
+          "quantity": {
+            "correct": 1472,
+            "total": 1616,
+            "confusions": {
+              "unspecified -> 2": 100,
+              "2 -> unspecified": 44
+            },
+            "accuracy": 0.9108910891089109
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 534,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 22,
+              "unsupported -> supported": 5
+            },
+            "accuracy": 0.9518716577540107
+          },
+          "sentence_concept": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6241,
+            "total": 6578,
+            "confusions": {
+              "O -> I-entity": 7,
+              "O -> I-predicate": 121,
+              "I-entity -> B-entity": 81,
+              "I-predicate -> B-predicate": 28,
+              "O -> B-negation": 52,
+              "B-predicate -> I-predicate": 18,
+              "I-entity -> O": 13,
+              "B-negation -> I-predicate": 7,
+              "O -> B-entity": 9,
+              "B-entity -> I-entity": 1
+            },
+            "accuracy": 0.9487686226816662
+          },
+          "concept": {
+            "correct": 2454,
+            "total": 2454,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "role": {
+            "correct": 1150,
+            "total": 1636,
+            "confusions": {
+              "patient -> agent": 240,
+              "agent -> patient": 246
+            },
+            "accuracy": 0.7029339853300733
+          },
+          "quantity": {
+            "correct": 1598,
+            "total": 1636,
+            "confusions": {
+              "2 -> unspecified": 37,
+              "unspecified -> 2": 1
+            },
+            "accuracy": 0.9767726161369193
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 552,
+            "total": 554,
+            "confusions": {
+              "today -> unspecified": 2
+            },
+            "accuracy": 0.9963898916967509
+          },
+          "support": {
+            "correct": 531,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 25,
+              "unsupported -> supported": 5
+            },
+            "accuracy": 0.946524064171123
+          },
+          "sentence_concept": {
+            "correct": 553,
+            "total": 554,
+            "confusions": {
+              "be -> ba": 1
+            },
+            "accuracy": 0.9981949458483754
+          }
+        }
+      }
+    }
+  },
+  "minilm-mlp-100": {
+    "metadata": {
+      "format": 1,
+      "schema_version": "0.1",
+      "lexicon_version": "0.1",
+      "labels": {
+        "span": [
+          "O",
+          "B-predicate",
+          "I-predicate",
+          "B-entity",
+          "I-entity",
+          "B-quantity",
+          "I-quantity",
+          "B-time",
+          "I-time",
+          "B-negation",
+          "I-negation"
+        ],
+        "concept": [
+          "none",
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "role": [
+          "none",
+          "agent",
+          "patient",
+          "recipient",
+          "location"
+        ],
+        "quantity": [
+          "unspecified",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "polarity": [
+          "affirmed",
+          "negated",
+          "unspecified"
+        ],
+        "time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ],
+        "support": [
+          "unsupported",
+          "supported"
+        ],
+        "sentence_concept": [
+          "none",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ]
+      },
+      "dimension": 384,
+      "architecture": "mlp",
+      "encoder": {
+        "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+        "max_length": 128,
+        "key": "minilm",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "threshold": 0.9,
+      "seed": 17,
+      "training_fraction": 1.0,
+      "training_rows": 3944,
+      "dataset_sha256": "6c65a3b117bcd0468777c89a40caeffa8cff0d9af0c989143bd8ad3159f30335",
+      "best_epoch": 2,
+      "epochs": 30,
+      "encoder_repeat_exact": true,
+      "encoder_batch_size": 16,
+      "elapsed_seconds": 16.88394230004633,
+      "weights_sha256": "368c527909ec609dfd03b45a42d0c52085e7999ab91755b6b267518c0840b20b",
+      "training_implementation": 2
+    },
+    "dev": {
+      "selective": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 624,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 2,
+          "exact": 1,
+          "coverage": 0.003205128205128205,
+          "confirmed_exact_match": 0.5,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 1,
+            "patient": 1,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 622,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 247,
+          "exact": 88,
+          "coverage": 0.3958333333333333,
+          "confirmed_exact_match": 0.3562753036437247,
+          "unsupported": 4,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.25,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 148,
+            "patient": 142,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 377,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 251,
+          "exact": 106,
+          "coverage": 0.40224358974358976,
+          "confirmed_exact_match": 0.42231075697211157,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 145,
+            "patient": 124,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 373,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 103,
+          "equal_confirmed_groups": 81
+        }
+      },
+      "sentence_concept": {
+        "correct": 1248,
+        "total": 1248,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 5614,
+            "total": 7273,
+            "confusions": {
+              "B-entity -> O": 596,
+              "I-entity -> B-entity": 655,
+              "B-negation -> I-predicate": 60,
+              "I-predicate -> O": 67,
+              "I-predicate -> B-negation": 203,
+              "O -> B-entity": 24,
+              "I-predicate -> B-predicate": 22,
+              "B-predicate -> I-predicate": 3,
+              "B-entity -> I-entity": 9,
+              "O -> I-entity": 5,
+              "O -> I-predicate": 4,
+              "B-entity -> B-predicate": 11
+            },
+            "accuracy": 0.7718960538979788
+          },
+          "concept": {
+            "correct": 3422,
+            "total": 3570,
+            "confusions": {
+              "ai -> ac": 23,
+              "ab -> ac": 1,
+              "bc -> ac": 12,
+              "ae -> ac": 1,
+              "ah -> ac": 6,
+              "bc -> ba": 15,
+              "bb -> ba": 58,
+              "ai -> bf": 7,
+              "ai -> aa": 1,
+              "ai -> ba": 2,
+              "ah -> ad": 2,
+              "ac -> ad": 3,
+              "bb -> ac": 10,
+              "ae -> ad": 2,
+              "ac -> ab": 1,
+              "ac -> bb": 1,
+              "aa -> ac": 1,
+              "ac -> ae": 2
+            },
+            "accuracy": 0.9585434173669468
+          },
+          "role": {
+            "correct": 1510,
+            "total": 2382,
+            "confusions": {
+              "location -> agent": 167,
+              "patient -> agent": 355,
+              "agent -> patient": 344,
+              "location -> patient": 6
+            },
+            "accuracy": 0.6339210747271201
+          },
+          "quantity": {
+            "correct": 2171,
+            "total": 2382,
+            "confusions": {
+              "unspecified -> 2": 118,
+              "2 -> unspecified": 93
+            },
+            "accuracy": 0.9114189756507137
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 617,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 8,
+              "unsupported -> supported": 3
+            },
+            "accuracy": 0.982484076433121
+          },
+          "sentence_concept": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6738,
+            "total": 7058,
+            "confusions": {
+              "I-entity -> B-entity": 243,
+              "I-entity -> O": 19,
+              "O -> I-predicate": 16,
+              "I-predicate -> B-predicate": 14,
+              "B-predicate -> I-predicate": 11,
+              "O -> B-negation": 8,
+              "B-entity -> I-entity": 8,
+              "O -> B-entity": 1
+            },
+            "accuracy": 0.9546613771606688
+          },
+          "concept": {
+            "correct": 2892,
+            "total": 2892,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "role": {
+            "correct": 1483,
+            "total": 2076,
+            "confusions": {
+              "patient -> agent": 180,
+              "agent -> patient": 413
+            },
+            "accuracy": 0.714354527938343
+          },
+          "quantity": {
+            "correct": 1893,
+            "total": 2076,
+            "confusions": {
+              "2 -> unspecified": 183
+            },
+            "accuracy": 0.911849710982659
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 622,
+            "total": 624,
+            "confusions": {
+              "tomorrow -> today": 2
+            },
+            "accuracy": 0.9967948717948718
+          },
+          "support": {
+            "correct": 618,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 9,
+              "unsupported -> supported": 1
+            },
+            "accuracy": 0.9840764331210191
+          },
+          "sentence_concept": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        }
+      }
+    },
+    "test": {
+      "selective": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 3,
+          "exact": 3,
+          "coverage": 0.005415162454873646,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 551,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 149,
+          "exact": 84,
+          "coverage": 0.26895306859205775,
+          "confirmed_exact_match": 0.5637583892617449,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 53,
+            "patient": 58,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 405,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 213,
+          "exact": 123,
+          "coverage": 0.3844765342960289,
+          "confirmed_exact_match": 0.5774647887323944,
+          "unsupported": 7,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.14285714285714285,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 1,
+            "agent": 89,
+            "patient": 79,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 341,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 77,
+          "equal_confirmed_groups": 57
+        }
+      },
+      "sentence_concept": {
+        "correct": 1106,
+        "total": 1108,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 5437,
+            "total": 6678,
+            "confusions": {
+              "B-time -> O": 397,
+              "I-time -> B-time": 400,
+              "O -> B-entity": 51,
+              "I-predicate -> B-negation": 14,
+              "B-predicate -> I-predicate": 10,
+              "I-predicate -> B-predicate": 41,
+              "B-negation -> I-predicate": 8,
+              "I-entity -> B-entity": 210,
+              "B-entity -> O": 72,
+              "B-time -> I-predicate": 3,
+              "O -> I-predicate": 4,
+              "B-entity -> I-entity": 20,
+              "O -> I-entity": 8,
+              "B-entity -> B-predicate": 2,
+              "O -> B-negation": 1
+            },
+            "accuracy": 0.8141659179395029
+          },
+          "concept": {
+            "correct": 2529,
+            "total": 2551,
+            "confusions": {
+              "ac -> ad": 7,
+              "aa -> ab": 4,
+              "ac -> ab": 11
+            },
+            "accuracy": 0.991375931007448
+          },
+          "role": {
+            "correct": 1058,
+            "total": 1616,
+            "confusions": {
+              "patient -> agent": 278,
+              "agent -> patient": 276,
+              "recipient -> agent": 4
+            },
+            "accuracy": 0.6547029702970297
+          },
+          "quantity": {
+            "correct": 1478,
+            "total": 1616,
+            "confusions": {
+              "unspecified -> 2": 91,
+              "2 -> unspecified": 47
+            },
+            "accuracy": 0.9146039603960396
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 535,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 21,
+              "unsupported -> supported": 5
+            },
+            "accuracy": 0.9536541889483066
+          },
+          "sentence_concept": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6185,
+            "total": 6578,
+            "confusions": {
+              "I-entity -> B-entity": 122,
+              "O -> I-predicate": 85,
+              "B-predicate -> I-predicate": 18,
+              "O -> B-negation": 73,
+              "I-predicate -> B-predicate": 62,
+              "I-entity -> O": 20,
+              "B-negation -> I-predicate": 3,
+              "B-entity -> I-entity": 6,
+              "O -> B-entity": 4
+            },
+            "accuracy": 0.9402553967771359
+          },
+          "concept": {
+            "correct": 2454,
+            "total": 2454,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "role": {
+            "correct": 1176,
+            "total": 1636,
+            "confusions": {
+              "patient -> agent": 233,
+              "agent -> patient": 227
+            },
+            "accuracy": 0.7188264058679706
+          },
+          "quantity": {
+            "correct": 1577,
+            "total": 1636,
+            "confusions": {
+              "2 -> unspecified": 58,
+              "unspecified -> 2": 1
+            },
+            "accuracy": 0.9639364303178484
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 552,
+            "total": 554,
+            "confusions": {
+              "today -> unspecified": 2
+            },
+            "accuracy": 0.9963898916967509
+          },
+          "support": {
+            "correct": 529,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 27,
+              "unsupported -> supported": 5
+            },
+            "accuracy": 0.9429590017825312
+          },
+          "sentence_concept": {
+            "correct": 552,
+            "total": 554,
+            "confusions": {
+              "be -> ba": 2
+            },
+            "accuracy": 0.9963898916967509
+          }
+        }
+      }
+    }
+  },
+  "xlmr-linear-25": {
+    "metadata": {
+      "format": 1,
+      "schema_version": "0.1",
+      "lexicon_version": "0.1",
+      "labels": {
+        "span": [
+          "O",
+          "B-predicate",
+          "I-predicate",
+          "B-entity",
+          "I-entity",
+          "B-quantity",
+          "I-quantity",
+          "B-time",
+          "I-time",
+          "B-negation",
+          "I-negation"
+        ],
+        "concept": [
+          "none",
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "role": [
+          "none",
+          "agent",
+          "patient",
+          "recipient",
+          "location"
+        ],
+        "quantity": [
+          "unspecified",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "polarity": [
+          "affirmed",
+          "negated",
+          "unspecified"
+        ],
+        "time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ],
+        "support": [
+          "unsupported",
+          "supported"
+        ],
+        "sentence_concept": [
+          "none",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ]
+      },
+      "dimension": 768,
+      "architecture": "linear",
+      "encoder": {
+        "id": "FacebookAI/xlm-roberta-base",
+        "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+        "max_length": 128,
+        "key": "xlmr",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "threshold": 0.9,
+      "seed": 17,
+      "training_fraction": 0.25,
+      "training_rows": 992,
+      "dataset_sha256": "6c65a3b117bcd0468777c89a40caeffa8cff0d9af0c989143bd8ad3159f30335",
+      "best_epoch": 27,
+      "epochs": 30,
+      "encoder_repeat_exact": true,
+      "encoder_batch_size": 16,
+      "elapsed_seconds": 3.8989123999490403,
+      "weights_sha256": "7bf7993050812ed82fe88737d866d92075e34effbe7fb8121d89c807834ba986",
+      "training_implementation": 2
+    },
+    "dev": {
+      "selective": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 624,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 624,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 38,
+          "exact": 0,
+          "coverage": 0.060897435897435896,
+          "confirmed_exact_match": 0.0,
+          "unsupported": 4,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.25,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 38,
+            "patient": 38,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 586,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 377,
+          "exact": 111,
+          "coverage": 0.6041666666666666,
+          "confirmed_exact_match": 0.29442970822281167,
+          "unsupported": 4,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.25,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 266,
+            "patient": 266,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 247,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 34,
+          "equal_confirmed_groups": 31
+        }
+      },
+      "sentence_concept": {
+        "correct": 1227,
+        "total": 1248,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 6396,
+            "total": 7273,
+            "confusions": {
+              "I-entity -> B-entity": 581,
+              "O -> B-predicate": 225,
+              "O -> B-entity": 16,
+              "B-entity -> I-entity": 30,
+              "I-predicate -> O": 5,
+              "B-quantity -> B-entity": 5,
+              "B-entity -> I-predicate": 5,
+              "B-entity -> B-predicate": 9,
+              "I-predicate -> B-negation": 1
+            },
+            "accuracy": 0.8794170218616801
+          },
+          "concept": {
+            "correct": 2882,
+            "total": 3570,
+            "confusions": {
+              "ai -> ac": 27,
+              "ai -> ab": 45,
+              "ah -> ab": 55,
+              "ah -> ad": 36,
+              "ah -> ac": 31,
+              "ah -> ae": 100,
+              "ai -> aa": 37,
+              "ag -> aa": 6,
+              "ag -> ae": 49,
+              "ag -> ab": 12,
+              "bb -> bd": 58,
+              "bb -> bc": 25,
+              "af -> ab": 5,
+              "ai -> ae": 69,
+              "ai -> ad": 50,
+              "bb -> ac": 2,
+              "bb -> be": 5,
+              "ag -> bd": 3,
+              "ag -> ba": 6,
+              "ag -> bf": 12,
+              "bc -> bd": 2,
+              "ae -> ab": 1,
+              "ah -> aa": 24,
+              "ac -> ab": 6,
+              "ad -> ae": 4,
+              "ag -> bc": 1,
+              "ac -> ae": 12,
+              "bb -> ae": 4,
+              "bb -> ba": 1
+            },
+            "accuracy": 0.8072829131652661
+          },
+          "role": {
+            "correct": 877,
+            "total": 2382,
+            "confusions": {
+              "location -> agent": 474,
+              "patient -> agent": 485,
+              "agent -> patient": 516,
+              "agent -> recipient": 30
+            },
+            "accuracy": 0.3681780016792611
+          },
+          "quantity": {
+            "correct": 2140,
+            "total": 2382,
+            "confusions": {
+              "2 -> unspecified": 242
+            },
+            "accuracy": 0.8984047019311503
+          },
+          "polarity": {
+            "correct": 621,
+            "total": 624,
+            "confusions": {
+              "affirmed -> negated": 3
+            },
+            "accuracy": 0.9951923076923077
+          },
+          "time": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 622,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 5,
+              "unsupported -> supported": 1
+            },
+            "accuracy": 0.9904458598726115
+          },
+          "sentence_concept": {
+            "correct": 606,
+            "total": 624,
+            "confusions": {
+              "bb -> bc": 16,
+              "ba -> bc": 1,
+              "ba -> bb": 1
+            },
+            "accuracy": 0.9711538461538461
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 7030,
+            "total": 7058,
+            "confusions": {
+              "O -> B-predicate": 10,
+              "O -> B-entity": 17,
+              "B-time -> B-entity": 1
+            },
+            "accuracy": 0.9960328705015585
+          },
+          "concept": {
+            "correct": 2887,
+            "total": 2892,
+            "confusions": {
+              "aa -> ab": 5
+            },
+            "accuracy": 0.9982710926694329
+          },
+          "role": {
+            "correct": 1122,
+            "total": 2076,
+            "confusions": {
+              "patient -> agent": 433,
+              "agent -> patient": 521
+            },
+            "accuracy": 0.5404624277456648
+          },
+          "quantity": {
+            "correct": 2010,
+            "total": 2076,
+            "confusions": {
+              "2 -> unspecified": 66
+            },
+            "accuracy": 0.9682080924855492
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 623,
+            "total": 624,
+            "confusions": {
+              "tomorrow -> unspecified": 1
+            },
+            "accuracy": 0.9983974358974359
+          },
+          "support": {
+            "correct": 626,
+            "total": 628,
+            "confusions": {
+              "unsupported -> supported": 2
+            },
+            "accuracy": 0.9968152866242038
+          },
+          "sentence_concept": {
+            "correct": 621,
+            "total": 624,
+            "confusions": {
+              "be -> bb": 3
+            },
+            "accuracy": 0.9951923076923077
+          }
+        }
+      }
+    },
+    "test": {
+      "selective": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 100,
+          "exact": 93,
+          "coverage": 0.18050541516245489,
+          "confirmed_exact_match": 0.93,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 5,
+            "agent": 2,
+            "patient": 1,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 454,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "sentence_concept": {
+        "correct": 1037,
+        "total": 1108,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 4878,
+            "total": 6678,
+            "confusions": {
+              "B-time -> B-entity": 400,
+              "I-time -> B-time": 400,
+              "B-entity -> I-entity": 361,
+              "O -> B-entity": 511,
+              "I-entity -> B-entity": 118,
+              "B-entity -> B-predicate": 8,
+              "O -> I-predicate": 2
+            },
+            "accuracy": 0.7304582210242587
+          },
+          "concept": {
+            "correct": 2386,
+            "total": 2551,
+            "confusions": {
+              "aa -> ac": 4,
+              "ac -> ad": 15,
+              "ag -> bc": 19,
+              "ag -> ab": 22,
+              "ag -> ba": 20,
+              "ag -> bb": 1,
+              "ae -> ad": 2,
+              "ag -> ad": 27,
+              "aa -> ae": 12,
+              "ad -> ac": 6,
+              "aa -> ab": 16,
+              "ag -> ae": 2,
+              "ag -> bf": 3,
+              "aa -> ad": 4,
+              "ac -> ab": 7,
+              "ab -> ac": 4,
+              "ab -> ad": 1
+            },
+            "accuracy": 0.9353194825558604
+          },
+          "role": {
+            "correct": 1090,
+            "total": 1616,
+            "confusions": {
+              "agent -> patient": 346,
+              "patient -> agent": 176,
+              "recipient -> agent": 4
+            },
+            "accuracy": 0.6745049504950495
+          },
+          "quantity": {
+            "correct": 1390,
+            "total": 1616,
+            "confusions": {
+              "2 -> unspecified": 226
+            },
+            "accuracy": 0.8601485148514851
+          },
+          "polarity": {
+            "correct": 553,
+            "total": 554,
+            "confusions": {
+              "negated -> affirmed": 1
+            },
+            "accuracy": 0.9981949458483754
+          },
+          "time": {
+            "correct": 461,
+            "total": 554,
+            "confusions": {
+              "unspecified -> today": 87,
+              "tomorrow -> today": 6
+            },
+            "accuracy": 0.8321299638989169
+          },
+          "support": {
+            "correct": 543,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 17,
+              "unsupported -> supported": 1
+            },
+            "accuracy": 0.9679144385026738
+          },
+          "sentence_concept": {
+            "correct": 545,
+            "total": 554,
+            "confusions": {
+              "ba -> bb": 1,
+              "be -> bb": 8
+            },
+            "accuracy": 0.983754512635379
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6388,
+            "total": 6578,
+            "confusions": {
+              "O -> B-entity": 178,
+              "B-time -> B-entity": 12
+            },
+            "accuracy": 0.971115840681058
+          },
+          "concept": {
+            "correct": 2435,
+            "total": 2454,
+            "confusions": {
+              "aa -> ab": 15,
+              "ag -> ac": 1,
+              "ad -> ae": 1,
+              "ag -> ab": 2
+            },
+            "accuracy": 0.9922575387123065
+          },
+          "role": {
+            "correct": 1139,
+            "total": 1636,
+            "confusions": {
+              "agent -> patient": 491,
+              "patient -> agent": 6
+            },
+            "accuracy": 0.6962102689486552
+          },
+          "quantity": {
+            "correct": 1619,
+            "total": 1636,
+            "confusions": {
+              "2 -> unspecified": 17
+            },
+            "accuracy": 0.9896088019559902
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 522,
+            "total": 554,
+            "confusions": {
+              "tomorrow -> today": 25,
+              "today -> unspecified": 7
+            },
+            "accuracy": 0.9422382671480144
+          },
+          "support": {
+            "correct": 551,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 6,
+              "unsupported -> supported": 4
+            },
+            "accuracy": 0.982174688057041
+          },
+          "sentence_concept": {
+            "correct": 492,
+            "total": 554,
+            "confusions": {
+              "be -> bb": 29,
+              "bf -> bb": 1,
+              "ba -> bb": 32
+            },
+            "accuracy": 0.8880866425992779
+          }
+        }
+      }
+    }
+  },
+  "xlmr-linear-100": {
+    "metadata": {
+      "format": 1,
+      "schema_version": "0.1",
+      "lexicon_version": "0.1",
+      "labels": {
+        "span": [
+          "O",
+          "B-predicate",
+          "I-predicate",
+          "B-entity",
+          "I-entity",
+          "B-quantity",
+          "I-quantity",
+          "B-time",
+          "I-time",
+          "B-negation",
+          "I-negation"
+        ],
+        "concept": [
+          "none",
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "role": [
+          "none",
+          "agent",
+          "patient",
+          "recipient",
+          "location"
+        ],
+        "quantity": [
+          "unspecified",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "polarity": [
+          "affirmed",
+          "negated",
+          "unspecified"
+        ],
+        "time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ],
+        "support": [
+          "unsupported",
+          "supported"
+        ],
+        "sentence_concept": [
+          "none",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ]
+      },
+      "dimension": 768,
+      "architecture": "linear",
+      "encoder": {
+        "id": "FacebookAI/xlm-roberta-base",
+        "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+        "max_length": 128,
+        "key": "xlmr",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "threshold": 0.9,
+      "seed": 17,
+      "training_fraction": 1.0,
+      "training_rows": 3944,
+      "dataset_sha256": "6c65a3b117bcd0468777c89a40caeffa8cff0d9af0c989143bd8ad3159f30335",
+      "best_epoch": 6,
+      "epochs": 30,
+      "encoder_repeat_exact": true,
+      "encoder_batch_size": 16,
+      "elapsed_seconds": 11.165444799989928,
+      "weights_sha256": "6c73cb648a1d3abad5f6a35a6133aa7272613a3b7e2d24d62f5b7f2201293cf8",
+      "training_implementation": 2
+    },
+    "dev": {
+      "selective": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 624,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 624,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 26,
+          "exact": 0,
+          "coverage": 0.041666666666666664,
+          "confirmed_exact_match": 0.0,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 26,
+            "patient": 26,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 598,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 353,
+          "exact": 123,
+          "coverage": 0.5657051282051282,
+          "confirmed_exact_match": 0.34844192634560905,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 230,
+            "patient": 230,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 271,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 22,
+          "equal_confirmed_groups": 22
+        }
+      },
+      "sentence_concept": {
+        "correct": 1225,
+        "total": 1248,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 6381,
+            "total": 7273,
+            "confusions": {
+              "I-entity -> B-entity": 577,
+              "O -> B-predicate": 248,
+              "O -> B-entity": 17,
+              "B-entity -> I-entity": 24,
+              "I-predicate -> O": 2,
+              "B-quantity -> B-entity": 5,
+              "B-entity -> I-predicate": 5,
+              "I-predicate -> B-negation": 5,
+              "B-entity -> B-predicate": 9
+            },
+            "accuracy": 0.8773545992025299
+          },
+          "concept": {
+            "correct": 2883,
+            "total": 3570,
+            "confusions": {
+              "ai -> ac": 21,
+              "ai -> aa": 61,
+              "ai -> ae": 71,
+              "ah -> ad": 76,
+              "ah -> ab": 18,
+              "ah -> ac": 11,
+              "ah -> ae": 105,
+              "ag -> aa": 7,
+              "ag -> ae": 51,
+              "bb -> bd": 50,
+              "ag -> ab": 9,
+              "bb -> bc": 23,
+              "ai -> ab": 21,
+              "af -> ab": 3,
+              "ah -> aa": 36,
+              "ai -> ad": 54,
+              "bb -> be": 18,
+              "ag -> bc": 5,
+              "ag -> ba": 6,
+              "ag -> bf": 12,
+              "ad -> aa": 1,
+              "ac -> ab": 6,
+              "ad -> ae": 4,
+              "ac -> ae": 12,
+              "bb -> ae": 6
+            },
+            "accuracy": 0.807563025210084
+          },
+          "role": {
+            "correct": 866,
+            "total": 2382,
+            "confusions": {
+              "location -> agent": 473,
+              "patient -> agent": 474,
+              "agent -> patient": 546,
+              "agent -> recipient": 22,
+              "location -> patient": 1
+            },
+            "accuracy": 0.3635600335852225
+          },
+          "quantity": {
+            "correct": 2124,
+            "total": 2382,
+            "confusions": {
+              "2 -> unspecified": 258
+            },
+            "accuracy": 0.8916876574307305
+          },
+          "polarity": {
+            "correct": 622,
+            "total": 624,
+            "confusions": {
+              "affirmed -> negated": 2
+            },
+            "accuracy": 0.9967948717948718
+          },
+          "time": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 596,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 32
+            },
+            "accuracy": 0.9490445859872612
+          },
+          "sentence_concept": {
+            "correct": 601,
+            "total": 624,
+            "confusions": {
+              "bb -> bc": 23
+            },
+            "accuracy": 0.9631410256410257
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 7033,
+            "total": 7058,
+            "confusions": {
+              "O -> B-entity": 16,
+              "B-time -> B-entity": 1,
+              "O -> B-predicate": 8
+            },
+            "accuracy": 0.9964579200906772
+          },
+          "concept": {
+            "correct": 2890,
+            "total": 2892,
+            "confusions": {
+              "aa -> ab": 2
+            },
+            "accuracy": 0.9993084370677732
+          },
+          "role": {
+            "correct": 1185,
+            "total": 2076,
+            "confusions": {
+              "patient -> agent": 351,
+              "agent -> patient": 540
+            },
+            "accuracy": 0.5708092485549133
+          },
+          "quantity": {
+            "correct": 2014,
+            "total": 2076,
+            "confusions": {
+              "2 -> unspecified": 62
+            },
+            "accuracy": 0.9701348747591522
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 623,
+            "total": 624,
+            "confusions": {
+              "tomorrow -> unspecified": 1
+            },
+            "accuracy": 0.9983974358974359
+          },
+          "support": {
+            "correct": 625,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 2,
+              "unsupported -> supported": 1
+            },
+            "accuracy": 0.9952229299363057
+          },
+          "sentence_concept": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        }
+      }
+    },
+    "test": {
+      "selective": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 107,
+          "exact": 96,
+          "coverage": 0.1931407942238267,
+          "confirmed_exact_match": 0.897196261682243,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 10,
+            "agent": 1,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 447,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "sentence_concept": {
+        "correct": 1077,
+        "total": 1108,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 4893,
+            "total": 6678,
+            "confusions": {
+              "B-time -> B-entity": 400,
+              "I-time -> B-time": 400,
+              "B-entity -> I-entity": 356,
+              "O -> B-entity": 507,
+              "I-entity -> B-entity": 113,
+              "B-entity -> B-predicate": 7,
+              "O -> I-predicate": 2
+            },
+            "accuracy": 0.7327044025157232
+          },
+          "concept": {
+            "correct": 2389,
+            "total": 2551,
+            "confusions": {
+              "aa -> ac": 3,
+              "ac -> ad": 17,
+              "ag -> bc": 20,
+              "ag -> ba": 17,
+              "ag -> bf": 4,
+              "ag -> ae": 6,
+              "ab -> ae": 2,
+              "ag -> ad": 30,
+              "aa -> ae": 17,
+              "ad -> ac": 2,
+              "aa -> ab": 8,
+              "ag -> ab": 18,
+              "aa -> ad": 4,
+              "ac -> ae": 2,
+              "ab -> ad": 3,
+              "ab -> ac": 4,
+              "ac -> ab": 5
+            },
+            "accuracy": 0.9364954919639357
+          },
+          "role": {
+            "correct": 1078,
+            "total": 1616,
+            "confusions": {
+              "agent -> patient": 373,
+              "patient -> agent": 161,
+              "recipient -> agent": 4
+            },
+            "accuracy": 0.6670792079207921
+          },
+          "quantity": {
+            "correct": 1391,
+            "total": 1616,
+            "confusions": {
+              "2 -> unspecified": 225
+            },
+            "accuracy": 0.8607673267326733
+          },
+          "polarity": {
+            "correct": 553,
+            "total": 554,
+            "confusions": {
+              "negated -> affirmed": 1
+            },
+            "accuracy": 0.9981949458483754
+          },
+          "time": {
+            "correct": 486,
+            "total": 554,
+            "confusions": {
+              "unspecified -> today": 65,
+              "unspecified -> tomorrow": 1,
+              "tomorrow -> today": 2
+            },
+            "accuracy": 0.8772563176895307
+          },
+          "support": {
+            "correct": 501,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 60
+            },
+            "accuracy": 0.893048128342246
+          },
+          "sentence_concept": {
+            "correct": 552,
+            "total": 554,
+            "confusions": {
+              "be -> bb": 2
+            },
+            "accuracy": 0.9963898916967509
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6399,
+            "total": 6578,
+            "confusions": {
+              "O -> B-entity": 167,
+              "B-time -> B-entity": 12
+            },
+            "accuracy": 0.9727880814837336
+          },
+          "concept": {
+            "correct": 2443,
+            "total": 2454,
+            "confusions": {
+              "aa -> ab": 10,
+              "ad -> ae": 1
+            },
+            "accuracy": 0.9955175224123879
+          },
+          "role": {
+            "correct": 1139,
+            "total": 1636,
+            "confusions": {
+              "agent -> patient": 497
+            },
+            "accuracy": 0.6962102689486552
+          },
+          "quantity": {
+            "correct": 1621,
+            "total": 1636,
+            "confusions": {
+              "2 -> unspecified": 15
+            },
+            "accuracy": 0.9908312958435208
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 515,
+            "total": 554,
+            "confusions": {
+              "tomorrow -> today": 28,
+              "today -> unspecified": 10,
+              "tomorrow -> unspecified": 1
+            },
+            "accuracy": 0.9296028880866426
+          },
+          "support": {
+            "correct": 549,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 11,
+              "unsupported -> supported": 1
+            },
+            "accuracy": 0.9786096256684492
+          },
+          "sentence_concept": {
+            "correct": 525,
+            "total": 554,
+            "confusions": {
+              "ba -> bb": 25,
+              "be -> bb": 4
+            },
+            "accuracy": 0.9476534296028881
+          }
+        }
+      }
+    }
+  },
+  "xlmr-mlp-100": {
+    "metadata": {
+      "format": 1,
+      "schema_version": "0.1",
+      "lexicon_version": "0.1",
+      "labels": {
+        "span": [
+          "O",
+          "B-predicate",
+          "I-predicate",
+          "B-entity",
+          "I-entity",
+          "B-quantity",
+          "I-quantity",
+          "B-time",
+          "I-time",
+          "B-negation",
+          "I-negation"
+        ],
+        "concept": [
+          "none",
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "role": [
+          "none",
+          "agent",
+          "patient",
+          "recipient",
+          "location"
+        ],
+        "quantity": [
+          "unspecified",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "polarity": [
+          "affirmed",
+          "negated",
+          "unspecified"
+        ],
+        "time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ],
+        "support": [
+          "unsupported",
+          "supported"
+        ],
+        "sentence_concept": [
+          "none",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ]
+      },
+      "dimension": 768,
+      "architecture": "mlp",
+      "encoder": {
+        "id": "FacebookAI/xlm-roberta-base",
+        "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+        "max_length": 128,
+        "key": "xlmr",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "threshold": 0.9,
+      "seed": 17,
+      "training_fraction": 1.0,
+      "training_rows": 3944,
+      "dataset_sha256": "6c65a3b117bcd0468777c89a40caeffa8cff0d9af0c989143bd8ad3159f30335",
+      "best_epoch": 6,
+      "epochs": 30,
+      "encoder_repeat_exact": true,
+      "encoder_batch_size": 16,
+      "elapsed_seconds": 24.242902900034096,
+      "weights_sha256": "cfdcef67e771bf5d5140bd09edac389f325590a134236cd17ee9b5ea53c9ef37",
+      "training_implementation": 2
+    },
+    "dev": {
+      "selective": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 624,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 7,
+          "exact": 1,
+          "coverage": 0.011217948717948718,
+          "confirmed_exact_match": 0.14285714285714285,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 6,
+            "patient": 6,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 617,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 624,
+          "confirmed": 25,
+          "exact": 0,
+          "coverage": 0.04006410256410257,
+          "confirmed_exact_match": 0.0,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 25,
+            "patient": 25,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 599,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 624,
+          "confirmed": 367,
+          "exact": 164,
+          "coverage": 0.5881410256410257,
+          "confirmed_exact_match": 0.44686648501362397,
+          "unsupported": 4,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 203,
+            "patient": 203,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 257,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 624,
+          "fully_confirmed_groups": 20,
+          "equal_confirmed_groups": 17
+        }
+      },
+      "sentence_concept": {
+        "correct": 1227,
+        "total": 1248,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 6347,
+            "total": 7273,
+            "confusions": {
+              "I-entity -> B-entity": 560,
+              "O -> B-predicate": 275,
+              "B-entity -> B-predicate": 27,
+              "B-entity -> I-entity": 31,
+              "B-entity -> I-predicate": 19,
+              "B-quantity -> B-entity": 5,
+              "I-entity -> I-predicate": 6,
+              "I-predicate -> B-negation": 3
+            },
+            "accuracy": 0.8726797745084559
+          },
+          "concept": {
+            "correct": 2886,
+            "total": 3570,
+            "confusions": {
+              "ai -> ac": 21,
+              "ai -> aa": 64,
+              "ah -> ab": 28,
+              "ah -> ad": 56,
+              "ah -> ae": 116,
+              "ah -> ac": 12,
+              "ag -> aa": 8,
+              "bb -> bd": 50,
+              "bb -> bc": 16,
+              "ai -> ab": 21,
+              "af -> ab": 1,
+              "ai -> ae": 72,
+              "bc -> bd": 9,
+              "ah -> aa": 34,
+              "ai -> ad": 50,
+              "ag -> ba": 9,
+              "ag -> ae": 41,
+              "bb -> be": 21,
+              "ag -> bd": 6,
+              "bb -> ba": 2,
+              "ag -> bf": 12,
+              "ad -> aa": 3,
+              "ac -> ab": 6,
+              "ad -> ae": 4,
+              "ag -> ab": 9,
+              "ac -> ae": 12,
+              "bb -> ae": 1
+            },
+            "accuracy": 0.8084033613445378
+          },
+          "role": {
+            "correct": 879,
+            "total": 2382,
+            "confusions": {
+              "location -> agent": 472,
+              "patient -> agent": 458,
+              "agent -> patient": 547,
+              "agent -> recipient": 24,
+              "location -> patient": 2
+            },
+            "accuracy": 0.3690176322418136
+          },
+          "quantity": {
+            "correct": 2130,
+            "total": 2382,
+            "confusions": {
+              "2 -> unspecified": 252
+            },
+            "accuracy": 0.8942065491183879
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "support": {
+            "correct": 571,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 57
+            },
+            "accuracy": 0.9092356687898089
+          },
+          "sentence_concept": {
+            "correct": 603,
+            "total": 624,
+            "confusions": {
+              "bb -> bc": 21
+            },
+            "accuracy": 0.9663461538461539
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 7049,
+            "total": 7058,
+            "confusions": {
+              "O -> B-entity": 2,
+              "B-time -> B-entity": 1,
+              "O -> B-predicate": 6
+            },
+            "accuracy": 0.9987248512326438
+          },
+          "concept": {
+            "correct": 2887,
+            "total": 2892,
+            "confusions": {
+              "aa -> ab": 5
+            },
+            "accuracy": 0.9982710926694329
+          },
+          "role": {
+            "correct": 1241,
+            "total": 2076,
+            "confusions": {
+              "patient -> agent": 297,
+              "agent -> patient": 538
+            },
+            "accuracy": 0.5977842003853564
+          },
+          "quantity": {
+            "correct": 2014,
+            "total": 2076,
+            "confusions": {
+              "2 -> unspecified": 62
+            },
+            "accuracy": 0.9701348747591522
+          },
+          "polarity": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 623,
+            "total": 624,
+            "confusions": {
+              "tomorrow -> unspecified": 1
+            },
+            "accuracy": 0.9983974358974359
+          },
+          "support": {
+            "correct": 622,
+            "total": 628,
+            "confusions": {
+              "supported -> unsupported": 6
+            },
+            "accuracy": 0.9904458598726115
+          },
+          "sentence_concept": {
+            "correct": 624,
+            "total": 624,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        }
+      }
+    },
+    "test": {
+      "selective": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "without_confidence_gate": {
+        "ja": {
+          "in_scope": 554,
+          "confirmed": 0,
+          "exact": 0,
+          "coverage": 0.0,
+          "confirmed_exact_match": null,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 554,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 554,
+          "confirmed": 73,
+          "exact": 72,
+          "coverage": 0.13176895306859207,
+          "confirmed_exact_match": 0.9863013698630136,
+          "unsupported": 7,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 1,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 481,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 554,
+          "fully_confirmed_groups": 0,
+          "equal_confirmed_groups": 0
+        }
+      },
+      "sentence_concept": {
+        "correct": 1090,
+        "total": 1108,
+        "task": "sentence-level predicate concept only; not structure extraction"
+      },
+      "heads_before_rejection": {
+        "ja": {
+          "span": {
+            "correct": 5094,
+            "total": 6678,
+            "confusions": {
+              "B-time -> B-entity": 400,
+              "I-time -> B-time": 400,
+              "B-entity -> I-entity": 353,
+              "O -> I-entity": 1,
+              "O -> B-entity": 314,
+              "O -> I-predicate": 15,
+              "I-entity -> B-entity": 90,
+              "B-entity -> B-predicate": 11
+            },
+            "accuracy": 0.7628032345013477
+          },
+          "concept": {
+            "correct": 2405,
+            "total": 2551,
+            "confusions": {
+              "aa -> ac": 3,
+              "ac -> ad": 17,
+              "ag -> bb": 7,
+              "ag -> bf": 10,
+              "ag -> ba": 15,
+              "ag -> ad": 19,
+              "aa -> ae": 12,
+              "ad -> ac": 2,
+              "aa -> ab": 12,
+              "aa -> ad": 4,
+              "ag -> bc": 12,
+              "ag -> ab": 21,
+              "ac -> ab": 7,
+              "ab -> ac": 4,
+              "ab -> ad": 1
+            },
+            "accuracy": 0.9427675421403371
+          },
+          "role": {
+            "correct": 1056,
+            "total": 1616,
+            "confusions": {
+              "agent -> patient": 408,
+              "patient -> agent": 148,
+              "recipient -> agent": 4
+            },
+            "accuracy": 0.6534653465346535
+          },
+          "quantity": {
+            "correct": 1393,
+            "total": 1616,
+            "confusions": {
+              "2 -> unspecified": 223
+            },
+            "accuracy": 0.8620049504950495
+          },
+          "polarity": {
+            "correct": 553,
+            "total": 554,
+            "confusions": {
+              "negated -> affirmed": 1
+            },
+            "accuracy": 0.9981949458483754
+          },
+          "time": {
+            "correct": 502,
+            "total": 554,
+            "confusions": {
+              "unspecified -> today": 51,
+              "unspecified -> tomorrow": 1
+            },
+            "accuracy": 0.9061371841155235
+          },
+          "support": {
+            "correct": 479,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 82
+            },
+            "accuracy": 0.8538324420677362
+          },
+          "sentence_concept": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          }
+        },
+        "en": {
+          "span": {
+            "correct": 6366,
+            "total": 6578,
+            "confusions": {
+              "O -> B-entity": 201,
+              "B-time -> B-entity": 11
+            },
+            "accuracy": 0.9677713590757069
+          },
+          "concept": {
+            "correct": 2444,
+            "total": 2454,
+            "confusions": {
+              "aa -> ab": 10
+            },
+            "accuracy": 0.9959250203748982
+          },
+          "role": {
+            "correct": 1124,
+            "total": 1636,
+            "confusions": {
+              "agent -> patient": 512
+            },
+            "accuracy": 0.687041564792176
+          },
+          "quantity": {
+            "correct": 1628,
+            "total": 1636,
+            "confusions": {
+              "2 -> unspecified": 8
+            },
+            "accuracy": 0.9951100244498777
+          },
+          "polarity": {
+            "correct": 554,
+            "total": 554,
+            "confusions": {},
+            "accuracy": 1.0
+          },
+          "time": {
+            "correct": 527,
+            "total": 554,
+            "confusions": {
+              "tomorrow -> today": 15,
+              "today -> unspecified": 12
+            },
+            "accuracy": 0.9512635379061372
+          },
+          "support": {
+            "correct": 548,
+            "total": 561,
+            "confusions": {
+              "supported -> unsupported": 12,
+              "unsupported -> supported": 1
+            },
+            "accuracy": 0.9768270944741533
+          },
+          "sentence_concept": {
+            "correct": 536,
+            "total": 554,
+            "confusions": {
+              "ba -> bb": 16,
+              "be -> bb": 2
+            },
+            "accuracy": 0.9675090252707581
+          }
+        }
+      }
+    }
+  }
+}

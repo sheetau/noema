@@ -78,7 +78,7 @@ def build_example(predicate, agent, patient, recipient, location, polarity, time
         elif style == "dev" and p:
             sentence = p + " is " + (neg("not") + " " if polarity == "negated" else "") + pred(participle) + (" to " + r if r else "") + " by " + a
         elif predicate == "bf":
-            sentence = a + " is " + (neg("not") + " " if polarity == "negated" else "") + pred("hungry")
+            sentence = a + (" are " if quantity not in (None, 1) else " is ") + (neg("not") + " " if polarity == "negated" else "") + pred("hungry")
         else:
             verb = base if quantity not in (None, 1) else en
             sentence = a + " " + (pred(verb) if polarity == "affirmed" else ("do " if quantity not in (None, 1) else "does ") + neg("not") + " " + pred(base))

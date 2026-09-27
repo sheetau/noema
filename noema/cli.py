@@ -91,7 +91,7 @@ def main(argv=None):
             from .training import train
             report = train(args.dataset, args.features, args.output, args.architecture, args.epochs, args.fraction, args.threshold, args.seed)
             emit({"output": args.output, "test": report["test"]})
-    except (ValueError, OSError, ImportError, KeyError, TypeError) as exc:
+    except (ValueError, OSError, ImportError, KeyError, TypeError, RuntimeError) as exc:
         print(json.dumps({"error": str(exc)}, ensure_ascii=False), file=sys.stderr)
         return 2
     return 0
