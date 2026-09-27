@@ -36,6 +36,10 @@ class Analyzer:
                 raise ValueError("Unsupported sequence architecture or representation")
             if meta.get("decoder_sha256") != digest(Path(__file__).with_name("structured.py")):
                 raise ValueError("Decoder implementation differs from the calibrated checkpoint")
+            if meta.get("decoder", "independent-v4") not in ("independent-v4", "joint-v1"):
+                raise ValueError("Unsupported decoder")
+            if meta.get("decoder") == "joint-v1" and meta.get("joint_decoder_sha256") != digest(Path(__file__).with_name("joint.py")):
+                raise ValueError("Joint decoder differs from the calibrated checkpoint")
             if set(meta.get("thresholds", {})) != {"ja", "en"} or any(type(v) not in (float, int) or not 0 <= v <= 1.01 for v in meta["thresholds"].values()):
                 raise ValueError("Invalid per-language thresholds")
         if meta.get("format") not in (1, 2) or meta.get("labels") != LABELS or meta.get("schema_version") != "0.1" or meta.get("lexicon_version") != "0.1":
@@ -72,12 +76,18 @@ class Analyzer:
         with torch.inference_mode():
             if self.metadata["format"] == 2:
                 from .structured import decode, character_features
-                feature = character_features(text, feature)
-                logits = {k: v[0] for k, v in self.heads(feature["tokens"].unsqueeze(0), torch.tensor([len(feature["tokens"])] )).items()}
+                if self.metadata.get("decoder") == "joint-v1":
+                    from .joint import decode
+                if feature["truncated"]:
+                    logits = {}  # Reject before projecting an arbitrarily long original text.
+                else:
+                    feature = character_features(text, feature)
+                    logits = {k: v[0] for k, v in self.heads(feature["tokens"].unsqueeze(0), torch.tensor([len(feature["tokens"])] )).items()}
             else:
                 logits = self.heads(feature["tokens"], feature["pooled"])
             result = decode(text, feature, logits, threshold)
         result["diagnostics"].update(language=language, model=self.encoder.metadata,
                                      checkpoint_sha256=self.metadata["weights_sha256"], threshold=threshold,
                                      decoder_sha256=self.metadata.get("decoder_sha256"))
+        result["diagnostics"]["decoder"] = self.metadata.get("decoder", "independent-v4" if self.metadata["format"] == 2 else "baseline")
         return result

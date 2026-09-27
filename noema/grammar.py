@@ -8,6 +8,7 @@ POL = {"pos": "affirmed", "neg": "negated", "unspec": "unspecified"}
 
 
 def number_word(value):
+    require(type(value) is int and value >= 0, "Quantity must be a nonnegative integer")
     if value == 0:
         return "a"
     word = ""
@@ -18,6 +19,7 @@ def number_word(value):
 
 
 def read_number(word):
+    require(isinstance(word, str), "Quantity word must be text")
     require(bool(re.fullmatch("[a-z2-7]+", word)), "Invalid quantity")
     require(len(word) == 1 or not word.startswith("a"), "Quantity has leading zero")
     value = 0

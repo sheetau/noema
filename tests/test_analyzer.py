@@ -43,6 +43,19 @@ def test_sequence_checkpoint_loads_and_uses_language_thresholds(checkpoint):
     assert analyzer.analyze("test", "fr")["status"] == "unsupported"
 
 
+def test_truncated_input_is_rejected_before_character_projection(checkpoint, monkeypatch):
+    path, _ = checkpoint
+    analyzer = Analyzer(path)
+    monkeypatch.setattr(analyzer.encoder, "encode", lambda *args: [{"truncated": True}])
+    import noema.structured
+    def unexpected(*args):
+        raise AssertionError("Truncated text must never be projected")
+    monkeypatch.setattr(noema.structured, "character_features", unexpected)
+    result = analyzer.analyze("a" * 10000, "en")
+    assert result["status"] == "unresolved"
+    assert result["diagnostics"]["reason"] == "input_too_long"
+
+
 @pytest.mark.parametrize("field,value", [("decoder_sha256", "changed"), ("weights_sha256", "changed"), ("thresholds", {"ja": 0.5}), ("representation", "other")])
 def test_checkpoint_mismatch_is_rejected(checkpoint, field, value):
     path, metadata = checkpoint

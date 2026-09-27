@@ -25,7 +25,7 @@ def batch(indices, features, labels=None):
     return tokens, lengths, gold
 
 
-def infer(model, rows, features, threshold=0.):
+def infer(model, rows, features, threshold=0., decoder=decode):
     predictions = []
     model.eval()
     with torch.inference_mode():
@@ -35,7 +35,7 @@ def infer(model, rows, features, threshold=0.):
             result = model(tokens, lengths)
             for j, i in enumerate(indices):
                 logits = {k: v[j, :lengths[j], :lengths[j]] if k == "attachment" else v[j, :lengths[j]] if k in TOKEN_HEADS else v[j] for k, v in result.items()}
-                predictions.append(decode(rows[i]["text"], features[i], logits, threshold))
+                predictions.append(decoder(rows[i]["text"], features[i], logits, threshold))
     return predictions
 
 
@@ -72,7 +72,12 @@ def gate(rows, predictions, thresholds):
     return result
 
 
-def train(dataset, cache_path, output, epochs=35, hidden=96, seed=71):
+def train(dataset, cache_path, output, epochs=35, hidden=96, seed=71, decoder_name="independent-v4", regression_test=False):
+    if decoder_name not in ("independent-v4", "joint-v1"):
+        raise ValueError("Unsupported decoder")
+    decoder = decode
+    if decoder_name == "joint-v1":
+        from .joint import decode as decoder
     deterministic(seed)
     rows, cache = load_cache(dataset, cache_path)
     # Do not construct labels or invoke prediction on the final partition here.
@@ -114,7 +119,7 @@ def train(dataset, cache_path, output, epochs=35, hidden=96, seed=71):
             torch.nn.utils.clip_grad_norm_(model.parameters(), 5.)
             optimizer.step()
         if epoch == 0 or (epoch + 1) % 5 == 0 or epoch + 1 == epochs:
-            raw = infer(model, dev_rows, dev_features)
+            raw = infer(model, dev_rows, dev_features, decoder=decoder)
             thresholds, calibration = calibrate(dev_rows, raw)
             metrics = evaluate(dev_rows, gate(dev_rows, raw, thresholds))
             raw_metrics = evaluate(dev_rows, raw)
@@ -137,6 +142,11 @@ def train(dataset, cache_path, output, epochs=35, hidden=96, seed=71):
                 "trainable_parameters": sum(p.numel() for p in model.parameters()), "elapsed_seconds": time.monotonic() - start,
                 "decoder_sha256": digest(Path(__file__).with_name("structured.py")),
                 "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used"}
+    metadata["decoder"] = decoder_name
+    if decoder_name == "joint-v1":
+        metadata["joint_decoder_sha256"] = digest(Path(__file__).with_name("joint.py"))
+    if regression_test:
+        metadata["evaluation_status"] = "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation"
     save_json(output / "metadata.json", metadata)
     save_json(output / "development-report.json", {"metadata": metadata, "metrics": best_metrics, "history": history})
     return best_metrics
@@ -149,10 +159,12 @@ def main():
     parser.add_argument("--output", default="artifacts/sequence-v2-minilm")
     parser.add_argument("--epochs", type=int, default=35)
     parser.add_argument("--hidden", type=int, default=96)
+    parser.add_argument("--decoder", choices=("independent-v4", "joint-v1"), default="independent-v4")
+    parser.add_argument("--regression-test", action="store_true", help="Record that the test partition has already been inspected")
     args = parser.parse_args()
     if args.epochs < 1 or args.hidden < 1:
         parser.error("epochs and hidden must be positive")
-    print(json.dumps(train(args.dataset, args.features, args.output, args.epochs, args.hidden), indent=2))
+    print(json.dumps(train(args.dataset, args.features, args.output, args.epochs, args.hidden, decoder_name=args.decoder, regression_test=args.regression_test), indent=2))
 
 
 if __name__ == "__main__":
