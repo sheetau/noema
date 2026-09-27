@@ -6,6 +6,7 @@ from torch.nn import functional as F
 from .semantics import require
 
 LABELS = ("none", "agent", "patient", "recipient", "location")
+UNLINKED = "__unlinked__"
 
 
 class RoleHead(nn.Module):
@@ -50,6 +51,39 @@ def candidates(prediction, vectors, cases):
             case = F.one_hot(torch.tensor(cases.index(relation["label"])), len(cases)).float()
             features.append(torch.cat((predicate, argument, phrase, predicate * argument, predicate - argument, case)))
             pairs.append({"source": source["id"], "target": target["id"], "native_case": relation["label"]})
+    size = vectors.shape[1] * 5 + len(cases)
+    return pairs, torch.stack(features) if features else vectors.new_empty((0, size))
+
+
+def all_phrase_candidates(prediction, vectors, cases):
+    """Compare predicted predicates with every distinct source-text phrase.
+
+    Native cases are features, never a required edge or a semantic-role rule.
+    """
+    require(len(vectors) == len(prediction["tokens"]) and cases[-1] == UNLINKED,
+            "Expanded candidate feature inventory differs")
+    require(len(cases) == len(set(cases)), "Repeated native case feature")
+    def pool(span):
+        indices = [i for i, token in enumerate(prediction["tokens"]) if overlap(token, span)]
+        require(bool(indices), "Phrase has no contextual vectors")
+        return F.normalize(vectors[indices].mean(0), dim=0)
+    states = {p["id"]: (pool(p["head"]), pool(p)) for p in prediction["phrases"]}
+    pairs, features = [], []
+    for source in prediction["phrases"]:
+        if not ("用言" in source["features"] or "非用言格解析" in source["features"]):
+            continue
+        predicate, phrase = states[source["id"]]
+        for target in prediction["phrases"]:
+            if source["id"] == target["id"]:
+                continue
+            labels = [label for label in cases[:-1] if any(
+                r["label"] == label and r["target_phrase"] == target["id"] for r in source["relations"])]
+            case = vectors.new_zeros(len(cases))
+            for label in labels or [UNLINKED]:
+                case[cases.index(label)] = 1
+            argument = states[target["id"]][0]
+            features.append(torch.cat((predicate, argument, phrase, predicate * argument, predicate - argument, case)))
+            pairs.append({"source": source["id"], "target": target["id"], "native_cases": labels})
     size = vectors.shape[1] * 5 + len(cases)
     return pairs, torch.stack(features) if features else vectors.new_empty((0, size))
 
@@ -103,10 +137,13 @@ class RoleAnalyzer:
         self.head = RoleHead(selection["dimension"], selection["cases"], selection["choices"][name]["hidden"])
         self.head.load_state_dict(load_file(str(path)), strict=True)
         self.head.eval().requires_grad_(False)
+        self.candidate_policy = selection.get("candidate_policy", "native")
+        require(self.candidate_policy in ("native", "all_phrases"), "Unknown candidate policy")
 
     def analyze(self, text):
         prediction, vectors = self.parser.analyze(text, return_features=True)
-        pairs, features = candidates(prediction, vectors, self.head.cases)
+        extract = all_phrase_candidates if self.candidate_policy == "all_phrases" else candidates
+        pairs, features = extract(prediction, vectors, self.head.cases)
         with torch.inference_mode():
             probabilities = self.head(features).softmax(-1)
         indices = probabilities.argmax(-1)
