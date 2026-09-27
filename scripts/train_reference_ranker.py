@@ -69,7 +69,7 @@ def evaluate(records, head=None, include_decisions=False):
             "mean_loss": total_loss / total_sources if total_sources else None}
 
 
-def fit(train, dev, dimension, hidden, *, epochs=EPOCHS, batch_size=BATCH):
+def fit(train, dev, dimension, hidden, *, epochs=EPOCHS, batch_size=BATCH, evaluate_fn=evaluate):
     deterministic()
     head = ReferenceRanker(dimension, hidden)
     optimizer = torch.optim.AdamW(head.parameters(), lr=.001, weight_decay=.01)
@@ -99,7 +99,7 @@ def fit(train, dev, dimension, hidden, *, epochs=EPOCHS, batch_size=BATCH):
             total_loss += float(loss.detach()) * count
             total_sources += count
         head.eval()
-        assessment = evaluate(dev, head)
+        assessment = evaluate_fn(dev, head)
         require(assessment["mean_loss"] is not None, "No supervised reference development sources")
         item = {"epoch": epoch, "train_loss": total_loss / total_sources, "dev_loss": assessment["mean_loss"],
                 "dev_pair_f1": assessment["pair_f1"], "dev_summary": assessment["summary"]}
