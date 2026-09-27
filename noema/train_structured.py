@@ -11,7 +11,8 @@ from safetensors.torch import save_file
 from .dataset import digest
 from .encoder import deterministic
 from .evaluation import evaluate
-from .structured import SequenceHeads, LABELS, TOKEN_HEADS, targets, decode, character_features
+from .structured import SequenceHeads, LABELS, TOKEN_HEADS, decode, character_features
+from .unknown_supervision import targets
 from .training import load_cache, save_json
 
 
@@ -143,6 +144,7 @@ def train(dataset, cache_path, output, epochs=35, hidden=96, seed=71, decoder_na
                 "decoder_sha256": digest(Path(__file__).with_name("structured.py")),
                 "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used"}
     metadata["decoder"] = decoder_name
+    metadata["unknown_span_supervision"] = sum(bool(r.get("unknown_spans")) for r in rows if r["split"] == "train")
     if decoder_name == "joint-v1":
         metadata["joint_decoder_sha256"] = digest(Path(__file__).with_name("joint.py"))
     if regression_test:

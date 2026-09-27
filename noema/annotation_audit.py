@@ -16,6 +16,11 @@ def audit(rows):
         prefix = row["id"] + ": "
         if not row["supported"]:
             require(row["graph"] is None and row["spans"] == [], prefix + "Unsupported rows must not carry a positive gold graph")
+            end = 0
+            for span in sorted(row.get("unknown_spans", []), key=lambda s: s["start"]):
+                require(span["kind"] in ("entity", "predicate"), prefix + "Invalid unknown span kind")
+                require(type(span["start"]) is int and type(span["end"]) is int and end <= span["start"] < span["end"] <= len(row["text"]), prefix + "Invalid unknown annotation span")
+                end = span["end"]
             continue
         supported += 1
         graph = normalize(row["graph"])

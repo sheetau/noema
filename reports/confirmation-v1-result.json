@@ -1,0 +1,507 @@
+{
+  "started_at": "2026-09-27T13:51:19.174591+00:00",
+  "completed_at": "2026-09-27T13:51:32.464354+00:00",
+  "manifest": {
+    "dataset_sha256": "c13c55b5ad35c195f95b4537b6f01db145e1a090ec6d501b6b7e2d8fe35ef4b2",
+    "source_sha256": "1753defe81828a2553f21732e685e81e2399d0efc2184e469fd34e4c60d50b18",
+    "protocol_sha256": "e4ebf6662702f456d9fcb0b44a6cae5768d561c3a4f52c80e7b8a852813efde5",
+    "route_metadata_sha256": "e3eabe7bec5ab54d7951ee11004849789d8cc049d7a8144b4ccbac4fb1e61451",
+    "selection_sha256": "5d598f7c8790785a86d3efc703c53100dcdfae51b30b74dace7917defd97eb21",
+    "counts": {
+      "train": {
+        "ja": 0,
+        "en": 0
+      },
+      "dev": {
+        "ja": 0,
+        "en": 0
+      },
+      "test": {
+        "ja": 672,
+        "en": 672
+      }
+    },
+    "audit": {
+      "rows": 1344,
+      "supported": 1200,
+      "equivalence_groups": 300,
+      "internal_consistency": true,
+      "linguistic_correctness": "not established by this audit"
+    },
+    "seed": 61027,
+    "patterns": {
+      "ja:confirmation:topic_medial_location": 300,
+      "ja:confirmation:location_time_passive": 93,
+      "en:confirmation:passive_location_before_agent": 133,
+      "en:confirmation:location_time_passive": 93,
+      "ja:confirmation:location_time_active": 207,
+      "en:confirmation:location_time_active": 207,
+      "en:confirmation:subject_medial_location": 131,
+      "en:confirmation:subject_medial_time": 36
+    },
+    "provenance": "new synthetic sentences under a preregistered protocol; semantic combinations were previously inspected but never trained"
+  },
+  "models": {
+    "ja": {
+      "format": 2,
+      "architecture": "sequence-gru-attachment",
+      "dimension": 777,
+      "hidden": 96,
+      "representation": "characters-v2",
+      "labels": {
+        "span": [
+          "O",
+          "B-predicate",
+          "I-predicate",
+          "B-entity",
+          "I-entity",
+          "B-quantity",
+          "I-quantity",
+          "B-time",
+          "I-time",
+          "B-negation",
+          "I-negation"
+        ],
+        "concept": [
+          "none",
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "role": [
+          "none",
+          "agent",
+          "patient",
+          "recipient",
+          "location"
+        ],
+        "polarity": [
+          "affirmed",
+          "negated",
+          "unspecified"
+        ],
+        "time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ],
+        "support": [
+          "unsupported",
+          "supported"
+        ],
+        "sentence_concept": [
+          "none",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "frame": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15"
+        ],
+        "explicit_time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ]
+      },
+      "schema_version": "0.1",
+      "lexicon_version": "0.1",
+      "encoder": {
+        "id": "FacebookAI/xlm-roberta-base",
+        "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+        "max_length": 128,
+        "key": "xlmr",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "head_runtime": {
+        "torch": "2.12.0+cpu",
+        "seed": 71
+      },
+      "thresholds": {
+        "ja": 0.67,
+        "en": 0.32
+      },
+      "best_epoch": 20,
+      "epochs": 30,
+      "dataset_sha256": "1753defe81828a2553f21732e685e81e2399d0efc2184e469fd34e4c60d50b18",
+      "weights_sha256": "413c45feb30dbe1a12b1f8cd0a960fe3da9e394cadb2d7f200a428cf9d39ac72",
+      "trainable_parameters": 374451,
+      "elapsed_seconds": 636.4087329999893,
+      "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+      "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used",
+      "decoder": "joint-v1",
+      "joint_decoder_sha256": "3d55fa08d208389810a05473f02d365d9a7c7a7941061bf3fbb08b5617de06d6",
+      "evaluation_status": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation"
+    },
+    "en": {
+      "format": 2,
+      "architecture": "sequence-gru-attachment",
+      "dimension": 393,
+      "hidden": 96,
+      "representation": "characters-v2",
+      "labels": {
+        "span": [
+          "O",
+          "B-predicate",
+          "I-predicate",
+          "B-entity",
+          "I-entity",
+          "B-quantity",
+          "I-quantity",
+          "B-time",
+          "I-time",
+          "B-negation",
+          "I-negation"
+        ],
+        "concept": [
+          "none",
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "role": [
+          "none",
+          "agent",
+          "patient",
+          "recipient",
+          "location"
+        ],
+        "polarity": [
+          "affirmed",
+          "negated",
+          "unspecified"
+        ],
+        "time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ],
+        "support": [
+          "unsupported",
+          "supported"
+        ],
+        "sentence_concept": [
+          "none",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf"
+        ],
+        "frame": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15"
+        ],
+        "explicit_time": [
+          "unspecified",
+          "past",
+          "present",
+          "future",
+          "yesterday",
+          "today",
+          "tomorrow"
+        ]
+      },
+      "schema_version": "0.1",
+      "lexicon_version": "0.1",
+      "encoder": {
+        "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+        "max_length": 128,
+        "key": "minilm",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "head_runtime": {
+        "torch": "2.12.0+cpu",
+        "seed": 71
+      },
+      "thresholds": {
+        "ja": 0.44,
+        "en": 0.87
+      },
+      "best_epoch": 30,
+      "epochs": 30,
+      "dataset_sha256": "1753defe81828a2553f21732e685e81e2399d0efc2184e469fd34e4c60d50b18",
+      "weights_sha256": "cb0980880fc527c22d4e9c79da71ef9f8b45a451223ea7f5725cbdefc23f1300",
+      "trainable_parameters": 308403,
+      "elapsed_seconds": 592.4541156999767,
+      "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+      "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used",
+      "decoder": "joint-v1",
+      "joint_decoder_sha256": "3d55fa08d208389810a05473f02d365d9a7c7a7941061bf3fbb08b5617de06d6",
+      "evaluation_status": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation"
+    }
+  },
+  "metrics": {
+    "ja": {
+      "in_scope": 600,
+      "confirmed": 552,
+      "exact": 551,
+      "coverage": 0.92,
+      "confirmed_exact_match": 0.9981884057971014,
+      "unsupported": 72,
+      "unsupported_false_accepts": 4,
+      "unsupported_false_accept_rate": 0.05555555555555555,
+      "component_errors_on_confirmed": {
+        "predicate": 0,
+        "polarity": 1,
+        "time": 0,
+        "agent": 0,
+        "patient": 0,
+        "recipient": 0,
+        "location": 0
+      },
+      "abstained": 48,
+      "passes_provisional_gate": true
+    },
+    "en": {
+      "in_scope": 600,
+      "confirmed": 394,
+      "exact": 391,
+      "coverage": 0.6566666666666666,
+      "confirmed_exact_match": 0.9923857868020305,
+      "unsupported": 72,
+      "unsupported_false_accepts": 0,
+      "unsupported_false_accept_rate": 0.0,
+      "component_errors_on_confirmed": {
+        "predicate": 0,
+        "polarity": 0,
+        "time": 3,
+        "agent": 0,
+        "patient": 0,
+        "recipient": 0,
+        "location": 0
+      },
+      "abstained": 206,
+      "passes_provisional_gate": false
+    },
+    "equivalence": {
+      "groups": 300,
+      "fully_confirmed_groups": 110,
+      "equal_confirmed_groups": 109
+    }
+  },
+  "strata": {
+    "ja:ja:confirmation:topic_medial_location": {
+      "total": 300,
+      "confirmed": 255,
+      "exact": 255
+    },
+    "ja:ja:confirmation:location_time_passive": {
+      "total": 93,
+      "confirmed": 93,
+      "exact": 93
+    },
+    "en:en:confirmation:passive_location_before_agent": {
+      "total": 133,
+      "confirmed": 109,
+      "exact": 108
+    },
+    "en:en:confirmation:location_time_passive": {
+      "total": 93,
+      "confirmed": 73,
+      "exact": 73
+    },
+    "ja:ja:confirmation:location_time_active": {
+      "total": 207,
+      "confirmed": 204,
+      "exact": 203
+    },
+    "en:en:confirmation:location_time_active": {
+      "total": 207,
+      "confirmed": 169,
+      "exact": 168
+    },
+    "en:en:confirmation:subject_medial_location": {
+      "total": 131,
+      "confirmed": 19,
+      "exact": 18
+    },
+    "en:en:confirmation:subject_medial_time": {
+      "total": 36,
+      "confirmed": 24,
+      "exact": 24
+    },
+    "ja:unknown_concept": {
+      "total": 12,
+      "confirmed": 4,
+      "exact": 0
+    },
+    "ja:quantification": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "ja:nested_scope": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "ja:multiple_events": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "ja:modality": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "ja:question": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "en:unknown_concept": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "en:quantification": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "en:nested_scope": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "en:multiple_events": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "en:modality": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    },
+    "en:question": {
+      "total": 12,
+      "confirmed": 0,
+      "exact": 0
+    }
+  },
+  "repetition": {
+    "ja": {
+      "count": 6,
+      "full_repeat_exact": true,
+      "single_vs_batch_same_meaning": true
+    },
+    "en": {
+      "count": 6,
+      "full_repeat_exact": true,
+      "single_vs_batch_same_meaning": true
+    }
+  },
+  "passes_confirmation": false,
+  "reasons": {
+    "ja": {
+      "low_confidence": 45,
+      "confirmed": 552,
+      "inconsistent_structure: Role presence and extracted entities disagree": 2,
+      "support_classifier": 1
+    },
+    "en": {
+      "low_confidence": 193,
+      "confirmed": 394,
+      "inconsistent_structure: Role presence and extracted entities disagree": 12,
+      "inconsistent_structure: Expected an entity or place": 1
+    }
+  },
+  "scope": "Prospective synthetic confirmation; not independent human-authored free-text evaluation. No threshold or checkpoint selection used these predictions."
+}
