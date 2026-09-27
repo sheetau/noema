@@ -1,0 +1,29 @@
+{
+  "fresh_raw_training_equal": {
+    "selection.json": true,
+    "evidence.json": true,
+    "evaluation.json": true,
+    "linear-history.json": true,
+    "mlp-history.json": true
+  },
+  "artifact_hashes_equal": {
+    "features.safetensors": true,
+    "linear.safetensors": true,
+    "mlp.safetensors": true
+  },
+  "source_change": {
+    "code_sha256": {
+      "initial": {
+        "noema/role_transfer.py": "ead05d2f3612665255ceea1bafc575934d5eb9e04d840cf37fb5b278935ad999",
+        "scripts/train_role_transfer.py": "0d1b41b287efeefd4d85ff51cf480f72dbc442b7c1269d0c440a8209f7f85a3a"
+      },
+      "current": {
+        "noema/role_transfer.py": "14c6eaf0a85f10c0df7173d3d3bb41e011e00a0eb74f77744ec67a141e5090db",
+        "scripts/train_role_transfer.py": "0d1b41b287efeefd4d85ff51cf480f72dbc442b7c1269d0c440a8209f7f85a3a"
+      }
+    }
+  },
+  "reason": "Saved-head inference API added after first training; raw-text rerun with current source reproduced all features, weights, selections, and outputs.",
+  "tests": "225 passed",
+  "child_exit_code": 0
+}

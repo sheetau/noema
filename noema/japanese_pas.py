@@ -109,7 +109,7 @@ class JapanesePAS:
         source_spans(text, [m.text for m in document.morphemes])
         return document
 
-    def analyze(self, text):
+    def analyze(self, text, *, return_features=False):
         import torch
         from kwja.datamodule.datasets import WordInferenceDataset
         from kwja.datamodule.datamodule import word_dataclass_data_collator
@@ -132,8 +132,15 @@ class JapanesePAS:
         require(original.text == text, "Japanese word dataset changed source")
         batch = word_dataclass_data_collator([dataset[0]])
         batch["step"] = "predict"
-        with torch.inference_mode():
-            output = self.models["word"](batch)
+        captured = []
+        hook = self.models["word"].encoder.register_forward_hook(
+            lambda module, args, result: captured.append(result.last_hidden_state)) if return_features else None
+        try:
+            with torch.inference_mode():
+                output = self.models["word"](batch)
+        finally:
+            if hook is not None:
+                hook.remove()
         n = len(original.morphemes)
         attributes = get_morpheme_attribute_predictions(*(output[key][0, :n].tolist()
             for key in ("pos_logits", "subpos_logits", "conjtype_logits", "conjform_logits")))
@@ -156,5 +163,11 @@ class JapanesePAS:
                                   if rel.sid is not None else None, "external": rel.target if rel.sid is None else None})
             phrases.append({"id": bp.global_index, "start": start, "end": end, "text": text[start:end],
                             "head": tokens[bp.head.global_index], "features": dict(bp.features), "relations": relations})
-        return {"status": "research_native_case_links", "language": "ja", "text": text,
-                "tokens": tokens, "phrases": phrases, "pas_labels": list(hparams.pas_cases)}
+        result = {"status": "research_native_case_links", "language": "ja", "text": text,
+                  "tokens": tokens, "phrases": phrases, "pas_labels": list(hparams.pas_cases)}
+        if return_features:
+            from kwja.modules.components.pooling import pool_subwords, PoolingStrategy
+            with torch.inference_mode():
+                vectors = pool_subwords(captured[0], batch["subword_map"], PoolingStrategy.FIRST)[0, :n]
+            return result, vectors.clone()
+        return result
