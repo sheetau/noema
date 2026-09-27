@@ -1,0 +1,6953 @@
+[
+  {
+    "row": {
+      "id": "ref-flower",
+      "kind": "nested",
+      "text": "庭師が育てた花を客が買った。",
+      "mentions": [
+        [
+          "庭師",
+          0,
+          "a"
+        ],
+        [
+          "花",
+          0,
+          "b"
+        ],
+        [
+          "客",
+          0,
+          "c"
+        ],
+        [
+          "庭師が育てた花",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "庭師が育てた花を客が買った。",
+        "tokens": [
+          {
+            "text": "庭師",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "が",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "育てた",
+            "start": 3,
+            "end": 6
+          },
+          {
+            "text": "花",
+            "start": 6,
+            "end": 7
+          },
+          {
+            "text": "を",
+            "start": 7,
+            "end": 8
+          },
+          {
+            "text": "客",
+            "start": 8,
+            "end": 9
+          },
+          {
+            "text": "が",
+            "start": 9,
+            "end": 10
+          },
+          {
+            "text": "買った",
+            "start": 10,
+            "end": 13
+          },
+          {
+            "text": "。",
+            "start": 13,
+            "end": 14
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "庭師が",
+            "head": {
+              "text": "庭師",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 6,
+            "text": "育てた",
+            "head": {
+              "text": "育てた",
+              "start": 3,
+              "end": 6
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "B",
+              "動態述語": true,
+              "節-区切": "連体修飾",
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 0,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "start": 6,
+            "end": 8,
+            "text": "花を",
+            "head": {
+              "text": "花",
+              "start": 6,
+              "end": 7
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 3,
+            "start": 8,
+            "end": 10,
+            "text": "客が",
+            "head": {
+              "text": "客",
+              "start": 8,
+              "end": 9
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "ノ",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 10,
+            "end": 14,
+            "text": "買った。",
+            "head": {
+              "text": "買った",
+              "start": 10,
+              "end": 13
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 3,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 2,
+                "external": null
+              },
+              {
+                "label": "デ",
+                "target_phrase": null,
+                "external": "不特定:物"
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 1,
+          "predicate": {
+            "text": "育てた",
+            "start": 3,
+            "end": 6
+          },
+          "keep": true,
+          "event_score": 0.999869704246521
+        },
+        {
+          "source": 4,
+          "predicate": {
+            "text": "買った",
+            "start": 10,
+            "end": 13
+          },
+          "keep": true,
+          "event_score": 0.9999785423278809
+        }
+      ],
+      "frames": [
+        {
+          "source": 1,
+          "predicate": {
+            "text": "育てた",
+            "start": 3,
+            "end": 6
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "庭師"
+            },
+            {
+              "id": 1,
+              "start": 6,
+              "end": 7,
+              "text": "花"
+            }
+          ],
+          "roles": [
+            {
+              "source": 1,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9562928080558777
+            },
+            {
+              "source": 1,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9969407320022583
+            }
+          ]
+        },
+        {
+          "source": 4,
+          "predicate": {
+            "text": "買った",
+            "start": 10,
+            "end": 13
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 7,
+              "text": "庭師が育てた花"
+            },
+            {
+              "id": 1,
+              "start": 8,
+              "end": 9,
+              "text": "客"
+            }
+          ],
+          "roles": [
+            {
+              "source": 4,
+              "target": 0,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9956035614013672
+            },
+            {
+              "source": 4,
+              "target": 1,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9905016422271729
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          2,
+          0,
+          3,
+          7,
+          3,
+          7,
+          5,
+          15,
+          7
+        ],
+        "root_word": 15,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 2,
+            "parent_phrase": 1,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 3,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 3,
+            "parent_word": 7,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 3,
+            "head_word": 5,
+            "parent_word": 7,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 7,
+            "parent_word": 15,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "庭師",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 0,
+            "end": 7,
+            "text": "庭師が育てた花",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 6,
+            "end": 7,
+            "text": "花",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 3,
+            "start": 8,
+            "end": 9,
+            "text": "客",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 2
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "mentions": [
+              3
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "same_source_head",
+            "source_mention": 1,
+            "target_mention": 2,
+            "head_phrase": 2
+          }
+        ],
+        "roles": [
+          {
+            "source": 1,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 1,
+            "role": "patient",
+            "mention": 2,
+            "referent": 1
+          },
+          {
+            "source": 4,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 4,
+            "role": "agent",
+            "mention": 3,
+            "referent": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-father",
+      "kind": "nested",
+      "text": "皿を洗った父が荷物を運んだ。",
+      "mentions": [
+        [
+          "皿",
+          0,
+          "a"
+        ],
+        [
+          "父",
+          0,
+          "b"
+        ],
+        [
+          "皿を洗った父",
+          0,
+          "b"
+        ],
+        [
+          "荷物",
+          0,
+          "c"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "皿を洗った父が荷物を運んだ。",
+        "tokens": [
+          {
+            "text": "皿",
+            "start": 0,
+            "end": 1
+          },
+          {
+            "text": "を",
+            "start": 1,
+            "end": 2
+          },
+          {
+            "text": "洗った",
+            "start": 2,
+            "end": 5
+          },
+          {
+            "text": "父",
+            "start": 5,
+            "end": 6
+          },
+          {
+            "text": "が",
+            "start": 6,
+            "end": 7
+          },
+          {
+            "text": "荷物",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "text": "を",
+            "start": 9,
+            "end": 10
+          },
+          {
+            "text": "運んだ",
+            "start": 10,
+            "end": 13
+          },
+          {
+            "text": "。",
+            "start": 13,
+            "end": 14
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "皿を",
+            "head": {
+              "text": "皿",
+              "start": 0,
+              "end": 1
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 2,
+            "end": 5,
+            "text": "洗った",
+            "head": {
+              "text": "洗った",
+              "start": 2,
+              "end": 5
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "B",
+              "動態述語": true,
+              "節-区切": "連体修飾",
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 2,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "start": 5,
+            "end": 7,
+            "text": "父が",
+            "head": {
+              "text": "父",
+              "start": 5,
+              "end": 6
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "ノ",
+                "target_phrase": null,
+                "external": "著者"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "start": 7,
+            "end": 10,
+            "text": "荷物を",
+            "head": {
+              "text": "荷物",
+              "start": 7,
+              "end": 9
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 4,
+            "start": 10,
+            "end": 14,
+            "text": "運んだ。",
+            "head": {
+              "text": "運んだ",
+              "start": 10,
+              "end": 13
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 2,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 3,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 1,
+          "predicate": {
+            "text": "洗った",
+            "start": 2,
+            "end": 5
+          },
+          "keep": true,
+          "event_score": 0.9995163679122925
+        },
+        {
+          "source": 4,
+          "predicate": {
+            "text": "運んだ",
+            "start": 10,
+            "end": 13
+          },
+          "keep": true,
+          "event_score": 0.9999814033508301
+        }
+      ],
+      "frames": [
+        {
+          "source": 1,
+          "predicate": {
+            "text": "洗った",
+            "start": 2,
+            "end": 5
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 1,
+              "text": "皿"
+            },
+            {
+              "id": 1,
+              "start": 5,
+              "end": 6,
+              "text": "父"
+            }
+          ],
+          "roles": [
+            {
+              "source": 1,
+              "target": 0,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9819700717926025
+            },
+            {
+              "source": 1,
+              "target": 1,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9967603087425232
+            }
+          ]
+        },
+        {
+          "source": 4,
+          "predicate": {
+            "text": "運んだ",
+            "start": 10,
+            "end": 13
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 6,
+              "text": "皿を洗った父"
+            },
+            {
+              "id": 1,
+              "start": 7,
+              "end": 9,
+              "text": "荷物"
+            }
+          ],
+          "roles": [
+            {
+              "source": 4,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9962706565856934
+            },
+            {
+              "source": 4,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9759289622306824
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          2,
+          0,
+          3,
+          7,
+          3,
+          7,
+          5,
+          15,
+          7
+        ],
+        "root_word": 15,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 2,
+            "parent_phrase": 1,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 3,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 3,
+            "parent_word": 7,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 3,
+            "head_word": 5,
+            "parent_word": 7,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 7,
+            "parent_word": 15,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 1,
+            "text": "皿",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 0,
+            "end": 6,
+            "text": "皿を洗った父",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 5,
+            "end": 6,
+            "text": "父",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 3,
+            "start": 7,
+            "end": 9,
+            "text": "荷物",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 2
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "mentions": [
+              3
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "same_source_head",
+            "source_mention": 1,
+            "target_mention": 2,
+            "head_phrase": 2
+          }
+        ],
+        "roles": [
+          {
+            "source": 1,
+            "role": "patient",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 1,
+            "role": "agent",
+            "mention": 2,
+            "referent": 1
+          },
+          {
+            "source": 4,
+            "role": "agent",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 4,
+            "role": "patient",
+            "mention": 3,
+            "referent": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-coat",
+      "kind": "nested",
+      "text": "仕立屋が縫った上着を店員が受け取った。",
+      "mentions": [
+        [
+          "仕立屋",
+          0,
+          "a"
+        ],
+        [
+          "上着",
+          0,
+          "b"
+        ],
+        [
+          "店員",
+          0,
+          "c"
+        ],
+        [
+          "仕立屋が縫った上着",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "仕立屋が縫った上着を店員が受け取った。",
+        "tokens": [
+          {
+            "text": "仕立屋",
+            "start": 0,
+            "end": 3
+          },
+          {
+            "text": "が",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "縫った",
+            "start": 4,
+            "end": 7
+          },
+          {
+            "text": "上着",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "text": "を",
+            "start": 9,
+            "end": 10
+          },
+          {
+            "text": "店員",
+            "start": 10,
+            "end": 12
+          },
+          {
+            "text": "が",
+            "start": 12,
+            "end": 13
+          },
+          {
+            "text": "受け取った",
+            "start": 13,
+            "end": 18
+          },
+          {
+            "text": "。",
+            "start": 18,
+            "end": 19
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 4,
+            "text": "仕立屋が",
+            "head": {
+              "text": "仕立屋",
+              "start": 0,
+              "end": 3
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 4,
+            "end": 7,
+            "text": "縫った",
+            "head": {
+              "text": "縫った",
+              "start": 4,
+              "end": 7
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "B",
+              "動態述語": true,
+              "節-区切": "連体修飾",
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 0,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "start": 7,
+            "end": 10,
+            "text": "上着を",
+            "head": {
+              "text": "上着",
+              "start": 7,
+              "end": 9
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 3,
+            "start": 10,
+            "end": 13,
+            "text": "店員が",
+            "head": {
+              "text": "店員",
+              "start": 10,
+              "end": 12
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "ノ",
+                "target_phrase": null,
+                "external": "不特定:物"
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 13,
+            "end": 19,
+            "text": "受け取った。",
+            "head": {
+              "text": "受け取った",
+              "start": 13,
+              "end": 18
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 3,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 1,
+          "predicate": {
+            "text": "縫った",
+            "start": 4,
+            "end": 7
+          },
+          "keep": true,
+          "event_score": 0.9993020296096802
+        },
+        {
+          "source": 4,
+          "predicate": {
+            "text": "受け取った",
+            "start": 13,
+            "end": 18
+          },
+          "keep": true,
+          "event_score": 0.9999804496765137
+        }
+      ],
+      "frames": [
+        {
+          "source": 1,
+          "predicate": {
+            "text": "縫った",
+            "start": 4,
+            "end": 7
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 3,
+              "text": "仕立屋"
+            },
+            {
+              "id": 1,
+              "start": 7,
+              "end": 9,
+              "text": "上着"
+            }
+          ],
+          "roles": [
+            {
+              "source": 1,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9833078384399414
+            },
+            {
+              "source": 1,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9936880469322205
+            }
+          ]
+        },
+        {
+          "source": 4,
+          "predicate": {
+            "text": "受け取った",
+            "start": 13,
+            "end": 18
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 9,
+              "text": "仕立屋が縫った上着"
+            },
+            {
+              "id": 1,
+              "start": 10,
+              "end": 12,
+              "text": "店員"
+            }
+          ],
+          "roles": [
+            {
+              "source": 4,
+              "target": 0,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9976978898048401
+            },
+            {
+              "source": 4,
+              "target": 1,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9984471201896667
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          2,
+          0,
+          3,
+          7,
+          3,
+          7,
+          5,
+          15,
+          7
+        ],
+        "root_word": 15,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 2,
+            "parent_phrase": 1,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 3,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 3,
+            "parent_word": 7,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 3,
+            "head_word": 5,
+            "parent_word": 7,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 7,
+            "parent_word": 15,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "仕立屋",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 0,
+            "end": 9,
+            "text": "仕立屋が縫った上着",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 7,
+            "end": 9,
+            "text": "上着",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 3,
+            "start": 10,
+            "end": 12,
+            "text": "店員",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 2
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "mentions": [
+              3
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "same_source_head",
+            "source_mention": 1,
+            "target_mention": 2,
+            "head_phrase": 2
+          }
+        ],
+        "roles": [
+          {
+            "source": 1,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 1,
+            "role": "patient",
+            "mention": 2,
+            "referent": 1
+          },
+          {
+            "source": 4,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 4,
+            "role": "agent",
+            "mention": 3,
+            "referent": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-resident",
+      "kind": "nested",
+      "text": "消防士に助けられた住民は公園で係員に案内された。",
+      "mentions": [
+        [
+          "消防士",
+          0,
+          "a"
+        ],
+        [
+          "住民",
+          0,
+          "b"
+        ],
+        [
+          "公園",
+          0,
+          "c"
+        ],
+        [
+          "係員",
+          0,
+          "d"
+        ],
+        [
+          "消防士に助けられた住民",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "消防士に助けられた住民は公園で係員に案内された。",
+        "tokens": [
+          {
+            "text": "消防",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "士",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "に",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "助け",
+            "start": 4,
+            "end": 6
+          },
+          {
+            "text": "られた",
+            "start": 6,
+            "end": 9
+          },
+          {
+            "text": "住民",
+            "start": 9,
+            "end": 11
+          },
+          {
+            "text": "は",
+            "start": 11,
+            "end": 12
+          },
+          {
+            "text": "公園",
+            "start": 12,
+            "end": 14
+          },
+          {
+            "text": "で",
+            "start": 14,
+            "end": 15
+          },
+          {
+            "text": "係員",
+            "start": 15,
+            "end": 17
+          },
+          {
+            "text": "に",
+            "start": 17,
+            "end": 18
+          },
+          {
+            "text": "案内",
+            "start": 18,
+            "end": 20
+          },
+          {
+            "text": "さ",
+            "start": 20,
+            "end": 21
+          },
+          {
+            "text": "れた",
+            "start": 21,
+            "end": 23
+          },
+          {
+            "text": "。",
+            "start": 23,
+            "end": 24
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "消防",
+            "head": {
+              "text": "消防",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 2,
+            "end": 4,
+            "text": "士に",
+            "head": {
+              "text": "士",
+              "start": 2,
+              "end": 3
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "ノ",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "start": 4,
+            "end": 9,
+            "text": "助けられた",
+            "head": {
+              "text": "助け",
+              "start": 4,
+              "end": 6
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "B",
+              "動態述語": true,
+              "節-区切": "連体修飾",
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 3,
+                "external": null
+              },
+              {
+                "label": "ニ",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "start": 9,
+            "end": 12,
+            "text": "住民は",
+            "head": {
+              "text": "住民",
+              "start": 9,
+              "end": 11
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "ノ",
+                "target_phrase": null,
+                "external": "不特定:物"
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 12,
+            "end": 15,
+            "text": "公園で",
+            "head": {
+              "text": "公園",
+              "start": 12,
+              "end": 14
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 5,
+            "start": 15,
+            "end": 18,
+            "text": "係員に",
+            "head": {
+              "text": "係員",
+              "start": 15,
+              "end": 17
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 6,
+            "start": 18,
+            "end": 24,
+            "text": "案内された。",
+            "head": {
+              "text": "案内",
+              "start": 18,
+              "end": 20
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 3,
+                "external": null
+              },
+              {
+                "label": "ニ",
+                "target_phrase": 5,
+                "external": null
+              },
+              {
+                "label": "デ",
+                "target_phrase": 4,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "助け",
+            "start": 4,
+            "end": 6
+          },
+          "keep": true,
+          "event_score": 0.9998829364776611
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "案内",
+            "start": 18,
+            "end": 20
+          },
+          "keep": true,
+          "event_score": 0.9999510049819946
+        }
+      ],
+      "frames": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "助け",
+            "start": 4,
+            "end": 6
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 3,
+              "text": "消防士"
+            },
+            {
+              "id": 1,
+              "start": 9,
+              "end": 11,
+              "text": "住民"
+            }
+          ],
+          "roles": [
+            {
+              "source": 2,
+              "target": 0,
+              "native_cases": [
+                "ニ"
+              ],
+              "role": "agent",
+              "confidence": 0.9640612006187439
+            },
+            {
+              "source": 2,
+              "target": 1,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "patient",
+              "confidence": 0.962418794631958
+            }
+          ]
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "案内",
+            "start": 18,
+            "end": 20
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 11,
+              "text": "消防士に助けられた住民"
+            },
+            {
+              "id": 1,
+              "start": 12,
+              "end": 14,
+              "text": "公園"
+            },
+            {
+              "id": 2,
+              "start": 15,
+              "end": 17,
+              "text": "係員"
+            }
+          ],
+          "roles": [
+            {
+              "source": 6,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "patient",
+              "confidence": 0.7267810702323914
+            },
+            {
+              "source": 6,
+              "target": 1,
+              "native_cases": [
+                "デ"
+              ],
+              "role": "location",
+              "confidence": 0.990364134311676
+            },
+            {
+              "source": 6,
+              "target": 2,
+              "native_cases": [
+                "ニ"
+              ],
+              "role": "agent",
+              "confidence": 0.9908717274665833
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          1,
+          3,
+          1,
+          5,
+          3,
+          11,
+          5,
+          11,
+          7,
+          11,
+          9,
+          21,
+          11,
+          11,
+          11
+        ],
+        "root_word": 21,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 1,
+            "parent_phrase": 1,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 1,
+            "parent_word": 3,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 3,
+            "parent_word": 5,
+            "parent_phrase": 3,
+            "status": "linked"
+          },
+          {
+            "source": 3,
+            "head_word": 5,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 7,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 5,
+            "head_word": 9,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 6,
+            "head_word": 11,
+            "parent_word": 21,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "消防士",
+            "head_phrase": 1,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 0,
+            "end": 11,
+            "text": "消防士に助けられた住民",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 9,
+            "end": 11,
+            "text": "住民",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 3,
+            "start": 12,
+            "end": 14,
+            "text": "公園",
+            "head_phrase": 4,
+            "head_status": "aligned",
+            "referent": 2
+          },
+          {
+            "id": 4,
+            "start": 15,
+            "end": 17,
+            "text": "係員",
+            "head_phrase": 5,
+            "head_status": "aligned",
+            "referent": 3
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "mentions": [
+              3
+            ]
+          },
+          {
+            "id": 3,
+            "mentions": [
+              4
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "same_source_head",
+            "source_mention": 1,
+            "target_mention": 2,
+            "head_phrase": 3
+          }
+        ],
+        "roles": [
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 2,
+            "role": "patient",
+            "mention": 2,
+            "referent": 1
+          },
+          {
+            "source": 6,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 6,
+            "role": "location",
+            "mention": 3,
+            "referent": 2
+          },
+          {
+            "source": 6,
+            "role": "agent",
+            "mention": 4,
+            "referent": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-pronoun-book",
+      "kind": "cross_sentence",
+      "text": "太郎は本を買った。彼はその本を読んだ。",
+      "mentions": [
+        [
+          "太郎",
+          0,
+          "a"
+        ],
+        [
+          "本",
+          0,
+          "b"
+        ],
+        [
+          "彼",
+          0,
+          "a"
+        ],
+        [
+          "その本",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "太郎は本を買った。彼はその本を読んだ。",
+        "tokens": [
+          {
+            "text": "太郎",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "は",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "本",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "を",
+            "start": 4,
+            "end": 5
+          },
+          {
+            "text": "買った",
+            "start": 5,
+            "end": 8
+          },
+          {
+            "text": "。",
+            "start": 8,
+            "end": 9
+          },
+          {
+            "text": "彼",
+            "start": 9,
+            "end": 10
+          },
+          {
+            "text": "は",
+            "start": 10,
+            "end": 11
+          },
+          {
+            "text": "その",
+            "start": 11,
+            "end": 13
+          },
+          {
+            "text": "本",
+            "start": 13,
+            "end": 14
+          },
+          {
+            "text": "を",
+            "start": 14,
+            "end": 15
+          },
+          {
+            "text": "読んだ",
+            "start": 15,
+            "end": 18
+          },
+          {
+            "text": "。",
+            "start": 18,
+            "end": 19
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "太郎は",
+            "head": {
+              "text": "太郎",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 5,
+            "text": "本を",
+            "head": {
+              "text": "本",
+              "start": 3,
+              "end": 4
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 2,
+            "start": 5,
+            "end": 9,
+            "text": "買った。",
+            "head": {
+              "text": "買った",
+              "start": 5,
+              "end": 8
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 0,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "start": 9,
+            "end": 11,
+            "text": "彼は",
+            "head": {
+              "text": "彼",
+              "start": 9,
+              "end": 10
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 11,
+            "end": 13,
+            "text": "その",
+            "head": {
+              "text": "その",
+              "start": 11,
+              "end": 13
+            },
+            "features": {},
+            "relations": []
+          },
+          {
+            "id": 5,
+            "start": 13,
+            "end": 15,
+            "text": "本を",
+            "head": {
+              "text": "本",
+              "start": 13,
+              "end": 14
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "start": 15,
+            "end": 19,
+            "text": "読んだ。",
+            "head": {
+              "text": "読んだ",
+              "start": 15,
+              "end": 18
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 3,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 5,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "買った",
+            "start": 5,
+            "end": 8
+          },
+          "keep": true,
+          "event_score": 0.9999780654907227
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "読んだ",
+            "start": 15,
+            "end": 18
+          },
+          "keep": true,
+          "event_score": 0.9999727010726929
+        }
+      ],
+      "frames": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "買った",
+            "start": 5,
+            "end": 8
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 4,
+              "text": "本"
+            },
+            {
+              "id": 2,
+              "start": 9,
+              "end": 10,
+              "text": "彼"
+            },
+            {
+              "id": 3,
+              "start": 13,
+              "end": 14,
+              "text": "本"
+            }
+          ],
+          "roles": [
+            {
+              "source": 2,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.940205454826355
+            },
+            {
+              "source": 2,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9965734481811523
+            },
+            {
+              "source": 2,
+              "target": 2,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.94596266746521
+            },
+            {
+              "source": 2,
+              "target": 3,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9804789423942566
+            }
+          ]
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "読んだ",
+            "start": 15,
+            "end": 18
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 4,
+              "text": "本"
+            },
+            {
+              "id": 2,
+              "start": 9,
+              "end": 10,
+              "text": "彼"
+            },
+            {
+              "id": 3,
+              "start": 13,
+              "end": 14,
+              "text": "本"
+            }
+          ],
+          "roles": [
+            {
+              "source": 6,
+              "target": 0,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.8069649934768677
+            },
+            {
+              "source": 6,
+              "target": 1,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9923257827758789
+            },
+            {
+              "source": 6,
+              "target": 2,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9545936584472656
+            },
+            {
+              "source": 6,
+              "target": 3,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9958030581474304
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          4,
+          0,
+          4,
+          2,
+          19,
+          4,
+          11,
+          6,
+          9,
+          11,
+          9,
+          19,
+          11
+        ],
+        "root_word": 19,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 4,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 4,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 4,
+            "parent_word": 19,
+            "parent_phrase": null,
+            "status": "root"
+          },
+          {
+            "source": 3,
+            "head_word": 6,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 8,
+            "parent_word": 9,
+            "parent_phrase": 5,
+            "status": "linked"
+          },
+          {
+            "source": 5,
+            "head_word": 9,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 6,
+            "head_word": 11,
+            "parent_word": 19,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "太郎",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 4,
+            "text": "本",
+            "head_phrase": 1,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 9,
+            "end": 10,
+            "text": "彼",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 3,
+            "start": 13,
+            "end": 14,
+            "text": "本",
+            "head_phrase": 5,
+            "head_status": "aligned",
+            "referent": 1
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0,
+              2
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              3
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "native_coreference",
+            "source": 3,
+            "target": 0
+          },
+          {
+            "kind": "native_coreference",
+            "source": 5,
+            "target": 1
+          }
+        ],
+        "roles": [
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 2,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 2,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          },
+          {
+            "source": 6,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 6,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 6,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 6,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-pronoun-dog",
+      "kind": "cross_sentence",
+      "text": "花子は犬を見た。彼女はその犬を追った。",
+      "mentions": [
+        [
+          "花子",
+          0,
+          "a"
+        ],
+        [
+          "犬",
+          0,
+          "b"
+        ],
+        [
+          "彼女",
+          0,
+          "a"
+        ],
+        [
+          "その犬",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "花子は犬を見た。彼女はその犬を追った。",
+        "tokens": [
+          {
+            "text": "花子",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "は",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "犬",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "を",
+            "start": 4,
+            "end": 5
+          },
+          {
+            "text": "見た",
+            "start": 5,
+            "end": 7
+          },
+          {
+            "text": "。",
+            "start": 7,
+            "end": 8
+          },
+          {
+            "text": "彼女",
+            "start": 8,
+            "end": 10
+          },
+          {
+            "text": "は",
+            "start": 10,
+            "end": 11
+          },
+          {
+            "text": "その",
+            "start": 11,
+            "end": 13
+          },
+          {
+            "text": "犬",
+            "start": 13,
+            "end": 14
+          },
+          {
+            "text": "を",
+            "start": 14,
+            "end": 15
+          },
+          {
+            "text": "追った",
+            "start": 15,
+            "end": 18
+          },
+          {
+            "text": "。",
+            "start": 18,
+            "end": 19
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "花子は",
+            "head": {
+              "text": "花子",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 5,
+            "text": "犬を",
+            "head": {
+              "text": "犬",
+              "start": 3,
+              "end": 4
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 2,
+            "start": 5,
+            "end": 8,
+            "text": "見た。",
+            "head": {
+              "text": "見た",
+              "start": 5,
+              "end": 7
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 0,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "start": 8,
+            "end": 11,
+            "text": "彼女は",
+            "head": {
+              "text": "彼女",
+              "start": 8,
+              "end": 10
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 11,
+            "end": 13,
+            "text": "その",
+            "head": {
+              "text": "その",
+              "start": 11,
+              "end": 13
+            },
+            "features": {},
+            "relations": []
+          },
+          {
+            "id": 5,
+            "start": 13,
+            "end": 15,
+            "text": "犬を",
+            "head": {
+              "text": "犬",
+              "start": 13,
+              "end": 14
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "start": 15,
+            "end": 19,
+            "text": "追った。",
+            "head": {
+              "text": "追った",
+              "start": 15,
+              "end": 18
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 3,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 5,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "見た",
+            "start": 5,
+            "end": 7
+          },
+          "keep": true,
+          "event_score": 0.9999675750732422
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "追った",
+            "start": 15,
+            "end": 18
+          },
+          "keep": true,
+          "event_score": 0.9999649524688721
+        }
+      ],
+      "frames": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "見た",
+            "start": 5,
+            "end": 7
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "花子"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 4,
+              "text": "犬"
+            },
+            {
+              "id": 2,
+              "start": 8,
+              "end": 10,
+              "text": "彼女"
+            },
+            {
+              "id": 3,
+              "start": 11,
+              "end": 14,
+              "text": "その犬"
+            }
+          ],
+          "roles": [
+            {
+              "source": 2,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.8734202980995178
+            },
+            {
+              "source": 2,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9984971284866333
+            },
+            {
+              "source": 2,
+              "target": 2,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9915384650230408
+            },
+            {
+              "source": 2,
+              "target": 3,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9974580407142639
+            }
+          ]
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "追った",
+            "start": 15,
+            "end": 18
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "花子"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 4,
+              "text": "犬"
+            },
+            {
+              "id": 2,
+              "start": 8,
+              "end": 10,
+              "text": "彼女"
+            },
+            {
+              "id": 3,
+              "start": 11,
+              "end": 14,
+              "text": "その犬"
+            }
+          ],
+          "roles": [
+            {
+              "source": 6,
+              "target": 0,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9196724891662598
+            },
+            {
+              "source": 6,
+              "target": 1,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.995858371257782
+            },
+            {
+              "source": 6,
+              "target": 2,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9970585107803345
+            },
+            {
+              "source": 6,
+              "target": 3,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9985781908035278
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          4,
+          0,
+          4,
+          2,
+          19,
+          4,
+          11,
+          6,
+          9,
+          11,
+          9,
+          19,
+          11
+        ],
+        "root_word": 19,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 4,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 4,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 4,
+            "parent_word": 19,
+            "parent_phrase": null,
+            "status": "root"
+          },
+          {
+            "source": 3,
+            "head_word": 6,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 8,
+            "parent_word": 9,
+            "parent_phrase": 5,
+            "status": "linked"
+          },
+          {
+            "source": 5,
+            "head_word": 9,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 6,
+            "head_word": 11,
+            "parent_word": 19,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "花子",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 4,
+            "text": "犬",
+            "head_phrase": 1,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 8,
+            "end": 10,
+            "text": "彼女",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 3,
+            "start": 11,
+            "end": 14,
+            "text": "その犬",
+            "head_phrase": 5,
+            "head_status": "aligned",
+            "referent": 1
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0,
+              2
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              3
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "native_coreference",
+            "source": 3,
+            "target": 0
+          },
+          {
+            "kind": "native_coreference",
+            "source": 5,
+            "target": 1
+          }
+        ],
+        "roles": [
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 2,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 2,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          },
+          {
+            "source": 6,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 6,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 6,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 6,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-key",
+      "kind": "cross_sentence",
+      "text": "教師が鍵を拾った。その人はそれを届けた。",
+      "mentions": [
+        [
+          "教師",
+          0,
+          "a"
+        ],
+        [
+          "鍵",
+          0,
+          "b"
+        ],
+        [
+          "その人",
+          0,
+          "a"
+        ],
+        [
+          "それ",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "教師が鍵を拾った。その人はそれを届けた。",
+        "tokens": [
+          {
+            "text": "教師",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "が",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "鍵",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "を",
+            "start": 4,
+            "end": 5
+          },
+          {
+            "text": "拾った",
+            "start": 5,
+            "end": 8
+          },
+          {
+            "text": "。",
+            "start": 8,
+            "end": 9
+          },
+          {
+            "text": "その",
+            "start": 9,
+            "end": 11
+          },
+          {
+            "text": "人",
+            "start": 11,
+            "end": 12
+          },
+          {
+            "text": "は",
+            "start": 12,
+            "end": 13
+          },
+          {
+            "text": "それ",
+            "start": 13,
+            "end": 15
+          },
+          {
+            "text": "を",
+            "start": 15,
+            "end": 16
+          },
+          {
+            "text": "届けた",
+            "start": 16,
+            "end": 19
+          },
+          {
+            "text": "。",
+            "start": 19,
+            "end": 20
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "教師が",
+            "head": {
+              "text": "教師",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 5,
+            "text": "鍵を",
+            "head": {
+              "text": "鍵",
+              "start": 3,
+              "end": 4
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 2,
+            "start": 5,
+            "end": 9,
+            "text": "拾った。",
+            "head": {
+              "text": "拾った",
+              "start": 5,
+              "end": 8
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 0,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "start": 9,
+            "end": 11,
+            "text": "その",
+            "head": {
+              "text": "その",
+              "start": 9,
+              "end": 11
+            },
+            "features": {},
+            "relations": []
+          },
+          {
+            "id": 4,
+            "start": 11,
+            "end": 13,
+            "text": "人は",
+            "head": {
+              "text": "人",
+              "start": 11,
+              "end": 12
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "start": 13,
+            "end": 16,
+            "text": "それを",
+            "head": {
+              "text": "それ",
+              "start": 13,
+              "end": 15
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "start": 16,
+            "end": 20,
+            "text": "届けた。",
+            "head": {
+              "text": "届けた",
+              "start": 16,
+              "end": 19
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 4,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 5,
+                "external": null
+              },
+              {
+                "label": "ニ",
+                "target_phrase": null,
+                "external": "不特定:人"
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "拾った",
+            "start": 5,
+            "end": 8
+          },
+          "keep": true,
+          "event_score": 0.9999711513519287
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "届けた",
+            "start": 16,
+            "end": 19
+          },
+          "keep": true,
+          "event_score": 0.9999547004699707
+        }
+      ],
+      "frames": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "拾った",
+            "start": 5,
+            "end": 8
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "教師"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 4,
+              "text": "鍵"
+            },
+            {
+              "id": 2,
+              "start": 11,
+              "end": 12,
+              "text": "人"
+            }
+          ],
+          "roles": [
+            {
+              "source": 2,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9982494115829468
+            },
+            {
+              "source": 2,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9987496137619019
+            },
+            {
+              "source": 2,
+              "target": 2,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9920896291732788
+            }
+          ]
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "届けた",
+            "start": 16,
+            "end": 19
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "教師"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 4,
+              "text": "鍵"
+            },
+            {
+              "id": 2,
+              "start": 9,
+              "end": 12,
+              "text": "その人"
+            },
+            {
+              "id": 3,
+              "start": 13,
+              "end": 15,
+              "text": "それ"
+            }
+          ],
+          "roles": [
+            {
+              "source": 6,
+              "target": 0,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9890530705451965
+            },
+            {
+              "source": 6,
+              "target": 1,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9990378618240356
+            },
+            {
+              "source": 6,
+              "target": 2,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9713079929351807
+            },
+            {
+              "source": 6,
+              "target": 3,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9988120794296265
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          4,
+          0,
+          4,
+          2,
+          19,
+          4,
+          7,
+          11,
+          7,
+          11,
+          9,
+          19,
+          11
+        ],
+        "root_word": 19,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 4,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 4,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 4,
+            "parent_word": 19,
+            "parent_phrase": null,
+            "status": "root"
+          },
+          {
+            "source": 3,
+            "head_word": 6,
+            "parent_word": 7,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 7,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 5,
+            "head_word": 9,
+            "parent_word": 11,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 6,
+            "head_word": 11,
+            "parent_word": 19,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "教師",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 4,
+            "text": "鍵",
+            "head_phrase": 1,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 9,
+            "end": 12,
+            "text": "その人",
+            "head_phrase": 4,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 3,
+            "start": 11,
+            "end": 12,
+            "text": "人",
+            "head_phrase": 4,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 4,
+            "start": 13,
+            "end": 15,
+            "text": "それ",
+            "head_phrase": 5,
+            "head_status": "aligned",
+            "referent": 1
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              4
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "native_coreference",
+            "source": 4,
+            "target": 0
+          },
+          {
+            "kind": "native_coreference",
+            "source": 5,
+            "target": 1
+          },
+          {
+            "kind": "same_source_head",
+            "source_mention": 2,
+            "target_mention": 3,
+            "head_phrase": 4
+          }
+        ],
+        "roles": [
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 2,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 3,
+            "referent": 0
+          },
+          {
+            "source": 6,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 6,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 6,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 6,
+            "role": "patient",
+            "mention": 4,
+            "referent": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-soup",
+      "kind": "cross_sentence",
+      "text": "料理人がスープを作った。彼はその料理を味わった。",
+      "mentions": [
+        [
+          "料理人",
+          0,
+          "a"
+        ],
+        [
+          "スープ",
+          0,
+          "b"
+        ],
+        [
+          "彼",
+          0,
+          "a"
+        ],
+        [
+          "その料理",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "料理人がスープを作った。彼はその料理を味わった。",
+        "tokens": [
+          {
+            "text": "料理",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "人",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "が",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "スープ",
+            "start": 4,
+            "end": 7
+          },
+          {
+            "text": "を",
+            "start": 7,
+            "end": 8
+          },
+          {
+            "text": "作った",
+            "start": 8,
+            "end": 11
+          },
+          {
+            "text": "。",
+            "start": 11,
+            "end": 12
+          },
+          {
+            "text": "彼",
+            "start": 12,
+            "end": 13
+          },
+          {
+            "text": "は",
+            "start": 13,
+            "end": 14
+          },
+          {
+            "text": "その",
+            "start": 14,
+            "end": 16
+          },
+          {
+            "text": "料理",
+            "start": 16,
+            "end": 18
+          },
+          {
+            "text": "を",
+            "start": 18,
+            "end": 19
+          },
+          {
+            "text": "味わった",
+            "start": 19,
+            "end": 23
+          },
+          {
+            "text": "。",
+            "start": 23,
+            "end": 24
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "料理",
+            "head": {
+              "text": "料理",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "非用言格解析": "動"
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "start": 2,
+            "end": 4,
+            "text": "人が",
+            "head": {
+              "text": "人",
+              "start": 2,
+              "end": 3
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 2,
+            "start": 4,
+            "end": 8,
+            "text": "スープを",
+            "head": {
+              "text": "スープ",
+              "start": 4,
+              "end": 7
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 3,
+            "start": 8,
+            "end": 12,
+            "text": "作った。",
+            "head": {
+              "text": "作った",
+              "start": 8,
+              "end": 11
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 1,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 12,
+            "end": 14,
+            "text": "彼は",
+            "head": {
+              "text": "彼",
+              "start": 12,
+              "end": 13
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "start": 14,
+            "end": 16,
+            "text": "その",
+            "head": {
+              "text": "その",
+              "start": 14,
+              "end": 16
+            },
+            "features": {},
+            "relations": []
+          },
+          {
+            "id": 6,
+            "start": 16,
+            "end": 19,
+            "text": "料理を",
+            "head": {
+              "text": "料理",
+              "start": 16,
+              "end": 18
+            },
+            "features": {
+              "体言": true,
+              "非用言格解析": "動"
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 7,
+            "start": 19,
+            "end": 24,
+            "text": "味わった。",
+            "head": {
+              "text": "味わった",
+              "start": 19,
+              "end": 23
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 4,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 6,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 0,
+          "predicate": {
+            "text": "料理",
+            "start": 0,
+            "end": 2
+          },
+          "keep": false,
+          "event_score": 0.0009351639309898019
+        },
+        {
+          "source": 3,
+          "predicate": {
+            "text": "作った",
+            "start": 8,
+            "end": 11
+          },
+          "keep": true,
+          "event_score": 0.9999675750732422
+        },
+        {
+          "source": 6,
+          "predicate": {
+            "text": "料理",
+            "start": 16,
+            "end": 18
+          },
+          "keep": false,
+          "event_score": 0.01484950352460146
+        },
+        {
+          "source": 7,
+          "predicate": {
+            "text": "味わった",
+            "start": 19,
+            "end": 23
+          },
+          "keep": true,
+          "event_score": 0.9999209642410278
+        }
+      ],
+      "frames": [
+        {
+          "source": 3,
+          "predicate": {
+            "text": "作った",
+            "start": 8,
+            "end": 11
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 3,
+              "text": "料理人"
+            },
+            {
+              "id": 1,
+              "start": 4,
+              "end": 7,
+              "text": "スープ"
+            },
+            {
+              "id": 2,
+              "start": 12,
+              "end": 13,
+              "text": "彼"
+            },
+            {
+              "id": 3,
+              "start": 16,
+              "end": 18,
+              "text": "料理"
+            }
+          ],
+          "roles": [
+            {
+              "source": 3,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9985697269439697
+            },
+            {
+              "source": 3,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9963541030883789
+            },
+            {
+              "source": 3,
+              "target": 2,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9549174308776855
+            },
+            {
+              "source": 3,
+              "target": 3,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9859451651573181
+            }
+          ]
+        },
+        {
+          "source": 7,
+          "predicate": {
+            "text": "味わった",
+            "start": 19,
+            "end": 23
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 3,
+              "text": "料理人"
+            },
+            {
+              "id": 1,
+              "start": 4,
+              "end": 7,
+              "text": "スープ"
+            },
+            {
+              "id": 2,
+              "start": 12,
+              "end": 13,
+              "text": "彼"
+            },
+            {
+              "id": 3,
+              "start": 16,
+              "end": 18,
+              "text": "料理"
+            }
+          ],
+          "roles": [
+            {
+              "source": 7,
+              "target": 0,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9975443482398987
+            },
+            {
+              "source": 7,
+              "target": 1,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9868760108947754
+            },
+            {
+              "source": 7,
+              "target": 2,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9727613925933838
+            },
+            {
+              "source": 7,
+              "target": 3,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9942969679832458
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          1,
+          5,
+          1,
+          5,
+          3,
+          20,
+          5,
+          12,
+          7,
+          10,
+          12,
+          10,
+          20,
+          12
+        ],
+        "root_word": 20,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 1,
+            "parent_phrase": 1,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 1,
+            "parent_word": 5,
+            "parent_phrase": 3,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 3,
+            "parent_word": 5,
+            "parent_phrase": 3,
+            "status": "linked"
+          },
+          {
+            "source": 3,
+            "head_word": 5,
+            "parent_word": 20,
+            "parent_phrase": null,
+            "status": "root"
+          },
+          {
+            "source": 4,
+            "head_word": 7,
+            "parent_word": 12,
+            "parent_phrase": 7,
+            "status": "linked"
+          },
+          {
+            "source": 5,
+            "head_word": 9,
+            "parent_word": 10,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 6,
+            "head_word": 10,
+            "parent_word": 12,
+            "parent_phrase": 7,
+            "status": "linked"
+          },
+          {
+            "source": 7,
+            "head_word": 12,
+            "parent_word": 20,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "料理人",
+            "head_phrase": 1,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 4,
+            "end": 7,
+            "text": "スープ",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 12,
+            "end": 13,
+            "text": "彼",
+            "head_phrase": 4,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 3,
+            "start": 16,
+            "end": 18,
+            "text": "料理",
+            "head_phrase": 6,
+            "head_status": "aligned",
+            "referent": 2
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0,
+              2
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1
+            ]
+          },
+          {
+            "id": 2,
+            "mentions": [
+              3
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "native_coreference",
+            "source": 4,
+            "target": 1
+          },
+          {
+            "kind": "native_coreference",
+            "source": 6,
+            "target": 0
+          }
+        ],
+        "roles": [
+          {
+            "source": 3,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 3,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 3,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 3,
+            "role": "patient",
+            "mention": 3,
+            "referent": 2
+          },
+          {
+            "source": 7,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 7,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 7,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 7,
+            "role": "patient",
+            "mention": 3,
+            "referent": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-name",
+      "kind": "cross_sentence",
+      "text": "太郎は本を買った。太郎はそれを読んだ。",
+      "mentions": [
+        [
+          "太郎",
+          0,
+          "a"
+        ],
+        [
+          "本",
+          0,
+          "b"
+        ],
+        [
+          "太郎",
+          1,
+          "a"
+        ],
+        [
+          "それ",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "太郎は本を買った。太郎はそれを読んだ。",
+        "tokens": [
+          {
+            "text": "太郎",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "は",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "本",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "を",
+            "start": 4,
+            "end": 5
+          },
+          {
+            "text": "買った",
+            "start": 5,
+            "end": 8
+          },
+          {
+            "text": "。",
+            "start": 8,
+            "end": 9
+          },
+          {
+            "text": "太郎",
+            "start": 9,
+            "end": 11
+          },
+          {
+            "text": "は",
+            "start": 11,
+            "end": 12
+          },
+          {
+            "text": "それ",
+            "start": 12,
+            "end": 14
+          },
+          {
+            "text": "を",
+            "start": 14,
+            "end": 15
+          },
+          {
+            "text": "読んだ",
+            "start": 15,
+            "end": 18
+          },
+          {
+            "text": "。",
+            "start": 18,
+            "end": 19
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "太郎は",
+            "head": {
+              "text": "太郎",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 5,
+            "text": "本を",
+            "head": {
+              "text": "本",
+              "start": 3,
+              "end": 4
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 2,
+            "start": 5,
+            "end": 9,
+            "text": "買った。",
+            "head": {
+              "text": "買った",
+              "start": 5,
+              "end": 8
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 0,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "start": 9,
+            "end": 12,
+            "text": "太郎は",
+            "head": {
+              "text": "太郎",
+              "start": 9,
+              "end": 11
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 12,
+            "end": 15,
+            "text": "それを",
+            "head": {
+              "text": "それ",
+              "start": 12,
+              "end": 14
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 1,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "start": 15,
+            "end": 19,
+            "text": "読んだ。",
+            "head": {
+              "text": "読んだ",
+              "start": 15,
+              "end": 18
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 3,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 4,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "買った",
+            "start": 5,
+            "end": 8
+          },
+          "keep": true,
+          "event_score": 0.9999774694442749
+        },
+        {
+          "source": 5,
+          "predicate": {
+            "text": "読んだ",
+            "start": 15,
+            "end": 18
+          },
+          "keep": true,
+          "event_score": 0.9999779462814331
+        }
+      ],
+      "frames": [
+        {
+          "source": 2,
+          "predicate": {
+            "text": "買った",
+            "start": 5,
+            "end": 8
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 4,
+              "text": "本"
+            },
+            {
+              "id": 2,
+              "start": 9,
+              "end": 11,
+              "text": "太郎"
+            },
+            {
+              "id": 3,
+              "start": 12,
+              "end": 14,
+              "text": "それ"
+            }
+          ],
+          "roles": [
+            {
+              "source": 2,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.983210563659668
+            },
+            {
+              "source": 2,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9969069361686707
+            },
+            {
+              "source": 2,
+              "target": 2,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9556771516799927
+            },
+            {
+              "source": 2,
+              "target": 3,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.984906017780304
+            }
+          ]
+        },
+        {
+          "source": 5,
+          "predicate": {
+            "text": "読んだ",
+            "start": 15,
+            "end": 18
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 4,
+              "text": "本"
+            },
+            {
+              "id": 2,
+              "start": 9,
+              "end": 11,
+              "text": "太郎"
+            },
+            {
+              "id": 3,
+              "start": 12,
+              "end": 14,
+              "text": "それ"
+            }
+          ],
+          "roles": [
+            {
+              "source": 5,
+              "target": 0,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9415422081947327
+            },
+            {
+              "source": 5,
+              "target": 1,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9925520420074463
+            },
+            {
+              "source": 5,
+              "target": 2,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9765262007713318
+            },
+            {
+              "source": 5,
+              "target": 3,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9961165189743042
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          4,
+          0,
+          4,
+          2,
+          18,
+          4,
+          10,
+          6,
+          10,
+          8,
+          18,
+          10
+        ],
+        "root_word": 18,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 4,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 4,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 4,
+            "parent_word": 18,
+            "parent_phrase": null,
+            "status": "root"
+          },
+          {
+            "source": 3,
+            "head_word": 6,
+            "parent_word": 10,
+            "parent_phrase": 5,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 8,
+            "parent_word": 10,
+            "parent_phrase": 5,
+            "status": "linked"
+          },
+          {
+            "source": 5,
+            "head_word": 10,
+            "parent_word": 18,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "太郎",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 4,
+            "text": "本",
+            "head_phrase": 1,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 9,
+            "end": 11,
+            "text": "太郎",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 3,
+            "start": 12,
+            "end": 14,
+            "text": "それ",
+            "head_phrase": 4,
+            "head_status": "aligned",
+            "referent": 1
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0,
+              2
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              3
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "native_coreference",
+            "source": 3,
+            "target": 0
+          },
+          {
+            "kind": "native_coreference",
+            "source": 4,
+            "target": 1
+          }
+        ],
+        "roles": [
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 2,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 2,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 2,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          },
+          {
+            "source": 5,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 5,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 5,
+            "role": "agent",
+            "mention": 2,
+            "referent": 0
+          },
+          {
+            "source": 5,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-distinct-books",
+      "kind": "distinct",
+      "text": "太郎は赤い本を買った。花子は青い本を読んだ。",
+      "mentions": [
+        [
+          "太郎",
+          0,
+          "a"
+        ],
+        [
+          "赤い本",
+          0,
+          "b"
+        ],
+        [
+          "花子",
+          0,
+          "c"
+        ],
+        [
+          "青い本",
+          0,
+          "d"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "太郎は赤い本を買った。花子は青い本を読んだ。",
+        "tokens": [
+          {
+            "text": "太郎",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "は",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "赤い",
+            "start": 3,
+            "end": 5
+          },
+          {
+            "text": "本",
+            "start": 5,
+            "end": 6
+          },
+          {
+            "text": "を",
+            "start": 6,
+            "end": 7
+          },
+          {
+            "text": "買った",
+            "start": 7,
+            "end": 10
+          },
+          {
+            "text": "。",
+            "start": 10,
+            "end": 11
+          },
+          {
+            "text": "花子",
+            "start": 11,
+            "end": 13
+          },
+          {
+            "text": "は",
+            "start": 13,
+            "end": 14
+          },
+          {
+            "text": "青い",
+            "start": 14,
+            "end": 16
+          },
+          {
+            "text": "本",
+            "start": 16,
+            "end": 17
+          },
+          {
+            "text": "を",
+            "start": 17,
+            "end": 18
+          },
+          {
+            "text": "読んだ",
+            "start": 18,
+            "end": 21
+          },
+          {
+            "text": "。",
+            "start": 21,
+            "end": 22
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "太郎は",
+            "head": {
+              "text": "太郎",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 5,
+            "text": "赤い",
+            "head": {
+              "text": "赤い",
+              "start": 3,
+              "end": 5
+            },
+            "features": {
+              "用言": "形",
+              "時制": "非過去",
+              "レベル": "B-",
+              "状態述語": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "start": 5,
+            "end": 7,
+            "text": "本を",
+            "head": {
+              "text": "本",
+              "start": 5,
+              "end": 6
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 3,
+            "start": 7,
+            "end": 11,
+            "text": "買った。",
+            "head": {
+              "text": "買った",
+              "start": 7,
+              "end": 10
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 0,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 2,
+                "external": null
+              },
+              {
+                "label": "デ",
+                "target_phrase": null,
+                "external": "不特定:物"
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 11,
+            "end": 14,
+            "text": "花子は",
+            "head": {
+              "text": "花子",
+              "start": 11,
+              "end": 13
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 5,
+            "start": 14,
+            "end": 16,
+            "text": "青い",
+            "head": {
+              "text": "青い",
+              "start": 14,
+              "end": 16
+            },
+            "features": {
+              "用言": "形",
+              "時制": "非過去",
+              "レベル": "B-",
+              "状態述語": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 6,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "start": 16,
+            "end": 18,
+            "text": "本を",
+            "head": {
+              "text": "本",
+              "start": 16,
+              "end": 17
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": [
+              {
+                "label": "=",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 7,
+            "start": 18,
+            "end": 22,
+            "text": "読んだ。",
+            "head": {
+              "text": "読んだ",
+              "start": 18,
+              "end": 21
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 4,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 6,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 1,
+          "predicate": {
+            "text": "赤い",
+            "start": 3,
+            "end": 5
+          },
+          "keep": true,
+          "event_score": 0.9784616231918335
+        },
+        {
+          "source": 3,
+          "predicate": {
+            "text": "買った",
+            "start": 7,
+            "end": 10
+          },
+          "keep": true,
+          "event_score": 0.9999748468399048
+        },
+        {
+          "source": 5,
+          "predicate": {
+            "text": "青い",
+            "start": 14,
+            "end": 16
+          },
+          "keep": true,
+          "event_score": 0.9028056263923645
+        },
+        {
+          "source": 7,
+          "predicate": {
+            "text": "読んだ",
+            "start": 18,
+            "end": 21
+          },
+          "keep": true,
+          "event_score": 0.9999743700027466
+        }
+      ],
+      "frames": [
+        {
+          "source": 1,
+          "predicate": {
+            "text": "赤い",
+            "start": 3,
+            "end": 5
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 3,
+              "end": 6,
+              "text": "赤い本"
+            },
+            {
+              "id": 1,
+              "start": 11,
+              "end": 13,
+              "text": "花子"
+            },
+            {
+              "id": 2,
+              "start": 14,
+              "end": 17,
+              "text": "青い本"
+            }
+          ],
+          "roles": [
+            {
+              "source": 1,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "patient",
+              "confidence": 0.9946346282958984
+            },
+            {
+              "source": 1,
+              "target": 1,
+              "native_cases": [],
+              "role": "none",
+              "confidence": 0.5693436861038208
+            },
+            {
+              "source": 1,
+              "target": 2,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.8600839972496033
+            }
+          ]
+        },
+        {
+          "source": 3,
+          "predicate": {
+            "text": "買った",
+            "start": 7,
+            "end": 10
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 6,
+              "text": "赤い本"
+            },
+            {
+              "id": 2,
+              "start": 11,
+              "end": 13,
+              "text": "花子"
+            },
+            {
+              "id": 3,
+              "start": 14,
+              "end": 17,
+              "text": "青い本"
+            }
+          ],
+          "roles": [
+            {
+              "source": 3,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9624059200286865
+            },
+            {
+              "source": 3,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9983440637588501
+            },
+            {
+              "source": 3,
+              "target": 2,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9095197319984436
+            },
+            {
+              "source": 3,
+              "target": 3,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9713123440742493
+            }
+          ]
+        },
+        {
+          "source": 5,
+          "predicate": {
+            "text": "青い",
+            "start": 14,
+            "end": 16
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 6,
+              "text": "赤い本"
+            },
+            {
+              "id": 2,
+              "start": 11,
+              "end": 13,
+              "text": "花子"
+            },
+            {
+              "id": 3,
+              "start": 14,
+              "end": 17,
+              "text": "青い本"
+            }
+          ],
+          "roles": [
+            {
+              "source": 5,
+              "target": 0,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.6328765749931335
+            },
+            {
+              "source": 5,
+              "target": 1,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9956154823303223
+            },
+            {
+              "source": 5,
+              "target": 2,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.6764950156211853
+            },
+            {
+              "source": 5,
+              "target": 3,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "patient",
+              "confidence": 0.9880051016807556
+            }
+          ]
+        },
+        {
+          "source": 7,
+          "predicate": {
+            "text": "読んだ",
+            "start": 18,
+            "end": 21
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 6,
+              "text": "赤い本"
+            },
+            {
+              "id": 2,
+              "start": 11,
+              "end": 13,
+              "text": "花子"
+            },
+            {
+              "id": 3,
+              "start": 14,
+              "end": 17,
+              "text": "青い本"
+            }
+          ],
+          "roles": [
+            {
+              "source": 7,
+              "target": 0,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.8618255853652954
+            },
+            {
+              "source": 7,
+              "target": 1,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9966654181480408
+            },
+            {
+              "source": 7,
+              "target": 2,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9057777523994446
+            },
+            {
+              "source": 7,
+              "target": 3,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9939484596252441
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          5,
+          0,
+          3,
+          5,
+          3,
+          20,
+          5,
+          12,
+          7,
+          10,
+          12,
+          10,
+          20,
+          12
+        ],
+        "root_word": 20,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 5,
+            "parent_phrase": 3,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 3,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 3,
+            "parent_word": 5,
+            "parent_phrase": 3,
+            "status": "linked"
+          },
+          {
+            "source": 3,
+            "head_word": 5,
+            "parent_word": 20,
+            "parent_phrase": null,
+            "status": "root"
+          },
+          {
+            "source": 4,
+            "head_word": 7,
+            "parent_word": 12,
+            "parent_phrase": 7,
+            "status": "linked"
+          },
+          {
+            "source": 5,
+            "head_word": 9,
+            "parent_word": 10,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 6,
+            "head_word": 10,
+            "parent_word": 12,
+            "parent_phrase": 7,
+            "status": "linked"
+          },
+          {
+            "source": 7,
+            "head_word": 12,
+            "parent_word": 20,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "太郎",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 6,
+            "text": "赤い本",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 11,
+            "end": 13,
+            "text": "花子",
+            "head_phrase": 4,
+            "head_status": "aligned",
+            "referent": 2
+          },
+          {
+            "id": 3,
+            "start": 14,
+            "end": 17,
+            "text": "青い本",
+            "head_phrase": 6,
+            "head_status": "aligned",
+            "referent": 1
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1,
+              3
+            ]
+          },
+          {
+            "id": 2,
+            "mentions": [
+              2
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "native_coreference",
+            "source": 6,
+            "target": 2
+          }
+        ],
+        "roles": [
+          {
+            "source": 1,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 1,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          },
+          {
+            "source": 3,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 3,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 3,
+            "role": "agent",
+            "mention": 2,
+            "referent": 2
+          },
+          {
+            "source": 3,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          },
+          {
+            "source": 5,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 5,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 5,
+            "role": "agent",
+            "mention": 2,
+            "referent": 2
+          },
+          {
+            "source": 5,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          },
+          {
+            "source": 7,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 7,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 7,
+            "role": "agent",
+            "mention": 2,
+            "referent": 2
+          },
+          {
+            "source": 7,
+            "role": "patient",
+            "mention": 3,
+            "referent": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-distinct-cats",
+      "kind": "distinct",
+      "text": "太郎は一匹の猫を見た。花子は別の猫を追った。",
+      "mentions": [
+        [
+          "太郎",
+          0,
+          "a"
+        ],
+        [
+          "一匹の猫",
+          0,
+          "b"
+        ],
+        [
+          "花子",
+          0,
+          "c"
+        ],
+        [
+          "別の猫",
+          0,
+          "d"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "太郎は一匹の猫を見た。花子は別の猫を追った。",
+        "tokens": [
+          {
+            "text": "太郎",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "は",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "一",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "匹",
+            "start": 4,
+            "end": 5
+          },
+          {
+            "text": "の",
+            "start": 5,
+            "end": 6
+          },
+          {
+            "text": "猫",
+            "start": 6,
+            "end": 7
+          },
+          {
+            "text": "を",
+            "start": 7,
+            "end": 8
+          },
+          {
+            "text": "見た",
+            "start": 8,
+            "end": 10
+          },
+          {
+            "text": "。",
+            "start": 10,
+            "end": 11
+          },
+          {
+            "text": "花子",
+            "start": 11,
+            "end": 13
+          },
+          {
+            "text": "は",
+            "start": 13,
+            "end": 14
+          },
+          {
+            "text": "別の",
+            "start": 14,
+            "end": 16
+          },
+          {
+            "text": "猫",
+            "start": 16,
+            "end": 17
+          },
+          {
+            "text": "を",
+            "start": 17,
+            "end": 18
+          },
+          {
+            "text": "追った",
+            "start": 18,
+            "end": 21
+          },
+          {
+            "text": "。",
+            "start": 21,
+            "end": 22
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "太郎は",
+            "head": {
+              "text": "太郎",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 6,
+            "text": "一匹の",
+            "head": {
+              "text": "匹",
+              "start": 4,
+              "end": 5
+            },
+            "features": {
+              "体言": true,
+              "係": "ノ格"
+            },
+            "relations": [
+              {
+                "label": "ノ",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "start": 6,
+            "end": 8,
+            "text": "猫を",
+            "head": {
+              "text": "猫",
+              "start": 6,
+              "end": 7
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 3,
+            "start": 8,
+            "end": 11,
+            "text": "見た。",
+            "head": {
+              "text": "見た",
+              "start": 8,
+              "end": 10
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 0,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 11,
+            "end": 14,
+            "text": "花子は",
+            "head": {
+              "text": "花子",
+              "start": 11,
+              "end": 13
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": []
+          },
+          {
+            "id": 5,
+            "start": 14,
+            "end": 16,
+            "text": "別の",
+            "head": {
+              "text": "別の",
+              "start": 14,
+              "end": 16
+            },
+            "features": {
+              "用言": "形",
+              "時制": "非過去",
+              "レベル": "A-",
+              "状態述語": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 6,
+                "external": null
+              },
+              {
+                "label": "ト",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "start": 16,
+            "end": 18,
+            "text": "猫を",
+            "head": {
+              "text": "猫",
+              "start": 16,
+              "end": 17
+            },
+            "features": {
+              "体言": true
+            },
+            "relations": []
+          },
+          {
+            "id": 7,
+            "start": 18,
+            "end": 22,
+            "text": "追った。",
+            "head": {
+              "text": "追った",
+              "start": 18,
+              "end": 21
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 4,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 6,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 3,
+          "predicate": {
+            "text": "見た",
+            "start": 8,
+            "end": 10
+          },
+          "keep": true,
+          "event_score": 0.9999657869338989
+        },
+        {
+          "source": 5,
+          "predicate": {
+            "text": "別の",
+            "start": 14,
+            "end": 16
+          },
+          "keep": false,
+          "event_score": 0.06633716821670532
+        },
+        {
+          "source": 7,
+          "predicate": {
+            "text": "追った",
+            "start": 18,
+            "end": 21
+          },
+          "keep": true,
+          "event_score": 0.9999672174453735
+        }
+      ],
+      "frames": [
+        {
+          "source": 3,
+          "predicate": {
+            "text": "見た",
+            "start": 8,
+            "end": 10
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 7,
+              "text": "一匹の猫"
+            },
+            {
+              "id": 2,
+              "start": 11,
+              "end": 13,
+              "text": "花子"
+            },
+            {
+              "id": 3,
+              "start": 14,
+              "end": 17,
+              "text": "別の猫"
+            }
+          ],
+          "roles": [
+            {
+              "source": 3,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9203723669052124
+            },
+            {
+              "source": 3,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9992590546607971
+            },
+            {
+              "source": 3,
+              "target": 2,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9648319482803345
+            },
+            {
+              "source": 3,
+              "target": 3,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9990943670272827
+            }
+          ]
+        },
+        {
+          "source": 7,
+          "predicate": {
+            "text": "追った",
+            "start": 18,
+            "end": 21
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 2,
+              "text": "太郎"
+            },
+            {
+              "id": 1,
+              "start": 3,
+              "end": 7,
+              "text": "一匹の猫"
+            },
+            {
+              "id": 2,
+              "start": 11,
+              "end": 13,
+              "text": "花子"
+            },
+            {
+              "id": 3,
+              "start": 14,
+              "end": 17,
+              "text": "別の猫"
+            }
+          ],
+          "roles": [
+            {
+              "source": 7,
+              "target": 0,
+              "native_cases": [],
+              "role": "agent",
+              "confidence": 0.9454389810562134
+            },
+            {
+              "source": 7,
+              "target": 1,
+              "native_cases": [],
+              "role": "patient",
+              "confidence": 0.9979653358459473
+            },
+            {
+              "source": 7,
+              "target": 2,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9894803762435913
+            },
+            {
+              "source": 7,
+              "target": 3,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.9992806315422058
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          7,
+          0,
+          3,
+          5,
+          3,
+          7,
+          5,
+          22,
+          7,
+          14,
+          9,
+          12,
+          14,
+          12,
+          22,
+          14
+        ],
+        "root_word": 22,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 7,
+            "parent_phrase": 3,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 3,
+            "parent_word": 5,
+            "parent_phrase": 2,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 5,
+            "parent_word": 7,
+            "parent_phrase": 3,
+            "status": "linked"
+          },
+          {
+            "source": 3,
+            "head_word": 7,
+            "parent_word": 22,
+            "parent_phrase": null,
+            "status": "root"
+          },
+          {
+            "source": 4,
+            "head_word": 9,
+            "parent_word": 14,
+            "parent_phrase": 7,
+            "status": "linked"
+          },
+          {
+            "source": 5,
+            "head_word": 11,
+            "parent_word": 12,
+            "parent_phrase": 6,
+            "status": "linked"
+          },
+          {
+            "source": 6,
+            "head_word": 12,
+            "parent_word": 14,
+            "parent_phrase": 7,
+            "status": "linked"
+          },
+          {
+            "source": 7,
+            "head_word": 14,
+            "parent_word": 22,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 2,
+            "text": "太郎",
+            "head_phrase": 0,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 7,
+            "text": "一匹の猫",
+            "head_phrase": 2,
+            "head_status": "aligned",
+            "referent": 1
+          },
+          {
+            "id": 2,
+            "start": 11,
+            "end": 13,
+            "text": "花子",
+            "head_phrase": 4,
+            "head_status": "aligned",
+            "referent": 2
+          },
+          {
+            "id": 3,
+            "start": 14,
+            "end": 17,
+            "text": "別の猫",
+            "head_phrase": 6,
+            "head_status": "aligned",
+            "referent": 3
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1
+            ]
+          },
+          {
+            "id": 2,
+            "mentions": [
+              2
+            ]
+          },
+          {
+            "id": 3,
+            "mentions": [
+              3
+            ]
+          }
+        ],
+        "evidence": [],
+        "roles": [
+          {
+            "source": 3,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 3,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 3,
+            "role": "agent",
+            "mention": 2,
+            "referent": 2
+          },
+          {
+            "source": 3,
+            "role": "patient",
+            "mention": 3,
+            "referent": 3
+          },
+          {
+            "source": 7,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 7,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          },
+          {
+            "source": 7,
+            "role": "agent",
+            "mention": 2,
+            "referent": 2
+          },
+          {
+            "source": 7,
+            "role": "patient",
+            "mention": 3,
+            "referent": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "row": {
+      "id": "ref-distinct-family",
+      "kind": "distinct",
+      "text": "太郎の兄が花子の弟を見た。",
+      "mentions": [
+        [
+          "太郎の兄",
+          0,
+          "a"
+        ],
+        [
+          "花子の弟",
+          0,
+          "b"
+        ]
+      ]
+    },
+    "output": {
+      "status": "research_reference_frames",
+      "analysis": {
+        "status": "research_native_case_links",
+        "language": "ja",
+        "text": "太郎の兄が花子の弟を見た。",
+        "tokens": [
+          {
+            "text": "太郎",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "text": "の",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "text": "兄",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "text": "が",
+            "start": 4,
+            "end": 5
+          },
+          {
+            "text": "花子",
+            "start": 5,
+            "end": 7
+          },
+          {
+            "text": "の",
+            "start": 7,
+            "end": 8
+          },
+          {
+            "text": "弟",
+            "start": 8,
+            "end": 9
+          },
+          {
+            "text": "を",
+            "start": 9,
+            "end": 10
+          },
+          {
+            "text": "見た",
+            "start": 10,
+            "end": 12
+          },
+          {
+            "text": "。",
+            "start": 12,
+            "end": 13
+          }
+        ],
+        "phrases": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 3,
+            "text": "太郎の",
+            "head": {
+              "text": "太郎",
+              "start": 0,
+              "end": 2
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true,
+              "係": "ノ格"
+            },
+            "relations": []
+          },
+          {
+            "id": 1,
+            "start": 3,
+            "end": 5,
+            "text": "兄が",
+            "head": {
+              "text": "兄",
+              "start": 3,
+              "end": 4
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "ノ",
+                "target_phrase": 0,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "start": 5,
+            "end": 8,
+            "text": "花子の",
+            "head": {
+              "text": "花子",
+              "start": 5,
+              "end": 7
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true,
+              "係": "ノ格"
+            },
+            "relations": []
+          },
+          {
+            "id": 3,
+            "start": 8,
+            "end": 10,
+            "text": "弟を",
+            "head": {
+              "text": "弟",
+              "start": 8,
+              "end": 9
+            },
+            "features": {
+              "体言": true,
+              "SM-主体": true
+            },
+            "relations": [
+              {
+                "label": "ノ",
+                "target_phrase": 2,
+                "external": null
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "start": 10,
+            "end": 13,
+            "text": "見た。",
+            "head": {
+              "text": "見た",
+              "start": 10,
+              "end": 12
+            },
+            "features": {
+              "用言": "動",
+              "時制": "過去",
+              "レベル": "C",
+              "動態述語": true,
+              "節-区切": true,
+              "節-主辞": true
+            },
+            "relations": [
+              {
+                "label": "ガ",
+                "target_phrase": 1,
+                "external": null
+              },
+              {
+                "label": "ヲ",
+                "target_phrase": 3,
+                "external": null
+              }
+            ]
+          }
+        ],
+        "pas_labels": [
+          "ガ",
+          "ヲ",
+          "ニ",
+          "ガ２",
+          "デ",
+          "ト",
+          "時間"
+        ]
+      },
+      "event_decisions": [
+        {
+          "source": 4,
+          "predicate": {
+            "text": "見た",
+            "start": 10,
+            "end": 12
+          },
+          "keep": true,
+          "event_score": 0.9999698400497437
+        }
+      ],
+      "frames": [
+        {
+          "source": 4,
+          "predicate": {
+            "text": "見た",
+            "start": 10,
+            "end": 12
+          },
+          "mentions": [
+            {
+              "id": 0,
+              "start": 0,
+              "end": 4,
+              "text": "太郎の兄"
+            },
+            {
+              "id": 1,
+              "start": 5,
+              "end": 9,
+              "text": "花子の弟"
+            }
+          ],
+          "roles": [
+            {
+              "source": 4,
+              "target": 0,
+              "native_cases": [
+                "ガ"
+              ],
+              "role": "agent",
+              "confidence": 0.9970145225524902
+            },
+            {
+              "source": 4,
+              "target": 1,
+              "native_cases": [
+                "ヲ"
+              ],
+              "role": "patient",
+              "confidence": 0.8878312706947327
+            }
+          ]
+        }
+      ],
+      "dependencies": {
+        "parent_words": [
+          2,
+          0,
+          8,
+          2,
+          6,
+          4,
+          8,
+          6,
+          16,
+          8
+        ],
+        "root_word": 16,
+        "phrases": [
+          {
+            "source": 0,
+            "head_word": 0,
+            "parent_word": 2,
+            "parent_phrase": 1,
+            "status": "linked"
+          },
+          {
+            "source": 1,
+            "head_word": 2,
+            "parent_word": 8,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 2,
+            "head_word": 4,
+            "parent_word": 6,
+            "parent_phrase": 3,
+            "status": "linked"
+          },
+          {
+            "source": 3,
+            "head_word": 6,
+            "parent_word": 8,
+            "parent_phrase": 4,
+            "status": "linked"
+          },
+          {
+            "source": 4,
+            "head_word": 8,
+            "parent_word": 16,
+            "parent_phrase": null,
+            "status": "root"
+          }
+        ]
+      },
+      "references": {
+        "mentions": [
+          {
+            "id": 0,
+            "start": 0,
+            "end": 4,
+            "text": "太郎の兄",
+            "head_phrase": 1,
+            "head_status": "aligned",
+            "referent": 0
+          },
+          {
+            "id": 1,
+            "start": 5,
+            "end": 9,
+            "text": "花子の弟",
+            "head_phrase": 3,
+            "head_status": "aligned",
+            "referent": 1
+          }
+        ],
+        "referents": [
+          {
+            "id": 0,
+            "mentions": [
+              0
+            ]
+          },
+          {
+            "id": 1,
+            "mentions": [
+              1
+            ]
+          }
+        ],
+        "evidence": [],
+        "roles": [
+          {
+            "source": 4,
+            "role": "agent",
+            "mention": 0,
+            "referent": 0
+          },
+          {
+            "source": 4,
+            "role": "patient",
+            "mention": 1,
+            "referent": 1
+          }
+        ]
+      }
+    }
+  }
+]
