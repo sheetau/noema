@@ -1,5 +1,6 @@
 """Local writing desk: the same strict parser serves CLI and browser input."""
 import json
+import socket
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from importlib.resources import files
 from pathlib import Path
@@ -9,6 +10,18 @@ from .render import render
 from .script import encode
 
 MAX_BODY = 262144
+
+
+class NoemaHTTPServer(ThreadingHTTPServer):
+    # Windows SO_REUSEADDR can let two live servers claim the same address.
+    # Exclusive binding avoids routing new requests to an older code snapshot.
+    allow_reuse_address = not hasattr(socket, "SO_EXCLUSIVEADDRUSE")
+    allow_reuse_port = False
+
+    def server_bind(self):
+        if hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+        super().server_bind()
 
 
 def inspect_text(text):
@@ -90,7 +103,7 @@ class Handler(BaseHTTPRequestHandler):
 def serve(port=8765, checkpoint=None):
     if not 0 <= port <= 65535:
         raise ValueError("Invalid editor port")
-    with ThreadingHTTPServer(("127.0.0.1", port), Handler) as server:
+    with NoemaHTTPServer(("127.0.0.1", port), Handler) as server:
         from .translation import Translator
         if checkpoint is None and Path("artifacts/routed-v7/metadata.json").is_file():
             checkpoint = "artifacts/routed-v7"
