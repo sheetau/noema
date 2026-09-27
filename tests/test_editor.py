@@ -12,7 +12,7 @@ from noema.grammar import number_word
 
 
 def test_lessons_and_readings_parse_and_round_trip():
-    for name in ("writing-v03.md", "lessons.md"):
+    for name in ("writing-v03.md", "writing-v04.md", "lessons.md"):
         text = Path("docs", name).read_text(encoding="utf-8")
         for example in re.findall(r"```text\n(.*?)\n```", text, re.S):
             graph = parse(example)
@@ -68,3 +68,17 @@ def test_editor_exports_exact_integers_beyond_browser_number_precision(server):
     assert str(value) in result["graph_json"]
     assert json.loads(result["graph_json"]) == parse(text)
     assert parse(result["canonical"]) == parse(result["script"]) == parse(text)
+
+
+def test_practice_http_uses_the_formal_parser_and_keeps_answers_local(server):
+    with urlopen(server + "/practice") as response:
+        assert "読み書きを試す" in response.read().decode("utf-8")
+    with urlopen(server + "/practice/tasks") as response:
+        tasks = json.load(response)
+    assert len(tasks["reading"]) == 12 and len(tasks["writing"]) == 6
+    assert "noema" not in tasks["writing"][0]
+    request = Request(server + "/practice/grade", data=json.dumps({"id": "w01", "answer": "noema d d t po i mu."}).encode(), headers={"Content-Type": "application/json"})
+    with urlopen(request) as response:
+        result = json.load(response)
+    assert result["correct"] and result["exercise_sha256"] == tasks["sha256"]
+    assert "solution" not in result

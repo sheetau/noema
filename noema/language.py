@@ -1,4 +1,4 @@
-"""Noema 0.2: human-facing clauses, discourse references and explicit scope.
+"""Noema 0.2–0.4: written clauses, discourse references and explicit scope.
 
 This edition deliberately has its own document schema. The 0.1 graph remains
 supported; conversion to it must explicitly reject meanings it cannot express.
@@ -13,17 +13,18 @@ from .semantics import CONCEPTS, ROLES, TIMES, SemanticError, keys, require, tim
 
 EDITION = json.loads(files("noema").joinpath("resources/language-v02.json").read_text(encoding="utf-8"))
 EXTENSION = json.loads(files("noema").joinpath("resources/language-v03.json").read_text(encoding="utf-8"))
+COMPOUNDS = json.loads(files("noema").joinpath("resources/language-v04.json").read_text(encoding="utf-8"))
 ROOTS = EDITION["roots"]
 CONCEPT_BY_WORD = {word: concept for concept, word in ROOTS.items()}
 ROLE_WORDS = dict(zip("ijkl", ROLES))
 TIME_WORDS = dict(zip("efgrst", ("past", "present", "future", "yesterday", "today", "tomorrow")))
 CONNECTIVES = {"w": "and", "x": "or", "y": "if"}
-TOKEN = re.compile(r'\s*("(?:[^"\\\x00-\x1f]|\\["\\/bfnrt]|\\u[0-9a-fA-F]{4})*"|[a-z2-7]+|[\[\].?])')
+TOKEN = re.compile(r'\s*("(?:[^"\\\x00-\x1f]|\\["\\/bfnrt]|\\u[0-9a-fA-F]{4})*"|[a-z2-7]+(?:-[a-z2-7]+)*|[\[\].?])')
 MAX_DEPTH = 64
 
 
 def policy(version):
-    require(version in ("0.2", "0.3"), "Unsupported written language version")
+    require(version in ("0.2", "0.3", "0.4"), "Unsupported written language version")
     if version == "0.2":
         return ROOTS, CONCEPTS, ROLE_WORDS, ROLES
     roots = {**ROOTS, **EXTENSION["roots"]}
@@ -67,12 +68,22 @@ def normalize_document(document):
     require(bool(document["utterances"]), "A document requires at least one utterance")
     entities = {}
     for entity in document["entities"]:
-        keys(entity, ("id", "kind", "concept", "quantity", "name"))
+        keys(entity, ("id", "kind", "concept", "quantity", "name", "qualifiers") if version == "0.4" else ("id", "kind", "concept", "quantity", "name"))
         ident, concept = entity["id"], entity["concept"]
         require(isinstance(ident, str) and re.fullmatch(r"[a-z2-7]+", ident), "Invalid entity reference")
         require(ident not in entities, "Duplicate entity reference")
         require(isinstance(concept, str) and concept in ROOTS, "Unknown concept")
         require(entity["kind"] in ("entity", "place") and entity["kind"] == CONCEPTS[concept]["kind"], "Invalid entity type")
+        if version == "0.4":
+            qualifiers = entity["qualifiers"]
+            require(isinstance(qualifiers, list) and all(isinstance(q, str) and q in COMPOUNDS["attributive_states"] for q in qualifiers), "Compound requires supported attributive states")
+            require(len(qualifiers) == len(set(qualifiers)), "Duplicate compound property")
+            for qualifier in qualifiers:
+                require(qualifier in CONCEPTS and CONCEPTS[qualifier]["kind"] == "state"
+                        and "agent" in CONCEPTS[qualifier]["roles"] and set(CONCEPTS[qualifier]["roles"]) <= {"agent", "location"},
+                        "Compound property must be a unary state")
+                allowed = CONCEPTS[qualifier].get("role_types", {}).get("agent", ["entity"])
+                require(entity["kind"] in allowed, "Compound property is incompatible with the base type")
         q, name = entity["quantity"], entity["name"]
         require(q is None or type(q) is int and q >= 0, "Quantity must be a nonnegative integer or null")
         require(name is None or isinstance(name, str) and bool(name), "Name must be a nonempty string or null")
@@ -83,6 +94,8 @@ def normalize_document(document):
             except UnicodeEncodeError as exc:
                 raise SemanticError("Name contains invalid Unicode") from exc
         entities[ident] = copy.deepcopy(entity)
+        if version == "0.4":
+            entities[ident]["qualifiers"] = sorted(entity["qualifiers"])
     mapping, ordered = {}, []
 
     def visit(expression, speech_act, depth=0):
@@ -168,9 +181,13 @@ def parse_document(text):
             name = reference()
             require(name in bindings, f"Reference {name} has not been introduced")
             return bindings[name]
-        concept = CONCEPT_BY_WORD.get(word)
+        parts = word.split("-")
+        require(version == "0.4" or len(parts) == 1, "Compound words require edition 0.4")
+        concept = CONCEPT_BY_WORD.get(parts[0])
         require(concept is not None and CONCEPTS[concept]["kind"] in ("entity", "place"), f"Expected an entity word, got {word}")
         node = {"id": "n" + number_word(len(entities)), "kind": CONCEPTS[concept]["kind"], "concept": concept, "quantity": None, "name": None}
+        if version == "0.4":
+            node["qualifiers"] = [CONCEPT_BY_WORD.get(part) for part in parts[1:]]
         modifiers = set()
         while peek() in ("m", "n", "o"):
             marker = take()
@@ -230,9 +247,9 @@ def parse_document(text):
 
     take("noema")
     edition = take()
-    require(edition in ("b", "c"), "Unsupported written language edition")
+    require(edition in ("b", "c", "d"), "Unsupported written language edition")
     take(edition)
-    version = {"b": "0.2", "c": "0.3"}[edition]
+    version = {"b": "0.2", "c": "0.3", "d": "0.4"}[edition]
     ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(version)
     CONCEPT_BY_WORD = {word: concept for concept, word in ROOTS.items()}
     utterances = []
@@ -274,7 +291,7 @@ def format_document(document):
             return "p " + ident
         seen.add(ident)
         entity = entities[ident]
-        words = [ROOTS[entity["concept"]]]
+        words = ["-".join([ROOTS[entity["concept"]]] + [ROOTS[q] for q in entity.get("qualifiers", [])])]
         if entity["quantity"] is not None:
             words += ["m", number_word(entity["quantity"])]
         if entity["name"] is not None:
@@ -305,7 +322,7 @@ def format_document(document):
                 words += [marker, term(value)]
         return " ".join(words)
 
-    marker = {"0.2": "b", "0.3": "c"}[document["schema_version"]]
+    marker = {"0.2": "b", "0.3": "c", "0.4": "d"}[document["schema_version"]]
     lines = [f"noema {marker} {marker}"]
     for utterance in document["utterances"]:
         mood = {"assertion": "", "question": "b ", "request": "d "}[utterance["speech_act"]]
@@ -331,6 +348,10 @@ def to_graph(document):
     """Only the exactly representable assertion subset can be lowered to 0.1."""
     from .semantics import normalize
     doc = normalize_document(document)
+    if doc["schema_version"] == "0.4":
+        require(all(not entity["qualifiers"] for entity in doc["entities"]), "0.1 cannot represent compound properties")
+        for entity in doc["entities"]:
+            del entity["qualifiers"]
     require(len(doc["utterances"]) == 1 and doc["utterances"][0]["speech_act"] == "assertion", "0.1 can represent only a single assertion")
     content = doc["utterances"][0]["content"]
     negated = content["kind"] == "not"
@@ -357,6 +378,12 @@ def convert(document, version):
     if version == "0.1":
         return to_graph(source)
     _, _, _, roles = policy(version)
+    for entity in source["entities"]:
+        if version == "0.4":
+            entity.setdefault("qualifiers", [])
+        elif source["schema_version"] == "0.4":
+            require(not entity["qualifiers"], "Target edition cannot represent compound properties")
+            del entity["qualifiers"]
 
     def visit(expr):
         if expr["kind"] == "clause":

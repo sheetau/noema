@@ -55,3 +55,29 @@ b sae i p mio j mac.
 | 6 | 今日、Mioはその家でカップを使って水を飲む。 | Today Mio drinks water using a cup at that home. |
 | 7 | 明日Mioが空腹なら、明日Mioはパンを食べる。 | If Mio is hungry tomorrow, Mio eats bread tomorrow. |
 | 8 | Mioは食べ物を必要としているか。 | Does Mio need food? |
+
+## 赤い本を持ち帰る
+
+```text
+noema d d
+q "2026-09-27" vae i qo n "葵" o aki z tp o home 2 lac o school.
+s vac i p aki j jx-sai m c o books l p school.
+s ku i zr j p books k p aki l p school.
+s vaf i p aki j p books z p school 2 p home.
+
+s saa i mal-sak-sao l p home.
+u [ s vad i p aki j mao-sao ].
+b vac i c j p books.
+d t vav i p aki j mam-sap.
+```
+
+| 文 | 日本語 | English |
+|---|---|---|
+| 1 | 2026年9月27日、葵が家から学校へ移動する。 | On 2026-09-27, 葵 moves from a home to a school. |
+| 2 | 今日、葵が学校で赤い本を2冊読む。 | Today, 葵 reads two red books at that school. |
+| 3 | 今日、先生が学校でその2冊を葵に渡す。 | Today, a teacher gives those books to 葵 at that school. |
+| 4 | 今日、葵がその2冊を学校から家へ運ぶ。 | Today, 葵 carries those books from that school to that home. |
+| 5 | 今日、大きくて濡れた鞄がその家にある。 | Today, a large wet bag is present at that home. |
+| 6 | 今日、葵が濡れた紙に書くという内容を否定する。 | It is denied that 葵 writes on wet paper today. |
+| 7 | その2冊を読む主体を尋ねる。 | Who reads those books? |
+| 8 | 明日、葵が乾いた鍵を見つけるよう依頼する。 | 葵 is requested to find a dry key tomorrow. |

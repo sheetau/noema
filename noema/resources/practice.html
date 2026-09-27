@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Noema — 読み書きを試す</title><link rel="icon" href="data:,">
+<style>
+@font-face{font-family:Noema;src:url('/font.ttf')}*{box-sizing:border-box}body{margin:0;background:#f7f5ee;color:#233c3c;font:16px/1.65 system-ui,sans-serif}main{max-width:920px;margin:auto;padding:24px}h1{font-size:28px}h2{font-size:21px}h3{font-size:17px}.card{background:#fffef9;border:1px solid #dce1d5;border-radius:8px;padding:22px;margin:18px 0}a{color:#275b50}.muted{color:#61746f;font-size:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}button,select,textarea{font:inherit}button{border:1px solid #bbc9bf;border-radius:4px;padding:8px 14px;background:#eef2e9;color:#233c3c;cursor:pointer}button.primary{background:#275b50;color:white}button:disabled{opacity:.5;cursor:default}select{padding:8px}textarea{display:block;width:100%;min-height:100px;padding:12px;border:1px solid #bbc9bf;border-radius:4px;font-family:Noema,ui-monospace,monospace}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #b98c39;outline-offset:2px}.sentence{white-space:pre-wrap;overflow-wrap:anywhere;font:21px/1.8 Noema,ui-monospace,monospace;padding:12px;background:#f7f5ee}.choice{display:block;margin:8px 0}.feedback{white-space:pre-wrap;overflow-wrap:anywhere;min-height:28px;margin-top:10px}.success{color:#275b50}.error{color:#a33b28}details{margin:12px 0}summary{cursor:pointer}img{max-width:100%;height:auto}#reference{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}#feedback{font-family:system-ui,sans-serif}code{font:16px ui-monospace,monospace}
+</style></head><body><main>
+<p><a href="/">編集画面へ</a></p><h1>Noemaの読み書きを試す</h1>
+<p>読む課題12問、書く課題6問です。手引きや辞書を参照して回答できます。最初の回答と、解答を見た後の回答を分けて記録します。</p>
+<p class="muted">回答はこの画面で保持します。結果は必要なときにJSONで保存できます。ページを閉じると未保存の回答は失われます。</p>
+<section class="card"><h2>手引き</h2>
+<p>文書の先頭は <code>noema d d</code>。述語の後に役割と対象を書き、<code>.</code> で終えます。数量や時間を省略した場合は未指定です。</p>
+<p><code>i</code> 主体、<code>j</code> 対象、<code>k</code> 受け手、<code>l</code> 場所、<code>z</code> 出発地、<code>2</code> 到着地。<code>m a/b/c/d</code> は数量0/1/2/3。<code>n "名前"</code> で名前を指定します。</p>
+<p><code>e/f/g</code> は過去/現在/未来、<code>r/s/t</code> は昨日/今日/明日。<code>o word</code> で参照名を登録し、<code>p word</code> で同じ対象を指します。</p>
+<p><code>u [ 文 ]</code> は内容の否定、先頭の <code>b</code> は質問、役割の位置の <code>c</code> は質問する対象です。<code>y [ 条件 ] [ 帰結 ]</code> で条件を表します。<code>jx-sai</code> は赤い本のように、基本語の後ろに性質をつなげます。</p>
+<details><summary>基本語を確認する</summary><div id="reference"></div></details>
+<details><summary>32文字の対応を見る</summary><img src="/alphabet.svg" alt="32文字と代用文字aからz、2から7の対応表"></details>
+</section>
+<section class="card"><label for="mode">読む課題の表示</label> <select id="mode"><option value="proxy">代用文字</option><option value="native">固有文字</option></select><p id="progress" role="status" aria-live="polite">課題を読み込んでいます…</p></section>
+<div id="tasks"></div>
+<section class="card"><h2>試した結果を保存する</h2><label for="feedback">迷った語・文法・文字、書けなかった内容など</label><textarea id="feedback"></textarea><p><label><input id="human" type="checkbox"> 自分で回答した結果であることを記録する</label></p><button id="save" disabled>結果JSONを保存</button><p class="muted">自分で試した結果の記録です。統制した利用者実験の合格証明にはなりません。</p></section>
+</main><script>
+const $=id=>document.getElementById(id), started=new Date().toISOString();
+let tasks=null, history=[], exposed=new Set(), sources=[], busy=0;
+function progress(){const first=new Map();for(const a of history)if(!a.revealed&&!first.has(a.id))first.set(a.id,a);const counts=['reading','writing'].map(kind=>{const all=[...first.values()].filter(a=>a.kind===kind);return `${kind==='reading'?'読む':'書く'}: 初回回答 ${all.length}問、正解 ${all.filter(a=>a.correct).length}問`});$('progress').textContent=counts.join(' ／ ');$('save').disabled=history.length===0||busy>0}
+function shuffle(values){for(let i=values.length-1;i>0;i--){const sample=new Uint32Array(1);crypto.getRandomValues(sample);const j=sample[0]%(i+1);[values[i],values[j]]=[values[j],values[i]]}return values}
+function changeMode(){for(const {node,task} of sources)node.textContent=$('mode').value==='native'?task.script:task.noema}
+function buildTask(task,kind,index){
+ const section=document.createElement('section');section.className='card';const heading=document.createElement('h3');heading.textContent=`${kind==='reading'?'読む':'書く'} ${index+1} · ${task.topic}`;section.append(heading);
+ let answer;
+ if(kind==='reading'){
+  const sentence=document.createElement('pre');sentence.className='sentence';sources.push({node:sentence,task});section.append(sentence);
+  const field=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent='意味が一致するものを選ぶ';field.append(legend);
+  for(const i of shuffle(task.choices.map((_,i)=>i))){const label=document.createElement('label'),radio=document.createElement('input');label.className='choice';radio.type='radio';radio.name=task.id;radio.value=i;label.append(radio,document.createTextNode(' '+task.choices[i]));field.append(label)}section.append(field);
+  answer=()=>{const checked=field.querySelector('input:checked');return checked?Number(checked.value):null};
+ }else{
+  const prompt=document.createElement('p'),label=document.createElement('label'),input=document.createElement('textarea');prompt.textContent=task.prompt;label.textContent='Noemaの回答';input.id=task.id;input.maxLength=4000;input.spellcheck=false;input.value='noema d d\n';label.htmlFor=task.id;section.append(prompt,label,input);answer=()=>input.value;
+ }
+ const actions=document.createElement('div'),check=document.createElement('button'),reveal=document.createElement('button'),feedback=document.createElement('div');actions.className='actions';check.textContent='回答を確認';check.className='primary';reveal.textContent='解答を見る';feedback.className='feedback';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');actions.append(check,reveal);section.append(actions,feedback);
+ async function submit(show){
+  const value=answer(),submittedMode=$('mode').value;
+  if(kind==='reading'&&value===null){feedback.textContent='先に回答を選んでください。';return}
+  busy++;check.disabled=reveal.disabled=true;
+  for(const input of section.querySelectorAll('input,textarea'))input.disabled=true;
+  progress();
+  try{
+   const response=await fetch('/practice/grade',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:task.id,answer:value,reveal:show})}),result=await response.json();
+   if(!response.ok)throw new Error(result.error);
+   if(result.exercise_sha256!==tasks.sha256)throw new Error('課題が更新されました。結果を保存してからページを開き直してください。');
+   if(show)exposed.add(task.id);
+   history.push({id:task.id,kind,answer:value,correct:result.correct,revealed:exposed.has(task.id),mode:submittedMode,at:new Date().toISOString()});
+   feedback.className='feedback '+(result.correct?'success':'error');
+   feedback.textContent=(result.correct?'意味が一致しています。':result.error?'文を確認してください: '+result.error:'指定された意味とは異なります。')+(show?'\n解答例: '+result.solution:'');
+  }catch(e){feedback.className='feedback error';feedback.textContent=e.message}
+  finally{busy--;check.disabled=reveal.disabled=false;for(const input of section.querySelectorAll('input,textarea'))input.disabled=false;progress()}
+ }
+ check.onclick=()=>submit(false);reveal.onclick=()=>submit(true);$('tasks').append(section);
+}
+$('mode').onchange=changeMode;
+$('save').onclick=()=>{const report={kind:'noema-written-practice',exercise_version:tasks.version,exercise_sha256:tasks.sha256,written_version:tasks.written_version,started_at:started,saved_at:new Date().toISOString(),self_reported_human:$('human').checked,study_control:'voluntary local practice; uncontrolled',attempts:history,feedback:$('feedback').value};const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='noema-practice.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+Promise.all([fetch('/practice/tasks').then(r=>r.json()),fetch('/lexicon').then(r=>r.json())]).then(([data,lexicon])=>{tasks=data;for(const word of lexicon.words){const item=document.createElement('div');item.textContent=word.word+' — '+word.ja;item.title=word.definition_ja;$('reference').append(item)}for(const kind of ['reading','writing'])data[kind].forEach((task,i)=>buildTask(task,kind,i));changeMode();progress()}).catch(e=>{$('progress').textContent='課題を読み込めませんでした: '+e.message});
+</script></body></html>

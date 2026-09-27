@@ -31,17 +31,23 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(payload)
 
     def do_GET(self):
-        resources = {"/": ("editor.html", "text/html; charset=utf-8"), "/font.ttf": ("NoemaWritten.ttf", "font/ttf")}
+        resources = {"/": ("editor.html", "text/html; charset=utf-8"), "/practice": ("practice.html", "text/html; charset=utf-8"), "/font.ttf": ("NoemaWritten.ttf", "font/ttf")}
         if self.path in resources:
             name, content_type = resources[self.path]
             self.respond(200, files("noema").joinpath("resources", name).read_bytes(), content_type)
         elif self.path == "/lexicon":
             self.respond(200, lexicon())
+        elif self.path == "/practice/tasks":
+            from .practice import public_tasks
+            self.respond(200, public_tasks())
+        elif self.path == "/alphabet.svg":
+            from .render import alphabet_svg
+            self.respond(200, alphabet_svg().encode("utf-8"), "image/svg+xml")
         else:
             self.respond(404, {"error": "Not found"})
 
     def do_POST(self):
-        if self.path != "/inspect":
+        if self.path not in ("/inspect", "/practice/grade"):
             self.respond(404, {"error": "Not found"})
             return
         if self.headers.get("Content-Type", "").split(";")[0] != "application/json":
@@ -58,6 +64,10 @@ class Handler(BaseHTTPRequestHandler):
                 self.respond(413, {"error": "Document exceeds the editor input limit"})
                 return
             data = json.loads(self.rfile.read(length).decode("utf-8"))
+            if self.path == "/practice/grade":
+                from .practice import grade
+                self.respond(200, grade(data))
+                return
             if not isinstance(data, dict) or not isinstance(data.get("text"), str):
                 raise ValueError("Expected a text field")
             self.respond(200, inspect_text(data["text"]))
