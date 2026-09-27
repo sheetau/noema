@@ -2,9 +2,14 @@
 from html import escape
 from .grammar import format_graph, parse, tokens
 from .semantics import ALPHABET
+from .script import ALPHABET_SPEC
 
 
 def glyph_path(index):
+    return ALPHABET_SPEC["paths"][index]
+
+
+def legacy_glyph_path(index):
     # Eight distinct open skeletons, four positional diacritics: 32 fixed letters.
     skeletons = ["M8 6 Q24 6 24 18 Q24 30 8 30", "M8 6 L24 18 L8 30",
                  "M24 6 L8 6 L8 30 L24 30", "M8 6 L24 6 L8 30 L24 30",
@@ -24,7 +29,8 @@ def render(text, columns=34):
         stream = [t[0] for t in tokenize(canonical)]
     else:
         stream = tokens(canonical)
-    defs = ''.join(f'<path id="g{i}" d="{glyph_path(i)}"/>' for i in range(32))
+    shape = glyph_path if graph["schema_version"] == "0.2" else legacy_glyph_path
+    defs = ''.join(f'<path id="g{i}" d="{shape(i)}"/>' for i in range(32))
     body, x, y = [], 18, 20
     width = columns * 34 + 36
     for token in stream:

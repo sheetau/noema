@@ -48,6 +48,12 @@ def main(argv=None):
             p.add_argument("--offline", action="store_true")
     p = commands.add_parser("alphabet")
     p.add_argument("--output", "-o")
+    p = commands.add_parser("script", help="Encode/decode the original alphabet's private-use characters")
+    source = p.add_mutually_exclusive_group()
+    source.add_argument("--text")
+    source.add_argument("--input", "-i")
+    p.add_argument("--output", "-o")
+    p.add_argument("--decode", action="store_true")
     p = commands.add_parser("dataset")
     p.add_argument("--output", "-o", default="data/evaluation.jsonl")
     p.add_argument("--check", action="store_true")
@@ -81,6 +87,9 @@ def main(argv=None):
             emit(render(read_input(args), args.columns), args.output)
         elif args.command == "alphabet":
             emit(alphabet_svg(), args.output)
+        elif args.command == "script":
+            from .script import encode, decode
+            emit(decode(read_input(args)) if args.decode else encode(read_input(args)), args.output)
         elif args.command == "analyze":
             from .analyzer import Analyzer
             emit(Analyzer(args.checkpoint, args.device, args.offline).analyze(read_input(args), args.language), args.output)

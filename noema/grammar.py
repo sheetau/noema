@@ -40,6 +40,9 @@ def tokens(text):
 
 
 def parse(text):
+    if isinstance(text, str) and any(0xE000 <= ord(c) <= 0xE01F for c in text):
+        from .script import transcribe
+        text = transcribe(text, reverse=True)
     if isinstance(text, str) and re.match(r"\s*noema\s+b\s+b(?:\s|$)", text):
         from .language import parse_document
         return parse_document(text)

@@ -12,12 +12,13 @@ dependencies = []
 [project.optional-dependencies]
 ml = ["torch>=2.6,<3", "transformers>=4.57,<5", "safetensors>=0.4", "sentencepiece>=0.2"]
 test = ["pytest>=8"]
+font = ["fonttools>=4.66,<5", "Pillow>=11"]
 
 [project.scripts]
 noema = "noema.cli:main"
 
 [tool.setuptools.package-data]
-noema = ["resources/*.json"]
+noema = ["resources/*.json", "resources/*.ttf"]
 
 [tool.setuptools.packages.find]
 include = ["noema*"]
