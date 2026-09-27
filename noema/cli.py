@@ -50,6 +50,7 @@ def main(argv=None):
     p.add_argument("--output", "-o")
     p = commands.add_parser("edit", help="Open the local writing desk server")
     p.add_argument("--port", type=int, default=8765)
+    p.add_argument("--checkpoint", help="Frozen analyzer checkpoint for the local translation page")
     p = commands.add_parser("script", help="Encode/decode the original alphabet's private-use characters")
     source = p.add_mutually_exclusive_group()
     source.add_argument("--text")
@@ -94,7 +95,7 @@ def main(argv=None):
             emit(alphabet_svg(), args.output)
         elif args.command == "edit":
             from .editor import serve
-            serve(args.port)
+            serve(args.port, args.checkpoint)
         elif args.command == "script":
             from .script import encode, decode
             emit(decode(read_input(args)) if args.decode else encode(read_input(args)), args.output)

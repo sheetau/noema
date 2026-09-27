@@ -41,7 +41,7 @@ def server():
 
 
 def test_editor_http_uses_the_same_parser_and_reports_errors(server):
-    with urlopen(server) as response:
+    with urlopen(server + "/writing") as response:
         html = response.read().decode("utf-8")
     assert "Noema" in html
     initial = re.search(r'<textarea[^>]*>(.*?)</textarea>', html, re.S)[1]

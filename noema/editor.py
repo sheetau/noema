@@ -2,6 +2,7 @@
 import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from importlib.resources import files
+from pathlib import Path
 from .grammar import parse, format_graph
 from .glossary import lexicon
 from .render import render
@@ -31,7 +32,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(payload)
 
     def do_GET(self):
-        resources = {"/": ("editor.html", "text/html; charset=utf-8"), "/practice": ("practice.html", "text/html; charset=utf-8"), "/font.ttf": ("NoemaWritten.ttf", "font/ttf")}
+        resources = {"/": ("translate.html", "text/html; charset=utf-8"), "/writing": ("editor.html", "text/html; charset=utf-8"), "/practice": ("practice.html", "text/html; charset=utf-8"), "/font.ttf": ("NoemaWritten.ttf", "font/ttf")}
         if self.path in resources:
             name, content_type = resources[self.path]
             self.respond(200, files("noema").joinpath("resources", name).read_bytes(), content_type)
@@ -47,7 +48,7 @@ class Handler(BaseHTTPRequestHandler):
             self.respond(404, {"error": "Not found"})
 
     def do_POST(self):
-        if self.path not in ("/inspect", "/practice/grade"):
+        if self.path not in ("/inspect", "/practice/grade", "/translate"):
             self.respond(404, {"error": "Not found"})
             return
         if self.headers.get("Content-Type", "").split(";")[0] != "application/json":
@@ -64,6 +65,11 @@ class Handler(BaseHTTPRequestHandler):
                 self.respond(413, {"error": "Document exceeds the editor input limit"})
                 return
             data = json.loads(self.rfile.read(length).decode("utf-8"))
+            if self.path == "/translate":
+                from .translation import Translator
+                translator = getattr(self.server, "translator", None) or Translator()
+                self.respond(200, translator.translate(data))
+                return
             if self.path == "/practice/grade":
                 from .practice import grade
                 self.respond(200, grade(data))
@@ -73,17 +79,23 @@ class Handler(BaseHTTPRequestHandler):
             self.respond(200, inspect_text(data["text"]))
         except (ValueError, TypeError, RecursionError) as exc:
             self.respond(400, {"error": str(exc)})
+        except (ImportError, OSError, RuntimeError):
+            self.respond(503, {"error": "自然言語解析用のモデルを読み込めません。起動時のモデル指定と必要なライブラリを確認してください。"})
 
     def log_message(self, fmt, *args):
         # Documents and names are never written into request logs.
         return
 
 
-def serve(port=8765):
+def serve(port=8765, checkpoint=None):
     if not 0 <= port <= 65535:
         raise ValueError("Invalid editor port")
     with ThreadingHTTPServer(("127.0.0.1", port), Handler) as server:
-        print(f"Noema writing desk: http://127.0.0.1:{server.server_port} (Ctrl+C to stop)", flush=True)
+        from .translation import Translator
+        if checkpoint is None and Path("artifacts/routed-v7/metadata.json").is_file():
+            checkpoint = "artifacts/routed-v7"
+        server.translator = Translator(checkpoint)
+        print(f"Noema: http://127.0.0.1:{server.server_port} (Ctrl+C to stop)", flush=True)
         try:
             server.serve_forever()
         except KeyboardInterrupt:
