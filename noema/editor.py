@@ -30,7 +30,7 @@ def inspect_text(text):
     # Browser JSON.parse rounds integers beyond 2**53. Keep a serialized copy
     # for display/export so the written language's exact quantities survive.
     return {"canonical": canonical, "graph": graph, "graph_json": json.dumps(graph, ensure_ascii=False, indent=2),
-            "script": encode(canonical), "svg": render(canonical, 22)}
+            "script": encode(canonical, "v2"), "svg": render(canonical, 22, "v2")}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -56,7 +56,7 @@ class Handler(BaseHTTPRequestHandler):
             self.respond(200, public_tasks())
         elif self.path == "/alphabet.svg":
             from .render import alphabet_svg
-            self.respond(200, alphabet_svg().encode("utf-8"), "image/svg+xml")
+            self.respond(200, alphabet_svg("v2").encode("utf-8"), "image/svg+xml")
         else:
             self.respond(404, {"error": "Not found"})
 

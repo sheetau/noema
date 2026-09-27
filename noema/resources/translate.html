@@ -9,7 +9,7 @@
 </div><p id="status" role="status" aria-live="polite"></p><p class="note">15概念の短い単文に対応する試作です。Noemaからの変換は定型文になります。</p></main><script>
 const $=id=>document.getElementById(id),alphabet='abcdefghijklmnopqrstuvwxyz234567';let revision=0,busy=false;
 function update(){revision++;$('forward').disabled=busy||!$('natural').value.trim();$('backward').disabled=busy||!$('noema').value.trim();$('status').textContent='';$('status').className=''}
-function transcribe(text,native){let quoted=false,escaped=false;return [...text].map(c=>{if(quoted){if(escaped)escaped=false;else if(c==='\\')escaped=true;else if(c==='"')quoted=false;return c}if(c==='"'){quoted=true;return c}const index=native?alphabet.indexOf(c):c.codePointAt(0)-0xE000;return index>=0&&index<32?(native?String.fromCodePoint(0xE000+index):alphabet[index]):c}).join('')}
+function transcribe(text,native){let quoted=false,escaped=false;return [...text].map(c=>{if(quoted){if(escaped)escaped=false;else if(c==='\\')escaped=true;else if(c==='"')quoted=false;return c}if(c==='"'){quoted=true;return c}const code=c.codePointAt(0),oldIndex=code-0xe000,newIndex=code-0xe100,scriptIndex=newIndex>=0&&newIndex<32?newIndex:oldIndex,index=native&&!(scriptIndex>=0&&scriptIndex<32)?alphabet.indexOf(c):scriptIndex;return index>=0&&index<32?(native?String.fromCodePoint(0xe100+index):alphabet[index]):c}).join('')}
 for(const id of ['natural','noema'])$(id).oninput=update;
 $('language').onchange=()=>{$('natural').placeholder=$('language').value==='ja'?'例：犬が猫を追う':'Example: The dog chases the cat.';update()};
 $('script').onchange=()=>{$('noema').value=transcribe($('noema').value,$('script').value==='native');update()};

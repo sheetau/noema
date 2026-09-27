@@ -37,5 +37,5 @@ class Translator:
                        else "意味を確定できませんでした。入力が対応範囲外の場合もあります。")
             return {"status": result["status"], "text": None, "message": message}
         canonical = format_graph(convert(result["graph"], "0.4"))
-        return {"status": "confirmed", "text": encode(canonical), "canonical": canonical,
+        return {"status": "confirmed", "text": encode(canonical, "v2"), "canonical": canonical,
                 "message": "Noemaに変換しました。試作のため誤解析の可能性があります。"}

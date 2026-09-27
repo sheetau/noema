@@ -31,7 +31,7 @@ function insert(text){source.setRangeText(text,source.selectionStart,source.sele
 source.addEventListener('input',invalidate);
 $('insertQuantity').onclick=()=>{const value=$('quantity').value.trim();if(!/^[0-9]+$/.test(value)){$('status').textContent='数量は0以上の整数で入力してください。';$('status').className='status error';return}let n=BigInt(value),word='',alphabet='abcdefghijklmnopqrstuvwxyz234567';do{word=alphabet[Number(n%32n)]+word;n/=32n}while(n);insert(' m '+word+' ')};
 $('insertName').onclick=()=>{const name=$('name').value;if(!name){$('status').textContent='名前を入力してください。';$('status').className='status error';return}insert(' n '+JSON.stringify(name)+' ')};
-for(const [i,c] of [...'abcdefghijklmnopqrstuvwxyz234567'].entries()){const b=document.createElement('button');b.textContent=String.fromCharCode(0xE000+i);b.title=c;b.setAttribute('aria-label',`文字 ${c}`);const s=document.createElement('small');s.textContent=c;b.append(s);b.onclick=()=>insert(String.fromCharCode(0xE000+i));$('alphabet').append(b)}
+for(const [i,c] of [...'abcdefghijklmnopqrstuvwxyz234567'].entries()){const b=document.createElement('button');b.textContent=String.fromCharCode(0xE100+i);b.title=c;b.setAttribute('aria-label',`文字 ${c}`);const s=document.createElement('small');s.textContent=c;b.append(s);b.onclick=()=>insert(String.fromCharCode(0xE100+i));$('alphabet').append(b)}
 function download(text,name,type){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 $('save').onclick=()=>download(source.value,filename,'text/plain;charset=utf-8');
 $('open').onclick=()=>$('file').click();

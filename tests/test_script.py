@@ -1,7 +1,7 @@
 from pathlib import Path
 import pytest
 from noema import parse, format_graph
-from noema.script import encode, decode, TO_SCRIPT, SCRIPT_START, ALPHABET_SPEC
+from noema.script import encode, decode, TO_SCRIPT, SCRIPT_START, ALPHABET_SPEC, SPECS
 
 
 def test_script_roundtrip_preserves_literal_unicode():
@@ -27,9 +27,10 @@ def test_font_mapping_bounds_and_reproducibility(tmp_path):
     build(a)
     build(b)
     assert a.read_bytes() == b.read_bytes()
+    assert a.read_bytes() == Path("noema/resources/NoemaWritten.ttf").read_bytes()
     font = TTFont(a)
     cmap = font.getBestCmap()
-    assert set(cmap) == {32} | set(range(SCRIPT_START, SCRIPT_START + 32))
-    glyphs = [font["glyf"][cmap[SCRIPT_START + i]] for i in range(32)]
+    assert set(cmap) == {32} | {s["unicode_start"] + i for s in SPECS.values() for i in range(32)}
+    glyphs = [font["glyf"][cmap[s["unicode_start"] + i]] for s in SPECS.values() for i in range(32)]
     assert all(g.numberOfContours > 0 and 0 <= g.xMin < g.xMax < 816 and 0 <= g.yMin < g.yMax < 860 for g in glyphs)
     assert len(set(ALPHABET_SPEC["paths"])) == 32

@@ -4,7 +4,7 @@ import hashlib
 from importlib.resources import files
 from .grammar import parse, format_graph
 from .language import convert
-from .script import encode
+from .script import encode, alphabet_metadata
 from .semantics import require
 
 TASK_TEXT = files("noema").joinpath("resources/practice-v1.json").read_text(encoding="utf-8")
@@ -14,9 +14,9 @@ BY_ID = {q["id"]: (kind, q) for kind in ("reading", "writing") for q in TASKS[ki
 
 
 def public_tasks():
-    reading = [{k: v for k, v in q.items() if k != "correct"} | {"script": encode(q["noema"])} for q in TASKS["reading"]]
+    reading = [{k: v for k, v in q.items() if k != "correct"} | {"script": encode(q["noema"], "v2")} for q in TASKS["reading"]]
     writing = [{k: v for k, v in q.items() if k != "noema"} for q in TASKS["writing"]]
-    return {"version": TASKS["version"], "sha256": TASK_SHA256, "written_version": TASKS["written_version"], "reading": reading, "writing": writing}
+    return {"version": TASKS["version"], "sha256": TASK_SHA256, "written_version": TASKS["written_version"], "alphabet": alphabet_metadata(), "reading": reading, "writing": writing}
 
 
 def grade(payload):
@@ -24,7 +24,7 @@ def grade(payload):
     kind, question = BY_ID[payload["id"]]
     answer, reveal = payload.get("answer"), payload.get("reveal", False)
     require(type(reveal) is bool, "reveal must be boolean")
-    result = {"id": question["id"], "kind": kind, "correct": False, "exercise_sha256": TASK_SHA256}
+    result = {"id": question["id"], "kind": kind, "correct": False, "exercise_sha256": TASK_SHA256, "alphabet": alphabet_metadata()}
     if kind == "reading":
         require(type(answer) is int and 0 <= answer < len(question["choices"]), "Select a reading answer")
         result["correct"] = answer == question["correct"]

@@ -42,7 +42,7 @@ def tokens(text):
 
 
 def parse(text):
-    if isinstance(text, str) and any(0xE000 <= ord(c) <= 0xE01F for c in text):
+    if isinstance(text, str) and any(0xE000 <= ord(c) <= 0xE01F or 0xE100 <= ord(c) <= 0xE11F for c in text):
         from .script import transcribe
         text = transcribe(text, reverse=True)
     if isinstance(text, str) and re.match(r"\s*noema\s+([bcde])\s+\1(?:\s|$)", text):

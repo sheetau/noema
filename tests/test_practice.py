@@ -9,6 +9,8 @@ from noema.script import decode
 def test_public_tasks_omit_solutions_and_all_authored_examples_parse():
     public = public_tasks()
     assert len(public["reading"]) == 12 and len(public["writing"]) == 6
+    assert public["alphabet"]["key"] == "v2"
+    assert len(public["alphabet"]["spec_sha256"]) == len(public["alphabet"]["font_sha256"]) == 64
     for question in public["reading"]:
         assert "correct" not in question
         assert parse(question["noema"]) == parse(decode(question["script"]))
@@ -19,6 +21,7 @@ def test_public_tasks_omit_solutions_and_all_authored_examples_parse():
             answer = question["correct"] if kind == "reading" else question["noema"]
             result = grade({"id": question["id"], "answer": answer})
             assert result["correct"] and "solution" not in result
+            assert result["alphabet"] == public["alphabet"]
 
 
 def test_writing_grades_meaning_instead_of_text_and_keeps_role_errors():

@@ -5,7 +5,7 @@ from pathlib import Path
 import re
 from fontTools.fontBuilder import FontBuilder
 from fontTools.pens.ttGlyphPen import TTGlyphPen
-from noema.script import ALPHABET_SPEC, SCRIPT_START
+from noema.script import ALPHABET_SPEC, SCRIPT_START, SPECS
 from noema.semantics import ALPHABET
 
 
@@ -67,18 +67,18 @@ def glyph(path):
 
 def build(output="noema/resources/NoemaWritten.ttf"):
     builder = FontBuilder(1000, isTTF=True)
-    order = [".notdef", "space"] + ["noema" + str(i) for i in range(32)]
+    order = [".notdef", "space"] + [key + "_" + str(i) for key in SPECS for i in range(32)]
     builder.setupGlyphOrder(order)
-    builder.setupCharacterMap({32: "space", **{SCRIPT_START+i: "noema"+str(i) for i in range(32)}})
+    builder.setupCharacterMap({32: "space", **{spec["unicode_start"]+i: key + "_" + str(i) for key, spec in SPECS.items() for i in range(32)}})
     empty = TTGlyphPen(None).glyph()
     shapes = {".notdef": glyph("M5 5 L28 5 L28 30 L5 30 L5 5 M5 5 L28 30"), "space": empty}
-    shapes.update({"noema"+str(i): glyph(path) for i, path in enumerate(ALPHABET_SPEC["paths"])})
+    shapes.update({key + "_" + str(i): glyph(path) for key, spec in SPECS.items() for i, path in enumerate(spec["paths"])})
     builder.setupGlyf(shapes)
     builder.setupHorizontalMetrics({name: (816 if name != "space" else 400, 0) for name in order})
     builder.setupHorizontalHeader(ascent=860, descent=-140)
     builder.setupOS2(sTypoAscender=860, sTypoDescender=-140, usWinAscent=860, usWinDescent=140, achVendID="NOEM")
-    builder.setupNameTable({"familyName": "Noema Written", "styleName": "Regular", "uniqueFontIdentifier": "NoemaWritten-1.0-draft",
-                           "fullName": "Noema Written Regular", "psName": "NoemaWritten-Regular", "version": "Version 1.000"})
+    builder.setupNameTable({"familyName": "Noema Written", "styleName": "Regular", "uniqueFontIdentifier": "NoemaWritten-2.0-draft",
+                           "fullName": "Noema Written Regular", "psName": "NoemaWritten-Regular", "version": "Version 2.000"})
     builder.setupPost()
     builder.setupMaxp()
     # Fixed OpenType timestamps ensure byte-for-byte reproducible builds.

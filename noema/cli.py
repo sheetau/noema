@@ -41,6 +41,7 @@ def main(argv=None):
             p.add_argument("--edition", choices=("0.1", "0.2", "0.3", "0.4", "0.5"), help="Explicit lossless conversion to another edition")
         if name == "render":
             p.add_argument("--columns", type=int, default=34)
+            p.add_argument("--alphabet", choices=("v1", "v2"), default="v2")
         if name == "analyze":
             p.add_argument("--language", required=True)
             p.add_argument("--checkpoint")
@@ -48,6 +49,7 @@ def main(argv=None):
             p.add_argument("--offline", action="store_true")
     p = commands.add_parser("alphabet")
     p.add_argument("--output", "-o")
+    p.add_argument("--alphabet", choices=("v1", "v2"), default="v2")
     p = commands.add_parser("edit", help="Open the local writing desk server")
     p.add_argument("--port", type=int, default=8765)
     p.add_argument("--checkpoint", help="Frozen analyzer checkpoint for the local translation page")
@@ -57,6 +59,7 @@ def main(argv=None):
     source.add_argument("--input", "-i")
     p.add_argument("--output", "-o")
     p.add_argument("--decode", action="store_true")
+    p.add_argument("--alphabet", choices=("v1", "v2"), default="v2")
     p = commands.add_parser("dataset")
     p.add_argument("--edition", choices=("0.1", "0.2"), default="0.1")
     p.add_argument("--output", "-o", default="data/evaluation.jsonl")
@@ -90,15 +93,15 @@ def main(argv=None):
                 graph = convert(graph, args.edition)
             emit(format_graph(graph), args.output)
         elif args.command == "render":
-            emit(render(read_input(args), args.columns), args.output)
+            emit(render(read_input(args), args.columns, args.alphabet), args.output)
         elif args.command == "alphabet":
-            emit(alphabet_svg(), args.output)
+            emit(alphabet_svg(args.alphabet), args.output)
         elif args.command == "edit":
             from .editor import serve
             serve(args.port, args.checkpoint)
         elif args.command == "script":
             from .script import encode, decode
-            emit(decode(read_input(args)) if args.decode else encode(read_input(args)), args.output)
+            emit(decode(read_input(args)) if args.decode else encode(read_input(args), args.alphabet), args.output)
         elif args.command == "analyze":
             from .analyzer import Analyzer
             emit(Analyzer(args.checkpoint, args.device, args.offline).analyze(read_input(args), args.language), args.output)

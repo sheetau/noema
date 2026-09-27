@@ -13,7 +13,7 @@
 <p><code>e/f/g</code> は過去/現在/未来、<code>r/s/t</code> は昨日/今日/明日。<code>o word</code> で参照名を登録し、<code>p word</code> で同じ対象を指します。</p>
 <p><code>u [ 文 ]</code> は内容の否定、先頭の <code>b</code> は質問、役割の位置の <code>c</code> は質問する対象です。<code>y [ 条件 ] [ 帰結 ]</code> で条件を表します。<code>jx-sai</code> は赤い本のように、基本語の後ろに性質をつなげます。</p>
 <details><summary>基本語を確認する</summary><div id="reference"></div></details>
-<details><summary>32文字の対応を見る</summary><img src="/alphabet.svg" alt="32文字と代用文字aからz、2から7の対応表"></details>
+<details><summary>32文字の対応を見る</summary><p><a href="/alphabet.svg" target="_blank" rel="noopener">文字の構成表を拡大して開く</a></p><img src="/alphabet.svg" alt="文法機能の共通骨格と区別線から構成した32文字の表"></details>
 </section>
 <section class="card"><label for="mode">読む課題の表示</label> <select id="mode"><option value="proxy">代用文字</option><option value="native">固有文字</option></select><p id="progress" role="status" aria-live="polite">課題を読み込んでいます…</p></section>
 <div id="tasks"></div>
@@ -45,7 +45,7 @@ function buildTask(task,kind,index){
   try{
    const response=await fetch('/practice/grade',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:task.id,answer:value,reveal:show})}),result=await response.json();
    if(!response.ok)throw new Error(result.error);
-   if(result.exercise_sha256!==tasks.sha256)throw new Error('課題が更新されました。結果を保存してからページを開き直してください。');
+   if(result.exercise_sha256!==tasks.sha256||JSON.stringify(result.alphabet)!==JSON.stringify(tasks.alphabet))throw new Error('課題が更新されました。結果を保存してからページを開き直してください。');
    if(show)exposed.add(task.id);
    history.push({id:task.id,kind,answer:value,correct:result.correct,revealed:exposed.has(task.id),mode:submittedMode,at:new Date().toISOString()});
    feedback.className='feedback '+(result.correct?'success':'error');
@@ -56,6 +56,6 @@ function buildTask(task,kind,index){
  check.onclick=()=>submit(false);reveal.onclick=()=>submit(true);$('tasks').append(section);
 }
 $('mode').onchange=changeMode;
-$('save').onclick=()=>{const report={kind:'noema-written-practice',exercise_version:tasks.version,exercise_sha256:tasks.sha256,written_version:tasks.written_version,started_at:started,saved_at:new Date().toISOString(),self_reported_human:$('human').checked,study_control:'voluntary local practice; uncontrolled',attempts:history,feedback:$('feedback').value};const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='noema-practice.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+$('save').onclick=()=>{const report={kind:'noema-written-practice',exercise_version:tasks.version,exercise_sha256:tasks.sha256,written_version:tasks.written_version,alphabet:tasks.alphabet,started_at:started,saved_at:new Date().toISOString(),self_reported_human:$('human').checked,study_control:'voluntary local practice; uncontrolled',attempts:history,feedback:$('feedback').value};const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='noema-practice.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 Promise.all([fetch('/practice/tasks').then(r=>r.json()),fetch('/lexicon').then(r=>r.json())]).then(([data,lexicon])=>{tasks=data;for(const word of lexicon.words){const item=document.createElement('div');item.textContent=word.word+' — '+word.ja;item.title=word.definition_ja;$('reference').append(item)}for(const kind of ['reading','writing'])data[kind].forEach((task,i)=>buildTask(task,kind,i));changeMode();progress()}).catch(e=>{$('progress').textContent='課題を読み込めませんでした: '+e.message});
 </script></body></html>
