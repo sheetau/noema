@@ -24,12 +24,12 @@ def render(text, columns=34):
         raise ValueError("columns must be an integer >= 8")
     graph = parse(text)
     canonical = format_graph(graph)
-    if graph["schema_version"] in ("0.2", "0.3", "0.4"):
+    if graph["schema_version"] in ("0.2", "0.3", "0.4", "0.5"):
         from .language import tokenize
         stream = [t[0] for t in tokenize(canonical)]
     else:
         stream = tokens(canonical)
-    shape = glyph_path if graph["schema_version"] in ("0.2", "0.3", "0.4") else legacy_glyph_path
+    shape = glyph_path if graph["schema_version"] in ("0.2", "0.3", "0.4", "0.5") else legacy_glyph_path
     defs = ''.join(f'<path id="g{i}" d="{shape(i)}"/>' for i in range(32))
     body, x, y = [], 18, 20
     width = columns * 34 + 36

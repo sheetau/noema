@@ -12,9 +12,11 @@ from noema.grammar import number_word
 
 
 def test_lessons_and_readings_parse_and_round_trip():
-    for name in ("writing-v03.md", "writing-v04.md", "lessons.md"):
+    for name in ("writing-v03.md", "writing-v04.md", "writing-v05.md", "lessons.md"):
         text = Path("docs", name).read_text(encoding="utf-8")
-        for example in re.findall(r"```text\n(.*?)\n```", text, re.S):
+        examples = re.findall(r"```(?:text|noema)\n(.*?)\n```", text, re.S)
+        assert examples, f"No language examples tested in {name}"
+        for example in examples:
             graph = parse(example)
             assert parse(format_graph(graph)) == graph
     for story in json.loads(Path("examples/reading.json").read_text(encoding="utf-8")):

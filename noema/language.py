@@ -1,4 +1,4 @@
-"""Noema 0.2–0.4: written clauses, discourse references and explicit scope.
+"""Noema 0.2–0.5: written clauses, discourse references and explicit scope.
 
 This edition deliberately has its own document schema. The 0.1 graph remains
 supported; conversion to it must explicitly reject meanings it cannot express.
@@ -10,6 +10,7 @@ from datetime import date
 from importlib.resources import files
 from .grammar import number_word, read_number
 from .semantics import CONCEPTS, ROLES, TIMES, SemanticError, keys, require, time_value
+from .derivation import predicate_spec, parse_predicate, predicate_word
 
 EDITION = json.loads(files("noema").joinpath("resources/language-v02.json").read_text(encoding="utf-8"))
 EXTENSION = json.loads(files("noema").joinpath("resources/language-v03.json").read_text(encoding="utf-8"))
@@ -24,7 +25,7 @@ MAX_DEPTH = 64
 
 
 def policy(version):
-    require(version in ("0.2", "0.3", "0.4"), "Unsupported written language version")
+    require(version in ("0.2", "0.3", "0.4", "0.5"), "Unsupported written language version")
     if version == "0.2":
         return ROOTS, CONCEPTS, ROLE_WORDS, ROLES
     roots = {**ROOTS, **EXTENSION["roots"]}
@@ -68,13 +69,13 @@ def normalize_document(document):
     require(bool(document["utterances"]), "A document requires at least one utterance")
     entities = {}
     for entity in document["entities"]:
-        keys(entity, ("id", "kind", "concept", "quantity", "name", "qualifiers") if version == "0.4" else ("id", "kind", "concept", "quantity", "name"))
+        keys(entity, ("id", "kind", "concept", "quantity", "name", "qualifiers") if version in ("0.4", "0.5") else ("id", "kind", "concept", "quantity", "name"))
         ident, concept = entity["id"], entity["concept"]
         require(isinstance(ident, str) and re.fullmatch(r"[a-z2-7]+", ident), "Invalid entity reference")
         require(ident not in entities, "Duplicate entity reference")
         require(isinstance(concept, str) and concept in ROOTS, "Unknown concept")
         require(entity["kind"] in ("entity", "place") and entity["kind"] == CONCEPTS[concept]["kind"], "Invalid entity type")
-        if version == "0.4":
+        if version in ("0.4", "0.5"):
             qualifiers = entity["qualifiers"]
             require(isinstance(qualifiers, list) and all(isinstance(q, str) and q in COMPOUNDS["attributive_states"] for q in qualifiers), "Compound requires supported attributive states")
             require(len(qualifiers) == len(set(qualifiers)), "Duplicate compound property")
@@ -94,7 +95,7 @@ def normalize_document(document):
             except UnicodeEncodeError as exc:
                 raise SemanticError("Name contains invalid Unicode") from exc
         entities[ident] = copy.deepcopy(entity)
-        if version == "0.4":
+        if version in ("0.4", "0.5"):
             entities[ident]["qualifiers"] = sorted(entity["qualifiers"])
     mapping, ordered = {}, []
 
@@ -105,7 +106,7 @@ def normalize_document(document):
         if kind == "clause":
             keys(expression, ("kind", "predicate", "polarity", "time", "roles"))
             predicate = expression["predicate"]
-            require(isinstance(predicate, str) and predicate in ROOTS and CONCEPTS[predicate]["kind"] in ("event", "state"), "Expected an event or state concept")
+            spec = predicate_spec(predicate, version, CONCEPTS)
             require(expression["polarity"] in ("affirmed", "unspecified"), "Negative scope uses a not expression")
             _time(expression["time"])
             require(isinstance(expression["roles"], dict) and set(expression["roles"]) <= set(ROLES), "Invalid roles")
@@ -116,14 +117,14 @@ def normalize_document(document):
                 if target is None:
                     output["roles"][role] = None
                     continue
-                require(role in CONCEPTS[predicate]["roles"], "Role is incompatible with predicate")
+                require(role in spec["roles"], "Role is incompatible with predicate")
                 if isinstance(target, dict):
                     keys(target, ("query",))
                     require(target["query"] is True and speech_act == "question", "Queried roles require a question")
                     output["roles"][role] = {"query": True}
                 else:
                     require(isinstance(target, str) and target in entities, "Dangling entity reference")
-                    allowed = CONCEPTS[predicate].get("role_types", {}).get(role, ["place"] if role in ("location", "source", "destination") else ["entity"])
+                    allowed = spec.get("role_types", {}).get(role, ["place"] if role in ("location", "source", "destination") else ["entity"])
                     require(entities[target]["kind"] in allowed, f"Entity type is incompatible with {role}")
                     if target not in mapping:
                         mapping[target] = "n" + number_word(len(mapping))
@@ -182,11 +183,11 @@ def parse_document(text):
             require(name in bindings, f"Reference {name} has not been introduced")
             return bindings[name]
         parts = word.split("-")
-        require(version == "0.4" or len(parts) == 1, "Compound words require edition 0.4")
+        require(version in ("0.4", "0.5") or len(parts) == 1, "Compound words require edition 0.4 or later")
         concept = CONCEPT_BY_WORD.get(parts[0])
         require(concept is not None and CONCEPTS[concept]["kind"] in ("entity", "place"), f"Expected an entity word, got {word}")
         node = {"id": "n" + number_word(len(entities)), "kind": CONCEPTS[concept]["kind"], "concept": concept, "quantity": None, "name": None}
-        if version == "0.4":
+        if version in ("0.4", "0.5"):
             node["qualifiers"] = [CONCEPT_BY_WORD.get(part) for part in parts[1:]]
         modifiers = set()
         while peek() in ("m", "n", "o"):
@@ -236,8 +237,7 @@ def parse_document(text):
             else:
                 time = time_value(TIME_WORDS[marker])
         word = take()
-        predicate = CONCEPT_BY_WORD.get(word)
-        require(predicate is not None and CONCEPTS[predicate]["kind"] in ("event", "state"), f"Expected a predicate word, got {word}")
+        predicate = parse_predicate(word, version, CONCEPTS, CONCEPT_BY_WORD)
         roles = {}
         while peek() in ROLE_WORDS:
             role = ROLE_WORDS[take()]
@@ -247,9 +247,9 @@ def parse_document(text):
 
     take("noema")
     edition = take()
-    require(edition in ("b", "c", "d"), "Unsupported written language edition")
+    require(edition in ("b", "c", "d", "e"), "Unsupported written language edition")
     take(edition)
-    version = {"b": "0.2", "c": "0.3", "d": "0.4"}[edition]
+    version = {"b": "0.2", "c": "0.3", "d": "0.4", "e": "0.5"}[edition]
     ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(version)
     CONCEPT_BY_WORD = {word: concept for concept, word in ROOTS.items()}
     utterances = []
@@ -315,14 +315,14 @@ def format_document(document):
             words += ["q", json.dumps(t["value"])]
         elif t["kind"] != "unspecified":
             words.append({v: k for k, v in TIME_WORDS.items()}[t["value"]])
-        words.append(ROOTS[expr["predicate"]])
+        words.append(predicate_word(expr["predicate"], ROOTS))
         for marker, role in ROLE_WORDS.items():
             value = expr["roles"][role]
             if value is not None:
                 words += [marker, term(value)]
         return " ".join(words)
 
-    marker = {"0.2": "b", "0.3": "c", "0.4": "d"}[document["schema_version"]]
+    marker = {"0.2": "b", "0.3": "c", "0.4": "d", "0.5": "e"}[document["schema_version"]]
     lines = [f"noema {marker} {marker}"]
     for utterance in document["utterances"]:
         mood = {"assertion": "", "question": "b ", "request": "d "}[utterance["speech_act"]]
@@ -348,7 +348,7 @@ def to_graph(document):
     """Only the exactly representable assertion subset can be lowered to 0.1."""
     from .semantics import normalize
     doc = normalize_document(document)
-    if doc["schema_version"] == "0.4":
+    if doc["schema_version"] in ("0.4", "0.5"):
         require(all(not entity["qualifiers"] for entity in doc["entities"]), "0.1 cannot represent compound properties")
         for entity in doc["entities"]:
             del entity["qualifiers"]
@@ -359,6 +359,7 @@ def to_graph(document):
         content = content["body"]
     require(content["kind"] == "clause", "0.1 cannot represent connective or nested negation scope")
     require(not negated or content["polarity"] == "affirmed", "0.1 cannot negate unspecified polarity")
+    require(isinstance(content["predicate"], str), "0.1 cannot represent derived predicates")
     require(content["predicate"] in CONCEPTS and all(e["concept"] in CONCEPTS for e in doc["entities"]), "Concepts are not in the 0.1 lexicon")
     require(all(target is None for role, target in content["roles"].items() if role not in ROLES), "0.1 cannot represent extended roles")
     event = {"id": "e", "kind": CONCEPTS[content["predicate"]]["kind"], "concept": content["predicate"],
@@ -379,14 +380,15 @@ def convert(document, version):
         return to_graph(source)
     _, _, _, roles = policy(version)
     for entity in source["entities"]:
-        if version == "0.4":
+        if version in ("0.4", "0.5"):
             entity.setdefault("qualifiers", [])
-        elif source["schema_version"] == "0.4":
+        elif source["schema_version"] in ("0.4", "0.5"):
             require(not entity["qualifiers"], "Target edition cannot represent compound properties")
             del entity["qualifiers"]
 
     def visit(expr):
         if expr["kind"] == "clause":
+            require(version == "0.5" or isinstance(expr["predicate"], str), "Target edition cannot represent derived predicates")
             require(all(value is None for role, value in expr["roles"].items() if role not in roles), "Target edition cannot represent extended roles")
             expr["roles"] = {r: v for r, v in expr["roles"].items() if r in roles}
         elif expr["kind"] == "not":
