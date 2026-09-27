@@ -74,6 +74,9 @@ def gate(rows, predictions, thresholds):
 
 
 def train(dataset, cache_path, output, epochs=35, hidden=96, seed=71, decoder_name="independent-v4", regression_test=False):
+    output = Path(output)
+    if output.exists():
+        raise ValueError("Use a new output directory to preserve previous checkpoints")
     if decoder_name not in ("independent-v4", "joint-v1"):
         raise ValueError("Unsupported decoder")
     decoder = decode
@@ -96,8 +99,7 @@ def train(dataset, cache_path, output, epochs=35, hidden=96, seed=71, decoder_na
     counts = torch.bincount(torch.tensor([int(rows[i]["supported"]) for i in training]), minlength=2).float()
     support_weights = counts.sum() / (2 * counts.clamp_min(1))
     history, best, state = [], -1., None
-    output = Path(output)
-    output.mkdir(parents=True, exist_ok=True)
+    output.mkdir(parents=True)
     start = time.monotonic()
     for epoch in range(epochs):
         model.train()
@@ -168,6 +170,8 @@ def main():
     args = parser.parse_args()
     if args.epochs < 1 or args.hidden < 1:
         parser.error("epochs and hidden must be positive")
+    if Path(args.output).exists():
+        parser.error("Use a new output directory to preserve previous checkpoints")
     print(json.dumps(train(args.dataset, args.features, args.output, args.epochs, args.hidden, decoder_name=args.decoder, regression_test=args.regression_test), indent=2))
 
 

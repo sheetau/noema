@@ -1,5 +1,7 @@
 from noema.context_corpus import build
 from noema.reference_corpus import build as references
+import pytest
+pytest.importorskip("torch")
 from noema.unknown_supervision import targets
 from noema.structured import LABELS
 from test_reference_corpus import example
