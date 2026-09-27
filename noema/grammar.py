@@ -41,10 +41,21 @@ def tokens(text):
     return result
 
 
+def notation_of(text):
+    """Identify an explicit notation header, including either native alphabet."""
+    if not isinstance(text, str):
+        return "full"
+    from .script import transcribe
+    return "compact" if re.match(r"\s*[a-z2-7]:", transcribe(text, reverse=True)) else "full"
+
+
 def parse(text):
     if isinstance(text, str) and any(0xE000 <= ord(c) <= 0xE01F or 0xE100 <= ord(c) <= 0xE11F for c in text):
         from .script import transcribe
         text = transcribe(text, reverse=True)
+    if notation_of(text) == "compact":
+        from .language import parse_document
+        return parse_document(text, compact=True)
     if isinstance(text, str) and re.match(r"\s*noema\s+([bcde])\s+\1(?:\s|$)", text):
         from .language import parse_document
         return parse_document(text)
@@ -91,10 +102,12 @@ def parse(text):
     return normalize(graph)
 
 
-def format_graph(graph):
+def format_graph(graph, notation="full"):
+    require(notation in ("full", "compact"), "Unknown written notation")
     if isinstance(graph, dict) and graph.get("schema_version") in ("0.2", "0.3", "0.4", "0.5"):
         from .language import format_document
-        return format_document(graph)
+        return format_document(graph, compact=notation == "compact")
+    require(notation == "full", "Compact notation requires written edition 0.2 or later; convert explicitly")
     graph = normalize(graph)
     lines = ["noema a a {"]
     for node in graph["nodes"]:

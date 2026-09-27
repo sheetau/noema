@@ -39,9 +39,11 @@ def main(argv=None):
         p.add_argument("--output", "-o")
         if name == "format":
             p.add_argument("--edition", choices=("0.1", "0.2", "0.3", "0.4", "0.5"), help="Explicit lossless conversion to another edition")
+            p.add_argument("--notation", choices=("full", "compact"), default="full")
         if name == "render":
             p.add_argument("--columns", type=int, default=34)
             p.add_argument("--alphabet", choices=("v1", "v2"), default="v2")
+            p.add_argument("--notation", choices=("full", "compact"), help="Default: preserve input notation")
         if name == "analyze":
             p.add_argument("--language", required=True)
             p.add_argument("--checkpoint")
@@ -60,6 +62,7 @@ def main(argv=None):
     p.add_argument("--output", "-o")
     p.add_argument("--decode", action="store_true")
     p.add_argument("--alphabet", choices=("v1", "v2"), default="v2")
+    p.add_argument("--notation", choices=("full", "compact"), help="Default: preserve input notation")
     p = commands.add_parser("dataset")
     p.add_argument("--edition", choices=("0.1", "0.2"), default="0.1")
     p.add_argument("--output", "-o", default="data/evaluation.jsonl")
@@ -91,9 +94,9 @@ def main(argv=None):
             if args.edition and graph.get("schema_version") != args.edition:
                 from .language import convert
                 graph = convert(graph, args.edition)
-            emit(format_graph(graph), args.output)
+            emit(format_graph(graph, args.notation), args.output)
         elif args.command == "render":
-            emit(render(read_input(args), args.columns, args.alphabet), args.output)
+            emit(render(read_input(args), args.columns, args.alphabet, args.notation), args.output)
         elif args.command == "alphabet":
             emit(alphabet_svg(args.alphabet), args.output)
         elif args.command == "edit":
@@ -101,7 +104,7 @@ def main(argv=None):
             serve(args.port, args.checkpoint)
         elif args.command == "script":
             from .script import encode, decode
-            emit(decode(read_input(args)) if args.decode else encode(read_input(args), args.alphabet), args.output)
+            emit(decode(read_input(args), args.notation) if args.decode else encode(read_input(args), args.alphabet, args.notation), args.output)
         elif args.command == "analyze":
             from .analyzer import Analyzer
             emit(Analyzer(args.checkpoint, args.device, args.offline).analyze(read_input(args), args.language), args.output)

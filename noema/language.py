@@ -148,8 +148,15 @@ def normalize_document(document):
     return {"schema_version": version, "lexicon_version": version, "entities": ordered, "utterances": utterances}
 
 
-def parse_document(text):
-    stream, cursor, entities, bindings = tokenize(text), 0, [], {}
+def parse_document(text, compact=False):
+    offset = 0
+    if compact:
+        require(isinstance(text, str), "Noema input must be text")
+        header = re.match(r"\s*([a-z2-7]):", text)
+        require(header is not None, "Expected compact edition header")
+        offset = header.end()
+    stream = [(token, a + offset, b + offset) for token, a, b in tokenize(text[offset:])]
+    cursor, entities, bindings = 0, [], {}
 
     def peek():
         return stream[cursor][0] if cursor < len(stream) else None
@@ -238,17 +245,35 @@ def parse_document(text):
                 time = time_value(TIME_WORDS[marker])
         word = take()
         predicate = parse_predicate(word, version, CONCEPTS, CONCEPT_BY_WORD)
-        roles = {}
-        while peek() in ROLE_WORDS:
-            role = ROLE_WORDS[take()]
+        roles, primary, explicit = {}, 0, False
+        while True:
+            if peek() in ROLE_WORDS:
+                role = ROLE_WORDS[take()]
+                explicit = True
+            elif compact and peek() is not None:
+                token = peek()
+                concept = CONCEPT_BY_WORD.get(token.split("-")[0])
+                is_term = token in ("p", "?", "c") or concept is not None and CONCEPTS[concept]["kind"] in ("entity", "place")
+                if not is_term:
+                    break
+                require(not explicit, "Unmarked arguments must precede explicit roles")
+                require(primary < 2, "Only agent and patient can be unmarked; mark other roles explicitly")
+                role = ("agent", "patient")[primary]
+                primary += 1
+            else:
+                break
             require(role not in roles, f"Duplicate {role} role")
             roles[role] = term()
         return {"kind": "clause", "predicate": predicate, "polarity": polarity, "time": time, "roles": roles}
 
-    take("noema")
-    edition = take()
+    if compact:
+        edition = header.group(1)
+    else:
+        take("noema")
+        edition = take()
     require(edition in ("b", "c", "d", "e"), "Unsupported written language edition")
-    take(edition)
+    if not compact:
+        take(edition)
     version = {"b": "0.2", "c": "0.3", "d": "0.4", "e": "0.5"}[edition]
     ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(version)
     CONCEPT_BY_WORD = {word: concept for concept, word in ROOTS.items()}
@@ -262,7 +287,7 @@ def parse_document(text):
     return normalize_document({"schema_version": version, "lexicon_version": version, "entities": entities, "utterances": utterances})
 
 
-def format_document(document):
+def format_document(document, compact=False):
     document = normalize_document(document)
     ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(document["schema_version"])
     entities = {e["id"]: e for e in document["entities"]}
@@ -281,6 +306,7 @@ def format_document(document):
 
     for utterance in document["utterances"]:
         count(utterance["content"])
+    references = {ident: number_word(i) for i, ident in enumerate(e["id"] for e in document["entities"] if counts[e["id"]] > 1)} if compact else {ident: ident for ident in entities}
 
     def term(ident):
         if ident is None:
@@ -288,46 +314,53 @@ def format_document(document):
         if isinstance(ident, dict):
             return "c"
         if ident in seen:
-            return "p " + ident
+            return "p " + references[ident]
         seen.add(ident)
         entity = entities[ident]
         words = ["-".join([ROOTS[entity["concept"]]] + [ROOTS[q] for q in entity.get("qualifiers", [])])]
         if entity["quantity"] is not None:
             words += ["m", number_word(entity["quantity"])]
         if entity["name"] is not None:
-            words += ["n", json.dumps(entity["name"], ensure_ascii=False)]
+            literal = json.dumps(entity["name"], ensure_ascii=False)
+            words += ["n" + literal] if compact else ["n", literal]
         if counts[ident] > 1:
-            words += ["o", ident]
+            words += ["o", references[ident]]
         return " ".join(words)
 
     def expression(expr):
         kind = expr["kind"]
         if kind == "not":
+            if compact:
+                return "u[" + expression(expr["body"]) + "]"
             return "u [ " + expression(expr["body"]) + " ]"
         if kind in CONNECTIVES.values():
             marker = {v: k for k, v in CONNECTIVES.items()}[kind]
+            if compact:
+                return marker + "[" + expression(expr["left"]) + "][" + expression(expr["right"]) + "]"
             return marker + " [ " + expression(expr["left"]) + " ] [ " + expression(expr["right"]) + " ]"
         words = []
         if expr["polarity"] == "unspecified":
             words.append("v")
         t = expr["time"]
         if t["kind"] == "date":
-            words += ["q", json.dumps(t["value"])]
+            literal = json.dumps(t["value"])
+            words += ["q" + literal] if compact else ["q", literal]
         elif t["kind"] != "unspecified":
             words.append({v: k for k, v in TIME_WORDS.items()}[t["value"]])
         words.append(predicate_word(expr["predicate"], ROOTS))
         for marker, role in ROLE_WORDS.items():
             value = expr["roles"][role]
             if value is not None:
-                words += [marker, term(value)]
+                unmarked = compact and (role == "agent" or role == "patient" and expr["roles"]["agent"] is not None)
+                words += [term(value)] if unmarked else [marker, term(value)]
         return " ".join(words)
 
     marker = {"0.2": "b", "0.3": "c", "0.4": "d", "0.5": "e"}[document["schema_version"]]
-    lines = [f"noema {marker} {marker}"]
+    lines = [] if compact else [f"noema {marker} {marker}"]
     for utterance in document["utterances"]:
         mood = {"assertion": "", "question": "b ", "request": "d "}[utterance["speech_act"]]
         lines.append(mood + expression(utterance["content"]) + ".")
-    return "\n".join(lines)
+    return (marker + ":" if compact else "") + "\n".join(lines)
 
 
 def from_graph(graph):

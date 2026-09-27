@@ -4,7 +4,7 @@ import socket
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from importlib.resources import files
 from pathlib import Path
-from .grammar import parse, format_graph
+from .grammar import parse, format_graph, notation_of
 from .glossary import lexicon
 from .render import render
 from .script import encode
@@ -26,7 +26,7 @@ class NoemaHTTPServer(ThreadingHTTPServer):
 
 def inspect_text(text):
     graph = parse(text)
-    canonical = format_graph(graph)
+    canonical = format_graph(graph, notation_of(text))
     # Browser JSON.parse rounds integers beyond 2**53. Keep a serialized copy
     # for display/export so the written language's exact quantities survive.
     return {"canonical": canonical, "graph": graph, "graph_json": json.dumps(graph, ensure_ascii=False, indent=2),

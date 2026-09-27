@@ -36,6 +36,6 @@ class Translator:
             message = ("自然言語解析用のモデルが未設定です。" if result.get("diagnostics", {}).get("reason") == "checkpoint_required"
                        else "意味を確定できませんでした。入力が対応範囲外の場合もあります。")
             return {"status": result["status"], "text": None, "message": message}
-        canonical = format_graph(convert(result["graph"], "0.4"))
+        canonical = format_graph(convert(result["graph"], "0.4"), "compact")
         return {"status": "confirmed", "text": encode(canonical, "v2"), "canonical": canonical,
                 "message": "Noemaに変換しました。試作のため誤解析の可能性があります。"}

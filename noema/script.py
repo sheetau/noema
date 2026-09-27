@@ -47,11 +47,11 @@ def transcribe(text, reverse=False, alphabet="v1"):
     return "".join(result)
 
 
-def encode(text, alphabet="v1"):
-    from .grammar import parse, format_graph
-    return transcribe(format_graph(parse(text)), alphabet=alphabet)
+def encode(text, alphabet="v1", notation=None):
+    from .grammar import parse, format_graph, notation_of
+    return transcribe(format_graph(parse(text), notation or notation_of(text)), alphabet=alphabet)
 
 
-def decode(text):
-    from .grammar import parse, format_graph
-    return format_graph(parse(transcribe(text, reverse=True)))
+def decode(text, notation=None):
+    from .grammar import parse, format_graph, notation_of
+    return format_graph(parse(transcribe(text, reverse=True)), notation or notation_of(text))

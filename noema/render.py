@@ -1,6 +1,6 @@
 """One-to-one SVG glyph substitution. Literals are visibly quoted Unicode text."""
 from html import escape
-from .grammar import format_graph, parse, tokens
+from .grammar import format_graph, parse, tokens, notation_of
 from .semantics import ALPHABET, require
 from .script import SPECS
 
@@ -20,22 +20,29 @@ def legacy_glyph_path(index):
     return skeletons[index % 8] + " " + marks[index // 8]
 
 
-def render(text, columns=34, alphabet="v1"):
+def render(text, columns=34, alphabet="v1", notation=None):
     require(alphabet in SPECS, "Unknown alphabet edition")
     if type(columns) is not int or columns < 8:
         raise ValueError("columns must be an integer >= 8")
     graph = parse(text)
-    canonical = format_graph(graph)
+    notation = notation or notation_of(text)
+    canonical = format_graph(graph, notation)
+    gaps = None
     if graph["schema_version"] in ("0.2", "0.3", "0.4", "0.5"):
         from .language import tokenize
-        stream = [t[0] for t in tokenize(canonical)]
+        if notation == "compact":
+            spans = [(canonical[:2], 0, 2)] + [(t, a + 2, b + 2) for t, a, b in tokenize(canonical[2:])]
+            stream = [t[0] for t in spans]
+            gaps = [bool(canonical[b:spans[i + 1][1]]) if i + 1 < len(spans) else False for i, (_, _, b) in enumerate(spans)]
+        else:
+            stream = [t[0] for t in tokenize(canonical)]
     else:
         stream = tokens(canonical)
     shape = (lambda i: glyph_path(i, alphabet)) if alphabet == "v2" or graph["schema_version"] in ("0.2", "0.3", "0.4", "0.5") else legacy_glyph_path
     defs = ''.join(f'<path id="g{i}" d="{shape(i)}"/>' for i in range(32))
     body, x, y = [], 18, 20
     width = columns * 34 + 36
-    for token in stream:
+    for index, token in enumerate(stream):
         literal = token.startswith('"')
         units = list(token) if literal else [token] if token in "{};?" else list(token)
         if x + min(len(units), columns) * 34 > width - 18:
@@ -48,7 +55,8 @@ def render(text, columns=34, alphabet="v1"):
             else:
                 body.append(f'<text x="{x + 4}" y="{y + 26}" stroke="none" fill="#162736" font-family="sans-serif" font-size="22">{escape(char)}</text>')
             x += 34
-        x += 14
+        if gaps is None or gaps[index]:
+            x += 14
         if token in ("{", ";", "}", "."):
             x, y = 18, y + 54
     return f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{y + 50}" viewBox="0 0 {width} {y + 50}"><title>Noema {graph["schema_version"]}</title><metadata>{escape(canonical)}</metadata><rect width="100%" height="100%" fill="#fbfaf4"/><defs>{defs}</defs><g fill="none" stroke="#162736" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{"".join(body)}</g></svg>'
