@@ -1,0 +1,2092 @@
+{
+  "xlmr": {
+    "development": {
+      "metadata": {
+        "format": 2,
+        "architecture": "sequence-gru-attachment",
+        "dimension": 777,
+        "hidden": 96,
+        "representation": "characters-v2",
+        "labels": {
+          "span": [
+            "O",
+            "B-predicate",
+            "I-predicate",
+            "B-entity",
+            "I-entity",
+            "B-quantity",
+            "I-quantity",
+            "B-time",
+            "I-time",
+            "B-negation",
+            "I-negation"
+          ],
+          "concept": [
+            "none",
+            "aa",
+            "ab",
+            "ac",
+            "ad",
+            "ae",
+            "af",
+            "ag",
+            "ah",
+            "ai",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "role": [
+            "none",
+            "agent",
+            "patient",
+            "recipient",
+            "location"
+          ],
+          "polarity": [
+            "affirmed",
+            "negated",
+            "unspecified"
+          ],
+          "time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ],
+          "support": [
+            "unsupported",
+            "supported"
+          ],
+          "sentence_concept": [
+            "none",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "frame": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "explicit_time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ]
+        },
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "encoder": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "head_runtime": {
+          "torch": "2.12.0+cpu",
+          "seed": 71
+        },
+        "thresholds": {
+          "ja": 0.4,
+          "en": 0.0
+        },
+        "best_epoch": 40,
+        "epochs": 40,
+        "dataset_sha256": "c3293264da30516b482777ded4543394903524a231e8020886e27d55049a0a10",
+        "weights_sha256": "91f8dafb140b5bfcd906cf3ef4cfc6f4c64ab206de692c9072fd25b5014996c2",
+        "trainable_parameters": 374451,
+        "elapsed_seconds": 305.9091273000231,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used"
+      },
+      "metrics": {
+        "ja": {
+          "in_scope": 410,
+          "confirmed": 344,
+          "exact": 344,
+          "coverage": 0.8390243902439024,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 77,
+          "unsupported_false_accepts": 3,
+          "unsupported_false_accept_rate": 0.03896103896103896,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 66,
+          "passes_provisional_gate": true
+        },
+        "en": {
+          "in_scope": 775,
+          "confirmed": 536,
+          "exact": 526,
+          "coverage": 0.6916129032258065,
+          "confirmed_exact_match": 0.9813432835820896,
+          "unsupported": 149,
+          "unsupported_false_accepts": 6,
+          "unsupported_false_accept_rate": 0.040268456375838924,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 1,
+            "time": 5,
+            "agent": 4,
+            "patient": 4,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 239,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 783,
+          "fully_confirmed_groups": 221,
+          "equal_confirmed_groups": 215
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "calibration": {
+            "ja": {
+              "coverage": 0.0024390243902439024,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.0,
+              "threshold": 0.51,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.07870967741935483,
+              "precision": 0.9508196721311475,
+              "unsupported_false_accept_rate": 0.013422818791946308,
+              "threshold": 0.43,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 59,
+              "exact": 43,
+              "coverage": 0.14390243902439023,
+              "confirmed_exact_match": 0.7288135593220338,
+              "unsupported": 77,
+              "unsupported_false_accepts": 2,
+              "unsupported_false_accept_rate": 0.025974025974025976,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 1,
+                "time": 2,
+                "agent": 13,
+                "patient": 14,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 351,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 100,
+              "exact": 81,
+              "coverage": 0.12903225806451613,
+              "confirmed_exact_match": 0.81,
+              "unsupported": 149,
+              "unsupported_false_accepts": 4,
+              "unsupported_false_accept_rate": 0.026845637583892617,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 3,
+                "time": 9,
+                "agent": 7,
+                "patient": 6,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 675,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 13,
+              "equal_confirmed_groups": 10
+            }
+          }
+        },
+        {
+          "epoch": 5,
+          "calibration": {
+            "ja": {
+              "coverage": 0.47804878048780486,
+              "precision": 0.9795918367346939,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.6232258064516129,
+              "precision": 0.9585921325051759,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 196,
+              "exact": 192,
+              "coverage": 0.47804878048780486,
+              "confirmed_exact_match": 0.9795918367346939,
+              "unsupported": 77,
+              "unsupported_false_accepts": 3,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 4,
+                "patient": 4,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 214,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 483,
+              "exact": 463,
+              "coverage": 0.6232258064516129,
+              "confirmed_exact_match": 0.9585921325051759,
+              "unsupported": 149,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 18,
+                "agent": 2,
+                "patient": 2,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 292,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 125,
+              "equal_confirmed_groups": 116
+            }
+          }
+        },
+        {
+          "epoch": 10,
+          "calibration": {
+            "ja": {
+              "coverage": 0.6439024390243903,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.025974025974025976,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.7858064516129032,
+              "precision": 0.986863711001642,
+              "unsupported_false_accept_rate": 0.04697986577181208,
+              "threshold": 0.46,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 264,
+              "exact": 264,
+              "coverage": 0.6439024390243903,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 77,
+              "unsupported_false_accepts": 2,
+              "unsupported_false_accept_rate": 0.025974025974025976,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 146,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 619,
+              "exact": 607,
+              "coverage": 0.7987096774193548,
+              "confirmed_exact_match": 0.9806138933764136,
+              "unsupported": 149,
+              "unsupported_false_accepts": 10,
+              "unsupported_false_accept_rate": 0.06711409395973154,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 7,
+                "agent": 5,
+                "patient": 5,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 156,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 206,
+              "equal_confirmed_groups": 200
+            }
+          }
+        },
+        {
+          "epoch": 15,
+          "calibration": {
+            "ja": {
+              "coverage": 0.7853658536585366,
+              "precision": 0.9937888198757764,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "threshold": 0.53,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.6503225806451612,
+              "precision": 0.9841269841269841,
+              "unsupported_false_accept_rate": 0.04697986577181208,
+              "threshold": 0.76,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 333,
+              "exact": 331,
+              "coverage": 0.8121951219512196,
+              "confirmed_exact_match": 0.993993993993994,
+              "unsupported": 77,
+              "unsupported_false_accepts": 10,
+              "unsupported_false_accept_rate": 0.12987012987012986,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 2,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 77,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 654,
+              "exact": 612,
+              "coverage": 0.8438709677419355,
+              "confirmed_exact_match": 0.9357798165137615,
+              "unsupported": 149,
+              "unsupported_false_accepts": 23,
+              "unsupported_false_accept_rate": 0.15436241610738255,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 23,
+                "agent": 19,
+                "patient": 19,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 121,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 252,
+              "equal_confirmed_groups": 226
+            }
+          }
+        },
+        {
+          "epoch": 20,
+          "calibration": {
+            "ja": {
+              "coverage": 0.7609756097560976,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "threshold": 0.51,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.6038709677419355,
+              "precision": 0.9636752136752137,
+              "unsupported_false_accept_rate": 0.03355704697986577,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 314,
+              "exact": 314,
+              "coverage": 0.7658536585365854,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 77,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.07792207792207792,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 96,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 468,
+              "exact": 451,
+              "coverage": 0.6038709677419355,
+              "confirmed_exact_match": 0.9636752136752137,
+              "unsupported": 149,
+              "unsupported_false_accepts": 5,
+              "unsupported_false_accept_rate": 0.03355704697986577,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 8,
+                "agent": 9,
+                "patient": 9,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 307,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 173,
+              "equal_confirmed_groups": 166
+            }
+          }
+        },
+        {
+          "epoch": 25,
+          "calibration": {
+            "ja": {
+              "coverage": 0.8073170731707318,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "threshold": 0.47,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.6348387096774194,
+              "precision": 0.9735772357723578,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 331,
+              "exact": 331,
+              "coverage": 0.8073170731707318,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 77,
+              "unsupported_false_accepts": 7,
+              "unsupported_false_accept_rate": 0.09090909090909091,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 79,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 492,
+              "exact": 479,
+              "coverage": 0.6348387096774194,
+              "confirmed_exact_match": 0.9735772357723578,
+              "unsupported": 149,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 6,
+                "agent": 7,
+                "patient": 7,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 283,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 194,
+              "equal_confirmed_groups": 187
+            }
+          }
+        },
+        {
+          "epoch": 30,
+          "calibration": {
+            "ja": {
+              "coverage": 0.8170731707317073,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "threshold": 0.41,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.6503225806451612,
+              "precision": 0.9761904761904762,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 335,
+              "exact": 335,
+              "coverage": 0.8170731707317073,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 77,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.07792207792207792,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 75,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 504,
+              "exact": 492,
+              "coverage": 0.6503225806451612,
+              "confirmed_exact_match": 0.9761904761904762,
+              "unsupported": 149,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 6,
+                "agent": 6,
+                "patient": 6,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 271,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 205,
+              "equal_confirmed_groups": 198
+            }
+          }
+        },
+        {
+          "epoch": 35,
+          "calibration": {
+            "ja": {
+              "coverage": 0.8317073170731707,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "threshold": 0.4,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.6709677419354839,
+              "precision": 0.9788461538461538,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 341,
+              "exact": 341,
+              "coverage": 0.8317073170731707,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 77,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.07792207792207792,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 69,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 520,
+              "exact": 509,
+              "coverage": 0.6709677419354839,
+              "confirmed_exact_match": 0.9788461538461538,
+              "unsupported": 149,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 1,
+                "time": 5,
+                "agent": 5,
+                "patient": 5,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 255,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 210,
+              "equal_confirmed_groups": 203
+            }
+          }
+        },
+        {
+          "epoch": 40,
+          "calibration": {
+            "ja": {
+              "coverage": 0.8390243902439024,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "threshold": 0.4,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.6916129032258065,
+              "precision": 0.9813432835820896,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 344,
+              "exact": 344,
+              "coverage": 0.8390243902439024,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 77,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.07792207792207792,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 66,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 536,
+              "exact": 526,
+              "coverage": 0.6916129032258065,
+              "confirmed_exact_match": 0.9813432835820896,
+              "unsupported": 149,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 1,
+                "time": 5,
+                "agent": 4,
+                "patient": 4,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 239,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 221,
+              "equal_confirmed_groups": 215
+            }
+          }
+        }
+      ]
+    },
+    "test": {
+      "metadata": {
+        "format": 2,
+        "architecture": "sequence-gru-attachment",
+        "dimension": 777,
+        "hidden": 96,
+        "representation": "characters-v2",
+        "labels": {
+          "span": [
+            "O",
+            "B-predicate",
+            "I-predicate",
+            "B-entity",
+            "I-entity",
+            "B-quantity",
+            "I-quantity",
+            "B-time",
+            "I-time",
+            "B-negation",
+            "I-negation"
+          ],
+          "concept": [
+            "none",
+            "aa",
+            "ab",
+            "ac",
+            "ad",
+            "ae",
+            "af",
+            "ag",
+            "ah",
+            "ai",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "role": [
+            "none",
+            "agent",
+            "patient",
+            "recipient",
+            "location"
+          ],
+          "polarity": [
+            "affirmed",
+            "negated",
+            "unspecified"
+          ],
+          "time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ],
+          "support": [
+            "unsupported",
+            "supported"
+          ],
+          "sentence_concept": [
+            "none",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "frame": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "explicit_time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ]
+        },
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "encoder": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "head_runtime": {
+          "torch": "2.12.0+cpu",
+          "seed": 71
+        },
+        "thresholds": {
+          "ja": 0.4,
+          "en": 0.0
+        },
+        "best_epoch": 40,
+        "epochs": 40,
+        "dataset_sha256": "c3293264da30516b482777ded4543394903524a231e8020886e27d55049a0a10",
+        "weights_sha256": "91f8dafb140b5bfcd906cf3ef4cfc6f4c64ab206de692c9072fd25b5014996c2",
+        "trainable_parameters": 374451,
+        "elapsed_seconds": 305.9091273000231,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used"
+      },
+      "split": "test",
+      "metrics": {
+        "ja": {
+          "in_scope": 756,
+          "confirmed": 525,
+          "exact": 524,
+          "coverage": 0.6944444444444444,
+          "confirmed_exact_match": 0.9980952380952381,
+          "unsupported": 109,
+          "unsupported_false_accepts": 2,
+          "unsupported_false_accept_rate": 0.01834862385321101,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 1,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 231,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 892,
+          "confirmed": 459,
+          "exact": 404,
+          "coverage": 0.5145739910313901,
+          "confirmed_exact_match": 0.8801742919389978,
+          "unsupported": 116,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 4,
+            "agent": 52,
+            "patient": 52,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 433,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 894,
+          "fully_confirmed_groups": 290,
+          "equal_confirmed_groups": 262
+        }
+      },
+      "raw_metrics": {
+        "ja": {
+          "in_scope": 756,
+          "confirmed": 525,
+          "exact": 524,
+          "coverage": 0.6944444444444444,
+          "confirmed_exact_match": 0.9980952380952381,
+          "unsupported": 109,
+          "unsupported_false_accepts": 2,
+          "unsupported_false_accept_rate": 0.01834862385321101,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 1,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 231,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 892,
+          "confirmed": 459,
+          "exact": 404,
+          "coverage": 0.5145739910313901,
+          "confirmed_exact_match": 0.8801742919389978,
+          "unsupported": 116,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 4,
+            "agent": 52,
+            "patient": 52,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 433,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 894,
+          "fully_confirmed_groups": 290,
+          "equal_confirmed_groups": 262
+        }
+      },
+      "rejection_reasons_in_scope": {
+        "ja": {
+          "inconsistent_structure: Invalid or duplicate entity role": 124,
+          "confirmed": 525,
+          "support_classifier": 94,
+          "inconsistent_structure: Quantity requires one nonnegative decimal literal per role": 13
+        },
+        "en": {
+          "confirmed": 459,
+          "support_classifier": 210,
+          "inconsistent_structure: Invalid or duplicate entity role": 190,
+          "inconsistent_structure: Multiple time scopes": 10,
+          "inconsistent_structure: Quantity requires one nonnegative decimal literal per role": 20,
+          "inconsistent_structure: Role presence and extracted entities disagree": 2,
+          "inconsistent_structure: Expected one predicate": 1
+        }
+      },
+      "unsupported_categories": {
+        "ja:unknown_concept": {
+          "total": 19,
+          "false_accepts": 2
+        },
+        "en:unknown_concept": {
+          "total": 21,
+          "false_accepts": 0
+        },
+        "ja:quantification": {
+          "total": 12,
+          "false_accepts": 0
+        },
+        "en:quantification": {
+          "total": 13,
+          "false_accepts": 0
+        },
+        "ja:nested_scope": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "en:nested_scope": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "ja:multiple_events": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "en:multiple_events": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "ja:modality": {
+          "total": 19,
+          "false_accepts": 0
+        },
+        "en:modality": {
+          "total": 21,
+          "false_accepts": 0
+        },
+        "ja:question": {
+          "total": 19,
+          "false_accepts": 0
+        },
+        "en:question": {
+          "total": 21,
+          "false_accepts": 0
+        }
+      },
+      "repeat_exact": true,
+      "repeat_probe_count": 16,
+      "selection": "thresholds and checkpoint fixed on development data; no evaluation-time calibration"
+    }
+  },
+  "minilm": {
+    "development": {
+      "metadata": {
+        "format": 2,
+        "architecture": "sequence-gru-attachment",
+        "dimension": 393,
+        "hidden": 96,
+        "representation": "characters-v2",
+        "labels": {
+          "span": [
+            "O",
+            "B-predicate",
+            "I-predicate",
+            "B-entity",
+            "I-entity",
+            "B-quantity",
+            "I-quantity",
+            "B-time",
+            "I-time",
+            "B-negation",
+            "I-negation"
+          ],
+          "concept": [
+            "none",
+            "aa",
+            "ab",
+            "ac",
+            "ad",
+            "ae",
+            "af",
+            "ag",
+            "ah",
+            "ai",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "role": [
+            "none",
+            "agent",
+            "patient",
+            "recipient",
+            "location"
+          ],
+          "polarity": [
+            "affirmed",
+            "negated",
+            "unspecified"
+          ],
+          "time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ],
+          "support": [
+            "unsupported",
+            "supported"
+          ],
+          "sentence_concept": [
+            "none",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "frame": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "explicit_time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ]
+        },
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "encoder": {
+          "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+          "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+          "max_length": 128,
+          "key": "minilm",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "head_runtime": {
+          "torch": "2.12.0+cpu",
+          "seed": 71
+        },
+        "thresholds": {
+          "ja": 0.0,
+          "en": 0.0
+        },
+        "best_epoch": 15,
+        "epochs": 30,
+        "dataset_sha256": "c3293264da30516b482777ded4543394903524a231e8020886e27d55049a0a10",
+        "weights_sha256": "50355ad58089f4a9c29a4bc1a2a767fcabf0e14ca55c1c14ad2ba4b49262467b",
+        "trainable_parameters": 308403,
+        "elapsed_seconds": 196.90473319997545,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used"
+      },
+      "metrics": {
+        "ja": {
+          "in_scope": 410,
+          "confirmed": 118,
+          "exact": 118,
+          "coverage": 0.28780487804878047,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 77,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 292,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 775,
+          "confirmed": 710,
+          "exact": 677,
+          "coverage": 0.9161290322580645,
+          "confirmed_exact_match": 0.9535211267605633,
+          "unsupported": 149,
+          "unsupported_false_accepts": 5,
+          "unsupported_false_accept_rate": 0.03355704697986577,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 8,
+            "patient": 25,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 65,
+          "passes_provisional_gate": true
+        },
+        "equivalence": {
+          "groups": 783,
+          "fully_confirmed_groups": 101,
+          "equal_confirmed_groups": 92
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "calibration": {
+            "ja": {
+              "coverage": 0.01707317073170732,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.0,
+              "threshold": 0.65,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.36258064516129035,
+              "precision": 0.99644128113879,
+              "unsupported_false_accept_rate": 0.04697986577181208,
+              "threshold": 0.54,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 84,
+              "exact": 54,
+              "coverage": 0.2048780487804878,
+              "confirmed_exact_match": 0.6428571428571429,
+              "unsupported": 77,
+              "unsupported_false_accepts": 3,
+              "unsupported_false_accept_rate": 0.03896103896103896,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 24,
+                "patient": 25,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 326,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 429,
+              "exact": 416,
+              "coverage": 0.5535483870967742,
+              "confirmed_exact_match": 0.9696969696969697,
+              "unsupported": 149,
+              "unsupported_false_accepts": 13,
+              "unsupported_false_accept_rate": 0.087248322147651,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 4,
+                "agent": 9,
+                "patient": 9,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 346,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 54,
+              "equal_confirmed_groups": 36
+            }
+          }
+        },
+        {
+          "epoch": 5,
+          "calibration": {
+            "ja": {
+              "coverage": 0.25121951219512195,
+              "precision": 0.9611650485436893,
+              "unsupported_false_accept_rate": 0.0,
+              "threshold": 0.54,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.8696774193548387,
+              "precision": 0.9910979228486647,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 115,
+              "exact": 108,
+              "coverage": 0.2804878048780488,
+              "confirmed_exact_match": 0.9391304347826087,
+              "unsupported": 77,
+              "unsupported_false_accepts": 0,
+              "unsupported_false_accept_rate": 0.0,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 5,
+                "patient": 7,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 295,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 674,
+              "exact": 668,
+              "coverage": 0.8696774193548387,
+              "confirmed_exact_match": 0.9910979228486647,
+              "unsupported": 149,
+              "unsupported_false_accepts": 6,
+              "unsupported_false_accept_rate": 0.040268456375838924,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 6,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 101,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 100,
+              "equal_confirmed_groups": 95
+            }
+          }
+        },
+        {
+          "epoch": 10,
+          "calibration": {
+            "ja": {
+              "coverage": 0.28536585365853656,
+              "precision": 0.9914529914529915,
+              "unsupported_false_accept_rate": 0.0,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.8993548387096775,
+              "precision": 0.975609756097561,
+              "unsupported_false_accept_rate": 0.026845637583892617,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 117,
+              "exact": 116,
+              "coverage": 0.28536585365853656,
+              "confirmed_exact_match": 0.9914529914529915,
+              "unsupported": 77,
+              "unsupported_false_accepts": 0,
+              "unsupported_false_accept_rate": 0.0,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 1,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 293,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 697,
+              "exact": 680,
+              "coverage": 0.8993548387096775,
+              "confirmed_exact_match": 0.975609756097561,
+              "unsupported": 149,
+              "unsupported_false_accepts": 4,
+              "unsupported_false_accept_rate": 0.026845637583892617,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 5,
+                "patient": 12,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 78,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 101,
+              "equal_confirmed_groups": 96
+            }
+          }
+        },
+        {
+          "epoch": 15,
+          "calibration": {
+            "ja": {
+              "coverage": 0.28780487804878047,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.0,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.9161290322580645,
+              "precision": 0.9535211267605633,
+              "unsupported_false_accept_rate": 0.03355704697986577,
+              "threshold": 0.0,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 118,
+              "exact": 118,
+              "coverage": 0.28780487804878047,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 77,
+              "unsupported_false_accepts": 0,
+              "unsupported_false_accept_rate": 0.0,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 292,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 710,
+              "exact": 677,
+              "coverage": 0.9161290322580645,
+              "confirmed_exact_match": 0.9535211267605633,
+              "unsupported": 149,
+              "unsupported_false_accepts": 5,
+              "unsupported_false_accept_rate": 0.03355704697986577,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 8,
+                "patient": 25,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 65,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 101,
+              "equal_confirmed_groups": 92
+            }
+          }
+        },
+        {
+          "epoch": 20,
+          "calibration": {
+            "ja": {
+              "coverage": 0.3097560975609756,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.0,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.807741935483871,
+              "precision": 0.950479233226837,
+              "unsupported_false_accept_rate": 0.006711409395973154,
+              "threshold": 0.84,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 127,
+              "exact": 127,
+              "coverage": 0.3097560975609756,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 77,
+              "unsupported_false_accepts": 0,
+              "unsupported_false_accept_rate": 0.0,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 283,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 716,
+              "exact": 679,
+              "coverage": 0.9238709677419354,
+              "confirmed_exact_match": 0.9483240223463687,
+              "unsupported": 149,
+              "unsupported_false_accepts": 5,
+              "unsupported_false_accept_rate": 0.03355704697986577,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 12,
+                "patient": 25,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 59,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 109,
+              "equal_confirmed_groups": 99
+            }
+          }
+        },
+        {
+          "epoch": 25,
+          "calibration": {
+            "ja": {
+              "coverage": 0.3146341463414634,
+              "precision": 0.9844961240310077,
+              "unsupported_false_accept_rate": 0.0,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.8,
+              "precision": 0.95,
+              "unsupported_false_accept_rate": 0.006711409395973154,
+              "threshold": 0.87,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 129,
+              "exact": 127,
+              "coverage": 0.3146341463414634,
+              "confirmed_exact_match": 0.9844961240310077,
+              "unsupported": 77,
+              "unsupported_false_accepts": 0,
+              "unsupported_false_accept_rate": 0.0,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 2,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 281,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 717,
+              "exact": 680,
+              "coverage": 0.9251612903225807,
+              "confirmed_exact_match": 0.9483960948396095,
+              "unsupported": 149,
+              "unsupported_false_accepts": 5,
+              "unsupported_false_accept_rate": 0.03355704697986577,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 12,
+                "patient": 25,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 58,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 112,
+              "equal_confirmed_groups": 103
+            }
+          }
+        },
+        {
+          "epoch": 30,
+          "calibration": {
+            "ja": {
+              "coverage": 0.3170731707317073,
+              "precision": 0.9846153846153847,
+              "unsupported_false_accept_rate": 0.0,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.7367741935483871,
+              "precision": 0.9544658493870403,
+              "unsupported_false_accept_rate": 0.006711409395973154,
+              "threshold": 0.91,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 130,
+              "exact": 128,
+              "coverage": 0.3170731707317073,
+              "confirmed_exact_match": 0.9846153846153847,
+              "unsupported": 77,
+              "unsupported_false_accepts": 0,
+              "unsupported_false_accept_rate": 0.0,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 2,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 280,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 718,
+              "exact": 681,
+              "coverage": 0.9264516129032258,
+              "confirmed_exact_match": 0.9484679665738162,
+              "unsupported": 149,
+              "unsupported_false_accepts": 5,
+              "unsupported_false_accept_rate": 0.03355704697986577,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 12,
+                "patient": 25,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 57,
+              "passes_provisional_gate": false
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 114,
+              "equal_confirmed_groups": 105
+            }
+          }
+        }
+      ]
+    },
+    "test": {
+      "metadata": {
+        "format": 2,
+        "architecture": "sequence-gru-attachment",
+        "dimension": 393,
+        "hidden": 96,
+        "representation": "characters-v2",
+        "labels": {
+          "span": [
+            "O",
+            "B-predicate",
+            "I-predicate",
+            "B-entity",
+            "I-entity",
+            "B-quantity",
+            "I-quantity",
+            "B-time",
+            "I-time",
+            "B-negation",
+            "I-negation"
+          ],
+          "concept": [
+            "none",
+            "aa",
+            "ab",
+            "ac",
+            "ad",
+            "ae",
+            "af",
+            "ag",
+            "ah",
+            "ai",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "role": [
+            "none",
+            "agent",
+            "patient",
+            "recipient",
+            "location"
+          ],
+          "polarity": [
+            "affirmed",
+            "negated",
+            "unspecified"
+          ],
+          "time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ],
+          "support": [
+            "unsupported",
+            "supported"
+          ],
+          "sentence_concept": [
+            "none",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "frame": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "explicit_time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ]
+        },
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "encoder": {
+          "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+          "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+          "max_length": 128,
+          "key": "minilm",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "head_runtime": {
+          "torch": "2.12.0+cpu",
+          "seed": 71
+        },
+        "thresholds": {
+          "ja": 0.0,
+          "en": 0.0
+        },
+        "best_epoch": 15,
+        "epochs": 30,
+        "dataset_sha256": "c3293264da30516b482777ded4543394903524a231e8020886e27d55049a0a10",
+        "weights_sha256": "50355ad58089f4a9c29a4bc1a2a767fcabf0e14ca55c1c14ad2ba4b49262467b",
+        "trainable_parameters": 308403,
+        "elapsed_seconds": 196.90473319997545,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used"
+      },
+      "split": "test",
+      "metrics": {
+        "ja": {
+          "in_scope": 756,
+          "confirmed": 486,
+          "exact": 428,
+          "coverage": 0.6428571428571429,
+          "confirmed_exact_match": 0.8806584362139918,
+          "unsupported": 109,
+          "unsupported_false_accepts": 4,
+          "unsupported_false_accept_rate": 0.03669724770642202,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 44,
+            "patient": 55,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 270,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 892,
+          "confirmed": 607,
+          "exact": 549,
+          "coverage": 0.6804932735426009,
+          "confirmed_exact_match": 0.9044481054365733,
+          "unsupported": 116,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 1,
+            "agent": 58,
+            "patient": 58,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 285,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 894,
+          "fully_confirmed_groups": 387,
+          "equal_confirmed_groups": 345
+        }
+      },
+      "raw_metrics": {
+        "ja": {
+          "in_scope": 756,
+          "confirmed": 486,
+          "exact": 428,
+          "coverage": 0.6428571428571429,
+          "confirmed_exact_match": 0.8806584362139918,
+          "unsupported": 109,
+          "unsupported_false_accepts": 4,
+          "unsupported_false_accept_rate": 0.03669724770642202,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 44,
+            "patient": 55,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 270,
+          "passes_provisional_gate": false
+        },
+        "en": {
+          "in_scope": 892,
+          "confirmed": 607,
+          "exact": 549,
+          "coverage": 0.6804932735426009,
+          "confirmed_exact_match": 0.9044481054365733,
+          "unsupported": 116,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 1,
+            "agent": 58,
+            "patient": 58,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 285,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 894,
+          "fully_confirmed_groups": 387,
+          "equal_confirmed_groups": 345
+        }
+      },
+      "rejection_reasons_in_scope": {
+        "ja": {
+          "confirmed": 486,
+          "inconsistent_structure: Invalid or duplicate entity role": 248,
+          "support_classifier": 4,
+          "inconsistent_structure: Quantity requires one nonnegative decimal literal per role": 18
+        },
+        "en": {
+          "confirmed": 607,
+          "inconsistent_structure: Invalid or duplicate entity role": 222,
+          "inconsistent_structure: Quantity requires one nonnegative decimal literal per role": 25,
+          "support_classifier": 33,
+          "inconsistent_structure: Role presence and extracted entities disagree": 5
+        }
+      },
+      "unsupported_categories": {
+        "ja:unknown_concept": {
+          "total": 19,
+          "false_accepts": 1
+        },
+        "en:unknown_concept": {
+          "total": 21,
+          "false_accepts": 0
+        },
+        "ja:quantification": {
+          "total": 12,
+          "false_accepts": 0
+        },
+        "en:quantification": {
+          "total": 13,
+          "false_accepts": 0
+        },
+        "ja:nested_scope": {
+          "total": 20,
+          "false_accepts": 3
+        },
+        "en:nested_scope": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "ja:multiple_events": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "en:multiple_events": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "ja:modality": {
+          "total": 19,
+          "false_accepts": 0
+        },
+        "en:modality": {
+          "total": 21,
+          "false_accepts": 0
+        },
+        "ja:question": {
+          "total": 19,
+          "false_accepts": 0
+        },
+        "en:question": {
+          "total": 21,
+          "false_accepts": 0
+        }
+      },
+      "repeat_exact": true,
+      "repeat_probe_count": 16,
+      "selection": "thresholds and checkpoint fixed on development data; no evaluation-time calibration"
+    }
+  }
+}
