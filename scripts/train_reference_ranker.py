@@ -121,6 +121,7 @@ def main():
     parser.add_argument("--report", type=Path, default=REPORT)
     args = parser.parse_args()
     require(not (args.report / "selection.json").exists(), "Reference ranker selection already exists")
+    deterministic()
     train, train_counts, manifest = load_split("train", args.root, args.report)
     dev, dev_counts, _ = load_split("dev", args.root, args.report)
     dimension = next(r["features"]["nodes"].shape[1] // 2 for r in train if r["features"] is not None)
