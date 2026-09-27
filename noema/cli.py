@@ -38,7 +38,7 @@ def main(argv=None):
         source.add_argument("--input", "-i")
         p.add_argument("--output", "-o")
         if name == "format":
-            p.add_argument("--edition", choices=("0.1", "0.2"), help="Explicit lossless conversion to another edition")
+            p.add_argument("--edition", choices=("0.1", "0.2", "0.3"), help="Explicit lossless conversion to another edition")
         if name == "render":
             p.add_argument("--columns", type=int, default=34)
         if name == "analyze":
@@ -48,6 +48,8 @@ def main(argv=None):
             p.add_argument("--offline", action="store_true")
     p = commands.add_parser("alphabet")
     p.add_argument("--output", "-o")
+    p = commands.add_parser("edit", help="Open the local writing desk server")
+    p.add_argument("--port", type=int, default=8765)
     p = commands.add_parser("script", help="Encode/decode the original alphabet's private-use characters")
     source = p.add_mutually_exclusive_group()
     source.add_argument("--text")
@@ -55,6 +57,7 @@ def main(argv=None):
     p.add_argument("--output", "-o")
     p.add_argument("--decode", action="store_true")
     p = commands.add_parser("dataset")
+    p.add_argument("--edition", choices=("0.1", "0.2"), default="0.1")
     p.add_argument("--output", "-o", default="data/evaluation.jsonl")
     p.add_argument("--check", action="store_true")
     p = commands.add_parser("features")
@@ -80,13 +83,16 @@ def main(argv=None):
         elif args.command == "format":
             graph = json.loads(read_input(args))
             if args.edition and graph.get("schema_version") != args.edition:
-                from .language import from_graph, to_graph
-                graph = from_graph(graph) if args.edition == "0.2" else to_graph(graph)
+                from .language import convert
+                graph = convert(graph, args.edition)
             emit(format_graph(graph), args.output)
         elif args.command == "render":
             emit(render(read_input(args), args.columns), args.output)
         elif args.command == "alphabet":
             emit(alphabet_svg(), args.output)
+        elif args.command == "edit":
+            from .editor import serve
+            serve(args.port)
         elif args.command == "script":
             from .script import encode, decode
             emit(decode(read_input(args)) if args.decode else encode(read_input(args)), args.output)
@@ -95,8 +101,16 @@ def main(argv=None):
             emit(Analyzer(args.checkpoint, args.device, args.offline).analyze(read_input(args), args.language), args.output)
         elif args.command == "dataset":
             from .dataset import load_dataset, validate_dataset, write_dataset
-            rows = load_dataset(args.output) if args.check else write_dataset(args.output)
-            emit(validate_dataset(rows))
+            if not args.check and args.edition == "0.2":
+                from .corpus_v2 import write
+                emit(write(args.output))
+            else:
+                rows = load_dataset(args.output) if args.check else write_dataset(args.output)
+                if rows and rows[0].get("corpus_version") == "0.2":
+                    from .corpus_v2 import validate
+                    emit(validate(rows))
+                else:
+                    emit(validate_dataset(rows))
         elif args.command == "features":
             from .training import cache_features
             if args.batch_size < 1:

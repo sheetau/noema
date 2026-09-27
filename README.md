@@ -2,9 +2,9 @@
 
 Noemaの初期実装。人が読み書きする形式言語と、凍結した多言語エンコーダーから意味を抽出する実験系を分離している。生成モデル、指示プロンプト、自然言語への逆翻訳、VQは使わない。
 
-言語として使える段階に向けて開発を継続している。[開発目標](docs/development-goal.md) に必須条件を記載した。人が直接書く短い記法と複数文・参照・質問・条件の扱いは、開発中の [0.2記述体系](docs/writing-v02.md) を参照。以下の0.1形式も引き続き利用できる。
+言語として使える段階に向けて開発を継続している。[開発目標](docs/development-goal.md) に必須条件を記載した。現在の文語 [0.3の入門](docs/writing-v03.md) は91概念と8種類の役割、複数文の参照、質問・依頼・条件・否定の作用範囲を扱う。[語彙参照](docs/lexicon-v03.md)、[練習と解答](docs/lessons.md)、[対訳読本](docs/readings.md) を用意した。0.1と0.2の文章も引き続き読める。
 
-`parse`・`format`・`render` はモデルなしで動作する。自然言語の `analyze` は学習済みの小型分類器を必要とし、低確信度や構造不整合を返す。**現時点の分類器は採用基準を満たしていない。** 実測値と制約は [実験報告](docs/experiments.md) を参照。
+`parse`・`format`・`render`・`edit` はモデルなしで動作する。自然言語の `analyze` は学習済みの小型分類器を必要とし、低確信度や構造不整合を返す。**最終評価では採用基準を満たしていない。** 最新の [関係分類器の実験報告](docs/structured-experiments.md) と、旧 [線形・MLPの実験報告](docs/experiments.md) を参照。
 
 ## 実行
 
@@ -12,6 +12,14 @@ Python 3.11以上。リポジトリのルートで実行する。
 
 ```powershell
 python -m pip install -e ".[test]"
+python -m noema edit
+```
+
+ブラウザーで `http://127.0.0.1:8765` を開くと、文法検査、固有文字への切替、語彙検索、文章・意味JSON・SVGの保存ができる。終了はターミナルでCtrl+C。CLIで扱う場合は次を使う。
+
+```powershell
+python -m noema parse --input examples/school.noema
+python -m noema render --input examples/school.noema --output artifacts/school.svg
 python -m noema parse --input examples/chase.noema
 python -m noema format --input examples/chase.json
 python -m noema render --input examples/chase.noema --output artifacts/chase.svg
@@ -21,7 +29,14 @@ python -m pytest -q
 
 入力は `--text`、UTF-8ファイルの `--input`、標準入力のいずれかで渡す。`--output` を省略すると標準出力に書く。正常終了は0、文法違反・入出力エラーなどは2。`analyze` の未確定・未対応は正常な解析状態なので終了コード0となる。
 
-「犬が猫を追う」のNoema表記は次のとおり。`aa` は犬、`ab` は猫、`ba` は追う出来事を表す。
+「犬が猫を追う」は現在の文語では次のように書く。`ih` が追う、`mu` が犬、`si` が猫、`i` が主体、`j` が対象である。
+
+```text
+noema c c
+ih i mu j si.
+```
+
+同じ意味の旧0.1形式も保存している。`aa` は犬、`ab` は猫、`ba` は追う出来事の概念IDを表す。
 
 ```text
 noema a a {
@@ -39,9 +54,11 @@ noema a a {
 
 ![32文字の一覧](examples/alphabet.svg)
 
-[0.2の文章のSVG表示](examples/discourse.svg) と [固有アルファベット・フォント](docs/alphabet.md) を追加した。0.1の文章表示は旧字形を保持する。新字形の32文字の描画とフォントの生成は検査済みで、読みやすさの利用者評価は未実施。発音体系は文語を優先する今回の対象に含めない。
+[学校での本のSVG表示](examples/school.svg) と [固有アルファベット・フォント](docs/alphabet.md) を参照。0.1の文章表示は旧字形を保持する。新字形の32文字の描画とフォントの生成は検査済みで、読みやすさの利用者評価は未実施。発音体系は文語を優先する今回の対象に含めない。
 
 ## 自然言語の解析と実験
+
+最新の関係分類器の実行方法と検証範囲は [新しい実験報告](docs/structured-experiments.md) に記載した。以下は比較のために保持した旧ベースラインの実行方法である。
 
 ```powershell
 python -m pip install -e ".[ml,test]"

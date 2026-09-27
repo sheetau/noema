@@ -12,6 +12,7 @@ from .grammar import number_word, read_number
 from .semantics import CONCEPTS, ROLES, TIMES, SemanticError, keys, require, time_value
 
 EDITION = json.loads(files("noema").joinpath("resources/language-v02.json").read_text(encoding="utf-8"))
+EXTENSION = json.loads(files("noema").joinpath("resources/language-v03.json").read_text(encoding="utf-8"))
 ROOTS = EDITION["roots"]
 CONCEPT_BY_WORD = {word: concept for concept, word in ROOTS.items()}
 ROLE_WORDS = dict(zip("ijkl", ROLES))
@@ -19,6 +20,16 @@ TIME_WORDS = dict(zip("efgrst", ("past", "present", "future", "yesterday", "toda
 CONNECTIVES = {"w": "and", "x": "or", "y": "if"}
 TOKEN = re.compile(r'\s*("(?:[^"\\\x00-\x1f]|\\["\\/bfnrt]|\\u[0-9a-fA-F]{4})*"|[a-z2-7]+|[\[\].?])')
 MAX_DEPTH = 64
+
+
+def policy(version):
+    require(version in ("0.2", "0.3"), "Unsupported written language version")
+    if version == "0.2":
+        return ROOTS, CONCEPTS, ROLE_WORDS, ROLES
+    roots = {**ROOTS, **EXTENSION["roots"]}
+    concepts = {**{k: {**v, "ja": EXTENSION["inherited_ja"][k]} for k, v in CONCEPTS.items()}, **EXTENSION["concepts"]}
+    markers = {**ROLE_WORDS, **EXTENSION["role_markers"]}
+    return roots, concepts, markers, tuple(markers.values())
 
 
 def tokenize(text):
@@ -49,7 +60,9 @@ def _time(t):
 def normalize_document(document):
     """Keep speech acts, connective order, explicit negation and identity intact."""
     keys(document, ("schema_version", "lexicon_version", "entities", "utterances"))
-    require(document["schema_version"] == document["lexicon_version"] == "0.2", "Unsupported document or lexicon version")
+    version = document["schema_version"]
+    require(version == document["lexicon_version"], "Document and lexicon editions must match")
+    ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(version)
     require(isinstance(document["entities"], list) and isinstance(document["utterances"], list), "Expected entity and utterance arrays")
     require(bool(document["utterances"]), "A document requires at least one utterance")
     entities = {}
@@ -97,7 +110,8 @@ def normalize_document(document):
                     output["roles"][role] = {"query": True}
                 else:
                     require(isinstance(target, str) and target in entities, "Dangling entity reference")
-                    require((entities[target]["kind"] == "place") == (role == "location"), "Location requires a place; other roles require entities")
+                    allowed = CONCEPTS[predicate].get("role_types", {}).get(role, ["place"] if role in ("location", "source", "destination") else ["entity"])
+                    require(entities[target]["kind"] in allowed, f"Entity type is incompatible with {role}")
                     if target not in mapping:
                         mapping[target] = "n" + number_word(len(mapping))
                         ordered.append({**entities[target], "id": mapping[target]})
@@ -117,7 +131,7 @@ def normalize_document(document):
         require(act in ("assertion", "question", "request"), "Unknown speech act")
         utterances.append({"speech_act": act, "content": visit(utterance["content"], act)})
     require(set(mapping) == set(entities), "Unreferenced entity")
-    return {"schema_version": "0.2", "lexicon_version": "0.2", "entities": ordered, "utterances": utterances}
+    return {"schema_version": version, "lexicon_version": version, "entities": ordered, "utterances": utterances}
 
 
 def parse_document(text):
@@ -215,8 +229,12 @@ def parse_document(text):
         return {"kind": "clause", "predicate": predicate, "polarity": polarity, "time": time, "roles": roles}
 
     take("noema")
-    take("b")
-    take("b")
+    edition = take()
+    require(edition in ("b", "c"), "Unsupported written language edition")
+    take(edition)
+    version = {"b": "0.2", "c": "0.3"}[edition]
+    ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(version)
+    CONCEPT_BY_WORD = {word: concept for concept, word in ROOTS.items()}
     utterances = []
     while peek() is not None:
         act = {"b": "question", "d": "request"}.get(peek(), "assertion")
@@ -224,11 +242,12 @@ def parse_document(text):
             take()
         utterances.append({"speech_act": act, "content": expression()})
         take(".")
-    return normalize_document({"schema_version": "0.2", "lexicon_version": "0.2", "entities": entities, "utterances": utterances})
+    return normalize_document({"schema_version": version, "lexicon_version": version, "entities": entities, "utterances": utterances})
 
 
 def format_document(document):
     document = normalize_document(document)
+    ROOTS, CONCEPTS, ROLE_WORDS, ROLES = policy(document["schema_version"])
     entities = {e["id"]: e for e in document["entities"]}
     seen, counts = set(), {}
 
@@ -286,7 +305,8 @@ def format_document(document):
                 words += [marker, term(value)]
         return " ".join(words)
 
-    lines = ["noema b b"]
+    marker = {"0.2": "b", "0.3": "c"}[document["schema_version"]]
+    lines = [f"noema {marker} {marker}"]
     for utterance in document["utterances"]:
         mood = {"assertion": "", "question": "b ", "request": "d "}[utterance["speech_act"]]
         lines.append(mood + expression(utterance["content"]) + ".")
@@ -318,7 +338,37 @@ def to_graph(document):
         content = content["body"]
     require(content["kind"] == "clause", "0.1 cannot represent connective or nested negation scope")
     require(not negated or content["polarity"] == "affirmed", "0.1 cannot negate unspecified polarity")
+    require(content["predicate"] in CONCEPTS and all(e["concept"] in CONCEPTS for e in doc["entities"]), "Concepts are not in the 0.1 lexicon")
+    require(all(target is None for role, target in content["roles"].items() if role not in ROLES), "0.1 cannot represent extended roles")
     event = {"id": "e", "kind": CONCEPTS[content["predicate"]]["kind"], "concept": content["predicate"],
              "polarity": "negated" if negated else content["polarity"], "time": content["time"]}
     return normalize({"schema_version": "0.1", "lexicon_version": "0.1", "nodes": [event] + doc["entities"],
-                      "relations": [{"source": "e", "role": role, "target": target} for role, target in content["roles"].items()]})
+                      "relations": [{"source": "e", "role": role, "target": target} for role, target in content["roles"].items() if role in ROLES]})
+
+
+def convert(document, version):
+    """Explicit edition conversion; reject any meaning absent from the target."""
+    from .semantics import normalize
+    source = normalize(document)
+    if source["schema_version"] == version:
+        return source
+    if source["schema_version"] == "0.1":
+        source = from_graph(source)
+    if version == "0.1":
+        return to_graph(source)
+    _, _, _, roles = policy(version)
+
+    def visit(expr):
+        if expr["kind"] == "clause":
+            require(all(value is None for role, value in expr["roles"].items() if role not in roles), "Target edition cannot represent extended roles")
+            expr["roles"] = {r: v for r, v in expr["roles"].items() if r in roles}
+        elif expr["kind"] == "not":
+            visit(expr["body"])
+        else:
+            visit(expr["left"])
+            visit(expr["right"])
+
+    for utterance in source["utterances"]:
+        visit(utterance["content"])
+    source["schema_version"] = source["lexicon_version"] = version
+    return normalize_document(source)
