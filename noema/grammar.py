@@ -56,7 +56,7 @@ def parse(text):
     if notation_of(text) == "compact":
         from .language import parse_document
         return parse_document(text, compact=True)
-    if isinstance(text, str) and re.match(r"\s*noema\s+([bcdef])\s+\1(?:\s|$)", text):
+    if isinstance(text, str) and re.match(r"\s*noema\s+([bcdefg])\s+\1(?:\s|$)", text):
         from .language import parse_document
         return parse_document(text)
     stream = tokens(text)
@@ -104,7 +104,7 @@ def parse(text):
 
 def format_graph(graph, notation="full"):
     require(notation in ("full", "compact"), "Unknown written notation")
-    if isinstance(graph, dict) and graph.get("schema_version") in ("0.2", "0.3", "0.4", "0.5", "0.6"):
+    if isinstance(graph, dict) and graph.get("schema_version") in ("0.2", "0.3", "0.4", "0.5", "0.6", "0.7"):
         from .language import format_document
         return format_document(graph, compact=notation == "compact")
     require(notation == "full", "Compact notation requires written edition 0.2 or later; convert explicitly")

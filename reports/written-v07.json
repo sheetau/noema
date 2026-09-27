@@ -1,0 +1,104 @@
+{
+  "scope": "written_collective_and_distribution_not_natural_language_translation",
+  "samples": [
+    {
+      "name": "collective",
+      "full": "noema g g\nw-w i [ no i w [ mu ] [ si ] j fo ].",
+      "compact": "g:w-w i[no w[mu][si] fo].",
+      "full_characters": 46,
+      "compact_characters": 25,
+      "roundtrip_equal": true,
+      "http_inspection_equal": true
+    },
+    {
+      "name": "each",
+      "full": "noema g g\nw-p va [ w [ mu ] [ si ] ] [ po i p va ].",
+      "compact": "g:w-p va[w[mu][si]][po p va].",
+      "full_characters": 51,
+      "compact_characters": 29,
+      "roundtrip_equal": true,
+      "http_inspection_equal": true
+    },
+    {
+      "name": "each_not",
+      "full": "noema g g\nw-p va [ w [ mu ] [ si ] ] [ u [ po i p va ] ].",
+      "compact": "g:w-p va[w[mu][si]][u[po p va]].",
+      "full_characters": 57,
+      "compact_characters": 32,
+      "roundtrip_equal": true,
+      "http_inspection_equal": true
+    },
+    {
+      "name": "not_each",
+      "full": "noema g g\nu [ w-p va [ w [ mu ] [ si ] ] [ po i p va ] ].",
+      "compact": "g:u[w-p va[w[mu][si]][po p va]].",
+      "full_characters": 57,
+      "compact_characters": 32,
+      "roundtrip_equal": true,
+      "http_inspection_equal": true
+    },
+    {
+      "name": "reuse",
+      "full": "noema g g\nw-p va [ w [ mu ] [ si ] o na ] [ po i p va ].\nw-w i [ no i p na j fo ].",
+      "compact": "g:w-p va[w[mu][si] o a][po p va].\nw-w i[no p a fo].",
+      "full_characters": 82,
+      "compact_characters": 51,
+      "roundtrip_equal": true,
+      "http_inspection_equal": true
+    },
+    {
+      "name": "nested",
+      "full": "noema g g\nw-p va [ w [ w [ mu ] [ si ] ] [ w [ fo ] [ mu ] ] ] [ w-p vb [ p va ] [ no i p vb j p va ] ].",
+      "compact": "g:w-p va[w[w[mu][si]][w[fo][mu]]][w-p vb[p va][no p vb p va]].",
+      "full_characters": 104,
+      "compact_characters": 62,
+      "roundtrip_equal": true,
+      "http_inspection_equal": true
+    },
+    {
+      "name": "derived",
+      "full": "noema g g\nd w-p va [ w [ maj-sai ] [ maj-saj ] ] [ t 6-sam i qo n \"葵\" j p va ].",
+      "compact": "g:d w-p va[w[maj-sai][maj-saj]][t 6-sam qo n\"葵\" p va].",
+      "full_characters": 79,
+      "compact_characters": 54,
+      "roundtrip_equal": true,
+      "http_inspection_equal": true
+    },
+    {
+      "name": "question",
+      "full": "noema g g\nb w-p va [ w [ mu m c ] [ si ] ] [ no i p va j c ].",
+      "compact": "g:b w-p va[w[mu m c][si]][no p va c].",
+      "full_characters": 61,
+      "compact_characters": 37,
+      "roundtrip_equal": true,
+      "http_inspection_equal": true
+    }
+  ],
+  "all_counts_include_headers_and_whitespace": true,
+  "http_inspection_forms_checked": 24,
+  "http_scope_escape_rejected": true,
+  "http_legacy_reverse_application_rejected": 4,
+  "english_regression_baseline_commit": "27b21cf",
+  "english_regressions": [
+    {
+      "input": "The dog chases the cat.",
+      "status": "confirmed",
+      "baseline_equal": true
+    },
+    {
+      "input": "A dog chases a cat.",
+      "status": "unresolved",
+      "baseline_equal": true
+    }
+  ],
+  "source_sha256": {
+    "noema/language.py": "f5172e0628635240246251db45ac1b52b174cf410a854b12c9e182b9de534e52",
+    "noema/grammar.py": "d172deb34a3a9c6630989e1432a7c010fbbdf131e69039f080cf92b4b5dcf0f0",
+    "noema/semantics.py": "ebd3cca438e209a2067176ec5b99d3ec3b15c5592f32cde481295d2db186c5d2",
+    "noema/derivation.py": "b33dd01dbbffcaf522efea5e57f0279d9ccd39a6cd9f76b7621d79dc5e464c8e",
+    "noema/render.py": "ea79b63a424e5b4a28f67cdaec20076943cd943406807ca13850d8ab02743e5e",
+    "noema/cli.py": "52f36ff09615317cf33cb72c9f8602f3b436ee46cdda680bcc0d2098d1669caf",
+    "noema/resources/editor.html": "d531132270df221fc4689bfadcca0130236c084b4ed94bbfd4b72efaa4d65d76",
+    "scripts/verify_written_v07.py": "6a29df78f6e39951474fe73c2533772028aacaa64317dd7290ba5fdacde2198f"
+  }
+}

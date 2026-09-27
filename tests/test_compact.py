@@ -52,7 +52,7 @@ def test_omission_explicit_roles_and_placeholders_never_shift_roles():
     for text in ("e:ih j si mu.", "e:ih mu si mu.", "e:ih mu i si.", "e:po mu si.",
                  "e:ih mu si k fo.", "e:ih mu si l mu.", "e:po p a.", "e:po mu o a. po si o a.",
                  "e:ih c si.", "e:5-6-sam maj.", "e:po mu-5-sai.", "d:5-sam maj.",
-                 "b:po maa.", "a:po mu.", "g:po mu.", "e:ih mu si. garbage", "e :ih mu si."):
+                 "b:po maa.", "a:po mu.", "h:po mu.", "e:ih mu si. garbage", "e :ih mu si."):
         with pytest.raises(SemanticError):
             parse(text)
     with pytest.raises(SemanticError):
@@ -78,8 +78,8 @@ def test_document_examples_roundtrip_in_both_notations():
     roots = [Path("examples"), Path("docs")]
     documents = [p.read_text(encoding="utf-8") for p in roots[0].glob("*.noema")]
     for path in roots[1].glob("*.md"):
-        documents.extend(re.findall(r"```(?:noema|text)\s*\n(noema\s+[bcdef]\s+[bcdef]\b[\s\S]*?)\n```", path.read_text(encoding="utf-8")))
-        documents.extend(re.findall(r"```(?:noema|text)\s*\n([bcdef]:[\s\S]*?)\n```", path.read_text(encoding="utf-8")))
+        documents.extend(re.findall(r"```(?:noema|text)\s*\n(noema\s+[bcdefg]\s+[bcdefg]\b[\s\S]*?)\n```", path.read_text(encoding="utf-8")))
+        documents.extend(re.findall(r"```(?:noema|text)\s*\n([bcdefg]:[\s\S]*?)\n```", path.read_text(encoding="utf-8")))
     count = 0
     for text in documents:
         graph = parse(text)
