@@ -29,3 +29,11 @@ def test_cli_invalid_and_missing_checkpoint():
 def test_cli_formal_import_does_not_load_ml():
     result = subprocess.run([sys.executable, "-c", "import noema,sys; assert 'torch' not in sys.modules; assert 'transformers' not in sys.modules"], capture_output=True)
     assert result.returncode == 0
+
+
+def test_edition_conversion_reports_wrong_json_types_without_a_traceback():
+    for payload in ("[]", "null", "3", '"text"'):
+        result = cli("format", "--edition", "0.3", "--text", payload)
+        assert result.returncode == 2
+        assert "JSON object" in json.loads(result.stderr)["error"]
+        assert not result.stdout

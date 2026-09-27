@@ -4,7 +4,7 @@ Noemaの初期実装。人が読み書きする形式言語と、凍結した多
 
 言語として使える段階に向けて開発を継続している。[開発目標](docs/development-goal.md) に必須条件を記載した。現在の文語 [0.3の入門](docs/writing-v03.md) は91概念と8種類の役割、複数文の参照、質問・依頼・条件・否定の作用範囲を扱う。[語彙参照](docs/lexicon-v03.md)、[練習と解答](docs/lessons.md)、[対訳読本](docs/readings.md) を用意した。0.1と0.2の文章も引き続き読める。
 
-`parse`・`format`・`render`・`edit` はモデルなしで動作する。自然言語の `analyze` は学習済みの小型分類器を必要とし、低確信度や構造不整合を返す。**最新の確認評価は不合格であり、採用基準の達成は未確認。** [共同役割割当て・拡張学習の報告](docs/joint-experiments.md) では、既存の回帰資料で日英とも確定率約99.1%・完全一致率100%に改善したが、予測前に固定した新しい人工文では、日本語92.0%・99.8%、英語65.7%・99.2%だった。英語の確定率と、日本語の未対応誤確定率5.56%が基準を満たさない。過去の [関係分類器の最終評価](docs/structured-experiments.md) と [線形・MLPの実験](docs/experiments.md) も保持している。
+`parse`・`format`・`render`・`edit` はモデルなしで動作する。自然言語の `analyze` は学習済みの小型分類器を必要とし、低確信度や構造不整合を返す。**15概念の新規人工文の確認評価では、日英とも確定率80%・完全一致率95%の条件を達成した。** [最新報告](docs/surface-experiments.md) の実測値は、日本語96.50%・97.75%、英語90.17%・100%で、未対応の誤確定は両言語0/72件だった。一方、別の手書き回帰では代名詞など3文の誤確定が残る。自由記述全般への対応や、言語全体の完成を宣言する段階には至っていない。[前回の確認評価の失敗](docs/joint-experiments.md)、[関係分類器](docs/structured-experiments.md)、[線形・MLP](docs/experiments.md) の結果も保持している。
 
 ## 実行
 
@@ -58,7 +58,13 @@ noema a a {
 
 ## 自然言語の解析と実験
 
-最新の関係分類器の実行方法と検証範囲は [新しい実験報告](docs/joint-experiments.md) に記載した。以下は比較のために保持した旧ベースラインの実行方法である。
+最新の分類器の実行方法と検証範囲は [実験報告](docs/surface-experiments.md) に記載した。この作業環境では次のコマンドで実行できる。重みはGit管理外のローカル成果物なので、別の環境では先に再現手順で学習する。
+
+```powershell
+python -m noema analyze --language ja --text "犬が猫を追う" --checkpoint artifacts/routed-v7 --offline
+```
+
+以下は比較のために保持した旧ベースラインの実行方法である。
 
 ```powershell
 python -m pip install -e ".[ml,test]"

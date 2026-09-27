@@ -82,6 +82,8 @@ def main(argv=None):
             emit(parse(read_input(args)), args.output)
         elif args.command == "format":
             graph = json.loads(read_input(args))
+            if not isinstance(graph, dict):
+                raise SemanticError("Meaning structure must be a JSON object")
             if args.edition and graph.get("schema_version") != args.edition:
                 from .language import convert
                 graph = convert(graph, args.edition)
