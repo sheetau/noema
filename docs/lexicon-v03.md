@@ -1,114 +1,116 @@
 # Noema 0.3の語彙参照
 
-語形・概念ID・定義は版付き資源から生成する。短い日本語見出しは検索用であり、意味の範囲は定義と役割の型で定める。詳しい文法は [記述体系](writing-v03.md) を参照。
+語形・概念ID・定義は版付き資源から生成する。短い日本語見出しは検索用であり、意味の範囲は定義と役割の型で定める。英語の定義も資源に保持する。詳しい文法は [記述体系](writing-v03.md) を参照。
+
+定義中の主体は `i`、対象は `j`、受け手は `k`、場所は `l`、出発地は `z`、到着地は `2`、道具は `3`、受益者は `4` に対応する。
 
 ## 対象
 
 | 語 | 日本語見出し | ID | 役割標識 | 定義 |
 |---|---|---|---|---|
-| `mu` | 犬 | `aa` | — | An individual domestic dog or an explicitly counted group of dogs. |
-| `si` | 猫 | `ab` | — | An individual domestic cat or an explicitly counted group of cats. |
-| `fo` | 子供 | `ac` | — | A child; age and identity otherwise unspecified. |
-| `zr` | 先生 | `ad` | — | A person described in the role of teacher. |
-| `4c` | 鳥 | `ae` | — | A bird; species otherwise unspecified. |
-| `jx` | 本 | `af` | — | A book as a physical object. |
-| `qo` | 名前で指定する人物 | `ag` | — | A person designated by a literal name; no cross-language name equivalence is asserted. |
-| `maa` | 人 | `ca` | — | A human person; identity, age and social role are unspecified. |
-| `mab` | 水 | `cb` | — | Liquid water as a substance or a designated portion; a count does not imply a volume unit. |
-| `mac` | 食べ物 | `cc` | — | Material designated for eating; composition and serving size are unspecified. |
-| `mad` | パン | `cd` | — | Bread as food; a count refers to explicitly individuated portions, not an inferred mass. |
-| `mae` | 果物 | `ce` | — | An edible fruit; species is unspecified. |
-| `maf` | カップ | `cf` | — | A small open vessel used for drinking; contents are not implied. |
-| `mag` | 瓶 | `cg` | — | A container with a narrow opening; material and contents are unspecified. |
-| `mah` | 机・テーブル | `ch` | — | A piece of furniture with a raised working or supporting surface. |
-| `mai` | 椅子 | `ci` | — | A seat intended for one person. |
-| `maj` | 扉 | `cj` | — | A movable barrier controlling passage through an opening. |
-| `mak` | 窓 | `ck` | — | An opening in a building or vehicle for light or viewing, with or without glazing. |
-| `mal` | 鞄 | `cl` | — | A flexible container intended for carrying objects. |
-| `mam` | 鍵 | `cm` | — | A physical object intended to operate a lock; not an abstract solution or keyboard key. |
-| `man` | ペン | `cn` | — | A handheld instrument that writes with ink. |
-| `mao` | 紙 | `co` | — | Paper material or explicitly individuated sheets; a count does not imply sheet dimensions. |
-| `map` | メッセージ | `cp` | — | An individuated communicative item; content is not inferred from its name. |
-| `maq` | コンピューター | `cq` | — | A programmable computing device. |
-| `mar` | 電話機 | `cr` | — | A device intended for remote voice communication; not the act of calling. |
-| `mas` | 乗り物 | `cs` | — | A conveyance for people or goods; propulsion and mode are unspecified. |
-| `mat` | 自転車 | `ct` | — | A pedal-driven two-wheeled vehicle. |
-| `mau` | 木 | `cu` | — | An individual woody plant with a substantial persistent stem. |
-| `mav` | 花 | `cv` | — | An individual blossom, meaning the reproductive flowering structure of a plant; not the whole plant. |
-| `maw` | 衣服 | `cw` | — | An individuated item of clothing; type and wearer are unspecified. |
-| `max` | 道具 | `cx` | — | An implement used to perform a task; the task is not inferred. |
+| `mu` | 犬 | `aa` | — | 犬の個体、または数を明示した犬の集まり。 |
+| `si` | 猫 | `ab` | — | 猫の個体、または数を明示した猫の集まり。 |
+| `fo` | 子供 | `ac` | — | 子供。年齢や誰であるかは、この語だけでは指定しない。 |
+| `zr` | 先生 | `ad` | — | 教師の役割にある人物。 |
+| `4c` | 鳥 | `ae` | — | 鳥。種は指定しない。 |
+| `jx` | 本 | `af` | — | 物体としての本。 |
+| `qo` | 名前で指定する人物 | `ag` | — | 文字列の名前で指定する人物。異なる言語の名前が同一人物を指すとは断定しない。 |
+| `maa` | 人 | `ca` | — | 人。誰であるか、年齢、社会的役割は指定しない。 |
+| `mab` | 水 | `cb` | — | 液体の水という物質、または区切って指定した水。数量を付けても体積の単位は含まない。 |
+| `mac` | 食べ物 | `cc` | — | 食べるための物。成分や一食分の大きさは指定しない。 |
+| `mad` | パン | `cd` | — | 食べ物としてのパン。数量は明示して区別した個々の部分を数え、重さは推定しない。 |
+| `mae` | 果物 | `ce` | — | 食用の果物。種は指定しない。 |
+| `maf` | カップ | `cf` | — | 飲むための小さな口の開いた容器。中身は含意しない。 |
+| `mag` | 瓶 | `cg` | — | 口の狭い容器。材質や中身は指定しない。 |
+| `mah` | 机・テーブル | `ch` | — | 作業や物を支えるための高く設けた面を持つ家具。 |
+| `mai` | 椅子 | `ci` | — | 一人が座るための腰掛け。 |
+| `maj` | 扉 | `cj` | — | 開口部の通行を制御する可動の仕切り。 |
+| `mak` | 窓 | `ck` | — | 採光や眺めのために建物や乗り物に設けた開口部。ガラスの有無は問わない。 |
+| `mal` | 鞄 | `cl` | — | 物を運ぶための、柔軟な材質の容器。 |
+| `mam` | 鍵 | `cm` | — | 錠を操作する物体。抽象的な解決手段やキーボードのキーは含めない。 |
+| `man` | ペン | `cn` | — | 手に持ち、インクで書く道具。 |
+| `mao` | 紙 | `co` | — | 素材としての紙、または個々に区別した紙の枚葉。数量を付けても寸法は含まない。 |
+| `map` | メッセージ | `cp` | — | 個々に区別された伝達内容。名前から内容を推定しない。 |
+| `maq` | コンピューター | `cq` | — | プログラム可能な計算装置。 |
+| `mar` | 電話機 | `cr` | — | 離れた相手との音声通信を目的とする装置。電話をかける行為は含めない。 |
+| `mas` | 乗り物 | `cs` | — | 人や物を輸送する乗り物。動力や移動方式は指定しない。 |
+| `mat` | 自転車 | `ct` | — | ペダルで動かす二輪の乗り物。 |
+| `mau` | 木 | `cu` | — | しっかりした永続的な幹を持つ木本植物の一個体。 |
+| `mav` | 花 | `cv` | — | 植物の生殖に関わる開花部分としての一つの花。植物全体は指さない。 |
+| `maw` | 衣服 | `cw` | — | 個々に区別した衣服。種類や着用者は指定しない。 |
+| `max` | 道具 | `cx` | — | 作業を行うための道具。どの作業かは推定しない。 |
 
 ## 場所
 
 | 語 | 日本語見出し | ID | 役割標識 | 定義 |
 |---|---|---|---|---|
-| `yf` | 公園 | `ah` | — | A park used as the location of an event or state. |
-| `tp` | 家 | `ai` | — | A home used as a location; ownership is unspecified. |
-| `laa` | 場所 | `da` | — | A designated spatial location; extent and type are unspecified. |
-| `lab` | 部屋 | `db` | — | An interior space separated as a room. |
-| `lac` | 学校 | `dc` | — | A location used for organized teaching; not the institution as a legal person. |
-| `lad` | 店 | `dd` | — | A location used for retail exchange. |
-| `lae` | 駅 | `de` | — | A location where public transport regularly stops for passengers. |
-| `laf` | 道路 | `df` | — | A route prepared or customarily used for travel. |
-| `lag` | 都市 | `dg` | — | A settlement designated as a city; no population threshold is implied. |
-| `lah` | 庭 | `dh` | — | An area cultivated for plants or outdoor use. |
-| `lai` | 仕事場 | `di` | — | A location at which work is performed; employer and occupation are unspecified. |
+| `yf` | 公園 | `ah` | — | 出来事や状態の場所となる公園。 |
+| `tp` | 家 | `ai` | — | 場所としての家。所有者は指定しない。 |
+| `laa` | 場所 | `da` | — | 指定された空間的な場所。広さや種類は指定しない。 |
+| `lab` | 部屋 | `db` | — | 部屋として区切られた内部空間。 |
+| `lac` | 学校 | `dc` | — | 組織的な教育に使う場所。法人としての学校組織は指さない。 |
+| `lad` | 店 | `dd` | — | 小売の取引を行う場所。 |
+| `lae` | 駅 | `de` | — | 公共交通が乗客のために定期的に停車する場所。 |
+| `laf` | 道路 | `df` | — | 移動のために整備され、または慣習的に使われる経路。 |
+| `lag` | 都市 | `dg` | — | 都市とされる集落。人口の基準値は含まない。 |
+| `lah` | 庭 | `dh` | — | 植物の栽培や屋外の利用のために整えた区域。 |
+| `lai` | 仕事場 | `di` | — | 仕事を行う場所。雇用主や職種は指定しない。 |
 
 ## 出来事
 
 | 語 | 日本語見出し | ID | 役割標識 | 定義 |
 |---|---|---|---|---|
-| `ih` | 追う | `ba` | i j l | An agent pursues a patient. |
-| `no` | 見る | `bb` | i j l | An agent visually perceives a patient. |
-| `zg` | 助ける | `bc` | i j l | An agent assists a patient. |
-| `ku` | 渡す | `bd` | i j k l | An agent transfers a patient to a recipient. |
-| `po` | 眠る | `be` | i l | An agent sleeps. |
-| `vaa` | 食べる | `ea` | i j l 3 | agent consumes patient as food. |
-| `vab` | 飲む | `eb` | i j l 3 | agent takes patient liquid into the body by drinking. |
-| `vac` | 読む | `ec` | i j l | agent interprets written content presented by patient. |
-| `vad` | 書く | `ed` | i j k l 3 | agent inscribes or composes patient as written material. |
-| `vae` | 移動する | `ee` | i z 2 l | agent changes spatial position from source to destination; either endpoint may be unspecified. |
-| `vaf` | 運ぶ | `ef` | i j z 2 l 3 4 | agent transports patient from source to destination. |
-| `vag` | 到着する | `eg` | i z 2 l | agent reaches destination; departure location may be specified as source. |
-| `vah` | 出発する | `eh` | i z 2 l | agent departs source; destination may be unspecified. |
-| `vai` | 待つ | `ei` | i j l | agent remains pending patient; the duration is unspecified. |
-| `vaj` | 働く | `ej` | i l 3 4 | agent performs work; occupation and outcome are unspecified. |
-| `vak` | 学ぶ | `ek` | i j l | agent acquires knowledge or skill represented by patient. |
-| `val` | 教える | `el` | i j k l | agent provides instruction about patient to recipient. |
-| `vam` | 会う | `em` | i j l | agent encounters patient; prior acquaintance is unspecified. |
-| `van` | 話す | `en` | i j k l | agent produces spoken communication about patient for recipient. |
-| `vao` | 聞こえる | `eo` | i j l | agent auditorily perceives patient; intentional listening is not implied. |
-| `vap` | 買う | `ep` | i j l 4 | agent obtains patient in exchange for payment; price is unspecified. |
-| `vaq` | 売る | `eq` | i j k l | agent transfers patient to recipient in exchange for payment; price is unspecified. |
-| `var` | 作る | `er` | i j l 3 4 | agent brings patient into existence or produces it. |
-| `vas` | 使う | `es` | i j l | agent employs patient for an unspecified purpose. |
-| `vat` | 開ける | `et` | i j l 3 | agent changes patient to an open state. |
-| `vau` | 閉める | `eu` | i j l 3 | agent changes patient to a closed state. |
-| `vav` | 見つける | `ev` | i j l | agent comes to locate or discover patient. |
-| `vaw` | 送る | `ew` | i j k z 2 l 3 | agent dispatches patient toward recipient or destination; receipt is not asserted. |
-| `vax` | 受け取る | `ex` | i j l | agent takes delivery of patient; the sender is unspecified. |
-| `vay` | 洗う | `ey` | i j l 3 | agent cleans patient using liquid. |
+| `ih` | 追う | `ba` | i j l | 主体が対象を追う。 |
+| `no` | 見る | `bb` | i j l | 主体が対象を視覚で捉える。 |
+| `zg` | 助ける | `bc` | i j l | 主体が対象を助ける。 |
+| `ku` | 渡す | `bd` | i j k l | 主体が対象を受け手へ渡す。 |
+| `po` | 眠る | `be` | i l | 主体が眠る。 |
+| `vaa` | 食べる | `ea` | i j l 3 | 主体が対象を食べ物として摂取する。 |
+| `vab` | 飲む | `eb` | i j l 3 | 主体が対象の液体を飲んで体内へ取り入れる。 |
+| `vac` | 読む | `ec` | i j l | 主体が対象に示された書かれた内容を読み取る。 |
+| `vad` | 書く | `ed` | i j k l 3 | 主体が対象を文章・書かれた資料として記す、または作成する。 |
+| `vae` | 移動する | `ee` | i z 2 l | 主体が出発地から到着地へ空間的位置を変える。いずれの端点も未指定にできる。 |
+| `vaf` | 運ぶ | `ef` | i j z 2 l 3 4 | 主体が対象を出発地から到着地へ運ぶ。 |
+| `vag` | 到着する | `eg` | i z 2 l | 主体が到着地に達する。出発した場所を出発地として指定できる。 |
+| `vah` | 出発する | `eh` | i z 2 l | 主体が出発地を離れる。到着地は未指定にできる。 |
+| `vai` | 待つ | `ei` | i j l | 主体が対象を待つ。待つ長さは指定しない。 |
+| `vaj` | 働く | `ej` | i l 3 4 | 主体が仕事を行う。職種や成果は指定しない。 |
+| `vak` | 学ぶ | `ek` | i j l | 主体が対象で表された知識や技能を獲得する。 |
+| `val` | 教える | `el` | i j k l | 主体が対象について受け手に教える。 |
+| `vam` | 会う | `em` | i j l | 主体が対象に会う。以前からの知り合いかどうかは指定しない。 |
+| `van` | 話す | `en` | i j k l | 主体が対象について受け手に向けて音声で話す。 |
+| `vao` | 聞こえる | `eo` | i j l | 主体が対象を聴覚で捉える。意図して聞こうとしているとは含意しない。 |
+| `vap` | 買う | `ep` | i j l 4 | 主体が支払いと引き換えに対象を得る。価格は指定しない。 |
+| `vaq` | 売る | `eq` | i j k l | 主体が支払いと引き換えに対象を受け手へ渡す。価格は指定しない。 |
+| `var` | 作る | `er` | i j l 3 4 | 主体が対象を新たに生じさせる、または製作する。 |
+| `vas` | 使う | `es` | i j l | 主体が対象を使う。用途は指定しない。 |
+| `vat` | 開ける | `et` | i j l 3 | 主体が対象を開いた状態へ変える。 |
+| `vau` | 閉める | `eu` | i j l 3 | 主体が対象を閉じた状態へ変える。 |
+| `vav` | 見つける | `ev` | i j l | 主体が対象の所在を見つける、または対象を発見する。 |
+| `vaw` | 送る | `ew` | i j k z 2 l 3 | 主体が対象を受け手または到着地へ向けて発送・送信する。受取りの完了は断定しない。 |
+| `vax` | 受け取る | `ex` | i j l | 主体が対象を受け取る。送り手は指定しない。 |
+| `vay` | 洗う | `ey` | i j l 3 | 主体が液体を使って対象を洗う。 |
 
 ## 状態
 
 | 語 | 日本語見出し | ID | 役割標識 | 定義 |
 |---|---|---|---|---|
-| `wm` | 空腹である | `bf` | i l | An agent experiences hunger. |
-| `saa` | そこにある・いる | `fa` | i l | agent is spatially present at location. |
-| `sab` | 所持する | `fb` | i j l | agent possesses patient; legal ownership is not asserted. |
-| `sac` | 含む | `fc` | i j l | agent contains patient spatially or as a component. |
-| `sad` | 好む | `fd` | i j l | agent has a favorable preference toward patient. |
-| `sae` | 必要とする | `fe` | i j l | agent requires patient; fulfillment is not asserted. |
-| `saf` | 知っている | `ff` | i j l | agent is acquainted with patient; proposition knowledge is not encoded. |
-| `sag` | 疲れている | `fg` | i l | agent experiences fatigue. |
-| `sah` | うれしい | `fh` | i l | agent experiences happiness. |
-| `sai` | 赤い | `fi` | i l | agent has a red appearance under contextually relevant viewing conditions. |
-| `saj` | 青い | `fj` | i l | agent has a blue appearance under contextually relevant viewing conditions. |
-| `sak` | 大きい | `fk` | i l | agent is large relative to an unspecified contextual comparison class. |
-| `sal` | 小さい | `fl` | i l | agent is small relative to an unspecified contextual comparison class. |
-| `sam` | 開いている | `fm` | i l | agent is in an open configuration; an opening event is not asserted. |
-| `san` | 閉じている | `fn` | i l | agent is in a closed configuration; a closing event is not asserted. |
-| `sao` | 濡れている | `fo` | i l | agent has liquid on or absorbed into its surface. |
-| `sap` | 乾いている | `fp` | i l | agent lacks relevant surface moisture relative to context. |
-| `saq` | 熱い | `fq` | i l | agent has a high temperature relative to context; no degree value is specified. |
-| `sar` | 冷たい | `fr` | i l | agent has a low temperature relative to context; no degree value is specified. |
+| `wm` | 空腹である | `bf` | i l | 主体が空腹を感じている。 |
+| `saa` | そこにある・いる | `fa` | i l | 主体が場所に空間的に存在する。 |
+| `sab` | 所持する | `fb` | i j l | 主体が対象を所持している。法的な所有権は断定しない。 |
+| `sac` | 含む | `fc` | i j l | 主体が対象を空間的な中身、または構成部分として含む。 |
+| `sad` | 好む | `fd` | i j l | 主体が対象を好む。 |
+| `sae` | 必要とする | `fe` | i j l | 主体が対象を必要としている。必要が満たされているとは断定しない。 |
+| `saf` | 知っている | `ff` | i j l | 主体が対象を知っている。命題の内容を知っていることは、この語の構造では表さない。 |
+| `sag` | 疲れている | `fg` | i l | 主体が疲労を感じている。 |
+| `sah` | うれしい | `fh` | i l | 主体が喜びを感じている。 |
+| `sai` | 赤い | `fi` | i l | 主体が文脈上の観察条件で赤く見える。 |
+| `saj` | 青い | `fj` | i l | 主体が文脈上の観察条件で青く見える。 |
+| `sak` | 大きい | `fk` | i l | 主体が文脈上の比較対象に対して大きい。比較対象の範囲は指定しない。 |
+| `sal` | 小さい | `fl` | i l | 主体が文脈上の比較対象に対して小さい。比較対象の範囲は指定しない。 |
+| `sam` | 開いている | `fm` | i l | 主体が開いた状態にある。開く出来事があったとは断定しない。 |
+| `san` | 閉じている | `fn` | i l | 主体が閉じた状態にある。閉じる出来事があったとは断定しない。 |
+| `sao` | 濡れている | `fo` | i l | 主体の表面に液体がある、または表面に液体が染み込んでいる。 |
+| `sap` | 乾いている | `fp` | i l | 主体の表面に、文脈上問題となる水分がない。 |
+| `saq` | 熱い | `fq` | i l | 主体の温度が文脈上高い。温度の値は指定しない。 |
+| `sar` | 冷たい | `fr` | i l | 主体の温度が文脈上低い。温度の値は指定しない。 |

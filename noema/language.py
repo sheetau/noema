@@ -39,7 +39,7 @@ def tokenize(text):
         if text[position:].isspace():
             break
         match = TOKEN.match(text, position)
-        require(match is not None, f"Invalid 0.2 token at character {position}")
+        require(match is not None, f"Invalid written Noema token at character {position}")
         result.append((match.group(1), match.start(1), match.end(1)))
         position = match.end()
     return result
@@ -142,7 +142,7 @@ def parse_document(text):
 
     def take(expected=None):
         nonlocal cursor
-        require(cursor < len(stream), "Unexpected end of Noema 0.2")
+        require(cursor < len(stream), "Unexpected end of written Noema")
         token, start, _ = stream[cursor]
         require(expected is None or expected == token, f"Expected {expected}, got {token} at character {start}")
         cursor += 1

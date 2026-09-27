@@ -8,6 +8,7 @@ from urllib.error import HTTPError
 import pytest
 from noema.editor import Handler, inspect_text, lexicon
 from noema.grammar import parse, format_graph
+from noema.grammar import number_word
 
 
 def test_lessons_and_readings_parse_and_round_trip():
@@ -56,3 +57,14 @@ def test_editor_http_uses_the_same_parser_and_reports_errors(server):
     with pytest.raises(HTTPError) as failure:
         urlopen(Request(server + "/inspect", data=b'{}', headers={"Content-Type": "application/json", "Origin": "https://example.org"}))
     assert failure.value.code == 403
+
+
+def test_editor_exports_exact_integers_beyond_browser_number_precision(server):
+    value = 9007199254740993
+    text = 'noema c c po i mu m ' + number_word(value) + ' n "葵\\\"一".'
+    request = Request(server + "/inspect", data=json.dumps({"text": text}).encode(), headers={"Content-Type": "application/json"})
+    with urlopen(request) as response:
+        result = json.load(response)
+    assert str(value) in result["graph_json"]
+    assert json.loads(result["graph_json"]) == parse(text)
+    assert parse(result["canonical"]) == parse(result["script"]) == parse(text)

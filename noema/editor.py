@@ -3,7 +3,7 @@ import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from importlib.resources import files
 from .grammar import parse, format_graph
-from .language import policy
+from .glossary import lexicon
 from .render import render
 from .script import encode
 
@@ -13,12 +13,10 @@ MAX_BODY = 262144
 def inspect_text(text):
     graph = parse(text)
     canonical = format_graph(graph)
-    return {"canonical": canonical, "graph": graph, "script": encode(canonical), "svg": render(canonical, 22)}
-
-
-def lexicon():
-    roots, concepts, markers, _ = policy("0.3")
-    return {"words": [{"id": k, "word": roots[k], **v} for k, v in concepts.items()], "roles": markers}
+    # Browser JSON.parse rounds integers beyond 2**53. Keep a serialized copy
+    # for display/export so the written language's exact quantities survive.
+    return {"canonical": canonical, "graph": graph, "graph_json": json.dumps(graph, ensure_ascii=False, indent=2),
+            "script": encode(canonical), "svg": render(canonical, 22)}
 
 
 class Handler(BaseHTTPRequestHandler):
