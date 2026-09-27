@@ -84,3 +84,13 @@ def test_selection_cannot_bypass_its_training_record_or_decision_policy(tmp_path
     (report / "training.json").write_text(json.dumps(training), encoding="utf-8")
     with pytest.raises(SemanticError, match="decision policy"):
         selected_head(root, report)
+
+
+def test_invalidated_supervision_blocks_checkpoint_and_raw_api_before_model_loading(tmp_path):
+    from noema.reference_ranker import ReferenceRankerAnalyzer
+    root, report, _, _ = selection_fixture(tmp_path)
+    (report / "invalidated.json").write_text('{}', encoding="utf-8")
+    with pytest.raises(SemanticError, match="invalidated"):
+        selected_head(root, report)
+    with pytest.raises(SemanticError, match="invalidated"):
+        ReferenceRankerAnalyzer(report=report, artifacts=root)

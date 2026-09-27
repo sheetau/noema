@@ -120,6 +120,7 @@ def main():
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--report", type=Path, default=REPORT)
     args = parser.parse_args()
+    require(not (args.report / "invalidated.json").exists(), "Reference ranker training invalidated: incorrect corpus head supervision")
     require(not (args.report / "selection.json").exists(), "Reference ranker selection already exists")
     deterministic()
     train, train_counts, manifest = load_split("train", args.root, args.report)

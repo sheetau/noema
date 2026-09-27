@@ -13,6 +13,7 @@ from scripts.train_reference_ranker import load_split, evaluate
 
 
 def selected_head(root=ROOT, report=REPORT):
+    require(not (report / "invalidated.json").exists(), "Reference ranker invalidated: incorrect corpus head supervision")
     selection = json.loads((report / "selection.json").read_text(encoding="utf-8"))
     training = json.loads((report / "training.json").read_text(encoding="utf-8"))
     require(digest(report / "selection.json") == training["selection_sha256"], "Reference selection changed")

@@ -118,6 +118,7 @@ class ReferenceRankerAnalyzer:
     def __init__(self, report="reports/reference-ranker-v1", artifacts="artifacts/reference-ranker-v1"):
         import json
         from pathlib import Path
+        require(not (Path(report) / "invalidated.json").exists(), "Reference ranker invalidated: incorrect corpus head supervision; use corrected phrase annotations")
         from safetensors.torch import load_file
         from .definition_probe import digest
         from .japanese_pas_aligned import AlignedJapanesePAS
