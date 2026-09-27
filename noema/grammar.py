@@ -40,6 +40,9 @@ def tokens(text):
 
 
 def parse(text):
+    if isinstance(text, str) and re.match(r"\s*noema\s+b\s+b(?:\s|$)", text):
+        from .language import parse_document
+        return parse_document(text)
     stream = tokens(text)
     pos = 0
 
@@ -84,6 +87,9 @@ def parse(text):
 
 
 def format_graph(graph):
+    if isinstance(graph, dict) and graph.get("schema_version") == "0.2":
+        from .language import format_document
+        return format_document(graph)
     graph = normalize(graph)
     lines = ["noema a a {"]
     for node in graph["nodes"]:

@@ -37,6 +37,8 @@ def main(argv=None):
         source.add_argument("--text")
         source.add_argument("--input", "-i")
         p.add_argument("--output", "-o")
+        if name == "format":
+            p.add_argument("--edition", choices=("0.1", "0.2"), help="Explicit lossless conversion to another edition")
         if name == "render":
             p.add_argument("--columns", type=int, default=34)
         if name == "analyze":
@@ -70,7 +72,11 @@ def main(argv=None):
         if args.command == "parse":
             emit(parse(read_input(args)), args.output)
         elif args.command == "format":
-            emit(format_graph(json.loads(read_input(args))), args.output)
+            graph = json.loads(read_input(args))
+            if args.edition and graph.get("schema_version") != args.edition:
+                from .language import from_graph, to_graph
+                graph = from_graph(graph) if args.edition == "0.2" else to_graph(graph)
+            emit(format_graph(graph), args.output)
         elif args.command == "render":
             emit(render(read_input(args), args.columns), args.output)
         elif args.command == "alphabet":

@@ -33,6 +33,9 @@ def time_value(label):
 
 def normalize(graph):
     """Reject unrepresentable data instead of silently dropping it. Rename references by role order."""
+    if isinstance(graph, dict) and graph.get("schema_version") == "0.2":
+        from .language import normalize_document
+        return normalize_document(graph)
     keys(graph, ("schema_version", "lexicon_version", "nodes", "relations"))
     require(graph["schema_version"] == "0.1" and graph["lexicon_version"] == "0.1", "Unsupported schema or lexicon version")
     require(isinstance(graph["nodes"], list) and isinstance(graph["relations"], list), "nodes and relations must be arrays")

@@ -17,11 +17,17 @@ def glyph_path(index):
 def render(text, columns=34):
     if type(columns) is not int or columns < 8:
         raise ValueError("columns must be an integer >= 8")
-    canonical = format_graph(parse(text))
+    graph = parse(text)
+    canonical = format_graph(graph)
+    if graph["schema_version"] == "0.2":
+        from .language import tokenize
+        stream = [t[0] for t in tokenize(canonical)]
+    else:
+        stream = tokens(canonical)
     defs = ''.join(f'<path id="g{i}" d="{glyph_path(i)}"/>' for i in range(32))
     body, x, y = [], 18, 20
     width = columns * 34 + 36
-    for token in tokens(canonical):
+    for token in stream:
         literal = token.startswith('"')
         units = list(token) if literal else [token] if token in "{};?" else list(token)
         if x + min(len(units), columns) * 34 > width - 18:
@@ -35,9 +41,9 @@ def render(text, columns=34):
                 body.append(f'<text x="{x + 4}" y="{y + 26}" stroke="none" fill="#162736" font-family="sans-serif" font-size="22">{escape(char)}</text>')
             x += 34
         x += 14
-        if token in ("{", ";", "}"):
+        if token in ("{", ";", "}", "."):
             x, y = 18, y + 54
-    return f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{y + 50}" viewBox="0 0 {width} {y + 50}"><title>Noema a/a</title><metadata>{escape(canonical)}</metadata><rect width="100%" height="100%" fill="#fbfaf4"/><defs>{defs}</defs><g fill="none" stroke="#162736" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{"".join(body)}</g></svg>'
+    return f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{y + 50}" viewBox="0 0 {width} {y + 50}"><title>Noema {graph["schema_version"]}</title><metadata>{escape(canonical)}</metadata><rect width="100%" height="100%" fill="#fbfaf4"/><defs>{defs}</defs><g fill="none" stroke="#162736" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{"".join(body)}</g></svg>'
 
 
 def alphabet_svg():
