@@ -1,0 +1,194 @@
+{
+  "selection": {
+    "manifest": {
+      "format": 3,
+      "architecture": "language-routed",
+      "routes": {
+        "ja": {
+          "checkpoint": "../joint-v9-xlmr",
+          "metadata_sha256": "5edf75490badee1678fb154fac2c7aa6d8b9dc2c3f9e874888c49e1db3d4dc44"
+        },
+        "en": {
+          "checkpoint": "../joint-v9-xlmr",
+          "metadata_sha256": "5edf75490badee1678fb154fac2c7aa6d8b9dc2c3f9e874888c49e1db3d4dc44"
+        }
+      },
+      "selected_at": "2026-09-27T15:37:51.124540+00:00",
+      "policy": "highest development coverage among candidates with >=80% coverage, >=95% confirmed exact match, <=5% unsupported false acceptance; explicit language routing"
+    },
+    "decisions": {
+      "ja": {
+        "checkpoint": "artifacts\\joint-v9-xlmr",
+        "metrics": {
+          "in_scope": 410,
+          "confirmed": 410,
+          "exact": 410,
+          "coverage": 1.0,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 159,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.006289308176100629,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 0,
+          "passes_provisional_gate": true
+        },
+        "weights_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09"
+      },
+      "en": {
+        "checkpoint": "artifacts\\joint-v9-xlmr",
+        "metrics": {
+          "in_scope": 775,
+          "confirmed": 731,
+          "exact": 731,
+          "coverage": 0.9432258064516129,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 245,
+          "unsupported_false_accepts": 12,
+          "unsupported_false_accept_rate": 0.04897959183673469,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 44,
+          "passes_provisional_gate": true
+        },
+        "weights_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09"
+      }
+    },
+    "final_partition_used": false
+  },
+  "dataset_sha256": "48e67753f26a36643c08512271cae4667cea76e320bfae181f71a11dcf4921a1",
+  "split": "test",
+  "evaluation_status": {
+    "ja": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation",
+    "en": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation"
+  },
+  "metrics": {
+    "ja": {
+      "in_scope": 756,
+      "confirmed": 637,
+      "exact": 637,
+      "coverage": 0.8425925925925926,
+      "confirmed_exact_match": 1.0,
+      "unsupported": 109,
+      "unsupported_false_accepts": 0,
+      "unsupported_false_accept_rate": 0.0,
+      "component_errors_on_confirmed": {
+        "predicate": 0,
+        "polarity": 0,
+        "time": 0,
+        "agent": 0,
+        "patient": 0,
+        "recipient": 0,
+        "location": 0
+      },
+      "abstained": 119,
+      "passes_provisional_gate": true
+    },
+    "en": {
+      "in_scope": 892,
+      "confirmed": 709,
+      "exact": 708,
+      "coverage": 0.7948430493273543,
+      "confirmed_exact_match": 0.998589562764457,
+      "unsupported": 116,
+      "unsupported_false_accepts": 0,
+      "unsupported_false_accept_rate": 0.0,
+      "component_errors_on_confirmed": {
+        "predicate": 0,
+        "polarity": 0,
+        "time": 1,
+        "agent": 0,
+        "patient": 0,
+        "recipient": 0,
+        "location": 0
+      },
+      "abstained": 183,
+      "passes_provisional_gate": false
+    },
+    "equivalence": {
+      "groups": 894,
+      "fully_confirmed_groups": 535,
+      "equal_confirmed_groups": 534
+    }
+  },
+  "repeat_exact": true,
+  "rejection_reasons_in_scope": {
+    "ja": {
+      "confirmed": 637,
+      "support_classifier": 117,
+      "inconsistent_structure: Unknown concept prediction": 1,
+      "inconsistent_structure: No typed role assignment": 1
+    },
+    "en": {
+      "confirmed": 709,
+      "low_confidence": 71,
+      "support_classifier": 87,
+      "inconsistent_structure: Role presence and extracted entities disagree": 16,
+      "inconsistent_structure: Unknown concept prediction": 9
+    }
+  },
+  "unsupported_categories": {
+    "ja:unknown_concept": {
+      "total": 19,
+      "false_accepts": 0
+    },
+    "ja:quantification": {
+      "total": 12,
+      "false_accepts": 0
+    },
+    "ja:nested_scope": {
+      "total": 20,
+      "false_accepts": 0
+    },
+    "ja:multiple_events": {
+      "total": 20,
+      "false_accepts": 0
+    },
+    "ja:modality": {
+      "total": 19,
+      "false_accepts": 0
+    },
+    "ja:question": {
+      "total": 19,
+      "false_accepts": 0
+    },
+    "en:unknown_concept": {
+      "total": 21,
+      "false_accepts": 0
+    },
+    "en:quantification": {
+      "total": 13,
+      "false_accepts": 0
+    },
+    "en:nested_scope": {
+      "total": 20,
+      "false_accepts": 0
+    },
+    "en:multiple_events": {
+      "total": 20,
+      "false_accepts": 0
+    },
+    "en:modality": {
+      "total": 21,
+      "false_accepts": 0
+    },
+    "en:question": {
+      "total": 21,
+      "false_accepts": 0
+    }
+  }
+}

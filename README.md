@@ -4,7 +4,7 @@ Noemaの初期実装。人が読み書きする形式言語と、凍結した多
 
 言語として使える段階に向けて開発を継続している。[開発目標](docs/development-goal.md) に必須条件を記載した。文語0.4は、[基本の文法](docs/writing-v03.md) の91概念と8種類の役割、複数文の参照、質問・依頼・条件・否定範囲に加え、[語を組み合わせる規則](docs/writing-v04.md) を持つ。「本＋赤い」などを辞書へ個別登録せずに書ける。[厳密な仕様](docs/spec-v04.md)、[語彙参照](docs/lexicon-v03.md)、[対訳読本](docs/readings.md)、[練習と解答](docs/lessons.md) を用意した。0.1〜0.3の文章も引き続き読める。
 
-`parse`・`format`・`render`・`edit` はモデルなしで動作する。自然言語の `analyze` は学習済みの小型分類器を必要とし、低確信度や構造不整合を返す。**15概念の新規人工文の確認評価では、日英とも確定率80%・完全一致率95%の条件を達成した。** [最新報告](docs/surface-experiments.md) の実測値は、日本語96.50%・97.75%、英語90.17%・100%で、未対応の誤確定は両言語0/72件だった。一方、別の手書き回帰では代名詞など3文の誤確定が残る。自由記述全般への対応や、言語全体の完成を宣言する段階には至っていない。[前回の確認評価の失敗](docs/joint-experiments.md)、[関係分類器](docs/structured-experiments.md)、[線形・MLP](docs/experiments.md) の結果も保持している。
+`parse`・`format`・`render`・`edit` はモデルなしで動作する。自然言語の `analyze` は学習済みの小型分類器を必要とする。**最新の対照実験v9は英語の確定率が51.00%で、採用基準未達となった。** [最新報告](docs/context-experiments.md) に失敗を含めて記録した。以前の [v7の限定した人工文評価](docs/surface-experiments.md) では、日本語の確定率96.50%・完全一致率97.75%、英語90.17%・100%で条件を通過したが、別の手書き回帰で代名詞など3文を誤確定した。自由記述全般への対応や、言語全体の完成を宣言する段階には至っていない。[以前の確認評価の失敗](docs/joint-experiments.md)、[関係分類器](docs/structured-experiments.md)、[線形・MLP](docs/experiments.md) の結果も保持している。
 
 ## 実行
 
@@ -60,7 +60,7 @@ noema a a {
 
 ## 自然言語の解析と実験
 
-確認評価を通ったv7の実行方法と検証範囲は [実験報告](docs/surface-experiments.md) に記載した。その後の [v8の対照実験](docs/reference-experiments.md) では代名詞などの誤確定を減らしたが、英語の確定率が49.83%に下がり、採用条件を満たさなかった。この作業環境ではv7を次のコマンドで実行できる。重みはGit管理外のローカル成果物なので、別の環境では先に再現手順で学習する。
+確認評価を通ったv7の実行方法と検証範囲は [実験報告](docs/surface-experiments.md) に記載した。その後の [v8](docs/reference-experiments.md) と [v9の対照実験](docs/context-experiments.md) は、英語の確定率が約半分に下がり、不合格となった。v9の新規確認は日本語91.67%・99.64%、英語51.00%・100%で、未対応区分にも誤確定が残る。この作業環境では、以前の限定した確認条件を通ったv7を次のコマンドで実行できる。重みはGit管理外のローカル成果物なので、別の環境では先に再現手順で学習する。
 
 ```powershell
 python -m noema analyze --language ja --text "犬が猫を追う" --checkpoint artifacts/routed-v7 --offline

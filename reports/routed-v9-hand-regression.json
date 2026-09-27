@@ -1,0 +1,3791 @@
+{
+  "checkpoint": "artifacts/routed-v9",
+  "encoder_trainable_parameters": 0,
+  "encoder_training_modules": 0,
+  "repeat_identical_results": true,
+  "repeated_examples": 4,
+  "metrics": {
+    "ja": {
+      "in_scope": 14,
+      "confirmed": 14,
+      "exact": 14,
+      "coverage": 1.0,
+      "confirmed_exact_match": 1.0,
+      "unsupported": 7,
+      "unsupported_false_accepts": 1,
+      "unsupported_false_accept_rate": 0.14285714285714285,
+      "component_errors_on_confirmed": {
+        "predicate": 0,
+        "polarity": 0,
+        "time": 0,
+        "agent": 0,
+        "patient": 0,
+        "recipient": 0,
+        "location": 0
+      },
+      "abstained": 0,
+      "passes_provisional_gate": true
+    },
+    "en": {
+      "in_scope": 14,
+      "confirmed": 12,
+      "exact": 12,
+      "coverage": 0.8571428571428571,
+      "confirmed_exact_match": 1.0,
+      "unsupported": 7,
+      "unsupported_false_accepts": 0,
+      "unsupported_false_accept_rate": 0.0,
+      "component_errors_on_confirmed": {
+        "predicate": 0,
+        "polarity": 0,
+        "time": 0,
+        "agent": 0,
+        "patient": 0,
+        "recipient": 0,
+        "location": 0
+      },
+      "abstained": 2,
+      "passes_provisional_gate": true
+    },
+    "equivalence": {
+      "groups": 13,
+      "fully_confirmed_groups": 11,
+      "equal_confirmed_groups": 11
+    }
+  },
+  "predictions": [
+    {
+      "id": "challenge00ja",
+      "text": "犬が猫を追う",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9996640682220459,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 2,
+            "end": 3,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 4,
+            "end": 6,
+            "kind": "predicate",
+            "text": "追う",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999486093,
+          "role_evidence": 0.9999895691585131
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge00en",
+      "text": "The dog chases the cat",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9998291730880737,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 8,
+            "end": 14,
+            "kind": "predicate",
+            "text": "chases",
+            "concept": "ba"
+          },
+          {
+            "start": 19,
+            "end": 22,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "patient"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999999998,
+          "role_evidence": 1.0
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge01ja",
+      "text": "猫が犬に追われる",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9999722242355347,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 2,
+            "end": 3,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 4,
+            "end": 8,
+            "kind": "predicate",
+            "text": "追われる",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.999999999999952,
+          "role_evidence": 0.9999997615814138
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge01en",
+      "text": "The cat is chased by the dog",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9998047947883606,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 11,
+            "end": 17,
+            "kind": "predicate",
+            "text": "chased",
+            "concept": "ba"
+          },
+          {
+            "start": 25,
+            "end": 28,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa",
+            "role": "agent"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999910985,
+          "role_evidence": 0.9999954700412257
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge02ja",
+      "text": "猫が犬を追う",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9999770520832195,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "agent"
+          },
+          {
+            "start": 2,
+            "end": 3,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "patient"
+          },
+          {
+            "start": 4,
+            "end": 6,
+            "kind": "predicate",
+            "text": "追う",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999997304563,
+          "role_evidence": 0.9999770520832195
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge02en",
+      "text": "The cat chases the dog",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9997345805168152,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "agent"
+          },
+          {
+            "start": 8,
+            "end": 14,
+            "kind": "predicate",
+            "text": "chases",
+            "concept": "ba"
+          },
+          {
+            "start": 19,
+            "end": 22,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa",
+            "role": "patient"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999999991,
+          "role_evidence": 1.0
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge03ja",
+      "text": "犬が猫を追わない",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "negated",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9995514750480652,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 2,
+            "end": 3,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 4,
+            "end": 8,
+            "kind": "predicate",
+            "text": "追わない",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999995802862,
+          "role_evidence": 0.9998294567713769
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge03en",
+      "text": "The dog does not chase the cat",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "negated",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9997658133506775,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 17,
+            "end": 22,
+            "kind": "predicate",
+            "text": "chase",
+            "concept": "ba"
+          },
+          {
+            "start": 27,
+            "end": 30,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "patient"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999999911,
+          "role_evidence": 0.9999999105930288
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge04ja",
+      "text": "2匹の犬が猫を追う",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": 2,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9999861716541707,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "quantity",
+            "text": "2",
+            "role": "agent",
+            "target_start": 3
+          },
+          {
+            "start": 3,
+            "end": 4,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 5,
+            "end": 6,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 7,
+            "end": 9,
+            "kind": "predicate",
+            "text": "追う",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999460203,
+          "role_evidence": 0.9999861716541707
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge04en",
+      "text": "2 dogs chase the cat",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": 2,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9997418522834778,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "quantity",
+            "text": "2",
+            "role": "agent",
+            "target_start": 2
+          },
+          {
+            "start": 2,
+            "end": 6,
+            "kind": "entity",
+            "text": "dogs",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 7,
+            "end": 12,
+            "kind": "predicate",
+            "text": "chase",
+            "concept": "ba"
+          },
+          {
+            "start": 17,
+            "end": 20,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "patient"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.999999999999996,
+          "role_evidence": 0.999999850988377
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge05ja",
+      "text": "3匹の犬が猫を追う",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": 3,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9999852180480957,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "quantity",
+            "text": "3",
+            "role": "agent",
+            "target_start": 3
+          },
+          {
+            "start": 3,
+            "end": 4,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 5,
+            "end": 6,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 7,
+            "end": 9,
+            "kind": "predicate",
+            "text": "追う",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999523663,
+          "role_evidence": 0.999991178497538
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge05en",
+      "text": "3 dogs chase the cat",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": 3,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9998884052038193,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "quantity",
+            "text": "3",
+            "role": "agent",
+            "target_start": 2
+          },
+          {
+            "start": 2,
+            "end": 6,
+            "kind": "entity",
+            "text": "dogs",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 7,
+            "end": 12,
+            "kind": "predicate",
+            "text": "chase",
+            "concept": "ba"
+          },
+          {
+            "start": 17,
+            "end": 20,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "patient"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.999999999999998,
+          "role_evidence": 0.9999999403953534
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge06ja",
+      "text": "明日、犬が猫を追う",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "relative",
+              "value": "tomorrow"
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9901580792944482,
+        "spans": [
+          {
+            "start": 0,
+            "end": 2,
+            "kind": "time",
+            "text": "明日"
+          },
+          {
+            "start": 3,
+            "end": 4,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 5,
+            "end": 6,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 7,
+            "end": 9,
+            "kind": "predicate",
+            "text": "追う",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999969129036,
+          "role_evidence": 0.9901580792944482
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge06en",
+      "text": "The dog chases the cat tomorrow",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "relative",
+              "value": "tomorrow"
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.999991238117218,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 8,
+            "end": 14,
+            "kind": "predicate",
+            "text": "chases",
+            "concept": "ba"
+          },
+          {
+            "start": 19,
+            "end": 22,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 23,
+            "end": 31,
+            "kind": "time",
+            "text": "tomorrow"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999999916,
+          "role_evidence": 0.9999997615813925
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge07ja",
+      "text": "今日、犬が猫を追う",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "relative",
+              "value": "today"
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9997605396992046,
+        "spans": [
+          {
+            "start": 0,
+            "end": 2,
+            "kind": "time",
+            "text": "今日"
+          },
+          {
+            "start": 3,
+            "end": 4,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 5,
+            "end": 6,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 7,
+            "end": 9,
+            "kind": "predicate",
+            "text": "追う",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.999999999561866,
+          "role_evidence": 0.9997605396992046
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge07en",
+      "text": "The dog chases the cat today",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "relative",
+              "value": "today"
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.999947726726532,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 8,
+            "end": 14,
+            "kind": "predicate",
+            "text": "chases",
+            "concept": "ba"
+          },
+          {
+            "start": 19,
+            "end": 22,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 23,
+            "end": 28,
+            "kind": "time",
+            "text": "today"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.9999999999999962,
+          "role_evidence": 0.9999995231627281
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge08ja",
+      "text": "猫を追う",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9999910593032837,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 2,
+            "end": 4,
+            "kind": "predicate",
+            "text": "追う",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 1.0
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge08en",
+      "text": "The cat is chased",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9656538367271423,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 11,
+            "end": 17,
+            "kind": "predicate",
+            "text": "chased",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 0.9999993443489075
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge09ja",
+      "text": "Akiが眠る",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "be",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": "Aki",
+            "concept": "ag"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9999594688415527,
+        "spans": [
+          {
+            "start": 0,
+            "end": 3,
+            "kind": "entity",
+            "text": "Aki",
+            "concept": "ag",
+            "role": "agent"
+          },
+          {
+            "start": 4,
+            "end": 6,
+            "kind": "predicate",
+            "text": "眠る",
+            "concept": "be"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 0.9999973177909851
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge09en",
+      "text": "Aki sleeps",
+      "status": "unresolved",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.5901962518692017,
+        "spans": [
+          {
+            "start": 0,
+            "end": 3,
+            "kind": "entity",
+            "text": "Aki",
+            "concept": "ag",
+            "role": "agent"
+          },
+          {
+            "start": 4,
+            "end": 10,
+            "kind": "predicate",
+            "text": "sleeps",
+            "concept": "be"
+          }
+        ],
+        "reason": "low_confidence",
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 0.9893172383308411
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge10ja",
+      "text": "Hanaが眠る",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "be",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": "Hana",
+            "concept": "ag"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9482080936431885,
+        "spans": [
+          {
+            "start": 0,
+            "end": 4,
+            "kind": "entity",
+            "text": "Hana",
+            "concept": "ag",
+            "role": "agent"
+          },
+          {
+            "start": 5,
+            "end": 7,
+            "kind": "predicate",
+            "text": "眠る",
+            "concept": "be"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 0.9999958276748657
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge10en",
+      "text": "Hana sleeps",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9997905530908611,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge11ja",
+      "text": "先生が子供に本を渡す",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "bd",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ad"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "af"
+          },
+          {
+            "id": "nc",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ac"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": "nc"
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.999440610408783,
+        "spans": [
+          {
+            "start": 0,
+            "end": 2,
+            "kind": "entity",
+            "text": "先生",
+            "concept": "ad",
+            "role": "agent"
+          },
+          {
+            "start": 3,
+            "end": 5,
+            "kind": "entity",
+            "text": "子供",
+            "concept": "ac",
+            "role": "recipient"
+          },
+          {
+            "start": 6,
+            "end": 7,
+            "kind": "entity",
+            "text": "本",
+            "concept": "af",
+            "role": "patient"
+          },
+          {
+            "start": 8,
+            "end": 10,
+            "kind": "predicate",
+            "text": "渡す",
+            "concept": "bd"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 6,
+          "posterior": 0.9999999998061744,
+          "role_evidence": 0.9999668589271904
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge11en",
+      "text": "The teacher gives the book to the child",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "bd",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ad"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "af"
+          },
+          {
+            "id": "nc",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ac"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": "nc"
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9980335377445514,
+        "spans": [
+          {
+            "start": 4,
+            "end": 11,
+            "kind": "entity",
+            "text": "teacher",
+            "concept": "ad",
+            "role": "agent"
+          },
+          {
+            "start": 12,
+            "end": 17,
+            "kind": "predicate",
+            "text": "gives",
+            "concept": "bd"
+          },
+          {
+            "start": 22,
+            "end": 26,
+            "kind": "entity",
+            "text": "book",
+            "concept": "af",
+            "role": "patient"
+          },
+          {
+            "start": 34,
+            "end": 39,
+            "kind": "entity",
+            "text": "child",
+            "concept": "ac",
+            "role": "recipient"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 6,
+          "posterior": 0.9999999999689015,
+          "role_evidence": 0.9980335377445514
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge12ja",
+      "text": "公園で犬が眠る",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "be",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "place",
+            "quantity": null,
+            "name": null,
+            "concept": "ah"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": "nb"
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9746146345283309,
+        "spans": [
+          {
+            "start": 0,
+            "end": 2,
+            "kind": "entity",
+            "text": "公園",
+            "concept": "ah",
+            "role": "location"
+          },
+          {
+            "start": 3,
+            "end": 4,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 5,
+            "end": 7,
+            "kind": "predicate",
+            "text": "眠る",
+            "concept": "be"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 0.9746146345283309
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge12en",
+      "text": "The dog sleeps in the park",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "be",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "place",
+            "quantity": null,
+            "name": null,
+            "concept": "ah"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": "nb"
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9990605711936951,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 8,
+            "end": 14,
+            "kind": "predicate",
+            "text": "sleeps",
+            "concept": "be"
+          },
+          {
+            "start": 22,
+            "end": 26,
+            "kind": "entity",
+            "text": "park",
+            "concept": "ah",
+            "role": "location"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 0.9999994337557143
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge13ja",
+      "text": "子供が空腹だ",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "state",
+            "concept": "bf",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ac"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9996888041496277,
+        "spans": [
+          {
+            "start": 0,
+            "end": 2,
+            "kind": "entity",
+            "text": "子供",
+            "concept": "ac",
+            "role": "agent"
+          },
+          {
+            "start": 3,
+            "end": 6,
+            "kind": "predicate",
+            "text": "空腹だ",
+            "concept": "bf"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 0.9998630285263062
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "challenge13en",
+      "text": "The child is hungry",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "state",
+            "concept": "bf",
+            "polarity": "affirmed",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ac"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.9999097585678101,
+        "spans": [
+          {
+            "start": 4,
+            "end": 9,
+            "kind": "entity",
+            "text": "child",
+            "concept": "ac",
+            "role": "agent"
+          },
+          {
+            "start": 13,
+            "end": 19,
+            "kind": "predicate",
+            "text": "hungry",
+            "concept": "bf"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 1,
+          "posterior": 1.0,
+          "role_evidence": 0.9999997019767761
+        },
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject0ja",
+      "text": "宇宙人が猫を追う",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.999999999334398,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject0en",
+      "text": "The alien chases the cat",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9999999831559307,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject1ja",
+      "text": "全ての犬がある猫を追う",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.999999999990521,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject1en",
+      "text": "Every dog chases some cat",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9999999965767772,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject2ja",
+      "text": "犬が猫を追わないわけではない",
+      "status": "confirmed",
+      "graph": {
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "nodes": [
+          {
+            "id": "e",
+            "kind": "event",
+            "concept": "ba",
+            "polarity": "negated",
+            "time": {
+              "kind": "unspecified",
+              "value": null
+            }
+          },
+          {
+            "id": "na",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "aa"
+          },
+          {
+            "id": "nb",
+            "kind": "entity",
+            "quantity": null,
+            "name": null,
+            "concept": "ab"
+          }
+        ],
+        "relations": [
+          {
+            "source": "e",
+            "role": "agent",
+            "target": "na"
+          },
+          {
+            "source": "e",
+            "role": "patient",
+            "target": "nb"
+          },
+          {
+            "source": "e",
+            "role": "recipient",
+            "target": null
+          },
+          {
+            "source": "e",
+            "role": "location",
+            "target": null
+          }
+        ]
+      },
+      "diagnostics": {
+        "confidence": 0.8594688355922699,
+        "spans": [
+          {
+            "start": 0,
+            "end": 1,
+            "kind": "entity",
+            "text": "犬",
+            "concept": "aa",
+            "role": "agent"
+          },
+          {
+            "start": 2,
+            "end": 3,
+            "kind": "entity",
+            "text": "猫",
+            "concept": "ab",
+            "role": "patient"
+          },
+          {
+            "start": 4,
+            "end": 14,
+            "kind": "predicate",
+            "text": "追わないわけではない",
+            "concept": "ba"
+          }
+        ],
+        "reason": null,
+        "role_assignment": {
+          "valid_assignments": 2,
+          "posterior": 0.999999999817222,
+          "role_evidence": 0.9999237032343282
+        },
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject2en",
+      "text": "It is not the case that the dog does not chase the cat",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9999999999976574,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject3ja",
+      "text": "彼女が眠る",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9999999999999328,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject3en",
+      "text": "She sleeps",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9999999999972967,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject4ja",
+      "text": "犬が眠る。猫もそうする",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9961526819970459,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject4en",
+      "text": "The dog sleeps. The cat does too",
+      "status": "unresolved",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.5997257133324941,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa"
+          },
+          {
+            "start": 8,
+            "end": 14,
+            "kind": "predicate",
+            "text": "sleeps",
+            "concept": "be"
+          },
+          {
+            "start": 20,
+            "end": 23,
+            "kind": "entity",
+            "text": "cat",
+            "concept": "ab"
+          },
+          {
+            "start": 29,
+            "end": 32,
+            "kind": "entity",
+            "text": "too",
+            "concept": "bb"
+          }
+        ],
+        "reason": "inconsistent_structure: Expected an entity or place",
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject5ja",
+      "text": "希望が眠る",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.999999999999971,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject5en",
+      "text": "Hope sleeps",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9999999999999855,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject6ja",
+      "text": "犬が走り猫が眠る",
+      "status": "unsupported",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.9974174750968814,
+        "spans": [],
+        "reason": "support_classifier",
+        "language": "ja",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.0,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    },
+    {
+      "id": "reject6en",
+      "text": "The dog runs and the cat sleeps",
+      "status": "unresolved",
+      "graph": null,
+      "diagnostics": {
+        "confidence": 0.3506166338920593,
+        "spans": [
+          {
+            "start": 4,
+            "end": 7,
+            "kind": "entity",
+            "text": "dog",
+            "concept": "aa"
+          },
+          {
+            "start": 8,
+            "end": 12,
+            "kind": "predicate",
+            "text": "runs",
+            "concept": "ag"
+          }
+        ],
+        "reason": "inconsistent_structure: Expected an event or state predicate",
+        "language": "en",
+        "model": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "checkpoint_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "threshold": 0.79,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "decoder": "joint-v1",
+        "routing": "explicit input language; frozen development-selected checkpoint"
+      }
+    }
+  ]
+}

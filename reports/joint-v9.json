@@ -1,0 +1,991 @@
+{
+  "xlmr": {
+    "development": {
+      "metadata": {
+        "format": 2,
+        "architecture": "sequence-gru-attachment",
+        "dimension": 777,
+        "hidden": 96,
+        "representation": "characters-v2",
+        "labels": {
+          "span": [
+            "O",
+            "B-predicate",
+            "I-predicate",
+            "B-entity",
+            "I-entity",
+            "B-quantity",
+            "I-quantity",
+            "B-time",
+            "I-time",
+            "B-negation",
+            "I-negation"
+          ],
+          "concept": [
+            "none",
+            "aa",
+            "ab",
+            "ac",
+            "ad",
+            "ae",
+            "af",
+            "ag",
+            "ah",
+            "ai",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "role": [
+            "none",
+            "agent",
+            "patient",
+            "recipient",
+            "location"
+          ],
+          "polarity": [
+            "affirmed",
+            "negated",
+            "unspecified"
+          ],
+          "time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ],
+          "support": [
+            "unsupported",
+            "supported"
+          ],
+          "sentence_concept": [
+            "none",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "frame": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "explicit_time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ]
+        },
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "encoder": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "head_runtime": {
+          "torch": "2.12.0+cpu",
+          "seed": 71
+        },
+        "thresholds": {
+          "ja": 0.0,
+          "en": 0.79
+        },
+        "best_epoch": 30,
+        "epochs": 30,
+        "dataset_sha256": "48e67753f26a36643c08512271cae4667cea76e320bfae181f71a11dcf4921a1",
+        "weights_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "trainable_parameters": 374451,
+        "elapsed_seconds": 1388.7233676000033,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used",
+        "decoder": "joint-v1",
+        "unknown_span_supervision": 8213,
+        "known_context_supervision": 5456,
+        "target_builder_sha256": "5ea530784bc9595518c2608a0c962bb6478cac863d7fccde2019cb82f2442ec4",
+        "joint_decoder_sha256": "3d55fa08d208389810a05473f02d365d9a7c7a7941061bf3fbb08b5617de06d6",
+        "evaluation_status": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation"
+      },
+      "metrics": {
+        "ja": {
+          "in_scope": 410,
+          "confirmed": 410,
+          "exact": 410,
+          "coverage": 1.0,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 159,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.006289308176100629,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 0,
+          "passes_provisional_gate": true
+        },
+        "en": {
+          "in_scope": 775,
+          "confirmed": 731,
+          "exact": 731,
+          "coverage": 0.9432258064516129,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 245,
+          "unsupported_false_accepts": 12,
+          "unsupported_false_accept_rate": 0.04897959183673469,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 44,
+          "passes_provisional_gate": true
+        },
+        "equivalence": {
+          "groups": 783,
+          "fully_confirmed_groups": 380,
+          "equal_confirmed_groups": 380
+        }
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "calibration": {
+            "ja": {
+              "coverage": 0.3926829268292683,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.03773584905660377,
+              "threshold": 0.71,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.5509677419354839,
+              "precision": 0.9742388758782201,
+              "unsupported_false_accept_rate": 0.04897959183673469,
+              "threshold": 0.89,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 399,
+              "exact": 373,
+              "coverage": 0.973170731707317,
+              "confirmed_exact_match": 0.9348370927318296,
+              "unsupported": 159,
+              "unsupported_false_accepts": 41,
+              "unsupported_false_accept_rate": 0.2578616352201258,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 1,
+                "agent": 25,
+                "patient": 25,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 11,
+              "passes_provisional_gate": false
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 734,
+              "exact": 712,
+              "coverage": 0.9470967741935484,
+              "confirmed_exact_match": 0.9700272479564033,
+              "unsupported": 245,
+              "unsupported_false_accepts": 66,
+              "unsupported_false_accept_rate": 0.2693877551020408,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 22,
+                "patient": 22,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 41,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 373,
+              "equal_confirmed_groups": 335
+            }
+          }
+        },
+        {
+          "epoch": 5,
+          "calibration": {
+            "ja": {
+              "coverage": 0.9926829268292683,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.018867924528301886,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.6954838709677419,
+              "precision": 0.9851576994434137,
+              "unsupported_false_accept_rate": 0.04897959183673469,
+              "threshold": 0.9,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 407,
+              "exact": 407,
+              "coverage": 0.9926829268292683,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 159,
+              "unsupported_false_accepts": 3,
+              "unsupported_false_accept_rate": 0.018867924528301886,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 3,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 723,
+              "exact": 701,
+              "coverage": 0.9329032258064516,
+              "confirmed_exact_match": 0.9695712309820194,
+              "unsupported": 245,
+              "unsupported_false_accepts": 30,
+              "unsupported_false_accept_rate": 0.12244897959183673,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 22,
+                "patient": 22,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 52,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 369,
+              "equal_confirmed_groups": 351
+            }
+          }
+        },
+        {
+          "epoch": 10,
+          "calibration": {
+            "ja": {
+              "coverage": 1.0,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.025157232704402517,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.8296774193548387,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.04897959183673469,
+              "threshold": 0.93,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 410,
+              "exact": 410,
+              "coverage": 1.0,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 159,
+              "unsupported_false_accepts": 4,
+              "unsupported_false_accept_rate": 0.025157232704402517,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 0,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 740,
+              "exact": 733,
+              "coverage": 0.9548387096774194,
+              "confirmed_exact_match": 0.9905405405405405,
+              "unsupported": 245,
+              "unsupported_false_accepts": 39,
+              "unsupported_false_accept_rate": 0.15918367346938775,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 7,
+                "patient": 7,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 35,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 389,
+              "equal_confirmed_groups": 382
+            }
+          }
+        },
+        {
+          "epoch": 15,
+          "calibration": {
+            "ja": {
+              "coverage": 1.0,
+              "precision": 0.9975609756097561,
+              "unsupported_false_accept_rate": 0.031446540880503145,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.8580645161290322,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.044897959183673466,
+              "threshold": 0.88,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 410,
+              "exact": 409,
+              "coverage": 1.0,
+              "confirmed_exact_match": 0.9975609756097561,
+              "unsupported": 159,
+              "unsupported_false_accepts": 5,
+              "unsupported_false_accept_rate": 0.031446540880503145,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 1,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 0,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 731,
+              "exact": 729,
+              "coverage": 0.9432258064516129,
+              "confirmed_exact_match": 0.9972640218878249,
+              "unsupported": 245,
+              "unsupported_false_accepts": 32,
+              "unsupported_false_accept_rate": 0.1306122448979592,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 2,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 44,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 386,
+              "equal_confirmed_groups": 383
+            }
+          }
+        },
+        {
+          "epoch": 20,
+          "calibration": {
+            "ja": {
+              "coverage": 0.9853658536585366,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.018867924528301886,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.7574193548387097,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.044897959183673466,
+              "threshold": 0.98,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 404,
+              "exact": 404,
+              "coverage": 0.9853658536585366,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 159,
+              "unsupported_false_accepts": 3,
+              "unsupported_false_accept_rate": 0.018867924528301886,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 6,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 714,
+              "exact": 714,
+              "coverage": 0.9212903225806451,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 245,
+              "unsupported_false_accepts": 35,
+              "unsupported_false_accept_rate": 0.14285714285714285,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 61,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 363,
+              "equal_confirmed_groups": 363
+            }
+          }
+        },
+        {
+          "epoch": 25,
+          "calibration": {
+            "ja": {
+              "coverage": 0.9926829268292683,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.018867924528301886,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.7716129032258064,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.04897959183673469,
+              "threshold": 0.98,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 407,
+              "exact": 407,
+              "coverage": 0.9926829268292683,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 159,
+              "unsupported_false_accepts": 3,
+              "unsupported_false_accept_rate": 0.018867924528301886,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 3,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 716,
+              "exact": 716,
+              "coverage": 0.9238709677419354,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 245,
+              "unsupported_false_accepts": 35,
+              "unsupported_false_accept_rate": 0.14285714285714285,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 59,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 367,
+              "equal_confirmed_groups": 367
+            }
+          }
+        },
+        {
+          "epoch": 30,
+          "calibration": {
+            "ja": {
+              "coverage": 1.0,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.006289308176100629,
+              "threshold": 0.0,
+              "validated": true
+            },
+            "en": {
+              "coverage": 0.9432258064516129,
+              "precision": 1.0,
+              "unsupported_false_accept_rate": 0.04897959183673469,
+              "threshold": 0.79,
+              "validated": true
+            }
+          },
+          "raw": {
+            "ja": {
+              "in_scope": 410,
+              "confirmed": 410,
+              "exact": 410,
+              "coverage": 1.0,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 159,
+              "unsupported_false_accepts": 1,
+              "unsupported_false_accept_rate": 0.006289308176100629,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 0,
+              "passes_provisional_gate": true
+            },
+            "en": {
+              "in_scope": 775,
+              "confirmed": 757,
+              "exact": 757,
+              "coverage": 0.9767741935483871,
+              "confirmed_exact_match": 1.0,
+              "unsupported": 245,
+              "unsupported_false_accepts": 23,
+              "unsupported_false_accept_rate": 0.09387755102040816,
+              "component_errors_on_confirmed": {
+                "predicate": 0,
+                "polarity": 0,
+                "time": 0,
+                "agent": 0,
+                "patient": 0,
+                "recipient": 0,
+                "location": 0
+              },
+              "abstained": 18,
+              "passes_provisional_gate": true
+            },
+            "equivalence": {
+              "groups": 783,
+              "fully_confirmed_groups": 396,
+              "equal_confirmed_groups": 396
+            }
+          }
+        }
+      ]
+    },
+    "regression": {
+      "metadata": {
+        "format": 2,
+        "architecture": "sequence-gru-attachment",
+        "dimension": 777,
+        "hidden": 96,
+        "representation": "characters-v2",
+        "labels": {
+          "span": [
+            "O",
+            "B-predicate",
+            "I-predicate",
+            "B-entity",
+            "I-entity",
+            "B-quantity",
+            "I-quantity",
+            "B-time",
+            "I-time",
+            "B-negation",
+            "I-negation"
+          ],
+          "concept": [
+            "none",
+            "aa",
+            "ab",
+            "ac",
+            "ad",
+            "ae",
+            "af",
+            "ag",
+            "ah",
+            "ai",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "role": [
+            "none",
+            "agent",
+            "patient",
+            "recipient",
+            "location"
+          ],
+          "polarity": [
+            "affirmed",
+            "negated",
+            "unspecified"
+          ],
+          "time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ],
+          "support": [
+            "unsupported",
+            "supported"
+          ],
+          "sentence_concept": [
+            "none",
+            "ba",
+            "bb",
+            "bc",
+            "bd",
+            "be",
+            "bf"
+          ],
+          "frame": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "explicit_time": [
+            "unspecified",
+            "past",
+            "present",
+            "future",
+            "yesterday",
+            "today",
+            "tomorrow"
+          ]
+        },
+        "schema_version": "0.1",
+        "lexicon_version": "0.1",
+        "encoder": {
+          "id": "FacebookAI/xlm-roberta-base",
+          "revision": "e73636d4f797dec63c3081bb6ed5c7b0bb3f2089",
+          "max_length": 128,
+          "key": "xlmr",
+          "torch": "2.12.0+cpu",
+          "transformers": "4.57.6",
+          "python": "3.14.2",
+          "platform": "Windows-11-10.0.26200-SP0",
+          "device": "cpu",
+          "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+          "dtype": "float32",
+          "attention": "eager",
+          "threads": 8,
+          "pooling": "attention-mask mean including special tokens",
+          "seed": 17,
+          "cuda": null,
+          "gpu": null
+        },
+        "head_runtime": {
+          "torch": "2.12.0+cpu",
+          "seed": 71
+        },
+        "thresholds": {
+          "ja": 0.0,
+          "en": 0.79
+        },
+        "best_epoch": 30,
+        "epochs": 30,
+        "dataset_sha256": "48e67753f26a36643c08512271cae4667cea76e320bfae181f71a11dcf4921a1",
+        "weights_sha256": "50056ebb4ceecaaeaffc1546a4fec944bf6d45b4650314228a9a4fc57d47ba09",
+        "trainable_parameters": 374451,
+        "elapsed_seconds": 1388.7233676000033,
+        "decoder_sha256": "9ddfb39d4f877046a0cdf96564fe07c697235727a1206e2444fc51975658202d",
+        "selection": "development selective coverage at >=95% exact precision and <=5% unsupported false acceptance; no final partition labels or predictions used",
+        "decoder": "joint-v1",
+        "unknown_span_supervision": 8213,
+        "known_context_supervision": 5456,
+        "target_builder_sha256": "5ea530784bc9595518c2608a0c962bb6478cac863d7fccde2019cb82f2442ec4",
+        "joint_decoder_sha256": "3d55fa08d208389810a05473f02d365d9a7c7a7941061bf3fbb08b5617de06d6",
+        "evaluation_status": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation"
+      },
+      "split": "test",
+      "metrics": {
+        "ja": {
+          "in_scope": 756,
+          "confirmed": 637,
+          "exact": 637,
+          "coverage": 0.8425925925925926,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 109,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 119,
+          "passes_provisional_gate": true
+        },
+        "en": {
+          "in_scope": 892,
+          "confirmed": 709,
+          "exact": 708,
+          "coverage": 0.7948430493273543,
+          "confirmed_exact_match": 0.998589562764457,
+          "unsupported": 116,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 1,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 183,
+          "passes_provisional_gate": false
+        },
+        "equivalence": {
+          "groups": 894,
+          "fully_confirmed_groups": 535,
+          "equal_confirmed_groups": 534
+        }
+      },
+      "raw_metrics": {
+        "ja": {
+          "in_scope": 756,
+          "confirmed": 637,
+          "exact": 637,
+          "coverage": 0.8425925925925926,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 109,
+          "unsupported_false_accepts": 0,
+          "unsupported_false_accept_rate": 0.0,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 119,
+          "passes_provisional_gate": true
+        },
+        "en": {
+          "in_scope": 892,
+          "confirmed": 780,
+          "exact": 779,
+          "coverage": 0.874439461883408,
+          "confirmed_exact_match": 0.9987179487179487,
+          "unsupported": 116,
+          "unsupported_false_accepts": 1,
+          "unsupported_false_accept_rate": 0.008620689655172414,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 1,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 112,
+          "passes_provisional_gate": true
+        },
+        "equivalence": {
+          "groups": 894,
+          "fully_confirmed_groups": 569,
+          "equal_confirmed_groups": 568
+        }
+      },
+      "rejection_reasons_in_scope": {
+        "ja": {
+          "confirmed": 637,
+          "support_classifier": 117,
+          "inconsistent_structure: Unknown concept prediction": 1,
+          "inconsistent_structure: No typed role assignment": 1
+        },
+        "en": {
+          "confirmed": 709,
+          "low_confidence": 71,
+          "support_classifier": 87,
+          "inconsistent_structure: Role presence and extracted entities disagree": 16,
+          "inconsistent_structure: Unknown concept prediction": 9
+        }
+      },
+      "unsupported_categories": {
+        "ja:unknown_concept": {
+          "total": 19,
+          "false_accepts": 0
+        },
+        "en:unknown_concept": {
+          "total": 21,
+          "false_accepts": 0
+        },
+        "ja:quantification": {
+          "total": 12,
+          "false_accepts": 0
+        },
+        "en:quantification": {
+          "total": 13,
+          "false_accepts": 0
+        },
+        "ja:nested_scope": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "en:nested_scope": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "ja:multiple_events": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "en:multiple_events": {
+          "total": 20,
+          "false_accepts": 0
+        },
+        "ja:modality": {
+          "total": 19,
+          "false_accepts": 0
+        },
+        "en:modality": {
+          "total": 21,
+          "false_accepts": 0
+        },
+        "ja:question": {
+          "total": 19,
+          "false_accepts": 0
+        },
+        "en:question": {
+          "total": 21,
+          "false_accepts": 0
+        }
+      },
+      "repeat_exact": true,
+      "repeat_probe_count": 16,
+      "selection": "thresholds and checkpoint fixed on development data; no evaluation-time calibration",
+      "evaluation_status": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation"
+    }
+  }
+}
