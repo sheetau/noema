@@ -1,4 +1,5 @@
 import json
+import hashlib
 from pathlib import Path
 from noema.confirmation import build, realize
 from noema.corpus_v2 import build as original_corpus
@@ -22,6 +23,9 @@ def test_confirmation_voice_pair_keeps_roles_numbers_and_names():
 def test_confirmation_has_preregistered_counts_and_preserves_missing_agents():
     original = original_corpus()
     rows = build(original)
+    serialized = ''.join(json.dumps(r, ensure_ascii=False) + '\n' for r in rows).encode("utf-8")
+    # Parameterizing later confirmations must not rewrite the historical v1 cases.
+    assert hashlib.sha256(serialized).hexdigest() == "c13c55b5ad35c195f95b4537b6f01db145e1a090ec6d501b6b7e2d8fe35ef4b2"
     assert len(rows) == 1344
     assert len({r["group"] for r in rows if r["supported"]}) == 300
     for language in ("ja", "en"):

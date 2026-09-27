@@ -97,13 +97,17 @@ def realize(combo, quantities, name, polarity, temporal, language, variant):
     return text, spans, make_graph(predicate, entities, polarity, temporal), pattern
 
 
-def build(source):
-    rng = random.Random(61027)
+def build(source, *, seed=61027, names=NAMES, quantity_values=QUANTITIES, unknown_words=None,
+          exclude_existing_meanings=False, id_prefix="confirm"):
+    rng = random.Random(seed)
+    unknown_words = unknown_words or {"ja": ("熊", "象", "鹿"), "en": ("bear", "elephant", "deer")}
     held = {tuple(r["combination"]) for r in source if r["supported"] and r["split"] == "test"}
     trained = {tuple(r["combination"]) for r in source if r["supported"] and r["split"] == "train"}
     require(not held & trained, "Concept combinations leaked into training")
     existing = {(r["language"], r["text"], json.dumps(r["graph"], sort_keys=True)) for r in source}
     rows, meanings, seen_text = [], set(), set()
+    if exclude_existing_meanings:
+        meanings = {json.dumps(r["graph"], sort_keys=True) for r in source if r["supported"]}
     for predicate in VERBS:
         candidates = sorted([c for c in held if c[0] == predicate], key=str)
         require(bool(candidates), "Missing held-out predicate")
@@ -114,9 +118,9 @@ def build(source):
             combo = rng.choice(candidates)
             temporal = rng.choice(TIMES if combo[-1] else TIMES[4:])
             polarity = rng.choice(("affirmed", "negated"))
-            quantities = {r: rng.choice(QUANTITIES) for r, c in zip(ROLES, combo[1:]) if r != "location" and c not in (None, "ag") and rng.random() < .45}
-            name = rng.choice(NAMES)
-            group = f"confirm{predicate}{accepted:03d}"
+            quantities = {r: rng.choice(quantity_values) for r, c in zip(ROLES, combo[1:]) if r != "location" and c not in (None, "ag") and rng.random() < .45}
+            name = rng.choice(names)
+            group = f"{id_prefix}{predicate}{accepted:03d}"
             batch = []
             for language in ("ja", "en"):
                 for variant in (0, 1):
@@ -141,7 +145,7 @@ def build(source):
                 text = original["text"]
                 dog = next(s for s in original["spans"] if s["kind"] == "entity" and s["concept"] == "aa")
                 if category == "unknown_concept":
-                    word = ("熊", "象", "鹿")[i % 3] if language == "ja" else ("bear", "elephant", "deer")[i % 3]
+                    word = unknown_words[language][i % len(unknown_words[language])]
                     text = text[:dog["start"]] + word + text[dog["end"]:]
                 elif category == "quantification":
                     if language == "ja":
@@ -162,7 +166,7 @@ def build(source):
                     text = ("もしかすると" if language == "ja" else "Maybe ") + text
                 else:
                     text = text.rstrip("。.") + ("のですか？" if language == "ja" else "?")
-                rows.append({**original, "id": f"confirmu{category}{language}{i:02d}", "group": f"confirmu{category}{language}{i:02d}",
+                rows.append({**original, "id": f"{id_prefix}u{category}{language}{i:02d}", "group": f"{id_prefix}u{category}{language}{i:02d}",
                              "supported": False, "category": category, "combination": None, "text": text, "spans": [], "graph": None})
     validate(rows)
     audit(rows)
