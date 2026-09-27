@@ -53,8 +53,10 @@ def main():
         check_source(row["text"], output["prediction"])
         assert output["repeated_equal"] and output["vectors_aligned"]
     assert run["forbidden_path_calls"] == [0] * 5
+    assert run["all_word_fallback_calls"] >= run["corpus_word_fallback_calls"]
     write(REPORT / "verification.json", {"corpus_comparison_equal": len(cases), "evaluation_equal": True,
           "synthetic_source_preserved": len(synthetic), "forbidden_path_calls": run["forbidden_path_calls"],
+          "corpus_word_fallback_calls": run["corpus_word_fallback_calls"], "all_word_fallback_calls": run["all_word_fallback_calls"],
           "repeated_equal": run["repeated_equal"], "character_logits_equal": run["character_logits_equal"]})
     print("Verified", len(cases), "corpus comparisons and", len(synthetic), "source-preservation fixtures")
 

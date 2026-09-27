@@ -16,7 +16,7 @@ REPORT = Path("reports/character-alignment-v1")
 ARTIFACTS = Path("artifacts/character-alignment-v1")
 SYNTHETIC = Path("data/character-alignment-v1.json")
 CODE = ("noema/character_alignment.py", "noema/japanese_pas_aligned.py", "noema/japanese_pas.py",
-        "noema/kwdlc_references.py", "scripts/probe_character_alignment.py")
+        "noema/preserving_word_tokenizer.py", "noema/kwdlc_references.py", "scripts/probe_character_alignment.py")
 
 
 def read_rows(path):
@@ -73,6 +73,7 @@ def main():
                                 "changed_source_groups": sum(g["source_end"] - g["source_start"] != 1 or g["model_end"] - g["model_start"] != 1 for g in groups)})
             if index % 16 == 0 or index == len(rows) - 1:
                 print("processed", index + 1, "/", len(rows), "failures", sum(c["failure"] is not None for c in cases), flush=True)
+        corpus_word_fallback_calls = parser.tokenizers["word"].fallback_calls
         for row in json.loads(SYNTHETIC.read_text(encoding="utf-8")):
             prediction, vectors = parser.analyze(row["text"], return_features=True)
             check_source(row["text"], prediction)
@@ -92,6 +93,8 @@ def main():
           "protocol_sha256": digest("docs/character-alignment-v1-protocol.md"), "synthetic_sha256": digest(SYNTHETIC),
           "previous_run_sha256": digest(PREVIOUS_REPORT / "run.json"), "metadata": parser.metadata,
           "predictions_sha256": digest(ARTIFACTS / "predictions.jsonl"), "repeated_equal": repeated,
+          "corpus_word_fallback_calls": corpus_word_fallback_calls,
+          "all_word_fallback_calls": parser.tokenizers["word"].fallback_calls,
           "character_logits_equal": logits_equal, "forbidden_path_calls": guard_counts,
           "outputs_sha256": {p: digest(REPORT / p) for p in ("evaluation.json", "comparison.json", "synthetic.json")}})
     print(json.dumps(corpus_summary(cases)["all"], indent=2), flush=True)

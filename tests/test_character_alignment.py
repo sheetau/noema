@@ -46,3 +46,15 @@ def test_tag_projection_rejects_missing_positions():
         source_tags("A…B", groups, ["B"] * 3, ["B"] * 3)
     with pytest.raises(SemanticError, match="omit"):
         source_tags("AB", [], [], [])
+
+
+def test_mixed_unicode_sequences_preserve_all_source_ranges():
+    import random
+    rng = random.Random(17)
+    alphabet = list("AqéÅかが…㍍ﬃ🙂 \u1100\u1161\u11a8") + [chr(i) for i in range(0x300, 0x370)]
+    for _ in range(1000):
+        text = "".join(rng.choices(alphabet, k=rng.randrange(1, 18)))
+        normalized, groups = normalized_ranges(text)
+        assert normalized == unicodedata.normalize("NFKC", text)
+        assert "".join(text[g["source_start"]:g["source_end"]] for g in groups) == text
+        assert "".join(normalized[g["model_start"]:g["model_end"]] for g in groups) == normalized

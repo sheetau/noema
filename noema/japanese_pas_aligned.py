@@ -2,6 +2,7 @@
 import unicodedata
 
 from .character_alignment import character_ids, source_tags
+from . import character_alignment, preserving_word_tokenizer
 from .definition_probe import digest
 from .japanese_pas import JapanesePAS, source_spans
 from .semantics import require
@@ -11,10 +12,13 @@ class AlignedJapanesePAS(JapanesePAS):
     def __init__(self, root="artifacts/japanese-pas-model"):
         super().__init__(root)
         self.metadata.update(base_adapter_sha256=self.metadata["adapter_sha256"], adapter_sha256=digest(__file__),
-                             alignment_sha256=digest("noema/character_alignment.py"),
+                             alignment_sha256=digest(character_alignment.__file__),
+                             word_adapter_sha256=digest(preserving_word_tokenizer.__file__),
                              unicode_version=unicodedata.unidata_version, source_normalization=False,
                              character_model_normalization="NFKC", literal_control_tokens=True,
-                             boundary_projection="first_model_character_of_source_group")
+                             boundary_projection="first_model_character_of_source_group",
+                             erased_word_policy="native_unk_keep_source_position")
+        self.tokenizers["word"] = preserving_word_tokenizer.PreservingWordTokenizer(self.tokenizers["word"])
 
     def character_input(self, text):
         import torch
