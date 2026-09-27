@@ -1,0 +1,190 @@
+{
+  "selection": {
+    "manifest": {
+      "format": 3,
+      "architecture": "language-routed",
+      "routes": {
+        "ja": {
+          "checkpoint": "../joint-v6-xlmr",
+          "metadata_sha256": "78208aaa2f4e8fee1ec0dc5c23b8394d457eafd920383894b891cea9075fab5d"
+        },
+        "en": {
+          "checkpoint": "../joint-v6-minilm",
+          "metadata_sha256": "19190a75e7798c0dd82e25068bd5ee823c27abd4943971ab3e311bcda9d5fe73"
+        }
+      },
+      "selected_at": "2026-09-27T04:28:05.999972+00:00",
+      "policy": "highest development coverage among candidates with >=80% coverage, >=95% confirmed exact match, <=5% unsupported false acceptance; explicit language routing"
+    },
+    "decisions": {
+      "ja": {
+        "checkpoint": "artifacts\\joint-v6-xlmr",
+        "metrics": {
+          "in_scope": 410,
+          "confirmed": 402,
+          "exact": 402,
+          "coverage": 0.9804878048780488,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 77,
+          "unsupported_false_accepts": 3,
+          "unsupported_false_accept_rate": 0.03896103896103896,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 8,
+          "passes_provisional_gate": true
+        },
+        "weights_sha256": "413c45feb30dbe1a12b1f8cd0a960fe3da9e394cadb2d7f200a428cf9d39ac72"
+      },
+      "en": {
+        "checkpoint": "artifacts\\joint-v6-minilm",
+        "metrics": {
+          "in_scope": 775,
+          "confirmed": 764,
+          "exact": 764,
+          "coverage": 0.9858064516129033,
+          "confirmed_exact_match": 1.0,
+          "unsupported": 149,
+          "unsupported_false_accepts": 6,
+          "unsupported_false_accept_rate": 0.040268456375838924,
+          "component_errors_on_confirmed": {
+            "predicate": 0,
+            "polarity": 0,
+            "time": 0,
+            "agent": 0,
+            "patient": 0,
+            "recipient": 0,
+            "location": 0
+          },
+          "abstained": 11,
+          "passes_provisional_gate": true
+        },
+        "weights_sha256": "cb0980880fc527c22d4e9c79da71ef9f8b45a451223ea7f5725cbdefc23f1300"
+      }
+    },
+    "final_partition_used": false
+  },
+  "dataset_sha256": "1753defe81828a2553f21732e685e81e2399d0efc2184e469fd34e4c60d50b18",
+  "split": "test",
+  "evaluation_status": {
+    "ja": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation",
+    "en": "test partition was inspected in earlier experiments; subsequent test evaluation is regression, not independent final validation"
+  },
+  "metrics": {
+    "ja": {
+      "in_scope": 756,
+      "confirmed": 749,
+      "exact": 749,
+      "coverage": 0.9907407407407407,
+      "confirmed_exact_match": 1.0,
+      "unsupported": 109,
+      "unsupported_false_accepts": 0,
+      "unsupported_false_accept_rate": 0.0,
+      "component_errors_on_confirmed": {
+        "predicate": 0,
+        "polarity": 0,
+        "time": 0,
+        "agent": 0,
+        "patient": 0,
+        "recipient": 0,
+        "location": 0
+      },
+      "abstained": 7,
+      "passes_provisional_gate": true
+    },
+    "en": {
+      "in_scope": 892,
+      "confirmed": 884,
+      "exact": 884,
+      "coverage": 0.9910313901345291,
+      "confirmed_exact_match": 1.0,
+      "unsupported": 116,
+      "unsupported_false_accepts": 1,
+      "unsupported_false_accept_rate": 0.008620689655172414,
+      "component_errors_on_confirmed": {
+        "predicate": 0,
+        "polarity": 0,
+        "time": 0,
+        "agent": 0,
+        "patient": 0,
+        "recipient": 0,
+        "location": 0
+      },
+      "abstained": 8,
+      "passes_provisional_gate": true
+    },
+    "equivalence": {
+      "groups": 894,
+      "fully_confirmed_groups": 741,
+      "equal_confirmed_groups": 741
+    }
+  },
+  "repeat_exact": true,
+  "rejection_reasons_in_scope": {
+    "ja": {
+      "confirmed": 749,
+      "low_confidence": 7
+    },
+    "en": {
+      "confirmed": 884,
+      "low_confidence": 7,
+      "inconsistent_structure: Expected an entity or place": 1
+    }
+  },
+  "unsupported_categories": {
+    "ja:unknown_concept": {
+      "total": 19,
+      "false_accepts": 0
+    },
+    "ja:quantification": {
+      "total": 12,
+      "false_accepts": 0
+    },
+    "ja:nested_scope": {
+      "total": 20,
+      "false_accepts": 0
+    },
+    "ja:multiple_events": {
+      "total": 20,
+      "false_accepts": 0
+    },
+    "ja:modality": {
+      "total": 19,
+      "false_accepts": 0
+    },
+    "ja:question": {
+      "total": 19,
+      "false_accepts": 0
+    },
+    "en:unknown_concept": {
+      "total": 21,
+      "false_accepts": 1
+    },
+    "en:quantification": {
+      "total": 13,
+      "false_accepts": 0
+    },
+    "en:nested_scope": {
+      "total": 20,
+      "false_accepts": 0
+    },
+    "en:multiple_events": {
+      "total": 20,
+      "false_accepts": 0
+    },
+    "en:modality": {
+      "total": 21,
+      "false_accepts": 0
+    },
+    "en:question": {
+      "total": 21,
+      "false_accepts": 0
+    }
+  }
+}

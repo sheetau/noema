@@ -36,6 +36,7 @@ def main():
     rows = [r for r in all_rows if r["split"] == split]
     predictions = [mappings[r["language"]][r["id"]] for r in rows]
     save_json(args.output, {"selection": selection, "dataset_sha256": digest(args.dataset), "split": split,
+                           "evaluation_status": {l: r.get("evaluation_status", "unspecified") for l, r in reports.items()},
                            "metrics": evaluate(rows, predictions), "repeat_exact": all(r["repeat_exact"] for r in reports.values()),
                            "rejection_reasons_in_scope": {l: reports[l]["rejection_reasons_in_scope"][l] for l in reports},
                            "unsupported_categories": {k: v for l, r in reports.items() for k, v in r["unsupported_categories"].items() if k.startswith(l + ":")}})

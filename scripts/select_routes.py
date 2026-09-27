@@ -13,6 +13,10 @@ def select(checkpoints, output, record):
     if output.exists() or Path(record).exists():
         raise ValueError("Choose new paths; a frozen selection must not be overwritten")
     candidates = [(Path(p), json.loads((Path(p) / "development-report.json").read_text(encoding="utf-8"))) for p in checkpoints]
+    for path, report in candidates:
+        metadata = json.loads((path / "metadata.json").read_text(encoding="utf-8"))
+        if report["metadata"] != metadata or metadata["weights_sha256"] != digest(path / "heads.safetensors"):
+            raise ValueError("Development report or weights differ from checkpoint metadata")
     if len({r["metadata"]["dataset_sha256"] for _, r in candidates}) != 1:
         raise ValueError("Candidates used different datasets")
     routes, decisions = {}, {}
@@ -20,7 +24,7 @@ def select(checkpoints, output, record):
         eligible = [(p, r) for p, r in candidates if r["metrics"][language]["passes_provisional_gate"] and r["metrics"][language]["unsupported_false_accept_rate"] <= .05]
         if not eligible:
             raise ValueError(f"No development-qualified checkpoint for {language}")
-        path, report = max(eligible, key=lambda item: (item[1]["metrics"][language]["coverage"], item[1]["metrics"][language]["confirmed_exact_match"]))
+        path, report = min(eligible, key=lambda item: (-item[1]["metrics"][language]["coverage"], -item[1]["metrics"][language]["confirmed_exact_match"], item[0].name))
         routes[language] = {"checkpoint": os.path.relpath(path, output).replace("\\", "/"), "metadata_sha256": digest(path / "metadata.json")}
         decisions[language] = {"checkpoint": str(path), "metrics": report["metrics"][language], "weights_sha256": report["metadata"]["weights_sha256"]}
     manifest = {"format": 3, "architecture": "language-routed", "routes": routes,

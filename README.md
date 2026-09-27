@@ -4,7 +4,7 @@ Noemaの初期実装。人が読み書きする形式言語と、凍結した多
 
 言語として使える段階に向けて開発を継続している。[開発目標](docs/development-goal.md) に必須条件を記載した。現在の文語 [0.3の入門](docs/writing-v03.md) は91概念と8種類の役割、複数文の参照、質問・依頼・条件・否定の作用範囲を扱う。[語彙参照](docs/lexicon-v03.md)、[練習と解答](docs/lessons.md)、[対訳読本](docs/readings.md) を用意した。0.1と0.2の文章も引き続き読める。
 
-`parse`・`format`・`render`・`edit` はモデルなしで動作する。自然言語の `analyze` は学習済みの小型分類器を必要とし、低確信度や構造不整合を返す。**最終評価では採用基準を満たしていない。** 最新の [関係分類器の実験報告](docs/structured-experiments.md) と、旧 [線形・MLPの実験報告](docs/experiments.md) を参照。
+`parse`・`format`・`render`・`edit` はモデルなしで動作する。自然言語の `analyze` は学習済みの小型分類器を必要とし、低確信度や構造不整合を返す。**新しい独立評価での達成確認は未完了。** 最新の [共同役割割当て・拡張学習の報告](docs/joint-experiments.md) では、既存の回帰資料で日英とも確定率約99.1%・完全一致率100%に改善した一方、手書き例の受動態に誤りが残る。過去の [関係分類器の最終評価](docs/structured-experiments.md) と [線形・MLPの実験](docs/experiments.md) も保持している。
 
 ## 実行
 
@@ -58,7 +58,7 @@ noema a a {
 
 ## 自然言語の解析と実験
 
-最新の関係分類器の実行方法と検証範囲は [新しい実験報告](docs/structured-experiments.md) に記載した。以下は比較のために保持した旧ベースラインの実行方法である。
+最新の関係分類器の実行方法と検証範囲は [新しい実験報告](docs/joint-experiments.md) に記載した。以下は比較のために保持した旧ベースラインの実行方法である。
 
 ```powershell
 python -m pip install -e ".[ml,test]"
