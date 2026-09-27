@@ -41,7 +41,7 @@ def phrase(concept, role, lang, quantity=None):
     entity = mark("entity", noun, role, concept, quantity)
     if quantity is not None:
         count = mark("quantity", str(quantity), role)
-        return count + ("匹の" if concept in ("aa", "ab", "ae") else "人の" if concept in ("ac", "ad", "ag") else "冊の") + entity if lang == "ja" else count + " " + entity
+        return count + ("匹の" if concept in ("aa", "ab") else "羽の" if concept == "ae" else "人の" if concept in ("ac", "ad", "ag") else "冊の") + entity if lang == "ja" else count + " " + entity
     return entity if lang == "ja" or concept == "ag" else "the " + entity
 
 
@@ -57,35 +57,39 @@ def build_example(predicate, agent, patient, recipient, location, polarity, time
     neg = lambda s: mark("negation", s)
     # Styles are split-exclusive template families; no runtime use of these functions.
     if lang == "ja":
-        if style == "test" and p and predicate != "bd" and polarity == "affirmed":
-            sentence = p + "が" + (a + "に" if a else "") + pred(passive)
+        if style == "dev" and p:
+            sentence = p + "が" + (a + "によって" if a else "") + (r + "に" if r else "")
+            sentence += pred(passive) if polarity == "affirmed" else pred(passive[:-1]) + neg("ない")
         else:
-            particle = "は" if style == "dev" else "が"
-            sentence = (a + particle if a else "") + (r + "に" if r else "") + (p + "を" if p else "")
+            subject = a + "が" if a else ""
+            objects = (r + "に" if r else "") + (p + "を" if p else "")
+            sentence = objects + subject if style == "test" and p else subject + objects
             sentence += pred(ja) if polarity == "affirmed" else pred(stem) + neg("ない")
         if loc:
             sentence = loc + "で、" + sentence if style == "dev" else sentence + "、" + loc + "で"
         if time != "unspecified":
             t = mark("time", {"yesterday": "昨日", "today": "今日", "tomorrow": "明日"}[time])
-            sentence = t + "、" + sentence
+            sentence = t + "、" + sentence if style == "test" else sentence + "、" + t
         if style == "test":
             sentence += "。"
     else:
         if not a and p:
             sentence = p + " is " + (neg("not") + " " if polarity == "negated" else "") + pred(participle)
-        elif style == "test" and p and predicate != "bd":
-            sentence = p + " is " + (neg("not") + " " if polarity == "negated" else "") + pred(participle) + " by " + a
+        elif style == "dev" and p:
+            sentence = p + " is " + (neg("not") + " " if polarity == "negated" else "") + pred(participle) + (" to " + r if r else "") + " by " + a
         elif predicate == "bf":
             sentence = a + " is " + (neg("not") + " " if polarity == "negated" else "") + pred("hungry")
         else:
             verb = base if quantity not in (None, 1) else en
             sentence = a + " " + (pred(verb) if polarity == "affirmed" else ("do " if quantity not in (None, 1) else "does ") + neg("not") + " " + pred(base))
-            sentence += (" " + p if p else "") + (" to " + r if r else "")
+            sentence += (" " + p if p and style != "test" else "") + (" to " + r if r else "")
+            if style == "test" and p:
+                sentence = p + ", " + sentence
         if loc:
-            sentence += " in " + loc
+            sentence = "in " + loc + ", " + sentence if style == "dev" and not p else sentence + " in " + loc
         if time != "unspecified":
             t = mark("time", time)
-            sentence = t + ", " + sentence if style == "dev" else sentence + " " + t
+            sentence = t + ", " + sentence if style == "test" else sentence + " " + t
         if style == "test":
             sentence += "."
     text, spans = unmark(sentence)
@@ -107,7 +111,14 @@ def build_dataset():
     examples = []
     for index, combo in enumerate(combinations):
         split = "train" if index % 10 < 6 else "dev" if index % 10 < 8 else "test"
+        # Hold out genuinely different order/voice families, not just different IDs.
+        if split == "dev" and combo[2] is None and combo[4] is None:
+            continue
+        if split in ("dev", "test") and combo[1] is None:
+            continue
         for variant, (polarity, time, quantity) in enumerate(itertools.product(("affirmed", "negated"), ("unspecified", "today", "tomorrow"), (None, 2))):
+            if split == "test" and combo[2] is None and time == "unspecified":
+                continue
             # Named persons and omitted actors do not receive an artificial count.
             if combo[1] in (None, "ag") and quantity is not None:
                 continue

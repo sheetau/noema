@@ -47,10 +47,16 @@ def targets(row, feature):
         if start == end:
             continue
         result["span"][i] = 0
+    primary = [s for s in row["spans"] if s["kind"] in ("predicate", "entity")]
     for span in row["spans"]:
         matched = [i for i, (s, e) in enumerate(feature["offsets"]) if s < e and s < span["end"] and e > span["start"]]
+        if span["kind"] not in ("predicate", "entity"):
+            # A subword may include a predicate and its negative suffix. Assign that
+            # token to the predicate; polarity still has its separate sentence target.
+            # This is tokenizer alignment, independent of language and surface words.
+            matched = [i for i in matched if not any(feature["offsets"][i][0] < s["end"] and feature["offsets"][i][1] > s["start"] for s in primary)]
         for index, i in enumerate(matched):
-            # Multiple annotations in a single tokenizer token cannot be trained faithfully.
+            # Two distinct entities/predicates in one token cannot be represented.
             if result["span"][i] > 0:
                 raise ValueError(f"Token overlaps annotations: {row['id']}")
             result["span"][i] = LABELS["span"].index(("B-" if index == 0 else "I-") + span["kind"])

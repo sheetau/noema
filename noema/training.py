@@ -60,7 +60,10 @@ def losses(model, batch, weights):
     for key in LABELS:
         if (target[key] != -100).any():
             logits = model.heads[key](token if key in TOKEN_HEADS else pooled)
-            result.append(F.cross_entropy(logits, target[key], weight=weights.get(key), ignore_index=-100))
+            # Divide by sample count, not sum of weights: in a one-class batch,
+            # PyTorch's weighted mean otherwise cancels class balancing entirely.
+            per_item = F.cross_entropy(logits, target[key], weight=weights.get(key), ignore_index=-100, reduction="none")
+            result.append(per_item[target[key] != -100].mean())
     return torch.stack(result).mean()
 
 
@@ -131,7 +134,7 @@ def train(dataset, cache_path, output, architecture="linear", epochs=30, fractio
                 "dataset_sha256": cache["dataset_sha256"], "best_epoch": best_epoch, "epochs": epochs,
                 "encoder_repeat_exact": cache["repeat_exact"], "encoder_batch_size": cache["batch_size"],
                 "elapsed_seconds": time.monotonic() - started,
-                "weights_sha256": digest(output / "heads.safetensors")}
+                "weights_sha256": digest(output / "heads.safetensors"), "training_implementation": 2}
     save_json(output / "metadata.json", metadata)
     report = {"metadata": metadata, "history": history, "threshold_policy": "fixed before final evaluation; no test-set calibration"}
     for split in ("dev", "test"):
@@ -140,7 +143,9 @@ def train(dataset, cache_path, output, architecture="linear", epochs=30, fractio
         predictions, sentence = infer_features(model, subset, fs, threshold)
         # Ungated component failures are reported too; abstentions alone hide what needs improvement.
         raw, _ = infer_features(model, subset, fs, 0.)
-        report[split] = {"selective": evaluate(subset, predictions), "without_confidence_gate": evaluate(subset, raw), "sentence_concept": sentence}
+        from .diagnostics import head_metrics
+        report[split] = {"selective": evaluate(subset, predictions), "without_confidence_gate": evaluate(subset, raw), "sentence_concept": sentence,
+                         "heads_before_rejection": head_metrics(model, subset, fs)}
         save_json(output / f"{split}-predictions.json", [{"id": r["id"], **p} for r, p in zip(subset, predictions)])
     save_json(output / "report.json", report)
     return report

@@ -58,3 +58,26 @@ def test_heads_train_without_encoder(architecture):
         loss.backward()
         optimizer.step()
     assert float(loss.detach()) < before
+
+
+def test_weighted_support_loss_does_not_cancel_in_one_class_batch():
+    from noema.training import losses
+    h = Heads(2)
+    with torch.no_grad():
+        for p in h.parameters():
+            p.zero_()
+    labels = {k: torch.full((1,), -100, dtype=torch.long) for k in LABELS}
+    labels["support"][0] = 0
+    batch = (torch.zeros(1, 4), torch.zeros(1, 2), labels)
+    assert float(losses(h, batch, {"support": torch.tensor([10., 1.])}).detach()) == pytest.approx(10 * 0.69314718)
+
+
+def test_subword_crosses_predicate_and_negation_boundary():
+    row = {"id": "overlap", "text": "追わない", "supported": True,
+           "spans": [{"start": 0, "end": 2, "kind": "predicate", "concept": "ba", "role": "none", "quantity": "unspecified"},
+                     {"start": 2, "end": 4, "kind": "negation", "concept": "none", "role": "none", "quantity": "unspecified"}],
+           "graph": make_graph("ba", {}, "negated")}
+    feature = {"offsets": [(0, 0), (0, 1), (1, 4), (0, 0)], "truncated": False}
+    y = targets(row, feature)
+    assert y["polarity"] == LABELS["polarity"].index("negated")
+    assert [LABELS["span"][i] for i in y["span"][1:3]] == ["B-predicate", "I-predicate"]
