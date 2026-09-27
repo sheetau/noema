@@ -1,0 +1,49 @@
+{
+  "upstream_source_equal": {
+    "modules/char.py": true,
+    "modules/word.py": true,
+    "modules/components/deberta_v2.py": true,
+    "callbacks/utils.py": true,
+    "datamodule/datasets/word_inference.py": true,
+    "datamodule/datamodule.py": true,
+    "utils/constants.py": true
+  },
+  "conversion_equal": {
+    "char/model.safetensors": true,
+    "word/model.safetensors": true,
+    "char/hparams.json": true,
+    "word/hparams.json": true,
+    "provenance.json": true
+  },
+  "segmentation_equal_cases": [
+    "chase",
+    "roles",
+    "passive",
+    "omission",
+    "negative",
+    "quantity-time",
+    "give",
+    "manufacture",
+    "approve",
+    "reject",
+    "discover",
+    "repair",
+    "embedded",
+    "relative",
+    "conditional",
+    "two-sentences",
+    "photograph",
+    "named-agent",
+    "passive-release",
+    "delivery",
+    "embedded-announcement",
+    "conditional-repair",
+    "omitted-translator",
+    "two-events"
+  ],
+  "overlong_rejected": {
+    "char": "Japanese char context exceeded",
+    "word": "Japanese word context exceeded"
+  },
+  "scope": "Unchanged upstream forward; char segmentation matches upstream with normalization disabled; not full stock KWJA output equivalence"
+}
