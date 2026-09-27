@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "noema-language"
+version = "0.1.0"
+description = "A small formal language and frozen-encoder semantic parsing experiment"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+ml = ["torch>=2.6,<3", "transformers>=4.57,<5", "safetensors>=0.4", "sentencepiece>=0.2"]
+test = ["pytest>=8"]
+
+[project.scripts]
+noema = "noema.cli:main"
+
+[tool.setuptools.package-data]
+noema = ["resources/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
