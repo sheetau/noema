@@ -1,0 +1,130 @@
+{
+  "fixture_sha256": "f1c5cae2ac45e7bb09191cb9f0a710532f7454f2f6543709696076441d833d62",
+  "protocol_sha256": "85a4f6c6bb51b6abaa2657798a00184b0f0e777329aa5465d06ce83dd5b103a6",
+  "code_sha256": {
+    "noema/lexical_frames.py": "0d4d8ea719e548f57d5a34fe2f712a27974467f1d2ebb9e9d3a6b4a845287d35",
+    "noema/lexical_frame_metrics.py": "74bcedeeae0d214e7171d0c985b2339e8c282ebc1dae2b46aa8d3df20c977202",
+    "scripts/probe_lexical_frames.py": "35d4d9d13f8fc2f3c9e624830faf3b73bec9b52cc0bda5c95d71f555c8776e16"
+  },
+  "metadata": {
+    "structure": {
+      "provenance": {
+        "checkpoint_revision": "4c5db234089ca9e524fc5d32d383bc45e6fe27a2",
+        "source_revision": "821df300630b4d05c38406945536eaac848619da",
+        "models": {
+          "char": {
+            "repo": "ku-nlp/deberta-v2-base-japanese-char-wwm",
+            "revision": "29498bbcaa6e3220d9e74345cd6d963e7c00fee4",
+            "checkpoint_sha256": "0643c468321725e076ed598c6869a33d359a2f14b1c1334b3c71d9d74eeed3d1",
+            "weights_sha256": "2ed70587bf52c41e3bb4fe017724e504c9e94f1d3b5c184286e0dae516ab0f2f",
+            "hparams_sha256": "6a57af17beb2ebc7d7b6fd3f356f71f25f3b502aa25ad41cf96c5e62de4bf8d7"
+          },
+          "word": {
+            "repo": "ku-nlp/deberta-v2-base-japanese",
+            "revision": "833680905d7c57dbc7914dd33707a9fe1b20c60d",
+            "checkpoint_sha256": "26a0a2fbcc5ba977d6a837936b6d427784271edb080be4539995a7b118397813",
+            "weights_sha256": "14106e492b4cdbea912b254ca06caedb63310010505f73241ea4fe5b9b471185",
+            "hparams_sha256": "2feab69266d3924f0b004c8f6c3e9b14df85fd377ec50c539fec989a1fab3186"
+          }
+        }
+      },
+      "versions": {
+        "kwja": "2.5.1",
+        "torch": "2.13.0",
+        "transformers": "4.57.6",
+        "rhoknp": "1.8.0",
+        "cohesion-tools": "0.7.6"
+      },
+      "python": "3.12.10",
+      "device": "cpu",
+      "dtype": "float32",
+      "seed": 17,
+      "modules": [
+        "char",
+        "word"
+      ],
+      "dictionary_enrichment": false,
+      "normalization": false,
+      "adapter_sha256": "73cbc1a72bd0d0b1710602b57c2bf8ea3ccd65c8fae16a4eca4b5bc5c5962be3",
+      "upstream_source_sha256": {
+        "modules/char.py": "30177d1eaa864fbb40bee04885f6bfa16f898127442d9d3fa7b4ec3b14419380",
+        "modules/word.py": "a880f0b3de25b5b6dab7c16f9a8b1b1659c3251d5a3df8f20e4a03c913592775",
+        "modules/components/deberta_v2.py": "35cdd823e1d47d04d93c3af915d99f2fe9b2608acc024453423efb34e3545575",
+        "callbacks/utils.py": "ae459220d9226c8adbcbaef87b1309964204a89d9da9d193c814d1a105522d59",
+        "datamodule/datasets/word_inference.py": "a3c3d5c2b5d3f913ee52a8888b780d6ec0534fb7f457d309126e21e2d48267c4",
+        "datamodule/datamodule.py": "c17772ae0827896ee49145aa0b65bfb8840eddbcc5405e148f795f5aa316edfa",
+        "utils/constants.py": "6b68114b58f51e26970471f5f4c16a5d6b41d05b6d6a312e7455d2def0265c20"
+      },
+      "base_adapter_sha256": "c10400ca8c006fd3357667a2a8c68236ba5607a49f0dbad50f7782f53bb80e21",
+      "alignment_sha256": "42137da9ffcfe8b4d2806bbc26301fa4bbc36b98aeb5d86307b33bedd1ef23c0",
+      "word_adapter_sha256": "27fcb34269e4c7399c47abaa447c3274a9b0a4f387c2c8d4e56757df15ef1100",
+      "unicode_version": "15.0.0",
+      "source_normalization": false,
+      "character_model_normalization": "NFKC",
+      "literal_control_tokens": true,
+      "boundary_projection": "first_model_character_of_source_group",
+      "erased_word_policy": "native_unk_keep_source_position"
+    },
+    "matcher": {
+      "head": "shared_linear_three_coefficients",
+      "weights_sha256": "0c9e1a8db574025393fab0d66562fff369344092ea19bceba5f5c389db66d8ed",
+      "definitions_sha256": "6d63bd17a3d6b1f834737079d58a488ac37f7534123059f57756c1589a0ee624",
+      "candidate_count": 91,
+      "training_runtime": {
+        "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+        "max_length": 128,
+        "key": "minilm",
+        "torch": "2.12.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.14.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "runtime": {
+        "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+        "max_length": 128,
+        "key": "minilm",
+        "torch": "2.13.0+cpu",
+        "transformers": "4.57.6",
+        "python": "3.12.10",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "device": "cpu",
+        "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+        "dtype": "float32",
+        "attention": "eager",
+        "threads": 8,
+        "pooling": "attention-mask mean including special tokens",
+        "seed": 17,
+        "cuda": null,
+        "gpu": null
+      },
+      "trained_parameters": 3
+    },
+    "event_selection_sha256": "a5f41b54d26c98882dc84d04836f29ce62743d32b417475893a30085bbb87705",
+    "frame_selection_sha256": "eb3913ce01491844b3deade46c0ae9604a33cd80de2fee59ff087edba32a9eb3"
+  },
+  "training": false,
+  "model_or_threshold_selection": false,
+  "forbidden_path_calls": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "raw_structure_equal": 18,
+  "outputs_sha256": {
+    "evidence.json": "5b7250c660c7be70c15b11649c07d1b9c06442f1bb8e70dd09b8511716dc69af",
+    "evaluation.json": "31bdd8a78bf583983a6a13b32ad6fd0ccd0bd5983fda8b89764b536b1f63e58e"
+  }
+}
