@@ -1,0 +1,174 @@
+{
+  "version": "kant-public-private-basis-v1",
+  "document": "examples/v011/kant-public-private.noema",
+  "status": "partial_semantic_draft",
+  "primitives": [
+    {
+      "symbol": "aa",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "content",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "role",
+        "goal",
+        "situation"
+      ],
+      "meaning_ja": "規範の出所sourceが、その状況で、その人にその立場で内容goalを満たすよう要求する。要求の実在を述べる関係であり、内容の実現・物理的可能性・要求の正当性を自動的には含まない。"
+    },
+    {
+      "symbol": "ab",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "content",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "role",
+        "goal",
+        "situation"
+      ],
+      "meaning_ja": "規範の出所sourceが、その状況で、その人がその立場で内容goalを満たすことを積極的に許可する。禁止の不在だけからは導かず、実際の行為や能力の有無とも区別する。"
+    },
+    {
+      "symbol": "ca",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "situation"
+      ],
+      "meaning_ja": "activityはその人自身の理性を使う活動の記述である。実行済みの出来事に限定せず、これから行う活動や禁じられた活動も分類できる。"
+    },
+    {
+      "symbol": "cb",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "role",
+        "situation"
+      ],
+      "meaning_ja": "その活動の記述において、その人はその立場で発言・行動する。職業としてその地位にあるだけでは、全活動をその立場に帰属させない。"
+    },
+    {
+      "symbol": "cc",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "audience",
+        "situation"
+      ],
+      "meaning_ja": "その活動の記述が、その相手・公衆に向けられている。実際に何人が聞いたかという人数とは区別する。"
+    },
+    {
+      "symbol": "cd",
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "situation"
+      ],
+      "meaning_ja": "その立場は、自分の理性に基づく見解を公衆の検討へ提示する学識者としての立場である。職業名や資格の有無だけによる分類にはしない。一般的な役割の構成からの定義は未完。"
+    },
+    {
+      "symbol": "ce",
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "audience",
+        "situation"
+      ],
+      "meaning_ja": "その相手は読者世界全体としての公衆である。個別の職務内の会衆・受講者や、単に人数の多い集まりと同一視しない。"
+    },
+    {
+      "symbol": "cf",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "role",
+        "situation"
+      ],
+      "meaning_ja": "その人にはその市民的な地位・職務が委ねられている。活動がその職務の遂行として位置付けられることはcbで別に要求する。"
+    },
+    {
+      "symbol": "cg",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "situation"
+      ],
+      "meaning_ja": "その人が記述された活動を、その状況で実際に行う。活動の種類・想定される立場・許可の存在とは別の事実。"
+    }
+  ],
+  "definitions": {
+    "ba": "指定された内容の状況ごとの否定。現在の真理値だけを否定して固定しない。",
+    "bb": "内容の否定を要求するという意味での禁止。",
+    "bc": "同じ出所・人・立場・状況で要求があり、その評価状況では内容が成立していない。未履行の条件であり、責任・処罰・故意までは判断しない。",
+    "bd": "同じ出所・人・立場・状況で、内容とその否定の両方を要求する規範上の衝突。",
+    "be": "同じ出所・人・立場・状況で、内容の許可と禁止が併存する衝突。",
+    "bf": "積極的な許可があり、同じ指定の禁止がない。",
+    "bg": "同じ指定の禁止がない。積極的な許可の存在は主張しない。",
+    "da": "理性を使う活動を、学識者の立場で、読者世界全体へ向けて行うという分類。活動の実行自体は主張しない。",
+    "db": "理性を使う活動を、本人に委ねられた市民的な職務の立場で行うという分類。公的使用の単なる否定ではない。",
+    "dc": "その人がその活動を実行するという、状況ごとの内容。",
+    "dd": "その人・立場での公的使用に分類される全活動について、指定した規範体系による積極的な許可があり、同じ出所・人・立場の禁止と衝突していないという内容。禁止されて実行されなかった活動も対象から除かない。自由の完全な定義ではなく、許可に関する部分条件。",
+    "de": "その人・立場での私的使用に分類される活動のうち、指定した規範体系が禁止するものがあるという内容。制限の強さや頻度は含めない。",
+    "df": "評価側の規範の出所が、規制する人にその職務でddを実現することを要求する。許可が現に与えられているという主張とは区別する。",
+    "dg": "評価側の規範の出所が、規制する人にその職務でdeを実現することを許可する。現に禁止していることや、禁止しなければならないことは含めない。",
+    "dh": "dfの要求が全ての評価状況で成立する。原文の時間範囲を状況領域で操作的に表した草案。"
+  },
+  "unresolved": [
+    "規範の優先順位、例外、期限、正当性、責任と制裁は別途記述が必要。",
+    "この文書は世界の規範が完全に知られていることを前提にする推定器ではない。記載が見つからないことを禁止の不在という真理値へ自動変換しない。",
+    "全状況で同じ真偽となる異なる行為や記述の捉え方は、現行の内容型の同一性では区別できない。",
+    "公的使用の自由を積極的な許可の全称で表すのは部分条件であり、干渉の不在・権利の保護などの意味は未記述。",
+    "学識者・市民的職務・読者世界の基本関係を一般的な役割や社会的関係から定義すること。",
+    "常にという時間範囲と状況領域の関係、しばしば・非常に狭くという頻度と程度、啓蒙を妨げないという留保。",
+    "評価の出所、規範体系、規制者、職務の具体的な指示対象はこの定義草案ではパラメーターである。原文が指定しない特定政府・人物を補わない。"
+  ]
+}
