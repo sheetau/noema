@@ -1,4 +1,4 @@
-"""Edition 0.8: typed, open definitions and explicitly scoped quantification.
+"""Editions 0.8/0.9: typed definitions, quantification and situation-indexed content.
 
 Primitive declarations name assumptions of an interpretation; they do not supply
 an explanation of a concept. Definitions cannot be recursive or forward-refer.
@@ -9,6 +9,7 @@ from fractions import Fraction
 from .semantics import keys, require
 
 SORTS = {'a': 'individual', 'b': 'number', 'c': 'truth'}
+CONTENT_SORTS = {**SORTS, 'd': 'situation', 'e': 'content'}
 LOGIC = {'u': 'not', 'w': 'and', 'x': 'or', 'y': 'implies', 'z': 'iff', 'e': 'equal'}
 QUANTIFIERS = {'f': 'forall', 'g': 'exists'}
 MAX_DEPTH = 128
@@ -19,15 +20,17 @@ def name(value):
     return value
 
 
-def sort(value):
-    require(isinstance(value, str) and value in SORTS.values(), 'Unknown sort')
+def sort(value, version='0.8'):
+    choices = CONTENT_SORTS if version == '0.9' else SORTS
+    require(isinstance(value, str) and value in choices.values(), 'Unknown sort')
     return value
 
 
 def normalize_document(document):
     from .grammar import number_word
     keys(document, ('schema_version', 'lexicon_version', 'declarations', 'statements'))
-    require(document['schema_version'] == document['lexicon_version'] == '0.8', 'Expected edition 0.8')
+    version = document['schema_version']
+    require(version in ('0.8', '0.9') and version == document['lexicon_version'], 'Expected edition 0.8 or 0.9')
     require(isinstance(document['declarations'], list) and isinstance(document['statements'], list), 'Expected arrays')
     require(document['declarations'] or document['statements'], 'Empty document')
     signatures, declarations, statements = {}, [], []
@@ -38,12 +41,26 @@ def normalize_document(document):
         name(original)
         canonical = 'v' + number_word(serial)
         serial += 1
-        return canonical, {**env, original: (canonical, sort(type_))}
+        return canonical, {**env, original: (canonical, sort(type_, version))}
 
     def visit(expr, env, depth=0):
         require(depth <= MAX_DEPTH, 'Expression nesting exceeds 128 levels')
         require(isinstance(expr, dict), 'Expected an expression')
         kind = expr.get('kind')
+        if kind == 'content':
+            require(version == '0.9', 'Content requires edition 0.9')
+            keys(expr, ('kind', 'variable', 'body'))
+            canonical, inner = binder(expr['variable'], 'situation', env)
+            body, actual = visit(expr['body'], inner, depth + 1)
+            require(actual == 'truth', 'Content body must have truth sort')
+            return {'kind': kind, 'variable': canonical, 'body': body}, 'content'
+        if kind == 'evaluate':
+            require(version == '0.9', 'Content evaluation requires edition 0.9')
+            keys(expr, ('kind', 'content', 'situation'))
+            content, content_type = visit(expr['content'], env, depth + 1)
+            situation, situation_type = visit(expr['situation'], env, depth + 1)
+            require(content_type == 'content' and situation_type == 'situation', 'Evaluation requires content and situation')
+            return {'kind': kind, 'content': content, 'situation': situation}, 'truth'
         if kind == 'variable':
             keys(expr, ('kind', 'name'))
             ident = name(expr['name'])
@@ -88,11 +105,11 @@ def normalize_document(document):
         require(kind in ('primitive', 'definition'), 'Unknown declaration kind')
         keys(declaration, ('kind', 'name', 'parameters', 'result') if kind == 'primitive'
              else ('kind', 'name', 'parameters', 'result', 'body'))
-        symbol, result = name(declaration['name']), sort(declaration['result'])
+        symbol, result = name(declaration['name']), sort(declaration['result'], version)
         require(symbol not in signatures, 'Duplicate symbol')
         require(isinstance(declaration['parameters'], list), 'Expected parameters')
         if kind == 'primitive':
-            params = [sort(t) for t in declaration['parameters']]
+            params = [sort(t, version) for t in declaration['parameters']]
             item = {'kind': kind, 'name': symbol, 'parameters': params, 'result': result}
         else:
             env, parameters, originals = {}, [], set()
@@ -117,7 +134,7 @@ def normalize_document(document):
         body, actual = visit(statement['body'], {})
         require(actual == 'truth', 'Statement requires truth sort')
         statements.append({'kind': statement['kind'], 'body': body})
-    return {'schema_version': '0.8', 'lexicon_version': '0.8', 'declarations': declarations, 'statements': statements}
+    return {'schema_version': version, 'lexicon_version': version, 'declarations': declarations, 'statements': statements}
 
 
 def tokenize(text):
@@ -127,7 +144,7 @@ def tokenize(text):
         if text[offset:].isspace():
             break
         match = re.match(r'\s*([a-z2-7]+|[\[\].:])', text[offset:])
-        require(match is not None, f'Invalid edition 0.8 token at {offset}')
+        require(match is not None, f'Invalid definition-language token at {offset}')
         tokens.append(match[1])
         offset += match.end()
     return tokens
@@ -143,7 +160,7 @@ def parse_document(text):
 
     def take(expected=None):
         nonlocal position
-        require(position < len(stream), 'Unexpected end of edition 0.8')
+        require(position < len(stream), 'Unexpected end of definition-language input')
         value = stream[position]
         position += 1
         require(expected is None or value == expected, f'Expected {expected}, got {value}')
@@ -151,8 +168,9 @@ def parse_document(text):
 
     def type_word():
         value = take()
-        require(value in SORTS, 'Unknown sort word')
-        return SORTS[value]
+        choices = CONTENT_SORTS if version == '0.9' else SORTS
+        require(value in choices, 'Unknown sort word')
+        return choices[value]
 
     def bracket(depth):
         take('[')
@@ -163,6 +181,12 @@ def parse_document(text):
     def expression(depth=0):
         require(depth <= MAX_DEPTH, 'Expression nesting exceeds 128 levels')
         word = take()
+        if word == 'b':
+            require(version == '0.9', 'Content requires edition 0.9')
+            return {'kind': 'content', 'variable': name(take()), 'body': bracket(depth)}
+        if word == 't':
+            require(version == '0.9', 'Content evaluation requires edition 0.9')
+            return {'kind': 'evaluate', 'content': bracket(depth), 'situation': bracket(depth)}
         if word == 'v':
             return {'kind': 'variable', 'name': name(take())}
         if word == 'n':
@@ -184,13 +208,15 @@ def parse_document(text):
         variable, type_ = name(take()), type_word()
         return {'kind': QUANTIFIERS[word], 'variable': variable, 'sort': type_, 'body': bracket(depth)}
 
-    if peek() == 'h':
-        take('h')
+    if peek() in ('h', 'i'):
+        edition = take()
         take(':')
     else:
         take('noema')
-        take('h')
-        take('h')
+        edition = take()
+        require(edition in ('h', 'i'), 'Unknown definition-language edition')
+        take(edition)
+    version = {'h': '0.8', 'i': '0.9'}[edition]
     declarations, statements = [], []
     while peek() is not None:
         marker = take()
@@ -212,18 +238,22 @@ def parse_document(text):
             require(marker in ('s', 'q'), 'Unknown document word')
             statements.append({'kind': 'assert' if marker == 's' else 'ask', 'body': bracket(0)})
         take('.')
-    return normalize_document({'schema_version': '0.8', 'lexicon_version': '0.8',
+    return normalize_document({'schema_version': version, 'lexicon_version': version,
                                'declarations': declarations, 'statements': statements})
 
 
 def format_document(document, compact=False):
     from .grammar import number_word
     doc = normalize_document(document)
-    types = {v: k for k, v in SORTS.items()}
+    types = {v: k for k, v in CONTENT_SORTS.items()}
     logic, quantifiers = {v: k for k, v in LOGIC.items()}, {v: k for k, v in QUANTIFIERS.items()}
 
     def expression(expr):
         kind = expr['kind']
+        if kind == 'content':
+            return 'b ' + expr['variable'] + '[' + expression(expr['body']) + ']'
+        if kind == 'evaluate':
+            return 't[' + expression(expr['content']) + '][' + expression(expr['situation']) + ']'
         if kind == 'variable':
             return 'v ' + expr['name']
         if kind == 'number':
@@ -234,7 +264,8 @@ def format_document(document, compact=False):
             return logic[kind] + ''.join('[' + expression(a) + ']' for a in expr['arguments'])
         return quantifiers[kind] + ' ' + expr['variable'] + ' ' + types[expr['sort']] + '[' + expression(expr['body']) + ']'
 
-    lines = ['h:' if compact else 'noema h h']
+    edition = 'h' if doc['schema_version'] == '0.8' else 'i'
+    lines = [edition + ':' if compact else 'noema ' + edition + ' ' + edition]
     for item in doc['declarations']:
         if item['kind'] == 'primitive':
             line = 'r ' + item['name'] + '[' + ' '.join(types[t] for t in item['parameters']) + '] ' + types[item['result']]
@@ -255,8 +286,9 @@ def definition_audit(document):
         result = {expr['symbol']} if expr['kind'] == 'call' else set()
         for child in expr.get('arguments', []):
             result.update(symbols(child))
-        if 'body' in expr:
-            result.update(symbols(expr['body']))
+        for field in ('body', 'content', 'situation'):
+            if field in expr:
+                result.update(symbols(expr[field]))
         return result
 
     for d in doc['declarations']:
