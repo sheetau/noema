@@ -8,7 +8,7 @@ from fractions import Fraction
 from itertools import product
 import json
 
-from .discourse import FORCES, function_sort, question_sort, description_sort, normalize_document
+from .discourse import FORCES, function_sort, question_sort, description_sort, sequence_sort, normalize_document
 from .semantics import require
 
 
@@ -53,6 +53,13 @@ class DescriptionValue:
     result_type: str
 
 
+@dataclass(frozen=True, eq=False)
+class SequenceValue:
+    """An ordered finite tuple, with an immutable canonical JSON element sort."""
+    items: tuple
+    element_type: str
+
+
 def evaluate_document(document, *, individuals, primitives, situations=(), max_steps=100000):
     doc = normalize_document(document)
     require(type(max_steps) is int and max_steps > 0, 'Invalid interpretation budget')
@@ -74,7 +81,17 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
     def infer(node, env):
         """Record sorts of already validated nodes without evaluating their bodies."""
         kind = node['kind']
-        if kind == 'quote':
+        if kind == 'sequence':
+            for item in node['items']:
+                infer(item, env)
+            result = sequence_sort(node['element'])
+        elif kind in ('length', 'position', 'fold', 'concat'):
+            fields = {'length': ('sequence',), 'position': ('sequence', 'index', 'value'),
+                      'fold': ('sequence', 'initial', 'step'), 'concat': ('left', 'right')}[kind]
+            types = {field: infer(node[field], env) for field in fields}
+            result = ('number' if kind == 'length' else 'truth' if kind == 'position'
+                      else types['initial'] if kind == 'fold' else types['left'])
+        elif kind == 'quote':
             result = description_sort(infer(node['body'], {}))
         elif kind == 'disquote':
             result = infer(node['description'], env)['result']
@@ -123,13 +140,22 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
     for item in doc['statements']:
         infer_statement(item)
 
-    def tick():
+    def tick(amount=1):
         nonlocal steps
-        steps += 1
+        steps += amount
         require(steps <= max_steps, 'Finite interpretation step budget exceeded')
 
     def valid(value, sort):
         if isinstance(sort, dict):
+            if sort['kind'] == 'sequence':
+                if not (isinstance(value, SequenceValue) and type(value.items) is tuple
+                        and value.element_type == canonical(sort['element'])):
+                    return False
+                for item in value.items:
+                    tick()
+                    if not valid(item, sort['element']):
+                        return False
+                return True
             if sort['kind'] == 'description':
                 record = descriptions.get(value.syntax) if isinstance(value, DescriptionValue) else None
                 return (record is not None and record[0] is value
@@ -155,6 +181,7 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
     def domain(sort):
         if isinstance(sort, dict):
             require(sort['kind'] != 'description', 'Cannot finitely quantify the description domain')
+            require(sort['kind'] != 'sequence', 'Cannot finitely quantify the unbounded sequence domain')
             if sort['kind'] == 'question':
                 return tuple(QuestionValue(f) for f in domain(function_sort(sort['parameters'], 'truth')))
             inputs = argument_domain(sort['parameters'])
@@ -205,6 +232,15 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
         return FunctionValue(raw.parameters, result, lambda *args: invoke(raw, args))
 
     def equal(a, b):
+        if isinstance(a, SequenceValue):
+            require(isinstance(b, SequenceValue) and a.element_type == b.element_type, 'Sequence equality sort mismatch')
+            if len(a.items) != len(b.items):
+                return False
+            for left, right in zip(a.items, b.items, strict=True):
+                tick()
+                if not equal(left, right):
+                    return False
+            return True
         if isinstance(a, QuestionValue):
             require(isinstance(b, QuestionValue), 'Question equality sort mismatch')
             return equal(a.function, b.function)
@@ -231,6 +267,26 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
     def expr(node, env):
         tick()
         kind = node['kind']
+        if kind == 'sequence':
+            return SequenceValue(tuple(expr(item, env) for item in node['items']), canonical(node['element']))
+        if kind == 'length':
+            return Fraction(len(expr(node['sequence'], env).items))
+        if kind == 'position':
+            sequence = expr(node['sequence'], env)
+            index, value = expr(node['index'], env), expr(node['value'], env)
+            return (index.denominator == 1 and 0 <= index < len(sequence.items)
+                    and equal(sequence.items[index.numerator], value))
+        if kind == 'concat':
+            left, right = expr(node['left'], env), expr(node['right'], env)
+            # Charge before allocation, including when nested concatenations
+            # occur inside one function body before result validation.
+            tick(len(left.items) + len(right.items))
+            return SequenceValue(left.items + right.items, left.element_type)
+        if kind == 'fold':
+            sequence, state, step = (expr(node[field], env) for field in ('sequence', 'initial', 'step'))
+            for item in sequence.items:
+                state = invoke(step, [state, item])
+            return state
         if kind == 'quote':
             syntax = canonical(node['body'])
             if syntax not in descriptions:
