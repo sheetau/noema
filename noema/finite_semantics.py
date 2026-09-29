@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 from itertools import product
 
-from .discourse import FORCES, normalize_document
+from .discourse import FORCES, function_sort, normalize_document
 from .semantics import require
 
 
@@ -23,6 +23,19 @@ class Message:
     content: Content
 
 
+@dataclass(frozen=True, eq=False)
+class FunctionValue:
+    parameters: tuple
+    result: object
+    implementation: object
+
+    def __call__(self, *args):
+        return self.implementation(*args)
+
+
+MAX_FUNCTION_DOMAIN = 4096
+
+
 def evaluate_document(document, *, individuals, primitives, situations=(), max_steps=100000):
     doc = normalize_document(document)
     require(type(max_steps) is int and max_steps > 0, 'Invalid interpretation budget')
@@ -35,6 +48,53 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
     require(isinstance(primitives, dict) and set(primitives) == required
             and all(callable(f) for f in primitives.values()), 'Provide exactly the declared primitive interpretations')
     steps = 0
+    node_sorts = {}
+
+    def infer(node, env):
+        """Record sorts of already validated nodes without evaluating their bodies."""
+        kind = node['kind']
+        if kind == 'variable':
+            result = env[node['name']]
+        elif kind == 'number':
+            result = 'number'
+        elif kind == 'function_ref':
+            d = declarations[node['symbol']]
+            params = d['parameters'] if d['kind'] == 'primitive' else [p['sort'] for p in d['parameters']]
+            result = function_sort(params, d['result'])
+        elif kind == 'lambda':
+            body = infer(node['body'], {**env, **{p['name']: p['sort'] for p in node['parameters']}})
+            result = function_sort([p['sort'] for p in node['parameters']], body)
+        elif kind in ('content', 'forall', 'exists'):
+            infer(node['body'], {**env, node['variable']: 'situation' if kind == 'content' else node['sort']})
+            result = 'content' if kind == 'content' else 'truth'
+        else:
+            for child in node.get('arguments', []):
+                infer(child, env)
+            for field in ('content', 'situation', 'message', 'function'):
+                if field in node:
+                    infer(node[field], env)
+            if kind == 'call':
+                result = declarations[node['symbol']]['result']
+            elif kind == 'apply':
+                result = node_sorts[id(node['function'])]['result']
+            else:
+                result = {'message': 'message', 'message_content': 'content'}.get(kind, 'truth')
+        node_sorts[id(node)] = result
+        return result
+
+    def infer_statement(node):
+        if node['kind'] == 'suppose':
+            infer(node['condition'], {})
+            for child in node['statements']:
+                infer_statement(child)
+        else:
+            infer(node['body'], {})
+
+    for declaration in doc['declarations']:
+        if declaration['kind'] == 'definition':
+            infer(declaration['body'], {p['name']: p['sort'] for p in declaration['parameters']})
+    for item in doc['statements']:
+        infer_statement(item)
 
     def tick():
         nonlocal steps
@@ -42,6 +102,9 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
         require(steps <= max_steps, 'Finite interpretation step budget exceeded')
 
     def valid(value, sort):
+        if isinstance(sort, dict):
+            return (isinstance(value, FunctionValue) and list(value.parameters) == sort['parameters']
+                    and value.result == sort['result'] and callable(value.implementation))
         if sort == 'individual':
             return value in individuals
         if sort == 'situation':
@@ -57,6 +120,21 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
                 and all(type(v) is bool for v in value.values))
 
     def domain(sort):
+        if isinstance(sort, dict):
+            inputs = argument_domain(sort['parameters'])
+            outputs = tuple(domain(sort['result']))
+            count = 1
+            for _ in inputs:
+                count *= len(outputs)
+                require(count <= MAX_FUNCTION_DOMAIN, 'Finite function domain exceeds 4096 tables')
+            def make(table):
+                def lookup(*args):
+                    for given, value in zip(inputs, table, strict=True):
+                        if all(equal(a, b) for a, b in zip(args, given, strict=True)):
+                            return value
+                    raise ValueError('Function argument outside domain')
+                return make_function(sort['parameters'], sort['result'], lookup)
+            return tuple(make(table) for table in product(outputs, repeat=len(inputs)))
         require(sort != 'number', 'Cannot finitely quantify the rational number domain')
         if sort == 'individual':
             return individuals
@@ -69,6 +147,45 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
         require(len(situations) <= 8, 'Exhaustive content quantification is limited to eight situations')
         return (Content(situations, values) for values in product((False, True), repeat=len(situations)))
 
+    def argument_domain(parameters):
+        domains, count = [], 1
+        for type_ in parameters:
+            values = tuple(domain(type_))
+            count *= len(values)
+            require(count <= MAX_FUNCTION_DOMAIN, 'Finite function argument domain exceeds 4096 tuples')
+            domains.append(values)
+        return tuple(product(*domains))
+
+    def invoke(function, args):
+        tick()
+        require(len(args) == len(function.parameters) and all(valid(a, t) for a, t in zip(args, function.parameters)),
+                'Function interpretation has wrong argument sort')
+        value = function(*args)
+        require(valid(value, function.result), 'Function interpretation has wrong result sort')
+        return value
+
+    def make_function(parameters, result, implementation):
+        raw = FunctionValue(tuple(parameters), result, implementation)
+        return FunctionValue(raw.parameters, result, lambda *args: invoke(raw, args))
+
+    def equal(a, b):
+        if isinstance(a, FunctionValue):
+            require(isinstance(b, FunctionValue) and a.parameters == b.parameters and a.result == b.result,
+                    'Function equality sort mismatch')
+            return all(equal(invoke(a, args), invoke(b, args)) for args in argument_domain(a.parameters))
+        return a == b
+
+    def named(symbol, args):
+        declaration = declarations[symbol]
+        if declaration['kind'] == 'definition':
+            value = expr(declaration['body'], {p['name']: a for p, a in zip(declaration['parameters'], args, strict=True)})
+        else:
+            value = primitives[symbol](*args)
+        require(valid(value, declaration['result']), 'Primitive or definition interpretation has wrong result sort')
+        if isinstance(value, FunctionValue):
+            return make_function(value.parameters, value.result, value.implementation)
+        return value
+
     def expr(node, env):
         tick()
         kind = node['kind']
@@ -76,6 +193,19 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
             return env[node['name']]
         if kind == 'number':
             return Fraction(node['numerator'], node['denominator'])
+        if kind == 'function_ref':
+            declaration = declarations[node['symbol']]
+            parameters = (declaration['parameters'] if declaration['kind'] == 'primitive'
+                          else [p['sort'] for p in declaration['parameters']])
+            return make_function(parameters, declaration['result'], lambda *args: named(node['symbol'], args))
+        if kind == 'lambda':
+            # Capture values from the lexical environment, including outer lambdas.
+            captured = dict(env)
+            parameters = node['parameters']
+            return make_function([p['sort'] for p in parameters], node_sorts[id(node['body'])],
+                                 lambda *args: expr(node['body'], {**captured, **{p['name']: a for p, a in zip(parameters, args, strict=True)}}))
+        if kind == 'apply':
+            return invoke(expr(node['function'], env), [expr(a, env) for a in node['arguments']])
         if kind == 'message':
             return Message(node['force'], expr(node['content'], env))
         if kind == 'message_content':
@@ -86,15 +216,8 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
             content, situation = expr(node['content'], env), expr(node['situation'], env)
             return content.values[situations.index(situation)]
         if kind == 'call':
-            declaration = declarations[node['symbol']]
             args = [expr(a, env) for a in node['arguments']]
-            if declaration['kind'] == 'definition':
-                # Lexical closure: parameters capture already evaluated values.
-                value = expr(declaration['body'], {p['name']: a for p, a in zip(declaration['parameters'], args, strict=True)})
-            else:
-                value = primitives[node['symbol']](*args)
-            require(valid(value, declaration['result']), 'Primitive or definition interpretation has wrong result sort')
-            return value
+            return named(node['symbol'], args)
         if kind in ('forall', 'exists'):
             values = (expr(node['body'], {**env, node['variable']: v}) for v in domain(node['sort']))
             return all(values) if kind == 'forall' else any(values)
@@ -103,7 +226,7 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
             return not values[0]
         a, b = values
         return {'and': lambda: a and b, 'or': lambda: a or b, 'implies': lambda: not a or b,
-                'iff': lambda: a == b, 'equal': lambda: a == b}[kind]()
+                'iff': lambda: a == b, 'equal': lambda: equal(a, b)}[kind]()
 
     def statement(node):
         tick()

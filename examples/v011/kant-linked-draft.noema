@@ -1,0 +1,58 @@
+k:
+r aa[a] c.
+r ab[a a d] c.
+r ac[a a a d] c.
+r ad[a a a d] c.
+r ae[a a d] c.
+r af[a a d d] c.
+r ag[a d d] c.
+r ah[e e d] c.
+r ai[a d] c.
+r aj[a d] c.
+r ak[a d] c.
+r al[a e d] c.
+r am[f h[a] e] c.
+r ao[] a.
+d ba[person a goal e now d] c[
+  g plan a[
+    w[k ae[v person v plan v now]][
+      w[g outcome d[k af[v person v plan v now v outcome]]][
+        f outcome d[y[k af[v person v plan v now v outcome]][t[v goal][v outcome]]]
+      ]
+    ]
+  ]
+].
+d bb[person a] e[
+  b scene[
+    g faculty a[
+      g act a[
+        w[k ab[v faculty v person v scene]][
+          w[k ac[v person v faculty v act v scene]][
+            u[g guide a[w[u[e[v guide][v person]]][k ad[v guide v person v act v scene]]]]
+          ]
+        ]
+      ]
+    ]
+  ]
+].
+d bc[person a now d] c[w[k aa[v person]][u[k ba[v person k bb[v person] v now]]]].
+d bf[person a] e[b scene[k bc[v person v scene]]].
+d bd[person a now d] c[
+  w[k bc[v person v now]][
+    w[
+      u[k ah[b scene[u[k ak[v person v scene]]] k bf[v person] v now]]
+    ][
+      k ah[b scene[w[u[k ai[v person v scene]]][u[k aj[v person v scene]]]] k bf[v person] v now]
+    ]
+  ]
+].
+d be[person a change a before d after d] c[
+  w[k ag[v change v before v after]][
+    w[k bd[v person v before]][u[k bc[v person v after]]]
+  ]
+].
+
+d bi[change a] e[b scene[g person a[g before d[k be[v person v change v before v scene]]]]].
+d bg[person a] f[j m[b scene[k al[v person k bb[v person] v scene]]]].
+d bh[] f[k bg[k ao[]]].
+s[k am[k bh[] p bi]].

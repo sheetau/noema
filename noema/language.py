@@ -581,9 +581,9 @@ def convert(document, version):
     source = normalize(document)
     if source["schema_version"] == version:
         return source
-    if source['schema_version'] in ('0.8', '0.9', '0.10') or version in ('0.8', '0.9', '0.10'):
-        require(source['schema_version'] in ('0.8', '0.9', '0.10') and version in ('0.8', '0.9', '0.10'),
-                'Conversion between editions 0.8/0.9/0.10 and legacy editions is not defined')
+    if source['schema_version'] in ('0.8', '0.9', '0.10', '0.11') or version in ('0.8', '0.9', '0.10', '0.11'):
+        require(source['schema_version'] in ('0.8', '0.9', '0.10', '0.11') and version in ('0.8', '0.9', '0.10', '0.11'),
+                'Conversion between editions 0.8/0.9/0.10/0.11 and legacy editions is not defined')
         source['schema_version'] = source['lexicon_version'] = version
         return normalize(source)
     if source["schema_version"] == "0.1":
