@@ -581,6 +581,7 @@ def convert(document, version):
     source = normalize(document)
     if source["schema_version"] == version:
         return source
+    require(source["schema_version"] != "0.8" and version != "0.8", "Conversion between edition 0.8 and legacy editions is not defined")
     if source["schema_version"] == "0.1":
         source = from_graph(source)
     if version == "0.1":
