@@ -6,8 +6,9 @@ rationals is deliberately refused because a finite sample is not that domain.
 from dataclasses import dataclass
 from fractions import Fraction
 from itertools import product
+import json
 
-from .discourse import FORCES, function_sort, question_sort, normalize_document
+from .discourse import FORCES, function_sort, question_sort, description_sort, normalize_document
 from .semantics import require
 
 
@@ -41,6 +42,17 @@ class QuestionValue:
     function: FunctionValue
 
 
+@dataclass(frozen=True, eq=False)
+class DescriptionValue:
+    """Interned, checked syntax. Only its issuing interpretation may evaluate it.
+
+    No Python evaluator or mutable AST is exposed to primitive callbacks.
+    The canonical JSON is diagnostic data, not an executable input channel.
+    """
+    syntax: str
+    result_type: str
+
+
 def evaluate_document(document, *, individuals, primitives, situations=(), max_steps=100000):
     doc = normalize_document(document)
     require(type(max_steps) is int and max_steps > 0, 'Invalid interpretation budget')
@@ -54,11 +66,19 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
             and all(callable(f) for f in primitives.values()), 'Provide exactly the declared primitive interpretations')
     steps = 0
     node_sorts = {}
+    descriptions = {}
+
+    def canonical(value):
+        return json.dumps(value, sort_keys=True, separators=(',', ':'), ensure_ascii=False)
 
     def infer(node, env):
         """Record sorts of already validated nodes without evaluating their bodies."""
         kind = node['kind']
-        if kind == 'variable':
+        if kind == 'quote':
+            result = description_sort(infer(node['body'], {}))
+        elif kind == 'disquote':
+            result = infer(node['description'], env)['result']
+        elif kind == 'variable':
             result = env[node['name']]
         elif kind == 'number':
             result = 'number'
@@ -110,6 +130,10 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
 
     def valid(value, sort):
         if isinstance(sort, dict):
+            if sort['kind'] == 'description':
+                record = descriptions.get(value.syntax) if isinstance(value, DescriptionValue) else None
+                return (record is not None and record[0] is value
+                        and value.result_type == canonical(sort['result']))
             if sort['kind'] == 'question':
                 return isinstance(value, QuestionValue) and valid(value.function, function_sort(sort['parameters'], 'truth'))
             return (isinstance(value, FunctionValue) and list(value.parameters) == sort['parameters']
@@ -130,6 +154,7 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
 
     def domain(sort):
         if isinstance(sort, dict):
+            require(sort['kind'] != 'description', 'Cannot finitely quantify the description domain')
             if sort['kind'] == 'question':
                 return tuple(QuestionValue(f) for f in domain(function_sort(sort['parameters'], 'truth')))
             inputs = argument_domain(sort['parameters'])
@@ -206,6 +231,17 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
     def expr(node, env):
         tick()
         kind = node['kind']
+        if kind == 'quote':
+            syntax = canonical(node['body'])
+            if syntax not in descriptions:
+                descriptions[syntax] = (DescriptionValue(syntax, canonical(node_sorts[id(node['body'])])), node['body'])
+            return descriptions[syntax][0]
+        if kind == 'disquote':
+            value = expr(node['description'], env)
+            require(valid(value, node_sorts[id(node['description'])]), 'Description belongs to another interpretation or is unchecked')
+            # Quotation itself did not run the body. Evaluation is explicit,
+            # closed, budgeted, and limited to the validated local AST.
+            return expr(descriptions[value.syntax][1], {})
         if kind == 'question':
             return QuestionValue(expr(node['function'], env))
         if kind == 'answer_matches':

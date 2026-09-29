@@ -28,7 +28,7 @@ def render(text, columns=34, alphabet="v1", notation=None):
     notation = notation or notation_of(text)
     canonical = format_graph(graph, notation)
     gaps = None
-    if graph["schema_version"] in ("0.8", "0.9", "0.10", "0.11", "0.12"):
+    if graph["schema_version"] in ("0.8", "0.9", "0.10", "0.11", "0.12", "0.13"):
         from .discourse import tokenize
         stream = tokenize(canonical)
     elif graph["schema_version"] in ("0.2", "0.3", "0.4", "0.5", "0.6", "0.7"):
@@ -41,7 +41,7 @@ def render(text, columns=34, alphabet="v1", notation=None):
             stream = [t[0] for t in tokenize(canonical)]
     else:
         stream = tokens(canonical)
-    shape = (lambda i: glyph_path(i, alphabet)) if alphabet == "v2" or graph["schema_version"] in ("0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "0.10", "0.11", "0.12") else legacy_glyph_path
+    shape = (lambda i: glyph_path(i, alphabet)) if alphabet == "v2" or graph["schema_version"] in ("0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "0.10", "0.11", "0.12", "0.13") else legacy_glyph_path
     defs = ''.join(f'<path id="g{i}" d="{shape(i)}"/>' for i in range(32))
     body, x, y = [], 18, 20
     width = columns * 34 + 36
