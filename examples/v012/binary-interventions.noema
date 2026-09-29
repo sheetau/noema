@@ -1,0 +1,69 @@
+l:
+d sa[equations h[a h[a] c] c mask h[a] c values h[a] c state h[a] c] c[
+  f x a[w[
+    y[c[v mask][v x]][z[c[v state][v x]][c[v values][v x]]]
+  ][
+    y[u[c[v mask][v x]]][z[c[v state][v x]][c[v equations][v x v state]]]
+  ]]
+].
+d sb[equations h[a h[a] c] c mask h[a] c values h[a] c] c[
+  g state h[a] c[k sa[v equations v mask v values v state]]
+].
+d sc[equations h[a h[a] c] c mask h[a] c values h[a] c goal h[h[a] c] c] c[
+  g state h[a] c[w[k sa[v equations v mask v values v state]][c[v goal][v state]]]
+].
+d sd[equations h[a h[a] c] c mask h[a] c values h[a] c goal h[h[a] c] c] c[
+  w[k sb[v equations v mask v values]][
+    f state h[a] c[y[k sa[v equations v mask v values v state]][c[v goal][v state]]]
+  ]
+].
+d se[equations h[a h[a] c] c factor a value c] h[h[a] c] c[
+  i[state h[a] c][k sa[v equations i[x a][e[v x][v factor]] i[x a][v value] v state]]
+].
+d sf[equations h[a h[a] c] c factor a value c goal h[h[a] c] c] c[
+  k sc[v equations i[x a][e[v x][v factor]] i[x a][v value] v goal]
+].
+d sg[equations h[a h[a] c] c factor a value c goal h[h[a] c] c] c[
+  k sd[v equations i[x a][e[v x][v factor]] i[x a][v value] v goal]
+].
+d sh[equations h[a h[a] c] c factor a goal h[h[a] c] c] c[
+  w[k sg[v equations v factor e[v factor][v factor] v goal]][
+    k sg[v equations v factor u[e[v factor][v factor]] i[state h[a] c][u[c[v goal][v state]]]]
+  ]
+].
+d si[equations h[a h[a] c] c factor a goal h[h[a] c] c] c[
+  w[k sg[v equations v factor e[v factor][v factor] i[state h[a] c][u[c[v goal][v state]]]]][
+    k sg[v equations v factor u[e[v factor][v factor]] v goal]
+  ]
+].
+d sj[equations h[a h[a] c] c factor a goal h[h[a] c] c] c[
+  x[
+    w[k sg[v equations v factor e[v factor][v factor] v goal]][k sg[v equations v factor u[e[v factor][v factor]] v goal]]
+  ][
+    w[k sg[v equations v factor e[v factor][v factor] i[state h[a] c][u[c[v goal][v state]]]]][
+      k sg[v equations v factor u[e[v factor][v factor]] i[state h[a] c][u[c[v goal][v state]]]]
+    ]
+  ]
+].
+d sk[equations h[a h[a] c] c factor a value c] c[
+  g state h[a] c[w[c[k se[v equations v factor v value]][v state]][
+    f other h[a] c[y[c[k se[v equations v factor v value]][v other]][e[v state][v other]]]
+  ]]
+].
+d sl[equations h[a h[a] c] c factor a better h[h[a] c h[a] c] c] c[
+  w[g on h[a] c[c[k se[v equations v factor e[v factor][v factor]]][v on]]][
+    w[g off h[a] c[c[k se[v equations v factor u[e[v factor][v factor]]]][v off]]][
+      f on h[a] c[f off h[a] c[y[
+        w[c[k se[v equations v factor e[v factor][v factor]]][v on]][c[k se[v equations v factor u[e[v factor][v factor]]]][v off]]
+      ][c[v better][v off v on]]]]
+    ]
+  ]
+].
+d sm[equations h[a h[a] c] c factor a better h[h[a] c h[a] c] c] c[
+  k sl[v equations v factor i[left h[a] c right h[a] c][c[v better][v right v left]]]
+].
+d sn[equations h[a h[a] c] c factor a better h[h[a] c h[a] c] c] c[
+  g on h[a] c[g off h[a] c[w[
+    w[c[k se[v equations v factor e[v factor][v factor]]][v on]][c[k se[v equations v factor u[e[v factor][v factor]]]][v off]]
+  ][c[v better][v off v on]]]]
+].
