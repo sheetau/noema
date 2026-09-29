@@ -60,9 +60,17 @@ class SequenceValue:
     element_type: str
 
 
-def evaluate_document(document, *, individuals, primitives, situations=(), max_steps=100000):
+def evaluate_document(document, *, individuals, primitives, situations=(), max_steps=100000, memoize_definitions=False):
+    """Evaluate a finite interpretation.
+
+    Opt-in memoization requires deterministic, side-effect-free primitive
+    interpretations for this call. Only scalar-argument/scalar-result
+    definitions are cached; higher-order values retain ordinary evaluation.
+    The cache belongs to this evaluation and never spans models or documents.
+    """
     doc = normalize_document(document)
     require(type(max_steps) is int and max_steps > 0, 'Invalid interpretation budget')
+    require(type(memoize_definitions) is bool, 'Invalid definition memoization option')
     individuals, situations = tuple(individuals), tuple(situations)
     require(individuals and len(set(individuals)) == len(individuals), 'Individual domain must be nonempty and unique')
     require(len(set(situations)) == len(situations), 'Situation domain must be unique')
@@ -74,6 +82,10 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
     steps = 0
     node_sorts = {}
     descriptions = {}
+    definition_cache = {}
+    memoizable = {name for name, d in declarations.items()
+        if memoize_definitions and d['kind'] == 'definition' and isinstance(d['result'], str)
+        and all(isinstance(p['sort'], str) for p in d['parameters'])}
 
     def canonical(value):
         return json.dumps(value, sort_keys=True, separators=(',', ':'), ensure_ascii=False)
@@ -252,11 +264,16 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
 
     def named(symbol, args):
         declaration = declarations[symbol]
+        key = (symbol, tuple(args)) if symbol in memoizable else None
+        if key is not None and key in definition_cache:
+            return definition_cache[key]
         if declaration['kind'] == 'definition':
             value = expr(declaration['body'], {p['name']: a for p, a in zip(declaration['parameters'], args, strict=True)})
         else:
             value = primitives[symbol](*args)
         require(valid(value, declaration['result']), 'Primitive or definition interpretation has wrong result sort')
+        if key is not None:
+            definition_cache[key] = value
         if isinstance(value, FunctionValue):
             return make_function(value.parameters, value.result, value.implementation)
         if isinstance(value, QuestionValue):
