@@ -1,0 +1,328 @@
+{
+  "status": "partial_quantity_foundation",
+  "basis_audit": {
+    "primitive_count": 4,
+    "definition_count": 42,
+    "signature_and_documentation_coverage": true,
+    "definition_dependencies": {
+      "primitive_symbols": [
+        "aa",
+        "ab",
+        "ac",
+        "ad"
+      ],
+      "definition_primitive_dependencies": {
+        "ba": [
+          "aa"
+        ],
+        "bb": [
+          "aa"
+        ],
+        "bc": [],
+        "bd": [
+          "aa",
+          "ab"
+        ],
+        "be": [
+          "aa",
+          "ac"
+        ],
+        "bf": [
+          "aa",
+          "ab",
+          "ac"
+        ],
+        "bg": [],
+        "bh": [
+          "aa",
+          "ad"
+        ],
+        "bi": [
+          "aa",
+          "ab",
+          "ac"
+        ],
+        "ca": [
+          "aa"
+        ],
+        "cb": [
+          "aa",
+          "ac"
+        ],
+        "cc": [
+          "aa",
+          "ad"
+        ],
+        "cd": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ce": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "cf": [
+          "aa",
+          "ad"
+        ],
+        "cg": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ch": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ci": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "cj": [
+          "aa",
+          "ad"
+        ],
+        "ck": [
+          "aa",
+          "ad"
+        ],
+        "cl": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "cm": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "bj": [
+          "aa",
+          "ad"
+        ],
+        "bk": [
+          "aa",
+          "ab",
+          "ad"
+        ],
+        "da": [],
+        "db": [
+          "ab"
+        ],
+        "dc": [
+          "ac"
+        ],
+        "dd": [
+          "ab",
+          "ac"
+        ],
+        "de": [
+          "ad"
+        ],
+        "df": [],
+        "dg": [],
+        "dh": [],
+        "di": [
+          "aa"
+        ],
+        "dj": [
+          "aa",
+          "ad"
+        ],
+        "dk": [
+          "aa",
+          "ad"
+        ],
+        "ds": [
+          "aa"
+        ],
+        "dl": [
+          "aa",
+          "ab",
+          "ad"
+        ],
+        "dm": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "dn": [
+          "ab",
+          "ac"
+        ],
+        "dp": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "do": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "dq": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ]
+      },
+      "statement_primitive_dependencies": []
+    },
+    "semantic_equivalence_to_source_proven": false
+  },
+  "roundtrips": true,
+  "z3_version": "5.1.0",
+  "finite_countermodels": {
+    "kind_dimension_and_scale_conversion": {
+      "expected": true,
+      "actual": true
+    },
+    "same_dimension_different_kind_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "different_dimensions_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "unconverted_readings_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "negative_unit_scale_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "zero_unit_scale_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "speed_times_duration_is_length": {
+      "expected": true,
+      "actual": true
+    },
+    "product_wrong_dimension_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "distance_over_duration_is_speed": {
+      "expected": true,
+      "actual": true
+    },
+    "zero_duration_is_not_a_quotient": {
+      "expected": false,
+      "actual": false
+    },
+    "wrong_quotient_dimension_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "beta_reference_scales": {
+      "expected": true,
+      "actual": true
+    },
+    "beta_mixed_velocity_scales": {
+      "expected": true,
+      "actual": true
+    },
+    "beta_missing_velocity_conversion": {
+      "expected": false,
+      "actual": false
+    },
+    "beta_coefficient_scale_one_hundredth": {
+      "expected": true,
+      "actual": true
+    },
+    "beta_common_velocity_scale": {
+      "expected": true,
+      "actual": true
+    },
+    "beta_speed_length_dimension_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "beta_coefficient_time_dimension_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "beta_different_velocity_kinds_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "beta_same_base_axis_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "beta_bad_base_vector_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "beta_zero_factor_scale_rejected": {
+      "expected": false,
+      "actual": false
+    }
+  },
+  "polynomial_checks": {
+    "beta_common_positive_velocity_scale_invariant": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (+ (* (* vb ve) (* vb ve)) (- (* (* va vd) (* va vd)))))\n      (a!4 (* (* (* vg va) vd) (* (* vg va) vd)))\n      (a!5 (* (* (* vg vb) ve) (* (* vg vb) ve))))\n(let ((a!2 (= (* (* (* vc vf) (* vc vf)) a!1) (* (* vb ve) (* vb ve))))\n      (a!6 (= (* (* (* vc vf) (* vc vf)) (+ a!5 (- a!4))) a!5)))\n(let ((a!3 (and (< 0.0 va)\n                (< 0.0 vb)\n                (< 0.0 vc)\n                (< 0.0 (* vb ve))\n                (< (* (* va vd) (* va vd)) (* (* vb ve) (* vb ve)))\n                (< 0.0 (* vc vf))\n                a!2))\n      (a!7 (and (< 0.0 (* vg va))\n                (< 0.0 (* vg vb))\n                (< 0.0 vc)\n                (< 0.0 (* (* vg vb) ve))\n                (< a!4 a!5)\n                (< 0.0 (* vc vf))\n                a!6)))\n  (=> (< 0.0 vg) (= a!3 a!7)))))"
+    },
+    "beta_velocity_unit_and_reading_change_invariant": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (+ (* (* vb ve) (* vb ve)) (- (* (* va vd) (* va vd)))))\n      (a!4 (+ (* (* vb ve) (* vb ve)) (- (* (* vg vh) (* vg vh))))))\n(let ((a!2 (= (* (* (* vc vf) (* vc vf)) a!1) (* (* vb ve) (* vb ve))))\n      (a!5 (= (* (* (* vc vf) (* vc vf)) a!4) (* (* vb ve) (* vb ve)))))\n(let ((a!3 (and (< 0.0 va)\n                (and (< 0.0 vb) (< 0.0 vc))\n                (< 0.0 (* vb ve))\n                (< (* (* va vd) (* va vd)) (* (* vb ve) (* vb ve)))\n                (< 0.0 (* vc vf))\n                a!2))\n      (a!6 (and (< 0.0 vg)\n                (and (< 0.0 vb) (< 0.0 vc))\n                (< 0.0 (* vb ve))\n                (< (* (* vg vh) (* vg vh)) (* (* vb ve) (* vb ve)))\n                (< 0.0 (* vc vf))\n                a!5)))\n  (=> (and (< 0.0 va) (< 0.0 vg) (= (* va vd) (* vg vh))) (= a!3 a!6)))))"
+    },
+    "beta_factor_unit_and_reading_change_invariant": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (< (* (* va vd) (* va vd)) (* (* vb ve) (* vb ve))))\n      (a!2 (+ (* (* vb ve) (* vb ve)) (- (* (* va vd) (* va vd))))))\n(let ((a!3 (and (< 0.0 va)\n                (< 0.0 vb)\n                (< 0.0 vc)\n                (< 0.0 (* vb ve))\n                a!1\n                (< 0.0 (* vc vf))\n                (= (* (* vc vf) (* vc vf) a!2) (* (* vb ve) (* vb ve)))))\n      (a!4 (and (< 0.0 va)\n                (< 0.0 vb)\n                (< 0.0 vg)\n                (< 0.0 (* vb ve))\n                a!1\n                (< 0.0 (* vg vh))\n                (= (* (* vg vh) (* vg vh) a!2) (* (* vb ve) (* vb ve))))))\n  (=> (and (< 0.0 vc) (< 0.0 vg) (= (* vc vf) (* vg vh))) (= a!3 a!4))))"
+    },
+    "beta_unit_scale_zero_never_accepted": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (+ (* (* vb ve) (* vb ve)) (- (* (* va vd) (* va vd))))))\n(let ((a!2 (and (< 0.0 va)\n                (< 0.0 vb)\n                (< 0.0 vc)\n                (< 0.0 (* vb ve))\n                (< (* (* va vd) (* va vd)) (* (* vb ve) (* vb ve)))\n                (< 0.0 (* vc vf))\n                (= (* (* vc vf) (* vc vf) a!1) (* (* vb ve) (* vb ve))))))\n  (=> (= 0.0 va) (not a!2))))"
+    },
+    "adding_common_offset_is_unit_conversion": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {},
+      "matrix": "(let ((a!1 (+ (* (* 1.0 6.0) (* 1.0 6.0)) (- (* (* 1.0 4.0) (* 1.0 4.0))))))\n  (and (< 0.0 1.0)\n       (< 0.0 1.0)\n       (< 0.0 1.0)\n       (< 0.0 (* 1.0 6.0))\n       (< (* (* 1.0 4.0) (* 1.0 4.0)) (* (* 1.0 6.0) (* 1.0 6.0)))\n       (< 0.0 (* 1.0 (/ 5.0 4.0)))\n       (= (* (* 1.0 (/ 5.0 4.0)) (* 1.0 (/ 5.0 4.0)) a!1)\n          (* (* 1.0 6.0) (* 1.0 6.0)))))"
+    }
+  },
+  "verified_full_source_units": 0,
+  "general_real_quantity_laws_machine_verified": false,
+  "source_sha256": {
+    "examples/v011/real-products.noema": "4cee8c11d23ac4ac37e0607e249ae8872901efc1c9e5fb54f9859478b6f99bed",
+    "examples/fragments/clock-coordinate.noema.inc": "92bd61b7abd93eb620338c28161b5cf0a0ba8771616959ad71f2934e2b9175bf",
+    "examples/fragments/quantities.noema.inc": "a1e398804ce155613d20f9aa86a374b26dcdacacf7d7e4e6fed80279304cc720",
+    "examples/v011/quantities.noema": "da40313d380edff3e64fca5a5822588b56308d0af3ded90c12919630464e5c88",
+    "data/real-products-basis-v1.json": "d1fbbb317fcc7b24287cc406ed1b7a1fddba3310e311b140aa565c3eea399e7b",
+    "data/quantities-basis-v1.json": "4b1c230ef1d9f594dd337f355fefb4cfe6ff75ae3321c4b1bb753f6d2631f1d2",
+    "scripts/compose_quantities.py": "abb0dd12ca72f3ddc01d71389c2a4c69f684b8efd0ea44bedf2f634baecb700f",
+    "scripts/check_quantities.py": "2bea7cb4b3721e5c04f556068bdb2deb892b4c01ce06600033c8d29f33457ed7",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "noema/discourse.py": "edba86e976bfb0998f05c4873d60689cb7063c2de8772df848ce4603c3d9ea26",
+    "noema/finite_semantics.py": "a5e4e97dba8038b6529905ad001a095cac5bbdaa6e1addfbd2127c4108d3a91c",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/rational_proofs.py": "3ca1c888b153ccdc360b314b38dd6aec3e0dad6c48899c2f94cab43a31bc9f37",
+    "noema/grammar.py": "2c161b786a52b035d360b3c8438276a50061b6b02f85e0f59173fdea96d8e8ee",
+    "noema/semantics.py": "80dadfbb584e6db6f60011c37201243339a1b8d40f01e15c24d39753433296ba",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9"
+  }
+}
