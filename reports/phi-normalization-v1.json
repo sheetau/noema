@@ -1,0 +1,595 @@
+{
+  "status": "partial_phi_normalization_draft",
+  "basis_audit": {
+    "primitive_count": 10,
+    "definition_count": 64,
+    "signature_and_documentation_coverage": true,
+    "definition_dependencies": {
+      "primitive_symbols": [
+        "aa",
+        "ab",
+        "ac",
+        "ad",
+        "pa",
+        "pb",
+        "pc",
+        "pd",
+        "pe",
+        "pf"
+      ],
+      "definition_primitive_dependencies": {
+        "ba": [
+          "aa"
+        ],
+        "bb": [
+          "aa"
+        ],
+        "bc": [],
+        "bd": [
+          "aa",
+          "ab"
+        ],
+        "be": [
+          "aa",
+          "ac"
+        ],
+        "bf": [
+          "aa",
+          "ab",
+          "ac"
+        ],
+        "bg": [],
+        "bh": [
+          "aa",
+          "ad"
+        ],
+        "bi": [
+          "aa",
+          "ab",
+          "ac"
+        ],
+        "ca": [
+          "aa"
+        ],
+        "cb": [
+          "aa",
+          "ac"
+        ],
+        "cc": [
+          "aa",
+          "ad"
+        ],
+        "cd": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ce": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "cf": [
+          "aa",
+          "ad"
+        ],
+        "cg": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ch": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ci": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "cj": [
+          "aa",
+          "ad"
+        ],
+        "ck": [
+          "aa",
+          "ad"
+        ],
+        "cl": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "cm": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "bj": [
+          "aa",
+          "ad"
+        ],
+        "bk": [
+          "aa",
+          "ab",
+          "ad"
+        ],
+        "da": [],
+        "db": [
+          "ab"
+        ],
+        "dc": [
+          "ac"
+        ],
+        "dd": [
+          "ab",
+          "ac"
+        ],
+        "de": [
+          "ad"
+        ],
+        "df": [],
+        "dg": [],
+        "dh": [],
+        "di": [
+          "aa"
+        ],
+        "dj": [
+          "aa",
+          "ad"
+        ],
+        "dk": [
+          "aa",
+          "ad"
+        ],
+        "ds": [
+          "aa"
+        ],
+        "dl": [
+          "aa",
+          "ab",
+          "ad"
+        ],
+        "dm": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "dn": [
+          "ab",
+          "ac"
+        ],
+        "dp": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "do": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "dq": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "ea": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "eb": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "ec": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "ed": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "ee": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "ef": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "eh": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "eg": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "pa",
+          "pb",
+          "pc",
+          "pd",
+          "pe",
+          "pf"
+        ],
+        "fa": [
+          "ad"
+        ],
+        "fb": [],
+        "fc": [
+          "aa",
+          "ad"
+        ],
+        "fd": [
+          "aa",
+          "ad"
+        ],
+        "fe": [
+          "aa",
+          "ad"
+        ],
+        "ff": [
+          "ad"
+        ],
+        "fg": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "fh": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "fi": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "fj": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "fk": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "fm": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "fn": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "fo": [
+          "aa",
+          "ac",
+          "ad"
+        ]
+      },
+      "statement_primitive_dependencies": []
+    },
+    "semantic_equivalence_to_source_proven": false
+  },
+  "roundtrips": true,
+  "z3_version": "5.1.0",
+  "polynomial_checks": {
+    "opposite_velocities_have_equal_positive_beta": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* vb vb) (- (* va va)))))\n      (a!2 (+ (* vb vb) (- (* (- va) (- va))))))\n(let ((a!3 (and (< 0.0 vb)\n                (< (* va va) (* vb vb))\n                (< 0.0 vc)\n                (= a!1 (* vb vb))\n                (< 0.0 vb)\n                (< (* (- va) (- va)) (* vb vb))\n                (< 0.0 vd)\n                (= (* vd vd a!2) (* vb vb)))))\n  (=> a!3 (= vc vd))))"
+    },
+    "opposite_transform_composition_is_common_scaling": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* vb vb) (- (* va va)))))\n      (a!2 (* (* vd vc) (+ (* vf (* vb vb)) (- (* va vg)))))\n      (a!3 (* (* vd vc) (+ vg (- (* va vf)))))\n      (a!4 (+ (* vb vb) (- (* (- va) (- va)))))\n      (a!5 (+ (* vj (* vb vb)) (- (* (- va) vk))))\n      (a!6 (+ vk (- (* (- va) vj))))\n      (a!8 (and (= vn (* (* vd ve) vf))\n                (= vo (* (* vd ve) vg))\n                (= vp (* (* vd ve) vh))\n                (= vq (* (* vd ve) vi)))))\n(let ((a!7 (and (< 0.0 vb)\n                (< (* va va) (* vb vb))\n                (< 0.0 vc)\n                (= a!1 (* vb vb))\n                (= (* vj (* vb vb)) a!2)\n                (= vk a!3)\n                (= vl (* vd vh))\n                (= vm (* vd vi))\n                (< 0.0 vb)\n                (< (* (- va) (- va)) (* vb vb))\n                (< 0.0 vc)\n                (= (* (* vc vc) a!4) (* vb vb))\n                (= (* vn (* vb vb)) (* (* ve vc) a!5))\n                (= vo (* (* ve vc) a!6))\n                (= vp (* ve vl))\n                (= vq (* ve vm)))))\n  (=> a!7 a!8)))"
+    },
+    "reciprocity_gives_identity_for_all_four_coordinates": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* vb vb) (- (* va va)))))\n      (a!2 (* (* vd vc) (+ (* vf (* vb vb)) (- (* va vg)))))\n      (a!3 (* (* vd vc) (+ vg (- (* va vf)))))\n      (a!4 (+ (* vb vb) (- (* (- va) (- va)))))\n      (a!5 (+ (* vj (* vb vb)) (- (* (- va) vk))))\n      (a!6 (+ vk (- (* (- va) vj)))))\n(let ((a!7 (and (< 0.0 vb)\n                (< (* va va) (* vb vb))\n                (< 0.0 vc)\n                (= a!1 (* vb vb))\n                (= (* vj (* vb vb)) a!2)\n                (= vk a!3)\n                (= vl (* vd vh))\n                (= vm (* vd vi))\n                (< 0.0 vb)\n                (< (* (- va) (- va)) (* vb vb))\n                (< 0.0 vc)\n                (= (* (* vc vc) a!4) (* vb vb))\n                (= (* vn (* vb vb)) (* (* ve vc) a!5))\n                (= vo (* (* ve vc) a!6))\n                (= vp (* ve vl))\n                (= vq (* ve vm))\n                (= 1.0 (* vd ve)))))\n  (=> a!7 (and (= vf vn) (= vg vo) (= vh vp) (= vi vq)))))"
+    },
+    "identity_at_a_nonzero_probe_implies_reciprocity": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (and (not (= 0.0 vc)) (= (* (* va vb) vc) vc))))\n  (=> a!1 (= 1.0 (* va vb))))"
+    },
+    "reciprocity_and_evenness_only_fix_the_square": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (= 1.0 (* va vb)) (= va vb)) (= 1.0 (* va va)))"
+    },
+    "positive_branch_fixes_both_factors_to_one": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (= 1.0 (* va vb)) (= va vb) (< 0.0 va)) (and (= 1.0 va) (= 1.0 vb)))"
+    },
+    "equal_positive_rod_lengths_imply_even_positive_factors": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (< 0.0 va)\n         (< 0.0 vb)\n         (< 0.0 vc)\n         (= (* vd vb) va)\n         (= (* ve vc) va)\n         (= vb vc))\n    (and (= vd ve) (< 0.0 vd) (< 0.0 ve)))"
+    },
+    "reciprocity_and_rod_symmetry_fix_factors_and_lengths": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (= 1.0 (* vd ve))\n         (< 0.0 va)\n         (< 0.0 vb)\n         (< 0.0 vc)\n         (= (* vd vb) va)\n         (= (* ve vc) va)\n         (= vb vc))\n    (and (= 1.0 vd) (= 1.0 ve) (= vb va) (= vc va)))"
+    },
+    "proved_factor_yields_the_final_transformation": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* vb vb) (- (* va va)))))\n      (a!3 (+ (* vf (* vb vb)) (- (* va vg))))\n      (a!4 (* (* vd vc) (+ vg (- (* va vf)))))\n      (a!6 (* (* 1.0 vc) (+ vg (- (* va vf))))))\n(let ((a!2 (and (< 0.0 vb) (< (* va va) (* vb vb)) (< 0.0 vc) (= a!1 (* vb vb)))))\n(let ((a!5 (and (= 1.0 (* vd ve))\n                (= vd ve)\n                (< 0.0 vd)\n                a!2\n                (= (* vj (* vb vb)) (* (* vd vc) a!3))\n                (= vk a!4)\n                (= vl (* vd vh))\n                (= vm (* vd vi))))\n      (a!7 (and a!2\n                (= (* vj (* vb vb)) (* (* 1.0 vc) a!3))\n                (= vk a!6)\n                (= vl (* 1.0 vh))\n                (= vm (* 1.0 vi)))))\n  (=> a!5 a!7))))"
+    },
+    "transverse_endpoint_coordinates_follow_from_transform": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* vb vb) (- (* va va)))))\n      (a!2 (* (* vd vc) (+ (* vf (* vb vb)) (- (* va vg)))))\n      (a!3 (* (* vd vc) (+ vg (- (* va vf))))))\n(let ((a!4 (and (not (= 0.0 vd))\n                (< 0.0 vb)\n                (< (* va va) (* vb vb))\n                (< 0.0 vc)\n                (= a!1 (* vb vb))\n                (= (* vj (* vb vb)) a!2)\n                (= 0.0 a!3)\n                (= ve (* vd vh))\n                (= 0.0 (* vd vi)))))\n  (=> a!4 (and (= vg (* va vf)) (= 0.0 vi) (= (* vd vh) ve)))))"
+    },
+    "reciprocity_alone_does_not_fix_phi": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {
+        "va": "-1",
+        "vb": "-1"
+      },
+      "matrix": "(=> (= 1.0 (* va vb)) (= 1.0 va))"
+    },
+    "evenness_without_positive_branch_allows_minus_one": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {
+        "va": "-1",
+        "vb": "-1"
+      },
+      "matrix": "(=> (and (= 1.0 (* va vb)) (= va vb)) (= 1.0 va))"
+    },
+    "even_positive_factors_without_reciprocity_need_not_be_one": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {
+        "va": "1/2",
+        "vb": "1/2"
+      },
+      "matrix": "(=> (and (= va vb) (< 0.0 va)) (= 1.0 va))"
+    },
+    "zero_event_identity_does_not_fix_the_scale": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {
+        "va": "0",
+        "vb": "0",
+        "vc": "0"
+      },
+      "matrix": "(=> (= (* (* va vb) vc) vc) (= 1.0 (* va vb)))"
+    }
+  },
+  "numerical_checks": {
+    "reciprocal_but_unequal": {
+      "expected": true,
+      "actual": true
+    },
+    "reciprocal_but_not_normalized": {
+      "expected": false,
+      "actual": false
+    },
+    "negative_reciprocal": {
+      "expected": true,
+      "actual": true
+    },
+    "negative_even": {
+      "expected": true,
+      "actual": true
+    },
+    "negative_branch_rejected": {
+      "expected": false,
+      "actual": false
+    },
+    "positive_even_but_nonreciprocal": {
+      "expected": false,
+      "actual": false
+    },
+    "positive_rod_complete_conditions": {
+      "expected": true,
+      "actual": true
+    },
+    "unequal_observed_lengths": {
+      "expected": false,
+      "actual": false
+    },
+    "zero_length_cannot_fix_phi": {
+      "expected": false,
+      "actual": false
+    },
+    "signed_negative_extent_is_not_positive_length": {
+      "expected": false,
+      "actual": false
+    },
+    "absolute_length_alone_does_not_satisfy_signed_equations": {
+      "expected": false,
+      "actual": false
+    },
+    "same_function_positive_unit": {
+      "expected": true,
+      "actual": true
+    },
+    "same_function_negative_unit": {
+      "expected": false,
+      "actual": false
+    },
+    "same_function_even_but_scaled": {
+      "expected": false,
+      "actual": false
+    },
+    "same_function_reciprocal_but_not_even": {
+      "expected": false,
+      "actual": false
+    },
+    "all_admissible_velocities_not_replaced_by_samples": {
+      "refused": "Cannot finitely quantify the rational number domain"
+    }
+  },
+  "source_alignment": {
+    "selections": [
+      {
+        "unit": "einstein-1905:u0094",
+        "source_sha256": "793fa21bede5b93b6058cac6ec5ceb2e8d2d76d813b5c0fa99942066e22d4857",
+        "math_id": "M0161",
+        "math_sha256": "4088cde98967e9fde6bd2e4a5fe64af7c6400c804e99e5444c9933e3f20539d7",
+        "definitions": [
+          "fg",
+          "ff"
+        ],
+        "status": "partial"
+      },
+      {
+        "unit": "einstein-1905:u0096",
+        "source_sha256": "e8f2d073881ee4ef444daccf08b5c2105ce1f96bc05bbd40909e06d68b10615e",
+        "math_id": "M0169",
+        "math_sha256": "0b174d1a4639355f21126dffff9d1ff5ec2b724d8640d8de101e3cc47cf6296b",
+        "definitions": [
+          "fa"
+        ],
+        "status": "partial"
+      },
+      {
+        "unit": "einstein-1905:u0098",
+        "source_sha256": "5760fb03cb677071b4fcf674bb9b6fe64433cc025cc89a6651905c877334cb58",
+        "math_id": "M0179",
+        "math_sha256": "e80db1999cbc0dc9254e99ce379cf69d236e3ceb5f767614e97af9fec91234cb",
+        "definitions": [
+          "fk"
+        ],
+        "status": "partial"
+      },
+      {
+        "unit": "einstein-1905:u0100",
+        "source_sha256": "f791ef0887a5652d5c34058d207de8c64528f25fe615e0d278b180c1651c6ad2",
+        "math_id": "M0180",
+        "math_sha256": "4009efffb7c6e27b43e68a22d3386c6824b24f0d7357794211d6217c76abbc08",
+        "definitions": [
+          "fk"
+        ],
+        "status": "partial"
+      },
+      {
+        "unit": "einstein-1905:u0102",
+        "source_sha256": "cf4bd07c91dde070e387dfc8eea125213ae121a6741eec71b00fe989f238c551",
+        "math_id": "M0186",
+        "math_sha256": "56d3af32e49bced849940d8c2c5d066c070f42823f5ae5e5dd6d9dba9e535a76",
+        "definitions": [
+          "fc",
+          "fj"
+        ],
+        "status": "partial"
+      },
+      {
+        "unit": "einstein-1905:u0104",
+        "source_sha256": "186b98e7b1075182c63c463ac88e784bd75033613df06f831f5756e186a55e9e",
+        "math_id": "M0187",
+        "math_sha256": "0b6d6873c9d0570b3c10923441e0416ccbd035599f45a95d58066be998f82a8b",
+        "definitions": [
+          "fb"
+        ],
+        "status": "partial"
+      },
+      {
+        "unit": "einstein-1905:u0105",
+        "source_sha256": "9fa08f9bd5117e8ef59b03415b904e138979e8329a861ba9c853fba4e34b0dea",
+        "math_id": "M0188",
+        "math_sha256": "78eee1f0bba491df12ace2448e4eecb376c22551574159bbb60873c825c9c3d5",
+        "definitions": [
+          "fd",
+          "fe",
+          "fi",
+          "fm",
+          "fn",
+          "fo"
+        ],
+        "status": "partial"
+      },
+      {
+        "unit": "einstein-1905:u0106",
+        "source_sha256": "88a2d42dd7f489faff3a94f8ef60ad674993d198e98acac0060b28d9a9a2c57a",
+        "math_id": "M0189",
+        "math_sha256": "52fe986b768ef47ec28c05ed071c8be509399c1c22356a84e41b873875a077b7",
+        "definitions": [
+          "fh"
+        ],
+        "status": "partial"
+      }
+    ],
+    "physical_context_units_still_partial": [
+      "einstein-1905:u0093",
+      "einstein-1905:u0095",
+      "einstein-1905:u0097",
+      "einstein-1905:u0101"
+    ],
+    "physical_identity_and_isotropy_derived_from_algebra": false,
+    "positive_length_sign_convention_explicit": true
+  },
+  "general_cut_field_derivation_machine_verified": false,
+  "verified_full_units": {
+    "einstein-1905": 0,
+    "kant-1784": 0
+  },
+  "source_sha256": {
+    "scripts/compose_phi_normalization.py": "d2f27db08bf1743f49d203be8b0ebfe171f0062b303fd991df7995fbf558433b",
+    "scripts/check_phi_normalization.py": "1df1ac33cf90beff45ad339a6bbc2f4e8b683d32b1e6e5afbc9e107809f24772",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_quantities.py": "2bea7cb4b3721e5c04f556068bdb2deb892b4c01ce06600033c8d29f33457ed7",
+    "examples/fragments/phi-normalization.noema.inc": "e7dfe0a0a2943ce5562da3bc89f5339629e37481da9fb6fd7452f8c6b30f2769",
+    "examples/v011/einstein-phi-normalization.noema": "d28eca597bdf31cab2b38a9fcedc970bae31e106c6307e7af5d9b6300e85384d",
+    "examples/v011/einstein-coordinates.noema": "ef4a3dad9ca3933a3fad5bfe19371c1e4d27bc7a696c0f29a6616a3334303ca3",
+    "data/coordinates-basis-v1.json": "0226e667ecd41f571a08593faecb1b5ae99f01f9003b87b336e6054459521b38",
+    "data/phi-normalization-basis-v1.json": "3a1d0c401350fd4933b09a45251f1aa8fc5e38912b58dc36a4c376d7841f5c28",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "noema/discourse.py": "a1f924523d3d26e4f73eb31548b802094cf379b7255aa5a2f6d7cddb5cbf1fac",
+    "noema/finite_semantics.py": "45f3c93ffbc4cf1d59490d99f81726fd702c759538315fc714b7f7e890d37c9e",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/rational_proofs.py": "3ca1c888b153ccdc360b314b38dd6aec3e0dad6c48899c2f94cab43a31bc9f37",
+    "noema/grammar.py": "0cd9dc69236872e3226af0e3000a99d0bdab7f308c42e6b32a127f9a19cbf2f2",
+    "noema/semantics.py": "05273d5237770e59b305fef995cf7717e4919854f2eb6c740ced1e7b517e256b",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9"
+  }
+}
