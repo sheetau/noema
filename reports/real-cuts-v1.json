@@ -1,0 +1,145 @@
+{
+  "status": "partial_mathematical_foundation",
+  "z3_version": "5.1.0",
+  "basis_audit": {
+    "primitive_count": 4,
+    "definition_count": 9,
+    "signature_and_documentation_coverage": true,
+    "definition_dependencies": {
+      "primitive_symbols": [
+        "aa",
+        "ab",
+        "ac",
+        "ad"
+      ],
+      "definition_primitive_dependencies": {
+        "ba": [
+          "aa"
+        ],
+        "bb": [
+          "aa"
+        ],
+        "bc": [],
+        "bd": [
+          "aa",
+          "ab"
+        ],
+        "be": [
+          "aa",
+          "ac"
+        ],
+        "bf": [
+          "aa",
+          "ab",
+          "ac"
+        ],
+        "bg": [],
+        "bh": [
+          "aa",
+          "ad"
+        ],
+        "bi": [
+          "aa",
+          "ab",
+          "ac"
+        ]
+      },
+      "statement_primitive_dependencies": []
+    },
+    "semantic_equivalence_to_source_proven": false
+  },
+  "linear_rational_results": {
+    "rational_embedding_is_a_cut": {
+      "status": "valid",
+      "reason": null,
+      "formula": "(forall ((r0 Real))\n  (let ((a!1 (exists ((r1 Real))\n               (< (+ 0.0 0.0 (* 1.0 r1)) (+ 0.0 0.0 (* 1.0 r0))))))\n    (and a!1\n         (exists ((r2 Real))\n           (let ((a!1 (< (+ 0.0 0.0 (* 1.0 r2)) (+ 0.0 0.0 (* 1.0 r0)))))\n             (not a!1)))\n         (forall ((r3 Real))\n           (forall ((r4 Real))\n             (let ((a!1 (< (+ 0.0 0.0 (* 1.0 r4)) (+ 0.0 0.0 (* 1.0 r3))))\n                   (a!3 (< (+ 0.0 0.0 (* 1.0 r4)) (+ 0.0 0.0 (* 1.0 r0)))))\n             (let ((a!2 (and (< (+ 0.0 0.0 (* 1.0 r3)) (+ 0.0 0.0 (* 1.0 r0)))\n                             a!1)))\n               (=> a!2 a!3)))))\n         (forall ((r5 Real))\n           (let ((a!1 (< (+ 0.0 0.0 (* 1.0 r5)) (+ 0.0 0.0 (* 1.0 r0))))\n                 (a!2 (exists ((r6 Real))\n                        (let ((a!1 (< (+ 0.0 0.0 (* 1.0 r6))\n                                      (+ 0.0 0.0 (* 1.0 r0)))))\n                          (and a!1\n                               (< (+ 0.0 0.0 (* 1.0 r5)) (+ 0.0 0.0 (* 1.0 r6))))))))\n             (=> a!1 a!2))))))"
+    },
+    "negation_preserves_embedding": {
+      "status": "valid",
+      "reason": null,
+      "formula": "(forall ((r0 Real))\n  (forall ((r1 Real))\n    (let ((a!1 (exists ((r2 Real))\n                 (let ((a!1 (not (< (+ 0.0 0.0 (* 1.0 r2))\n                                    (+ 0.0 0.0 (* 1.0 r0))))))\n                   (and a!1\n                        (< (+ 0.0 0.0 (* 1.0 r1)) (+ 0.0 0.0 (* (- 1.0) r2))))))))\n      (= a!1 (< (+ 0.0 0.0 (* 1.0 r1)) (+ 0.0 0.0 (* (- 1.0) r0)))))))"
+    },
+    "addition_preserves_embedding": {
+      "status": "valid",
+      "reason": null,
+      "formula": "(forall ((r0 Real))\n  (forall ((r1 Real))\n    (forall ((r2 Real))\n      (let ((a!1 (exists ((r3 Real))\n                   (exists ((r4 Real))\n                     (let ((a!1 (< (+ 0.0 (+ 0.0 (* 1.0 r3)))\n                                   (+ 0.0 0.0 (* 1.0 r0))))\n                           (a!2 (< (+ 0.0 (+ 0.0 (* 1.0 r2)))\n                                   (+ 0.0 (+ 0.0 (* 1.0 r3)) (* 1.0 r4)))))\n                       (and a!1\n                            (< (+ 0.0 0.0 (* 1.0 r4)) (+ 0.0 0.0 (* 1.0 r1)))\n                            a!2)))))\n            (a!2 (< (+ 0.0 0.0 (* 1.0 r2))\n                    (+ 0.0 (+ 0.0 (* 1.0 r0)) (* 1.0 r1)))))\n        (= a!1 a!2)))))"
+    },
+    "subtraction_preserves_embedding": {
+      "status": "valid",
+      "reason": null,
+      "formula": "(forall ((r0 Real))\n  (forall ((r1 Real))\n    (forall ((r2 Real))\n      (let ((a!1 (exists ((r3 Real))\n                   (exists ((r4 Real))\n                     (let ((a!1 (< (+ 0.0 (+ 0.0 (* 1.0 r3)))\n                                   (+ 0.0 0.0 (* 1.0 r0))))\n                           (a!2 (< (+ 0.0 (+ 0.0 (* 1.0 r2)))\n                                   (+ 0.0 (+ 0.0 (* 1.0 r3)) (* 1.0 r4)))))\n                       (and a!1\n                            (exists ((r5 Real))\n                              (let ((a!1 (not (< (+ 0.0 0.0 (* 1.0 r5))\n                                                 (+ 0.0 0.0 (* 1.0 r1)))))\n                                    (a!2 (< (+ 0.0 (+ 0.0 (* 1.0 r4)))\n                                            (+ 0.0 0.0 (* (- 1.0) r5)))))\n                                (and a!1 a!2)))\n                            a!2)))))\n            (a!2 (< (+ 0.0 0.0 (* 1.0 r2))\n                    (+ 0.0 (+ 0.0 (* 1.0 r0)) (* (- 1.0) r1)))))\n        (= a!1 a!2)))))"
+    },
+    "strict_order_preserves_embedding": {
+      "status": "valid",
+      "reason": null,
+      "formula": "(forall ((r0 Real))\n  (forall ((r1 Real))\n    (let ((a!1 (and (forall ((r2 Real))\n                      (let ((a!1 (< (+ 0.0 0.0 (* 1.0 r2))\n                                    (+ 0.0 0.0 (* 1.0 r0))))\n                            (a!2 (< (+ 0.0 0.0 (* 1.0 r2))\n                                    (+ 0.0 0.0 (* 1.0 r1)))))\n                        (=> a!1 a!2)))\n                    (not (forall ((r3 Real))\n                           (let ((a!1 (< (+ 0.0 0.0 (* 1.0 r3))\n                                         (+ 0.0 0.0 (* 1.0 r1))))\n                                 (a!2 (< (+ 0.0 0.0 (* 1.0 r3))\n                                         (+ 0.0 0.0 (* 1.0 r0)))))\n                             (=> a!1 a!2)))))))\n      (= a!1 (< (+ 0.0 0.0 (* 1.0 r0)) (+ 0.0 0.0 (* 1.0 r1)))))))"
+    },
+    "clock_equation_preserves_rational_readings": {
+      "status": "valid",
+      "reason": null,
+      "formula": "(forall ((r0 Real))\n  (forall ((r1 Real))\n    (forall ((r2 Real))\n      (= (forall ((r3 Real))\n           (let ((a!1 (exists ((r4 Real))\n                        (exists ((r5 Real))\n                          (let ((a!1 (< (+ 0.0 (+ 0.0 (* 1.0 r4)))\n                                        (+ 0.0 0.0 (* 1.0 r1))))\n                                (a!2 (< (+ 0.0 0.0 (* 1.0 r3))\n                                        (+ 0.0 (+ 0.0 (* 1.0 r4)) (* 1.0 r5)))))\n                            (and a!1\n                                 (exists ((r6 Real))\n                                   (let ((a!1 (not (< (+ 0.0 0.0 (* 1.0 r6))\n                                                      (+ 0.0 0.0 (* 1.0 r0)))))\n                                         (a!2 (< (+ 0.0 (+ 0.0 (* 1.0 r5)))\n                                                 (+ 0.0 0.0 (* (- 1.0) r6)))))\n                                     (and a!1 a!2)))\n                                 a!2)))))\n                 (a!2 (exists ((r7 Real))\n                        (exists ((r8 Real))\n                          (let ((a!1 (< (+ 0.0 (+ 0.0 (* 1.0 r7)))\n                                        (+ 0.0 0.0 (* 1.0 r2))))\n                                (a!2 (< (+ 0.0 0.0 (* 1.0 r3))\n                                        (+ 0.0 (+ 0.0 (* 1.0 r7)) (* 1.0 r8)))))\n                            (and a!1\n                                 (exists ((r9 Real))\n                                   (let ((a!1 (not (< (+ 0.0 0.0 (* 1.0 r9))\n                                                      (+ 0.0 0.0 (* 1.0 r1)))))\n                                         (a!2 (< (+ 0.0 (+ 0.0 (* 1.0 r8)))\n                                                 (+ 0.0 0.0 (* (- 1.0) r9)))))\n                                     (and a!1 a!2)))\n                                 a!2))))))\n             (= a!1 a!2)))\n         (= (+ 0.0 0.0 (* (- 1.0) r0) (* 1.0 r1))\n            (+ 0.0 0.0 (* (- 1.0) r1) (* 1.0 r2)))))))"
+    },
+    "empty_is_a_cut": {
+      "status": "invalid",
+      "reason": null,
+      "formula": "(let ((a!1 (exists ((r0 Real))\n             (not (= (+ 0.0 0.0 (* 1.0 r0)) (+ 0.0 0.0 (* 1.0 r0)))))))\n  (and a!1\n       (exists ((r1 Real))\n         (let ((a!1 (not (= (+ 0.0 0.0 (* 1.0 r1)) (+ 0.0 0.0 (* 1.0 r1))))))\n           (not a!1)))\n       (forall ((r2 Real))\n         (forall ((r3 Real))\n           (let ((a!1 (not (= (+ 0.0 0.0 (* 1.0 r2)) (+ 0.0 0.0 (* 1.0 r2)))))\n                 (a!3 (not (= (+ 0.0 0.0 (* 1.0 r3)) (+ 0.0 0.0 (* 1.0 r3))))))\n           (let ((a!2 (and a!1\n                           (< (+ 0.0 0.0 (* 1.0 r3)) (+ 0.0 0.0 (* 1.0 r2))))))\n             (=> a!2 a!3)))))\n       (forall ((r4 Real))\n         (let ((a!1 (not (= (+ 0.0 0.0 (* 1.0 r4)) (+ 0.0 0.0 (* 1.0 r4)))))\n               (a!2 (exists ((r5 Real))\n                      (let ((a!1 (not (= (+ 0.0 0.0 (* 1.0 r5))\n                                         (+ 0.0 0.0 (* 1.0 r5))))))\n                        (and a!1\n                             (< (+ 0.0 0.0 (* 1.0 r4)) (+ 0.0 0.0 (* 1.0 r5))))))))\n           (=> a!1 a!2)))))"
+    },
+    "whole_domain_is_a_cut": {
+      "status": "invalid",
+      "reason": null,
+      "formula": "(let ((a!1 (exists ((r0 Real))\n             (= (+ 0.0 0.0 (* 1.0 r0)) (+ 0.0 0.0 (* 1.0 r0))))))\n  (and a!1\n       (exists ((r1 Real))\n         (let ((a!1 (= (+ 0.0 0.0 (* 1.0 r1)) (+ 0.0 0.0 (* 1.0 r1)))))\n           (not a!1)))\n       (forall ((r2 Real))\n         (forall ((r3 Real))\n           (let ((a!1 (and (= (+ 0.0 0.0 (* 1.0 r2)) (+ 0.0 0.0 (* 1.0 r2)))\n                           (< (+ 0.0 0.0 (* 1.0 r3)) (+ 0.0 0.0 (* 1.0 r2)))))\n                 (a!2 (= (+ 0.0 0.0 (* 1.0 r3)) (+ 0.0 0.0 (* 1.0 r3)))))\n             (=> a!1 a!2))))\n       (forall ((r4 Real))\n         (let ((a!1 (= (+ 0.0 0.0 (* 1.0 r4)) (+ 0.0 0.0 (* 1.0 r4))))\n               (a!2 (exists ((r5 Real))\n                      (let ((a!1 (= (+ 0.0 0.0 (* 1.0 r5))\n                                    (+ 0.0 0.0 (* 1.0 r5)))))\n                        (and a!1\n                             (< (+ 0.0 0.0 (* 1.0 r4)) (+ 0.0 0.0 (* 1.0 r5))))))))\n           (=> a!1 a!2)))))"
+    },
+    "closed_boundary_is_a_cut": {
+      "status": "invalid",
+      "reason": null,
+      "formula": "(let ((a!1 (exists ((r0 Real)) (not (< (+ 0.0 0.0) (+ 0.0 0.0 (* 1.0 r0)))))))\n  (and a!1\n       (exists ((r1 Real))\n         (let ((a!1 (not (< (+ 0.0 0.0) (+ 0.0 0.0 (* 1.0 r1))))))\n           (not a!1)))\n       (forall ((r2 Real))\n         (forall ((r3 Real))\n           (let ((a!1 (not (< (+ 0.0 0.0) (+ 0.0 0.0 (* 1.0 r2)))))\n                 (a!3 (not (< (+ 0.0 0.0) (+ 0.0 0.0 (* 1.0 r3))))))\n           (let ((a!2 (and a!1\n                           (< (+ 0.0 0.0 (* 1.0 r3)) (+ 0.0 0.0 (* 1.0 r2))))))\n             (=> a!2 a!3)))))\n       (forall ((r4 Real))\n         (let ((a!1 (not (< (+ 0.0 0.0) (+ 0.0 0.0 (* 1.0 r4)))))\n               (a!2 (exists ((r5 Real))\n                      (let ((a!1 (not (< (+ 0.0 0.0) (+ 0.0 0.0 (* 1.0 r5))))))\n                        (and a!1\n                             (< (+ 0.0 0.0 (* 1.0 r4)) (+ 0.0 0.0 (* 1.0 r5))))))))\n           (=> a!1 a!2)))))"
+    },
+    "subtraction_can_reverse_arguments": {
+      "status": "invalid",
+      "reason": null,
+      "formula": "(forall ((r0 Real))\n  (forall ((r1 Real))\n    (forall ((r2 Real))\n      (let ((a!1 (exists ((r3 Real))\n                   (exists ((r4 Real))\n                     (let ((a!1 (< (+ 0.0 (+ 0.0 (* 1.0 r3)))\n                                   (+ 0.0 0.0 (* 1.0 r0))))\n                           (a!2 (< (+ 0.0 0.0 (* 1.0 r2))\n                                   (+ 0.0 (+ 0.0 (* 1.0 r3)) (* 1.0 r4)))))\n                       (and a!1\n                            (exists ((r5 Real))\n                              (let ((a!1 (not (< (+ 0.0 0.0 (* 1.0 r5))\n                                                 (+ 0.0 0.0 (* 1.0 r1)))))\n                                    (a!2 (< (+ 0.0 (+ 0.0 (* 1.0 r4)))\n                                            (+ 0.0 0.0 (* (- 1.0) r5)))))\n                                (and a!1 a!2)))\n                            a!2))))))\n        (= a!1 (< (+ 0.0 0.0 (* 1.0 r2)) (+ 0.0 0.0 (* (- 1.0) r0) (* 1.0 r1))))))))"
+    }
+  },
+  "roundtrip": true,
+  "source_alignment": {
+    "source_unit": "einstein-1905:u0014",
+    "math_id": "M0030",
+    "math_sha256": "d6751324b0c1dbb20c37e435e00692b0f6c2d2f6d24f5fecfb7fb96d2c2a6a5f",
+    "document": "examples/v011/real-cuts.noema",
+    "definition": "bi",
+    "status": "partial",
+    "roles": {
+      "depart": {
+        "source_notation": "t_A",
+        "context_math_id": "M0020",
+        "meaning_ja": "Aから光が出発するときのAの時計の読み。"
+      },
+      "reflect": {
+        "source_notation": "t_B",
+        "context_math_id": "M0024",
+        "meaning_ja": "Bで光がAへ反射されるときのBの時計の読み。"
+      },
+      "arrive": {
+        "source_notation": "t'_A",
+        "context_math_id": "M0028",
+        "meaning_ja": "光がAへ戻るときのAの時計の読み。"
+      }
+    },
+    "review_ja": "原文の差の向き、等号の両側での反射時刻の反復、帰着と出発の違いを切断の等しさとして記述した。時刻の切断であること、共通の単位、時計・出来事・場所・基準系との対応と、同期の定義条件であることを含む談話上の位置付けは未接続。式単位全体の意味確認済みには数えない。"
+  },
+  "verified_full_units": 0,
+  "general_real_field_laws_machine_verified": false,
+  "source_sha256": {
+    "examples/v011/real-cuts.noema": "215af3b5512e88cc33561a43cb35828f22a8a74b105628f639704145a4ef4efc",
+    "data/real-cuts-basis-v1.json": "73f2fec4084297a3cfc786db4d5493ba6aff14f7a76e11d00e19256eed6659eb",
+    "data/einstein-clock-equation-v1.json": "4ad7b3f674920545a87878e0dd8355ec2e239f8a2cbfae5ff30ae1ba3aeaf90e",
+    "noema/rational_proofs.py": "3ca1c888b153ccdc360b314b38dd6aec3e0dad6c48899c2f94cab43a31bc9f37",
+    "noema/discourse.py": "238ea4037d8bab5eecf8c750610d7623dbf5f323ad0353ed362716f53f6123a0",
+    "noema/grammar.py": "44c53ecad61c36e8782b86bfbd4508c6c63991f244b6f26190fa4487b13466a7",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "scripts/check_real_cuts.py": "e7686d12dd6ca23fefe7196f6875b93c6cf7ab4935f633f22180434c210af430",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "pyproject.toml": "91378f207ac98721ece4e77db61d73b1d8cfdeb803099e2106dda646143364a8"
+  }
+}
