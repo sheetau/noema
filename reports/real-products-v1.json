@@ -1,0 +1,246 @@
+{
+  "status": "partial_real_arithmetic_and_beta_draft",
+  "basis_audit": {
+    "primitive_count": 4,
+    "definition_count": 22,
+    "signature_and_documentation_coverage": true,
+    "definition_dependencies": {
+      "primitive_symbols": [
+        "aa",
+        "ab",
+        "ac",
+        "ad"
+      ],
+      "definition_primitive_dependencies": {
+        "ba": [
+          "aa"
+        ],
+        "bb": [
+          "aa"
+        ],
+        "bc": [],
+        "bd": [
+          "aa",
+          "ab"
+        ],
+        "be": [
+          "aa",
+          "ac"
+        ],
+        "bf": [
+          "aa",
+          "ab",
+          "ac"
+        ],
+        "bg": [],
+        "bh": [
+          "aa",
+          "ad"
+        ],
+        "bi": [
+          "aa",
+          "ab",
+          "ac"
+        ],
+        "ca": [
+          "aa"
+        ],
+        "cb": [
+          "aa",
+          "ac"
+        ],
+        "cc": [
+          "aa",
+          "ad"
+        ],
+        "cd": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ce": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "cf": [
+          "aa",
+          "ad"
+        ],
+        "cg": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ch": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "ci": [
+          "aa",
+          "ac",
+          "ad"
+        ],
+        "cj": [
+          "aa",
+          "ad"
+        ],
+        "ck": [
+          "aa",
+          "ad"
+        ],
+        "cl": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "cm": [
+          "aa",
+          "ab",
+          "ac",
+          "ad"
+        ]
+      },
+      "statement_primitive_dependencies": []
+    },
+    "semantic_equivalence_to_source_proven": false
+  },
+  "z3_version": "5.1.0",
+  "universal_rational_polynomial_checks": {
+    "sqrt_of_nonnegative_rational_square": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (= (or (> 0.0 vb) (< (* vb vb) (* va va))) (< vb va))))\n  (=> (not (> 0.0 va)) a!1))"
+    },
+    "general_sqrt_agrees_with_previous_sqrt_two": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(= (or (> 0.0 va) (> 2.0 (* va va))) (or (> 0.0 va) (> 2.0 (* va va))))"
+    },
+    "positive_product_witness_is_below_product": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (< 0.0 vc) (< vc va) (< 0.0 vd) (< vd vb) (< ve (* vc vd)))\n    (< ve (* va vb)))"
+    },
+    "positive_product_given_gap_certifies_witness": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (and (< 0.0 vd)\n                (< vd va)\n                (< vd vb)\n                (< (* vd (+ va vb)) (+ (* va vb) (- vc)))))\n      (a!2 (< vc (* (+ va (- vd)) (+ vb (- vd))))))\n(let ((a!3 (and (< 0.0 (+ va (- vd))) (< 0.0 (+ vb (- vd))) a!2)))\n  (=> a!1 a!3)))"
+    },
+    "positive_reciprocal_witness_is_below_inverse": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (< 0.0 va) (not (< vc va)) (> 1.0 (* vb vc))) (> 1.0 (* vb va)))"
+    },
+    "sqrt_gap_formula_certifies_larger_member": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (= (* 2.0 (+ vb va 1.0) vc) (+ va (- (* vb vb)))))\n      (a!2 (and (< 0.0 vc) (< (* (+ vb vc) (+ vb vc)) va))))\n  (=> (and (not (> 0.0 vb)) (< (* vb vb) va) a!1) a!2))"
+    },
+    "beta_positive_branch_is_unique": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* vb vb) (- (* va va)))))\n      (a!2 (* vd vd (+ (* vb vb) (- (* va va))))))\n  (=> (and (< 0.0 vb)\n           (< (* va va) (* vb vb))\n           (< 0.0 vc)\n           (= a!1 (* vb vb))\n           (< 0.0 vb)\n           (< (* va va) (* vb vb))\n           (< 0.0 vd)\n           (= a!2 (* vb vb)))\n      (= vc vd)))"
+    },
+    "beta_is_even_in_speed": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* vb vb) (- (* va va)))))\n      (a!2 (+ (* vb vb) (- (* (- va) (- va))))))\n(let ((a!3 (and (< 0.0 vb)\n                (< (* (- va) (- va)) (* vb vb))\n                (< 0.0 vc)\n                (= (* (* vc vc) a!2) (* vb vb)))))\n  (= (and (< 0.0 vb) (< (* va va) (* vb vb)) (< 0.0 vc) (= a!1 (* vb vb))) a!3)))"
+    },
+    "beta_is_at_least_one": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* vb vb) (- (* va va))))))\n  (=> (and (< 0.0 vb) (< (* va va) (* vb vb)) (< 0.0 vc) (= a!1 (* vb vb)))\n      (not (> 1.0 vc))))"
+    },
+    "zero_speed_has_factor_one": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* 1.0 1.0 (+ (* va va) (- (* 0.0 0.0))))))\n  (=> (< 0.0 va)\n      (and (< 0.0 va) (< (* 0.0 0.0) (* va va)) (< 0.0 1.0) (= a!1 (* va va)))))"
+    },
+    "light_speed_and_beyond_have_no_finite_factor": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* vb vb) (- (* va va))))))\n(let ((a!2 (not (and (< 0.0 vb)\n                     (< (* va va) (* vb vb))\n                     (< 0.0 vc)\n                     (= a!1 (* vb vb))))))\n  (=> (not (< (* va va) (* vb vb))) a!2)))"
+    },
+    "three_fifths_has_five_fourths_factor": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (/ 5.0 4.0)\n              (/ 5.0 4.0)\n              (+ (* 1.0 1.0) (- (* (/ 3.0 5.0) (/ 3.0 5.0)))))))\n  (and (< 0.0 1.0)\n       (< (* (/ 3.0 5.0) (/ 3.0 5.0)) (* 1.0 1.0))\n       (< 0.0 (/ 5.0 4.0))\n       (= a!1 (* 1.0 1.0))))"
+    },
+    "negative_speed_has_same_factor": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (/ 5.0 4.0)\n              (/ 5.0 4.0)\n              (+ (* 1.0 1.0) (- (* (- (/ 3.0 5.0)) (- (/ 3.0 5.0))))))))\n  (and (< 0.0 1.0)\n       (< (* (- (/ 3.0 5.0)) (- (/ 3.0 5.0))) (* 1.0 1.0))\n       (< 0.0 (/ 5.0 4.0))\n       (= a!1 (* 1.0 1.0))))"
+    },
+    "wrong_reciprocal_four_fifths": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {},
+      "matrix": "(let ((a!1 (* (/ 4.0 5.0)\n              (/ 4.0 5.0)\n              (+ (* 1.0 1.0) (- (* (/ 3.0 5.0) (/ 3.0 5.0)))))))\n  (and (< 0.0 1.0)\n       (< (* (/ 3.0 5.0) (/ 3.0 5.0)) (* 1.0 1.0))\n       (< 0.0 (/ 4.0 5.0))\n       (= a!1 (* 1.0 1.0))))"
+    },
+    "negative_sqrt_branch": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {},
+      "matrix": "(let ((a!1 (* (- (/ 5.0 4.0))\n              (- (/ 5.0 4.0))\n              (+ (* 1.0 1.0) (- (* (/ 3.0 5.0) (/ 3.0 5.0)))))))\n  (and (< 0.0 1.0)\n       (< (* (/ 3.0 5.0) (/ 3.0 5.0)) (* 1.0 1.0))\n       (< 0.0 (- (/ 5.0 4.0)))\n       (= a!1 (* 1.0 1.0))))"
+    },
+    "superluminal_has_finite_factor": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {},
+      "matrix": "(let ((a!1 (* (* 1.0 1.0) (+ (* 1.0 1.0) (- (* 2.0 2.0))))))\n  (and (< 0.0 1.0) (< (* 2.0 2.0) (* 1.0 1.0)) (< 0.0 1.0) (= a!1 (* 1.0 1.0))))"
+    }
+  },
+  "roundtrips": true,
+  "source_alignment": {
+    "source_unit": "einstein-1905:u0084",
+    "source_sha256": "3e47ecca9e8e1dce7d52511272a395294f2376d296acb750f9c7cb37baa9fdc9",
+    "math_id": "M0136",
+    "math_sha256": "7fe08f106eed593b27d4b56b5d87bb93c8c383efd0886ec0072c9924be8fc291",
+    "document": "examples/v011/real-products.noema",
+    "definition": "cl",
+    "status": "partial",
+    "symbols": {
+      "speed": "v",
+      "light": "V",
+      "factor": "β"
+    },
+    "review_ja": "平方根の非負枝と逆数の非零条件を保持した。原文βは現代の速度比の慣用記号と取り違えない。ここでのlight>0と絶対値speed<lightは式を正の光速度に関する有限実数として解釈する定義域であり、原文がこの箇所で独立に述べた命題として追加したものではない。物理量・基準系・単位との接続、周囲の変換式との参照、原刊スキャンとの照合は未完。"
+  },
+  "verified_full_units": 0,
+  "general_real_field_laws_machine_verified": false,
+  "cut_beta_and_algebraic_beta_equivalence_machine_verified": false,
+  "source_sha256": {
+    "examples/v011/real-cuts.noema": "215af3b5512e88cc33561a43cb35828f22a8a74b105628f639704145a4ef4efc",
+    "examples/fragments/real-products.noema.inc": "0723503002dd306247eaff77e460b9c27648cc36838a7d457e34542e615aff4e",
+    "examples/v011/real-products.noema": "4cee8c11d23ac4ac37e0607e249ae8872901efc1c9e5fb54f9859478b6f99bed",
+    "data/real-cuts-basis-v1.json": "73f2fec4084297a3cfc786db4d5493ba6aff14f7a76e11d00e19256eed6659eb",
+    "data/real-products-basis-v1.json": "d1fbbb317fcc7b24287cc406ed1b7a1fddba3310e311b140aa565c3eea399e7b",
+    "data/einstein-beta-v1.json": "0c18db34dabd41f017a1442a3b39d057aa371b4510d628cd57368ea3e8b5e0ba",
+    "scripts/compose_real_products.py": "056082357b4ce69b4692c121dfb3149d7964a65d2e92174a5827f5e04bf5f227",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/rational_proofs.py": "3ca1c888b153ccdc360b314b38dd6aec3e0dad6c48899c2f94cab43a31bc9f37",
+    "noema/discourse.py": "edba86e976bfb0998f05c4873d60689cb7063c2de8772df848ce4603c3d9ea26",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/grammar.py": "2c161b786a52b035d360b3c8438276a50061b6b02f85e0f59173fdea96d8e8ee",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "80dadfbb584e6db6f60011c37201243339a1b8d40f01e15c24d39753433296ba",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8"
+  }
+}
