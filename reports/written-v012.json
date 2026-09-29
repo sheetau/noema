@@ -1,0 +1,362 @@
+{
+  "status": "partial_semantic_draft",
+  "edition": "0.12",
+  "roundtrips": true,
+  "basis_audit": {
+    "primitive_count": 18,
+    "definition_count": 11,
+    "signature_and_documentation_coverage": true,
+    "definition_dependencies": {
+      "primitive_symbols": [
+        "aa",
+        "ab",
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ah",
+        "ai",
+        "aj",
+        "ak",
+        "al",
+        "am",
+        "ao",
+        "ma",
+        "mb",
+        "mc",
+        "md"
+      ],
+      "definition_primitive_dependencies": {
+        "ba": [
+          "ae",
+          "af"
+        ],
+        "bb": [
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "bc": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af"
+        ],
+        "bf": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af"
+        ],
+        "bd": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ah",
+          "ai",
+          "aj",
+          "ak"
+        ],
+        "be": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak"
+        ],
+        "bi": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak"
+        ],
+        "bg": [
+          "ab",
+          "ac",
+          "ad",
+          "al"
+        ],
+        "bh": [
+          "ab",
+          "ac",
+          "ad",
+          "al",
+          "ao"
+        ],
+        "qa": [
+          "ma",
+          "mb"
+        ],
+        "qb": [
+          "ma",
+          "mb",
+          "mc"
+        ]
+      },
+      "statement_primitive_dependencies": [
+        [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak",
+          "al",
+          "am",
+          "ao"
+        ],
+        [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak",
+          "ma",
+          "mb",
+          "md"
+        ],
+        [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak",
+          "ma",
+          "mb",
+          "mc",
+          "md"
+        ]
+      ]
+    },
+    "semantic_equivalence_to_source_proven": false
+  },
+  "countermodels": {
+    "harmful_neutral_helpful_conflicting": {
+      "expected_answers": [
+        [
+          [
+            "harmful"
+          ],
+          [
+            "both"
+          ]
+        ],
+        [
+          [
+            "helpful"
+          ]
+        ]
+      ],
+      "statements": [
+        {
+          "kind": "assert",
+          "value": true
+        },
+        {
+          "kind": "ask",
+          "answers": [
+            [
+              "harmful"
+            ],
+            [
+              "both"
+            ]
+          ]
+        },
+        {
+          "kind": "ask",
+          "answers": [
+            [
+              "helpful"
+            ]
+          ]
+        }
+      ],
+      "topic_content": [
+        false,
+        true
+      ]
+    },
+    "no_effects_does_not_invent_answers": {
+      "expected_answers": [
+        [],
+        []
+      ],
+      "statements": [
+        {
+          "kind": "assert",
+          "value": true
+        },
+        {
+          "kind": "ask",
+          "answers": []
+        },
+        {
+          "kind": "ask",
+          "answers": []
+        }
+      ],
+      "topic_content": [
+        false,
+        true
+      ]
+    },
+    "changed_context_is_not_implicit_present": {
+      "expected_answers": [
+        [
+          [
+            "helpful"
+          ]
+        ],
+        [
+          [
+            "harmful"
+          ]
+        ]
+      ],
+      "statements": [
+        {
+          "kind": "assert",
+          "value": true
+        },
+        {
+          "kind": "ask",
+          "answers": [
+            [
+              "helpful"
+            ]
+          ]
+        },
+        {
+          "kind": "ask",
+          "answers": [
+            [
+              "harmful"
+            ]
+          ]
+        }
+      ],
+      "topic_content": [
+        false,
+        true
+      ]
+    },
+    "changed_prior_definition_changes_topic": {
+      "expected_answers": [
+        [],
+        []
+      ],
+      "statements": [
+        {
+          "kind": "assert",
+          "value": true
+        },
+        {
+          "kind": "ask",
+          "answers": []
+        },
+        {
+          "kind": "ask",
+          "answers": []
+        }
+      ],
+      "topic_content": [
+        false,
+        false
+      ]
+    }
+  },
+  "numeric_candidate_checks": true,
+  "source_unit": "kant-1784:u0012",
+  "source_ranges": [
+    {
+      "start": 0,
+      "end": 582,
+      "status": "pending"
+    },
+    {
+      "id": "hindering-restrictions",
+      "start": 582,
+      "end": 638,
+      "status": "partial"
+    },
+    {
+      "start": 638,
+      "end": 639,
+      "status": "pending"
+    },
+    {
+      "id": "promoting-restrictions",
+      "start": 639,
+      "end": 687,
+      "status": "partial"
+    },
+    {
+      "start": 687,
+      "end": 5190,
+      "status": "pending"
+    }
+  ],
+  "unselected_source_ranges_accounted_for": true,
+  "verified_full_units": 0,
+  "source_sha256": {
+    "examples/v012/kant-questions.noema": "7f27a945c9c9f6ec6d35386016c1cca41054fcfabd57a4e14d88d044deb1657b",
+    "examples/v012/number-question.noema": "9f8029c28587e25caa62d197e4e8256dec25523036d686fcd94a7f0fe4a1c9a9",
+    "examples/fragments/kant-questions.noema.inc": "7cf4686c0b4b459d395c001407cd1b37a0dab2ff68903678e97fbc61c53f48c6",
+    "examples/v011/kant-linked-draft.noema": "dc6a463642ea8653cdd73199a0b15d61b056ba37cda79330fc559dece863cc26",
+    "data/kant-linked-basis-v1.json": "6e814191bb4e4190d8825225fde52110c324b4f9d3d26bf5459464c96df886d8",
+    "data/kant-question-additions-v1.json": "7e63dae22cf6768b6e43252d2da4644d6053edaf5b92c2ab373f7620d26a773d",
+    "data/kant-question-basis-v1.json": "eafb9210726deba19d6e006ed428b54fbfd42c258471f5b47463c9971e51a997",
+    "data/kant-question-alignment-v1.json": "623169066fe1b58db7124d0fd20eff9897f502045b0dfbd2ba9ed1e38736d091",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/compose_kant_v012.py": "79a57cfe40dbab50a41eb5357ca7789572c23e8ed25760fbf3f1e517c727eb95",
+    "scripts/check_written_v012.py": "ba04bc6f2ba485466bf89b0c37c3fe8213dc52b92e11a9f826cde46b0edee788",
+    "noema/discourse.py": "edba86e976bfb0998f05c4873d60689cb7063c2de8772df848ce4603c3d9ea26",
+    "noema/finite_semantics.py": "a5e4e97dba8038b6529905ad001a095cac5bbdaa6e1addfbd2127c4108d3a91c",
+    "noema/grammar.py": "2c161b786a52b035d360b3c8438276a50061b6b02f85e0f59173fdea96d8e8ee",
+    "noema/semantics.py": "80dadfbb584e6db6f60011c37201243339a1b8d40f01e15c24d39753433296ba",
+    "noema/language.py": "64fc08a335cbb2c7ded4cd47ba524ba99b6469f365a58f25bb414178a88e5276",
+    "noema/render.py": "83345cf883ef9515b2612d61bc3776944f2c88ec61ba1bc3c14735907018e96e",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/cli.py": "6b0c8a663ae5b98c587649597f65d409cc4f6fffbad01e2e5aedf3bbb42a5f30",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9"
+  }
+}

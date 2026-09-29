@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 from itertools import product
 
-from .discourse import FORCES, function_sort, normalize_document
+from .discourse import FORCES, function_sort, question_sort, normalize_document
 from .semantics import require
 
 
@@ -34,6 +34,11 @@ class FunctionValue:
 
 
 MAX_FUNCTION_DOMAIN = 4096
+
+
+@dataclass(frozen=True, eq=False)
+class QuestionValue:
+    function: FunctionValue
 
 
 def evaluate_document(document, *, individuals, primitives, situations=(), max_steps=100000):
@@ -70,13 +75,15 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
         else:
             for child in node.get('arguments', []):
                 infer(child, env)
-            for field in ('content', 'situation', 'message', 'function'):
+            for field in ('content', 'situation', 'message', 'function', 'question'):
                 if field in node:
                     infer(node[field], env)
             if kind == 'call':
                 result = declarations[node['symbol']]['result']
             elif kind == 'apply':
                 result = node_sorts[id(node['function'])]['result']
+            elif kind == 'question':
+                result = question_sort(node_sorts[id(node['function'])]['parameters'])
             else:
                 result = {'message': 'message', 'message_content': 'content'}.get(kind, 'truth')
         node_sorts[id(node)] = result
@@ -103,6 +110,8 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
 
     def valid(value, sort):
         if isinstance(sort, dict):
+            if sort['kind'] == 'question':
+                return isinstance(value, QuestionValue) and valid(value.function, function_sort(sort['parameters'], 'truth'))
             return (isinstance(value, FunctionValue) and list(value.parameters) == sort['parameters']
                     and value.result == sort['result'] and callable(value.implementation))
         if sort == 'individual':
@@ -121,6 +130,8 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
 
     def domain(sort):
         if isinstance(sort, dict):
+            if sort['kind'] == 'question':
+                return tuple(QuestionValue(f) for f in domain(function_sort(sort['parameters'], 'truth')))
             inputs = argument_domain(sort['parameters'])
             outputs = tuple(domain(sort['result']))
             count = 1
@@ -169,6 +180,9 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
         return FunctionValue(raw.parameters, result, lambda *args: invoke(raw, args))
 
     def equal(a, b):
+        if isinstance(a, QuestionValue):
+            require(isinstance(b, QuestionValue), 'Question equality sort mismatch')
+            return equal(a.function, b.function)
         if isinstance(a, FunctionValue):
             require(isinstance(b, FunctionValue) and a.parameters == b.parameters and a.result == b.result,
                     'Function equality sort mismatch')
@@ -184,11 +198,18 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
         require(valid(value, declaration['result']), 'Primitive or definition interpretation has wrong result sort')
         if isinstance(value, FunctionValue):
             return make_function(value.parameters, value.result, value.implementation)
+        if isinstance(value, QuestionValue):
+            f = value.function
+            return QuestionValue(make_function(f.parameters, f.result, f.implementation))
         return value
 
     def expr(node, env):
         tick()
         kind = node['kind']
+        if kind == 'question':
+            return QuestionValue(expr(node['function'], env))
+        if kind == 'answer_matches':
+            return invoke(expr(node['question'], env).function, [expr(a, env) for a in node['arguments']])
         if kind == 'variable':
             return env[node['name']]
         if kind == 'number':
@@ -235,6 +256,10 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
             # is not a proof engine and does not rewrite primitive facts.
             return {'kind': 'suppose', 'condition_value': expr(node['condition'], {}),
                     'statements': [statement(child) for child in node['statements']]}
-        return {'kind': node['kind'], 'value': expr(node['body'], {})}
+        value = expr(node['body'], {})
+        if node['kind'] == 'ask' and isinstance(value, QuestionValue):
+            return {'kind': 'ask', 'answers': [list(args) for args in argument_domain(value.function.parameters)
+                                              if invoke(value.function, args)]}
+        return {'kind': node['kind'], 'value': value}
 
     return [statement(s) for s in doc['statements']]

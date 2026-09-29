@@ -1,4 +1,4 @@
-"""Editions 0.8-0.11: typed definitions, content, messages and functions.
+"""Editions 0.8-0.12: typed definitions, content, messages and questions.
 
 Primitive declarations name assumptions of an interpretation; they do not supply
 an explanation of a concept. Definitions cannot be recursive or forward-refer.
@@ -11,7 +11,7 @@ from .semantics import keys, require
 SORTS = {'a': 'individual', 'b': 'number', 'c': 'truth'}
 CONTENT_SORTS = {**SORTS, 'd': 'situation', 'e': 'content'}
 MESSAGE_SORTS = {**CONTENT_SORTS, 'f': 'message'}
-EDITIONS = {'h': '0.8', 'i': '0.9', 'j': '0.10', 'k': '0.11'}
+EDITIONS = {'h': '0.8', 'i': '0.9', 'j': '0.10', 'k': '0.11', 'l': '0.12'}
 FORCES = {'s': 'assert', 'q': 'ask', 'm': 'direct'}
 LOGIC = {'u': 'not', 'w': 'and', 'x': 'or', 'y': 'implies', 'z': 'iff', 'e': 'equal'}
 QUANTIFIERS = {'f': 'forall', 'g': 'exists'}
@@ -24,13 +24,18 @@ def name(value):
 
 
 def sorts(version):
-    return MESSAGE_SORTS if version in ('0.10', '0.11') else CONTENT_SORTS if version == '0.9' else SORTS
+    return MESSAGE_SORTS if version in ('0.10', '0.11', '0.12') else CONTENT_SORTS if version == '0.9' else SORTS
 
 
 def sort(value, version='0.8', depth=0):
     require(depth <= MAX_DEPTH, 'Sort nesting exceeds 128 levels')
     if isinstance(value, dict):
-        require(version == '0.11', 'Function sorts require edition 0.11')
+        if value.get('kind') == 'question':
+            require(version == '0.12', 'Question sorts require edition 0.12')
+            keys(value, ('kind', 'parameters'))
+            require(isinstance(value['parameters'], list), 'Invalid question sort')
+            return question_sort([sort(t, version, depth + 1) for t in value['parameters']])
+        require(version in ('0.11', '0.12'), 'Function sorts require edition 0.11 or later')
         keys(value, ('kind', 'parameters', 'result'))
         require(value['kind'] == 'function' and isinstance(value['parameters'], list), 'Invalid function sort')
         return function_sort([sort(t, version, depth + 1) for t in value['parameters']], sort(value['result'], version, depth + 1))
@@ -43,11 +48,15 @@ def function_sort(parameters, result):
     return {'kind': 'function', 'parameters': parameters, 'result': result}
 
 
+def question_sort(parameters):
+    return {'kind': 'question', 'parameters': parameters}
+
+
 def normalize_document(document):
     from .grammar import number_word
     keys(document, ('schema_version', 'lexicon_version', 'declarations', 'statements'))
     version = document['schema_version']
-    require(version in EDITIONS.values() and version == document['lexicon_version'], 'Expected edition 0.8 through 0.11')
+    require(version in EDITIONS.values() and version == document['lexicon_version'], 'Expected edition 0.8 through 0.12')
     require(isinstance(document['declarations'], list) and isinstance(document['statements'], list), 'Expected arrays')
     require(document['declarations'] or document['statements'], 'Empty document')
     signatures, declarations, statements = {}, [], []
@@ -64,15 +73,33 @@ def normalize_document(document):
         require(depth <= MAX_DEPTH, 'Expression nesting exceeds 128 levels')
         require(isinstance(expr, dict), 'Expected an expression')
         kind = expr.get('kind')
+        if kind == 'question':
+            require(version == '0.12', 'Answer questions require edition 0.12')
+            keys(expr, ('kind', 'function'))
+            function, actual = visit(expr['function'], env, depth + 1)
+            require(isinstance(actual, dict) and actual['kind'] == 'function' and actual['result'] == 'truth',
+                    'Question requires a truth-valued function')
+            result = sort(question_sort(actual['parameters']), version)
+            return {'kind': kind, 'function': function}, result
+        if kind == 'answer_matches':
+            require(version == '0.12', 'Answer matching requires edition 0.12')
+            keys(expr, ('kind', 'question', 'arguments'))
+            question, actual = visit(expr['question'], env, depth + 1)
+            require(isinstance(actual, dict) and actual['kind'] == 'question', 'Expected question sort')
+            require(isinstance(expr['arguments'], list) and len(expr['arguments']) == len(actual['parameters']),
+                    'Answer count mismatch')
+            values = [visit(a, env, depth + 1) for a in expr['arguments']]
+            require([t for _, t in values] == actual['parameters'], 'Answer sort mismatch')
+            return {'kind': kind, 'question': question, 'arguments': [v for v, _ in values]}, 'truth'
         if kind == 'function_ref':
-            require(version == '0.11', 'Function references require edition 0.11')
+            require(version in ('0.11', '0.12'), 'Function references require edition 0.11')
             keys(expr, ('kind', 'symbol'))
             symbol = name(expr['symbol'])
             require(symbol in signatures, 'Unknown, recursive or forward symbol')
             params, result = signatures[symbol]
             return {'kind': kind, 'symbol': symbol}, sort(function_sort(params, result), version)
         if kind == 'lambda':
-            require(version == '0.11', 'Function abstraction requires edition 0.11')
+            require(version in ('0.11', '0.12'), 'Function abstraction requires edition 0.11')
             keys(expr, ('kind', 'parameters', 'body'))
             require(isinstance(expr['parameters'], list), 'Expected parameters')
             parameters, originals, inner = [], set(), dict(env)
@@ -88,7 +115,7 @@ def normalize_document(document):
             sort(result, version)
             return {'kind': kind, 'parameters': parameters, 'body': body}, result
         if kind == 'apply':
-            require(version == '0.11', 'Function application requires edition 0.11')
+            require(version in ('0.11', '0.12'), 'Function application requires edition 0.11')
             keys(expr, ('kind', 'function', 'arguments'))
             function, type_ = visit(expr['function'], env, depth + 1)
             require(isinstance(type_, dict) and type_['kind'] == 'function', 'Application requires function sort')
@@ -97,27 +124,27 @@ def normalize_document(document):
             require([t for _, t in values] == type_['parameters'], 'Argument sort mismatch')
             return {'kind': kind, 'function': function, 'arguments': [v for v, _ in values]}, type_['result']
         if kind == 'message':
-            require(version in ('0.10', '0.11'), 'Messages require edition 0.10 or later')
+            require(version in ('0.10', '0.11', '0.12'), 'Messages require edition 0.10 or later')
             keys(expr, ('kind', 'force', 'content'))
             require(expr['force'] in FORCES.values(), 'Unknown message force')
             content, actual = visit(expr['content'], env, depth + 1)
             require(actual == 'content', 'Message requires content sort')
             return {'kind': kind, 'force': expr['force'], 'content': content}, 'message'
         if kind == 'message_content':
-            require(version in ('0.10', '0.11'), 'Messages require edition 0.10 or later')
+            require(version in ('0.10', '0.11', '0.12'), 'Messages require edition 0.10 or later')
             keys(expr, ('kind', 'message'))
             message, actual = visit(expr['message'], env, depth + 1)
             require(actual == 'message', 'Message content requires message sort')
             return {'kind': kind, 'message': message}, 'content'
         if kind == 'content':
-            require(version in ('0.9', '0.10', '0.11'), 'Content requires edition 0.9 or later')
+            require(version in ('0.9', '0.10', '0.11', '0.12'), 'Content requires edition 0.9 or later')
             keys(expr, ('kind', 'variable', 'body'))
             canonical, inner = binder(expr['variable'], 'situation', env)
             body, actual = visit(expr['body'], inner, depth + 1)
             require(actual == 'truth', 'Content body must have truth sort')
             return {'kind': kind, 'variable': canonical, 'body': body}, 'content'
         if kind == 'evaluate':
-            require(version in ('0.9', '0.10', '0.11'), 'Content evaluation requires edition 0.9 or later')
+            require(version in ('0.9', '0.10', '0.11', '0.12'), 'Content evaluation requires edition 0.9 or later')
             keys(expr, ('kind', 'content', 'situation'))
             content, content_type = visit(expr['content'], env, depth + 1)
             situation, situation_type = visit(expr['situation'], env, depth + 1)
@@ -194,7 +221,7 @@ def normalize_document(document):
         require(depth <= MAX_DEPTH, 'Statement nesting exceeds 128 levels')
         require(isinstance(statement, dict), 'Expected a statement')
         if statement.get('kind') == 'suppose':
-            require(version in ('0.10', '0.11'), 'Assumption scopes require edition 0.10 or later')
+            require(version in ('0.10', '0.11', '0.12'), 'Assumption scopes require edition 0.10 or later')
             keys(statement, ('kind', 'condition', 'statements'))
             serial = 0
             condition, actual = visit(statement['condition'], {})
@@ -206,10 +233,12 @@ def normalize_document(document):
         keys(statement, ('kind', 'body'))
         kind = statement['kind']
         require(kind in ('assert', 'ask', 'perform'), 'Unknown statement kind')
-        require(kind != 'perform' or version in ('0.10', '0.11'), 'Message performance requires edition 0.10 or later')
+        require(kind != 'perform' or version in ('0.10', '0.11', '0.12'), 'Message performance requires edition 0.10 or later')
         serial = 0
         body, actual = visit(statement['body'], {})
-        require(actual == ('message' if kind == 'perform' else 'truth'), 'Statement body has wrong sort')
+        answer_question = (kind == 'ask' and version == '0.12'
+                           and isinstance(actual, dict) and actual['kind'] == 'question')
+        require(answer_question or actual == ('message' if kind == 'perform' else 'truth'), 'Statement body has wrong sort')
         return {'kind': kind, 'body': body}
 
     statements = [statement_node(statement) for statement in document['statements']]
@@ -248,8 +277,16 @@ def parse_document(text):
     def type_word(depth=0):
         require(depth <= MAX_DEPTH, 'Sort nesting exceeds 128 levels')
         value = take()
+        if value == 'g':
+            require(version == '0.12', 'Question sorts require edition 0.12')
+            take('[')
+            params = []
+            while peek() != ']':
+                params.append(type_word(depth + 1))
+            take(']')
+            return question_sort(params)
         if value == 'h':
-            require(version == '0.11', 'Function sorts require edition 0.11')
+            require(version in ('0.11', '0.12'), 'Function sorts require edition 0.11')
             take('[')
             params = []
             while peek() != ']':
@@ -269,11 +306,20 @@ def parse_document(text):
     def expression(depth=0):
         require(depth <= MAX_DEPTH, 'Expression nesting exceeds 128 levels')
         word = take()
+        if word == 'h':
+            require(version == '0.12', 'Answer matching requires edition 0.12')
+            question = bracket(depth)
+            take('[')
+            args = []
+            while peek() != ']':
+                args.append(expression(depth + 1))
+            take(']')
+            return {'kind': 'answer_matches', 'question': question, 'arguments': args}
         if word == 'p':
-            require(version == '0.11', 'Function references require edition 0.11')
+            require(version in ('0.11', '0.12'), 'Function references require edition 0.11')
             return {'kind': 'function_ref', 'symbol': name(take())}
         if word == 'i':
-            require(version == '0.11', 'Function abstraction requires edition 0.11')
+            require(version in ('0.11', '0.12'), 'Function abstraction requires edition 0.11')
             take('[')
             params = []
             while peek() != ']':
@@ -281,7 +327,7 @@ def parse_document(text):
             take(']')
             return {'kind': 'lambda', 'parameters': params, 'body': bracket(depth)}
         if word == 'c':
-            require(version == '0.11', 'Function application requires edition 0.11')
+            require(version in ('0.11', '0.12'), 'Function application requires edition 0.11')
             function = bracket(depth)
             take('[')
             args = []
@@ -290,18 +336,21 @@ def parse_document(text):
             take(']')
             return {'kind': 'apply', 'function': function, 'arguments': args}
         if word == 'j':
-            require(version in ('0.10', '0.11'), 'Messages require edition 0.10 or later')
+            require(version in ('0.10', '0.11', '0.12'), 'Messages require edition 0.10 or later')
             force = take()
+            if force == 'v':
+                require(version == '0.12', 'Answer questions require edition 0.12')
+                return {'kind': 'question', 'function': bracket(depth)}
             require(force in FORCES, 'Unknown message force')
             return {'kind': 'message', 'force': FORCES[force], 'content': bracket(depth)}
         if word == 'o':
-            require(version in ('0.10', '0.11'), 'Messages require edition 0.10 or later')
+            require(version in ('0.10', '0.11', '0.12'), 'Messages require edition 0.10 or later')
             return {'kind': 'message_content', 'message': bracket(depth)}
         if word == 'b':
-            require(version in ('0.9', '0.10', '0.11'), 'Content requires edition 0.9 or later')
+            require(version in ('0.9', '0.10', '0.11', '0.12'), 'Content requires edition 0.9 or later')
             return {'kind': 'content', 'variable': name(take()), 'body': bracket(depth)}
         if word == 't':
-            require(version in ('0.9', '0.10', '0.11'), 'Content evaluation requires edition 0.9 or later')
+            require(version in ('0.9', '0.10', '0.11', '0.12'), 'Content evaluation requires edition 0.9 or later')
             return {'kind': 'evaluate', 'content': bracket(depth), 'situation': bracket(depth)}
         if word == 'v':
             return {'kind': 'variable', 'name': name(take())}
@@ -328,7 +377,7 @@ def parse_document(text):
         require(depth <= MAX_DEPTH, 'Statement nesting exceeds 128 levels')
         marker = take()
         if marker == 'a':
-            require(version in ('0.10', '0.11'), 'Assumption scopes require edition 0.10 or later')
+            require(version in ('0.10', '0.11', '0.12'), 'Assumption scopes require edition 0.10 or later')
             condition = bracket(0)
             take('[')
             children = []
@@ -384,6 +433,8 @@ def format_document(document, compact=False):
 
     def type_word(type_):
         if isinstance(type_, dict):
+            if type_['kind'] == 'question':
+                return 'g[' + ' '.join(type_word(t) for t in type_['parameters']) + ']'
             return 'h[' + ' '.join(type_word(t) for t in type_['parameters']) + '] ' + type_word(type_['result'])
         return types[type_]
 
@@ -392,6 +443,10 @@ def format_document(document, compact=False):
 
     def expression(expr):
         kind = expr['kind']
+        if kind == 'question':
+            return 'j v[' + expression(expr['function']) + ']'
+        if kind == 'answer_matches':
+            return 'h[' + expression(expr['question']) + '][' + ' '.join(expression(a) for a in expr['arguments']) + ']'
         if kind == 'function_ref':
             return 'p ' + expr['symbol']
         if kind == 'lambda':
@@ -443,7 +498,7 @@ def definition_audit(document):
         result = {expr['symbol']} if expr['kind'] in ('call', 'function_ref') else set()
         for child in expr.get('arguments', []):
             result.update(symbols(child))
-        for field in ('body', 'content', 'situation', 'message', 'condition', 'function'):
+        for field in ('body', 'content', 'situation', 'message', 'condition', 'function', 'question'):
             if field in expr:
                 result.update(symbols(expr[field]))
         for child in expr.get('statements', []):

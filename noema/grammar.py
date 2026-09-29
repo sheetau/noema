@@ -53,7 +53,7 @@ def parse(text):
     if isinstance(text, str) and any(0xE000 <= ord(c) <= 0xE01F or 0xE100 <= ord(c) <= 0xE11F for c in text):
         from .script import transcribe
         text = transcribe(text, reverse=True)
-    if isinstance(text, str) and re.match(r'\s*(?:[hijk]:|noema\s+([hijk])\s+\1(?:\s|$))', text):
+    if isinstance(text, str) and re.match(r'\s*(?:[hijkl]:|noema\s+([hijkl])\s+\1(?:\s|$))', text):
         from .discourse import parse_document
         return parse_document(text)
     if notation_of(text) == "compact":
@@ -107,7 +107,7 @@ def parse(text):
 
 def format_graph(graph, notation="full"):
     require(notation in ("full", "compact"), "Unknown written notation")
-    if isinstance(graph, dict) and graph.get("schema_version") in ("0.8", "0.9", "0.10", "0.11"):
+    if isinstance(graph, dict) and graph.get("schema_version") in ("0.8", "0.9", "0.10", "0.11", "0.12"):
         from .discourse import format_document
         return format_document(graph, compact=notation == "compact")
     if isinstance(graph, dict) and graph.get("schema_version") in ("0.2", "0.3", "0.4", "0.5", "0.6", "0.7"):
