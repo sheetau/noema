@@ -38,7 +38,7 @@ def main(argv=None):
         source.add_argument("--input", "-i")
         p.add_argument("--output", "-o")
         if name == "format":
-            p.add_argument("--edition", choices=("0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"), help="Explicit lossless conversion to another edition")
+            p.add_argument("--edition", choices=("0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "0.10"), help="Explicit lossless conversion to another edition")
             p.add_argument("--notation", choices=("full", "compact"), default="full")
         if name == "render":
             p.add_argument("--columns", type=int, default=34)

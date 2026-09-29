@@ -1,0 +1,191 @@
+{
+  "status": "partial_semantic_draft",
+  "edition": "0.10",
+  "roundtrips": {
+    "conditional-directive.noema": true,
+    "kant-motto-draft.noema": true
+  },
+  "interpretations": {
+    "conditional_rain_false": [
+      {
+        "kind": "suppose",
+        "condition_value": false,
+        "statements": [
+          {
+            "kind": "perform",
+            "value": {
+              "force": "direct",
+              "content": {
+                "situations": [
+                  "now",
+                  "later"
+                ],
+                "values": [
+                  false,
+                  false
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ask",
+        "value": false
+      }
+    ],
+    "conditional_rain_true": [
+      {
+        "kind": "suppose",
+        "condition_value": true,
+        "statements": [
+          {
+            "kind": "perform",
+            "value": {
+              "force": "direct",
+              "content": {
+                "situations": [
+                  "now",
+                  "later"
+                ],
+                "values": [
+                  false,
+                  false
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ask",
+        "value": false
+      }
+    ],
+    "motto_courage_false": [
+      {
+        "kind": "assert",
+        "value": true
+      }
+    ],
+    "motto_courage_true": [
+      {
+        "kind": "assert",
+        "value": true
+      }
+    ]
+  },
+  "basis_audit": {
+    "primitive_count": 7,
+    "definition_count": 3,
+    "signature_and_documentation_coverage": true,
+    "definition_dependencies": {
+      "primitive_symbols": [
+        "ab",
+        "ac",
+        "ad",
+        "al",
+        "am",
+        "an",
+        "ao"
+      ],
+      "definition_primitive_dependencies": {
+        "bb": [
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "bg": [
+          "ab",
+          "ac",
+          "ad",
+          "al"
+        ],
+        "bh": [
+          "ab",
+          "ac",
+          "ad",
+          "al",
+          "ao"
+        ]
+      },
+      "statement_primitive_dependencies": [
+        [
+          "ab",
+          "ac",
+          "ad",
+          "al",
+          "am",
+          "an",
+          "ao"
+        ]
+      ]
+    },
+    "semantic_equivalence_to_source_proven": false
+  },
+  "source_unit": "kant-1784:u0008",
+  "source_alignment": [
+    {
+      "id": "definition-enlightenment",
+      "start": 0,
+      "end": 85,
+      "status": "partial",
+      "document": "examples/v09/kant-opening-draft.noema"
+    },
+    {
+      "id": "definition-immaturity",
+      "start": 86,
+      "end": 181,
+      "status": "partial",
+      "document": "examples/v09/kant-opening-draft.noema"
+    },
+    {
+      "id": "definition-self-incurred",
+      "start": 182,
+      "end": 381,
+      "status": "partial",
+      "document": "examples/v09/kant-opening-draft.noema"
+    },
+    {
+      "id": "latin-motto",
+      "start": 382,
+      "end": 394,
+      "status": "pending",
+      "document": "examples/v010/kant-motto-draft.noema"
+    },
+    {
+      "id": "imperative",
+      "start": 395,
+      "end": 448,
+      "status": "partial",
+      "document": "examples/v010/kant-motto-draft.noema"
+    },
+    {
+      "id": "motto-attribution",
+      "start": 449,
+      "end": 488,
+      "status": "partial",
+      "document": "examples/v010/kant-motto-draft.noema"
+    }
+  ],
+  "verified_full_units": 0,
+  "all_nonblank_source_characters_accounted_for": true,
+  "source_sha256": {
+    "noema/discourse.py": "6c46e70e3472c68b4267bc02cf364eb07743d6f5b506f9cb0b1f21db2b9eaaac",
+    "noema/finite_semantics.py": "f5129efe3a94ce1818b8128ff31fb0914732be94f5c32c7ff5015527b6d93f0f",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/grammar.py": "a2f9250c2ea31ce30a6a5f1d15690944dacf827034f36d5044c550bfdd1e7c96",
+    "noema/semantics.py": "0d5f0e65eb228de82ea30a9d740ea18208b4ab7bf28fb1fcc9dc00e7b1ed90a3",
+    "noema/language.py": "037d61c1842f0f783001d477f1df457e2bf1c69a94d51be5ada102be23f3f334",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/render.py": "c54fbe08928c4c49a816dfaac82aefa4d9a77f540692fa1eb6f6d5c107c75dd8",
+    "noema/cli.py": "0158938dcb218ea759daeb9cf6ea6509bd1e2f80b036c7269a8151f3705ec2fe",
+    "scripts/check_written_v010.py": "54af06b6379097e79f26044c95714ad194c42dbc1aa162b20132774add2f22d2",
+    "data/kant-motto-basis-v1.json": "55635e4a89bb932c2fe082989c10f6059f17b3afb1b6a62657875cc46b40c034",
+    "data/kant-motto-alignment-v1.json": "aa72901960fe93ad547d1e1c44b80a2325888d28d83853b1851d9764b5c06146",
+    "data/kant-opening-alignment-v1.json": "541dd9218c16f94a38d117b5436b73f6f97091e9dbc4e5c962863a79765f82c5",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "examples/v010/conditional-directive.noema": "b43d7c16ab80ae9ecf8a1040a8d09fc40596703b95c5a0a5f1957b9ed85858b9",
+    "examples/v010/kant-motto-draft.noema": "23de5f4c18f2975720d05fb6a323b319f31109eeaef1249ba229034b285d74a4"
+  }
+}
