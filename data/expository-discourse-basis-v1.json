@@ -1,0 +1,136 @@
+{
+  "version": "expository-discourse-basis-v1",
+  "document": "examples/v013/expository-discourse.noema",
+  "primitives": [
+    {
+      "symbol": "ua",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "property_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの文章箇所で、対象から状況ごとの真偽への性質の記述を、概念の説明として提示する。説明対象の性質はNoemaの定義を参照し、未説明の原語で代用しない。提示したことと現実に該当する対象の存在を分ける。"
+    },
+    {
+      "symbol": "ub",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "message"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "message_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの文章箇所で指定された発話の記述を引用する。発話の働きも記述に含める。引用内容への賛同、引用された要求の実行や達成は含まない。"
+    },
+    {
+      "symbol": "uc",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの文章箇所で指定された内容を主張する。著者への帰属であり、解釈器がその内容を真と認定する関係ではない。"
+    },
+    {
+      "symbol": "ud",
+      "parameters": [
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "author",
+        "premise_nodes",
+        "conclusion_node",
+        "context"
+      ],
+      "meaning_ja": "著者が指定した文章箇所の集合を根拠側として、結論箇所を帰結として提示する。論理的含意、証明の妥当性、因果関係とは区別する。根拠の十分性を判定する関係ではない。"
+    },
+    {
+      "symbol": "ue",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "earlier_node",
+        "later_node",
+        "context"
+      ],
+      "meaning_ja": "指定文脈の本文順序で第一箇所が第二箇所より前にある。出来事の時間順序や因果の向きとは別の関係。"
+    },
+    {
+      "symbol": "uf",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "author",
+        "explained_node",
+        "explanatory_node",
+        "context"
+      ],
+      "meaning_ja": "著者が第二の文章箇所を第三の箇所によって説明・言い換えするという談話関係。二箇所の意味が完全に等しいことを要求しない。"
+    }
+  ],
+  "definitions": {
+    "va": "根拠箇所が空でなく、結論自身を根拠箇所に含めない。",
+    "vb": "vaを満たし、全根拠箇所が結論より本文上で前にあり、著者がその帰結関係を提示する。これを証明検査の代用にはしない。",
+    "vc": "選択した箇所内で本文順序が非反射的かつ推移的である。有限集合なら循環を許さない。"
+  },
+  "unresolved": [
+    "発話・概念説明・本文順序・説明関係を現実の文章から認定する方法と一般的な基礎への還元は未完。",
+    "説明の正しさ、主張の真理、推論の妥当性は別に検査する必要がある。"
+  ]
+}
