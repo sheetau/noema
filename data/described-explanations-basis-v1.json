@@ -1,0 +1,53 @@
+{
+  "version": "described-explanations-basis-v1",
+  "document": "examples/v013/described-explanations.noema",
+  "primitives": [
+    {
+      "symbol": "ea",
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "factor_subject",
+        "factor_description",
+        "effect_subject",
+        "effect_description",
+        "context"
+      ],
+      "meaning_ja": "指定した文脈の説明で、第一対象についての要因の記述を、第二対象についての結果の記述の原因として採用する関係。記述はNoemaの性質定義を指す。両内容が同時に真であることや現実の因果関係の成立は、この関係だけからは従わない。"
+    }
+  ],
+  "definitions": {
+    "eb": "二つの性質記述をそれぞれの対象へ適用し、両内容が指定状況で成立する。原因としての採用は含まない。",
+    "ec": "eaによる原因説明への採用とebによる両内容の成立をともに要求する。それでも介入効果や因果機構の証明ではない。",
+    "ed": "同じ対象と結果記述について、選択した要因記述は原因説明に採用し、除外した要因記述は採用しない。内容の成立を評価しない。"
+  },
+  "unresolved": [
+    "基本関係eaは原因説明への採用の意味規約であり、原因を発見するアルゴリズムや実在の因果関係の一般理論ではない。",
+    "記述の同一性は既存の正規化した構文の同一性である。異なる別名が同じ因果機構を指すかを自動判定しない。",
+    "ebとecは脱引用を含むので、現行0.13の制約ではこれらを参照した式をさらに引用できない。edにはこの制約を持ち込まない。"
+  ]
+}
