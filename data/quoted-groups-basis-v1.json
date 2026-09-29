@@ -1,0 +1,44 @@
+{
+  "version": "quoted-groups-basis-v1",
+  "document": "examples/v014/quoted-groups.noema",
+  "primitives": [
+    {
+      "symbol": "ga",
+      "parameters": [
+        {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": "message"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "quoted_parts",
+        "topic_description",
+        "context"
+      ],
+      "meaning_ja": "指定文脈で、順序付きの発話記述のまとまり全体を、指定した事柄の標語として位置付ける。各部分を個別の標語とすること、各発話の実行や達成、部分の同義性は含まない。事柄はNoemaの性質定義の記述で与える。"
+    }
+  ],
+  "definitions": {
+    "gb": "引用のまとまりが空でなく、そのまとまり全体についてgaが成立する。単独の部分に同じ役割があるとは推定しない。",
+    "gc": "指定した発話記述が引用の列のいずれかの出現にある。列の順序と重複は変更せず、引用内容を評価しない。"
+  },
+  "unresolved": [
+    "標語としての社会的な位置付けは基本関係gaの意味規約であり、文章からの自動認定は行わない。",
+    "列は引用した発話の意味記述の順序を保持するが、原語の綴りや印刷上の字体を再現する仕組みではない。"
+  ]
+}
