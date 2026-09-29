@@ -91,4 +91,4 @@ python -m noema script --input examples/v09/ability.noema --alphabet v2
 python -m noema render --input examples/v09/ability.noema --alphabet v2 --output artifacts/ability-v09.svg
 ```
 
-カント冒頭の「自分の理解力を他者の指導なしで使う」という行為内容、状態からの離脱、原因、呼びかけ、標語の引用は、まだ全文として記述していない。今回の内容型を使ってこれらを組み立てる作業が必要である。全文の確認済み単位は引き続き0である。
+カント冒頭の行為内容・状態からの離脱・原因説明は、後続の[定義草案](kant-opening-v1.md)で組み立てた。能力や原因の解釈には未解決点があり、呼びかけと標語も未記述である。全文の確認済み単位は引き続き0である。
