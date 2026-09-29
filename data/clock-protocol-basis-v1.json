@@ -1,0 +1,211 @@
+{
+  "version": "clock-protocol-basis-v1",
+  "document": "examples/v011/einstein-clock-protocol.noema",
+  "status": "partial_physical_semantic_conventions",
+  "primitives": [
+    {
+      "symbol": "ca",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock"
+      ],
+      "meaning_ja": "対象は時間の経過を指示する時計である。時計の一般的な構造・精度・指示原理は未定義。"
+    },
+    {
+      "symbol": "cb",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object_or_event",
+        "place",
+        "frame"
+      ],
+      "meaning_ja": "対象または出来事が、その基準系でその場所にある。時計ではこの記述の対象期間の設置位置、出来事では発生位置を指す。"
+    },
+    {
+      "symbol": "cc",
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "frame"
+      ],
+      "meaning_ja": "対象がその基準系に対して静止している。絶対的な静止や別の基準系での静止は主張しない。"
+    },
+    {
+      "symbol": "cd",
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_clock",
+        "second_clock"
+      ],
+      "meaning_ja": "二つの時計が同じ構造・性状を持つ。この関係だけで同じ読みを指すことや同期を前提にしない。"
+    },
+    {
+      "symbol": "ce",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "event",
+        "frame",
+        "unit",
+        "reading"
+      ],
+      "meaning_ja": "指定された時計の、その出来事の時点の読みが、基準系と時間単位を明示した値として、与えられた実数の切断に対応する。読みの存在や値を関数の全域性から補わない。時計ごとの原点は同じと前提にせず、同期条件で比較する。"
+    },
+    {
+      "symbol": "cf",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "signal"
+      ],
+      "meaning_ja": "対象は光信号である。光の物理理論や真空条件の一般的説明は未完。"
+    },
+    {
+      "symbol": "cg",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "signal",
+        "from_event",
+        "to_event",
+        "frame"
+      ],
+      "meaning_ja": "その信号が、その基準系で前者の出来事から後者の出来事まで伝播する。出来事の順序を持ち、逆方向の伝播と同一視しない。"
+    },
+    {
+      "symbol": "ch",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "signal",
+        "event",
+        "frame"
+      ],
+      "meaning_ja": "その基準系で、その出来事においてその信号が反射される。無関係な場所や出来事に反射があるだけでは成立しない。"
+    },
+    {
+      "symbol": "ci",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "unit"
+      ],
+      "meaning_ja": "対象は時間の単位である。時間以外の単位は満たさない。単位の一般的な次元体系と個々の単位の物理的定義は未完。"
+    },
+    {
+      "symbol": "aa",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "左の有理数が右の有理数より厳密に小さい。等しい場合は偽。"
+    },
+    {
+      "symbol": "ab",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の和。浮動小数点への丸めはしない。"
+    },
+    {
+      "symbol": "ac",
+      "parameters": [
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "value"
+      ],
+      "meaning_ja": "有理数の加法逆元。元の数と加えると0となる有理数。"
+    },
+    {
+      "symbol": "ad",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の積。浮動小数点への丸めはしない。"
+    }
+  ],
+  "definitions": {
+    "ba": "真となる有理数が存在し、偽となる有理数も存在し、下方閉で、真となる有理数の中に最大値がない性質を実数の下側切断とする。",
+    "bb": "有理数rを、q<rとなる有理数qの性質として埋め込む。境界r自身を含めない。",
+    "bc": "左の性質を満たす全有理数が右の性質も満たす。実数の下側切断に対しては小なりイコール。",
+    "bd": "二つの切断の和。左の元xと右の元yがあり、q<x+yとなる有理数qの性質。",
+    "be": "切断の符号反転。元の切断に属さない有理数uがあり、q<-uとなる有理数qの性質。補集合を単に反転して境界を含めてしまうことを避ける。",
+    "bf": "左の切断と、右の切断を符号反転した切断の和による差。",
+    "bg": "左が右に含まれ、右は左に含まれない。実数の下側切断に対しては厳密な小なり。",
+    "bh": "q<0またはq*q<2を満たす有理数qの性質。正の平方根2の下側切断の記述。一般的な平方根演算子ではない。",
+    "bi": "反射時刻−出発時刻と、帰着時刻−反射時刻の二つの差が、全有理数について同じ切断になる。引数が実数の切断であることは利用箇所で前提にする。",
+    "da": "AとBに置かれた同じ構造の静止時計、AからBへの光伝播、Bでの反射、Aへの帰着、およびA/B/Aそれぞれの出来事での読みを、同じ基準系と時間単位へ結び付けた一往復の設定。同期の等式はこの定義には含めない。",
+    "bj": "正の有理数scaleによる切断の拡大。q<scale*xとなる元xが元の切断にある場合にqを含める。scaleが0以下なら空の性質となり、実数の切断条件を満たさない。",
+    "bk": "正の尺度変更の後に切断offsetを加え、時刻座標を変換する。新しい読み=scale*古い読み+offsetという規約。",
+    "db": "daの一往復の設定にあり、三つの読みが実数の切断で、往路と復路の差が等しいという条件。一回の条件の成立だけで全時刻の時計同期を主張しない。"
+  },
+  "unresolved": [
+    "時計・場所・基準系・光・伝播・時間単位を共通の基礎概念から説明する定義。",
+    "任意個数の時計への拡張と、任意の往復に対する一貫性・対称性などの仮定。",
+    "原文の導入説明、観測者、可能性、定義を採用する発話と全ての参照の記述。",
+    "物理的な単位の間の換算関係と、尺度変換の係数との接続。",
+    "原文と全体として同義であることの確認、および原刊画像との照合。",
+    "一般の実数全域での座標変換の法則の機械的証明。今回の自動証明は指定した正の倍率と有理数を埋め込んだ読み・原点に限る。"
+  ]
+}
