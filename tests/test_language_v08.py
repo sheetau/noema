@@ -133,3 +133,17 @@ def test_unsupported_edition_conversion_and_reverse_translation_reject_explicitl
     with pytest.raises(ValueError, match='0.8'):
         convert(parse('g:po mu.'), '0.8')
     assert Translator().translate({'direction': 'from_noema', 'language': 'ja', 'text': text})['status'] == 'unsupported'
+
+
+def test_synchrony_draft_preserves_two_distinct_relation_constraints():
+    doc = parse(Path('examples/v08/einstein-synchrony-draft.noema').read_text(encoding='utf-8'))
+    clocks = {'a', 'b', 'c'}
+    domain = {'individual': ['a', 'b', 'c', 'frame']}
+    identity = {(x, x) for x in clocks}
+    path = {('a', 'b'), ('b', 'a'), ('b', 'c'), ('c', 'b')}
+    for relation, expected in ((identity, [True, True]), (path, [True, False])):
+        assert interpret(doc, domain, {'aa': lambda x: x in clocks,
+            'ab': lambda x, y, frame: frame == 'frame' and (x, y) in relation,
+            'ac': lambda: 'frame'}) == expected
+    assert parse(format_graph(doc, 'compact')) == doc
+    assert parse(decode(encode(format_graph(doc), 'v2'))) == doc
