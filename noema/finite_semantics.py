@@ -60,17 +60,23 @@ class SequenceValue:
     element_type: str
 
 
-def evaluate_document(document, *, individuals, primitives, situations=(), max_steps=100000, memoize_definitions=False):
+def evaluate_document(document, *, individuals, primitives, situations=(), max_steps=100000,
+                      memoize_definitions=False, memoize_expressions=False):
     """Evaluate a finite interpretation.
 
     Opt-in memoization requires deterministic, side-effect-free primitive
     interpretations for this call. Only scalar-argument/scalar-result
     definitions are cached; higher-order values retain ordinary evaluation.
-    The cache belongs to this evaluation and never spans models or documents.
+    Expression memoization is a separate opt-in with the same purity contract.
+    It caches scalar results by syntax node and the values of its free variables.
+    Function arguments use object identity, never sampled extensional equality;
+    function/sequence/question/description results are not cached. Both caches
+    belong to this evaluation and never span models or documents.
     """
     doc = normalize_document(document)
     require(type(max_steps) is int and max_steps > 0, 'Invalid interpretation budget')
     require(type(memoize_definitions) is bool, 'Invalid definition memoization option')
+    require(type(memoize_expressions) is bool, 'Invalid expression memoization option')
     individuals, situations = tuple(individuals), tuple(situations)
     require(individuals and len(set(individuals)) == len(individuals), 'Individual domain must be nonempty and unique')
     require(len(set(situations)) == len(situations), 'Situation domain must be unique')
@@ -83,6 +89,8 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
     node_sorts = {}
     descriptions = {}
     definition_cache = {}
+    expression_cache = {}
+    free_variables = {}
     memoizable = {name for name, d in declarations.items()
         if memoize_definitions and d['kind'] == 'definition' and isinstance(d['result'], str)
         and all(isinstance(p['sort'], str) for p in d['parameters'])}
@@ -151,6 +159,29 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
             infer(declaration['body'], {p['name']: p['sort'] for p in declaration['parameters']})
     for item in doc['statements']:
         infer_statement(item)
+
+    def free_names(node):
+        """Lexical dependencies only; bound variables and quoted syntax are closed."""
+        identity = id(node)
+        if identity not in free_variables:
+            kind = node['kind']
+            if kind == 'variable':
+                names = {node['name']}
+            elif kind == 'quote':
+                names = set()
+            else:
+                children = list(node.get('arguments', [])) + list(node.get('items', []))
+                for field in ('body', 'content', 'situation', 'message', 'function', 'question',
+                              'description', 'sequence', 'index', 'value', 'left', 'right', 'initial', 'step'):
+                    if field in node:
+                        children.append(node[field])
+                names = set().union(*(free_names(child) for child in children))
+                if kind == 'lambda':
+                    names.difference_update(p['name'] for p in node['parameters'])
+                elif kind in ('forall', 'exists', 'content'):
+                    names.discard(node['variable'])
+            free_variables[identity] = tuple(sorted(names))
+        return free_variables[identity]
 
     def tick(amount=1):
         nonlocal steps
@@ -283,6 +314,21 @@ def evaluate_document(document, *, individuals, primitives, situations=(), max_s
 
     def expr(node, env):
         tick()
+        # Charge cache hits as evaluation steps too. Cache only completed scalar
+        # evaluations: errors still propagate, and higher-order result identities
+        # remain as before. In particular, do not intern/reuse lambda closures.
+        key = None
+        if (memoize_expressions and isinstance(node_sorts[id(node)], str)
+                and node['kind'] not in ('variable', 'number')):
+            key = (id(node), tuple(env[name] for name in free_names(node)))
+            if key in expression_cache:
+                return expression_cache[key]
+        value = compute_expr(node, env)
+        if key is not None:
+            expression_cache[key] = value
+        return value
+
+    def compute_expr(node, env):
         kind = node['kind']
         if kind == 'sequence':
             return SequenceValue(tuple(expr(item, env) for item in node['items']), canonical(node['element']))
