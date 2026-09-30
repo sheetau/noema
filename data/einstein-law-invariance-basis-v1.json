@@ -1,0 +1,969 @@
+{
+  "version": "einstein-law-invariance-basis-v1",
+  "document": "examples/v014/einstein-law-invariance.noema",
+  "status": "partial_physical_semantic_conventions",
+  "primitives": [
+    {
+      "symbol": "ca",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock"
+      ],
+      "meaning_ja": "対象は時間の経過を指示する時計である。時計の一般的な構造・精度・指示原理は未定義。"
+    },
+    {
+      "symbol": "cb",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object_or_event",
+        "place",
+        "frame"
+      ],
+      "meaning_ja": "対象または出来事が、その基準系でその場所にある。時計ではこの記述の対象期間の設置位置、出来事では発生位置を指す。"
+    },
+    {
+      "symbol": "cc",
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "frame"
+      ],
+      "meaning_ja": "対象がその基準系に対して静止している。絶対的な静止や別の基準系での静止は主張しない。"
+    },
+    {
+      "symbol": "cd",
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_clock",
+        "second_clock"
+      ],
+      "meaning_ja": "二つの時計が同じ構造・性状を持つ。この関係だけで同じ読みを指すことや同期を前提にしない。"
+    },
+    {
+      "symbol": "ce",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "event",
+        "frame",
+        "unit",
+        "reading"
+      ],
+      "meaning_ja": "指定された時計の、その出来事の時点の読みが、基準系と時間単位を明示した値として、与えられた実数の切断に対応する。読みの存在や値を関数の全域性から補わない。時計ごとの原点は同じと前提にせず、同期条件で比較する。"
+    },
+    {
+      "symbol": "cf",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "signal"
+      ],
+      "meaning_ja": "対象は光信号である。光の物理理論や真空条件の一般的説明は未完。"
+    },
+    {
+      "symbol": "cg",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "signal",
+        "from_event",
+        "to_event",
+        "frame"
+      ],
+      "meaning_ja": "その信号が、その基準系で前者の出来事から後者の出来事まで伝播する。出来事の順序を持ち、逆方向の伝播と同一視しない。"
+    },
+    {
+      "symbol": "ch",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "signal",
+        "event",
+        "frame"
+      ],
+      "meaning_ja": "その基準系で、その出来事においてその信号が反射される。無関係な場所や出来事に反射があるだけでは成立しない。"
+    },
+    {
+      "symbol": "ci",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "unit"
+      ],
+      "meaning_ja": "対象は時間の単位である。時間以外の単位は満たさない。単位の一般的な次元体系と個々の単位の物理的定義は未完。"
+    },
+    {
+      "symbol": "aa",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "左の有理数が右の有理数より厳密に小さい。等しい場合は偽。"
+    },
+    {
+      "symbol": "ab",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の和。浮動小数点への丸めはしない。"
+    },
+    {
+      "symbol": "ac",
+      "parameters": [
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "value"
+      ],
+      "meaning_ja": "有理数の加法逆元。元の数と加えると0となる有理数。"
+    },
+    {
+      "symbol": "ad",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の積。浮動小数点への丸めはしない。"
+    },
+    {
+      "symbol": "qa",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "この基準系と文脈で同期条件を検討する時計の範囲。数を二つや三つに固定しない。"
+    },
+    {
+      "symbol": "qb",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_clock",
+        "second_clock",
+        "frame",
+        "unit",
+        "context",
+        "trial"
+      ],
+      "meaning_ja": "同じ二時計・基準系・単位・評価文脈に関連する光往復の試行。現実の一回の実験だけに限らず、検討する理想的な試行も含められる。"
+    },
+    {
+      "symbol": "ql",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_clock",
+        "second_clock",
+        "frame",
+        "unit",
+        "context"
+      ],
+      "meaning_ja": "この組の評価ではqbで指定した試行が必要な範囲を尽くすという明示的な前提。検査器が現実の全時刻を調べたという認定ではない。"
+    },
+    {
+      "symbol": "qc",
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の試行に対応する出発側の場所。組合せの物理的な整合性はdbで確認する。"
+    },
+    {
+      "symbol": "qd",
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の試行に対応する反射側の場所。組合せの物理的な整合性はdbで確認する。"
+    },
+    {
+      "symbol": "qe",
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の試行に対応する出発の出来事。組合せの物理的な整合性はdbで確認する。"
+    },
+    {
+      "symbol": "qf",
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の試行に対応する反射の出来事。組合せの物理的な整合性はdbで確認する。"
+    },
+    {
+      "symbol": "qg",
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の試行に対応する帰着の出来事。組合せの物理的な整合性はdbで確認する。"
+    },
+    {
+      "symbol": "qh",
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の試行に対応する光信号。組合せの物理的な整合性はdbで確認する。"
+    },
+    {
+      "symbol": "qi",
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の出発時の読みを表す実数の切断。値が実数の条件を満たすこと、時計・場所・単位への接続はdbで確認する。"
+    },
+    {
+      "symbol": "qj",
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の反射時の読みを表す実数の切断。値が実数の条件を満たすこと、時計・場所・単位への接続はdbで確認する。"
+    },
+    {
+      "symbol": "qk",
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "同じ一往復の帰着時の読みを表す実数の切断。値が実数の条件を満たすこと、時計・場所・単位への接続はdbで確認する。"
+    },
+    {
+      "symbol": "ra",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "検討する静止基準系への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "rb",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "共通の時間単位への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "rc",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "全ての比較に使う同じ参照時計への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "rd",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "著者への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "re",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "同期の整合性を仮定する箇所への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "rf",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "対称性を述べる箇所への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "rg",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "三時計の関係を述べる箇所への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "rh",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "同期規約の検討範囲への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "ri",
+      "parameters": [],
+      "result": "situation",
+      "arguments": [],
+      "meaning_ja": "この文章を提示する文脈への局所参照。識別子だけを内容の説明の代用にしない。"
+    },
+    {
+      "symbol": "ug",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content_description",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が指定の文章箇所で内容の記述を仮定として採用し、指定した推論範囲へ置く。内容の真理、信念、証明を含意しない。"
+    },
+    {
+      "symbol": "uh",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content_description",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が指定の文章箇所で内容の記述を、指定した仮定の範囲内の主張として提示する。文書全体の無条件の断言へ昇格させない。"
+    },
+    {
+      "symbol": "rj",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "同期した局所時計による出来事の時刻の定義を提示する本文箇所。"
+    },
+    {
+      "symbol": "uj",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "assignment_rule",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が指定した範囲で、記述された出来事・時計・場所・読み・文脈の関係を、時刻の付与規則として定義に採用する。規則への帰属であり、全出来事の読みの存在や真理を検査器が認定することではない。"
+    },
+    {
+      "symbol": "ta",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "この速度評価に共通の長さ単位。"
+    },
+    {
+      "symbol": "tb",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "長さ単位taを時間単位rbで割った速度単位。"
+    },
+    {
+      "symbol": "tc",
+      "parameters": [],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [],
+      "meaning_ja": "全ての関連する光往復に共通と仮定する速度の読み。数値は指定しない。"
+    },
+    {
+      "symbol": "td",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "trial",
+        "frame",
+        "time_unit",
+        "length_unit",
+        "context"
+      ],
+      "meaning_ja": "指定基準系・単位・文脈で評価対象となる光往復試行。単なる既観測の一覧ではなく法則の適用範囲として指定する。"
+    },
+    {
+      "symbol": "te",
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "その試行で出発と帰着の読みを与える局所時計。"
+    },
+    {
+      "symbol": "tf",
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "その試行の反射地点の局所時計。"
+    },
+    {
+      "symbol": "tg",
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "trial"
+      ],
+      "meaning_ja": "その試行で測る二地点間の一方向距離の読み。"
+    },
+    {
+      "symbol": "th",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_place",
+        "second_place",
+        "frame",
+        "length_unit",
+        "distance"
+      ],
+      "meaning_ja": "指定基準系で二地点の空間的距離が指定長さ単位の値である関係。経路長や往復距離との同一化は含まない。"
+    },
+    {
+      "symbol": "ti",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "unit"
+      ],
+      "meaning_ja": "長さを測る単位である。物理的実現・校正は未説明。"
+    },
+    {
+      "symbol": "tj",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "length_unit",
+        "time_unit",
+        "speed_unit"
+      ],
+      "meaning_ja": "速度単位が指定長さ単位を指定時間単位で割った単位であり、これらの読みの商に追加換算係数が不要という関係。"
+    },
+    {
+      "symbol": "tk",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "ray",
+        "from_event",
+        "to_event",
+        "frame"
+      ],
+      "meaning_ja": "同じ光信号の指定された伝播区間が指定基準系の真空中にある。往路と復路を別々に要求する。"
+    },
+    {
+      "symbol": "tl",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "frame",
+        "time_unit",
+        "length_unit",
+        "context"
+      ],
+      "meaning_ja": "tdの試行範囲がこの法則で対象とする光往復を尽くしているという前提。有限観測から認定しない。"
+    },
+    {
+      "symbol": "tm",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "経験に従って光速度の定数性を採用する本文箇所。"
+    },
+    {
+      "symbol": "tn",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "この採用に関係する経験的根拠。具体的な実験結果は原文に列挙されていない。"
+    },
+    {
+      "symbol": "to",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "experience",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がその箇所・範囲での採用を、指定した経験的根拠に従うものとして位置付ける。根拠の正しさや採用内容の真理を含意しない。"
+    },
+    {
+      "symbol": "va",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "frame"
+      ],
+      "meaning_ja": "物理的な状態変化を参照する座標系。座標の構成と測定は未説明。"
+    },
+    {
+      "symbol": "vb",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_frame",
+        "second_frame",
+        "context"
+      ],
+      "meaning_ja": "二座標系の軸の相対的な向きが指定文脈で変化しない。原点の運動と分け、軸が一致することまでは要求しない。"
+    },
+    {
+      "symbol": "vc",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_frame",
+        "second_frame",
+        "context"
+      ],
+      "meaning_ja": "二座標系の原点間の相対位置が時間に対して一定速度ベクトルで変化する。加速度を持つ運動とは区別する。ゼロ速度も退化例として許す解釈。軌道・時間・速度からの構成説明は未完。"
+    },
+    {
+      "symbol": "vd",
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "law",
+        "context"
+      ],
+      "meaning_ja": "状態変化を支配する法則の評価範囲に含まれる法則。各法則が真であることや、各候補が適合することは含意しない。"
+    },
+    {
+      "symbol": "ve",
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "history",
+        "context"
+      ],
+      "meaning_ja": "法則の許容・不許容を比較する候補の状態変化履歴。現実に成立した履歴だけや、法則に適合する履歴だけを対象にしない。"
+    },
+    {
+      "symbol": "vf",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "history",
+        "system",
+        "context"
+      ],
+      "meaning_ja": "候補履歴が指定した物理系の状態変化を記述するという対応。実際にその変化が起きたことは含意しない。"
+    },
+    {
+      "symbol": "vg",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "system"
+      ],
+      "meaning_ja": "物理的な系として扱う対象。状態変数・物体との構成説明は未完。"
+    },
+    {
+      "symbol": "vh",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "history",
+        "frame",
+        "representation",
+        "context"
+      ],
+      "meaning_ja": "同じ候補履歴に、指定座標系に関する状態変化の記述を対応させる。異なる座標系で異なる数値や記述を許す。全記述の対応範囲はvjに明示する。"
+    },
+    {
+      "symbol": "vi",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "law",
+        "representation",
+        "context"
+      ],
+      "meaning_ja": "その状態変化の記述が指定法則の許容条件を満たす。座標系ごとに別の法則を選ぶ関係ではなく、同じ法則を対応する記述に適用する。許容条件の内容は各法則に別途必要。"
+    },
+    {
+      "symbol": "vj",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_frame",
+        "second_frame",
+        "context"
+      ],
+      "meaning_ja": "この比較でvdの法則範囲、veの候補範囲、vhの対応する記述が必要な範囲を尽くすという前提。有限の標本から認定しない。"
+    },
+    {
+      "symbol": "vk",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "相対性原理の内容を提示する本文箇所。"
+    },
+    {
+      "symbol": "vl",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "principle",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がその箇所で指定内容を原理の定義として提示する。内容の真理や、その後の推論が成立することは含意しない。"
+    }
+  ],
+  "definitions": {
+    "ba": "真となる有理数が存在し、偽となる有理数も存在し、下方閉で、真となる有理数の中に最大値がない性質を実数の下側切断とする。",
+    "bb": "有理数rを、q<rとなる有理数qの性質として埋め込む。境界r自身を含めない。",
+    "bc": "左の性質を満たす全有理数が右の性質も満たす。実数の下側切断に対しては小なりイコール。",
+    "bd": "二つの切断の和。左の元xと右の元yがあり、q<x+yとなる有理数qの性質。",
+    "be": "切断の符号反転。元の切断に属さない有理数uがあり、q<-uとなる有理数qの性質。補集合を単に反転して境界を含めてしまうことを避ける。",
+    "bf": "左の切断と、右の切断を符号反転した切断の和による差。",
+    "bg": "左が右に含まれ、右は左に含まれない。実数の下側切断に対しては厳密な小なり。",
+    "bh": "q<0またはq*q<2を満たす有理数qの性質。正の平方根2の下側切断の記述。一般的な平方根演算子ではない。",
+    "bi": "反射時刻−出発時刻と、帰着時刻−反射時刻の二つの差が、全有理数について同じ切断になる。引数が実数の切断であることは利用箇所で前提にする。",
+    "da": "AとBに置かれた同じ構造の静止時計、AからBへの光伝播、Bでの反射、Aへの帰着、およびA/B/Aそれぞれの出来事での読みを、同じ基準系と時間単位へ結び付けた一往復の設定。同期の等式はこの定義には含めない。",
+    "bj": "正の有理数scaleによる切断の拡大。q<scale*xとなる元xが元の切断にある場合にqを含める。scaleが0以下なら空の性質となり、実数の切断条件を満たさない。",
+    "bk": "正の尺度変更の後に切断offsetを加え、時刻座標を変換する。新しい読み=scale*古い読み+offsetという規約。",
+    "db": "daの一往復の設定にあり、三つの読みが実数の切断で、往路と復路の差が等しいという条件。一回の条件の成立だけで全時刻の時計同期を主張しない。",
+    "saa": "指定範囲内の関係の対称性。対象の異なりを追加せず、自己関係も量化範囲に含める。",
+    "sab": "範囲内の一つの対象が二つと関係するなら、その二つも関係するという条件。単なる対称性とは別に保持する。",
+    "sac": "一つの共通参照対象が指定範囲に含まれ、範囲内の全対象がその同じ参照対象と関係する。各対象ごとに別の参照対象を選ばない。",
+    "sad": "関連する試行が少なくとも一つあり、その全てで同じ判定条件が成立する。一回の成功や空集合を全体の成立にしない。",
+    "qm": "選択された時計が、その基準系で静止し、同じ基準系での設置場所を持つ。",
+    "qn": "試行範囲が完全という前提の下で、非空の全関連試行へ、同じ時計対・基準系・単位と各試行の場所・出来事・光・読みを判定関数へ渡す。",
+    "qo": "同じ有効な静止時計は自己と同期するとし、異なる二時計にはqnを既存の一往復条件dbへ接続する。これは明示した試行範囲に相対的な合成である。",
+    "qv": "時計範囲が非空で、その全時計が同じ基準系で適切に配置され、時間単位も適切である。無効な選択対象を単に無視しない。",
+    "qp": "同じ基準系・単位・文脈の時計範囲について、qoの対称性を述べる内容。",
+    "qq": "同じ条件の三時計について、一時計が残り二時計と同期すればその二時計も同期するという内容。",
+    "qr": "qpとqqを合わせた、仮定される関係法則の部分的な内容。任意個数での物理的実現可能性全体とは区別する。",
+    "qs": "範囲の全時計が一つの同じ参照時計rcと同期する内容。別々の参照時計への置換を許さない。",
+    "sae": "同じ基準系・時間単位について、静止時計と出来事が同じ場所にあり、その時計の当該出来事の時点の読みが与えられた値である。別の受信出来事の読みを混ぜない。",
+    "saf": "saeの局所的な読みを、同じ基準系で静止する参照時計との同期へ結ぶ。同期の対象・単位・評価文脈を保持する。",
+    "sag": "二つの数値表現について、包含関係が両方向で成立する。一方向の大小比較や関数の同一性で、値の一致を代用しない。",
+    "qt": "局所的な出来事の読みと同期を、同じ参照時計rc・静止基準系ra・単位rbへ結ぶ接続。同期関係を引数に取るので、接続部分と実数条件の検査を分離できる。",
+    "qu": "読みが実数の下側切断であり、qtの同期関係が既存の光往復全試行の定義qoである場合の時刻付与関係。新しい読みを生成せず、提示された値の条件を検査する。",
+    "qw": "同じ基準系・単位・文脈・参照時計で評価した二出来事の読みが、切断として同じ値になるという同時性の部分的な条件。異なる場所の別々の局所時計を許す。",
+    "sah": "非負の実数の下側切断の積。既存のreal-productsのccと同じ式を、時計関係の記号と衝突しない名前で再利用する。",
+    "sai": "正の一方向距離、正の往復経過時間、正の速度について、速度×経過時間＝距離＋距離を切断の両方向の包含で課す。同じ互換単位での読みを渡す。",
+    "saj": "有理数の距離・出発時刻・帰着時刻・速度と正の各単位尺度について、基準単位に換算して往復の速度式を満たす。出発と帰着は共通の時間尺度を使う。",
+    "sak": "非空の指定試行の全てで、一つの共通値が測定条件を満たす。試行ごとに異なる値を選ぶ条件とは区別する。",
+    "sal": "同じ試行の二時計・二地点・出発反射帰着・光・読みを既存の物理プロトコルdaに結び、距離・真空の両区間・単位を要求する。速度条件へ距離と出発地点の出発帰着の読みを渡す。反射時計との同期条件dbは追加しない。",
+    "sam": "関連試行の完全性・非空性・共通値を保持し、同じ単位と文脈で全試行のsalへ判定関数を渡す。",
+    "san": "完全と指定した試行範囲の全てで同じ速度値がsalと実切断の速度式saiを満たす。基準系・単位・文脈は全試行で共通。",
+    "sao": "共通速度値tcについてsanが成立するという状況ごとの内容。著者の採用へ記述として渡す。",
+    "sap": "同じ候補履歴の二つの表現系での記述を比較する。両方に記述が存在し、全ての対応する記述対で、同じ法則への適合の真偽が一致する。記述や数値自体の同一性は要求しない。",
+    "saq": "非空の選択した候補履歴全てで、同じ法則についてsapが成立する。現実に成立した履歴や法則に適合する履歴だけへ選択範囲を狭めない。",
+    "sar": "非空の選択した法則全てについてsaqが成立する。法則ごと・履歴ごとの表現保存を同時に要求する。",
+    "sat": "異なる二座標系で、軸の相対回転がなく、原点の相対速度が一定という比較対象の条件。座標値の同一性や共通原点を要求しない。",
+    "sau": "候補履歴が物理系の状態変化の履歴として結び付いている。",
+    "sav": "対象範囲が完全と指定され、全ての選択候補が物理系に対応した上で、二座標系の間でsarの法則適合条件が保存される。無効な選択候補だけを除外して成立させない。",
+    "saw": "比較対象の座標系対が存在し、その全対でsavが成立するという原理の内容。有限の観測履歴の一致だけを述べるものとは区別する。"
+  },
+  "unresolved": [
+    "時計・場所・基準系・光・伝播・時間単位を共通の基礎概念から説明する定義。",
+    "任意個数の時計への拡張と、任意の往復に対する一貫性・対称性などの仮定。",
+    "原文の導入説明、観測者、可能性、定義を採用する発話と全ての参照の記述。",
+    "物理的な単位の間の換算関係と、尺度変換の係数との接続。",
+    "原文と全体として同義であることの確認、および原刊画像との照合。",
+    "一般の実数全域での座標変換の法則の機械的証明。今回の自動証明は指定した正の倍率と有理数を埋め込んだ読み・原点に限る。",
+    "関係と対象範囲は引数で与える。対称性とsabだけでは空の関係も成立し、全対象同士の関係や物理的実現可能性を保証しない。",
+    "sacを対称性・sabと組み合わせた場合の全対象間の関係は論理的な条件付き帰結であり、観測や時計の調整可能性の証明ではない。",
+    "試行範囲の完全性、測定誤差、連続時間での成立、原文の任意個数にわたる整合的実現は別に検討する。",
+    "u0015の任意個数で矛盾なく実現できるという可能性の全体は未記述で、ここでは後続の二関係法則を仮定として接続した。",
+    "u0018の同じ参照時計という条件だけを接続した。出来事の時刻、同時性、局所観測、定義採用の全文はまだ未記述である。",
+    "自己同期を同一時計の規約として明示した。異なる時計の全理想試行に対する完全性と、読みの物理的な実現は未確定。",
+    "有限の関係モデルによる論理検査と、実数の切断を含む全試行の物理的検証は分ける。著者への仮定の帰属は、その内容の真理や証明済みという主張を含まない。",
+    "時計・場所・静止・読み・同期の関係は引数で与える。読みの値が実数の条件を満たすことは呼出側で要求する。",
+    "関係として候補の読みを検査し、値を任意に生成する全域関数とはしない。読みの存在・一意性、精度や時計の指示機構は別に要する。",
+    "同じ場所と同じ時点の読みを結ぶ条件であり、光の伝播時間を補正して遠隔測定を行う方法はまだ含まない。",
+    "sagは包含引数の意味規約に依存する。原文接続では実数の下側切断の包含bcを使い、実数条件を別に確認する。",
+    "u0018の時刻の付与規則と、同時性を等しい付与値で扱う条件を追加した。冒頭の定義を得たという談話、思考上の物理的経験の役割、全時刻決定の存在と一意性は未完。",
+    "局所時計による出来事の時刻と、遠隔地で光を受け取る出来事の時刻を分ける。原文u0012の観測者による代替方式や位置依存の全説明は未記述。",
+    "有限検査で同期を明示した関係として与える場合と、実数全域のqo・baを含む定義を評価する場合を区別する。全物理モデルを検証したとはしない。",
+    "saiは実数の式、sajは有理数の尺度換算の検査用定義。後者を実数全域の証明とは扱わない。",
+    "sahは非負入力にだけ使う。saiでは速度と経過時間の正値性を確認する。",
+    "距離、時間、速度の単位が対応すること、光が同じ二地点を往復すること、空間が真空であることは別の接続条件である。",
+    "試行範囲の完全性をsakだけでは保証しない。観測した有限試行の一致から普遍法則の成立を推論しない。",
+    "原文u0019〜u0021の式と経験に従う採用の部分草案。普遍性の全範囲、距離と真空の基礎概念、測定の一意性、原刊画像との照合は未完。",
+    "往復の2倍距離の法則を記述する。任意の曲がった経路の長さが端点間距離の2倍であるとは推論しない。",
+    "原文のVを共通の値tcとするが現代の光速の数値を補わない。他の慣性系との不変性や光源の運動からの独立性は後続節の課題。",
+    "表現される履歴と記述、法則への適合は引数で与える。異なる記述が同じ履歴を表すという関係の根拠は別に必要。",
+    "適合しない候補も対象とする条件だが、選択範囲が全候補を尽くすことは定義だけでは保証しない。",
+    "有限の候補で一致しても一般法則の同一性は証明されない。意味規約で適合関係と対象領域を明示する必要がある。",
+    "同じ法則の許容条件が対応する表現で一致するという外延的な条件である。法則の説明力・原因機構や式の字面の同一性は表さない。",
+    "u0025を許容される状態変化の保存として記述する解釈草案。法則の一般性や同一性の全意味を確定したものではない。",
+    "等速並進の二つの条件、物理系・状態変化・座標記述の基礎定義、各法則の内容は未完。",
+    "u0024の二原理を後続議論の根拠として採用する談話、第二原理の光源運動からの独立性、u0022の時間の命名は別途必要。",
+    "個別のガリレイ変換やローレンツ変換を原理の定義に固定しない。原刊画像との照合と全文の意味確認は未完。"
+  ]
+}
