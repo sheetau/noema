@@ -1,0 +1,66 @@
+{
+  "version": "comoving-labels-basis-v1",
+  "document": "examples/v014/comoving-labels.noema",
+  "primitives": [
+    {
+      "symbol": "aa",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "左の有理数が右の有理数より厳密に小さい。等しい場合は偽。"
+    },
+    {
+      "symbol": "ab",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の和。浮動小数点への丸めはしない。"
+    },
+    {
+      "symbol": "ac",
+      "parameters": [
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "value"
+      ],
+      "meaning_ja": "有理数の加法逆元。元の数と加えると0となる有理数。"
+    },
+    {
+      "symbol": "ad",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の積。浮動小数点への丸めはしない。"
+    }
+  ],
+  "definitions": {
+    "shm": "成分の列が空でなく、同じ役割を重複して含まない。",
+    "sif": "有理数の補助座標x′=x-vt。速度と時刻の符号と原点をそのまま保つ。",
+    "sig": "sifの演算構造を、指定した数値の差と積に適用する。入力の有効性と単位は呼出側で確認する。",
+    "sih": "非空の点範囲と時間幅を持つ時点範囲について、全点・全時点で座標が利用可能であり、同じ点の全時点対で指定した全成分の値が一致する。点同士の座標一致は要求しない。"
+  },
+  "unresolved": [
+    "時間幅と座標の利用可能性、点・時点の範囲を引数で与える。有限の端点だけで連続時間全体の不変性を証明しない。",
+    "x′が一定であることから、それが別の系の物差しで測ったξと等しいとは結論しない。"
+  ]
+}
