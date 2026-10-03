@@ -389,8 +389,8 @@
       "units_with_partial_drafts": 113,
       "unit_touch_percent": 40.07,
       "nonblank_text_characters": 35614,
-      "text_characters_in_explicit_partial_ranges": 11838,
-      "explicit_text_range_percent": 33.24,
+      "text_characters_in_explicit_partial_ranges": 11972,
+      "explicit_text_range_percent": 33.62,
       "math_object_count": 446,
       "math_objects_with_partial_associations": 195,
       "math_object_touch_percent": 43.72,
@@ -2801,14 +2801,20 @@
           "unit": "einstein-1905:u0125",
           "kind": "body",
           "has_partial_draft": true,
-          "explicit_ranges": [],
+          "explicit_ranges": [
+            [
+              0,
+              176
+            ]
+          ],
           "nonblank_text_characters": 134,
-          "nonblank_text_characters_in_partial_ranges": 0,
+          "nonblank_text_characters_in_partial_ranges": 134,
           "math_objects_with_partial_associations": [
             "M0217",
             "M0218"
           ],
           "reports": [
+            "reports/clock-delay-v1.json",
             "reports/moving-clocks-v1.json"
           ],
           "has_association_without_text_range": true
@@ -5038,6 +5044,66 @@
         "g4",
         "g5",
         "g6"
+      ]
+    },
+    {
+      "report": "reports/clock-delay-v1.json",
+      "pointer": "/alignment/segments/0",
+      "unit": "einstein-1905:u0125",
+      "status": "partial",
+      "source_status": "partial_explicit_reading",
+      "range": [
+        0,
+        176
+      ],
+      "math_id": null,
+      "math_sha256": null,
+      "definitions": [
+        "svq",
+        "svp",
+        "swd",
+        "swf",
+        "svy",
+        "swc",
+        "swg"
+      ]
+    },
+    {
+      "report": "reports/clock-delay-v1.json",
+      "pointer": "/alignment/segments/1",
+      "unit": "einstein-1905:u0125",
+      "status": "partial",
+      "source_status": "partial",
+      "range": null,
+      "math_id": "M0217",
+      "math_sha256": "e48b062d6fc9f4699922cc6e8a05191dd0978b97022f03e28002f708b51d4379",
+      "definitions": [
+        "svq",
+        "svp",
+        "swd",
+        "swf",
+        "svy",
+        "swc",
+        "swg"
+      ]
+    },
+    {
+      "report": "reports/clock-delay-v1.json",
+      "pointer": "/alignment/segments/2",
+      "unit": "einstein-1905:u0125",
+      "status": "partial",
+      "source_status": "partial",
+      "range": null,
+      "math_id": "M0218",
+      "math_sha256": "4c22d29a63e79e6fa44d12598a3ddedb1ddaffd5e13af301146a0f8e4015f055",
+      "definitions": [
+        "svq",
+        "svp",
+        "swd",
+        "swf",
+        "svy",
+        "swc",
+        "swg"
       ]
     },
     {
@@ -10876,6 +10942,7 @@
     "reports/axial-clock-trip-v1.json",
     "reports/carried-clocks-v1.json",
     "reports/caused-conditions-v1.json",
+    "reports/clock-delay-v1.json",
     "reports/clock-protocol-v1.json",
     "reports/comoving-labels-v1.json",
     "reports/concession-v1.json",
@@ -10952,7 +11019,7 @@
     "reports/written-v010.json",
     "reports/written-v012.json"
   ],
-  "parsed_noema_documents": 161,
+  "parsed_noema_documents": 163,
   "source_sha256": {
     "scripts/audit_written_progress.py": "36d3f5696e52a1aab6a61180a57ab2244202aba9fd9f2392123ff2778c41bcd1",
     "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
@@ -10985,6 +11052,11 @@
     "examples/v014/kant-caused-conditions.noema": "b91215ee1686483b4b01d57e69bb5774c9831ecdeec0a00e07c78447e0674da3",
     "examples/v014/kant-example-deterrence.noema": "a39232f527b761ea985ae6086b02814db66a6a9c284623c23dc53e63c0152fec",
     "reports/caused-conditions-v1.json": "21a50e73ee80edb7d2c0ad5389841625960d6b3ccaf360524af7f4d55a1d6e8d",
+    "examples/v014/clock-delay.noema": "1b643894097ba28782e1e7d2e66267eca63241a406d422ab9f0d80ac048d8ec8",
+    "examples/v014/einstein-clock-delay.noema": "e5c684fea2c69dcc55487f7d3676bb777c6336c7e48bc2670e69f826464de09d",
+    "examples/v014/origin-clock.noema": "26ebff351032617cec91e9f78fe90df28a86075fc60254d8287f90dd3cc4b9e0",
+    "examples/v014/einstein-origin-clock.noema": "cc9dc15df05c1888a9e778773489d7fa4a6405f451bff40f2088b5af3f859e9d",
+    "reports/clock-delay-v1.json": "6831f290a0cd718e688f30114e93d3ef204c4d642ca36c9ac8b85187aac531a8",
     "examples/v011/real-cuts.noema": "215af3b5512e88cc33561a43cb35828f22a8a74b105628f639704145a4ef4efc",
     "examples/v011/clock-protocol-extension.noema": "a3df78ea5ef8cdde22e3d9a03c14f7eafb10c748d0f3acd3b8d120e235872452",
     "examples/v011/einstein-clock-protocol.noema": "1f2d90c021920c1298c7af05b4645bdd4a8c1d71413f94b67e2e7a8440d9f803",
@@ -11117,8 +11189,6 @@
     "examples/v014/observer-judgments.noema": "33b0cf9ba53e0fdf3f673d5e77df9ccd8fa131efc78f532af6e4fd8853d9b4f7",
     "examples/v014/einstein-observer-judgments.noema": "0333a884c0dcfd08cc4bf13a370e1311ddfe40fedf3ab1f6bfde8b12bb20d018",
     "reports/observer-judgments-v1.json": "d2a23f1e0b91fc490bea898df303b7407fb33a755e03478f1d21ab15c05363b0",
-    "examples/v014/origin-clock.noema": "26ebff351032617cec91e9f78fe90df28a86075fc60254d8287f90dd3cc4b9e0",
-    "examples/v014/einstein-origin-clock.noema": "cc9dc15df05c1888a9e778773489d7fa4a6405f451bff40f2088b5af3f859e9d",
     "examples/v014/shape-contraction.noema": "1c2195453c5697d5a705baa6f3ff34c867f65b7b3842bd8edc357227b60d63ca",
     "examples/v014/einstein-shape-contraction.noema": "433424a2b38c2fdb24cd057e7efd295bcc4938ccaab9d1e6a411aa715a932087",
     "reports/origin-clock-v1.json": "73922b15563f62245009226d494c4705858fa9a0ab54bdbaaa377eecd5838c95",
