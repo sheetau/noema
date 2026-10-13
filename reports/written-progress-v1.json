@@ -487,14 +487,14 @@
     },
     "einstein-1905": {
       "author_unit_count": 282,
-      "units_with_partial_drafts": 173,
-      "unit_touch_percent": 61.35,
+      "units_with_partial_drafts": 174,
+      "unit_touch_percent": 61.7,
       "nonblank_text_characters": 35614,
       "text_characters_in_explicit_partial_ranges": 16816,
       "explicit_text_range_percent": 47.22,
       "math_object_count": 446,
-      "math_objects_with_partial_associations": 304,
-      "math_object_touch_percent": 68.16,
+      "math_objects_with_partial_associations": 306,
+      "math_object_touch_percent": 68.61,
       "verified_semantic_units": 0,
       "verified_semantic_percent": 0.0,
       "units": [
@@ -4279,13 +4279,18 @@
         {
           "unit": "einstein-1905:u0203",
           "kind": "body",
-          "has_partial_draft": false,
+          "has_partial_draft": true,
           "explicit_ranges": [],
           "nonblank_text_characters": 475,
           "nonblank_text_characters_in_partial_ranges": 0,
-          "math_objects_with_partial_associations": [],
-          "reports": [],
-          "has_association_without_text_range": false
+          "math_objects_with_partial_associations": [
+            "M0349",
+            "M0350"
+          ],
+          "reports": [
+            "reports/geometric-volumes-v1.json"
+          ],
+          "has_association_without_text_range": true
         },
         {
           "unit": "einstein-1905:u0204",
@@ -4361,6 +4366,7 @@
             "M0362"
           ],
           "reports": [
+            "reports/geometric-volumes-v1.json",
             "reports/light-complex-v1.json"
           ],
           "has_association_without_text_range": true
@@ -4387,6 +4393,7 @@
             "M0365"
           ],
           "reports": [
+            "reports/geometric-volumes-v1.json",
             "reports/light-complex-v1.json"
           ],
           "has_association_without_text_range": true
@@ -8673,6 +8680,61 @@
       "definitions": [
         "scm",
         "scp"
+      ]
+    },
+    {
+      "report": "reports/geometric-volumes-v1.json",
+      "pointer": "/alignment/segments/0",
+      "unit": "einstein-1905:u0203",
+      "status": "partial",
+      "source_status": "partial",
+      "range": null,
+      "math_id": "M0349",
+      "math_sha256": "c0697d5e54809c619e12bf483f1bb5c58036a6b0fc847708a859b9dac4aa6845",
+      "definitions": [
+        "sedi",
+        "sedr"
+      ]
+    },
+    {
+      "report": "reports/geometric-volumes-v1.json",
+      "pointer": "/alignment/segments/1",
+      "unit": "einstein-1905:u0203",
+      "status": "partial",
+      "source_status": "partial",
+      "range": null,
+      "math_id": "M0350",
+      "math_sha256": "cc10b596d791cc9256532115fdc7f944f966e143121ee8c31f044e0b6e40cfb7",
+      "definitions": [
+        "sedi",
+        "sedr"
+      ]
+    },
+    {
+      "report": "reports/geometric-volumes-v1.json",
+      "pointer": "/alignment/segments/2",
+      "unit": "einstein-1905:u0209",
+      "status": "partial",
+      "source_status": "partial",
+      "range": null,
+      "math_id": "M0362",
+      "math_sha256": "076e15e281d039b12fb38dd1f06faa6fa02505200b3dc05ddeaec86d75330aef",
+      "definitions": [
+        "sedp",
+        "sech"
+      ]
+    },
+    {
+      "report": "reports/geometric-volumes-v1.json",
+      "pointer": "/alignment/segments/3",
+      "unit": "einstein-1905:u0211",
+      "status": "partial",
+      "source_status": "partial",
+      "range": null,
+      "math_id": "M0365",
+      "math_sha256": "5dedfa2b9a469450ef59a6f40a7224d3f846abd182b3f650712bfca49247700b",
+      "definitions": [
+        "sedq"
       ]
     },
     {
@@ -15731,6 +15793,7 @@
     "reports/frame-measurements-v1.json",
     "reports/frame-translation-v1.json",
     "reports/geometric-replacement-v1.json",
+    "reports/geometric-volumes-v1.json",
     "reports/homogeneous-coordinates-v1.json",
     "reports/husbandry-depiction-v1.json",
     "reports/integrals-v1.json",
@@ -15826,7 +15889,7 @@
     "reports/written-v010.json",
     "reports/written-v012.json"
   ],
-  "parsed_noema_documents": 305,
+  "parsed_noema_documents": 308,
   "source_sha256": {
     "scripts/audit_written_progress.py": "36d3f5696e52a1aab6a61180a57ab2244202aba9fd9f2392123ff2778c41bcd1",
     "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
@@ -16064,6 +16127,11 @@
     "examples/v014/geometric-replacement.noema": "7295f5508302468d01ecd13a5d7513e4d5c87a9aa5f0478854ec8062c60e8ab6",
     "examples/v014/einstein-rod-comparison.noema": "ddcb1580cc127456b2de393c9d09638e74c4ef69a7f76c1ce0ffc242e5135552",
     "reports/geometric-replacement-v1.json": "f5580899ad52bf376c789d85d860d51b9468057c19b5ffae77d3989d098ee3da",
+    "examples/v014/geometric-volumes.noema": "8a149ce52d495a9da51351af3850908445de9cb4d8aadef818b4a68702612242",
+    "examples/v014/einstein-geometric-volumes.noema": "b415e76eb750dd8eedd3ef42b6fc8a210c2b8ca6a561301489b3024815229ffe",
+    "examples/v014/geometric-volumes-core.noema": "479ed990bd1366bcdb01da87a1b3fc6a46561776febe69236e842486e850f345",
+    "examples/v014/einstein-light-complex.noema": "33b4cea4e4e1c01016fa930c9ee39ba915e84e4e03b931817e5831dc848f17dd",
+    "reports/geometric-volumes-v1.json": "6ada54bd40c7c884987ae2af3bbe84697308b0af9578cd8a55bccfce4457098d",
     "examples/v014/homogeneous-coordinates.noema": "ef0decf3a31afd304e3229d582a0e994771e4f0fe1d88f6325fa2b8dca8d3477",
     "reports/homogeneous-coordinates-v1.json": "f4f40c15da880cf59a97e93b4c8d2e08e819f23e1e3ed6e6a1b423b370364197",
     "examples/v014/husbandry-depiction.noema": "b326109c921ce6ffa3f92101d27701acaa8544d574cc7b51bbda8fa382449674",
@@ -16096,7 +16164,6 @@
     "examples/v014/kant-learned-familiarity.noema": "a1ea49fb0b6a6ed53572f00ef65f944ec2a8bc997d32cae265aaacfaa8c979e8",
     "reports/learned-familiarity-v1.json": "6572c9682ef13222687a16a8c80d44669e653fbe7207363532b424e97824bce9",
     "examples/v014/light-complex.noema": "91abad4e1cd3531ff1229835054cf98e90ef3090b102a8ea6bdd5dde7e20a79e",
-    "examples/v014/einstein-light-complex.noema": "33b4cea4e4e1c01016fa930c9ee39ba915e84e4e03b931817e5831dc848f17dd",
     "examples/v014/light-complex-core.noema": "01f353bee4e4300cb666c126fc1e602ba1252ddefd561cd1cecfc43ac0035e0e",
     "examples/v014/einstein-wave-approximation.noema": "8beff22b43f140677be4921168662f1163bfe4101fcd3439d4ad270713be90dc",
     "reports/light-complex-v1.json": "cc1c156156770a91891d28d6f69c27d0c2e69bc04541ef0ba69e62ceb7a53d6e",
