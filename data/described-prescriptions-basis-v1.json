@@ -1,0 +1,60 @@
+{
+  "version": "described-prescriptions-basis-v1",
+  "document": "examples/v014/described-prescriptions.noema",
+  "primitives": [
+    {
+      "symbol": "rba",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "rule",
+        "source",
+        "role",
+        "condition_description",
+        "goal_description",
+        "positive",
+        "context"
+      ],
+      "meaning_ja": "この出所が、この規則を、この立場で条件に該当する人に記述された目標を満たすよう求める規定として、この文脈で採用している。positiveが偽なら同じ目標の不成立を求める。条件と目標は人から命題内容への式の記述で保持する。採用・要求の存在は、正当性、能力、実現、普遍的な道徳的義務を意味しない。"
+    }
+  ],
+  "definitions": {
+    "rbb": "同じ規則・出所・立場・条件記述・目標記述・肯否の規定があり、本人が評価する同じ立場にあり、その条件が本人について現在成立する。規則の存在、立場、条件の成立を別々に要求する。",
+    "rbc": "rbbが成立し、その同じ本人について目標の真偽が規定の肯否と一致する。現在状況での遵守条件であり、将来の期限や達成過程を補わない。",
+    "rbd": "rbbが成立し、その同じ本人について目標の真偽が規定の肯否と一致しない。未適用・未記録・責任や罰の認定とは区別する。",
+    "rbe": "出所・立場・人についての条件と目標の記述・肯否を持ち、それらを結ぶ規定として採用されているもの。採用された条件付き規則の構造を表し、条件に合う人や実現した目標の存在は要求しない。"
+  },
+  "unresolved": [
+    "規範的な採用・要求は基本関係rbaの意味規約であり、その社会的な成立過程や正当性を一般理論から定義したものではない。",
+    "記述を同じ真理値の別記述へ置き換えない。採用された規則があることと、条件が成立して適用されることを分ける。",
+    "違反は確定した真偽に基づく評価であり、証拠の不在を目標の偽へ変換しない。期限・例外・優先順位・制裁・能力・責任は別途記述する。",
+    "rbbからrbdは脱引用を含むため、現行版ではその定義をさらに記述として引用できない。rbaとrbeは内容を実行せず参照できる。",
+    "rbeは式記述の全領域に存在量化する。有限検査器はこの領域を列挙できず、既知の少数の式だけで代用しない。"
+  ]
+}
