@@ -19,6 +19,8 @@
 
 この集計は構文の検査や対応記録の監査であり、意味の同一性を判定するものではない。意味確認済みの区間は現在記録されていない。今後、完成済み件数が正になった対応表が追加された場合、集計器は停止し、区間別の意味確認手順を追加することを要求する。
 
+[原刊画像との照合](written-math-corrections-v1.md)では、906頁のM0257とM0273について電子テキストの転記と異なる文字を確認した。元の資料を変更せず、訂正は別記録に保存している。これは二箇所の表記の照合であり、全数式の意味確認や新たな翻訳対応には数えていない。
+
 検査結果は [written-progress-v1.json](../reports/written-progress-v1.json)、集計器は [audit_written_progress.py](../scripts/audit_written_progress.py) に保存した。
 
 ```powershell
