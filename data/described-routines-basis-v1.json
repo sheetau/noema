@@ -1,0 +1,49 @@
+{
+  "version": "described-routines-basis-v1",
+  "document": "examples/v014/described-routines.noema",
+  "primitives": [
+    {
+      "symbol": "rbo",
+      "parameters": [
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": "individual"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "pattern_description",
+        "argument_description",
+        "instance_description"
+      ],
+      "meaning_ja": "同じNoema文書の閉じた記述について、instanceがpatternの関数式をargumentの個体式へ適用した式の引用と構文上等しい。束縛変数名は正規化するが、別名展開・ベータ簡約・評価結果の一致による置換はしない。description_templates.is_description_instanceで検査できる構造関係。"
+    }
+  ],
+  "definitions": {
+    "rbp": "その定型表現が保持する同じ一項の型へ、同じ引数記述を適用して得た式の記述である。型・引数・適用例を評価せず、真偽や成功は要求しない。",
+    "rbq": "rbpの型と適用例を保ち、同じ人が同じ表現を同じ活動で使い、その具体化された記述をその活動を進めるために採っている。実際の使用は内容の真理や正当性を保証しない。",
+    "rbr": "rbqがあり、その人が同じ表現の同じ活動への適用を吟味する判断は、その文脈にはない。別の人・別の表現・別の活動についての判断を本人の吟味に数えない。",
+    "rbs": "人物・事柄など一つの個体を入れる位置を持つ内容の記述を、固定した再利用可能な表現として保持するもの。全ての定型句・全ての型や引数数を尽くす分類ではない。"
+  },
+  "unresolved": [
+    "rboは同じ文書の式の構造関係である。自然言語の全ての定型句をこの一項の型へ自動変換する規則ではない。",
+    "表現が型を保持すること、その使用、活動への採用、適用を吟味する判断の対象関係は意味規約として引数で与える。媒体や慣習の成立、判断一般の基礎説明は残る。",
+    "rbrはその活動・文脈に吟味がない条件であり、過去にも未来にも考えないこと、判断能力の欠如、無意識、自動機械、非合理性や誤用を含意しない。",
+    "判断関係は確定した解釈の事実として使う。判断記録が見つからないだけで存在の否定を与えることはできない。",
+    "rbsは全ての式記述に存在量化する。有限評価器で少数の式だけを候補として代用せず、評価不能を明示する。"
+  ]
+}
