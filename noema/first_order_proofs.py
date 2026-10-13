@@ -1,6 +1,6 @@
-"""Check expanded first-order individual/Boolean assertions over arbitrary domains.
+"""Check expanded first-order individual/situation/Boolean assertions.
 
-Individual domains are nonempty and are not replaced by finite samples.
+Individual and situation domains are nonempty, separate, and not finite samples.
 Higher-order definitions may expand to first-order formulas; quantification over
 functions, function equality, arithmetic, descriptions and content are rejected.
 General quantified logic is undecidable, so unknown remains inconclusive.
@@ -16,10 +16,14 @@ def verify(document, *, timeout_ms=10000, max_expansion=100000):
     doc=normalize_document(document)
     declarations={d['name']:d for d in doc['declarations']}
     individual=z3.DeclareSort('NoemaIndividual')
+    situation=z3.DeclareSort('NoemaSituation')
+    uses_situations=False
     def scalar_sort(value):
-        require(isinstance(value,str) and value in ('individual','truth'),
-            'First-order proof supports individual and truth sorts only')
-        return individual if value=='individual' else z3.BoolSort()
+        nonlocal uses_situations
+        require(isinstance(value,str) and value in ('individual','situation','truth'),
+            'First-order proof supports individual, situation and truth sorts only')
+        if value=='situation':uses_situations=True
+        return {'individual':individual,'situation':situation,'truth':z3.BoolSort()}[value]
     primitives={}
     for name,d in declarations.items():
         if d['kind']=='primitive':
@@ -71,7 +75,8 @@ def verify(document, *, timeout_ms=10000, max_expansion=100000):
         solver=z3.Solver();solver.set(timeout=timeout_ms);solver.add(z3.Not(formula));status=solver.check()
         row={'status':'unknown','reason':None,'countermodel':None,'formula':formula.sexpr()}
         if status==z3.unsat:
-            row.update(status='valid',reason='Negation is unsatisfiable over arbitrary nonempty individual domains')
+            domains='individual and situation' if uses_situations else 'individual'
+            row.update(status='valid',reason=f'Negation is unsatisfiable over arbitrary nonempty {domains} domains')
         elif status==z3.sat:
             row.update(status='invalid',reason='A first-order countermodel exists',countermodel=solver.model().sexpr())
         else:row['reason']=solver.reason_unknown()

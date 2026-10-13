@@ -27,6 +27,24 @@ def test_individual_predicates_are_uninterpreted_not_assumed_true():
     assert result['status']=='invalid'
 
 
+def test_situations_have_an_independent_nonempty_unbounded_sort():
+    result=verify(parse('n:s[g x d[e[v x][v x]]].s[f x d[f y d[e[v x][v y]]]].'))
+    assert [row['status'] for row in result]==['valid','invalid']
+    assert 'NoemaSituation' in result[0]['formula']
+    assert 'NoemaIndividual' not in result[0]['formula']
+    assert result[1]['countermodel'] is not None
+
+
+def test_contextual_predicates_and_situation_valued_functions_keep_types():
+    doc=parse('n:r a[a] d.r b[a d] c.s[f person a[y[k b[v person k a[v person]]][g context d[k b[v person v context]]]]].')
+    row=verify(doc)[0]
+    assert row['status']=='valid'
+    assert 'NoemaIndividual' in row['formula'] and 'NoemaSituation' in row['formula']
+    # A contextual predicate need not have the same value in every situation.
+    row=verify(parse('n:r a[a d] c.s[f person a[f x d[f y d[z[k a[v person v x]][k a[v person v y]]]]]].'))[0]
+    assert row['status']=='invalid'
+
+
 @pytest.mark.parametrize('text',[
     'n:s[f x b[e[v x][v x]]].',
     'n:r a[] b.s[e[k a[]][k a[]]].',
