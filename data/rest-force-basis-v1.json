@@ -1,0 +1,61 @@
+{
+  "version": "rest-force-basis-v1",
+  "document": "examples/v014/rest-force.noema",
+  "primitives": [
+    {
+      "symbol": "aa",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "左の有理数が右の有理数より厳密に小さい。等しい場合は偽。"
+    },
+    {
+      "symbol": "yn",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "選択した静止系のx軸。"
+    },
+    {
+      "symbol": "yo",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "同じ座標系のy軸。"
+    },
+    {
+      "symbol": "yp",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "同じ座標系のz軸。"
+    },
+    {
+      "symbol": "zc7",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "四つの成分のうち時刻を表す役割。三位置成分の役割と異なる。"
+    }
+  ],
+  "definitions": {
+    "ba": "真となる有理数が存在し、偽となる有理数も存在し、下方閉で、真となる有理数の中に最大値がない性質を実数の下側切断とする。",
+    "bc": "左の性質を満たす全有理数が右の性質も満たす。実数の下側切断に対しては小なりイコール。",
+    "sag": "二つの数値表現について、包含関係が両方向で成立する。一方向の大小比較や関数の同一性で、値の一致を代用しない。",
+    "sca": "実数を表す下側切断の両方向包含による値の一致。有効な切断であることは利用側が要求する。",
+    "shm": "成分の列が空でなく、同じ役割を重複して含まない。",
+    "shn": "成分列がshmを満たし、ベクトルの全成分が有効な値である。",
+    "sho": "同じ成分列の全成分の値が一致する。関数の個体同一性は要求しない。",
+    "shx": "三位置成分と時刻の四役割の列。",
+    "scb2": "指定した四座標で場を評価した成分と、指定ベクトルの成分が一致する。座標と非空・重複のない成分列、両側の実数値の有効性を要求する。関数の実装上の同一性とは区別する。"
+  },
+  "unresolved": [
+    "指定座標での場の値とベクトルを比較する一般機能。物理的な力や測定をこれだけで定義しない。"
+  ]
+}
