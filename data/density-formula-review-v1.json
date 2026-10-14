@@ -1,0 +1,46 @@
+{
+  "version": "density-formula-review-v1",
+  "work": "einstein-1905",
+  "unit": "einstein-1905:u0236",
+  "math_id": "M0390",
+  "facsimile_record": "data/density-boost-facsimile-v1.json",
+  "document": "examples/v014/einstein-density-formula.noema",
+  "definition": "sens",
+  "derivative_connection": "sent",
+  "source_role": "equations introduced by the preceding wobei",
+  "parameter_bindings": [
+    {"index": 0, "source": "V", "meaning": "light speed"},
+    {"index": 1, "source": "v", "meaning": "signed relative frame speed"},
+    {"index": 2, "source": "β", "meaning": "positive boost normalization"},
+    {"index": 3, "source": "ϱ", "meaning": "old normalized electric density"},
+    {"index": 4, "source": "u_x", "meaning": "old longitudinal velocity"},
+    {"index": 5, "source": "u_y", "meaning": "old second velocity component"},
+    {"index": 6, "source": "u_z", "meaning": "old third velocity component"},
+    {"index": 7, "source": "ϱ′", "meaning": "one shared new normalized density"},
+    {"index": 8, "source": "u_ξ", "meaning": "new longitudinal velocity"},
+    {"index": 9, "source": "u_η", "meaning": "new second velocity component"},
+    {"index": 10, "source": "u_ζ", "meaning": "new third velocity component"},
+    {"index": 11, "source": "derivatives of X′, Y′, Z′", "meaning": "new electric derivative table"}
+  ],
+  "source_relations": [
+    {"id": "velocity_longitudinal", "formula": "u_ξ = (u_x-v)/(1-u_x*v/V^2)", "output_parameter": 8, "input_parameters": [0, 1, 4]},
+    {"id": "velocity_second", "formula": "u_η = u_y/(β*(1-u_x*v/V^2))", "output_parameter": 9, "input_parameters": [0, 1, 2, 4, 5]},
+    {"id": "velocity_third", "formula": "u_ζ = u_z/(β*(1-u_x*v/V^2))", "output_parameter": 10, "input_parameters": [0, 1, 2, 4, 6]},
+    {"id": "density_divergence", "formula": "ϱ′ = ∂X′/∂ξ + ∂Y′/∂η + ∂Z′/∂ζ", "output_parameter": 7, "input_parameters": [11]},
+    {"id": "density_boost", "formula": "ϱ′ = β*(1-v*u_x/V^2)*ϱ", "output_parameter": 7, "input_parameters": [0, 1, 2, 3, 4]}
+  ],
+  "checks": [
+    {"id": "source_form", "status": "checked", "evidence": "M0390 hash and existing original-page comparison; five relations listed above", "limit": "The original-page record checks tokens, not whole-unit semantics."},
+    {"id": "algebraic_scope", "status": "checked", "evidence": "Bidirectional rational equivalence against a common reciprocal of 1-u_x*v/V^2", "limit": "Relative to explicit beta normalization and nonzero denominators."},
+    {"id": "shared_density", "status": "checked", "evidence": "Both density relations use parameter 7; scalar and derivative mutations are tested", "limit": "Does not identify the physical material or event."},
+    {"id": "derivative_referents", "status": "checked", "evidence": "sent binds each diagonal to the same field, region, point and corresponding axis", "limit": "Finite affine-function oracle tests the connection, not all real derivatives."},
+    {"id": "unwanted_premises", "status": "checked", "evidence": "The isolated formula executes no old field equation, magnetic condition or irrelevant derivative", "limit": "Beta normalization and denominator conditions are retained explicitly."},
+    {"id": "source_context_bindings", "status": "open", "evidence": "Parameter correspondence is recorded but the old and new frame, matter and event references have not been assembled for this unit", "limit": "Scalar agreement cannot close this obligation."},
+    {"id": "discourse_role", "status": "open", "evidence": "The preceding wobei introduces the equations; the new artifact defines a condition and does not yet attach that introduction to the author", "limit": "Adding a callable predicate alone is not a full translation of the source use."},
+    {"id": "concept_grounding", "status": "open", "evidence": "The numerical normalization is explained; the physical frame, velocity and electric-density referents still need a complete shared interpretation", "limit": "A test model is not the complete meaning convention."},
+    {"id": "source_truth", "status": "not_a_translation_gate", "evidence": "The review asks whether the source claim is represented, not whether electrodynamics is empirically true", "limit": "Arithmetic and language-operator interpretation still need justification."},
+    {"id": "whole_unit_decision", "status": "open", "evidence": "Context bindings, discourse role and concept grounding remain open", "limit": "No positive semantic-completion count is authorized by this packet."}
+  ],
+  "semantic_completion": false,
+  "review_kind": "source_unit_obligations_not_a_completion_certificate"
+}
