@@ -1,0 +1,67 @@
+{
+  "version": "convection-fields-basis-v1",
+  "document": "examples/v014/convection-fields.noema",
+  "primitives": [
+    {
+      "symbol": "aa",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "有理数の厳密順序。"
+    },
+    {
+      "symbol": "ab",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "有理数の加算。"
+    },
+    {
+      "symbol": "ac",
+      "parameters": [
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "value"
+      ],
+      "meaning_ja": "有理数の加法逆元。"
+    },
+    {
+      "symbol": "ad",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "有理数の乗算。"
+    }
+  ],
+  "definitions": {
+    "sema": "正のVについて、時間変化率と密度・流速の積の和が、Vと二空間微分値の差の積に等しいという有理数の関係。電荷密度と流速の符号を制限しない。",
+    "semb": "正の換算係数Cについて、規格化した密度がC倍の電荷密度で、同時に三つの対角微分の和に等しい。有理数の比較用で、Cを実際の4πとする証明ではない。"
+  },
+  "unresolved": [
+    "ρは電荷密度そのものではなく4π倍の量である。電流項ρuはその規格化に対応する。単位系と電気量の測定の実現、物質への帰属、イオン・電子・剛体・不変に結びつくことの一般的な意味は未完。",
+    "一つの密度と一つの速度を共有する対流の形を記述する。複数の電荷種の流れを、合計密度と単一の速度の積へ無条件に置換しない。",
+    "M0389の磁気側三式には原刊でも係数1/Vがない。転記訂正とはせずsemfで保持する。今回の比較は係数の相違であり、全場の変換からの導出や誤植の歴史的確定ではない。",
+    "既存の相対的な差商極限で偏微分を構成する。実関数全域の微分存在、連鎖律、境界条件、開領域と物理的意味の完全な証明は未完。磁気側の発散条件は原文の六式へ勝手に加えない。",
+    "全域条件は明示するが、有限検査では有理数を埋め込んだ実切断とアフィン関数の微分オラクルを用いる。全実数上の解析や実際の電磁場の測定を検証したものではない。"
+  ]
+}
