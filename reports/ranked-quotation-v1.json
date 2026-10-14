@@ -1,0 +1,91 @@
+{
+  "status": "opt_in_ranked_quotation_prototype_not_default_language",
+  "documents": {
+    "examples/v015/person-dependent-reports.noema": {
+      "declarations": 10,
+      "statements": 3
+    },
+    "examples/v015/kant-nonrestriction-description.noema": {
+      "declarations": 11,
+      "statements": 1
+    }
+  },
+  "historical_kant_refusal": "Quoted expressions must be disquote-free, including referenced definitions",
+  "general_nonrestriction_predicate_now_quotable": true,
+  "kant_author_statement_integrated": false,
+  "quotation_does_not_execute_predicate": true,
+  "personal_description_cases": [
+    {
+      "alice": false,
+      "bob": false,
+      "result": [
+        true,
+        true,
+        false
+      ],
+      "selected_persons": [
+        "alice"
+      ]
+    },
+    {
+      "alice": false,
+      "bob": true,
+      "result": [
+        true,
+        true,
+        false
+      ],
+      "selected_persons": [
+        "alice"
+      ]
+    },
+    {
+      "alice": true,
+      "bob": false,
+      "result": [
+        true,
+        true,
+        false
+      ],
+      "selected_persons": [
+        "alice",
+        "bob"
+      ]
+    },
+    {
+      "alice": true,
+      "bob": true,
+      "result": [
+        true,
+        true,
+        true
+      ],
+      "selected_persons": [
+        "alice",
+        "bob"
+      ]
+    }
+  ],
+  "roundtrips": true,
+  "limitations": [
+    "Rank checks cover explicit disquotation syntax and named definition dependencies.",
+    "Latent evaluation through arbitrary function-valued arguments is not tracked; this is not a complete effect system.",
+    "No consistency or termination theorem is claimed. Existing interpreter budgets and issuer checks remain required.",
+    "Historical CLI/parser remain unchanged; use the explicit noema.ranked entry point.",
+    "No source coverage or semantic-completion count is increased."
+  ],
+  "source_sha256": {
+    "examples/v014/kant-unrestricted-others.noema": "8a0f15207b9899bc49417d10d6ff5ad0fd9189a2bc29d1f43db7dec2e54382bd",
+    "examples/v015/person-dependent-reports.noema": "e930295ef5d302f41bfc882148b933022a3f4fb297365bfa3084b3b1f0c6a7cf",
+    "examples/v015/kant-nonrestriction-description.noema": "bb63c91f84ccda3192d9ceb2501488ef481a2a8cafacb61067b56bc95ddeb2fa",
+    "noema/ranked.py": "98eff01dc79f869c2d5927e3db7e393e7092f3bd18af4d9f6b779a1d107e09c4",
+    "noema/ranked_discourse.py": "73d3b32df71efe4e3c15fee2e37d41af6e1340ad7de267e2b9564428d0a6cf58",
+    "noema/ranked_semantics.py": "2d0a0e956fc4191f6917780f42a6399059a11dcd1522e95428c93830d980f12a",
+    "noema/ranked_render.py": "ad5f324109377713946c8d1c82c1f6f54d4d9fa78b58a96f73c3c64c78f8112c",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/render.py": "0cfd78d15b8556dca93372643ab5623066d12ff0cd62a1ca72792b778cf0c8ff",
+    "tests/test_ranked_quotation.py": "f4cc2263d83a78e446f55de0b8c367ad937ca3411ec3b5ce7978f0859b64e8e2",
+    "scripts/check_ranked_quotation.py": "931c7411d71effbf36a516875e1d5166e2c1b782a45cb427545f6ead222a8a12"
+  }
+}
