@@ -1,0 +1,125 @@
+{
+  "status": "partial_plural_judgments_in_one_act",
+  "document": "examples/v016/kant-plural-actions.noema",
+  "parent_document": "examples/v016/kant-constructed-actions.noema",
+  "parent_basis": "data/constructed-actions-basis-v1.json",
+  "derivation": {
+    "removed_from_each_frame": {
+      "kind": "exists",
+      "variable": "vw",
+      "sort": "situation",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "apply",
+            "function": {
+              "kind": "variable",
+              "name": "vk"
+            },
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "ve"
+              },
+              {
+                "kind": "variable",
+                "name": "vw"
+              }
+            ]
+          },
+          {
+            "kind": "not",
+            "arguments": [
+              {
+                "kind": "equal",
+                "arguments": [
+                  {
+                    "kind": "evaluate",
+                    "content": {
+                      "kind": "apply",
+                      "function": {
+                        "kind": "variable",
+                        "name": "va"
+                      },
+                      "arguments": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual",
+                          "items": [
+                            {
+                              "kind": "variable",
+                              "name": "ve"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "situation": {
+                      "kind": "variable",
+                      "name": "vw"
+                    }
+                  },
+                  {
+                    "kind": "evaluate",
+                    "content": {
+                      "kind": "apply",
+                      "function": {
+                        "kind": "variable",
+                        "name": "vc"
+                      },
+                      "arguments": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual",
+                          "items": [
+                            {
+                              "kind": "variable",
+                              "name": "ve"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "situation": {
+                      "kind": "variable",
+                      "name": "vw"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "preserved_personal_judgment": true,
+    "collection_requires_some_divergence": true
+  },
+  "definitions": {
+    "rqh": "判断・採用・提示・自己帰属・目的を保ち、各論点に必須だった相違だけを外したひな形。",
+    "rqi": "rqhの行為記述を、同じ基準コードと主張・目的から構成する。",
+    "rqj": "同じ論点・比較候補で本人と標準の基準に差がある条件の記述を作る。",
+    "rqn": "二つの行為内容を同じ本人・行為・文脈でともに満たす記述。",
+    "rqo": "同じ本人・行為・文脈で少なくとも一方を満たす記述。",
+    "rqk": "有限列の全内容を同じ組で満たす記述を構成する。空列は真の中立内容。",
+    "rql": "有限列の少なくとも一内容を同じ組で満たす記述を構成する。空列は偽の中立内容。",
+    "rqm": "全枠での個人的判断と公的提示、少なくとも一枠での基準との差を、同じ行為内容として構成する。",
+    "rqp": "選択集合の枠列が非空で、全枠が同じ本人・活動に選ばれ、公的役割が許可側と一致し、対象記述がrqmの構成結果である。",
+    "hzleligible": "集合選択・枠列・既存の項目と役割指定をrqpへ結ぶ。",
+    "hzlclaim": "一般許可rpuの対象を複合した行為記述へ結ぶ。個々の許可から複合行為への許可を推論しない。",
+    "hzlattribution": "改訂した一般許可を既存の著者・範囲・文脈へ帰属する。"
+  },
+  "primitives": {
+    "hzlcollection": "本人・活動・集合識別子・基準文脈の選択関係。",
+    "hzlframes": "集合識別子・基準文脈に対応する有限の枠列。"
+  },
+  "unresolved": [
+    "有限の列は複数内容を指定する。列の順序や重複は構文に残るが、提示の時間順を主張しない。",
+    "全枠で相違を要求せず、少なくとも一枠での差という既存の弱い読みを保持する。洞察Einsichtenの認識上の含意は未完成。",
+    "同じ行為への条件の連言であり、別々の行為・人物・文脈での成立を合成しない。",
+    "各項目の許可と複合行為の許可は別の記述への規範。分配・集約の規則は追加しない。",
+    "集合と枠の網羅性、社会的な対象・採用制度・君主への照応、なおさらの論証、全原文の意味確認は未完。",
+    "同義でも異なる構文の記述を自動統合しない。0.16の実行時制限と有限評価器の全域拒否は維持する。"
+  ]
+}
