@@ -15,11 +15,11 @@
   "works": {
     "kant-1784": {
       "author_unit_count": 20,
-      "units_with_partial_drafts": 8,
-      "unit_touch_percent": 40.0,
+      "units_with_partial_drafts": 9,
+      "unit_touch_percent": 45.0,
       "nonblank_text_characters": 15513,
-      "text_characters_in_explicit_partial_ranges": 6689,
-      "explicit_text_range_percent": 43.12,
+      "text_characters_in_explicit_partial_ranges": 6784,
+      "explicit_text_range_percent": 43.73,
       "math_object_count": 0,
       "math_objects_with_partial_associations": 0,
       "math_object_touch_percent": null,
@@ -803,12 +803,19 @@
         {
           "unit": "kant-1784:u0016",
           "kind": "body",
-          "has_partial_draft": false,
-          "explicit_ranges": [],
+          "has_partial_draft": true,
+          "explicit_ranges": [
+            [
+              539,
+              649
+            ]
+          ],
           "nonblank_text_characters": 780,
-          "nonblank_text_characters_in_partial_ranges": 0,
+          "nonblank_text_characters_in_partial_ranges": 95,
           "math_objects_with_partial_associations": [],
-          "reports": [],
+          "reports": [
+            "reports/public-permission-risk-v1.json"
+          ],
           "has_association_without_text_range": false
         },
         {
@@ -14173,6 +14180,30 @@
       ]
     },
     {
+      "report": "reports/public-permission-risk-v1.json",
+      "pointer": "/alignment/segments/0",
+      "unit": "kant-1784:u0016",
+      "status": "partial",
+      "source_status": "explicit_interpretive_annotation",
+      "range": [
+        539,
+        649
+      ],
+      "math_id": null,
+      "math_sha256": null,
+      "definitions": [
+        "rrh",
+        "rri",
+        "rrj",
+        "rrk",
+        "rrl",
+        "rrm",
+        "hzmpolicy",
+        "hzmsafety",
+        "hzmriskreport"
+      ]
+    },
+    {
       "report": "reports/public-use-link-v1.json",
       "pointer": "/alignment/segments/0",
       "unit": "kant-1784:u0012",
@@ -19337,6 +19368,7 @@
     "reports/public-assessment-v1.json",
     "reports/public-deliberation-v1.json",
     "reports/public-divergent-judgments-v1.json",
+    "reports/public-permission-risk-v1.json",
     "reports/public-use-link-v1.json",
     "reports/purposive-undertakings-v1.json",
     "reports/qualified-few-v1.json",
@@ -19413,9 +19445,17 @@
     "reports/written-v010.json",
     "reports/written-v012.json"
   ],
-  "parsed_noema_documents": 566,
+  "parsed_noema_documents": 569,
   "source_sha256": {
     "scripts/audit_written_progress.py": "36d3f5696e52a1aab6a61180a57ab2244202aba9fd9f2392123ff2778c41bcd1",
+    "scripts/audit_written_progress_extended.py": "c433ac5d2c8041ac39c122df9e1b52d7ea7eee703c05e57683bc6dd66184414a",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/ranked.py": "98eff01dc79f869c2d5927e3db7e393e7092f3bd18af4d9f6b779a1d107e09c4",
+    "noema/ranked_discourse.py": "73d3b32df71efe4e3c15fee2e37d41af6e1340ad7de267e2b9564428d0a6cf58",
+    "noema/constructed.py": "908b7b6d39b596dbec4c0941d6f076ea4eeeb2fde9bdef63dab247fbaf52b654",
+    "noema/constructed_discourse.py": "b98dd3d62d83c4b2a83f65b9e6af64816cf2fb27c4b04eeb9a7a1bec34779009",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
     "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
     "artifacts/written-units-v1/kant-1784.json": "64be354c6a654d65eacdf20fdd9cbcc971044f19314c4cfe48bc555065421f09",
     "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
@@ -20042,6 +20082,10 @@
     "examples/v014/public-divergent-judgments-core.noema": "8fbb979de7a65a637527cf5937b677c7ca7ff40caa14616a61a45decce905505",
     "examples/v014/public-divergent-judgments.noema": "facb133321e3c0beea24b1c66ed7ef82bc79fbeba47b06106cf17baf68af0883",
     "reports/public-divergent-judgments-v1.json": "06cd8b0a7228d86c686ff0227e1c07585fb55a110c9ee7f89e60ebf8e3e13a53",
+    "examples/v016/kant-plural-actions.noema": "29e6e4609fb19590fb7ae2c08a5213cffe2d527024f2898c559bcf083abcb3e5",
+    "examples/v016/kant-public-permission-risk.noema": "978ce62bef8d6a98e953e97ff8395b21f46ec726da728507e79bc4530d1bbfdb",
+    "examples/v016/public-permission-risk-core.noema": "5771e3977af7d636cbb065ad9bb69076e0061e6a8f94e1de67d9c9b40c676c5b",
+    "reports/public-permission-risk-v1.json": "fb5deb0c6ef63e6e771edffd637df57288c1d96a25f6ec3ed13dda3ffd00cdf9",
     "reports/public-use-link-v1.json": "43f5a0e45858db6043bdbc7cbf48d6ce264146d5067c45f60d578a18e7a34f88",
     "examples/v014/purposive-undertakings.noema": "7649db54f9047f182acf8abed1084844ce4017d51070cb21a57ed8c323a38e78",
     "examples/v014/purposive-undertakings-core.noema": "62b5051199199ab20fc31bc4cda685b9208badb25d4fb014ae88be7a422dd9db",
