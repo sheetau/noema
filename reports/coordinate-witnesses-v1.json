@@ -1,0 +1,202 @@
+{
+  "status": "conditional_coordinate_witness_coherence_proved",
+  "source_document": "examples/v014/einstein-density-time.noema",
+  "source_statement_index": 174,
+  "source_bindings": {
+    "density_center_same_tuple": true,
+    "source_points_same_tuple_in_each_frame": true,
+    "density_velocity_and_source_coordinates_cohere": true,
+    "cross_frame_coordinate_equality_claimed": false,
+    "event_or_representation_identity_inferred": false
+  },
+  "proof": {
+    "status": "unsat",
+    "cut_equality": {
+      "status": "unsat",
+      "meanings_expanded": [
+        "sca",
+        "sag",
+        "bc"
+      ],
+      "statement": "mutual cut inclusion iff extensional function equality",
+      "rational_order_or_cut_validity_assumed": false
+    },
+    "projection": {
+      "seoc_conjunct_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "senz_conjunct_indices": [
+        1
+      ],
+      "seob_conjunct_index": 2,
+      "seob_instances": [
+        "velocity point",
+        "arbitrary target point"
+      ],
+      "seox_instances": [
+        "velocity point",
+        "arbitrary target point"
+      ],
+      "omitted": "Existence, forward history, neighborhood, derivatives and other conjuncts are dropped, never strengthened."
+    },
+    "conclusion": "all four coordinates of any valid same-event target agree with the velocity witness",
+    "counterexamples": {
+      "valid_velocity_coordinates": {
+        "status": "sat",
+        "coordinates": {
+          "velocity": [
+            "CutValue!val!4",
+            "CutValue!val!5",
+            "CutValue!val!6",
+            "CutValue!val!7"
+          ],
+          "target": [
+            "CutValue!val!0",
+            "CutValue!val!1",
+            "CutValue!val!2",
+            "CutValue!val!3"
+          ]
+        }
+      },
+      "observed_velocity_point": {
+        "status": "sat",
+        "coordinates": {
+          "velocity": [
+            "CutValue!val!0",
+            "CutValue!val!1",
+            "CutValue!val!2",
+            "CutValue!val!3"
+          ],
+          "target": [
+            "CutValue!val!4",
+            "CutValue!val!5",
+            "CutValue!val!6",
+            "CutValue!val!7"
+          ]
+        }
+      },
+      "velocity_time_in_domain": {
+        "status": "sat",
+        "coordinates": {
+          "velocity": [
+            "CutValue!val!0",
+            "CutValue!val!1",
+            "CutValue!val!2",
+            "CutValue!val!3"
+          ],
+          "target": [
+            "CutValue!val!4",
+            "CutValue!val!5",
+            "CutValue!val!6",
+            "CutValue!val!3"
+          ]
+        }
+      },
+      "valid_target_coordinates": {
+        "status": "sat",
+        "coordinates": {
+          "velocity": [
+            "CutValue!val!1",
+            "CutValue!val!6",
+            "CutValue!val!7",
+            "CutValue!val!0"
+          ],
+          "target": [
+            "CutValue!val!2",
+            "CutValue!val!3",
+            "CutValue!val!4",
+            "CutValue!val!5"
+          ]
+        }
+      },
+      "observed_target_point": {
+        "status": "sat",
+        "coordinates": {
+          "velocity": [
+            "CutValue!val!1",
+            "CutValue!val!6",
+            "CutValue!val!7",
+            "CutValue!val!0"
+          ],
+          "target": [
+            "CutValue!val!2",
+            "CutValue!val!3",
+            "CutValue!val!4",
+            "CutValue!val!5"
+          ]
+        }
+      },
+      "same_event_clock_instances": {
+        "status": "sat",
+        "coordinates": {
+          "velocity": [
+            "CutValue!val!4",
+            "CutValue!val!5",
+            "CutValue!val!6",
+            "CutValue!val!7"
+          ],
+          "target": [
+            "CutValue!val!0",
+            "CutValue!val!1",
+            "CutValue!val!2",
+            "CutValue!val!3"
+          ]
+        }
+      },
+      "reverse_history_instances": {
+        "status": "sat",
+        "coordinates": {
+          "velocity": [
+            "CutValue!val!0",
+            "CutValue!val!1",
+            "CutValue!val!2",
+            "CutValue!val!3"
+          ],
+          "target": [
+            "CutValue!val!4",
+            "CutValue!val!5",
+            "CutValue!val!6",
+            "CutValue!val!3"
+          ]
+        }
+      }
+    },
+    "distinct_representations_with_equal_coordinates": "sat",
+    "proof_scope": "logical consequence under extensional function semantics, not existence of physical histories or source equivalence"
+  },
+  "semantic_completion": false,
+  "new_definitions": 0,
+  "new_primitives": 0,
+  "new_author_statements": 0,
+  "derived_statements": 1,
+  "theorem_document": "examples/v014/coordinate-witness-coherence.noema",
+  "roundtrips": true,
+  "solver_version": "5.1.0",
+  "limits": [
+    "No assertion that the physical premises hold.",
+    "No equality of coordinates in different frames.",
+    "No event identity or point-function identity inferred.",
+    "No complete source-unit meaning certification."
+  ],
+  "source_sha256": {
+    "examples/v014/einstein-density-time.noema": "01218f7bc1ed8a2ebb4b5edae6e09857090e571edfdfa7f8f23c1a54f29ee6f9",
+    "examples/v014/einstein-density-interpretation.noema": "f6811b17356ea1044ca3d7cff423bcb593f23e04be0301545eda3fc55d93ec47",
+    "examples/v014/coordinate-witness-coherence.noema": "d3859a6839410fd191f59b202a6b93ffe7c1822b100a173c52bdfde2a8063293",
+    "data/coordinate-witness-coherence-basis-v1.json": "5860df27a1ce468c419e977f247df9f9bcc36a3dc2bf77ee7dfd224f60a714e6",
+    "data/density-formula-review-v5.json": "9ce6506a5b597c6e04660597eaae8e58ac5a00224e80673a2739850f9aebe80e",
+    "data/einstein-density-time-basis-v1.json": "3ce7d574b3193b59b2f03a269c59f5a423bb19f4b5a803c39068ecdc37424df4",
+    "data/density-formula-review-v4.json": "da7b003a5aa445fa056a3ee1702e1f8147bc6e831a86792f912d4f8b318fae02",
+    "scripts/check_coordinate_witnesses.py": "c10843767da6bbcecfe514f8489ce884573e7e603d7fcad2d389ee1de274687c",
+    "tests/test_coordinate_witnesses.py": "fd4e64b02091994adec2acc86f5b10cc4d68d162410409e35a8c77003f038fdb",
+    "scripts/check_density_time.py": "1e5ec311521dbd3fdf660874fe9b56c17f55ef919b4dd41b5e2eb04c2d059dc0",
+    "scripts/check_material_velocity.py": "5f8ee75a455951f74645b0f1f5f54220b36c1bc8165619eca5a760254a4dc8b3",
+    "scripts/check_local_density.py": "2e05a07bbb5a95dd9be40230653f61c429f79a1add8149b022d6818a65b36488",
+    "scripts/compose_density_referents.py": "4ea1fe7b118890a6b022b4214e2ba2ead9eb8dab1c62b9697777346c733290e1",
+    "reports/density-time-v1.json": "5720884c21a43cc23d86954860e0111839b11ed93f74f7b7149d7f4920b2e8e4"
+  }
+}
