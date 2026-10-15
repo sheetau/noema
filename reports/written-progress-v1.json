@@ -990,14 +990,14 @@
     },
     "einstein-1905": {
       "author_unit_count": 282,
-      "units_with_partial_drafts": 189,
-      "unit_touch_percent": 67.02,
+      "units_with_partial_drafts": 192,
+      "unit_touch_percent": 68.09,
       "nonblank_text_characters": 35614,
-      "text_characters_in_explicit_partial_ranges": 17376,
-      "explicit_text_range_percent": 48.79,
+      "text_characters_in_explicit_partial_ranges": 17416,
+      "explicit_text_range_percent": 48.9,
       "math_object_count": 446,
-      "math_objects_with_partial_associations": 324,
-      "math_object_touch_percent": 72.65,
+      "math_objects_with_partial_associations": 326,
+      "math_object_touch_percent": 73.09,
       "verified_semantic_units": 0,
       "verified_semantic_percent": 0.0,
       "units": [
@@ -5509,12 +5509,19 @@
         {
           "unit": "einstein-1905:u0255",
           "kind": "body",
-          "has_partial_draft": false,
-          "explicit_ranges": [],
+          "has_partial_draft": true,
+          "explicit_ranges": [
+            [
+              0,
+              44
+            ]
+          ],
           "nonblank_text_characters": 40,
-          "nonblank_text_characters_in_partial_ranges": 0,
+          "nonblank_text_characters_in_partial_ranges": 40,
           "math_objects_with_partial_associations": [],
-          "reports": [],
+          "reports": [
+            "reports/mass-coefficients-v1.json"
+          ],
           "has_association_without_text_range": false
         },
         {
@@ -5531,24 +5538,32 @@
         {
           "unit": "einstein-1905:u0257",
           "kind": "body",
-          "has_partial_draft": false,
+          "has_partial_draft": true,
           "explicit_ranges": [],
           "nonblank_text_characters": 18,
           "nonblank_text_characters_in_partial_ranges": 0,
-          "math_objects_with_partial_associations": [],
-          "reports": [],
-          "has_association_without_text_range": false
+          "math_objects_with_partial_associations": [
+            "M0420"
+          ],
+          "reports": [
+            "reports/mass-coefficients-v1.json"
+          ],
+          "has_association_without_text_range": true
         },
         {
           "unit": "einstein-1905:u0258",
           "kind": "body",
-          "has_partial_draft": false,
+          "has_partial_draft": true,
           "explicit_ranges": [],
           "nonblank_text_characters": 17,
           "nonblank_text_characters_in_partial_ranges": 0,
-          "math_objects_with_partial_associations": [],
-          "reports": [],
-          "has_association_without_text_range": false
+          "math_objects_with_partial_associations": [
+            "M0421"
+          ],
+          "reports": [
+            "reports/mass-coefficients-v1.json"
+          ],
+          "has_association_without_text_range": true
         },
         {
           "unit": "einstein-1905:u0259",
@@ -12684,6 +12699,50 @@
         "snb",
         "snj",
         "snu"
+      ]
+    },
+    {
+      "report": "reports/mass-coefficients-v1.json",
+      "pointer": "/alignment/segments/0",
+      "unit": "einstein-1905:u0255",
+      "status": "partial",
+      "source_status": "partial",
+      "range": [
+        0,
+        44
+      ],
+      "math_id": null,
+      "math_sha256": null,
+      "definitions": [
+        "sepa",
+        "sepe",
+        "sepi"
+      ]
+    },
+    {
+      "report": "reports/mass-coefficients-v1.json",
+      "pointer": "/alignment/segments/1",
+      "unit": "einstein-1905:u0257",
+      "status": "partial",
+      "source_status": "partial",
+      "range": null,
+      "math_id": "M0420",
+      "math_sha256": "c8bfe7311ab2ac8f959ed233ceee2d700acdfa539eaaa7f6ef7e51dbf1a1b8ca",
+      "definitions": [
+        "sepf"
+      ]
+    },
+    {
+      "report": "reports/mass-coefficients-v1.json",
+      "pointer": "/alignment/segments/2",
+      "unit": "einstein-1905:u0258",
+      "status": "partial",
+      "source_status": "partial",
+      "range": null,
+      "math_id": "M0421",
+      "math_sha256": "d9f57d2c6ddcc4a55837a7f7d432b4f080edd7b03a0b0f9e45762ded6c662430",
+      "definitions": [
+        "sepf"
       ]
     },
     {
@@ -20883,6 +20942,7 @@
     "reports/load-resistance-v1.json",
     "reports/local-density-v1.json",
     "reports/longitudinal-light-v1.json",
+    "reports/mass-coefficients-v1.json",
     "reports/material-charge-v1.json",
     "reports/material-velocity-v1.json",
     "reports/mediated-choice-v1.json",
@@ -21028,7 +21088,7 @@
     "reports/written-v010.json",
     "reports/written-v012.json"
   ],
-  "parsed_noema_documents": 728,
+  "parsed_noema_documents": 732,
   "source_sha256": {
     "scripts/audit_written_progress.py": "36d3f5696e52a1aab6a61180a57ab2244202aba9fd9f2392123ff2778c41bcd1",
     "scripts/audit_written_progress_extended.py": "c433ac5d2c8041ac39c122df9e1b52d7ea7eee703c05e57683bc6dd66184414a",
@@ -21702,6 +21762,11 @@
     "examples/v014/longitudinal-light.noema": "ab40ace77b9705b23ee1742769a7633499102bcd198897e5596e85519e4ab019",
     "examples/v014/einstein-longitudinal-light.noema": "54c995ee6066a8d392847259bd8ce580836aa9d52d43c85cd3490b46faba96fc",
     "reports/longitudinal-light-v1.json": "4048434cc9826a11839081e61df803d6da0ad95eea6c6ff7a3b4507bb4cd49a1",
+    "examples/v014/einstein-mass-coefficients.noema": "6c647e19660d75a29a76008981b9074e374469c51c6910245f53fb0ec1d768de",
+    "examples/v014/einstein-reconciled-v1.noema": "d6eac0b613f873696898910b76b010b07ab5c07fd9a1ffbbaf807776e2f5768a",
+    "examples/v014/mass-coefficients-core.noema": "6914333b4f2b1668ae856c7a731a3f3d5a3fde43935016c34adf4d6be0a944a0",
+    "examples/v014/mass-coefficients.noema": "8d543b8769721a4e911accaa3024bce53c598cc37e838ca6043c9837bee24ca8",
+    "reports/mass-coefficients-v1.json": "1da5253bcbe20b64493feb4c720a1291942f3e4b763fb9e0a0dabf50b30cab99",
     "examples/v014/material-charge.noema": "bf9c3231c06d566646f41d27a29d7e8496414f1e89aa0b79fbb4f8e362931cfd",
     "examples/v014/material-charge-core.noema": "ca48fc9b2f37bd8a0cc6eed9cd916b8e56a42664ec63d4f2556e93e6dd5ed9c9",
     "reports/material-charge-v1.json": "71ac33b6e7b6a8726dd58f721a40ffc8a5d4435eb0e3edb321f4bbd8e6339eb1",
