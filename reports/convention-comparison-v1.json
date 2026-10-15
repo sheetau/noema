@@ -1,0 +1,305 @@
+{
+  "status": "partial_counterfactual_convention_comparison",
+  "document": "examples/v014/einstein-convention-comparison.noema",
+  "basis_audits": {
+    "examples/v014/einstein-convention-comparison.noema": {
+      "primitive_count": 682,
+      "definition_count": 1142,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/convention-comparison.noema": {
+      "primitive_count": 3,
+      "definition_count": 15,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/convention-comparison-core.noema": {
+      "primitive_count": 20,
+      "definition_count": 17,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "comparisons": {
+    "cases": {
+      "examples/v014/convention-comparison.noema": {
+        "baseline": [
+          true,
+          true,
+          false
+        ],
+        "one_direction": [
+          true,
+          true,
+          false
+        ],
+        "proportional_change": [
+          false,
+          false,
+          false
+        ],
+        "identical_values": [
+          false,
+          false,
+          false
+        ],
+        "outside_cases_only": [
+          false,
+          false,
+          false
+        ],
+        "wrong_coefficient": [
+          false,
+          false,
+          false
+        ],
+        "invalid_base": [
+          false,
+          false,
+          false
+        ],
+        "state_permutation": [
+          false,
+          false,
+          false
+        ],
+        "all_zero": [
+          false,
+          false,
+          false
+        ],
+        "empty_cases": [
+          false,
+          false,
+          false
+        ],
+        "empty_axes": [
+          false,
+          false,
+          false
+        ],
+        "empty_candidates": [
+          true,
+          false,
+          false
+        ],
+        "mixed_candidates": [
+          true,
+          false,
+          false
+        ],
+        "actual_only": [
+          false,
+          false,
+          true
+        ],
+        "wrong_context": [
+          true,
+          false,
+          false
+        ]
+      },
+      "examples/v014/convention-comparison-core.noema": {
+        "baseline": [
+          true
+        ],
+        "one_direction": [
+          true
+        ],
+        "proportional_change": [
+          false
+        ],
+        "identical_values": [
+          false
+        ],
+        "outside_cases_only": [
+          false
+        ],
+        "wrong_coefficient": [
+          false
+        ],
+        "invalid_base": [
+          false
+        ],
+        "state_permutation": [
+          false
+        ],
+        "all_zero": [
+          false
+        ],
+        "empty_cases": [
+          false
+        ],
+        "empty_candidates": [
+          false
+        ],
+        "mixed_candidates": [
+          false
+        ],
+        "actual_only": [
+          false
+        ],
+        "wrong_context": [
+          false
+        ]
+      },
+      "examples/v014/einstein-convention-comparison.noema": {
+        "baseline": [
+          true
+        ],
+        "one_direction": [
+          true
+        ],
+        "proportional_change": [
+          false
+        ],
+        "identical_values": [
+          false
+        ],
+        "outside_cases_only": [
+          false
+        ],
+        "wrong_coefficient": [
+          false
+        ],
+        "invalid_base": [
+          false
+        ],
+        "state_permutation": [
+          false
+        ],
+        "all_zero": [
+          false
+        ],
+        "empty_cases": [
+          false
+        ],
+        "empty_candidates": [
+          false
+        ],
+        "mixed_candidates": [
+          false
+        ],
+        "actual_only": [
+          false
+        ],
+        "wrong_context": [
+          false
+        ]
+      }
+    },
+    "actual_and_selected_contexts_distinguished": true,
+    "specified_finite_case_models_only": true,
+    "physical_domain_completeness_proved": false
+  },
+  "polynomial_checks": {
+    "nonzero_input_identifies_coefficient": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (not (= 0.0 va)) (= vb (* vc va)) (= vb (* vd va))) (= vc vd))"
+    },
+    "proportional_force_and_acceleration_keep_coefficient": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (= vb (* vc va)) (= (* vd vb) (* vc vd va)))"
+    },
+    "different_force_same_acceleration_requires_different_coefficient": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (not (= 0.0 va)) (= vb (* vd va)) (= vc (* ve va)) (not (= vb vc)))\n    (not (= vd ve)))"
+    },
+    "changing_both_evaluations_always_changes_coefficient": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {
+        "va": "-1",
+        "vb": "0",
+        "vc": "0",
+        "vd": "2"
+      },
+      "matrix": "(=> (and (not (= 0.0 va)) (= vb (* vc va)) (< 1.0 vd))\n    (not (= (* vd vb) (* vc vd va))))"
+    }
+  },
+  "attribution": {
+    "quoted_content": "seqj",
+    "evaluations_or_counterfactuals_executed": false
+  },
+  "statements_preserved": 176,
+  "new_author_attributions": 1,
+  "roundtrips": true,
+  "cli_parse": true,
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0259",
+        "unit_sha256": "ac2cac0a6f03a365ba3f74c24686426a172c09cfc6884a6afb3456a3751b881f",
+        "range": [
+          10,
+          113
+        ],
+        "text": "würde man bei anderer Definition der Kraft und der Beschleunigung andere Zahlen für die Massen erhalten",
+        "status": "partial",
+        "definitions": [
+          "seqe",
+          "seqf",
+          "seqg",
+          "seqh",
+          "seqi",
+          "seqj"
+        ]
+      }
+    ]
+  },
+  "all_alternative_definitions_claimed_to_change_coefficients": false,
+  "comparison_caution_completed": false,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "artifacts/mass-coefficients-v1/page-919.jpg": "06d826d9ec85d6a463f5d637bfc8c06f2d50d1a01cb132f5896fcc206a241d12",
+    "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
+    "data/convention-comparison-basis-v1.json": "1f9f70dd981739e7ed856c04d96b04d7becda6928b2263ba6f1a5caa77b9af6d",
+    "data/convention-comparison-core-basis-v1.json": "3b947ae93f7b08d542f30de782c99394373ee8a769824543b617099d587a0608",
+    "data/convention-comparison-reading-v1.json": "39c87f728678a753c2945f8700f215c7615b77cbfeebf2b2c9e6ca301adf2cb2",
+    "data/einstein-convention-comparison-basis-v1.json": "50d97e9ac63fa04a5526c938b80f78c23409562ad300bb772d943bb7fae9ed60",
+    "data/einstein-force-mass-units-basis-v1.json": "c11da9d87f112c86f21c0d6fbcc518a5a345423a6fd05cddbbdd7be1681a81db",
+    "docs/convention-comparison-v1.md": "2762d10867b4834b214a371eba8fe493c8068ea7f97ce0d0716a7cddee7dd966",
+    "examples/v014/convention-comparison-core.noema": "79fc05bdb52b8216d02466a52f961c06c8a19ec6bcd4585dbd5213a306402771",
+    "examples/v014/convention-comparison.noema": "805ed85009c352b72741966ce6f5ef497e58ba33d5a15fb78406624e6b27fa40",
+    "examples/v014/einstein-convention-comparison.noema": "6c4da7899f88ea4ace86fb4913fadd32489cec6ee18886dcf9095958e2197648",
+    "examples/v014/einstein-force-mass-units.noema": "7cfd46f76f0742640bb6226b503297d31447e7810238a76dd3b238b2fd4c79c1",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/rational_proofs.py": "3ca1c888b153ccdc360b314b38dd6aec3e0dad6c48899c2f94cab43a31bc9f37",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_convention_comparison.py": "b94342d30033050b52580d2ab6276d48722f7b7ed640fe391e3af58fc1ba9a3e",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_phi_normalization.py": "1df1ac33cf90beff45ad339a6bbc2f4e8b683d32b1e6e5afbc9e107809f24772",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/check_transverse_time.py": "0de0549d26d2bf323634a4c50750c2bb7b293317d837bdfad25dca19b53e88ee",
+    "scripts/compose_convention_comparison.py": "c6bba6a39defdf05366a22776f166b07480b3f37efd540f2de716d17b63f5b77",
+    "scripts/compose_field_equations.py": "76fc17b618fde523f8e4f4e1307c7e2eee69c05b5c73c5a5b2a3a52981ac250d",
+    "scripts/compose_force_mass_units.py": "fd3c332410ab8cdcaaee91642f91df0c449ff6411f8e8259d0117fa99433b56f",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_situated_criticism.py": "c00e968d90ea41465eec65c2865f8e50ea07377834c7adae1519d18b2e01f80f",
+    "tests/test_convention_comparison.py": "adb110a21772dd566da55c3b124b38eb14908c99f02e33678ce259da1b3918f1"
+  }
+}
