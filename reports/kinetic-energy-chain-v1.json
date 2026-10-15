@@ -1,0 +1,200 @@
+{
+  "status": "partial_printed_kinetic_energy_chain_with_separate_candidate",
+  "document": "examples/v014/einstein-kinetic-energy-chain.noema",
+  "basis_audits": {
+    "examples/v014/einstein-kinetic-energy-chain.noema": {
+      "primitive_count": 731,
+      "definition_count": 1167,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/kinetic-energy-chain.noema": {
+      "primitive_count": 4,
+      "definition_count": 34,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/kinetic-energy-chain-core.noema": {
+      "primitive_count": 13,
+      "definition_count": 34,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "numeric": {
+    "moving": [
+      true,
+      true,
+      true
+    ],
+    "at_rest": [
+      true,
+      true,
+      true
+    ],
+    "unit_mass": [
+      true,
+      true,
+      true
+    ],
+    "negative_speed": [
+      false,
+      false,
+      false
+    ],
+    "light_boundary": [
+      false,
+      false,
+      false
+    ],
+    "negative_beta": [
+      false,
+      false,
+      false
+    ],
+    "zero_mass": [
+      false,
+      false,
+      false
+    ],
+    "rest_energy_included": [
+      false,
+      false,
+      false
+    ],
+    "mass_factor_omitted": [
+      false,
+      false,
+      false
+    ]
+  },
+  "integrands": {
+    "normalized_integrand": "375/64",
+    "mass_weighted_integrand": "375/32",
+    "full_integral_evaluation_refused": true
+  },
+  "polynomial": {
+    "claims": {
+      "energy_scales_with_mass": {
+        "status": "valid",
+        "reason": "No real counterexample; therefore no rational counterexample",
+        "counterexample": null,
+        "matrix": "(let ((a!1 (* vc vc (+ (* va va) (- (* vb vb)))))\n      (a!3 (* vd (* (* va va) (+ vc (- 1.0)))))\n      (a!4 (* 1.0 (* (* va va) (+ vc (- 1.0))))))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va)))))\n  (=> (and a!2\n           (< 0.0 vd)\n           (not (> 0.0 vb))\n           (= ve a!3)\n           a!2\n           (< 0.0 1.0)\n           (not (> 0.0 vb))\n           (= vf a!4))\n      (= ve (* vd vf)))))"
+      },
+      "zero_speed_has_zero_kinetic_energy": {
+        "status": "valid",
+        "reason": "No real counterexample; therefore no rational counterexample",
+        "counterexample": null,
+        "matrix": "(let ((a!1 (* vc vc (+ (* va va) (- (* vb vb)))))\n      (a!2 (= ve (* vd (* va va) (+ vc (- 1.0))))))\n  (=> (and (< 0.0 va)\n           (< (* vb vb) (* va va))\n           (< 0.0 vc)\n           (= a!1 (* va va))\n           (< 0.0 vd)\n           (not (> 0.0 vb))\n           a!2\n           (= 0.0 vb))\n      (= 0.0 ve)))"
+      },
+      "nonzero_speed_and_nonunit_mass_differ_from_normalized_value": {
+        "status": "valid",
+        "reason": "No real counterexample; therefore no rational counterexample",
+        "counterexample": null,
+        "matrix": "(let ((a!1 (* vc vc (+ (* va va) (- (* vb vb)))))\n      (a!3 (* vd (* (* va va) (+ vc (- 1.0)))))\n      (a!4 (* 1.0 (* (* va va) (+ vc (- 1.0))))))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va)))))\n  (=> (and a!2\n           (< 0.0 vd)\n           (not (> 0.0 vb))\n           (= ve a!3)\n           a!2\n           (< 0.0 1.0)\n           (not (> 0.0 vb))\n           (= vf a!4)\n           (< 0.0 vb)\n           (not (= 1.0 vd)))\n      (not (= ve vf)))))"
+      },
+      "differentiated_normalization_gives_weighted_integrand": {
+        "status": "valid",
+        "reason": "No real counterexample; therefore no rational counterexample",
+        "counterexample": null,
+        "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!2 (= ve (* vd (* va va) (+ vc (- 1.0)))))\n      (a!3 (* vc vf (+ (* va va) (- (* vb vb))))))\n(let ((a!4 (and (< 0.0 va)\n                (< (* vb vb) (* va va))\n                (< 0.0 vc)\n                (= a!1 (* va va))\n                (< 0.0 vd)\n                (not (> 0.0 vb))\n                a!2\n                (= a!3 (* vb (* vc vc))))))\n  (=> a!4 (= (* vd (* va va) vf) (* vd (* vc vc) vc vb)))))"
+      }
+    },
+    "normalization_derivative_assumed": true,
+    "fundamental_theorem_of_calculus_proved": false,
+    "conditional_values": {
+      "light": 5,
+      "speed": 3,
+      "beta": "5/4",
+      "mass": 2,
+      "normalized_antiderivative_difference": "25/4",
+      "weighted_antiderivative_difference": "25/2"
+    }
+  },
+  "printed_structure": {
+    "source_middle_tokens": [
+      "∫",
+      "0",
+      "v",
+      "β",
+      "3",
+      "v",
+      "d",
+      "v"
+    ],
+    "printed_mass_factor": false,
+    "candidate_mass_factor": true,
+    "source_silently_corrected": false
+  },
+  "attribution": {
+    "author_content": "seri",
+    "corrected_content_attributed_to_author": false,
+    "integrals_executed": false
+  },
+  "statements_preserved": 181,
+  "new_author_attributions": 1,
+  "roundtrips": true,
+  "cli_parse": true,
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0262",
+        "unit_sha256": "165161dcff73a63fffa72ca5f07470f33e7fa46833fd9860ac61571e4faf9124",
+        "math_id": "M0427",
+        "status": "partial_printed_middle_integral_and_final_value",
+        "definitions": [
+          "serg",
+          "seri"
+        ]
+      }
+    ]
+  },
+  "work_integral_connected": false,
+  "physical_energy_assignment_completed": false,
+  "full_integral_proved": false,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "artifacts/mass-coefficients-v1/page-920.jpg": "59b11de47bd5c77b23bf3c3d38ff86287c101c91eafc3450c34ecf0113864386",
+    "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
+    "data/einstein-kinetic-energy-chain-basis-v1.json": "0d89a2a5d3db9cccab03155c2e59293b9a817a4d514f266e863922479ae10f4c",
+    "data/einstein-material-mass-extension-basis-v1.json": "e46e122284672e5cf6fd1b7c683a54a506d174bd87177cff4367827c69a6f3f9",
+    "data/kinetic-energy-chain-basis-v1.json": "6768dacc0c04539f4326b9bf7fb9952b4b66f1bb8444f5a8abb9d6da6a84fd0c",
+    "data/kinetic-energy-chain-core-basis-v1.json": "30bc4188f64dbde3a432cb227bdd6b86ef0567b7976da64e4f43e2fb94608f1f",
+    "data/kinetic-energy-chain-reading-v1.json": "a985a2fd9dc257e0dbd9a091bbaa3cb8038e4e6ff416d6f1b7dc12432303ebb7",
+    "docs/kinetic-energy-chain-v1.md": "dd7a0faba6ac3e06ae20743df836e57fc06d6cc00db19a52106f148ef242543a",
+    "examples/v014/einstein-kinetic-energy-chain.noema": "fe6a88d4ef7b90fdf95ede2d2c061497176fda2542390304b4d83370f01a3cfb",
+    "examples/v014/einstein-material-mass-extension.noema": "4b9ea36c4a600a0eb58f4c2855db3b585659810ccf42faacd35ca195750d0923",
+    "examples/v014/kinetic-energy-chain-core.noema": "3cfc2926879ea2ee3d643f97e2cb715593dab7501cadab163d7f20de58df033a",
+    "examples/v014/kinetic-energy-chain.noema": "89e27ba12cc7edc72eec26916aba1391224de0f75328a64a5d843452021a88ce",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_kinetic_energy_chain.py": "64bade059ab521d44acba1e17038f0ab9ec6208ff08d40832d9d4cbeea5ed9cc",
+    "scripts/check_phi_normalization.py": "1df1ac33cf90beff45ad339a6bbc2f4e8b683d32b1e6e5afbc9e107809f24772",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_quantities.py": "2bea7cb4b3721e5c04f556068bdb2deb892b4c01ce06600033c8d29f33457ed7",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/check_transverse_time.py": "0de0549d26d2bf323634a4c50750c2bb7b293317d837bdfad25dca19b53e88ee",
+    "scripts/compose_convention_comparison.py": "c6bba6a39defdf05366a22776f166b07480b3f37efd540f2de716d17b63f5b77",
+    "scripts/compose_kinetic_energy_chain.py": "3bd00185784117d400325ccb3c155dd765268ac055537274401219b38fb08657",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_situated_criticism.py": "c00e968d90ea41465eec65c2865f8e50ea07377834c7adae1519d18b2e01f80f",
+    "tests/test_kinetic_energy_chain.py": "63be62688a9f385dcc4e3f076529bd17e1887af3ac6435ff293660471395a610"
+  }
+}
