@@ -1,0 +1,491 @@
+{
+  "status": "partial_transverse_deflection_and_response_ratio",
+  "document": "examples/v014/einstein-deflection-ratio.noema",
+  "basis_audits": {
+    "examples/v014/einstein-deflection-ratio.noema": {
+      "primitive_count": 788,
+      "definition_count": 1224,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/deflection-ratio.noema": {
+      "primitive_count": 4,
+      "definition_count": 30,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/deflection-ratio-core.noema": {
+      "primitive_count": 25,
+      "definition_count": 35,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "numeric": {
+    "comparison": {
+      "balanced": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "negative_charge": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "unbalanced": [
+        true,
+        false,
+        true,
+        false,
+        true,
+        false
+      ],
+      "wrong_magnetic_sign": [
+        false,
+        true,
+        false,
+        true,
+        false,
+        true
+      ],
+      "zero_fields": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "rest_with_magnetic_field": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "zero_charge_unbalanced_fields": [
+        true,
+        false,
+        true,
+        false,
+        true,
+        false
+      ],
+      "comoving_force_coefficient_misused": [
+        false,
+        true,
+        false,
+        true,
+        false,
+        true
+      ]
+    },
+    "response": {
+      "calibrated": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "negative_charge": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "common_gain_doubled": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "rest": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "zero_denominator": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "unequal_calibration": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "zero_charge": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "wrong_magnitude": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "light_boundary": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "inverse_values": {
+      "moving": "3",
+      "rest": "0",
+      "unequal_calibration_misleads": "3/2"
+    }
+  },
+  "polynomial": {
+    "balance_means_opposite_accelerations_and_zero_sum": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* va va) (- (* vb vb)))))\n      (a!3 (* ve (+ (* va vf) (- (* vb 0.0)))))\n      (a!4 (* ve (+ (* va 0.0) (- (* vb vg)))))\n      (a!5 (* ve (+ (* va vf) (- (* vb vg))))))\n(let ((a!2 (and (< 0.0 va)\n                (< (* vb vb) (* va va))\n                (< 0.0 vc)\n                (= a!1 (* va va))\n                (< 0.0 vd)\n                (not (> 0.0 vb)))))\n(let ((a!6 (and a!2\n                (= (* (* vd vc) va vh) a!3)\n                a!2\n                (= (* (* vd vc) va vi) a!4)\n                a!2\n                (= (* (* vd vc) va vj) a!5)\n                (< 0.0 va)\n                (not (> 0.0 vb))\n                (< vb va)\n                (not (> 0.0 vf))\n                (not (> 0.0 vg))\n                (= (* va vf) (* vb vg)))))\n  (=> a!6 (and (= vh (- vi)) (= 0.0 vj))))))"
+    },
+    "nonzero_charge_makes_strength_equivalent_to_balance": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* va va) (- (* vb vb)))))\n      (a!3 (* ve (+ (* va vf) (- (* vb 0.0)))))\n      (a!4 (* ve (+ (* va 0.0) (- (* vb vg)))))\n      (a!5 (* ve (+ (* va vf) (- (* vb vg)))))\n      (a!7 (= (= (* vh vh) (* vi vi))\n              (and (< 0.0 va)\n                   (not (> 0.0 vb))\n                   (< vb va)\n                   (not (> 0.0 vf))\n                   (not (> 0.0 vg))\n                   (= (* va vf) (* vb vg))))))\n(let ((a!2 (and (< 0.0 va)\n                (< (* vb vb) (* va va))\n                (< 0.0 vc)\n                (= a!1 (* va va))\n                (< 0.0 vd)\n                (not (> 0.0 vb)))))\n(let ((a!6 (and a!2\n                (= (* (* vd vc) va vh) a!3)\n                a!2\n                (= (* (* vd vc) va vi) a!4)\n                a!2\n                (= (* (* vd vc) va vj) a!5)\n                (not (= 0.0 ve))\n                (not (> 0.0 vf))\n                (not (> 0.0 vg)))))\n  (=> a!6 a!7))))"
+    },
+    "common_response_model_implies_ratio": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* va va) (- (* vb vb))))))\n(let ((a!2 (and (< 0.0 va)\n                (< (* vb vb) (* va va))\n                (< 0.0 vc)\n                (= a!1 (* va va))\n                (< 0.0 vd)\n                (not (> 0.0 vb))\n                (< 0.0 vf)\n                (= (* vf vf) (* ve ve))\n                (< 0.0 vg)\n                (< 0.0 vh)\n                (not (> 0.0 vi))\n                (= (* (* vd vc) vh) (* vg vf))\n                (= (* (* vd vc) (* va vi)) (* (* vg vf) vb)))))\n  (=> a!2\n      (and (< 0.0 va)\n           (not (> 0.0 vb))\n           (< vb va)\n           (< 0.0 vh)\n           (not (> 0.0 vi))\n           (= (* va vi) (* vb vh))))))"
+    },
+    "ratio_identifies_unique_speed": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (< 0.0 va)\n         (not (> 0.0 vb))\n         (< vb va)\n         (< 0.0 vc)\n         (not (> 0.0 vd))\n         (= (* va vd) (* vb vc))\n         (< 0.0 va)\n         (not (> 0.0 ve))\n         (< ve va)\n         (< 0.0 vc)\n         (not (> 0.0 vd))\n         (= (* va vd) (* ve vc)))\n    (= vb ve))"
+    },
+    "equal_strength_means_same_signed_acceleration": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {},
+      "matrix": "(let ((a!1 (* (/ 5.0 4.0) (/ 5.0 4.0) (+ (* 5.0 5.0) (- (* 3.0 3.0)))))\n      (a!3 (* 2.0 (+ (* 5.0 3.0) (- (* 3.0 0.0)))))\n      (a!4 (* 2.0 (+ (* 5.0 0.0) (- (* 3.0 5.0)))))\n      (a!5 (* 2.0 (+ (* 5.0 3.0) (- (* 3.0 5.0))))))\n(let ((a!2 (and (< 0.0 5.0)\n                (< (* 3.0 3.0) (* 5.0 5.0))\n                (< 0.0 (/ 5.0 4.0))\n                (= a!1 (* 5.0 5.0))\n                (< 0.0 2.0)\n                (not (< 3.0 0.0)))))\n(let ((a!6 (and a!2\n                (= (* (* 2.0 (/ 5.0 4.0)) 5.0 (/ 12.0 5.0)) a!3)\n                a!2\n                (= (* (* 2.0 (/ 5.0 4.0)) 5.0 (- (/ 12.0 5.0))) a!4)\n                a!2\n                (= (* (* 2.0 (/ 5.0 4.0)) (* 5.0 0.0)) a!5)\n                (< 0.0 5.0)\n                (not (< 3.0 0.0))\n                (< 3.0 5.0)\n                (not (< 3.0 0.0))\n                (not (< 5.0 0.0))\n                (= (* 5.0 3.0) (* 3.0 5.0)))))\n  (=> a!6 (= (/ 12.0 5.0) (- (/ 12.0 5.0)))))))"
+    },
+    "zero_field_observation_determines_zero_speed": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {},
+      "matrix": "(let ((a!1 (* (/ 5.0 4.0) (/ 5.0 4.0) (+ (* 5.0 5.0) (- (* 3.0 3.0)))))\n      (a!2 (* 2.0 (+ (* 5.0 0.0) (- (* 3.0 0.0))))))\n(let ((a!3 (and (< 0.0 5.0)\n                (< (* 3.0 3.0) (* 5.0 5.0))\n                (< 0.0 (/ 5.0 4.0))\n                (= a!1 (* 5.0 5.0))\n                (< 0.0 2.0)\n                (not (< 3.0 0.0))\n                (= (* 2.0 (/ 5.0 4.0) (* 5.0 0.0)) a!2))))\n  (=> (and a!3 a!3 a!3) (= 3.0 0.0))))"
+    }
+  },
+  "source": {
+    "cases": {
+      "examples/v014/deflection-ratio-core.noema": {
+        "baseline": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "wrong_magnetic_sign": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "unequal_acceleration_strength": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "unequal_response_gain": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "zero_response_denominator": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "negative_charge": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "examples/v014/einstein-deflection-ratio.noema": {
+        "baseline": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "wrong_magnetic_sign": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "unequal_acceleration_strength": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "unequal_response_gain": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "zero_response_denominator": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "negative_charge": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    "instrument_or_measurement_capability_proved": false
+  },
+  "attribution": {
+    "quoted_targets": [
+      [
+        "claim",
+        "setv"
+      ],
+      [
+        "claim",
+        "setw"
+      ],
+      [
+        "reason",
+        "setu",
+        "setv"
+      ]
+    ],
+    "dynamics_or_measurements_executed": false,
+    "response_model_attributed_to_author": false
+  },
+  "source_equation": {
+    "math_id": "M0416",
+    "row": 2,
+    "fractions": [
+      [
+        [
+          "d",
+          "2",
+          "y"
+        ],
+        [
+          "d",
+          "t",
+          "2"
+        ]
+      ],
+      [
+        [
+          "ϵ"
+        ],
+        [
+          "μ"
+        ]
+      ],
+      [
+        [
+          "1"
+        ],
+        [
+          "β"
+        ]
+      ],
+      [
+        [
+          "v"
+        ],
+        [
+          "V"
+        ]
+      ]
+    ],
+    "magnetic_sign": "minus",
+    "source": "electronic_mathml"
+  },
+  "statements_preserved": 191,
+  "new_author_attributions": 3,
+  "roundtrips": true,
+  "cli_parse": true,
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0266",
+        "unit_sha256": "f412331c589805926726124c5193ea7aeb9f254b29e82b1340ebda0e3a4c0da4",
+        "status": "partial_transverse_balance_and_response_ratio",
+        "range": [
+          0,
+          229
+        ],
+        "text": "1. Aus der zweiten Gleichung des Systems (A) folgt, daß eine elektrische Kraft [M0430] und eine magnetische Kraft [M0431] dann gleich stark ablenkend wirken auf ein mit der Geschwindigkeit [M0432] bewegtes Elektron, wenn [M0433].",
+        "definitions": [
+          "setk",
+          "setm",
+          "seto",
+          "setu",
+          "setv"
+        ]
+      },
+      {
+        "unit": "einstein-1905:u0266",
+        "unit_sha256": "f412331c589805926726124c5193ea7aeb9f254b29e82b1340ebda0e3a4c0da4",
+        "status": "partial_transverse_balance_and_response_ratio",
+        "math_id": "M0430",
+        "definitions": [
+          "setu",
+          "setv"
+        ]
+      },
+      {
+        "unit": "einstein-1905:u0266",
+        "unit_sha256": "f412331c589805926726124c5193ea7aeb9f254b29e82b1340ebda0e3a4c0da4",
+        "status": "partial_transverse_balance_and_response_ratio",
+        "math_id": "M0431",
+        "definitions": [
+          "setu",
+          "setv"
+        ]
+      },
+      {
+        "unit": "einstein-1905:u0266",
+        "unit_sha256": "f412331c589805926726124c5193ea7aeb9f254b29e82b1340ebda0e3a4c0da4",
+        "status": "partial_transverse_balance_and_response_ratio",
+        "math_id": "M0432",
+        "definitions": [
+          "setu",
+          "setv"
+        ]
+      },
+      {
+        "unit": "einstein-1905:u0266",
+        "unit_sha256": "f412331c589805926726124c5193ea7aeb9f254b29e82b1340ebda0e3a4c0da4",
+        "status": "partial_transverse_balance_and_response_ratio",
+        "math_id": "M0433",
+        "definitions": [
+          "setu",
+          "setv"
+        ]
+      },
+      {
+        "unit": "einstein-1905:u0266",
+        "unit_sha256": "f412331c589805926726124c5193ea7aeb9f254b29e82b1340ebda0e3a4c0da4",
+        "status": "partial_transverse_balance_and_response_ratio",
+        "math_id": "M0434",
+        "definitions": [
+          "setw"
+        ]
+      },
+      {
+        "unit": "einstein-1905:u0266",
+        "unit_sha256": "f412331c589805926726124c5193ea7aeb9f254b29e82b1340ebda0e3a4c0da4",
+        "status": "partial_transverse_balance_and_response_ratio",
+        "math_id": "M0435",
+        "definitions": [
+          "setw"
+        ]
+      },
+      {
+        "unit": "einstein-1905:u0267",
+        "unit_sha256": "146c9cf8107cae9d5898245f70521f04dadd1f42dd29bfd75c72ae07403a5ffc",
+        "math_id": "M0436",
+        "status": "partial_response_ratio_with_nonzero_denominator",
+        "definitions": [
+          "sets",
+          "setw"
+        ]
+      }
+    ]
+  },
+  "physical_deflectability_and_measurement_method_completed": false,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "artifacts/mass-coefficients-v1/page-920.jpg": "59b11de47bd5c77b23bf3c3d38ff86287c101c91eafc3450c34ecf0113864386",
+    "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
+    "data/deflection-ratio-basis-v1.json": "5871c00e7f307958100830040319448efde9baab9ca64d9df433644d68e3a139",
+    "data/deflection-ratio-core-basis-v1.json": "e29777295b4e42af9798b6523168947c469c0df3d2b7db6edfb7e01d27679d65",
+    "data/deflection-ratio-reading-v1.json": "8da11e54115e45a515e8cb22170b00c762556796f3af3008d0caa1bf21989604",
+    "data/einstein-deflection-ratio-basis-v1.json": "ab2c45936efc78a19f9d36819e3a8ffbe4cf55134888656c98827fbd575dcf14",
+    "data/einstein-material-energy-extension-basis-v1.json": "521d3614997a19b2f0395d7c7becddd44f87f7402b69e72336708d296bc702db",
+    "docs/deflection-ratio-v1.md": "bc894ebc497cc08725f3161b84ddcb42c2ce8a85cd2b58ec2279e7ef45d98ef4",
+    "examples/v014/deflection-ratio-core.noema": "f7a04cfd4618e83fff2974d24fc3cb280cf5e4a44bde59d1b6e4c2b0a9c7c20b",
+    "examples/v014/deflection-ratio.noema": "fc96154390362b1243ec1ccbb9a0ddb047b2ea4633f1817d6397f75fc2850386",
+    "examples/v014/einstein-deflection-ratio.noema": "ed8d263f78ab824c44955c584108430255af9ed5c945c63cc49a95dd08b081cf",
+    "examples/v014/einstein-material-energy-extension.noema": "afe2a8eeb361bdb72b5e05b76cde41df189da9891c2a8ed8e398f641b701d528",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_deflection_ratio.py": "4c4d93b004aa49cad179dfb910500e3b100d522ef26adf17bfb325619c5133f8",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_phi_normalization.py": "1df1ac33cf90beff45ad339a6bbc2f4e8b683d32b1e6e5afbc9e107809f24772",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_quantities.py": "2bea7cb4b3721e5c04f556068bdb2deb892b4c01ce06600033c8d29f33457ed7",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/compose_convention_comparison.py": "c6bba6a39defdf05366a22776f166b07480b3f37efd540f2de716d17b63f5b77",
+    "scripts/compose_deflection_ratio.py": "32ffbd6d416838d0140315cba6554ef044ee9e9e180eae8918e26bf6ef0a9892",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_situated_criticism.py": "c00e968d90ea41465eec65c2865f8e50ea07377834c7adae1519d18b2e01f80f",
+    "tests/test_deflection_ratio.py": "b063a9ab5d15a64e74612709cac6075b5a609d55f458baf9b48a4e0918de78e3"
+  }
+}
