@@ -1,0 +1,290 @@
+{
+  "status": "partial_density_formula_with_shared_coordinate_units",
+  "document": "examples/v014/einstein-density-units.noema",
+  "basis_audits": {
+    "examples/v014/einstein-density-units.noema": {
+      "primitive_count": 890,
+      "definition_count": 1301,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/density-units-manuscript.noema": {
+      "primitive_count": 32,
+      "definition_count": 81,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "structure": {
+    "changed_arguments": [
+      "lengthunit",
+      "timeunit"
+    ],
+    "all_206_statements_retained": true,
+    "other_205_statements_identical": true,
+    "declarations_identical": true,
+    "old_unit_references_unreachable_from_revised_statement": true,
+    "source_guard_is_actual_srd": true,
+    "frame_placement_still_external": true
+  },
+  "routing": {
+    "previous": [
+      {
+        "boundary": "seou",
+        "timeunit": "zqj"
+      },
+      {
+        "boundary": "seoy",
+        "lengthunit": "zqi",
+        "timeunit": "zqj",
+        "chargeunit": "zqk"
+      },
+      {
+        "boundary": "seou",
+        "timeunit": "zqj"
+      },
+      {
+        "boundary": "seoy",
+        "lengthunit": "zqi",
+        "timeunit": "zqj",
+        "chargeunit": "zqk"
+      }
+    ],
+    "revised": [
+      {
+        "boundary": "seou",
+        "timeunit": "rb"
+      },
+      {
+        "boundary": "seoy",
+        "lengthunit": "ta",
+        "timeunit": "rb",
+        "chargeunit": "zqk"
+      },
+      {
+        "boundary": "seou",
+        "timeunit": "rb"
+      },
+      {
+        "boundary": "seoy",
+        "lengthunit": "ta",
+        "timeunit": "rb",
+        "chargeunit": "zqk"
+      }
+    ],
+    "previous_with_explicit_aliases": [
+      {
+        "boundary": "seou",
+        "timeunit": "rb"
+      },
+      {
+        "boundary": "seoy",
+        "lengthunit": "ta",
+        "timeunit": "rb",
+        "chargeunit": "zqk"
+      },
+      {
+        "boundary": "seou",
+        "timeunit": "rb"
+      },
+      {
+        "boundary": "seoy",
+        "lengthunit": "ta",
+        "timeunit": "rb",
+        "chargeunit": "zqk"
+      }
+    ],
+    "abstracted_boundaries": [
+      "sedi",
+      "seou",
+      "seoy",
+      "seof"
+    ],
+    "physical_density_law_evaluated": false
+  },
+  "arithmetic": {
+    "rational_proofs": {
+      "common_positive_speed_scale": {
+        "status": "valid",
+        "reason": "No real counterexample; therefore no rational counterexample",
+        "counterexample": null,
+        "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!2 (+ (* (* vd va) (* vd va)) (- (* (* vd vb) (* vd vb))))))\n(let ((a!3 (and (< 0.0 (* vd va))\n                (< (* (* vd vb) (* vd vb)) (* (* vd va) (* vd va)))\n                (< 0.0 vc)\n                (= (* (* vc vc) a!2) (* (* vd va) (* vd va))))))\n(let ((a!4 (= (and (< 0.0 va)\n                   (< (* vb vb) (* va va))\n                   (< 0.0 vc)\n                   (= a!1 (* va va)))\n              a!3)))\n  (=> (< 0.0 vd) a!4))))"
+      },
+      "only_relative_speed_scaled": {
+        "status": "invalid",
+        "reason": "Exact rational counterexample",
+        "counterexample": {
+          "va": "5",
+          "vb": "3",
+          "vc": "5/4",
+          "vd": "4/3"
+        },
+        "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!2 (+ (* va va) (- (* (* vd vb) (* vd vb))))))\n(let ((a!3 (and (< 0.0 va)\n                (< (* (* vd vb) (* vd vb)) (* va va))\n                (< 0.0 vc)\n                (= (* (* vc vc) a!2) (* va va)))))\n  (=> (and (< 0.0 vd)\n           (< 0.0 va)\n           (< (* vb vb) (* va va))\n           (< 0.0 vc)\n           (= a!1 (* va va))\n           (= 5.0 va)\n           (= 3.0 vb)\n           (= (/ 5.0 4.0) vc)\n           (= (/ 4.0 3.0) vd))\n      a!3)))"
+      }
+    },
+    "real_cut_guard_probes": {
+      "original": {
+        "values": [
+          "5",
+          "3",
+          "5/4"
+        ],
+        "guard": true
+      },
+      "consistent_new_units": {
+        "values": [
+          "20/3",
+          "4",
+          "5/4"
+        ],
+        "guard": true
+      },
+      "mixed_units": {
+        "values": [
+          "5",
+          "4",
+          "5/4"
+        ],
+        "guard": false
+      },
+      "mixed_units_negative_velocity": {
+        "values": [
+          "5",
+          "-4",
+          "5/4"
+        ],
+        "guard": false
+      },
+      "zero_velocity": {
+        "values": [
+          "5",
+          "0",
+          "1"
+        ],
+        "guard": true
+      }
+    },
+    "all_real_scaling_proved": false,
+    "conditional_case_disappearance_is_possible": true,
+    "full_source_content_truth_inferred": false
+  },
+  "attribution": {
+    "cases": [
+      {
+        "present": false,
+        "explain": false,
+        "order": false,
+        "value": false
+      },
+      {
+        "present": false,
+        "explain": false,
+        "order": true,
+        "value": false
+      },
+      {
+        "present": false,
+        "explain": true,
+        "order": false,
+        "value": false
+      },
+      {
+        "present": false,
+        "explain": true,
+        "order": true,
+        "value": false
+      },
+      {
+        "present": true,
+        "explain": false,
+        "order": false,
+        "value": false
+      },
+      {
+        "present": true,
+        "explain": false,
+        "order": true,
+        "value": false
+      },
+      {
+        "present": true,
+        "explain": true,
+        "order": false,
+        "value": false
+      },
+      {
+        "present": true,
+        "explain": true,
+        "order": true,
+        "value": true
+      }
+    ],
+    "old_quote_not_automatically_substituted": true,
+    "physical_content_evaluated": false
+  },
+  "roundtrips": true,
+  "cli_parse": true,
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0236",
+        "unit_sha256": "700edab12dd884549e239b10102360c12af9c69e601aae14d42b2675090c77c7",
+        "math_id": "M0390",
+        "math_sha256": "0d0c8b3b36e1468cf733b0d9dd7281f4db141893557a2a815a235142415f237f",
+        "status": "partial_density_formula_with_shared_coordinate_units",
+        "definitions": [
+          "seoz",
+          "seoy",
+          "seou",
+          "sens"
+        ]
+      }
+    ]
+  },
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
+    "data/density-formula-review-v5.json": "9ce6506a5b597c6e04660597eaae8e58ac5a00224e80673a2739850f9aebe80e",
+    "data/density-formula-review-v6.json": "d190ac4d8fcf667fd41a70cd03b174dd2003be239229175a66b402f953b0c7e9",
+    "data/density-units-manuscript-basis-v1.json": "06ba1379587b9febb77f9c2476727a00ea30cdc55685772d490f0db9fc28623c",
+    "data/einstein-density-units-basis-v1.json": "bc0600140cd161a2603fff8e27b5085da2e1fcbf7075adf44c482f71dc188bdd",
+    "data/einstein-sustained-assistance-basis-v1.json": "35b255f3ec28979e0a61c16bf2c6bd71c613f97c24458c70014e08705a5acbc7",
+    "docs/density-units-v1.md": "c6fa2c38c464a6105fe81e86a4bc07e4f6efc53fed5d88e22ddc414490cb36e3",
+    "examples/v014/density-units-manuscript.noema": "14de1555920f6710efc127d6bf5c5cd32708493f5b2ea19c12ca79f5e80125b9",
+    "examples/v014/einstein-density-units.noema": "14e191411882c535aa65448305b99c5db614d3e15c5eea0e11f61c48720fbb4d",
+    "examples/v014/einstein-sustained-assistance.noema": "fdc7817861e04eca57628420b12b059b9cef29c4177f0538d0a3ad56a7766ccc",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/integration_audit.py": "6babcef120c2d566f6f549f2c9c33a814e03b00a80437e6c8a7a488d4147b8a2",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_density_units.py": "bea25aae6f7254b37cb94d7656344d52cb9fd6d1c57964cc4ad8a201a64ddf07",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_field_equations.py": "22c309a1b342f09c0ac51231a082ff71b26668cae5f019fac7dc08e84c1c051d",
+    "scripts/check_moving_light_trip.py": "fe5659fd79c7ff393173b952674509c58864145f685a8130312218c31a268be3",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/compose_additive_charge.py": "9b511fd4f0fda55f4cc084405637d391d47376e5608e4772d9886e99fd91231f",
+    "scripts/compose_density_interpretation.py": "b2a18a91c60acf48e2ece22f4d8da88b2ed7d3c12cc6c2d858a32f119dd3a45d",
+    "scripts/compose_density_units.py": "5c63667344da5c4bf4b12ebcb324938cee2f7d9d6d63d7e276ba5f7f5d3bcb8d",
+    "scripts/compose_emitted_light.py": "b08c6aa00bf0a74d87a34e49134af915dffa4dad98d14d23882b75e621221528",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_local_density.py": "df4e685973d8ce46a582f9015a0c029522293fb92ce1a58e3398eb102c6824fd",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_roundtrip_speed.py": "94a29366241f1ff5503a5f9f600df2a3f2d3448578e6d4e523693eff228bcaa3",
+    "tests/test_density_units.py": "aeab9e00073b709b25867c2ef40b364b8b4d090c632334858b4790ced9f2a34a"
+  }
+}

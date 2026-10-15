@@ -1,0 +1,274 @@
+{
+  "version": "density-formula-review-v6",
+  "work": "einstein-1905",
+  "unit": "einstein-1905:u0236",
+  "math_id": "M0390",
+  "facsimile_record": "data/density-boost-facsimile-v1.json",
+  "document": "examples/v014/density-units-manuscript.noema",
+  "definition": "sens",
+  "derivative_connection": "sent",
+  "source_role": "equations introduced by the preceding wobei",
+  "parameter_bindings": [
+    {
+      "index": 0,
+      "source": "V",
+      "meaning": "light speed"
+    },
+    {
+      "index": 1,
+      "source": "v",
+      "meaning": "signed relative frame speed"
+    },
+    {
+      "index": 2,
+      "source": "β",
+      "meaning": "positive boost normalization"
+    },
+    {
+      "index": 3,
+      "source": "ϱ",
+      "meaning": "old normalized electric density"
+    },
+    {
+      "index": 4,
+      "source": "u_x",
+      "meaning": "old longitudinal velocity"
+    },
+    {
+      "index": 5,
+      "source": "u_y",
+      "meaning": "old second velocity component"
+    },
+    {
+      "index": 6,
+      "source": "u_z",
+      "meaning": "old third velocity component"
+    },
+    {
+      "index": 7,
+      "source": "ϱ′",
+      "meaning": "one shared new normalized density"
+    },
+    {
+      "index": 8,
+      "source": "u_ξ",
+      "meaning": "new longitudinal velocity"
+    },
+    {
+      "index": 9,
+      "source": "u_η",
+      "meaning": "new second velocity component"
+    },
+    {
+      "index": 10,
+      "source": "u_ζ",
+      "meaning": "new third velocity component"
+    },
+    {
+      "index": 11,
+      "source": "derivatives of X′, Y′, Z′",
+      "meaning": "new electric derivative table"
+    }
+  ],
+  "source_relations": [
+    {
+      "id": "velocity_longitudinal",
+      "formula": "u_ξ = (u_x-v)/(1-u_x*v/V^2)",
+      "output_parameter": 8,
+      "input_parameters": [
+        0,
+        1,
+        4
+      ]
+    },
+    {
+      "id": "velocity_second",
+      "formula": "u_η = u_y/(β*(1-u_x*v/V^2))",
+      "output_parameter": 9,
+      "input_parameters": [
+        0,
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "velocity_third",
+      "formula": "u_ζ = u_z/(β*(1-u_x*v/V^2))",
+      "output_parameter": 10,
+      "input_parameters": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": "density_divergence",
+      "formula": "ϱ′ = ∂X′/∂ξ + ∂Y′/∂η + ∂Z′/∂ζ",
+      "output_parameter": 7,
+      "input_parameters": [
+        11
+      ]
+    },
+    {
+      "id": "density_boost",
+      "formula": "ϱ′ = β*(1-v*u_x/V^2)*ϱ",
+      "output_parameter": 7,
+      "input_parameters": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "source_form",
+      "status": "checked",
+      "evidence": "M0390 hash and existing original-page comparison; five relations listed above",
+      "limit": "The original-page record checks tokens, not whole-unit semantics."
+    },
+    {
+      "id": "algebraic_scope",
+      "status": "checked",
+      "evidence": "Bidirectional rational equivalence against a common reciprocal of 1-u_x*v/V^2",
+      "limit": "Relative to explicit beta normalization and nonzero denominators."
+    },
+    {
+      "id": "shared_density",
+      "status": "checked",
+      "evidence": "Both density relations use parameter 7; scalar and derivative mutations are tested",
+      "limit": "Does not identify the physical material or event."
+    },
+    {
+      "id": "derivative_referents",
+      "status": "checked",
+      "evidence": "sent binds each diagonal to the same field, region, point and corresponding axis",
+      "limit": "Finite affine-function oracle tests the connection, not all real derivatives."
+    },
+    {
+      "id": "unwanted_premises",
+      "status": "checked",
+      "evidence": "The isolated formula executes no old field equation, magnetic condition or irrelevant derivative",
+      "limit": "Beta normalization and denominator conditions are retained explicitly."
+    },
+    {
+      "id": "source_context_bindings",
+      "status": "structurally_connected_in_revised_reading",
+      "evidence": "The authored quotation retains seoz and the same twelve other arguments, while lengthunit/timeunit now refer to ta/rb already used for the light-speed reading tc.",
+      "limit": "Electrical meaning, frame placement and calibration remain incomplete; independent new unit referents are no longer used by this quotation."
+    },
+    {
+      "id": "discourse_role",
+      "status": "structurally_connected_in_revised_reading",
+      "evidence": "The seny attribution has the same five discourse arguments and a revised seoz quotation.",
+      "limit": "This is a separately versioned source reading, not an inference of attitude substitution from extensional equivalence."
+    },
+    {
+      "id": "concept_grounding",
+      "status": "open",
+      "evidence": "Compositional density, velocity and signed totals use the same earlier coordinate length/time units. Charge, field and frame conventions still need explanation.",
+      "limit": "Electrical action, units and the relationship of the chosen point/distribution model to the source remain incomplete."
+    },
+    {
+      "id": "source_truth",
+      "status": "not_a_translation_gate",
+      "evidence": "The review asks whether the source claim is represented, not whether electrodynamics is empirically true",
+      "limit": "Arithmetic and language-operator interpretation still need justification."
+    },
+    {
+      "id": "meaning_expansion_in_statement",
+      "status": "connected_in_revised_reading",
+      "evidence": "The actual authored statement now refers through seoz to additive charge, local density and material coordinate velocity.",
+      "limit": "Connection does not prove that the strengthened interpretation covers exactly the source cases."
+    },
+    {
+      "id": "interpretation_conservativity",
+      "status": "open",
+      "evidence": "Sufficient conditions still require the pi condition and bidirectional assignment agreement. The revised assignment additionally checks same-event coordinate time against the charge-content clock; this corrects a previously unenforced meaning convention.",
+      "limit": "Missing derivative/density cases may make a conditional law vacuously true; an invalid pi may make the new content false."
+    },
+    {
+      "id": "density_charge_time_connection",
+      "status": "structurally_connected_with_counterexample_check",
+      "evidence": "seoy requires seox on the same density tuple; seoz supplies the same clock to seoy and seou. The original source attribution changes only its quoted content symbol.",
+      "limit": "Instantiated coordinate probes and a zero-total adapter example are not a proof over the full spatial domain or of source equivalence."
+    },
+    {
+      "id": "coordinate_witness_coherence",
+      "status": "proved_conditionally_from_existing_premises",
+      "evidence": "The actual seoc/seob/senz/seox conjuncts imply coordinate agreement for any valid same-event target. The density and source-case points have the required shared bindings.",
+      "limit": "No premise existence, empirical truth, cross-frame equality, event identity, or complete source equivalence is certified."
+    },
+    {
+      "id": "coordinate_unit_basis",
+      "status": "connected_in_revised_reading",
+      "evidence": "Only two arguments in statement 174 change: zqi/zqj become ta/rb. Actual seoz calls route rb to seou and ta/rb to seoy. Rational scaling contrasts expose the effect of mixing speed bases.",
+      "limit": "Routing uses declared boundary abstractions. Finite cut probes and rational identities do not prove the full density law, source equivalence or physical calibration."
+    },
+    {
+      "id": "whole_unit_decision",
+      "status": "open",
+      "evidence": "The coordinate unit basis is now linked to the earlier light-speed basis; source-case coverage, added conditions and remaining basic meanings still need review.",
+      "limit": "No semantic-completion count is authorized."
+    }
+  ],
+  "semantic_completion": false,
+  "review_kind": "source_unit_obligations_not_a_completion_certificate",
+  "supersedes": "data/density-formula-review-v5.json",
+  "source_document": "examples/v014/einstein-density-units.noema",
+  "source_statement_index": 174,
+  "extracted_statement_index": 0,
+  "integrated_symbols": [
+    "seny",
+    "seoz",
+    "seoy",
+    "seox",
+    "seou",
+    "seom",
+    "seof",
+    "seoe",
+    "seoc",
+    "senx",
+    "senv",
+    "sent",
+    "sens"
+  ],
+  "available_not_in_source_statement": [],
+  "evidence_reports": [
+    "reports/density-referents-v1.json",
+    "reports/equation-presentation-v1.json",
+    "reports/material-velocity-v1.json",
+    "reports/local-density-v1.json",
+    "reports/additive-charge-v1.json",
+    "reports/density-interpretation-v1.json",
+    "reports/density-time-v1.json",
+    "reports/coordinate-witnesses-v1.json",
+    "reports/density-units-v1.json"
+  ],
+  "basis_caveat_policy": "All ancestral caveats remain in the extracted basis; this packet scopes relevant obligations without clearing unrelated caveats.",
+  "original_assignment": "zqd",
+  "revised_content": "seoz",
+  "fixed_bindings": {
+    "light": "tc",
+    "electricassigned": "zqe",
+    "frames": "zqf",
+    "distribution": "zqg",
+    "pi": "zqh",
+    "lengthunit": "ta",
+    "timeunit": "rb",
+    "chargeunit": "zqk",
+    "measured": "zql",
+    "chartunits": "zqm",
+    "member": "zqn",
+    "clock": "zqo",
+    "domains": "zqp",
+    "totals": "zqq"
+  },
+  "equivalence_to_previous_reading_proven": false
+}
