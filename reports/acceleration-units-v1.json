@@ -1,0 +1,288 @@
+{
+  "status": "partial_acceleration_unit_and_record_binding",
+  "document": "examples/v014/einstein-acceleration-units.noema",
+  "basis_audits": {
+    "examples/v014/einstein-acceleration-units.noema": {
+      "primitive_count": 673,
+      "definition_count": 1131,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/acceleration-units.noema": {
+      "primitive_count": 5,
+      "definition_count": 15,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/acceleration-units-core.noema": {
+      "primitive_count": 27,
+      "definition_count": 43,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "numerical_checks": {
+    "scaled": [
+      true,
+      true,
+      true
+    ],
+    "negative_acceleration": [
+      true,
+      true,
+      true
+    ],
+    "zero": [
+      true,
+      true,
+      true
+    ],
+    "coherent_units": [
+      true,
+      true,
+      true
+    ],
+    "time_not_squared": [
+      false,
+      false,
+      false
+    ],
+    "inverse_scale_direction": [
+      false,
+      false,
+      false
+    ],
+    "raw_coordinate_used_as_reading": [
+      false,
+      false,
+      false
+    ],
+    "lost_sign": [
+      false,
+      false,
+      false
+    ],
+    "zero_length_at_zero_input": [
+      false,
+      false,
+      false
+    ],
+    "zero_time_at_zero_input": [
+      false,
+      false,
+      false
+    ],
+    "negative_time": [
+      false,
+      false,
+      false
+    ],
+    "negative_acceleration_unit": [
+      false,
+      false,
+      false
+    ]
+  },
+  "polynomial_checks": {
+    "converted_reading_is_unique": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (and (< 0.0 va)\n                (< 0.0 vb)\n                (< 0.0 vc)\n                (= (* ve vc (* vb vb)) (* vd va))\n                (< 0.0 va)\n                (< 0.0 vb)\n                (< 0.0 vc)\n                (= (* vf vc (* vb vb)) (* vd va)))))\n  (=> a!1 (= ve vf)))"
+    },
+    "zero_preserved_in_both_directions": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (< 0.0 va) (< 0.0 vb) (< 0.0 vc) (= (* ve vc vb vb) (* vd va)))\n    (= (= 0.0 vd) (= 0.0 ve)))"
+    },
+    "positive_reading_preserves_orientation": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(=> (and (< 0.0 va) (< 0.0 vb) (< 0.0 vc) (= (* ve vc vb vb) (* vd va)))\n    (= (< 0.0 vd) (< 0.0 ve)))"
+    },
+    "coherent_scale_recovers_same_number": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (and (< 0.0 va)\n                (< 0.0 vb)\n                (< 0.0 vc)\n                (= (* ve vc (* vb vb)) (* vd va))\n                (= va (* vc (* vb vb))))))\n  (=> a!1 (= vd ve)))"
+    },
+    "consecutive_conversions_compose": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (and (< 0.0 (* va vd))\n                (< 0.0 (* vb ve))\n                (< 0.0 (* vc vf))\n                (= (* vi (* vc vf) (* vb ve) (* vb ve)) (* vg (* va vd))))))\n  (=> (and (< 0.0 va)\n           (< 0.0 vb)\n           (< 0.0 vc)\n           (= (* vh vc vb vb) (* vg va))\n           (< 0.0 vd)\n           (< 0.0 ve)\n           (< 0.0 vf)\n           (= (* vi vf ve ve) (* vh vd)))\n      a!1))"
+    },
+    "one_power_of_time_would_suffice": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {
+        "va": "1",
+        "vb": "1/4",
+        "vc": "1",
+        "vd": "-1",
+        "ve": "-16"
+      },
+      "matrix": "(let ((a!1 (and (< 0.0 va)\n                (< 0.0 vb)\n                (< 0.0 vc)\n                (= (* (* ve vc) vb vb) (* vd va)))))\n  (=> a!1 (= (* (* ve vc) vb) (* vd va))))"
+    }
+  },
+  "physical_checks": {
+    "cases": {
+      "examples/v014/acceleration-units-core.noema:False": {
+        "baseline": true,
+        "unconverted_reading": false,
+        "linear_time_scale": false,
+        "zero_time_scale": false,
+        "velocity_dimension": false,
+        "same_dimension_axes": false,
+        "wrong_lengthunit": false,
+        "wrong_timeunit": false,
+        "wrong_scale_record": false,
+        "missing_bridge": false,
+        "wrong_coefficient": false,
+        "wrong_forceunit": false,
+        "wrong_accelerationunit": false,
+        "wrong_frame": false,
+        "wrong_event": false,
+        "force_record_mismatch": false,
+        "fake_velocity_field": false
+      },
+      "examples/v014/acceleration-units-core.noema:True": {
+        "baseline": true,
+        "unconverted_reading": false,
+        "linear_time_scale": false,
+        "zero_time_scale": false,
+        "velocity_dimension": false,
+        "same_dimension_axes": false,
+        "wrong_lengthunit": false,
+        "wrong_timeunit": false,
+        "wrong_scale_record": false,
+        "missing_bridge": false,
+        "wrong_coefficient": false,
+        "wrong_forceunit": false,
+        "wrong_accelerationunit": false,
+        "wrong_frame": false,
+        "wrong_event": false,
+        "force_record_mismatch": false,
+        "fake_velocity_field": false
+      },
+      "examples/v014/einstein-acceleration-units.noema:True": {
+        "baseline": true,
+        "unconverted_reading": false,
+        "linear_time_scale": false,
+        "zero_time_scale": false,
+        "velocity_dimension": false,
+        "same_dimension_axes": false,
+        "wrong_lengthunit": false,
+        "wrong_timeunit": false,
+        "wrong_scale_record": false,
+        "missing_bridge": false,
+        "wrong_coefficient": false,
+        "wrong_forceunit": false,
+        "wrong_accelerationunit": false,
+        "wrong_frame": false,
+        "wrong_event": false,
+        "force_record_mismatch": false,
+        "fake_velocity_field": false
+      }
+    },
+    "whole_history_bridge_is_explicit_premise": true,
+    "registered_rational_scales_and_readings_only": true,
+    "real_chain_rule_proved": false
+  },
+  "bridge_probes": {
+    "actual_bridge_body_at_one_time": {
+      "baseline": true,
+      "missing_unit_coordinates": false,
+      "wrong_lengthunit": false,
+      "wrong_timeunit": false
+    },
+    "whole_history_not_certified": true
+  },
+  "rational_adapter_witnesses": {
+    "(2, 2)": true,
+    "(3, 3)": false,
+    "(2, 3)": false,
+    "(-2, -2)": false
+  },
+  "refusals": {
+    "whole_history": "Cannot finitely quantify the rational number domain",
+    "unknown_units": "Unit calibration interpretation missing",
+    "unknown_bridge": "Whole-history unit bridge interpretation missing",
+    "adapter_rational_witness_search": "Cannot finitely quantify the rational number domain"
+  },
+  "statements_preserved": 176,
+  "new_primitives": 0,
+  "roundtrips": true,
+  "cli_parse": true,
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0255",
+        "unit_sha256": "3b717b64ea019c26d56486326e3006a8a4a3c738e4ea25dd88b7e862f7ae841d",
+        "definitions": [
+          "seps",
+          "sept",
+          "sepu",
+          "sepw",
+          "sepx",
+          "sepy"
+        ],
+        "status": "explicit_interpretive_annotation",
+        "range": [
+          0,
+          44
+        ],
+        "text": "Massenzahl × Beschleunigungszahl = Kraftzahl"
+      }
+    ]
+  },
+  "adds_new_text_coverage": false,
+  "unit_calibration_constructed": false,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "data/acceleration-units-basis-v1.json": "502868917948a8f173b3902c11a9eff6d486d4c48e2153b75d968131dc10030a",
+    "data/acceleration-units-core-basis-v1.json": "271c0f1d8dfef7ab60dab02653b9225e7abc06dcb5562784b8a287a95cf9dc41",
+    "data/einstein-acceleration-units-basis-v1.json": "65a880554f4439bcc79fe1082510edad164417bd87dcb15d660c33890a9ab149",
+    "data/einstein-material-acceleration-basis-v1.json": "e1fbe7ed2f89ce9696df98a77ed56480c87a4db0a5b1698c9950907b216efa71",
+    "docs/acceleration-units-v1.md": "a14ba5726ae61484aedb93ca60dddf77bb9b7d36e766be7c39b0258f3be8ceb2",
+    "examples/v014/acceleration-units-core.noema": "beb33a8c82ca12fbf0e4d63e6bef43f77ce2a1278ecec64dac584b6f2c7f4b4b",
+    "examples/v014/acceleration-units.noema": "b4b36e8b1bca665ae3ec14e77cf4f285a397b4c7e2f90f2c4973479964410af6",
+    "examples/v014/einstein-acceleration-units.noema": "75dd36a1067fdaf980ee8866140b4201cebc79104671573cf3f0d04f5a1c6140",
+    "examples/v014/einstein-material-acceleration.noema": "3a49c6e62c279f554cb6cc049df41978978f12b64737e802aeba263c3141c6d7",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/rational_proofs.py": "3ca1c888b153ccdc360b314b38dd6aec3e0dad6c48899c2f94cab43a31bc9f37",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "reports/material-acceleration-v1.json": "3938c96464850e697778e70f8e1f8ac6a50def778ae2920f944b139159f2f3fe",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/check_acceleration_units.py": "f690c34a5ea2a5a0b93bdd71fef2008b23d99deefe613ee6c9a4385d5460d867",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_material_acceleration.py": "22cf84f176987309d78cd61ed3c3cbc4b2ee1550872e37186fa93b028c40e8d4",
+    "scripts/check_phi_normalization.py": "1df1ac33cf90beff45ad339a6bbc2f4e8b683d32b1e6e5afbc9e107809f24772",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_quantities.py": "2bea7cb4b3721e5c04f556068bdb2deb892b4c01ce06600033c8d29f33457ed7",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/check_transverse_time.py": "0de0549d26d2bf323634a4c50750c2bb7b293317d837bdfad25dca19b53e88ee",
+    "scripts/compose_acceleration_units.py": "a18769fa19c641fad614c70bb235ac2048481716e484e322a0f54ac3dc486861",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_material_acceleration.py": "90d450e503755759d4c97580ddc6ee942de2f5d539eae751fe65beb3f01b5250",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_situated_criticism.py": "c00e968d90ea41465eec65c2865f8e50ea07377834c7adae1519d18b2e01f80f",
+    "tests/test_acceleration_units.py": "d531f7c9f279f248f9fa66b2917b77e709caa98e63e2252b7c13b46846373f3b"
+  }
+}
