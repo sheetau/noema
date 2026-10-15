@@ -1,0 +1,510 @@
+{
+  "status": "partial_calibrated_material_energy_extension",
+  "document": "examples/v014/einstein-material-energy-extension.noema",
+  "basis_audits": {
+    "examples/v014/einstein-material-energy-extension.noema": {
+      "primitive_count": 775,
+      "definition_count": 1208,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/material-energy-extension.noema": {
+      "primitive_count": 4,
+      "definition_count": 25,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/material-energy-extension-core.noema": {
+      "primitive_count": 37,
+      "definition_count": 32,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "numeric": {
+    "calibrated": [
+      true,
+      true,
+      true
+    ],
+    "coherent_units": [
+      true,
+      true,
+      true
+    ],
+    "mass_unit_rescaled": [
+      true,
+      true,
+      true
+    ],
+    "speed_unit_rescaled": [
+      true,
+      true,
+      true
+    ],
+    "energy_unit_rescaled": [
+      true,
+      true,
+      true
+    ],
+    "at_rest": [
+      true,
+      true,
+      true
+    ],
+    "ignores_unit_scales": [
+      false,
+      false,
+      false
+    ],
+    "energy_scale_wrong_direction": [
+      false,
+      false,
+      false
+    ],
+    "rest_energy_included": [
+      false,
+      false,
+      false
+    ],
+    "light_boundary": [
+      false,
+      false,
+      false
+    ],
+    "zero_mass": [
+      false,
+      false,
+      false
+    ],
+    "zero_energy_scale": [
+      false,
+      false,
+      false
+    ],
+    "negative_speed_scale": [
+      false,
+      false,
+      false
+    ]
+  },
+  "polynomial": {
+    "coherent_units_recover_original_expression": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (+ (* (* va vg) (* va vg)) (- (* (* vb vg) (* vb vg)))))\n      (a!2 (= (* ve vh) (* (* vd vf) (* (* va vg) (* va vg)) (+ vc (- 1.0)))))\n      (a!4 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!5 (= ve (* vd (* va va) (+ vc (- 1.0))))))\n(let ((a!3 (and (< 0.0 vf)\n                (< 0.0 vg)\n                (< 0.0 vh)\n                (< 0.0 (* va vg))\n                (< (* (* vb vg) (* vb vg)) (* (* va vg) (* va vg)))\n                (< 0.0 vc)\n                (= (* (* vc vc) a!1) (* (* va vg) (* va vg)))\n                (< 0.0 (* vd vf))\n                (not (> 0.0 (* vb vg)))\n                a!2\n                (= vh (* vf vg vg)))))\n  (=> a!3\n      (and (< 0.0 va)\n           (< (* vb vb) (* va va))\n           (< 0.0 vc)\n           (= a!4 (* va va))\n           (< 0.0 vd)\n           (not (> 0.0 vb))\n           a!5))))"
+    },
+    "same_mass_under_new_unit": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (+ (* (* va vg) (* va vg)) (- (* (* vb vg) (* vb vg)))))\n      (a!3 (* (* (* va vg) (* va vg)) (+ vc (- 1.0)))))\n(let ((a!2 (and (< 0.0 (* va vg))\n                (< (* (* vb vg) (* vb vg)) (* (* va vg) (* va vg)))\n                (< 0.0 vc)\n                (= (* vc vc a!1) (* (* va vg) (* va vg))))))\n(let ((a!4 (and (< 0.0 vf)\n                (< 0.0 vg)\n                (< 0.0 vh)\n                a!2\n                (< 0.0 (* vd vf))\n                (not (> 0.0 (* vb vg)))\n                (= (* ve vh) (* (* vd vf) a!3))\n                (< 0.0 vj)\n                (= (* vd vf) (* vi vj))))\n      (a!5 (and (< 0.0 vj)\n                (< 0.0 vg)\n                (< 0.0 vh)\n                a!2\n                (< 0.0 (* vi vj))\n                (not (> 0.0 (* vb vg)))\n                (= (* ve vh) (* (* vi vj) a!3)))))\n  (=> a!4 a!5))))"
+    },
+    "same_energy_under_new_unit": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (+ (* (* va vg) (* va vg)) (- (* (* vb vg) (* vb vg)))))\n      (a!3 (* (* vd vf) (* (* va vg) (* va vg)) (+ vc (- 1.0)))))\n(let ((a!2 (and (< 0.0 (* va vg))\n                (< (* (* vb vg) (* vb vg)) (* (* va vg) (* va vg)))\n                (< 0.0 vc)\n                (= (* vc vc a!1) (* (* va vg) (* va vg))))))\n(let ((a!4 (and (< 0.0 vf)\n                (< 0.0 vg)\n                (< 0.0 vh)\n                a!2\n                (< 0.0 (* vd vf))\n                (not (> 0.0 (* vb vg)))\n                (= (* ve vh) a!3)\n                (< 0.0 vj)\n                (= (* ve vh) (* vi vj))))\n      (a!5 (and (< 0.0 vf)\n                (< 0.0 vg)\n                (< 0.0 vj)\n                a!2\n                (< 0.0 (* vd vf))\n                (not (> 0.0 (* vb vg)))\n                (= (* vi vj) a!3))))\n  (=> a!4 a!5))))"
+    },
+    "same_light_and_speed_under_new_unit": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (+ (* (* va vg) (* va vg)) (- (* (* vb vg) (* vb vg)))))\n      (a!2 (= (* ve vh) (* (* vd vf) (* (* va vg) (* va vg)) (+ vc (- 1.0)))))\n      (a!4 (+ (* (* vi vk) (* vi vk)) (- (* (* vj vk) (* vj vk)))))\n      (a!5 (= (* ve vh) (* (* vd vf) (* (* vi vk) (* vi vk)) (+ vc (- 1.0))))))\n(let ((a!3 (and (< 0.0 vf)\n                (< 0.0 vg)\n                (< 0.0 vh)\n                (< 0.0 (* va vg))\n                (< (* (* vb vg) (* vb vg)) (* (* va vg) (* va vg)))\n                (< 0.0 vc)\n                (= (* (* vc vc) a!1) (* (* va vg) (* va vg)))\n                (< 0.0 (* vd vf))\n                (not (> 0.0 (* vb vg)))\n                a!2\n                (< 0.0 vk)\n                (= (* va vg) (* vi vk))\n                (= (* vb vg) (* vj vk))))\n      (a!6 (and (< 0.0 vf)\n                (< 0.0 vk)\n                (< 0.0 vh)\n                (< 0.0 (* vi vk))\n                (< (* (* vj vk) (* vj vk)) (* (* vi vk) (* vi vk)))\n                (< 0.0 vc)\n                (= (* (* vc vc) a!4) (* (* vi vk) (* vi vk)))\n                (< 0.0 (* vd vf))\n                (not (> 0.0 (* vj vk)))\n                a!5)))\n  (=> a!3 a!6)))"
+    },
+    "raw_numbers_always_obey_unscaled_expression": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {},
+      "matrix": "(let ((a!1 (+ (* (* 5.0 2.0) (* 5.0 2.0)) (- (* (* 3.0 2.0) (* 3.0 2.0)))))\n      (a!2 (= (* (/ 225.0 4.0) 4.0)\n              (* (* 3.0 3.0)\n                 (* (* 5.0 2.0) (* 5.0 2.0))\n                 (+ (/ 5.0 4.0) (- 1.0)))))\n      (a!4 (* (* (/ 5.0 4.0) (/ 5.0 4.0)) (+ (* 5.0 5.0) (- (* 3.0 3.0)))))\n      (a!5 (= (/ 225.0 4.0) (* 3.0 (* 5.0 5.0) (+ (/ 5.0 4.0) (- 1.0))))))\n(let ((a!3 (and (< 0.0 3.0)\n                (< 0.0 2.0)\n                (< 0.0 4.0)\n                (< 0.0 (* 5.0 2.0))\n                (< (* (* 3.0 2.0) (* 3.0 2.0)) (* (* 5.0 2.0) (* 5.0 2.0)))\n                (< 0.0 (/ 5.0 4.0))\n                (= (* (* (/ 5.0 4.0) (/ 5.0 4.0)) a!1)\n                   (* (* 5.0 2.0) (* 5.0 2.0)))\n                (< 0.0 (* 3.0 3.0))\n                (not (> 0.0 (* 3.0 2.0)))\n                a!2)))\n  (=> a!3\n      (and (< 0.0 5.0)\n           (< (* 3.0 3.0) (* 5.0 5.0))\n           (< 0.0 (/ 5.0 4.0))\n           (= a!4 (* 5.0 5.0))\n           (< 0.0 3.0)\n           (not (< 3.0 0.0))\n           a!5))))"
+    }
+  },
+  "scope": {
+    "cases": {
+      "examples/v014/material-energy-extension.noema": {
+        "baseline": [
+          true,
+          true
+        ],
+        "coherent_units": [
+          true,
+          true
+        ],
+        "mass_unit_rescaled": [
+          true,
+          true
+        ],
+        "speed_unit_rescaled": [
+          true,
+          true
+        ],
+        "energy_unit_rescaled": [
+          true,
+          true
+        ],
+        "bad_second": [
+          true,
+          false
+        ],
+        "unselected_bad": [
+          true,
+          true
+        ],
+        "valid_second_event": [
+          true,
+          true
+        ],
+        "bad_second_event": [
+          true,
+          false
+        ],
+        "wrong_mass_value": [
+          true,
+          false
+        ],
+        "wrong_light_value": [
+          true,
+          false
+        ],
+        "ignores_unit_scales": [
+          false,
+          false
+        ],
+        "light_boundary": [
+          false,
+          false
+        ],
+        "wrong_frame": [
+          false,
+          false
+        ],
+        "wrong_speed_unit": [
+          false,
+          false
+        ],
+        "wrong_light_unit": [
+          false,
+          false
+        ],
+        "missing_calibration": [
+          false,
+          false
+        ],
+        "no_materials": [
+          true,
+          true
+        ],
+        "no_cases": [
+          true,
+          true
+        ],
+        "wrong_kinetic_particle": [
+          false,
+          false
+        ],
+        "wrong_kinetic_frame": [
+          false,
+          false
+        ],
+        "wrong_kinetic_event": [
+          false,
+          false
+        ],
+        "wrong_kinetic_unit": [
+          false,
+          false
+        ],
+        "wrong_kinetic_context": [
+          false,
+          false
+        ]
+      },
+      "examples/v014/material-energy-extension-core.noema": {
+        "baseline": [
+          true,
+          true
+        ],
+        "coherent_units": [
+          true,
+          true
+        ],
+        "mass_unit_rescaled": [
+          true,
+          true
+        ],
+        "speed_unit_rescaled": [
+          true,
+          true
+        ],
+        "energy_unit_rescaled": [
+          true,
+          true
+        ],
+        "bad_second": [
+          true,
+          false
+        ],
+        "unselected_bad": [
+          true,
+          true
+        ],
+        "valid_second_event": [
+          true,
+          true
+        ],
+        "bad_second_event": [
+          true,
+          false
+        ],
+        "wrong_mass_value": [
+          true,
+          false
+        ],
+        "wrong_light_value": [
+          true,
+          false
+        ],
+        "ignores_unit_scales": [
+          false,
+          false
+        ],
+        "light_boundary": [
+          false,
+          false
+        ],
+        "wrong_frame": [
+          false,
+          false
+        ],
+        "wrong_speed_unit": [
+          false,
+          false
+        ],
+        "wrong_light_unit": [
+          false,
+          false
+        ],
+        "missing_calibration": [
+          false,
+          false
+        ],
+        "no_materials": [
+          true,
+          true
+        ],
+        "no_cases": [
+          true,
+          true
+        ],
+        "wrong_kinetic_particle": [
+          false,
+          false
+        ],
+        "wrong_kinetic_frame": [
+          false,
+          false
+        ],
+        "wrong_kinetic_event": [
+          false,
+          false
+        ],
+        "wrong_kinetic_unit": [
+          false,
+          false
+        ],
+        "wrong_kinetic_context": [
+          false,
+          false
+        ]
+      },
+      "examples/v014/einstein-material-energy-extension.noema": {
+        "baseline": [
+          true,
+          true
+        ],
+        "coherent_units": [
+          true,
+          true
+        ],
+        "mass_unit_rescaled": [
+          true,
+          true
+        ],
+        "speed_unit_rescaled": [
+          true,
+          true
+        ],
+        "energy_unit_rescaled": [
+          true,
+          true
+        ],
+        "bad_second": [
+          true,
+          false
+        ],
+        "unselected_bad": [
+          true,
+          true
+        ],
+        "valid_second_event": [
+          true,
+          true
+        ],
+        "bad_second_event": [
+          true,
+          false
+        ],
+        "wrong_mass_value": [
+          true,
+          false
+        ],
+        "wrong_light_value": [
+          true,
+          false
+        ],
+        "ignores_unit_scales": [
+          false,
+          false
+        ],
+        "light_boundary": [
+          false,
+          false
+        ],
+        "wrong_frame": [
+          false,
+          false
+        ],
+        "wrong_speed_unit": [
+          false,
+          false
+        ],
+        "wrong_light_unit": [
+          false,
+          false
+        ],
+        "missing_calibration": [
+          false,
+          false
+        ],
+        "no_materials": [
+          true,
+          true
+        ],
+        "no_cases": [
+          true,
+          true
+        ],
+        "wrong_kinetic_particle": [
+          false,
+          false
+        ],
+        "wrong_kinetic_frame": [
+          false,
+          false
+        ],
+        "wrong_kinetic_event": [
+          false,
+          false
+        ],
+        "wrong_kinetic_unit": [
+          false,
+          false
+        ],
+        "wrong_kinetic_context": [
+          false,
+          false
+        ]
+      }
+    },
+    "unknown_assignment_refused": true,
+    "existence_of_materials_or_cases_inferred": false
+  },
+  "attribution": {
+    "quoted_targets": [
+      [
+        "claim",
+        "seti"
+      ],
+      [
+        "reason",
+        "seqw",
+        "seti"
+      ]
+    ],
+    "charging_or_energy_conditions_executed": false,
+    "energy_law_derived_from_charge_capability": false
+  },
+  "statements_preserved": 189,
+  "new_author_attributions": 2,
+  "roundtrips": true,
+  "cli_parse": true,
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0264",
+        "unit_sha256": "699eba806d32c852413bb191946a2decc2d86ef393a28787e225a1659d6bfa13",
+        "range": [
+          0,
+          126
+        ],
+        "text": "Auch dieser Ausdruck für die kinetische Energie muß dem oben angeführten Argument zufolge ebenso für ponderable Massen gelten.",
+        "status": "partial_scoped_energy_extension_and_reported_reason",
+        "definitions": [
+          "sete",
+          "setf",
+          "setg",
+          "seth",
+          "seti",
+          "seqw"
+        ]
+      }
+    ]
+  },
+  "physical_extension_argument_proved": false,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "artifacts/mass-coefficients-v1/page-920.jpg": "59b11de47bd5c77b23bf3c3d38ff86287c101c91eafc3450c34ecf0113864386",
+    "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
+    "data/einstein-energy-boundary-basis-v1.json": "f01760be193201c970e495238ca301c478e036a50cb122fc69e4171815b6a6e5",
+    "data/einstein-material-energy-extension-basis-v1.json": "521d3614997a19b2f0395d7c7becddd44f87f7402b69e72336708d296bc702db",
+    "data/material-energy-extension-basis-v1.json": "580efef3fc0fa207bb7bb3c688469bd7cfc78280356cdd1687ff8a475de92e80",
+    "data/material-energy-extension-core-basis-v1.json": "e500a40127a83fe57a54b3ee78a4b877f82404c61a79ec4f5a6b8a92a6f0a2e1",
+    "data/material-energy-extension-reading-v1.json": "fe77018d046f4f62df80201568efb8ce509977af4dae7c4dcb57c349f6d506ab",
+    "docs/material-energy-extension-v1.md": "69aafe07f22e41f6775de93b30cd73552c08d4bac38c2873ce66aa2814876f43",
+    "examples/v014/einstein-energy-boundary.noema": "cd6dd531a4ee2810b1ef5b76970ae4c35f02f513f60f2cc45f048d9cb5f035ce",
+    "examples/v014/einstein-material-energy-extension.noema": "afe2a8eeb361bdb72b5e05b76cde41df189da9891c2a8ed8e398f641b701d528",
+    "examples/v014/material-energy-extension-core.noema": "d1dd772362d3492813136e53a4ea514a5b6b17723dcdf0241184f7764cb9332b",
+    "examples/v014/material-energy-extension.noema": "fd8f9de0cd7f05f921154634c6ef95e96150a55780bd6ef440558b1f2da79c87",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_material_energy_extension.py": "4a15c7b4a5a3f049caf144fe774ee10370bbea1ca26b2bd0bc7cb1205d2e3472",
+    "scripts/check_phi_normalization.py": "1df1ac33cf90beff45ad339a6bbc2f4e8b683d32b1e6e5afbc9e107809f24772",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_quantities.py": "2bea7cb4b3721e5c04f556068bdb2deb892b4c01ce06600033c8d29f33457ed7",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/compose_convention_comparison.py": "c6bba6a39defdf05366a22776f166b07480b3f37efd540f2de716d17b63f5b77",
+    "scripts/compose_force_mass_units.py": "fd3c332410ab8cdcaaee91642f91df0c449ff6411f8e8259d0117fa99433b56f",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_material_energy_extension.py": "1ad5555411b98f8afe20f17ab6ad8ef78c110ba77034fc510d9e0a5ac5fc0461",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_situated_criticism.py": "c00e968d90ea41465eec65c2865f8e50ea07377834c7adae1519d18b2e01f80f",
+    "tests/test_material_energy_extension.py": "0ca30c7c7630fe425cd283b5652725e471e000552044f12e3048fc12397a57b4"
+  }
+}
