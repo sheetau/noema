@@ -1,0 +1,462 @@
+{
+  "status": "partial_density_formula_with_recorded_endpoint_displacements",
+  "document": "examples/v014/einstein-direction-measurements.noema",
+  "basis_audits": {
+    "examples/v014/einstein-direction-measurements.noema": {
+      "primitive_count": 894,
+      "definition_count": 1317,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/direction-measurements-manuscript.noema": {
+      "primitive_count": 45,
+      "definition_count": 96,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/recorded-displacements.noema": {
+      "primitive_count": 4,
+      "definition_count": 17,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "numeric": {
+    "cases": {
+      "positive": true,
+      "negative": true,
+      "zero": true,
+      "fractional": true,
+      "wrong_sign": false,
+      "wrong_magnitude": false
+    },
+    "invalid_position_rejected": true,
+    "domain": "constructed rational cuts only"
+  },
+  "polynomial": {
+    "claims": {
+      "common_origin_change_preserves_displacement": {
+        "status": "valid",
+        "reason": "No real counterexample; therefore no rational counterexample",
+        "counterexample": null,
+        "matrix": "(let ((a!1 (= vc (+ vb vd (- (+ va vd))))))\n  (= (= vc (+ vb (- va))) a!1))"
+      },
+      "swapping_endpoints_reverses_displacement": {
+        "status": "valid",
+        "reason": "No real counterexample; therefore no rational counterexample",
+        "counterexample": null,
+        "matrix": "(= (= vc (+ vb (- va))) (= (- vc) (+ va (- vb))))"
+      },
+      "change_only_head_preserves_displacement": {
+        "status": "invalid",
+        "reason": "Exact rational counterexample",
+        "counterexample": {},
+        "matrix": "(=> (= 2.0 (+ 3.0 (- 1.0))) (= 2.0 (+ 4.0 (- 1.0))))"
+      },
+      "unsigned_difference_is_sufficient": {
+        "status": "invalid",
+        "reason": "Exact rational counterexample",
+        "counterexample": {},
+        "matrix": "(= 2.0 (+ 1.0 (- 3.0)))"
+      }
+    },
+    "real_cut_field_laws_proved": false
+  },
+  "source": {
+    "cases": {
+      "examples/v014/direction-measurements-manuscript.noema": {
+        "baseline": [
+          true,
+          true
+        ],
+        "consistent_scale": [
+          true,
+          true
+        ],
+        "common_origin_shift": [
+          true,
+          true
+        ],
+        "different_origins": [
+          true,
+          true
+        ],
+        "later_observation": [
+          true,
+          true
+        ],
+        "extra_consistent_record": [
+          true,
+          true
+        ],
+        "forged_scale": [
+          true,
+          false
+        ],
+        "extra_inconsistent_record": [
+          true,
+          false
+        ],
+        "head_mismatch": [
+          true,
+          false
+        ],
+        "tail_mismatch": [
+          true,
+          false
+        ],
+        "missing_link": [
+          true,
+          false
+        ],
+        "wrong_linked_order": [
+          true,
+          false
+        ],
+        "point_outside_axis": [
+          true,
+          false
+        ],
+        "missing_coordinates": [
+          true,
+          false
+        ],
+        "wrong_position_chart": [
+          true,
+          false
+        ],
+        "wrong_position_unit": [
+          true,
+          false
+        ],
+        "wrong_position_context": [
+          true,
+          false
+        ],
+        "head_at_other_time": [
+          true,
+          false
+        ],
+        "same_endpoints": [
+          true,
+          false
+        ],
+        "swapped_endpoints": [
+          true,
+          false
+        ],
+        "empty_axis_records": [
+          false,
+          false
+        ],
+        "missing_configuration": [
+          false,
+          false
+        ],
+        "wrong_frame": [
+          false,
+          false
+        ],
+        "wrong_speed": [
+          false,
+          false
+        ]
+      },
+      "examples/v014/einstein-direction-measurements.noema": {
+        "baseline": [
+          true,
+          true
+        ],
+        "consistent_scale": [
+          true,
+          true
+        ],
+        "common_origin_shift": [
+          true,
+          true
+        ],
+        "different_origins": [
+          true,
+          true
+        ],
+        "later_observation": [
+          true,
+          true
+        ],
+        "extra_consistent_record": [
+          true,
+          true
+        ],
+        "forged_scale": [
+          true,
+          false
+        ],
+        "extra_inconsistent_record": [
+          true,
+          false
+        ],
+        "head_mismatch": [
+          true,
+          false
+        ],
+        "tail_mismatch": [
+          true,
+          false
+        ],
+        "missing_link": [
+          true,
+          false
+        ],
+        "wrong_linked_order": [
+          true,
+          false
+        ],
+        "point_outside_axis": [
+          true,
+          false
+        ],
+        "missing_coordinates": [
+          true,
+          false
+        ],
+        "wrong_position_chart": [
+          true,
+          false
+        ],
+        "wrong_position_unit": [
+          true,
+          false
+        ],
+        "wrong_position_context": [
+          true,
+          false
+        ],
+        "head_at_other_time": [
+          true,
+          false
+        ],
+        "same_endpoints": [
+          true,
+          false
+        ],
+        "swapped_endpoints": [
+          true,
+          false
+        ],
+        "empty_axis_records": [
+          false,
+          false
+        ],
+        "missing_configuration": [
+          false,
+          false
+        ],
+        "wrong_frame": [
+          false,
+          false
+        ],
+        "wrong_speed": [
+          false,
+          false
+        ]
+      }
+    },
+    "unknown_inputs_refused": [
+      "unknown_field",
+      "unknown_position"
+    ],
+    "same_moment_chart_unit_context": true,
+    "original_record_set_preserved": true,
+    "physical_measurement_derived": false,
+    "density_law_evaluated": false
+  },
+  "structure": {
+    "changed_arguments": [
+      "frames"
+    ],
+    "new_definitions": 6,
+    "new_primitives": 2,
+    "other_205_statements_unchanged": true,
+    "dependency_paths": {
+      "sexn": [
+        "sexn"
+      ],
+      "sexm": [
+        "sexn",
+        "sexm"
+      ],
+      "sexl": [
+        "sexn",
+        "sexm",
+        "sexl"
+      ],
+      "sexk": [
+        "sexn",
+        "sexm",
+        "sexl",
+        "sexk"
+      ],
+      "sexj": [
+        "sexn",
+        "sexm",
+        "sexl",
+        "sexk",
+        "sexj"
+      ],
+      "sexh": [
+        "sexn",
+        "sexh"
+      ],
+      "zsa": [
+        "sexn",
+        "sexm",
+        "zsa"
+      ],
+      "zsb": [
+        "sexn",
+        "sexm",
+        "sexl",
+        "zsb"
+      ],
+      "zsc": [
+        "sexn",
+        "sexm",
+        "sexl",
+        "zsc"
+      ],
+      "zsd": [
+        "sexn",
+        "sexm",
+        "sexl",
+        "zsd"
+      ],
+      "zce": [
+        "sexn",
+        "sexm",
+        "sexl",
+        "zce"
+      ],
+      "ym": [
+        "sexn",
+        "sexm",
+        "sexl",
+        "ym"
+      ],
+      "zcc": [
+        "sexn",
+        "sexm",
+        "sexl",
+        "zcc"
+      ],
+      "zqf": [
+        "sexn",
+        "sexh",
+        "sewz",
+        "zqf"
+      ],
+      "ra": [
+        "sexn",
+        "sexm",
+        "ra"
+      ],
+      "zbm": [
+        "sexn",
+        "sexh",
+        "sewz",
+        "zbm"
+      ],
+      "zb7": [
+        "sexn",
+        "sexh",
+        "sewz",
+        "zb7"
+      ],
+      "ta": [
+        "ta"
+      ],
+      "rb": [
+        "rb"
+      ]
+    },
+    "attribution_cases": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "quoted_measurements_not_executed": true,
+    "old_quote_not_substituted": true
+  },
+  "roundtrips": true,
+  "cli_parse": true,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0236",
+        "unit_sha256": "700edab12dd884549e239b10102360c12af9c69e601aae14d42b2675090c77c7",
+        "math_id": "M0390",
+        "math_sha256": "0d0c8b3b36e1468cf733b0d9dd7281f4db141893557a2a815a235142415f237f",
+        "status": "partial_density_formula_with_recorded_endpoint_displacements",
+        "definitions": [
+          "sexn",
+          "sexm",
+          "sexk",
+          "seoz"
+        ]
+      }
+    ]
+  },
+  "source_sha256": {
+    "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
+    "data/density-formula-review-v8.json": "fb9662dfea7337bcb0b24a14344af785d2ff5ee6431913422613a5a431653edc",
+    "data/density-formula-review-v9.json": "ed763960cbcdcdbb3e41aadfc9100e859c9f854a280155a4d9146af4adf0e107",
+    "data/direction-measurements-manuscript-basis-v1.json": "d1ea869941cb282dff7aea4efc51a846efba35b1dd161c46a42b54c1e3740271",
+    "data/einstein-axis-orientation-basis-v1.json": "928496ef4ebd3e7fa6763446a3d57f642d91d1e249af5949147521d99766954f",
+    "data/einstein-direction-measurements-basis-v1.json": "cf9a90676eab49fec70a9b3861406cd8c8ef850fed6d94d078133a8ba0dbacf0",
+    "data/recorded-displacements-basis-v1.json": "762e081eb6e6a917e31a4cd4baf38ed5630219e82b156b0148439c51e4c63c2a",
+    "docs/direction-measurements-v1.md": "251136b579a7b81a1473aa22077684d05ae2b434e04a69961e18d7ab39e86a88",
+    "examples/v014/direction-measurements-manuscript.noema": "8f641523aee6f0ec4d7a2669a6190683539028578ccd96035102f1ae7f358de2",
+    "examples/v014/einstein-axis-orientation.noema": "8042fdc8760b1a2f8b1f333869c8f307c4c911abe38d291dad4a37d882a9844a",
+    "examples/v014/einstein-direction-measurements.noema": "386b66f9f2d8de9965bdf946bbdaf6bfd83a647c556305e85e913204f97d8d6b",
+    "examples/v014/recorded-displacements.noema": "a92595130613d78ab3a99e73cf44553843c12f23ad741ca75815a41a1a32e1ad",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/integration_audit.py": "6babcef120c2d566f6f549f2c9c33a814e03b00a80437e6c8a7a488d4147b8a2",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_axis_orientation.py": "b50abbd8aa9d45139cdd8804bf9d35664cfd108ae9e51535c8fe2a69d1ae6b86",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_direction_measurements.py": "d9c3921184b3ede3fa6e0939c1b045cb1a59ecbc3878e290baadb720e5afb888",
+    "scripts/check_field_equations.py": "22c309a1b342f09c0ac51231a082ff71b26668cae5f019fac7dc08e84c1c051d",
+    "scripts/check_moving_light_trip.py": "fe5659fd79c7ff393173b952674509c58864145f685a8130312218c31a268be3",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_measurements.py": "f80f607b03e46545e90abb61d12e3b1c44ee61d635c84acca137f91de0415beb",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/compose_axis_orientation.py": "c992595c04430915d34ada3dca9271335054d1051b29b67036dfe92319d2bf46",
+    "scripts/compose_density_boost.py": "c66637e7844998cfe73b026e70bd7b8205562025de7b910e790a33769132c70f",
+    "scripts/compose_density_frame_binding.py": "4725c5ea4c992f88f831fc0c5e73ed7ad2459b6292a75e0aa1ea14d12feccebb",
+    "scripts/compose_density_units.py": "5c63667344da5c4bf4b12ebcb324938cee2f7d9d6d63d7e276ba5f7f5d3bcb8d",
+    "scripts/compose_direction_measurements.py": "144a58c27d292ecd603018cdcb0621d23a9eee9a03a7c0408bcc8a6249a37900",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_situated_criticism.py": "c00e968d90ea41465eec65c2865f8e50ea07377834c7adae1519d18b2e01f80f",
+    "tests/test_direction_measurements.py": "528c155b12d9df1c2f92f76c1378ff7e3e1795c76c9d1194660b0f3fa593f846"
+  }
+}
