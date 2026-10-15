@@ -1,0 +1,356 @@
+{
+  "status": "partial_longitudinal_dynamics_and_power_on_same_trajectory",
+  "document": "examples/v014/einstein-electron-power-law.noema",
+  "basis_audits": {
+    "examples/v014/einstein-electron-power-law.noema": {
+      "primitive_count": 758,
+      "definition_count": 1190,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/electron-power-law.noema": {
+      "primitive_count": 10,
+      "definition_count": 40,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/electron-power-law-core.noema": {
+      "primitive_count": 43,
+      "definition_count": 51,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "numeric": {
+    "moving": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "initial_rest": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "zero_speed_wrong_force": [
+      false,
+      true,
+      false,
+      true,
+      false,
+      true
+    ],
+    "moving_wrong_force": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "negative_charge_and_field": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "negative_speed": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "polynomial": {
+    "force_law_implies_power_equality": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!4 (= (* (* ve vf) vb) (* (* vd (* vc vc) vc vg) vb))))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va)))))\n(let ((a!3 (and a!2 (< 0.0 vd) (= (* ve vf) (* vd (* vc vc) vc vg)))))\n  (=> a!3 (and a!2 (< 0.0 vd) a!4)))))"
+    },
+    "nonzero_speed_permits_recovering_force_law": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!3 (= (* (* ve vf) vb) (* (* vd (* vc vc) vc vg) vb))))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va)))))\n(let ((a!4 (and a!2 (< 0.0 vd) (= (* ve vf) (* vd (* vc vc) vc vg)))))\n  (=> (and a!2 (< 0.0 vd) a!3 (not (= 0.0 vb))) a!4))))"
+    },
+    "power_equality_alone_implies_force_law": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {
+        "va": "1",
+        "vb": "0",
+        "vc": "1",
+        "vd": "1",
+        "ve": "-1",
+        "vf": "-1",
+        "vg": "0"
+      },
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!3 (= (* (* ve vf) vb) (* (* vd (* vc vc) vc vg) vb))))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va)))))\n(let ((a!4 (and a!2 (< 0.0 vd) (= (* ve vf) (* vd (* vc vc) vc vg)))))\n  (=> (and a!2 (< 0.0 vd) a!3) a!4))))"
+    }
+  },
+  "local": {
+    "times": [
+      "0",
+      "3/4",
+      "1"
+    ],
+    "cases": {
+      "examples/v014/electron-power-law.noema": {
+        "baseline": [
+          true,
+          true,
+          true
+        ],
+        "negative_charge": [
+          true,
+          true,
+          true
+        ],
+        "fixed_terminal_beta": [
+          false,
+          false,
+          true
+        ],
+        "wrong_field": [
+          false,
+          false,
+          false
+        ],
+        "zero_speed_wrong_force": [
+          false,
+          true,
+          true
+        ],
+        "wrong_velocity": [
+          false,
+          false,
+          false
+        ],
+        "wrong_acceleration": [
+          false,
+          false,
+          false
+        ],
+        "wrong_charge": [
+          false,
+          false,
+          false
+        ]
+      },
+      "examples/v014/electron-power-law-core.noema": {
+        "baseline": [
+          true,
+          true,
+          true
+        ],
+        "negative_charge": [
+          true,
+          true,
+          true
+        ],
+        "fixed_terminal_beta": [
+          false,
+          false,
+          true
+        ],
+        "wrong_field": [
+          false,
+          false,
+          false
+        ],
+        "zero_speed_wrong_force": [
+          false,
+          true,
+          true
+        ],
+        "wrong_velocity": [
+          false,
+          false,
+          false
+        ],
+        "wrong_acceleration": [
+          false,
+          false,
+          false
+        ],
+        "wrong_charge": [
+          false,
+          false,
+          false
+        ]
+      },
+      "examples/v014/einstein-electron-power-law.noema": {
+        "baseline": [
+          true,
+          true,
+          true
+        ],
+        "negative_charge": [
+          true,
+          true,
+          true
+        ],
+        "fixed_terminal_beta": [
+          false,
+          false,
+          true
+        ],
+        "wrong_field": [
+          false,
+          false,
+          false
+        ],
+        "zero_speed_wrong_force": [
+          false,
+          true,
+          true
+        ],
+        "wrong_velocity": [
+          false,
+          false,
+          false
+        ],
+        "wrong_acceleration": [
+          false,
+          false,
+          false
+        ],
+        "wrong_charge": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    "registered_derivatives_only": true,
+    "all_real_time_domain_refused": true
+  },
+  "source_instances": {
+    "single_time_source_instances": {
+      "examples/v014/electron-power-law-core.noema": {
+        "baseline": [
+          true,
+          true,
+          true
+        ],
+        "fixed_terminal_beta": [
+          false,
+          false,
+          true
+        ],
+        "zero_speed_wrong_force": [
+          false,
+          true,
+          true
+        ]
+      },
+      "examples/v014/einstein-electron-power-law.noema": {
+        "baseline": [
+          true,
+          true,
+          true
+        ],
+        "fixed_terminal_beta": [
+          false,
+          false,
+          true
+        ],
+        "zero_speed_wrong_force": [
+          false,
+          true,
+          true
+        ]
+      }
+    },
+    "full_interval_claim_proved": false
+  },
+  "attribution": {
+    "content": "sesg",
+    "dynamics_or_work_integrals_executed": false
+  },
+  "statements_preserved": 186,
+  "new_author_attributions": 1,
+  "roundtrips": true,
+  "cli_parse": true,
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0261",
+        "unit_sha256": "717987abceb9d328b08cc733c0d1149933de5dbbf133f63e28c4c0dd3b183fd9",
+        "range": [
+          617,
+          702
+        ],
+        "text": "während des ganzen betrachteten Bewegungsvorganges die erste der Gleichungen (A) gilt",
+        "status": "partial_longitudinal_equation_on_full_motion_interval",
+        "definitions": [
+          "sesb",
+          "sese",
+          "sesf",
+          "sesg"
+        ]
+      }
+    ]
+  },
+  "integral_substitution_completed": false,
+  "physical_force_explanation_completed": false,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "artifacts/mass-coefficients-v1/page-920.jpg": "59b11de47bd5c77b23bf3c3d38ff86287c101c91eafc3450c34ecf0113864386",
+    "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
+    "data/einstein-electron-axis-motion-basis-v1.json": "444e9b600a534290f4b69b199cb3929168b8c9d80a6af4f1f6551152fb487dbb",
+    "data/einstein-electron-power-law-basis-v1.json": "be82fb4217d3a0c1ad15f489c8dbd5929afe5c85a39a269c40a86e68711f91df",
+    "data/electron-power-law-basis-v1.json": "26d35a922eb3195717c28b7a6d59fa563200c21f3c0cc055d3e552aa87de61dc",
+    "data/electron-power-law-core-basis-v1.json": "8083943d33dc9db4513cb6432f04113ba67c00572419eed8a68b258e2d42ceb9",
+    "data/electron-power-law-reading-v1.json": "247c81fe1831e0ab03fa1ed1792ca371dcc309a9b0df4033aff476c8ffd37e73",
+    "docs/electron-power-law-v1.md": "3aaef1ae43ebb6d091d58cb3c1ae6f00efc4e62ac4245745929975c50b14d3d8",
+    "examples/v014/einstein-electron-axis-motion.noema": "d2ac3e3e2ac4fbcec92068a2894a98a61d5a8aafb875d37fb9e50dbb97bf6ca0",
+    "examples/v014/einstein-electron-power-law.noema": "041591eb7eb879a2a817c542d6a1c04f9f2a2a3c9258929e2e3f8f7e37339984",
+    "examples/v014/electron-power-law-core.noema": "449dbfae6bd6f0e12dece87df5df88e6c8244412da2767dc83ee7898d5ade967",
+    "examples/v014/electron-power-law.noema": "664e72800ac0e6fcebecc0dd5cb9961f59420a2916c0d7e81fe309d605095e99",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_electron_axis_motion.py": "ece1987075e0d23af7b28be58fbf1212fcc59cc3c17e0d3da54952cda2a3fb89",
+    "scripts/check_electron_power_law.py": "a9cfaca0b49871de53546cf0f0c2520f5a02c3679da772dd03923a1ab7bd36cc",
+    "scripts/check_material_acceleration.py": "22cf84f176987309d78cd61ed3c3cbc4b2ee1550872e37186fa93b028c40e8d4",
+    "scripts/check_phi_normalization.py": "1df1ac33cf90beff45ad339a6bbc2f4e8b683d32b1e6e5afbc9e107809f24772",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_quantities.py": "2bea7cb4b3721e5c04f556068bdb2deb892b4c01ce06600033c8d29f33457ed7",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/check_transverse_time.py": "0de0549d26d2bf323634a4c50750c2bb7b293317d837bdfad25dca19b53e88ee",
+    "scripts/compose_convention_comparison.py": "c6bba6a39defdf05366a22776f166b07480b3f37efd540f2de716d17b63f5b77",
+    "scripts/compose_electron_axis_motion.py": "3334c0b31ef4a5efd25127da6bc0ef3314255ae7cfdcbb29ec7d8d3be8563570",
+    "scripts/compose_electron_power_law.py": "0f4786c26dcc2c4ea06a7b0eb6c9e4f54142657efb102446c9bf3738a9804077",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_situated_criticism.py": "c00e968d90ea41465eec65c2865f8e50ea07377834c7adae1519d18b2e01f80f",
+    "tests/test_electron_power_law.py": "f3ff53cfd49f1c7726e455f0370e18499f106f1cb3dc534e4367ba41ff29392c"
+  }
+}
