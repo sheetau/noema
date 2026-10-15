@@ -1,0 +1,285 @@
+{
+  "status": "partial_force_mass_and_acceleration_scale_binding",
+  "document": "examples/v014/einstein-force-mass-units.noema",
+  "basis_audits": {
+    "examples/v014/einstein-force-mass-units.noema": {
+      "primitive_count": 673,
+      "definition_count": 1136,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/force-mass-units.noema": {
+      "primitive_count": 4,
+      "definition_count": 23,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    },
+    "examples/v014/force-mass-units-core.noema": {
+      "primitive_count": 26,
+      "definition_count": 45,
+      "signature_and_documentation_coverage": true,
+      "semantic_equivalence_to_source_proven": false
+    }
+  },
+  "numerical_checks": {
+    "scaled": [
+      true,
+      true,
+      true
+    ],
+    "coherent_units": [
+      true,
+      true,
+      true
+    ],
+    "mass_reading_only": [
+      false,
+      false,
+      false
+    ],
+    "force_scale_wrong_direction": [
+      false,
+      false,
+      false
+    ],
+    "same_mass_other_unit": [
+      true,
+      true,
+      true
+    ],
+    "larger_force_unit": [
+      true,
+      true,
+      true
+    ],
+    "larger_acceleration_unit": [
+      true,
+      true,
+      true
+    ],
+    "zero_mass": [
+      true,
+      true,
+      true
+    ],
+    "negative_scalar": [
+      true,
+      true,
+      true
+    ],
+    "zero_force_scale": [
+      false,
+      false,
+      false
+    ],
+    "negative_mass_scale": [
+      false,
+      false,
+      false
+    ],
+    "negative_acceleration_scale": [
+      false,
+      false,
+      false
+    ],
+    "wrong_transverse_power": [
+      false,
+      false,
+      false
+    ],
+    "negative_beta": [
+      false,
+      false,
+      false
+    ],
+    "light_boundary": [
+      false,
+      false,
+      false
+    ]
+  },
+  "polynomial_checks": {
+    "coherent_units_recover_native_coefficients": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!2 (= (* vh vf) (* (* vd ve vg) (* (* vc vc) vc))))\n      (a!4 (= vh (* vd (* (* vc vc) vc)))))\n(let ((a!3 (and (< 0.0 va)\n                (< (* vb vb) (* va va))\n                (< 0.0 vc)\n                (= a!1 (* va va))\n                (< 0.0 ve)\n                (< 0.0 vf)\n                (< 0.0 vg)\n                a!2\n                (= (* vi vf) (* (* vd ve vg) (* vc vc)))\n                (= vf (* ve vg))))\n      (a!5 (and a!4 (= vi (* vd (* vc vc))))))\n  (=> a!3 a!5)))"
+    },
+    "same_mass_in_another_unit_preserves_coefficients": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!3 (= (* vh vf) (* (* (* vd ve) vg) (* (* vc vc) vc))))\n      (a!4 (= (* vi vf) (* (* (* vd ve) vg) (* vc vc))))\n      (a!5 (= (* vh vf) (* (* (* vj vk) vg) (* (* vc vc) vc))))\n      (a!6 (= (* vi vf) (* (* (* vj vk) vg) (* vc vc)))))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va)))))\n  (=> (and a!2\n           (< 0.0 ve)\n           (< 0.0 vf)\n           (< 0.0 vg)\n           a!3\n           a!4\n           (< 0.0 vk)\n           (= (* vd ve) (* vj vk)))\n      (and a!2 (< 0.0 vk) (< 0.0 vf) (< 0.0 vg) a!5 a!6))))"
+    },
+    "force_unit_rescaling_changes_coefficient_readings": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb))))))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va)))))\n(let ((a!3 (and a!2\n                (< 0.0 ve)\n                (< 0.0 vf)\n                (< 0.0 vg)\n                (= (* vh vf) (* (* vd ve vg) (* vc vc) vc))\n                (= (* vi vf) (* (* vd ve vg) (* vc vc)))\n                (< 0.0 vj)\n                (= vh (* vj vk))\n                (= vi (* vj vl))))\n      (a!4 (and a!2\n                (< 0.0 ve)\n                (< 0.0 (* vf vj))\n                (< 0.0 vg)\n                (= (* vk (* vf vj)) (* (* vd ve vg) (* vc vc) vc))\n                (= (* vl (* vf vj)) (* (* vd ve vg) (* vc vc))))))\n  (=> a!3 a!4))))"
+    },
+    "acceleration_unit_rescaling_changes_coefficients": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!3 (= (* vh vf) (* (* (* vd ve) vg) (* (* vc vc) vc))))\n      (a!4 (= (* vi vf) (* (* (* vd ve) vg) (* vc vc))))\n      (a!5 (= (* vh vj vf) (* (* (* vd ve) (* vg vj)) (* (* vc vc) vc))))\n      (a!6 (= (* vi vj vf) (* (* (* vd ve) (* vg vj)) (* vc vc)))))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va)))))\n  (=> (and a!2 (< 0.0 ve) (< 0.0 vf) (< 0.0 vg) a!3 a!4 (< 0.0 vj))\n      (and a!2 (< 0.0 ve) (< 0.0 vf) (< 0.0 (* vg vj)) a!5 a!6))))"
+    },
+    "mass_number_alone_always_determines_coefficients": {
+      "status": "invalid",
+      "reason": "Exact rational counterexample",
+      "counterexample": {
+        "va": "1",
+        "vb": "0",
+        "vc": "1",
+        "vd": "-1",
+        "ve": "1",
+        "vf": "1/2",
+        "vg": "1",
+        "vh": "-2",
+        "vi": "-2"
+      },
+      "matrix": "(let ((a!1 (* (* vc vc) (+ (* va va) (- (* vb vb)))))\n      (a!2 (= (* vh vf) (* (* vd ve vg) (* (* vc vc) vc))))\n      (a!4 (= vh (* vd (* (* vc vc) vc)))))\n(let ((a!3 (and (< 0.0 va)\n                (< (* vb vb) (* va va))\n                (< 0.0 vc)\n                (= a!1 (* va va))\n                (< 0.0 ve)\n                (< 0.0 vf)\n                (< 0.0 vg)\n                a!2\n                (= (* vi vf) (* (* vd ve vg) (* vc vc)))))\n      (a!5 (and a!4 (= vi (* vd (* vc vc))))))\n  (=> a!3 a!5)))"
+    }
+  },
+  "physical_checks": {
+    "cases": {
+      "examples/v014/force-mass-units-core.noema:False": {
+        "baseline": true,
+        "wrong_mass_scale": false,
+        "wrong_force_scale": false,
+        "same_mass_axis": false,
+        "momentum_dimension": false,
+        "wrong_massunit": false,
+        "other_mass_owner": false,
+        "other_mass_event": false,
+        "different_mass_reading": false,
+        "wrong_unit_record": false,
+        "wrong_forceunit": false,
+        "wrong_accelerationunit": false,
+        "wrong_coefficient": false,
+        "force_record_mismatch": false,
+        "fake_velocity_field": false,
+        "unconverted_reading": false
+      },
+      "examples/v014/force-mass-units-core.noema:True": {
+        "baseline": true,
+        "wrong_mass_scale": false,
+        "wrong_force_scale": false,
+        "same_mass_axis": false,
+        "momentum_dimension": false,
+        "wrong_massunit": false,
+        "other_mass_owner": false,
+        "other_mass_event": false,
+        "different_mass_reading": false,
+        "wrong_unit_record": false,
+        "wrong_forceunit": false,
+        "wrong_accelerationunit": false,
+        "wrong_coefficient": false,
+        "force_record_mismatch": false,
+        "fake_velocity_field": false,
+        "unconverted_reading": false
+      },
+      "examples/v014/einstein-force-mass-units.noema:True": {
+        "baseline": true,
+        "wrong_mass_scale": false,
+        "wrong_force_scale": false,
+        "same_mass_axis": false,
+        "momentum_dimension": false,
+        "wrong_massunit": false,
+        "other_mass_owner": false,
+        "other_mass_event": false,
+        "different_mass_reading": false,
+        "wrong_unit_record": false,
+        "wrong_forceunit": false,
+        "wrong_accelerationunit": false,
+        "wrong_coefficient": false,
+        "force_record_mismatch": false,
+        "fake_velocity_field": false,
+        "unconverted_reading": false
+      }
+    },
+    "same_mass_assignment_in_actual_constructor": true,
+    "registered_rational_values_only": true,
+    "observation_and_calibration_are_explicit_premises": true
+  },
+  "refusals": {
+    "unknown_mass_calibration": "Mass calibration interpretation missing",
+    "unknown_mass_assignment": "Rest-mass assignment missing",
+    "unknown_bridge": "Whole-history unit bridge interpretation missing",
+    "whole_history": "Cannot finitely quantify the rational number domain"
+  },
+  "statements_preserved": 176,
+  "new_primitives": 0,
+  "roundtrips": true,
+  "cli_parse": true,
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0255",
+        "unit_sha256": "3b717b64ea019c26d56486326e3006a8a4a3c738e4ea25dd88b7e862f7ae841d",
+        "definitions": [
+          "sepz",
+          "seqa",
+          "seqb",
+          "seqc",
+          "seqd"
+        ],
+        "status": "explicit_interpretive_annotation",
+        "range": [
+          0,
+          44
+        ],
+        "text": "Massenzahl × Beschleunigungszahl = Kraftzahl"
+      }
+    ]
+  },
+  "adds_new_text_coverage": false,
+  "physical_definitions_compared": false,
+  "unit_calibration_constructed": false,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "data/einstein-acceleration-units-basis-v1.json": "65a880554f4439bcc79fe1082510edad164417bd87dcb15d660c33890a9ab149",
+    "data/einstein-force-mass-units-basis-v1.json": "c11da9d87f112c86f21c0d6fbcc518a5a345423a6fd05cddbbdd7be1681a81db",
+    "data/force-mass-units-basis-v1.json": "938fd5bc09b92e5580e4ae9f1769348fbe09ef089cd46a251756fd308e2aed4c",
+    "data/force-mass-units-core-basis-v1.json": "b4068a9e21c03dac18384f6555a663a2f553f68791fc559a1479c5239d735db8",
+    "docs/force-mass-units-v1.md": "39078c08443749fb38ad6ca36a82eee00f68b2bbecb0d07427c6dbc95bde1c37",
+    "examples/v014/einstein-acceleration-units.noema": "75dd36a1067fdaf980ee8866140b4201cebc79104671573cf3f0d04f5a1c6140",
+    "examples/v014/einstein-force-mass-units.noema": "7cfd46f76f0742640bb6226b503297d31447e7810238a76dd3b238b2fd4c79c1",
+    "examples/v014/force-mass-units-core.noema": "ecdd71e49c264d33b9f766c4636505c8bd8c00e6aad2d3a2484c21083f106f67",
+    "examples/v014/force-mass-units.noema": "bc9a302ccf16590b864dbb4b2f0303e65e847c9c8b10978e2967f0b5b2f436cc",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/finite_semantics.py": "9d8d196e8002350237585d5a3e4b5651de6b960d88a332f1b1e15891668c8485",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/rational_proofs.py": "3ca1c888b153ccdc360b314b38dd6aec3e0dad6c48899c2f94cab43a31bc9f37",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "reports/acceleration-units-v1.json": "06b175965ced9f675bdcd786fe0fab514e94e41a855c8730e6a92c2ba7df621e",
+    "reports/written-units-v1.json": "3007df6f70ad1fa378594e70fa908a22fc59c289f45f7eaee44d1217f453f2c8",
+    "scripts/check_acceleration_units.py": "f690c34a5ea2a5a0b93bdd71fef2008b23d99deefe613ee6c9a4385d5460d867",
+    "scripts/check_angle_composition.py": "206cc3e3dbcbb7cc2a0d46611b31c6f16f13c1bdca559e671babd79ded3e6f61",
+    "scripts/check_coordinate_correspondence.py": "fa99e28a11ce9cadd93646a1eb4e3038fa59afa481ed0bce019d14b65e9584a7",
+    "scripts/check_described_appraisals.py": "5e6ffed5ce52ff79615a5a812eb974d78a158b9d320d9deaf99204c40a2d339a",
+    "scripts/check_force_mass_units.py": "28fffd29909e076b2fc34dc689af7330f8b1b1f0aaf2c1b19a80a82125e139f7",
+    "scripts/check_material_acceleration.py": "22cf84f176987309d78cd61ed3c3cbc4b2ee1550872e37186fa93b028c40e8d4",
+    "scripts/check_phi_normalization.py": "1df1ac33cf90beff45ad339a6bbc2f4e8b683d32b1e6e5afbc9e107809f24772",
+    "scripts/check_plane_waveforms.py": "457799dc090495651e2807597dcc9c8c123e61a2407d506f9dacc223b6534f47",
+    "scripts/check_quantities.py": "2bea7cb4b3721e5c04f556068bdb2deb892b4c01ce06600033c8d29f33457ed7",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/check_rod_setup.py": "ed4bbdf2d28df88686f13b55cd5e06d2dedcebc6bdc5e947d403d219b3763119",
+    "scripts/check_tau_differential.py": "6103077a1a14f7047516e33993ad56891d156f1293cf9eb0bd1d76f3010975cd",
+    "scripts/check_transverse_time.py": "0de0549d26d2bf323634a4c50750c2bb7b293317d837bdfad25dca19b53e88ee",
+    "scripts/compose_acceleration_units.py": "a18769fa19c641fad614c70bb235ac2048481716e484e322a0f54ac3dc486861",
+    "scripts/compose_force_mass_units.py": "fd3c332410ab8cdcaaee91642f91df0c449ff6411f8e8259d0117fa99433b56f",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "scripts/compose_material_acceleration.py": "90d450e503755759d4c97580ddc6ee942de2f5d539eae751fe65beb3f01b5250",
+    "scripts/compose_origin_clock.py": "380d7bf4508b015a9bf835d5bd10a6864236593d6974452cb23bda0de20f9c31",
+    "scripts/compose_situated_criticism.py": "c00e968d90ea41465eec65c2865f8e50ea07377834c7adae1519d18b2e01f80f",
+    "tests/test_force_mass_units.py": "c251cbf46a7ac3f58fb177a44313d052ca70bd03816dcd10e5d565d88bb21081"
+  }
+}
