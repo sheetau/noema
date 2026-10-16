@@ -15,11 +15,11 @@
   "works": {
     "kant-1784": {
       "author_unit_count": 20,
-      "units_with_partial_drafts": 13,
-      "unit_touch_percent": 65.0,
+      "units_with_partial_drafts": 14,
+      "unit_touch_percent": 70.0,
       "nonblank_text_characters": 15513,
-      "text_characters_in_explicit_partial_ranges": 7511,
-      "explicit_text_range_percent": 48.42,
+      "text_characters_in_explicit_partial_ranges": 7554,
+      "explicit_text_range_percent": 48.69,
       "math_object_count": 0,
       "math_objects_with_partial_associations": 0,
       "math_object_touch_percent": null,
@@ -1019,22 +1019,29 @@
             "unit": "kant-1784:u0018",
             "unit_sha256": "6fc51ad81049a2ed83495e55959c3c060d94c37531e986555bc2f8423458aefc",
             "source_inventory": "artifacts/written-units-v1/kant-1784.json",
-            "review": "data/author-signature-review-v4.json",
+            "review": "data/author-signature-review-v5.json",
             "reviewer": "assistant_review",
             "decision": "equivalent_under_stated_reading",
-            "document": "examples/v016/kant-conditional-imputation.noema",
+            "document": "examples/v016/kant-calendar-dateline.noema",
             "source_nonblank_characters": 16
           }
         },
         {
           "unit": "kant-1784:u0019",
           "kind": "body",
-          "has_partial_draft": false,
-          "explicit_ranges": [],
+          "has_partial_draft": true,
+          "explicit_ranges": [
+            [
+              0,
+              49
+            ]
+          ],
           "nonblank_text_characters": 43,
-          "nonblank_text_characters_in_partial_ranges": 0,
+          "nonblank_text_characters_in_partial_ranges": 43,
           "math_objects_with_partial_associations": [],
-          "reports": [],
+          "reports": [
+            "reports/calendar-dateline-v1.json"
+          ],
           "has_association_without_text_range": false
         },
         {
@@ -7412,6 +7419,23 @@
         "s3a",
         "s3b",
         "s3e"
+      ]
+    },
+    {
+      "report": "reports/calendar-dateline-v1.json",
+      "pointer": "/alignment/segments/0",
+      "unit": "kant-1784:u0019",
+      "status": "partial",
+      "source_status": "partial_calendar_dateline",
+      "range": [
+        0,
+        49
+      ],
+      "math_id": null,
+      "math_sha256": null,
+      "definitions": [
+        "rqrm",
+        "hzje"
       ]
     },
     {
@@ -22575,6 +22599,7 @@
     "reports/bound-revision-v1.json",
     "reports/bounded-hindrance-v1.json",
     "reports/calculation-discourse-v1.json",
+    "reports/calendar-dateline-v1.json",
     "reports/capacity-changes-v1.json",
     "reports/capacity-progress-v1.json",
     "reports/carried-clocks-v1.json",
@@ -22880,7 +22905,7 @@
     "reports/written-v010.json",
     "reports/written-v012.json"
   ],
-  "parsed_noema_documents": 840,
+  "parsed_noema_documents": 842,
   "source_sha256": {
     "scripts/audit_written_progress.py": "36d3f5696e52a1aab6a61180a57ab2244202aba9fd9f2392123ff2778c41bcd1",
     "scripts/audit_written_progress_extended.py": "c433ac5d2c8041ac39c122df9e1b52d7ea7eee703c05e57683bc6dd66184414a",
@@ -23039,6 +23064,10 @@
     "reports/bounded-hindrance-v1.json": "ff4619e98cec111876c3f582e447da28f5368aed6ae60bd539e14c8d9a5c3a8d",
     "examples/v014/calculation-assessments.noema": "d1ad8ce1a54912540b7ed378e2e8959541a40c31d3bcd6556c55e8897e399001",
     "reports/calculation-discourse-v1.json": "234e78da3bcd6962172073cee90a7b95568c53fb3c4f9bebba5abe23f54f497a",
+    "examples/v016/calendar-address.noema": "5a31277e91fbd17916b13866bfbc242aec7512dd91ab33d92b7fbf9acead04df",
+    "examples/v016/kant-calendar-dateline.noema": "21084ce3dbcbbdde9c83b91532c5e4a26e9ae774994819060d9d315754beec9b",
+    "examples/v016/kant-conditional-imputation.noema": "37557bc5cb20927f70a86df2a3b551a06f349e0c6ef853a66c9859b08c666975",
+    "reports/calendar-dateline-v1.json": "e11a523dfcbef0e841c742b9cca0ad88b1cd015c5d8baa5b90116e928988402b",
     "examples/v014/capacity-changes.noema": "31aeb45b35c9d7e3da2876c48826349e80685d646abdabf6c0592222f93ca1b4",
     "examples/v014/kant-capacity-changes.noema": "4d4e0bd50b5907dcdb1df08eff048cc2b982ab3a689d3b09bf85032da26a2bce",
     "examples/v014/kant-capacity-progress.noema": "cec2d877d553df405c49ab887a25797d73a7d6058036a8ca8b5aced70fa38c59",
@@ -23157,7 +23186,6 @@
     "examples/v016/conditional-aftermath-core.noema": "b3145879d19ecb5844726ef266c969406b42039b70301bdec6d2880005385e03",
     "reports/conditional-aftermath-v1.json": "bb43cc3b5eb4e8cb17c1bd189cb64543d8c260ac4cb43567a18cd8acbe9de2c3",
     "examples/v016/conditional-imputation.noema": "5fb14b3ee20f69c9db6b7188ec3b44360d0c184a3426b2bee70a494dd426574d",
-    "examples/v016/kant-conditional-imputation.noema": "37557bc5cb20927f70a86df2a3b551a06f349e0c6ef853a66c9859b08c666975",
     "examples/v016/kant-targeted-adequacy.noema": "6aba74b7ae0a898eabb8cd48e3a6b3389e41aa1196413cf09bc2bd16aac441a6",
     "reports/conditional-imputation-v1.json": "cb3171444f9df3507039b7ed44923aa6065a08390fddeceff0bcdc9bdc2d14c1",
     "examples/v014/conditional-release.noema": "936dec76ec3b1b06f2712fcd34703a7ef3ed3d27ef6ed89c1cc818303a73e09d",
@@ -24071,9 +24099,9 @@
     "examples/v012/kant-questions.noema": "7f27a945c9c9f6ec6d35386016c1cca41054fcfabd57a4e14d88d044deb1657b",
     "examples/v012/number-question.noema": "9f8029c28587e25caa62d197e4e8256dec25523036d686fcd94a7f0fe4a1c9a9",
     "reports/written-v012.json": "e8b6d963b1a512e2a9672d27ca748da487ae5cb39f184e6f54267580b262ef9b",
-    "data/author-signature-review-v4.json": "6d83bf34ebf4fb130c81ee3fe954adf96253f5d9246caa55191d25b3fdbbae6e",
-    "data/conditional-imputation-basis-v1.json": "e25897c38cd416828572c22a97f93cdffb475f99b2418a51998e96217574f529",
-    "data/conditional-imputation-identifiers-v1.json": "deda6ab41acca11ae5d3325e087abac3479e9a662c9313c205d1c552eaa19e60",
+    "data/author-signature-review-v5.json": "ad67ce9236240425cc920c6c0cba832e879c66146ec7391d0279d50a3d405233",
+    "data/calendar-dateline-basis-v1.json": "bb7753d4a627a7aa3dd57bd54d3820a959f51d0d2048767b48b2fc1a41718e0b",
+    "data/calendar-dateline-identifiers-v1.json": "c9b072c05a5885ab6dde860eb240c60ff4064b936bd506260380d7c95b9f98c8",
     "data/einstein-density-origins-basis-v1.json": "63a26128281e174494454a99e73ef4feaf80e66abd3ff2506a8edab2ec8a74e4",
     "artifacts/author-signature-facsimile-v1/manifest.json": "7586b638c8f61e8024826d192423df2b8b47f67638adcbd1188950342186e397",
     "artifacts/author-signature-facsimile-v1/page-494.jpg": "f14a0edf2ff9944e04579f4c8797b76653e4cdb7fdea8af032ee11f827b68140",
@@ -24086,6 +24114,9 @@
     "data/author-signature-facsimile-v1.json": "b5115d0b892c60d461cf5e622edec9ea168f8920f9e7229ec86717dbe20c54b5",
     "data/author-signature-review-v2.json": "5a38cf5be3c00dfe0e438a666092908d0633b1eadfa28590ed3d93d29df739c6",
     "data/author-signature-review-v3.json": "d5e680a585c23af19ebaf8de188c507fe8f3b38ef03d565775896c94e3131a6c",
+    "data/author-signature-review-v4.json": "6d83bf34ebf4fb130c81ee3fe954adf96253f5d9246caa55191d25b3fdbbae6e",
+    "data/conditional-imputation-basis-v1.json": "e25897c38cd416828572c22a97f93cdffb475f99b2418a51998e96217574f529",
+    "data/conditional-imputation-identifiers-v1.json": "deda6ab41acca11ae5d3325e087abac3479e9a662c9313c205d1c552eaa19e60",
     "data/conditional-imputation-review-v1.json": "33533b48a139a90171867f22fade338e29d07dc0e63f7291883428cf4cb94bc6",
     "data/targeted-adequacy-basis-v1.json": "13a1dfff242ef98db0457db0c9f21d89be1da6aa5ad8f54e81d3f92bf8b94fd2",
     "data/targeted-adequacy-identifiers-v1.json": "e6b56b3f43bd3042a902f3f76502de7efd3970ae5c470ea17e1607732a5155a4",
@@ -24094,6 +24125,8 @@
     "docs/author-signature-review-v2.md": "a9a9887ce91af544474f468e996fe9a6dbe0f64273d826bc1fe894fcbc08a931",
     "docs/author-signature-review-v3.md": "43ab1202b8e8329b8b670af2851f7b4748469584f70b36669fdf114538fc0583",
     "docs/author-signature-review-v4.md": "ecdb9cc4339cde9d1fe883c941332e3bfb5556c69954a1180cf212a4ecf95cc2",
+    "docs/author-signature-review-v5.md": "7e2b28f61f9b880989a4b0bd3aca435fee4d2e04d4e01d7ac1de14dbee6f93e4",
+    "docs/calendar-dateline-v1.md": "95119c4b7b8abddcfd05762961bfd2974580a89db1f2c4a4e3ce969b09f56b1c",
     "docs/conditional-imputation-v1.md": "2edb5f5802451978d0453289b64a77fdf94c357bd64512e3dbc8986efac66535",
     "docs/semantic-review-v1.md": "4184c0f39c1d5d9b69c040226aad6c95b027e287263ea43e595ea3b976f842f8",
     "docs/targeted-adequacy-v1.md": "5ee97f1ca6f514330ec0fa6e19bc74fa070b790242bb523c26a830c9c755f0f4",
@@ -24108,10 +24141,12 @@
     "noema/resources/alphabet-v1.json": "396004739119f721bfa6451aba01ceca6f9f9f139ec2c9e25823471b4f04a079",
     "noema/resources/alphabet-v2.json": "bec864e3f0742aab9c6d761d55176cda88fb46609e0fb3e32d457395e030d24c",
     "noema/resources/lexicon.json": "61a670d9fb5c0f0aabf33debe0e3f3acda09672dc7da3860f1e51ab555d52dc4",
+    "noema/semantic_reviews.py": "043d155adc59526e3d9c8086353df44015e195feb45fa89e05c91067d4825272",
     "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
     "reports/written-sources-v1.json": "eb552cc565c1d306646875d8d9d9a1c3e7effee1d8069bb9c2ff90a042092324",
     "scripts/check_author_credit.py": "927a87f214ba60eff5fa85122cc5a13603795acdace6e6e29be76bf986191473",
     "scripts/check_author_signature.py": "10e05de7b3046e69a1e332bbd2cc9f1c1cbdd1526634d18b4f18749140b21eff",
+    "scripts/check_calendar_dateline.py": "9619154bafd598ffa79d1d55fd34560db06b6311e27fbb67c3bf3fdf936c9a36",
     "scripts/check_conditional_imputation.py": "fe43fa38bfdf0fdbf352e42393a4b20d330fb639b1237c2492f8dc30291266bc",
     "scripts/check_described_transition.py": "2d6af04f978d41cd54ef8c9b6774a905ae90aca0ec36e959ba7f1ecfb036179a",
     "scripts/check_factive_cause.py": "3bf45f77f6d0ca2a1e8a44e570f5ce91144ba307e569ba42f9448e239d32b9ad",
@@ -24119,17 +24154,18 @@
     "scripts/check_targeted_adequacy.py": "89a1fb412d4c0955814bbdfb6a54890cc4951e7de33ead9b0d0a307db40ddeec",
     "scripts/compose_author_credit.py": "082ba0fae0799f83cbebba0bb255c96913935047b9e1ed2dfbf95972956c66ed",
     "scripts/compose_author_signature.py": "29dcdd0eddb1e37d7ed859ee2ba65066cc154b26a5ef7f840fb4a9e37791ade2",
+    "scripts/compose_calendar_dateline.py": "269296f0c6c894dbb829ef9100035e5587d9266caaf1c7eb2006ed61c388911d",
     "scripts/compose_conditional_imputation.py": "b346bc82e421db53eff1257473c21867b46662f0bb7664f603af5038b1bb7d8b",
     "scripts/compose_described_transition.py": "b256545aebecd1db054c73733d0674a4c2c905eb50f3b36e9e48b33a9cef281b",
     "scripts/compose_factive_cause.py": "b7ee21f12de689b3044b81a29b1a1cbb4b989423c2b516ec31c0dc94e3efae69",
     "scripts/compose_subject_bound_departure.py": "87c1b0318cd564a02b8ce54391fee35ebfb412dd5b6d1c4691555b0d9c451c49",
     "scripts/compose_targeted_adequacy.py": "005648dc0d89b8fe87db06373573d220077aa1f76f43d4e944f26bd56ec84b24",
     "tests/test_author_credit.py": "51589b8917e8c17ec00e8d3efa008aaf3c1087d6b4acefceb4bf2fefee44fb84",
+    "tests/test_calendar_dateline.py": "fd4af325c2d5cc347e8ccf668c5f36e5d251a6f646dae1701b58486eb30e4abc",
     "tests/test_conditional_imputation.py": "2a43fe6e6c0e49f469eebe30f1498e370c798c52e27e9839db7a06cdb4265e3a",
     "tests/test_targeted_adequacy.py": "6a5a5ebeb7131f3de1dced9a8db408a11b8b4865ac49e734775050611cf51f91",
-    "data/semantic-review-index-v4.json": "fe1bdee7e622d666107cf1978507ff5e7335989ac7620d4e02dd84bfea3cec55",
+    "data/semantic-review-index-v5.json": "4a737776665ceb3637481c4712cd5053c008b0c40495d49fc951bad1510be2bd",
     "scripts/audit_written_progress_reviewed.py": "b11af2d2e8c8f08ba18cf93fed9c3a3349e383c76c05261de3635d2769c6e813",
-    "noema/semantic_reviews.py": "043d155adc59526e3d9c8086353df44015e195feb45fa89e05c91067d4825272",
     "tests/test_semantic_reviews.py": "d29826273fad286a3cf19c94de723b614bac2b67603c36d640cbdd669c8c3509",
     "docs/unit-semantic-review-v1.md": "801d6f951ee658bc39c8864dce8c2a1aed8b36a9e0af2e1f49e552f9040e7c14"
   },
@@ -24141,10 +24177,10 @@
           "unit": "kant-1784:u0018",
           "unit_sha256": "6fc51ad81049a2ed83495e55959c3c060d94c37531e986555bc2f8423458aefc",
           "source_inventory": "artifacts/written-units-v1/kant-1784.json",
-          "review": "data/author-signature-review-v4.json",
+          "review": "data/author-signature-review-v5.json",
           "reviewer": "assistant_review",
           "decision": "equivalent_under_stated_reading",
-          "document": "examples/v016/kant-conditional-imputation.noema",
+          "document": "examples/v016/kant-calendar-dateline.noema",
           "source_nonblank_characters": 16
         }
       ],
