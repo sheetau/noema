@@ -1,0 +1,326 @@
+{
+  "status": "partial_title_definition_question_and_opening_response",
+  "document": "examples/v016/kant-definition-question.noema",
+  "library": "examples/v016/definition-question.noema",
+  "parent": "examples/v016/kant-norm-bound-choice.noema",
+  "inherited_meaning_basis": "data/norm-bound-choice-basis-v1.json",
+  "definitions": {
+    "rqqp": "二つの性質記述を同じ個体と同じ状況へ適用し、全個体・全状況で真偽が一致するという外延的な候補条件。構文の同一性や説明としての十分さとは別に評価する。",
+    "rqqq": "参照する性質記述についてrqqpを満たす候補記述を求める、性質記述型を答えとする質問。答えの存在や唯一性を追加主張しない。",
+    "rqqr": "同じ閉じた参照記述からrqqqへの適用の層1の記述を構成する。構成中は候補検査や参照内容を実行しない。",
+    "rqqs": "別々の問いと回答の箇所を同じ著者・文脈へ結び、同じ参照から作った質問記述の提示、指定候補を概念説明として提示したこと、本文順序、回答としての提示を要求する。候補の正しさは要求しない。",
+    "hzic": "表題の定義質問を既存biの啓蒙の性質記述に結び、冒頭第一文の同じbiの説明提示を回答として接続する。冒頭の既存cpが用いる著者・文脈・定義箇所と同じ参照を使う。"
+  },
+  "new_signatures": {
+    "rqqp": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqqq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "question",
+        "parameters": [
+          {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        ]
+      }
+    },
+    "rqqr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "question",
+          "parameters": [
+            {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "content"
+              }
+            }
+          ]
+        },
+        "rank": 1
+      }
+    },
+    "rqqs": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "question",
+                  "parameters": [
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          "individual"
+                        ],
+                        "result": "content"
+                      }
+                    }
+                  ]
+                },
+                "rank": 1
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzia": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzib": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              }
+            ]
+          },
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzic": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "primitives": {
+    "hzia": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "カントの表題内で「何が啓蒙か」を問うu0006の本文箇所。文や概念の意味をこの識別子で代用せず、質問内容はrqqqと既存biから構成する。"
+    },
+    "hzib": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              }
+            ]
+          },
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "question_description",
+        "context"
+      ],
+      "meaning_ja": "著者が指定箇所に、層1の記述で指定された性質記述型の質問を提示する。表題内の問いも扱い、著者が現実の聞き手に回答を要求した出来事や、答えの正しさは含めない。"
+    }
+  },
+  "limitations": [
+    "rqqpは同じ外延を持つ性質の記述を求める形式的な核であり、自然言語の「何であるか」に含まれる理解・本質・説明の十分さの全てを定義し終えた条件ではない。同じ外延の別名や冗長な記述も候補として通り得る。",
+    "外延的な候補一致と、引用された記述の構文的な同一性を分ける。候補として一致する別名を、著者が提示した質問や回答の記録へ自動代入しない。",
+    "型付き質問を構成・引用・具体候補に適用できる。記述型の全候補領域は有限列挙しない。候補評価には記述の脱引用があるため、質問の記述は層1として扱う。",
+    "rqqsは著者による提示の条件であり、誤答や不十分な回答も回答として提示されたことを記述できる。実際の候補条件の成立はrqqpまたは質問への具体候補適用で別に検査する。",
+    "参照先biは既存の離脱過程の性質であり、未成熟・能力・原因・決意と勇気・離脱の未解決の語義を引き継ぐ。表題の質問を新しい未説明の語彙記号で置き換えないが、参照を結んだだけでその語義の完成とはしない。",
+    "u0005の回答の枠付けとu0006の質問を部分的に記述する。最初の定義文が回答の入口であるという接続であり、本文全体の唯一の回答箇所としたり、後続の説明を不要としたりしない。",
+    "元の15主張をそのまま後続させ、表題と冒頭の提示関係を一つ加える。第一段落全体や表題二単位の意味確認済み判定はまだ行わない。"
+  ]
+}
