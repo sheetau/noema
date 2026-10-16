@@ -1,0 +1,194 @@
+{
+  "status": "partial_signature_naming_and_document_author_credit",
+  "document": "examples/v016/kant-author-signature.noema",
+  "library": "examples/v016/author-signature.noema",
+  "parent": "examples/v016/kant-factive-cause.noema",
+  "inherited_meaning_basis": "data/factive-cause-basis-v1.json",
+  "primitives": {
+    "hzif": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "この署名で用いる名称を指す個体。名前を持つ人物そのものとは区別する。綴りは識別表記の別添えに保持し、同じ綴りから人物同一性を推論しない。"
+    },
+    "hzig": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "カント文書末尾u0018の署名における名称使用の提示行為。文書で表された提示を指し、原稿の筆跡や物理的な印刷作業を特定するものではない。"
+    },
+    "hzih": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "名称使用の行為",
+        "名称個体",
+        "指される対象",
+        "文脈"
+      ],
+      "meaning_ja": "同じ提示行為で、この名称がこの対象へ適用される。名称の綴りが一致するだけでは成立せず、別の文脈や名称使用の適用先を自動的に引き継がない。"
+    },
+    "hzij": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "提示行為",
+        "文書",
+        "著者として表示される対象",
+        "文脈"
+      ],
+      "meaning_ja": "この文書の指定した提示行為が、その対象を文書の著者として表示する役割を持つ。単なる人物への言及、引用された他文書の署名、名前の一般的な使用とは区別する。表示の真実性や自筆であることは含まない。"
+    },
+    "hzik": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "現在Noemaで記述しているカント1784年の論説を指す文書個体。別の文書や、その複製媒体の個体とは区別する。"
+    },
+    "hzim": {
+      "parameters": [],
+      "result": "situation",
+      "arguments": [],
+      "meaning_ja": "この文書末尾の署名を提示する文脈。冒頭段落の文脈whと無条件に同一視しない。"
+    }
+  },
+  "definitions": {
+    "rqqw": "同じ提示者・名称使用・名称・対象・文脈でrnhが成立し、その同じ使用が指定文書の著者として同じ対象を表示する。提示者と表示される著者は別引数で、代筆や編集上の提示も区別して記述できる。",
+    "hzil": "本文全体で使う著者参照waを、末尾の名称使用hzigの同じ表示対象へ結ぶ。文書hzikと署名文脈hzimを固定し、原文の署名における著者自身の提示として扱う。現存媒体が自筆であるとは主張しない。"
+  },
+  "new_signatures": {
+    "hzif": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzig": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzih": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzij": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzik": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzim": {
+      "parameters": [],
+      "result": "situation"
+    },
+    "rqqw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzil": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "原文単位はI.[mmanuel] Kant.という電子版の転記である。括弧内の展開を原刊の字面と同一視せず、綴りの形を別添えで区別する。原刊画像との照合は未完。",
+    "識別表記は名称個体に付ける注記であり、人物の意味、概念の説明、名前の社会的な獲得過程を原語文字列で代用しない。名称の適用と著者表示はNoema本文で記述する。",
+    "同じ文字列を持つ複数の名称個体や、複数の表記を持つ一名称個体を許す。名前の一致だけで、別人を統合したり指示対象を選んだりしない。",
+    "署名の提示者を著者とする文書内の読みを採る。物理的な筆記・印刷の行為者や、自筆性・真正性・権利の認定は補わない。",
+    "署名箇所を既存の著者参照へ接続するが、人物の伝記全体、出生地、日付、前後の論証、二作品全文の意味確認を完了したとはしない。"
+  ]
+}
