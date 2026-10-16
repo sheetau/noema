@@ -1,0 +1,230 @@
+{
+  "status": "explicit_016_quotation_bridge_not_completed_source_attribution",
+  "document": "examples/v016/kant-quoted-outcomes.noema",
+  "library": "examples/v016/quoted-causal-outcomes.noema",
+  "parent": "examples/v014/kant-causal-outcome-contrast.noema",
+  "inherited_meaning_basis": "data/kant-causal-outcome-contrast-basis-v1.json",
+  "definitions": {
+    "hzhl": "同じ対象・活動種類・二つの結果記述・可能性の基準・候補関係の閉じた式記述を、既存hzhkへの適用の記述として組み立てる。結果は層1の真理値型の式の記述であり、構成だけでは対象の指示、活動種類、候補、因果、結果を評価しない。",
+    "hzhm": "同じhzhlの記述を、指定箇所・著者・範囲・帰属文脈へ結ぶ提示記録があることを表す。内容の真理や、原文の具体的な概念が充足したことを含意しない。可能性を評価する基準anchorと帰属文脈contextを別の役割として保持する。"
+  },
+  "new_signatures": {
+    "hzhl": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": "individual",
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "content"
+              }
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "content"
+              }
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": "situation",
+            "rank": 1
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            },
+            "rank": 1
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "truth",
+        "rank": 1
+      }
+    },
+    "hzhm": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": "individual",
+            "rank": 1
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "content"
+              }
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "content"
+              }
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "description",
+            "result": "situation",
+            "rank": 1
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "situation"
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "truth",
+                "rank": 1
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "0.16の既存の型付き記述構成と層1の引用を明示的に使う。0.14の解析器・意味規約・記述済み本文を上書きせず、旧版の引用禁止も解除しない。",
+    "hzhkは層0の結果記述を評価するため、引用全体には層1が必要である。構成する入力の式記述も層1とし、その中に結果記述の層0引用を保持する。層を下げる暗黙変換はしない。",
+    "記録関係は著者がこの記述内容を提示したという解釈を与える入力である。引用だけで著者帰属や真理を捏造せず、実際の原文箇所と具体化した内容の対応は別途確認する。",
+    "対象・活動種類・結果記述・基準・候補関係を全て渡せる構成だが、革命・専制・圧迫・改革の意味を具体化した完成した訳文ではない。今回は著者の新しい主張を追加しない。",
+    "同じ対象を指す別の式や、同じ真偽を持つ別の結果も、構文記述としては区別する。任意の同義表現の自動同一化は行わない。",
+    "0.16試作の実行時の層検査と回数上限を引き継ぐ。任意の高階関数に対する事前の効果検査、無矛盾性・停止性の一般証明、無限領域の評価は未完である。",
+    "他の0.16本文枝との統合は行わず、今回の0.14累積本文の明示的な後継とする。新しい原文範囲や意味確認済み区間数は加算しない。"
+  ]
+}
