@@ -1,0 +1,180 @@
+{
+  "status": "publication_header_under_displayed_metadata_reading",
+  "document": "examples/v016/kant-publication-header.noema",
+  "library": "examples/v016/publication-number.noema",
+  "parent": "examples/v016/kant-projected-classification.noema",
+  "inherited_meaning_basis": "data/projected-classification-basis-v1.json",
+  "primitives": {
+    "hzme": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "カント論説冒頭に表示されたBerlinische Monatsschriftの1784年12月号。脚注の案内対象である同年9月号hzkfとは別の号である。"
+    },
+    "hzmf": {
+      "parameters": [],
+      "result": "situation",
+      "arguments": [],
+      "meaning_ja": "原刊481頁の誌名・年・号数・月・記事番号の表示を読む文脈。脚注・署名・日付行の表示文脈とは区別する。"
+    },
+    "hzmg": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "冒頭に表示された1784年12月の期間。本文で同じ暦hzix・年hzjfの月番号12へ結ぶ。"
+    },
+    "hzmh": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "冒頭で刊行系列の名称を誌名として表示する使用。実際の印刷作業を同定しない。"
+    },
+    "hzmi": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "番号付けの規約",
+        "番号を持つ項目",
+        "親参照の順序付き経路",
+        "表示番号",
+        "表示文脈"
+      ],
+      "meaning_ja": "この番号規約で、この項目に、指定した親参照の経路の下でこの数値の番号が表示されている。号数・記事番号・頁番号などの規約は区別して渡し、異なる規約・親・年・文脈の同じ数字を流用しない。実際の発行順・既刊個数・日付・PDF画像番号は含意しない。"
+    },
+    "hzmj": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "この刊行系列の年内の号に付された順序番号の規約。親経路は刊行系列と年期間の順である。月番号や巻内の号数とは区別する。"
+    },
+    "hzmk": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "一つの号に収められた記事の表示順序番号の規約。親経路はその号であり、号数や頁番号とは区別する。"
+    }
+  },
+  "definitions": {
+    "rqso": "同じ番号付け規約・親参照経路・表示番号・文脈で指定項目への割当が成立し、同じ条件で割り当てられる他項目がないこと。番号の値を月や物理的な位置から算出せず、別規約の同じ数字は一意性の比較に混ぜない。",
+    "hzml": "冒頭の表示で、既存の名称hzkhを同じ刊行系列hzkgの誌名として用い、現在の号hzmeをその系列へ結ぶ。名称・系列・号を区別し、9月号とも区別する。",
+    "hzmm": "同じ暦hzixの年番号1784が既存年期間hzjfを一意に指し、現在の号の表示年がその年である。実際の刊行日・執筆日・閲読日を述べない。",
+    "hzmn": "現在の号に年内第12号の番号と12月の表示をそれぞれ結ぶ。号番号は刊行系列・1784年の経路、月番号は同じ暦・年で解釈し、両者を同じ関係で代用しない。",
+    "hzmo": "現在の論説hzikが現在の号hzmeに掲載され、その号内の記事の表示番号1を一意に持つ。論説の内容の正しさや刊行時刻を主張しない。"
+  },
+  "new_signatures": {
+    "hzme": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzmf": {
+      "parameters": [],
+      "result": "situation"
+    },
+    "hzmg": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzmh": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzmi": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "number",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzmj": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzmk": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "rqso": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": "number"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzml": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "hzmm": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "hzmn": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "hzmo": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "冒頭四単位を誌名・表示年・年内の号番号と表示月・記事番号として読む。表示番号と実際の刊行順・個数を同一視しない。",
+    "年1784と暦・誌名・系列・現在の論説は既存参照を共用し、12月号と12月期間だけを新たに指定する。原文の月の指定に日・時刻を補わない。",
+    "番号規約と親経路を明示し、月番号・年内の号数・巻内の号数・記事番号・頁番号を混同しない。",
+    "同頁の1783年12月516頁への参照指示は今回の四単位に含めず、引き続き記述を要する。",
+    "既存27文・全宣言・意味規約・名称表記を保存する。前付の記述から本文や脚注全体の意味一致を導かない。"
+  ]
+}
