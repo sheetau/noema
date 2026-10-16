@@ -1,0 +1,171 @@
+{
+  "status": "cross_reference_under_addressed_consultation_reading",
+  "document": "examples/v016/kant-cross-reference.noema",
+  "library": "examples/v016/periodical-page-address.noema",
+  "parent": "examples/v016/kant-publication-header.noema",
+  "inherited_meaning_basis": "data/publication-header-basis-v1.json",
+  "primitives": {
+    "hzmp": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "message"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "文章箇所",
+        "提示者",
+        "受け手を引数にする発話の記述",
+        "提示文脈"
+      ],
+      "meaning_ja": "提示者がこの箇所で、暗黙に呼びかける受け手に対し、指定された発話を提示する。引数の人物は実際に呼びかけを受ける者として代入し、特定の人物や全人類を指定しない。発話の働きと内容は記述側に保持する。単なる他者発話の引用、受け手の行動の成立、法的義務、内容への賛同は含意しない。"
+    },
+    "hzmq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "行為",
+        "参照する人",
+        "情報の所在",
+        "状況"
+      ],
+      "meaning_ja": "指定した人が、情報を確認するため指定された所在の記載を参照する行為。全文の通読、内容の真偽の認定、理解の成功、物理的な頁の移動を含意しない。行為が成立することは別にdgで記す。"
+    },
+    "hzmr": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "参照先の刊行物に印刷された頁番号の規約。親経路はその号である。号番号、記事番号、画像やPDFの通し番号とは区別する。"
+    },
+    "hzms": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "カント論説の表題直後にある1783年12月516頁への参照指示の文章箇所。参照先の頁そのものではない。"
+    },
+    "hzmv": {
+      "parameters": [],
+      "result": "situation",
+      "arguments": [],
+      "meaning_ja": "表題直後の括弧内の参照指示を提示する文脈。参照を実行する状況や掲載情報の表示文脈と区別する。"
+    }
+  },
+  "definitions": {
+    "rqsp": "指定系列・暦の年番号・月番号で示す号において、指定規約の頁番号が対象を一意に指すという住所条件。年期間・月期間・号を存在量化で結び、同じ号の表示年と表示月、その号を親とする頁番号を共用する。日・実際の刊行日・参照の実行・頁の内容を補わない。",
+    "hzmt": "受け手に、同じ誌名系列の1783年12月号の印刷頁516を参照するよう促す発話。所在地の条件と参照行為は要求される内容の内部に置く。受け手は引数であり、著者や特定の実在人物へ固定しない。",
+    "hzmu": "表題直後の箇所で、著者が暗黙の受け手へhzmtの促しを提示すること。住所の現実の解決や読者の行動を評価してから提示を認める構成にはしない。"
+  },
+  "new_signatures": {
+    "hzmp": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "message"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzmq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzmr": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzms": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzmv": {
+      "parameters": [],
+      "result": "situation"
+    },
+    "rqsp": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "number"
+        },
+        {
+          "name": "ve",
+          "sort": "number"
+        },
+        {
+          "name": "vf",
+          "sort": "number"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzmt": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "message"
+    },
+    "hzmu": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "S.[iehe]を参照への促しと読む。同じ刊行系列への参照という文脈的な読みを採用する。",
+    "第2のS.は頁番号。516を記事番号・号番号・画像位置へ置換しない。",
+    "住所と参照行為は要求内容の内部にある。参照先の内容、実際の閲読、理解、賛同や法的義務を主張しない。",
+    "参照指示の提示を記述し、特定の読者を新たに同定しない。括弧は補足的な独立箇所として保持する。",
+    "既存31文・全宣言・意味規約・名称表記を保存する。指示対象の実物の調査や本文全体の確認は含まない。"
+  ]
+}
