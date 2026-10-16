@@ -1,0 +1,746 @@
+{
+  "status": "partial_unilateral_binary_decision_not_complete_domination",
+  "document": "examples/v016/kant-unilateral-decision.noema",
+  "library": "examples/v016/unilateral-decision.noema",
+  "parent": "examples/v016/kant-relational-departure.noema",
+  "inherited_meaning_basis": "data/relational-departure-basis-v1.json",
+  "definitions": {
+    "rqt": "人物列の各位置へ、その人の二値入力を対応させる。列を並べ替えるときは結果規則の位置も対応させる。",
+    "rqu": "指定した本人だけが指定値を持ち、他の人物の入力は偽となる比較用の入力配置。実際の入力や他者の不参加は主張しない。",
+    "rqv": "重複のない人物列に本人が含まれ、本人の入力だけを反転すると結果が変わる配置が少なくとも一つある。",
+    "rqw": "重複のない人物列に本人が含まれ、全二値入力配置で、結果が本人の入力だけから決まる。本人の二つの入力は異なる結果を生む。結果が本人の入力の反転である規則も含み、定数規則は含めない。",
+    "rqy": "同じ対象・状況に結び付いた入力者列が指定範囲の重複のない完全な列であり、対象自身を含む。離脱判定では前後両方に要求し、不完全な終了点を関係不成立の根拠としない。",
+    "rqx": "同じ対象・状況に結び付いた完全な入力者列と結果規則について、対象自身が入力者であり、別の相手がrqwの決定力を持つ。対象の入力も他の入力もその相手の決定結果を変えない。",
+    "hzhr": "既存hzhnの関係をrqxに具体化する。同じ相手・対象への一方的な二値決定関係が、評価済みかつrqyの設定が有効な前では成立し、同様に有効な後では成立しない変化の内容。",
+    "hzhs": "閉じた設定記述からhzhrへの適用記述を構成する。決定規則、関係、変化過程を実行しない。",
+    "hzht": "因果対比hzhkの第一の結果をhzhsの内容記述に固定する。因果記録と内容評価に同じ記述を渡す。"
+  },
+  "new_signatures": {
+    "rqt": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "truth"
+      }
+    },
+    "rqu": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "truth"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "truth"
+      }
+    },
+    "rqv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzhr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "content"
+      }
+    },
+    "hzhs": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "sequence",
+                    "element": "truth"
+                  }
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "content"
+        }
+      }
+    },
+    "hzht": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": "individual",
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "content"
+              }
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": "situation",
+            "rank": 1
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "sequence",
+                    "element": "truth"
+                  }
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "truth",
+        "rank": 1
+      }
+    }
+  },
+  "limitations": [
+    "二値の全入力配置に関する純粋な結果規則の定義。実行可能な介入、身体的強制、意思形成の独立性、実際の服従や規範上の権限を、この関数の性質だけから導かない。",
+    "participantsとcontributorsは同じ対象・状況で完全性を照合するが、その範囲が現実の全要因を網羅するという外部の主張までは証明しない。未評価の入力を偽に置換しない。",
+    "対象も入力者である場合に限定する。対象にそもそも選択肢がない支配、複数値の選択、議題設定、確率的結果、複数主体の連合支配は未記述。",
+    "rqxは支配概念の一部に向けた操作的候補。個人的専制、利欲や支配欲による圧迫、政治的制度、正当性の語義全体とは同一視しない。",
+    "決定規則と入力者範囲は前後で変化してよい。各点の対象と状況は揃える。離脱した相手以外への支配の交替や、その後の恒久的な自由は排除も保証もしない。",
+    "全二値配置を既存rsで有限列挙するため、入力者数に対して指数的な評価費用がある。真理値表検査は有限モデルの検査であり、任意の人数の形式証明ではない。",
+    "新しい原始記号、自然言語との対訳、原文の主張は追加しない。新規原文範囲や意味確認済み区間も加算しない。"
+  ]
+}
