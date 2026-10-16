@@ -1,0 +1,382 @@
+{
+  "status": "partial_provisional_presentation_and_modal_extent_question",
+  "document": "examples/v016/kant-exploratory-question.noema",
+  "library": "examples/v016/exploratory-question.noema",
+  "parent": "examples/v016/kant-counterfactual-withholding.noema",
+  "inherited_meaning_basis": "data/counterfactual-withholding-basis-v1.json",
+  "primitives": {
+    "hzku": {
+      "parameters": [
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "評価文脈",
+        "可能性を検討する状況"
+      ],
+      "meaning_ja": "この文脈で可能性を検討するために採る状況。実際に起きた状況、話者が信じる状況、確率標本と同一視しない。許容する可能性の種類と範囲は文脈の意味契約である。"
+    },
+    "hzkv": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "第一文献",
+        "第二文献",
+        "一致の範囲・程度",
+        "評価状況"
+      ],
+      "meaning_ja": "二文献の思想・論旨の内容が、この範囲・程度で一致する。字面の一致、文献の同一性、真理や価値への評価とは区別する。範囲・程度は個体として指定し、数値尺度・最大値・一致率を補わない。比較基準の構成は未完。"
+    },
+    "hzkw": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "成立過程",
+        "評価状況"
+      ],
+      "meaning_ja": "この文脈でその成立過程が偶発的と捉えられる。単なる原因の不明、確率的独立、意図ある人格としての偶然とは同一視しない。意図的な調整や必然的な一致と区別するための偶発性の基準は意味契約として残る。"
+    },
+    "hzkx": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "成立過程",
+        "第一文献",
+        "第二文献",
+        "一致の範囲・程度",
+        "評価状況"
+      ],
+      "meaning_ja": "この過程が、二文献の内容の指定範囲・程度の一致を生じさせることに因果的に寄与する。同じ過程・文献・一致範囲を結び、単なる共存と区別する。唯一原因性や一般的な認知機構は補わない。"
+    },
+    "hzky": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual"
+            ]
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "提示上の位置付け",
+        "範囲・程度を答えとする問いの記述",
+        "評価文脈"
+      ],
+      "meaning_ja": "この位置付けは、記述された問いを検討するための試みとしての提示である。問いの解決、候補答えの存在・唯一性、実験の成功や結果の真理は含意しない。"
+    },
+    "hzkz": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "提示者",
+        "文献",
+        "提示上の位置付け",
+        "評価文脈"
+      ],
+      "meaning_ja": "この提示者が、この箇所・文脈で当該文献に与える提示上の位置付け。文献のあらゆる用途や価値、他の人が与える位置付けまで列挙する関係ではない。"
+    },
+    "hzla": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "この脚注で現在の回答に与える提示上の位置付けの局所参照。その内容は本文でhzkyと問いの記述へ結ぶ。"
+    },
+    "hzlb": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "提示者",
+        "文献",
+        "基準時点",
+        "評価文脈"
+      ],
+      "meaning_ja": "この人物が、この基準時点の文脈で当該文献をここに提示したものとして置いておくことを容認する態度を表す。法的な許可、実際の刊行、成功、文献内容への確信とは区別する。"
+    }
+  },
+  "definitions": {
+    "rqrt": "指定文脈から検討可能な状況のいずれかで指定条件を満たす範囲・程度を、候補答えとして求める質問を構成する。候補の存在・最大値・唯一性や現実での条件成立を主張しない。",
+    "rqru": "同じ状況に成立する過程が偶発的とされ、その過程が同じ二文献の指定範囲・程度の一致に因果的に寄与し、その一致も同じ状況で成立する。異なる過程・状況・文献・範囲の関係を組み合わせない。",
+    "rqrv": "提示者がこの文脈で当該文献に指定の位置付けを与え、与えている全ての位置付けがそれと同じである。空の指定を受け入れず、文献の全目的や他者の位置付けを制約しない。",
+    "hzlc": "指定状況で、現在の論説hzikと先の回答hzjnの内容について、指定範囲・程度の一致が偶発的な過程の影響により成立するという条件。実際の成立をこの定義だけでは断言しない。",
+    "hzld": "脚注の文脈から、偶然が二つの回答の思想の一致をどこまで生じさせうるかを問う質問。数値や一意な最大程度は与えず、範囲・程度の候補を求める。",
+    "hzle": "著者waが現在の論説hzikを今ここに置くことを容認し、この箇所では同じ問いhzldを検討する試みという位置付けだけを与える。問いは記述として接続し、答えや現実の一致を肯定しない。"
+  },
+  "new_signatures": {
+    "hzku": {
+      "parameters": [
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzkv": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzkw": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzkx": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzky": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual"
+            ]
+          }
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzkz": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzla": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzlb": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "rqrt": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "question",
+        "parameters": [
+          "individual"
+        ]
+      }
+    },
+    "rqru": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqrv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzlc": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzld": {
+      "parameters": [],
+      "result": {
+        "kind": "question",
+        "parameters": [
+          "individual"
+        ]
+      }
+    },
+    "hzle": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "magを、現在の回答をここに置くことを容認する控えめな態度として読む。可能性の推測や規範的許可などの全語義を解決したものではない。",
+    "nurはこの箇所で著者が与える提示上の位置付けにかけ、文献の全目的や価値を一つに限定しない。文脈的な限定範囲の読解は全体の意味確認で再検討する。",
+    "wiefernは可能な一致の範囲・程度を問う候補条件として構成する。尺度の順序、最大値、一意性、問いの語用論的な前提を補わない。思想の比較基準と偶発性の基礎説明は未完。",
+    "同じ過程の偶発性・因果寄与・一致を組み合わせるが、偶然を未知の原因や統計的独立だけへ還元しない。可能な状況の選択も入力の意味契約である。",
+    "問いを検討する試みとしての位置付けを述べる。実際の思想の一致、偶然による結果、実験の成功や答えの取得を主張しない。",
+    "既存22文と全宣言・意味規約を保存する。脚注の全文章に部分草案が対応しても、周期・編集関係・暦・敬称・指示・反事実等の課題は残り、単位全体の意味確認には数えない。"
+  ]
+}
