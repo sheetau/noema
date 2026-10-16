@@ -1,0 +1,551 @@
+{
+  "status": "collective_change_extension_candidate_not_complete_public_enlightenment",
+  "document": "examples/v016/kant-collective-change.noema",
+  "parent": "examples/v016/kant-cross-reference.noema",
+  "inherited_meaning_basis": "data/cross-reference-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "rqsq": "指定範囲の尺度値について、相異なる最小値と最大値を持つ厳密な全順序を要求する。数値、距離、等間隔、確率を仮定しない。",
+    "rqsr": "非空の候補範囲で内容を評価し、不可能なら最低値、全候補で成立するなら最高値、その中間なら両端以外の尺度値を要求する。中間の値の選択は文脈的な評価であり、候補の件数から算出しない。",
+    "rqss": "最高値の手前で近いと採る範囲を明示する。非空で、両端を含まず、その範囲内の値より上の中間値も含む。近さの実質的な基準を順序だけから発見したとはしない。",
+    "rqst": "同じ候補範囲・尺度で二つの内容の程度を比較し、第一の内容を厳密に高く評価する。各値は可能・不可能・必然の両端と整合し、第一だけが成立する候補も要求する。第二を含意する第一を逆に高くするような包含逆転を認めない。",
+    "rqsu": "基準の候補範囲を指定条件が真の候補に制限し、同じ目標を最高値の手前の近い範囲で評価する。条件を満たす候補は非空とし、現実の条件成立、目標の実現、条件の必要性は要求しない。",
+    "rqsv": "第一の内容が比較対象より可能性の程度で上にあり、指定条件の下ではその同じ第一の内容がほぼ必然という、二つの判断を同じ尺度へ結ぶ。公衆・個人・自由などの内容は引数で与え、特定の原文語を基本記号へ埋め込まない。",
+    "rqsw": "非空の構成員範囲と変化条件から、両方を満たす人の範囲を式の内部で作る。その範囲も非空でなければならず、元の構成員範囲と同じ変化範囲を指定の広がり基準へ渡す。成功者だけを外部から選んだ別の集合や、集団外の成功者を代入しない。",
+    "rqsx": "構成員の全員が指定範囲に含まれるという広がり基準。非空性は呼出側rqswで要求する。原文に全員という条件を自動的に加える既定値ではない。",
+    "rqsy": "構成員のうち異なる二人が指定範囲に含まれるという広がり基準。人数を一般的な集団変化の定義へ固定せず、複数人を要求する明示的な選択肢として与える。",
+    "hzmw": "同じ集団・変化過程・開始点・終了点・評価基準を固定し、既存h6bを満たす内部の当事者と活動部分がある構成員を、変化した人の範囲としてrqswへ渡す。広がり基準は引数であり、一人・複数人・全員を混同しない。公開性・態度の伝播・公衆全体の啓蒙をこの条件だけで認定しない。"
+  },
+  "new_signatures": {
+    "rqsq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqss": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqst": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsu": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": "individual"
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzmw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "これは質的な比較尺度による読みの構成である。頻度や数値確率の推定器ではなく、原文に95%などの閾値を補わない。",
+    "近いが端点ではないという厳密な読みを採る。almostの全用法、実質上の必然という緩い用法、任意の曖昧さを同じ規則で処理する主張ではない。",
+    "候補範囲、内容の解釈、尺度、中間値、近さの範囲は意味を与える際の明示的な条件である。未知値を偽と置かず、根拠のない中間値を自動設定しない。",
+    "カントu0011への適用には、公衆の自己啓蒙、比較される個人の離脱、自由を残す条件、比較背景、jaの強調、著者帰属の接続が必要。既存h6dは内部の一人への働きかけであり、公衆全体の変化として代入しない。",
+    "原文の完成した対応や新しい著者主張としては登録しない。既存の本文、意味確認登録簿、原文対応率を変えない。",
+    "一人を対象とする既存の変化を、同じ過程の変化範囲へ接続する。変化は能力を失った人や新たに加入した人の単なる比率差ではなく、同じ対象者の前後条件による。",
+    "構成員は既存mpが与える固定範囲である。参加・離脱、公衆としての公開性、公開の議論の成立は別に記述する。",
+    "変化ごとに内部の当事者と活動部分は違ってよいが、集団・過程・前後・基準時は共用する。別の過程や別時点の成功を合算しない。",
+    "本人が能力を獲得する過程に他者が関わることと、結果側の能力使用が他者の指導を必要とすることは異なる。既存h6bの区別を保持する。",
+    "広がりの基準は原文への適合を別に判断する。二人・全員・過半数をカントの公衆の自己啓蒙の固定した意味としない。",
+    "前段の程度比較の六定義も互換な拡張へ含めるが、自由の内容・比較背景・著者帰属への接続は未完。既存32文と意味確認登録簿は変更しない。"
+  ]
+}
