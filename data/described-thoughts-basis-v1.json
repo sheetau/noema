@@ -1,0 +1,426 @@
+{
+  "status": "typed_message_description_comparison_interface",
+  "document": "examples/v016/kant-described-thoughts.noema",
+  "library": "examples/v016/described-thoughts.noema",
+  "parent": "examples/v016/kant-thought-correspondence.noema",
+  "inherited_meaning_basis": "data/thought-correspondence-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "rqrz": "同じ型の二つの発話記述が構文として同一であるという保守的な対応基準。束縛変数名は正規化される。発話の内容を実行せず、別名展開や任意の意味同値を推定しない。論点と状況は共通の基準インターフェースのために受け取る。",
+    "rqsa": "同じ論点・状況で二内容項目の発話記述を取り出し、その同じ論点・状況の記述比較基準に渡す。項目そのものの同一性を要求しない。",
+    "rqsb": "比較領域の各論点で、どちらかの文献が述べる項目同士について、従来の項目対応関係とrqsaによる記述比較の真偽が一致することを要求する。比較領域外・非帰属項目には同値を課さない。",
+    "rqsc": "rqsaによる記述比較を項目間の対応関係としてrqryへ渡し、論点ごとの一致の正確な範囲を定める。渡す基準がrqrzの場合だけ構文同一性を用い、一般には明示した基準に従う。",
+    "hzlj": "現在の論説と先の回答について、同じ状況のhzlf・hzlh・hzliと、与えた記述対応基準の整合条件rqsbを述べる。これは条件であり、全状況で成立すると自動には主張しない。",
+    "hzlk": "現在の論説と先の回答の一致範囲を、同じ状況の論点・所属・帰属と明示した発話記述・対応基準から構成する。従来hzkvとの同値には、同じ状況でhzljが成立することが必要。",
+    "hzll": "発話記述とその比較基準を明示して、偶発的な過程が二文献の思想をどこまで一致させうるかを問う。比較・因果寄与・偶発性を同じ状況で結ぶ。候補の実際の成立や成功を断言しない。"
+  },
+  "new_signatures": {
+    "rqrz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsa": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "message"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsb": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "message"
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsc": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "message"
+            }
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzlj": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "message"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzlk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "message"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzll": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "message"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "question",
+        "parameters": [
+          "individual"
+        ]
+      }
+    }
+  },
+  "interfaces": {
+    "describes": "内容項目・論点・状況から、閉じた型付きNoema発話の記述を返す。項目の真理を返さず、未登録項目へ既定の記述を補わない。実際の文献への忠実な帰属は別途説明を要する。",
+    "criterion": "二つの発話記述・論点・状況を受ける対応条件。rqrzは内容を実行しない構文同一性の基準。任意の外部基準について未評価性や意味の正しさを自動保証しない。"
+  },
+  "limitations": [
+    "発話型fは主張・真偽を問う質問・指示を保持できる。答えの対象型を持つg[a]等の問いをfへ変換して収める規則はなく、それらの内容項目には別の型付き接続が必要。",
+    "構文同一性は意味同値の完全な基準ではない。同じ意味の別名や別構文もrqrzでは不一致となりうる。比較の失敗から思想の積極的な対立は導かない。",
+    "引用内の否定・量化・条件・対象・発話の種類は構造として保持し、同じ状況での真偽が等しいだけでは同一化しない。",
+    "hzljは与えた対応基準と従来の対応関係の整合条件。条件を定義しただけではカント二文献について条件が成立したとは扱わない。",
+    "hzllは基準を明示した質問の接続先であり、既存hzld・提示文hzleを無条件に置換しない。実文献の内容項目の記述、比較基準、原文との意味一致は未完。",
+    "既存23文と全宣言・意味規約を保存する。新しい基本関係は追加せず、七つの合成定義を加える。原文対応範囲と意味確認済み単位は増やさない。"
+  ]
+}
