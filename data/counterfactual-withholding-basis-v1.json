@@ -1,0 +1,313 @@
+{
+  "status": "partial_nonvacuous_counterfactual_withholding",
+  "document": "examples/v016/kant-counterfactual-withholding.noema",
+  "library": "examples/v016/counterfactual-withholding.noema",
+  "parent": "examples/v016/kant-dated-reading.noema",
+  "inherited_meaning_basis": "data/dated-reading-basis-v1.json",
+  "primitives": {
+    "hzkm": {
+      "parameters": [
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "評価状況"
+      ],
+      "meaning_ja": "その状況で基準時以前の事象を評価するために指定された時間的履歴枠。反事実の別経過には別の履歴解釈を許す。未指定の場合に実際の履歴を流用しない。"
+    },
+    "hzkn": {
+      "parameters": [
+        "situation"
+      ],
+      "result": "situation",
+      "arguments": [
+        "評価状況"
+      ],
+      "meaning_ja": "その状況で過去の事象を評価する指定基準時点。異なる比較状況の時点を実際の基準時と自動的に同一視しない。"
+    },
+    "hzko": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "視点となる人物",
+        "前提の状況条件記述",
+        "実際の評価状況",
+        "比較状況"
+      ],
+      "meaning_ja": "この人物の視点で、この前提記述を仮に認める条件文を評価するために採用した比較状況。現実の時間的履歴や、単に前提が真となる全状況とは区別する。適切な比較の選択は意味契約で、最類似世界の一般理論をこの基本関係だけで与えない。"
+    },
+    "hzkp": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "差し控える対応",
+        "人物",
+        "提示を差し控える文献",
+        "評価状況"
+      ],
+      "meaning_ja": "この対応において、この人物がこの文献を回答として提示することを差し控える。文献の破壊、他人への禁止、存在しない文献の物理的撤回を含意しない。執筆・送稿・公表のどの段階かは追加指定を要する。"
+    },
+    "hzkq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "影響を与える文献",
+        "結果となる対応",
+        "評価状況"
+      ],
+      "meaning_ja": "この文献からの影響が、この対応が生じることに因果的に寄与する。単なる前後関係や同時成立だけでは満たさず、文献自体を意図ある人物として扱わない。影響の認知的機構や唯一原因性は含意しない。"
+    }
+  },
+  "definitions": {
+    "rqrq": "taを満たす履歴に基準点が属し、その履歴の基準点以前（基準点を含む）のどこかで指定事象が成立する。無効な履歴では成立しないため、未成立条件rqrnを単に否定したものとは異なる。",
+    "rqrr": "同じ受け手・文献・履歴枠・基準時・文脈で、基準時までに受領が成立することをrqrqで記述する。現在の所持や内容の理解は要求しない。",
+    "rqrs": "実際の状況で前提が成立せず、採用する比較状況が少なくとも一つあり、その全てで前提と帰結が成立するという反事実の条件。空の選択や前提を満たさない比較を成功にしない。現実の帰結を主張せず、比較選択の妥当性は入力の意味契約に残る。",
+    "hzkr": "指定状況の履歴枠・基準時の下で、脚注の同じ回答文献hzjnが著者waへ届いていること。実際の状況と反事実の状況で同じ受け手・文献を保持し、履歴の解釈は分ける。",
+    "hzks": "指定状況に、著者waが現在の論説hzikの提示を差し控える対応が成立し、先の回答hzjnからの影響がその同じ対応に因果的に寄与する。単なる非提示や、別の文献を差し控えることでは満たさない。",
+    "hzkt": "実際の脚注文脈の履歴・基準時を既存の未受領へ結び、先の回答と現在の論説を区別する。その回答が届いていれば、その影響で現在の回答を差し控えただろう、という選択された比較状況での読み。現実の差し控えを主張しない。"
+  },
+  "new_signatures": {
+    "hzkm": {
+      "parameters": [
+        "situation"
+      ],
+      "result": "individual"
+    },
+    "hzkn": {
+      "parameters": [
+        "situation"
+      ],
+      "result": "situation"
+    },
+    "hzko": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzkp": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzkq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "rqrq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqrr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqrs": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzkr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzks": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzkt": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "sonstの前提を、直前の未受領に対する「先の回答が基準時までに届いていたなら」と読む。代名詞sieを先の回答、die gegenwärtigeを現在の論説hzikへ結ぶ。別解釈を排除した全体の意味確認ではない。",
+    "zurükgehaltenを回答の提示を差し控えることへの影響として読む。執筆そのものを止めるか、送稿や公表を差し控えるかの具体的段階、因果機構は未確定。",
+    "比較状況は前提記述・人物・実際の文脈へ結ぶ。選択範囲の妥当性、最類似世界や反可能条件の一般理論、実際の全過去の復元は未完。",
+    "基準時までの受領と未受領の補集合関係は、有効な同一履歴・基準時・完全な事象解釈の下でのみ扱う。履歴が不正なら両方とも不成立になる。",
+    "後続の試みとしての提示、偶然による思想の一致、控えめな可能表現は未記述。以前の周期・編集関係・暦・敬称等の制限も継承する。",
+    "既存21文・全宣言・意味規約を保存し、反事実の一文を追加する。有限検査を原文単位全体の意味一致の証明にしない。"
+  ]
+}
