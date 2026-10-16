@@ -1,0 +1,386 @@
+{
+  "status": "checked_gregorian_numeric_rules_not_historical_identification",
+  "document": "examples/v016/kant-gregorian-rules.noema",
+  "library": "examples/v016/gregorian-rules.noema",
+  "parent": "examples/v016/kant-labeled-dates.noema",
+  "inherited_meaning_basis": "data/labeled-dates-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "rqse": "非空の有限数字列の全要素が0から31の整数であることを、有限列の位置検査で要求する。先頭の0は許す。空列・負・分数・32以上の桁は拒否する。",
+    "rqsf": "数字列を左から読み、蓄積値を32倍して次の桁を足す。数字列の妥当性はrqseで別に要求する。",
+    "rqsg": "被除数・除数・商・余りを有効な32進自然数列で与え、除数が正、被除数=除数×商+余り、余り<除数を要求する。整数性を外部判定へ任せず、不正な証拠を拒否する。",
+    "rqsh": "正の年番号と、その同じ年を4・100・400で割った商・余りの証拠が全て有効である。異なる年の証拠や0年を混ぜない。",
+    "rqsi": "rqshを満たし、4での余りが0、かつ100での余りが非0または400での余りが0である。正の年番号についてのグレゴリオ閏年規則。",
+    "rqsj": "rqshで年の証拠を検査し、月番号と日番号がグレゴリオ暦の月長規則を満たす。2月29日はrqsiを必要とし、無効な年証拠を平年として受理しない。月日番号の非整数・0・負・範囲外も拒否する。",
+    "rqsk": "同じ年番号の証拠でrqsjによる月日有効性とrqsdによる暦内の一意な年・月・日割当を結ぶ。暦の歴史的な同定や絶対時刻をこの条件だけで主張しない。",
+    "hzlo": "日付行と脚注が共有する年番号1784・月番号9・日番号13と30について、同じ32進の商余り証拠を使い、各文脈の期間割当とグレゴリオ規則上の有効性を結ぶ追加条件。原文の暦全体がグレゴリオ暦であるという同定ではなく、既存本文の主張としては追加しない。"
+  },
+  "new_signatures": {
+    "rqse": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        }
+      ],
+      "result": "number"
+    },
+    "rqsg": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsh": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsi": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsj": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": "number"
+        },
+        {
+          "name": "vi",
+          "sort": "number"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqsk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "number"
+        },
+        {
+          "name": "vf",
+          "sort": "number"
+        },
+        {
+          "name": "vg",
+          "sort": "number"
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzlo": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "既存の有理加算ha・乗算hb・比較hcと有限列演算を使用する。整数・剰余・閏年を返す新しい基本関係を追加しない。",
+    "自然数を32進数字列として与え、その全桁と商余りの等式をNoemaで検査する。証拠の生成と検査は別であり、生成器の誤りを無条件には信用しない。",
+    "正の年番号にグレゴリオ規則を適用する。0年・紀元前年の表記規約、改暦時の欠番、地方ごとの導入日、天文学的時刻への換算は含まない。",
+    "数値上有効な年月日であっても、その場所で歴史上使用された暦と同定したことにはならない。原文の暦についての未確認事項は継承する。",
+    "rqskは月日の有効性と期間への割当の整合条件である。与えられた割当の網羅性・時間順序・物理的な日境界まで定義しない。",
+    "既存23文と全宣言・意味規約を保存する。hzloを新たな原文主張として追加せず、原文対応範囲と意味確認済み単位は増やさない。"
+  ]
+}
