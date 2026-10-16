@@ -23,8 +23,8 @@
       "math_object_count": 0,
       "math_objects_with_partial_associations": 0,
       "math_object_touch_percent": null,
-      "verified_semantic_units": 1,
-      "verified_semantic_percent": 5.0,
+      "verified_semantic_units": 2,
+      "verified_semantic_percent": 10.0,
       "units": [
         {
           "unit": "kant-1784:u0001",
@@ -1019,10 +1019,10 @@
             "unit": "kant-1784:u0018",
             "unit_sha256": "6fc51ad81049a2ed83495e55959c3c060d94c37531e986555bc2f8423458aefc",
             "source_inventory": "artifacts/written-units-v1/kant-1784.json",
-            "review": "data/author-signature-review-v14.json",
+            "review": "data/author-signature-review-v15.json",
             "reviewer": "assistant_review",
             "decision": "equivalent_under_stated_reading",
-            "document": "examples/v016/kant-gregorian-rules.noema",
+            "document": "examples/v016/kant-dateline-reading.noema",
             "source_nonblank_characters": 16
           }
         },
@@ -1041,10 +1041,21 @@
           "math_objects_with_partial_associations": [],
           "reports": [
             "reports/calendar-dateline-v1.json",
+            "reports/dateline-reading-v1.json",
             "reports/gregorian-rules-v1.json",
             "reports/labeled-dates-v1.json"
           ],
-          "has_association_without_text_range": false
+          "has_association_without_text_range": false,
+          "semantic_review": {
+            "unit": "kant-1784:u0019",
+            "unit_sha256": "4df3f2d840150fd44b05bba5b8b6a0d64773755445a29138ac5fa203607b23c2",
+            "source_inventory": "artifacts/written-units-v1/kant-1784.json",
+            "review": "data/dateline-review-v1.json",
+            "reviewer": "assistant_review",
+            "decision": "equivalent_under_stated_reading",
+            "document": "examples/v016/kant-dateline-reading.noema",
+            "source_nonblank_characters": 43
+          }
         },
         {
           "unit": "kant-1784:u0020",
@@ -1071,6 +1082,7 @@
             "reports/class-restricted-roles-v1.json",
             "reports/counterfactual-withholding-v1.json",
             "reports/dated-reading-v1.json",
+            "reports/dateline-reading-v1.json",
             "reports/described-thoughts-v1.json",
             "reports/exploratory-question-v1.json",
             "reports/gregorian-rules-v1.json",
@@ -9521,6 +9533,46 @@
         "rqrp",
         "rqrm",
         "hzkk"
+      ]
+    },
+    {
+      "report": "reports/dateline-reading-v1.json",
+      "pointer": "/alignment/segments/0",
+      "unit": "kant-1784:u0019",
+      "status": "partial",
+      "source_status": "partial_draft_with_explicit_calendar_reading",
+      "range": [
+        0,
+        49
+      ],
+      "math_id": null,
+      "math_sha256": null,
+      "definitions": [
+        "rqsh",
+        "rqsi",
+        "rqsj",
+        "rqsk",
+        "hzlo"
+      ]
+    },
+    {
+      "report": "reports/dateline-reading-v1.json",
+      "pointer": "/alignment/segments/1",
+      "unit": "kant-1784:u0020",
+      "status": "partial",
+      "source_status": "partial_draft_with_explicit_calendar_reading",
+      "range": [
+        3,
+        177
+      ],
+      "math_id": null,
+      "math_sha256": null,
+      "definitions": [
+        "rqsh",
+        "rqsi",
+        "rqsj",
+        "rqsk",
+        "hzlo"
       ]
     },
     {
@@ -22902,6 +22954,7 @@
     "reports/curve-discourse-v1.json",
     "reports/curved-clock-v1.json",
     "reports/dated-reading-v1.json",
+    "reports/dateline-reading-v1.json",
     "reports/declining-hindrances-v1.json",
     "reports/definition-question-v1.json",
     "reports/deflection-ratio-v1.json",
@@ -23166,7 +23219,7 @@
     "reports/written-v010.json",
     "reports/written-v012.json"
   ],
-  "parsed_noema_documents": 860,
+  "parsed_noema_documents": 861,
   "source_sha256": {
     "scripts/audit_written_progress.py": "36d3f5696e52a1aab6a61180a57ab2244202aba9fd9f2392123ff2778c41bcd1",
     "scripts/audit_written_progress_extended.py": "c433ac5d2c8041ac39c122df9e1b52d7ea7eee703c05e57683bc6dd66184414a",
@@ -23541,6 +23594,16 @@
     "reports/curved-clock-v1.json": "92fc9318ede3cd56b1f3f1f72057835edf1b24a44a7b0563acddc71b1cadb879",
     "examples/v016/mediated-reading.noema": "7e3530d91f4a07ebe99fd7efb2f360e1db2d36b535a4ec6d3c04eda30d19f7a7",
     "reports/dated-reading-v1.json": "a68a641bbee98087355c552207c25d71048d58f7ed01541acf3d3edf6337c330",
+    "examples/v016/described-thoughts.noema": "497c2ec877039cdb181d82b9860895d0530b3a896b939fb8a805fa380a6aa5ec",
+    "examples/v016/gregorian-rules.noema": "7c9ec922bd21a3c731eebbc8dfab349eafe7b11e2cd2caf989da56e4d857a3c2",
+    "examples/v016/kant-dateline-reading.noema": "aa58a005d8c7171b7fddbf136748cf1f3ee052d8e051f95c26a9e50f1fd0836a",
+    "examples/v016/kant-described-thoughts.noema": "49f32f20a4c78c019ea79b1bf9dd8dc4d15f2cf25b8297fafb5468955614dfbf",
+    "examples/v016/kant-gregorian-rules.noema": "aa58a005d8c7171b7fddbf136748cf1f3ee052d8e051f95c26a9e50f1fd0836a",
+    "examples/v016/kant-labeled-dates.noema": "85b3e745afe64475ec1cc37759b92f6c9cff905e99e69d72cf188db883901fb1",
+    "examples/v016/kant-thought-correspondence.noema": "cd1827b7267e77d0b9f1406e6a5754897cc4e847bb852801cb15be165295ece2",
+    "examples/v016/labeled-dates.noema": "57333d7e8ef6e1af0f9bab3aecbe5fa0f983b2a9c7df458c47eca25af8101038",
+    "examples/v016/thought-correspondence.noema": "8ef1f3d2823398ba4491c7308ebac430ddbb28539b247f1e9da1e4e06e5203d7",
+    "reports/dateline-reading-v1.json": "40b212cee565f6575b358cbf46864984da8b66a62050d9c2e495074e0ea48589",
     "examples/v014/declining-hindrances-core.noema": "4c230360320e4f93d71454b54a6260f9f7bff61436bab88ce1a34889b09da411",
     "examples/v014/declining-hindrances.noema": "cf05fbfdb5bd7a67e851ce1f2e9c60196f37e23fed5123cbfc4dfdbcb143dcfa",
     "examples/v014/kant-free-pursuit.noema": "e49f5244a21e1a7fe31266dda05b29c298f673b9967520c14f4335bcf79c2a72",
@@ -23611,10 +23674,6 @@
     "examples/v014/kant-described-routines.noema": "a5b7e71560c9aea3220f7bb4c801962a7107b91ddd18d369177172a3a1667408",
     "examples/v014/kant-use-standards.noema": "a1ec063d4e3b9afe9d2bcc55acd3ff5155ca37c883ccce20fbc4f18f34d78e68",
     "reports/described-routines-v1.json": "8fe3b5fc7e68229623f27d5db80f57b5c97bbd8fd472e4e3efdcf24c8ce97517",
-    "examples/v016/described-thoughts.noema": "497c2ec877039cdb181d82b9860895d0530b3a896b939fb8a805fa380a6aa5ec",
-    "examples/v016/kant-described-thoughts.noema": "49f32f20a4c78c019ea79b1bf9dd8dc4d15f2cf25b8297fafb5468955614dfbf",
-    "examples/v016/kant-thought-correspondence.noema": "cd1827b7267e77d0b9f1406e6a5754897cc4e847bb852801cb15be165295ece2",
-    "examples/v016/thought-correspondence.noema": "8ef1f3d2823398ba4491c7308ebac430ddbb28539b247f1e9da1e4e06e5203d7",
     "reports/described-thoughts-v1.json": "18eb8b16f5cddef329ee4db39c52ee4a4d706836c8abd73f579b2d829b8c6acb",
     "examples/v014/deserved-responses-core.noema": "025f7cf537f3b3ef27a152d3d5fd2eb1fdac3c49ac9a8a37bc49f4b4100de6b3",
     "examples/v014/deserved-responses.noema": "38420303b93ac0686bc650b88045303241f5472039c25d1274ca6e87a15682a5",
@@ -23872,10 +23931,6 @@
     "examples/v016/utterance-ability.noema": "b8bc44c60b0094ba235af156ed185c127e71ab6fd4bf07e2130f308e91e3a2b9",
     "reports/governing-role-v1.json": "cd01fa1d26f3b740927960316410d2d77b584058072b4c67351b31c43de13ea5",
     "reports/gradual-choice-v1.json": "94f7f76d26982d44802dd745c1c70e7d4ce8155598494bfbbbcf047421d1cde6",
-    "examples/v016/gregorian-rules.noema": "7c9ec922bd21a3c731eebbc8dfab349eafe7b11e2cd2caf989da56e4d857a3c2",
-    "examples/v016/kant-gregorian-rules.noema": "aa58a005d8c7171b7fddbf136748cf1f3ee052d8e051f95c26a9e50f1fd0836a",
-    "examples/v016/kant-labeled-dates.noema": "85b3e745afe64475ec1cc37759b92f6c9cff905e99e69d72cf188db883901fb1",
-    "examples/v016/labeled-dates.noema": "57333d7e8ef6e1af0f9bab3aecbe5fa0f983b2a9c7df458c47eca25af8101038",
     "reports/gregorian-rules-v1.json": "de7b7654833e1911aad84ac3fa2f492c47f02fc21e3a33a2d1e33962bed2a4f2",
     "examples/v014/homogeneous-coordinates.noema": "ef0decf3a31afd304e3229d582a0e994771e4f0fe1d88f6325fa2b8dca8d3477",
     "reports/homogeneous-coordinates-v1.json": "f4f40c15da880cf59a97e93b4c8d2e08e819f23e1e3ed6e6a1b423b370364197",
@@ -24387,12 +24442,15 @@
     "examples/v012/kant-questions.noema": "7f27a945c9c9f6ec6d35386016c1cca41054fcfabd57a4e14d88d044deb1657b",
     "examples/v012/number-question.noema": "9f8029c28587e25caa62d197e4e8256dec25523036d686fcd94a7f0fe4a1c9a9",
     "reports/written-v012.json": "e8b6d963b1a512e2a9672d27ca748da487ae5cb39f184e6f54267580b262ef9b",
-    "data/author-signature-review-v14.json": "42b7e4a06294d8630fb3b7e5fd09cfaa8d618970e7ad48c3905393da4a94998e",
+    "data/author-signature-review-v15.json": "826d7750dec01e61319625b548ac1f9a52f5f905320905a7f2af5a49a1dd11a3",
+    "data/dateline-reading-basis-v1.json": "df680e1ba98ab69c43dc1297d7732f21bafc671749cbc9a902b633ca65f55a10",
+    "data/dateline-reading-identifiers-v1.json": "10f29225aa0aca8d0aba9660cf27a861b6a02c21ec1b7eeb0bf58b040055e603",
+    "data/dateline-review-v1.json": "b990a16b67ffb23241a76ae84471f4dc720bad5ba33e90accc7bb800d6e8778a",
     "data/einstein-density-origins-basis-v1.json": "63a26128281e174494454a99e73ef4feaf80e66abd3ff2506a8edab2ec8a74e4",
-    "data/gregorian-rules-basis-v1.json": "875020cdc2ca59e22bd03286a3e2e5bd198327de5de41d129d98bfb1b382667b",
-    "data/gregorian-rules-identifiers-v1.json": "aa91a41cecaf773e20cb1c4e47aa356024e1596116e06e8762011ed350766120",
     "artifacts/author-signature-facsimile-v1/manifest.json": "7586b638c8f61e8024826d192423df2b8b47f67638adcbd1188950342186e397",
     "artifacts/author-signature-facsimile-v1/page-494.jpg": "f14a0edf2ff9944e04579f4c8797b76653e4cdb7fdea8af032ee11f827b68140",
+    "artifacts/calendar-identification-v1/bbaw-leibniz-2016.pdf": "3b061644ebf26994a491bcecb21732708da57a0a1d87609a867ae14f0f918007",
+    "artifacts/calendar-identification-v1/page-188.png": "94e6a59de8d86fbd573ecaadd4ebce16bb98377b1e6a54c2503a6aaaccab6a3a",
     "artifacts/conditional-imputation-v1/grammis-1872.html": "ed06a58f45bd3625e2936dba5362c7e1510b2aaa1577e7727c9f311b384fb58c",
     "artifacts/factive-cause-v1/035.html": "4f7105a7ed99e91dd2085e99846637eedf1d27a4988cedbb0a3d8fea000a72c3",
     "artifacts/gregorian-rules-v1/page-597.png": "a119ae7847123e2ff9c1402ad0b251b58871a89832d72f179f732dda57cafad9",
@@ -24408,6 +24466,7 @@
     "data/author-signature-review-v11.json": "73a6ee46945a5e4d2cc007a3720be145f0deb8250ba080a55dae230a37f6887e",
     "data/author-signature-review-v12.json": "4557757071efa88f94edf73798f4e65d6baeb958d32e7772407000604a8aa153",
     "data/author-signature-review-v13.json": "3c1435b8f4e6eddfdde33025689914135e6a0d93cdee77191f6a8269ad2382fe",
+    "data/author-signature-review-v14.json": "42b7e4a06294d8630fb3b7e5fd09cfaa8d618970e7ad48c3905393da4a94998e",
     "data/author-signature-review-v2.json": "5a38cf5be3c00dfe0e438a666092908d0633b1eadfa28590ed3d93d29df739c6",
     "data/author-signature-review-v3.json": "d5e680a585c23af19ebaf8de188c507fe8f3b38ef03d565775896c94e3131a6c",
     "data/author-signature-review-v4.json": "6d83bf34ebf4fb130c81ee3fe954adf96253f5d9246caa55191d25b3fdbbae6e",
@@ -24427,10 +24486,13 @@
     "data/counterfactual-withholding-identifiers-v1.json": "1924c35f1ecf640fc9a00f6e326046a52ab6e97e432e9fcef8cb197db9e21617",
     "data/dated-reading-basis-v1.json": "b971f797d7237335953a126b2b47707758f474cd136ed85844e15281464ec509",
     "data/dated-reading-identifiers-v1.json": "f9efa75b184daebd4d15641cf40f99d6e64b6614301578667eaa813af1887fe5",
+    "data/dateline-calendar-evidence-v1.json": "1374132be784f235c6477f36ca162e55b6d9d93868f6d8ffacda4b7e64577318",
     "data/described-thoughts-basis-v1.json": "51e275a2a9181ebd334eb295aa80fafeaba83d66e2ad20157f0996975759723e",
     "data/described-thoughts-identifiers-v1.json": "cb5daabcb592ceb0ee7b8071c88c56a48b626731161f6320d81894621e466102",
     "data/exploratory-question-basis-v1.json": "16135395b68413ee37d6b34c3ef413fe9e2be2ea2c5d3ec78b4e16efa34db852",
     "data/exploratory-question-identifiers-v1.json": "b48c5d697d0d5cfe16d4ca5925b11ec76c79f5f6fa6f20a8d255a0cfd57872be",
+    "data/gregorian-rules-basis-v1.json": "875020cdc2ca59e22bd03286a3e2e5bd198327de5de41d129d98bfb1b382667b",
+    "data/gregorian-rules-identifiers-v1.json": "aa91a41cecaf773e20cb1c4e47aa356024e1596116e06e8762011ed350766120",
     "data/labeled-dates-basis-v1.json": "4ad67cfebb5766beaff55c802e34d6d6dcc6e51ad0347f9caedcd93a271e5cb0",
     "data/labeled-dates-identifiers-v1.json": "7b592e779c46c9a808ccb6db3b688c8d30f2b82cdd838f670ce77af480d9e0e5",
     "data/targeted-adequacy-basis-v1.json": "13a1dfff242ef98db0457db0c9f21d89be1da6aa5ad8f54e81d3f92bf8b94fd2",
@@ -24446,6 +24508,7 @@
     "docs/author-signature-review-v12.md": "84b236e70ab7643d127847da428fee82d3a56e92895635a999f76f658d372bc1",
     "docs/author-signature-review-v13.md": "a6f378aad161af6d362cebf223a5a3a2504cbd5aa80a38c539e410cbfd7d803d",
     "docs/author-signature-review-v14.md": "7fb413a05cd4ee9e3e4c4e08a8fb3d7c7ab389a4ec4c8a44f7d2ee215e10d2b4",
+    "docs/author-signature-review-v15.md": "052812a8d001d7cf4997be63cf6d0b1a0c650e3cbe549eba3b1a42ba2eb43540",
     "docs/author-signature-review-v2.md": "a9a9887ce91af544474f468e996fe9a6dbe0f64273d826bc1fe894fcbc08a931",
     "docs/author-signature-review-v3.md": "43ab1202b8e8329b8b670af2851f7b4748469584f70b36669fdf114538fc0583",
     "docs/author-signature-review-v4.md": "ecdb9cc4339cde9d1fe883c941332e3bfb5556c69954a1180cf212a4ecf95cc2",
@@ -24459,6 +24522,7 @@
     "docs/conditional-imputation-v1.md": "2edb5f5802451978d0453289b64a77fdf94c357bd64512e3dbc8986efac66535",
     "docs/counterfactual-withholding-v1.md": "2e5c580edea8d6d1df01515a194d127178e5b7b08fd5dd1317b64ea9a57e4afc",
     "docs/dated-reading-v1.md": "5bc0286b3a7e696796615412d98921f891b875c75b72340903954f8afbffb718",
+    "docs/dateline-reading-v1.md": "c8f41a5873ebb19b688a3bc65d8d0382dc7146cddb218456f82bc7b45731bb51",
     "docs/described-thoughts-v1.md": "12279d64f7d20c1575c256982ee63ed7c1c9bc6cb3a725c7d35ddf217e8800d2",
     "docs/exploratory-question-v1.md": "4e5ff5e79b50ff243f70dc7da6b5e82b2e43182a5a33fd97b6b0f73d9ad96618",
     "docs/gregorian-rules-v1.md": "e1e9b47bf5e58868de67768d157593670a9c8b0ee2bdd8997bf73818ebc57686",
@@ -24488,6 +24552,7 @@
     "scripts/check_conditional_imputation.py": "fe43fa38bfdf0fdbf352e42393a4b20d330fb639b1237c2492f8dc30291266bc",
     "scripts/check_counterfactual_withholding.py": "dc84a04893eebb48a4775b9582e05b50dcac6134ec7091dea5bd9e791dcdd62d",
     "scripts/check_dated_reading.py": "929e44e0b1d108e58b105d58f17f71415e03df1406a01d35321140bc640d4a4f",
+    "scripts/check_dateline_reading.py": "558cc85fa93e62e6da40e78e0b313c36878d9db30d25b9f3b85b1596b15f03ee",
     "scripts/check_described_thoughts.py": "06af274152453e251a659283a54b7b27bff11130d2abb1457b16d4d6e5a0c5c0",
     "scripts/check_described_transition.py": "2d6af04f978d41cd54ef8c9b6774a905ae90aca0ec36e959ba7f1ecfb036179a",
     "scripts/check_exploratory_question.py": "4501063d9305b4a2165f8203d9e9a172b8fb2ea9c6ac8e7a3a133c454df12957",
@@ -24505,6 +24570,7 @@
     "scripts/compose_conditional_imputation.py": "b346bc82e421db53eff1257473c21867b46662f0bb7664f603af5038b1bb7d8b",
     "scripts/compose_counterfactual_withholding.py": "d09da7766730063248f716abb4353e12ce88f6d9bbc817915057d84bf63f220f",
     "scripts/compose_dated_reading.py": "b8503c87477829edf9f15419ad1a10cc7cc42c910606d4cee5cc9e6a2f642ddd",
+    "scripts/compose_dateline_reading.py": "97d07d3efdb358f38e8f16f3b3d9ae4c9a2732fc7c96c454bb5dd327b082428a",
     "scripts/compose_described_thoughts.py": "817040bb4952bfff8e5082e8061b0896b2395a3982ad40ef009c85b137d2275e",
     "scripts/compose_described_transition.py": "b256545aebecd1db054c73733d0674a4c2c905eb50f3b36e9e48b33a9cef281b",
     "scripts/compose_exploratory_question.py": "e366b74d7e7982e0797c50e0348f5a6a196ae34641bac6fa814b94c7e4e1aa9c",
@@ -24521,6 +24587,7 @@
     "tests/test_conditional_imputation.py": "2a43fe6e6c0e49f469eebe30f1498e370c798c52e27e9839db7a06cdb4265e3a",
     "tests/test_counterfactual_withholding.py": "94868b411c4f5ee0ab52745939d1ad84d9fd3440a5403c99c2125a5bcb5111f8",
     "tests/test_dated_reading.py": "86ebf496ffef9ce2de17b5626d44203b0b0df09b4c2aa33c54ca78ea994608a1",
+    "tests/test_dateline_reading.py": "b4d83fbeec8ea62388494899201410bed575c759a57dced2ca03136c6536d2bc",
     "tests/test_described_thoughts.py": "55a9578eb8d4069218a56beac9b769ebfe7a6893c56fd92168f3c7372f69ab74",
     "tests/test_exploratory_question.py": "9e668ff87d673702b4a525c1f4c6a4b23fb03cc51c865e9097351d489bd26942",
     "tests/test_gregorian_rules.py": "37d4ab4d4fe6935df6a47697f224491d6e0f60480071d3fd49c75603c54be1c3",
@@ -24528,7 +24595,7 @@
     "tests/test_targeted_adequacy.py": "6a5a5ebeb7131f3de1dced9a8db408a11b8b4865ac49e734775050611cf51f91",
     "tests/test_thought_correspondence.py": "7c31cf3e4d5d939bffe8a99188aa56e6a41ff95abd574e9bfa94a12c3dc623bb",
     "tests/test_unreceived_reference.py": "d03fff217a74f84e31e9cf4d4f3300a2d3d50f4075464b680d6d73e79a9ccaaa",
-    "data/semantic-review-index-v14.json": "d73f67813504c0aed0cf2255da1bd34dc9fd92a911b550df93dc50c6336b2fde",
+    "data/semantic-review-index-v15.json": "e7a79ff5cd7c9fc9852b9eac34df2a5b17cd7db39c996f8abf9503c30ef07943",
     "scripts/audit_written_progress_reviewed.py": "b11af2d2e8c8f08ba18cf93fed9c3a3349e383c76c05261de3635d2769c6e813",
     "tests/test_semantic_reviews.py": "d29826273fad286a3cf19c94de723b614bac2b67603c36d640cbdd669c8c3509",
     "docs/unit-semantic-review-v1.md": "801d6f951ee658bc39c8864dce8c2a1aed8b36a9e0af2e1f49e552f9040e7c14"
@@ -24541,11 +24608,21 @@
           "unit": "kant-1784:u0018",
           "unit_sha256": "6fc51ad81049a2ed83495e55959c3c060d94c37531e986555bc2f8423458aefc",
           "source_inventory": "artifacts/written-units-v1/kant-1784.json",
-          "review": "data/author-signature-review-v14.json",
+          "review": "data/author-signature-review-v15.json",
           "reviewer": "assistant_review",
           "decision": "equivalent_under_stated_reading",
-          "document": "examples/v016/kant-gregorian-rules.noema",
+          "document": "examples/v016/kant-dateline-reading.noema",
           "source_nonblank_characters": 16
+        },
+        {
+          "unit": "kant-1784:u0019",
+          "unit_sha256": "4df3f2d840150fd44b05bba5b8b6a0d64773755445a29138ac5fa203607b23c2",
+          "source_inventory": "artifacts/written-units-v1/kant-1784.json",
+          "review": "data/dateline-review-v1.json",
+          "reviewer": "assistant_review",
+          "decision": "equivalent_under_stated_reading",
+          "document": "examples/v016/kant-dateline-reading.noema",
+          "source_nonblank_characters": 43
         }
       ],
       "einstein-1905": []
