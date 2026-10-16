@@ -1,0 +1,615 @@
+{
+  "status": "rational_density_output_existence_and_uniqueness_certified",
+  "document": "examples/v014/density-existence.noema",
+  "source_document": "examples/v014/einstein-density-origins.noema",
+  "audit": {
+    "primitive_count": 4,
+    "definition_count": 3,
+    "signature_and_documentation_coverage": true,
+    "semantic_equivalence_to_source_proven": false
+  },
+  "proof": {
+    "existence": {
+      "status": "valid",
+      "universal_inputs": [
+        "va",
+        "vb",
+        "vc",
+        "vd",
+        "ve",
+        "vf",
+        "vg",
+        "vh",
+        "vi"
+      ],
+      "existential_outputs": [
+        "vj",
+        "vk",
+        "vl",
+        "vm",
+        "vn"
+      ],
+      "denominator_obligations": 5,
+      "rational_closure_checked": true,
+      "premise_satisfiability_proved": false,
+      "theorem_disproved": false,
+      "reason": "All supplied rational terms are defined and satisfy the actual matrix under the premise"
+    },
+    "uniqueness": {
+      "status": "valid",
+      "reason": "No real counterexample; therefore no rational counterexample",
+      "counterexample": null,
+      "matrix": "(let ((a!1 (* vc vc (+ (* va va) (- (* vb vb)))))\n      (a!3 (= 0.0 (+ (* va va) (- (* vb ve)))))\n      (a!4 (* (+ (* va va) (- (* vb ve))) vi))\n      (a!6 (* vc (+ (* va va) (- (* vb ve)))))\n      (a!7 (* (+ (* va va) (- (* vb ve))) vp)))\n(let ((a!2 (and (< 0.0 va) (< (* vb vb) (* va va)) (< 0.0 vc) (= a!1 (* va va))))\n      (a!5 (= a!4 (* (* va va) (+ ve (- vb)))))\n      (a!8 (= a!7 (* (* va va) (+ ve (- vb))))))\n(let ((a!9 (and a!2\n                (not a!3)\n                a!5\n                (= (* a!6 vj) (* (* va va) vf))\n                (= (* a!6 vk) (* (* va va) vg))\n                (= (* (* va va) vh) (* a!6 vd))\n                (= vh (+ vl vm vn))\n                a!2\n                (not a!3)\n                a!8\n                (= (* a!6 vq) (* (* va va) vf))\n                (= (* a!6 vr) (* (* va va) vg))\n                (= (* (* va va) vo) (* a!6 vd))\n                (= vo (+ vs vt vu)))))\n  (=> a!9 (and (= vh vo) (= vi vp) (= vj vq) (= vk vr))))))"
+    },
+    "witnesses": {
+      "vj": [
+        "divide",
+        [
+          "multiply",
+          [
+            "multiply",
+            [
+              "variable",
+              "vc"
+            ],
+            [
+              "add",
+              [
+                "multiply",
+                [
+                  "variable",
+                  "va"
+                ],
+                [
+                  "variable",
+                  "va"
+                ]
+              ],
+              [
+                "negate",
+                [
+                  "multiply",
+                  [
+                    "variable",
+                    "vb"
+                  ],
+                  [
+                    "variable",
+                    "ve"
+                  ]
+                ]
+              ]
+            ]
+          ],
+          [
+            "variable",
+            "vd"
+          ]
+        ],
+        [
+          "multiply",
+          [
+            "variable",
+            "va"
+          ],
+          [
+            "variable",
+            "va"
+          ]
+        ]
+      ],
+      "vk": [
+        "divide",
+        [
+          "multiply",
+          [
+            "multiply",
+            [
+              "variable",
+              "va"
+            ],
+            [
+              "variable",
+              "va"
+            ]
+          ],
+          [
+            "add",
+            [
+              "variable",
+              "ve"
+            ],
+            [
+              "negate",
+              [
+                "variable",
+                "vb"
+              ]
+            ]
+          ]
+        ],
+        [
+          "add",
+          [
+            "multiply",
+            [
+              "variable",
+              "va"
+            ],
+            [
+              "variable",
+              "va"
+            ]
+          ],
+          [
+            "negate",
+            [
+              "multiply",
+              [
+                "variable",
+                "vb"
+              ],
+              [
+                "variable",
+                "ve"
+              ]
+            ]
+          ]
+        ]
+      ],
+      "vl": [
+        "divide",
+        [
+          "multiply",
+          [
+            "multiply",
+            [
+              "variable",
+              "va"
+            ],
+            [
+              "variable",
+              "va"
+            ]
+          ],
+          [
+            "variable",
+            "vf"
+          ]
+        ],
+        [
+          "multiply",
+          [
+            "variable",
+            "vc"
+          ],
+          [
+            "add",
+            [
+              "multiply",
+              [
+                "variable",
+                "va"
+              ],
+              [
+                "variable",
+                "va"
+              ]
+            ],
+            [
+              "negate",
+              [
+                "multiply",
+                [
+                  "variable",
+                  "vb"
+                ],
+                [
+                  "variable",
+                  "ve"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "vm": [
+        "divide",
+        [
+          "multiply",
+          [
+            "multiply",
+            [
+              "variable",
+              "va"
+            ],
+            [
+              "variable",
+              "va"
+            ]
+          ],
+          [
+            "variable",
+            "vg"
+          ]
+        ],
+        [
+          "multiply",
+          [
+            "variable",
+            "vc"
+          ],
+          [
+            "add",
+            [
+              "multiply",
+              [
+                "variable",
+                "va"
+              ],
+              [
+                "variable",
+                "va"
+              ]
+            ],
+            [
+              "negate",
+              [
+                "multiply",
+                [
+                  "variable",
+                  "vb"
+                ],
+                [
+                  "variable",
+                  "ve"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "vn": [
+        "add",
+        [
+          "add",
+          [
+            "divide",
+            [
+              "multiply",
+              [
+                "multiply",
+                [
+                  "variable",
+                  "vc"
+                ],
+                [
+                  "add",
+                  [
+                    "multiply",
+                    [
+                      "variable",
+                      "va"
+                    ],
+                    [
+                      "variable",
+                      "va"
+                    ]
+                  ],
+                  [
+                    "negate",
+                    [
+                      "multiply",
+                      [
+                        "variable",
+                        "vb"
+                      ],
+                      [
+                        "variable",
+                        "ve"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "variable",
+                "vd"
+              ]
+            ],
+            [
+              "multiply",
+              [
+                "variable",
+                "va"
+              ],
+              [
+                "variable",
+                "va"
+              ]
+            ]
+          ],
+          [
+            "negate",
+            [
+              "variable",
+              "vh"
+            ]
+          ]
+        ],
+        [
+          "negate",
+          [
+            "variable",
+            "vi"
+          ]
+        ]
+      ]
+    },
+    "missing_denominator_condition": {
+      "status": "uncertified",
+      "universal_inputs": [
+        "va",
+        "vb",
+        "vc",
+        "vd",
+        "ve",
+        "vf",
+        "vg",
+        "vh",
+        "vi"
+      ],
+      "existential_outputs": [
+        "vj",
+        "vk",
+        "vl",
+        "vm",
+        "vn"
+      ],
+      "denominator_obligations": 5,
+      "rational_closure_checked": true,
+      "premise_satisfiability_proved": false,
+      "theorem_disproved": false,
+      "reason": "Supplied terms are not certified on the real extension; no verdict against rational existence"
+    },
+    "wrong_velocity_sign": {
+      "status": "uncertified",
+      "universal_inputs": [
+        "va",
+        "vb",
+        "vc",
+        "vd",
+        "ve",
+        "vf",
+        "vg",
+        "vh",
+        "vi"
+      ],
+      "existential_outputs": [
+        "vj",
+        "vk",
+        "vl",
+        "vm",
+        "vn"
+      ],
+      "denominator_obligations": 5,
+      "rational_closure_checked": true,
+      "premise_satisfiability_proved": false,
+      "theorem_disproved": false,
+      "reason": "Supplied terms are not certified on the real extension; no verdict against rational existence"
+    },
+    "real_cut_existence_proved": false,
+    "physical_source_applicability_proved": false
+  },
+  "examples": {
+    "cases": {
+      "positive_density": {
+        "inputs": [
+          "5",
+          "3",
+          "5/4",
+          "4",
+          "1",
+          "-2",
+          "3"
+        ],
+        "outputs": [
+          "22/5",
+          "-25/11",
+          "-20/11",
+          "30/11",
+          "22/5",
+          "0",
+          "0"
+        ],
+        "actual_senr_satisfied": true
+      },
+      "negative_density": {
+        "inputs": [
+          "5",
+          "3",
+          "5/4",
+          "-4",
+          "1",
+          "-2",
+          "3"
+        ],
+        "outputs": [
+          "-22/5",
+          "-25/11",
+          "-20/11",
+          "30/11",
+          "-17/5",
+          "2",
+          "-3"
+        ],
+        "actual_senr_satisfied": true
+      },
+      "zero_density_nonzero_velocity": {
+        "inputs": [
+          "5",
+          "3",
+          "5/4",
+          "0",
+          "1",
+          "-2",
+          "3"
+        ],
+        "outputs": [
+          "0",
+          "-25/11",
+          "-20/11",
+          "30/11",
+          "1",
+          "2",
+          "-3"
+        ],
+        "actual_senr_satisfied": true
+      },
+      "negative_denominator": {
+        "inputs": [
+          "5",
+          "3",
+          "5/4",
+          "4",
+          "10",
+          "2",
+          "-1"
+        ],
+        "outputs": [
+          "-1",
+          "-35",
+          "-8",
+          "4",
+          "-4",
+          "1",
+          "2"
+        ],
+        "actual_senr_satisfied": true
+      },
+      "opposite_boost": {
+        "inputs": [
+          "5",
+          "-3",
+          "5/4",
+          "4",
+          "1",
+          "-2",
+          "3"
+        ],
+        "outputs": [
+          "28/5",
+          "25/7",
+          "-10/7",
+          "15/7",
+          "13/5",
+          "-1",
+          "4"
+        ],
+        "actual_senr_satisfied": true
+      },
+      "zero_boost": {
+        "inputs": [
+          "1",
+          "0",
+          "1",
+          "2",
+          "0",
+          "0",
+          "0"
+        ],
+        "outputs": [
+          "2",
+          "0",
+          "0",
+          "0",
+          "2",
+          "0",
+          "0"
+        ],
+        "actual_senr_satisfied": true
+      },
+      "different_diagonal_split": {
+        "inputs": [
+          "5",
+          "3",
+          "5/4",
+          "4",
+          "1",
+          "-2",
+          "3"
+        ],
+        "outputs": [
+          "22/5",
+          "-25/11",
+          "-20/11",
+          "30/11",
+          "-3/5",
+          "7",
+          "-2"
+        ],
+        "actual_senr_satisfied": true
+      }
+    },
+    "singular_denominator_refused": true,
+    "diagonal_tuple_not_unique": true,
+    "explicit_rational_normalizations_only": true,
+    "premise_examples_not_physical_source_cases": true
+  },
+  "existing_declarations_extracted_unchanged": true,
+  "new_primitives": 0,
+  "new_definitions": 0,
+  "derived_statements": 2,
+  "new_author_statements": 0,
+  "roundtrips": true,
+  "cli_parse": true,
+  "solver_version": "5.1.0",
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "alignment": {
+    "segments": [
+      {
+        "unit": "einstein-1905:u0236",
+        "unit_sha256": "700edab12dd884549e239b10102360c12af9c69e601aae14d42b2675090c77c7",
+        "math_id": "M0390",
+        "math_sha256": "0d0c8b3b36e1468cf733b0d9dd7281f4db141893557a2a815a235142415f237f",
+        "status": "partial_rational_existence_certificate",
+        "definitions": [
+          "senr",
+          "semp"
+        ]
+      }
+    ]
+  },
+  "source_sha256": {
+    "artifacts/written-units-v1/einstein-1905.json": "c2599a3c0560e269c728b9d1bcd2946a36e860a83ff4b08648f7f7bce18a343b",
+    "data/density-existence-basis-v1.json": "af50cb732e7ee6443a923286c4b55c3f8f68e128769450d1f0c2f93df667d0ee",
+    "data/density-formula-review-v11.json": "5df011ad4eaa14c80b4daa8ec1af95f5013536ae92c54cf66eb728a96b9560b4",
+    "data/density-formula-review-v12.json": "551fc560e44c6af0f841337bfedefa1a3a21fd76ce2d1cfd9d42565f4dbcb448",
+    "data/einstein-density-origins-basis-v1.json": "63a26128281e174494454a99e73ef4feaf80e66abd3ff2506a8edab2ec8a74e4",
+    "docs/density-existence-v1.md": "771a1775d4890b5697614fa5e62c53536fe5683e307da039bae37f376d9ca55e",
+    "examples/v014/density-existence.noema": "94d9f4d2b6f6f0f450273f355b19a5631a7c94e29cdcda76eca3681a59ee81b8",
+    "examples/v014/density-origins-manuscript.noema": "687798a8373993d805e57b8728b6e63ac2e4fe95e9c05e2fc2fc97ed57657b65",
+    "examples/v014/einstein-density-origins.noema": "7fec376dd2aa635b1a0189907f2111fd9dd172baaa20d996141fc53d5788641c",
+    "noema/discourse.py": "06fec84da51b074c25202315201ca9243806f8f08abda9e16ed4779e317a5993",
+    "noema/extraction.py": "d4d4cbbb71a039b51c3b46174bc0f83beb9cc3dc04ea847965d9c2cc926f75ff",
+    "noema/grammar.py": "67f4c468af10e8128ff73c64b2bd80bd973d7724de7de627988c71dfd5034feb",
+    "noema/language.py": "8d1c5e6ec0032fca687f2e01dc3cdbb603efcfb78a46d508682597dd1455624e",
+    "noema/meaning_basis.py": "37cbf390d4a79e3296a935ac0fe1220484304a82baf7cde464496f7858f393d9",
+    "noema/polynomial_proofs.py": "120cb4f5fb90895665cdaa1901215de74e6d1cc99c861614d7efc15629adb4cf",
+    "noema/rational_proofs.py": "3ca1c888b153ccdc360b314b38dd6aec3e0dad6c48899c2f94cab43a31bc9f37",
+    "noema/rational_witnesses.py": "d105f7f7c6f111a957f63352611b03122ed83698ae1b574d4dc789a52a7af156",
+    "noema/script.py": "16ff44108ecf8e94e9cb36bc5937ee400a76688ed9013a51ea440d1cdf42c0ec",
+    "noema/semantics.py": "e581e47947a7841ed4bb71f690949c871cb97f3588def98fdc37eb368bd8dd4b",
+    "scripts/check_density_existence.py": "7b710333f0a3f3b44f657318a2b3ed12967893dc1ddda981e7c87c809d7522b7",
+    "scripts/check_moving_light_trip.py": "fe5659fd79c7ff393173b952674509c58864145f685a8130312218c31a268be3",
+    "scripts/check_real_products.py": "2b087c06a51f2a3e8ec4e8b69fec6c632e86d6c02486a0dd92173c7252be1ac6",
+    "scripts/compose_density_existence.py": "e7617815781e051197ee0f1d9011897a77dcbe2ac7b4cdc4ac04519f2ee84d7b",
+    "scripts/compose_density_origins.py": "7dcafd3d84037fb483d8efaca824348f7a5d6f63816c30cdd5591df761b5fb79",
+    "scripts/compose_limits.py": "46082e70c5f766f6c1bc87208a8ab21c77eeea414b7effc912adb626910bcff7",
+    "tests/test_density_existence.py": "34774df9fa835a27301a4824a0f84d7b0cae8048ac876da08dbda3b3c508afa0",
+    "tests/test_rational_witnesses.py": "774bb57154f0debae64b3b438a1b630221d8a83d4cb3153830e4edf000725baf"
+  }
+}
