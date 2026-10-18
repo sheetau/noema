@@ -1,0 +1,341 @@
+{
+  "status": "sustained_permission_and_prospective_native_change_partial_reading",
+  "document": "examples/v016/kant-prospective-liberty.noema",
+  "parent": "examples/v016/kant-audience-liberty.noema",
+  "inherited_meaning_basis": "data/audience-liberty-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "rqtb": "指定した経過の厳密な全順序をtaで確認し、基準点がその経過内にあり、基準点より後の点が少なくとも一つあることを要求する。現在のみの経過を将来の評価へ使わない。",
+    "rqtc": "rqtbを満たす同じ経過について、基準点自身と、それより後にある全点で指定の状態が成立する。条件に合う点だけの別範囲を引数に取らず、過去側の不成立はこの持続条件へ混ぜない。",
+    "rqtd": "rqtbの同じ経過内で開始点から終了点へ進む過程があり、終了点が基準点より厳密に後にあって、同じ過程・前後を指定の変化条件が満たす。開始点が基準点より前でもよく、既に完了した変化は数えない。",
+    "hzne": "同じ期間枠を候補状況で解釈するh7qと、その候補のicをrqtbへ接続する。候補と期間枠を保ったまま、別に指定した基準点からの将来があることを確認する。",
+    "hznf": "同じ公衆・参照文脈・許可の出所について、h7qの候補内の経過で、基準点から後の全点にhznaの許可状態を課す。対象者と公的活動の分類は参照文脈で固定し、規範は各点で評価する。",
+    "hzng": "rqtdの過程・前後を、その候補を基準とする既存hzmyへ渡す。想定読者の範囲は参照文脈で固定する。共通の経過と対象者の履歴の両方に前後の点を結び、基準点より後に完了する能力変化を述べる。",
+    "hznh": "候補からその内部の基準点への対応を明示する。各候補の同じ基準点でhzneの経過を確認し、同じ公衆・出所・期間枠のhznfを条件、hzngを目標としてrqsuへ接続する。経過の不備を偽の前件として隠さず、候補内の許可を現実の許可へ移さない。"
+  },
+  "new_signatures": {
+    "rqtb": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "rqtc": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqtd": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzne": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hznf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzng": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hznh": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "individual"
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "参照文脈は人と活動の範囲を固定するもの、候補ごとの基準点は仮定内の将来を区切る点、候補状況は経過や能力を解釈する文脈である。現実の状況を候補内の基準点と暗黙に同一視しない。",
+    "基準点の対応は同じ関数で与え、候補ごとに経過検査・許可・変化が同じ点を使う。対応の妥当性や現実の評価起点との関係は解釈の前提である。定数関数で現実の一点を全候補へ共有すれば、その点での許可も要請する強い読みになる。",
+    "候補の経過は既存h7qに明示したものを使う。基準点と全ての将来点での許可を要求する読みであり、原文に具体的な期限・日数を補わない。経過自体の網羅性や無限の持続を有限の検査で証明したとはしない。",
+    "同じ経過内の全将来点に許可を課すことは、選んだ一回の試みの間だけの許可より強い。自由を残す継続的な政策として採る明示的な候補であり、全ての自由の用法をこの条件と同一視しない。",
+    "結果の完了は基準点より後とする。過程の開始が基準点より前でもよく、基準点から新しく始まった過程だけへ狭めない。別の時点での能力保持だけでなく、既存hzmyの前後と因果を要求する。",
+    "h7qの共通の経過と、各対象者のiaの履歴には同じ前後点・候補の先後関係を使う。全個人の履歴全体を共通の経過と同一にする条件は加えない。",
+    "許可の継続と変化の前後を接続したが、自由がその変化の原因であるという追加の因果主張はしない。公衆の社会的な意味、議論・自己評価・態度の普及、比較対象、ja、著者帰属は未完。",
+    "既存32文・全宣言・意味規約・確認済み七単位を保ち、新しい著者主張や原文の完成範囲を加算しない。"
+  ]
+}
