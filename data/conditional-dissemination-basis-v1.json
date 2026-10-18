@@ -1,0 +1,169 @@
+{
+  "status": "permission_conditioned_candidate_contents_with_shared_origins",
+  "document": "examples/v016/kant-conditional-dissemination.noema",
+  "parent": "examples/v016/kant-dissemination-reason.noema",
+  "inherited_meaning_basis": "data/dissemination-reason-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "rqtn": "指定候補のうち条件を満たすものを内部で選び、その範囲が非空であり、全てについて同じ候補の内容を同じ候補の基準点で評価する。条件や結果を現実の評価点へ移さない。指定範囲での例外なしの読みであり、空の条件範囲を真とする一般の含意や、ほぼ必然の程度評価とは区別する。",
+    "hzp7": "全指定候補の経過をhzneで検査し、同じ公衆・参照文脈・出所・期間枠と各候補の基準点による許可継続hznfをrqtnの条件にする。内容もその同じ候補と基準点で評価する。不正な候補が自由の条件を満たさないことを理由に検査から消さない。",
+    "hzpa": "hzp7の条件付き判断を閉じた引用に置ける内容として構成する。明示した候補・基準点・内容族を共用する。内容を評価する場所を仮定内の基準点として代入せず、現実での自由や伝播を主張しない。"
+  },
+  "new_signatures": {
+    "rqtn": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "content"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzp7": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "content"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzpa": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "content"
+          }
+        }
+      ],
+      "result": "content"
+    }
+  },
+  "limitations": [
+    "自由を公的な理性使用への許可が継続することとして扱う既存hznfの読みを引き継ぐ。物理的な機会や妨害の不在までこの規範条件から導かない。",
+    "条件を満たす指定候補で例外なく予測が成立するという読みを構成する。全可能世界の必然性、頻度確率、先頭文のほぼ不可避性を同じものとしない。",
+    "contentsは候補を受けて内容を返すNoema関数である。候補ごとの人物・履歴・経路の条件をその関数内で明示できる。関数を不透明な「翻訳済み」の基本関係として実装しない。",
+    "現在の伝播候補は行為と経路の供給関数を引数に持つ。原文の不定な行為・経路を存在として記述する接続は別途必要であり、任意の供給関数を原文の唯一の指定だとはしない。",
+    "同じ理由側箇所hzp5へ閉じた内容をhzonで帰属できることを検査するが、未確定の解釈引数を埋めた新しい無条件の本文主張は加えない。既存33文と七単位の確認を保つ。",
+    "未知の入力は偽で補わない。大きな具体例の評価は短絡診断を明記し、通常評価や無限の候補範囲を尽くす検証とは扱わない。"
+  ]
+}
