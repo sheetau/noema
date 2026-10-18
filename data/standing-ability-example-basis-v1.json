@@ -1,0 +1,226 @@
+{
+  "status": "anchored_opportunity_profile_not_canonical_source_replacement",
+  "document": "examples/v016/standing-ability-example.noema",
+  "source_document": "examples/v016/kant-courageous-undertaking.noema",
+  "source_meaning_basis": "data/courageous-undertaking-basis-v1.json",
+  "primitives": [
+    {
+      "symbol": "aa",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person"
+      ],
+      "meaning_ja": "対象が人である。理解力・勇気・社会的地位の有無を人であることの条件にしない。"
+    },
+    {
+      "symbol": "ab",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "faculty",
+        "person",
+        "situation"
+      ],
+      "meaning_ja": "状況において、その理解能力はその人自身の能力である。他者の能力を使えることとは区別する。理解能力の十分さまでは主張しない。"
+    },
+    {
+      "symbol": "ac",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "faculty",
+        "act",
+        "situation"
+      ],
+      "meaning_ja": "状況において、その人がその能力を使う行為が、その行為個体として成立する。所有だけ、能力の十分さだけ、実行可能性だけでは成立しない。"
+    },
+    {
+      "symbol": "ad",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "guide",
+        "person",
+        "act",
+        "situation"
+      ],
+      "meaning_ja": "状況において、指導者がその人のその行為の進め方を指導している。その場にいること、別の行為を指導すること、過去に教えたことだけでは成立しない。"
+    },
+    {
+      "symbol": "ae",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "plan",
+        "situation"
+      ],
+      "meaning_ja": "その人がその状況で、その方法を選択して実行できる。方法の記述が存在するだけでは成立しない。"
+    },
+    {
+      "symbol": "af",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "plan",
+        "start",
+        "outcome"
+      ],
+      "meaning_ja": "開始状況でその人が方法を実行した場合に、結果状況が評価対象の結果として想定される。想定結果の範囲は文脈の前提として別途定める。"
+    },
+    {
+      "symbol": "ap",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "plan",
+        "start",
+        "outcome"
+      ],
+      "meaning_ja": "その人・方法・開始状況について、この読解で能力の評価対象に採った結果。全ての可能な結果を含むとは限らない。採用基準は文脈の前提であり、原文が一意に指定した基準とは扱わない。"
+    },
+    {
+      "symbol": "zperson",
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "比較例で能力を評価する同じ本人。"
+    },
+    {
+      "symbol": "zanchor",
+      "parameters": [],
+      "result": "situation",
+      "arguments": [],
+      "meaning_ja": "本人の現在の状態を固定する比較の基準状況。仮定場面の機会を現在へ移さない。"
+    },
+    {
+      "symbol": "zcases",
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "基準状況",
+        "候補状況"
+      ],
+      "meaning_ja": "同じ本人・基準に対して選ぶ仮定場面。実際にそこで活動したという履歴ではない。"
+    },
+    {
+      "symbol": "zpreserved",
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "基準状況",
+        "候補状況"
+      ],
+      "meaning_ja": "本人について課題の判断の基礎に採った内的状態を基準から保持した仮定場面である。新たな学習や別人への交換で成功させない。能力そのものが同一だという仮定で結論を先取りしない。"
+    },
+    {
+      "symbol": "zopportunity",
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "候補状況"
+      ],
+      "meaning_ja": "この課題を自ら試みる外的な条件が与えられる。実際の試み・技能・成功は要求しない。"
+    },
+    {
+      "symbol": "zpreferred",
+      "parameters": [
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "基準状況",
+        "優先候補",
+        "劣後候補"
+      ],
+      "meaning_ja": "同じ本人と基準において、最初の候補を次の候補より文脈上通常とみなす厳密な比較。成功したことだけを優先理由にしない。"
+    }
+  ],
+  "definitions": {
+    "bb": "自分自身の理解能力を、当該行為について他者の指導なしで使うという内容。",
+    "xa": "指定した人・方法・開始状況について、評価対象の結果が空でなく、全て想定結果に含まれる。",
+    "xd": "実行できる方法のうち、xaを満たす評価対象の全結果で目的が成立する方法がある。他の方法の評価範囲が妥当であることまでは含まない。",
+    "xe": "実行できる全方法について評価対象が空でなく想定結果の部分集合である。実行できる方法がなければこの整合条件は成立する。",
+    "xf": "xdの達成方法を一つ確認できるか、xeにより全方法の評価範囲が整合する。能力の有無をこの解釈内で判定できる条件。",
+    "xg": "xeによって全方法の評価範囲の整合性を確認した上で、xdの達成方法がない。単なるxdの否定とは区別し、未評価の方法を不可能扱いしない。",
+    "bc": "人であり、明示した評価範囲が整合し、その範囲の全結果で自立的使用bbを達成する方法がない。旧草案の全想定結果での保証の否定から区別する。",
+    "rqt2": "指定範囲内の場面で、その範囲の別の場面に比べて劣後しないもの。preferredは第一場面を第二場面より文脈上通常とみなす厳密な関係として渡す。範囲外の場面は候補にならない。",
+    "rqt3": "指定範囲上でpreferredの非反射性・推移性と、全候補が極小候補であるか極小候補に劣後することを要求する。数値尺度・全比較可能性・候補の有限列挙を要求しない。",
+    "rqt4": "rqt3を満たす同じ候補範囲に極小候補が少なくとも一つあり、その全てで同じ応答条件が成立する。劣後する例外候補での失敗を許すが、比較不能な極小候補の失敗は消さない。空範囲や極小候補を欠く範囲を空虚に真としない。",
+    "rqu6": "同じ本人と基準状況を固定した候補場面の条件。別人・別の基準時点の候補を借りない。",
+    "rqu7": "採用した全候補が、基準の本人について判断の基礎にする内的状態を保持し、その課題の外的実行条件を備えることを要求する。違反した候補を黙って除外して母集団を縮めない。候補の非空性と通常性は呼出側で別に要求する。",
+    "rqva": "rqu7の条件を満たす同じ候補範囲で、通常性に劣後しない場面が非空で、その全てに本人が同じ目標を指定結果範囲で達成する方法xdを持つ。方法は場面ごとに選べる。基準状況そのものの機会・実行・成功を要求しない。本人の保持条件や機会の意味が適切な場合に、機会を補った仮定場面での能力を述べる候補となる。",
+    "rqvb": "同じ非空の通常場面全てで、全方法の評価が整い、達成方法がないxgが成立する。rqvaの単なる否定ではない。場面ごとに可否が分かれる場合を、通常はできないとまとめない。",
+    "rqvc": "同じ非空の通常場面全てで、方法についてxfによる可否の判定条件が成立する。未評価を不能と補わない。",
+    "rqvd": "rqvcの全通常場面で判定できる条件を満たし、rqvaの全通常場面で達成可能という条件は満たさない。少なくとも一つの通常場面で達成不能であり、全通常場面で不能というrqvbより弱い。空・不正なプロフィールや未判定からは成立しない。"
+  },
+  "limitations": [
+    "場面の広さと、現在の機会を要求するかどうかを別に扱う。多数の場面を並べるだけでは、機会から独立した能力の記述にはならない。",
+    "preservedは能力そのものの同一性を仮定する関係ではない。身体・知識・習慣・意図等、判断の基礎に採った本人側の状態を保持する。何を保持するかは課題に即して明示する必要がある。",
+    "opportunityは同じ課題についての外的実行条件であり、技能の存在・実行の成功・規範的な許可と同一化しない。候補・保持・機会・通常性を成功結果に合わせて選び直すことは正当化しない。",
+    "候補をなす仮定場面は実際の過去・未来の履歴とは限らない。別の時期に学習した本人の状態を、そのまま基準状況の能力の証拠として使わない。",
+    "xd・xgの結果評価範囲は継承する。技能・能力全般の必要十分条件、認識や自動推定、身体機構の一般理論は与えない。",
+    "カントの現行本文は変更しない。Unvermögenを当該状況の不能と読むか、機会を与えた仮定場面での不能と読むかを比較するための構成であり、後者の採用や段落全体の意味一致を自動で認定しない。"
+  ],
+  "research_reference": {
+    "title": "Simon Kittle, On General and Non-General Abilities",
+    "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/papq.12424",
+    "use": "機会を要求するかという区別と、評価する場面範囲の広さという区別を混同しないために参照した。本実装の極小場面・全称条件を、この論文が提案した能力の完全な分析として帰属しない。"
+  },
+  "origin_sha256": {
+    "examples/v016/kant-courageous-undertaking.noema": "b6ed25212426c5eb5df6ec93057f4c9c75ddd32ddc3c168d6ed720a1723fb9cd",
+    "data/courageous-undertaking-basis-v1.json": "c5590c6f2d348d087e786add88cc54eb4703ae640ac6413d3c6580a2068f5b87"
+  }
+}
