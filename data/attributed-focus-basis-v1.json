@@ -1,0 +1,421 @@
+{
+  "status": "shared_source_attribution_of_foreground_and_expectation_background",
+  "document": "examples/v016/kant-attributed-focus.noema",
+  "parent": "examples/v016/kant-expected-focus.noema",
+  "inherited_meaning_basis": "data/expected-focus-basis-v1.json",
+  "primitives": {
+    "hznreport": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者・本文位置・段階3の内容記述・原文範囲・文脈の帰属関係。"
+    },
+    "hzrbgreport": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "foreground",
+        "background",
+        "foreground_scope",
+        "background_scope",
+        "context"
+      ],
+      "meaning_ja": "同じ箇所・著者・主張記述・背景記述・主張範囲・背景範囲・文脈について、著者がその主張をその背景とともに提示する帰属関係。背景を主張と同じ内容に潰さず、実際の真理や読者の同意は要求しない。"
+    },
+    "hzpz": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "カント1784のu0011、原文位置137以上448未満の伝播を述べる節の範囲。範囲への参照であり、その全文内容が記述済みであることは含意しない。"
+    },
+    "hzq2": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "同じu0011の原文位置178以上217未満、sogarと任用された後見役を焦点として示す範囲。主張全体の範囲や、期待比較の評価時点とは区別する。"
+    }
+  },
+  "definitions": {
+    "rtq": "同じ著者・箇所・主張内容・文脈への既存の帰属と、その主張に別範囲の背景を結ぶ明示的な帰属を併記する。内容は実行しない。",
+    "rqtu": "階数2の閉じた内容記述へ、階数3の恒等関数記述を適用し、同じ内容を返す閉じた階数3の記述にする。引用の構成であり、内容やその内部の基本関係を評価しない。元と変換後の構文同一性は要求しない。",
+    "rqtv": "同じ組から主張と背景を一回ずつ取り出し、rqtuで既存rtqの引用階数へ接続する。同じ箇所・著者・文脈を共用し、主張範囲と背景範囲は別に渡す。既存hznreportとhzrbgreportで帰属し、内容の真理や背景の実際の成立を含意しない。",
+    "hzpx": "同じ公衆の閉じた記述、任用関係、後見役関係から、hzhbを呼ぶ閉じた部分集団述語を構成する。人物と時点は述語の引数に残し、別人・別時点の任用を補わない。",
+    "hzpy": "指定した閉じた条件付き内容の枠とhzpxの後見役述語をhzpwへ渡し、主張と期待背景を同じ理由側箇所hzp5・著者wa・提示文脈hzp3へrqtvで帰属する。主張範囲hzpzと背景範囲hzq2を区別する。枠と公衆・任用・役割の解釈は明示した引数として必要である。"
+  },
+  "reused_declarations": {
+    "document": "examples/v016/kant-focused-permission.noema",
+    "names": [
+      "rtq",
+      "hznreport",
+      "hzrbgreport"
+    ]
+  },
+  "new_local_references": {
+    "hzpz": "カント1784のu0011、原文位置137以上448未満の伝播を述べる節の範囲。範囲への参照であり、その全文内容が記述済みであることは含意しない。",
+    "hzq2": "同じu0011の原文位置178以上217未満、sogarと任用された後見役を焦点として示す範囲。主張全体の範囲や、期待比較の評価時点とは区別する。"
+  },
+  "new_signatures": {
+    "hznreport": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "rtq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "situation"
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzrbgreport": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzpz": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "hzq2": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "rqtu": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 2
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 3
+      }
+    },
+    "rqtv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzpx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "situation"
+          ],
+          "result": "truth"
+        }
+      }
+    },
+    "hzpy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual",
+                      "situation"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "既存rtq・hznreport・hzrbgreportの宣言と意味を再利用する。異なる引用階数で同じ帰属の基本関係を増やさず、閉じた恒等適用で接続する。",
+    "引数を満たした接続例は、自由の条件・存在する伝播・後見役・期待背景を同じ帰属へ渡す。原文に適した全ての履歴・公衆・評価基準・範囲の解釈を確定したわけではない。",
+    "帰属は内容の真理とは独立である。帰属の検査で世界の事実を未知のまま保持できることは、任意長の伝播内容の真理の証明ではない。",
+    "本文34文と意味確認済み七単位を保持する。帰属用の引数付き定義を追加するが、新しい無条件の本文主張と原文対応文字は増やさない。"
+  ]
+}
