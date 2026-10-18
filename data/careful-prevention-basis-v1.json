@@ -1,0 +1,462 @@
+{
+  "status": "goal_directed_distributed_attention_bound_to_causal_event",
+  "document": "examples/v016/kant-careful-prevention.noema",
+  "library": "examples/v016/careful-action.noema",
+  "parent": "examples/v016/kant-unpermitted-undertaking.noema",
+  "inherited_meaning_basis": "data/unpermitted-undertaking-basis-v1.json",
+  "primitives": {
+    "hztj": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "act",
+        "goal_description",
+        "bindings",
+        "aspect",
+        "context"
+      ],
+      "meaning_ja": "同じ行為者が、その行為を進める中で、指定した目標記述と順序付き引数について、その事項へ継続して認知的な注意を配る。単に知覚したこと、結果の成功、感情的な好意とは区別する。事項の関連性、目的としての採用、実際の行為参加は別条件。"
+    },
+    "hztk": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "act",
+        "goal_description",
+        "bindings",
+        "aspect",
+        "context"
+      ],
+      "meaning_ja": "同じ行為者群・行為・目標記述・順序付き引数・文脈について、遂行上考慮すべき事項の範囲に属する。現に注意を払った事項だけを範囲にしない。文脈上の関連範囲を解釈として固定し、注意や成功から逆算しない。"
+    },
+    "hztl": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "act",
+        "goal_description",
+        "bindings",
+        "context"
+      ],
+      "meaning_ja": "同じ行為者が、その行為の計画・遂行で、閉じた内容関数に同じ順序の引数を渡した目標を目指す。既存のparameterized-goalsのAIMS規約を具体化する。目標を実行評価せず、達成・実現可能性・道徳的な是認を含意しない。"
+    }
+  },
+  "definitions": {
+    "rqvp": "同じ実際の行為について、非空の関連事項の全てへ、行為者群のうちその行為に参加し同じ目標を目指す者の注意が向いている。事項ごとに担当者が異なってよい。別行為・別目標・別引数への注意を流用せず、目標の達成は要求しない。",
+    "hztm": "一個体だけの引数列から同じ本人を取り、試みの不成立hzsmを返す目標関数。過不足の引数を切り捨てない。",
+    "hztn": "同じ後見人群の成員、同じ行為、同じ本人の非試行という目標とその関連事項をrqvpへ渡す。注意と目的を担う者は同じ行為に参加している。",
+    "hzto": "既存hzsnの実際の結果・行為・集団参加・因果関係に、同じ原因行為のhztnを加える。成功しただけの妨害や、別行為の注意では満たさない。",
+    "hztp": "旧hzsoの先行二段階を、慎重さの候補を同じ原因行為に結んだhztoへ更新する。対象者は提示時点で固定する。",
+    "hztq": "同じ先行段階hztpの第二時点へ、従来と同じ許容欠如hztcを結ぶ。許容欠如と慎重さを同一視しない。",
+    "hztr": "同じ危険提示と、更新した先行段階hztqを結ぶ。先行二段階相互の厳密な順序は増やさない。",
+    "hzts": "更新した複文の部分記述hztrを著者に帰属させ、先行する監督の文との順序を保持する。引用した注意や目的を実行しない。",
+    "hztt": "比喩の対象となる同じ本人への先行する阻止をhztoに更新し、同じ時点の許容欠如を保持する。",
+    "hztu": "更新した対象側hzttと既存の閉じ込め描写zbfを、同じ関係節の非字義的な提示へ結ぶ。"
+  },
+  "new_signatures": {
+    "rqvp": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hztj": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hztk": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hztl": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hztm": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        }
+      ],
+      "result": "content"
+    },
+    "hztn": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzto": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    },
+    "hztp": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hztq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hztr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    },
+    "hzts": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "hztt": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    },
+    "hztu": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "sorgfältigを、目的に沿った遂行上の関連事項へ注意を配るものとして読む候補。気遣いの感情や道徳的善さ、完全な成功と同一視しない。",
+    "関連事項を原文が列挙しているとはしない。解釈で固定する範囲の全称条件であり、検査器の有限領域を現実の全事項だと認定しない。",
+    "共同の遂行で注意を分担する読みを許す。全員が全事項へ注意を払うことは要求しないが、各担当者の参加・目的・注意は同じ行為へ固定する。",
+    "注意の認知的機構や持続時間の測定方法は基本関係の解釈に残る。原語一語を新しいcareful述語へ置換したものではなく、注意・関連性・目的の関係を分ける。",
+    "本文二文を更新し、他の35文と既存九単位の意味判断を保持する。穏順さ、強調、身体的描写、皮肉、学習と萎縮、第二段落全体の確認は残る。"
+  ]
+}
