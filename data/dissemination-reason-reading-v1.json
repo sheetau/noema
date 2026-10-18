@@ -1,0 +1,54 @@
+{
+  "status": "facsimile_collated_adopted_discourse_reading_not_whole_unit_completion",
+  "checked_on": "2026-10-18",
+  "source_unit": "kant-1784:u0011",
+  "source_inventory": "artifacts/written-units-v1/kant-1784.json",
+  "unit_sha256": "7598b67d5af875405e69406729ea1bf9573a62c78e8bb946a77a0f23d3563680",
+  "facsimile": {
+    "edition": "Berlinische Monatsschrift, volume 4, December 1784, original page 483",
+    "url": "https://api.digitale-sammlungen.de/iiif/image/v2/bsb10926843_00523/full/full/0/default.jpg",
+    "artifact": "artifacts/future-dissemination-reading-v1/page-483.jpg",
+    "sha256": "c4bda8edb53f2ba15a12d3609a95d00bdd8dfcc155d62cf8a5d83476ff1666c0",
+    "visually_checked": true,
+    "reviewer": "assistant",
+    "scope": "Read the first two sentences of the paragraph beginning Daß aber ein Publikum, including the preceding individual-difficulty discussion. Confirmed the ordering, conditional clause, Denn da, immer and sogar on the same original page. No inference from OCR alone."
+  },
+  "transcription_url": "https://de.wikisource.org/w/index.php?title=Beantwortung_der_Frage:_Was_ist_Aufkl%C3%A4rung%3F&oldid=3778353",
+  "anchors": {
+    "conclusion": {"symbol": "hzp4", "start": 0, "end": 128},
+    "reason": {"symbol": "hzp5", "start": 129, "end": 448},
+    "connective": {"start": 129, "end": 133, "source": "Denn"}
+  },
+  "adopted_readings": [
+    {
+      "element": "Denn",
+      "reading": "The author presents the dissemination sentence as a reason supporting the preceding sentence about public enlightenment and conditional near-inevitability.",
+      "implementation": "hzp6 uses the existing ud relation with the reason node as the sole selected premise and the preceding sentence as the conclusion. ue preserves their textual order.",
+      "not_inferred": "Truth, logical entailment, proof sufficiency, actual causation, or freedom's actuality."
+    },
+    {
+      "element": "da and freedom",
+      "reading": "For the planned content connection, read the prediction within the preceding discussion of a public allowed freedom, rather than as an unconditional prediction detached from that discussion.",
+      "status": "adopted_contextual_reading_not_yet_connected_to_closed_content",
+      "not_inferred": "That da alone uniquely determines a possible-world semantics, or that freedom is a necessary condition."
+    },
+    {
+      "element": "immer",
+      "reading": "Use contextually relevant future opportunities in that discussion, allowing different people at different opportunities.",
+      "status": "explicit_scope_choice_for_future_connection",
+      "not_inferred": "An unbounded physical continuum, the same people forever, or a source-specified finite list of dates."
+    },
+    {
+      "element": "einige and sogar unter",
+      "reading": "Use the explicit candidate with multiple qualified people in the public and a qualified guardian among them. Treat guardians as the focus against a stated alternative subgroup, with the comparative background separate from the claim.",
+      "status": "candidate_selected_for_next_content_connection_not_unique_translation",
+      "not_inferred": "A numerical probability, an actual non-guardian witness, or that the original fixes all interpretation parameters. The older stronger plural-within-guardians candidate remains available."
+    }
+  ],
+  "coverage_rule": "The node anchors locate source sentences; their full ranges do not count as represented meaning. Only the four letters of Denn are added to explicit partial coverage by this change.",
+  "remaining": [
+    "Bind the conditional public-freedom content and the dissemination content to these same discourse nodes.",
+    "Specify contextually appropriate alternatives, ranking and opportunity range in the actual manuscript reading.",
+    "Complete the yoke metaphor and the rest of the paragraph; then review the whole source unit."
+  ]
+}
