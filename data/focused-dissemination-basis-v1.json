@@ -1,0 +1,2300 @@
+{
+  "status": "shared_dissemination_frame_with_separate_scalar_background",
+  "document": "examples/v016/kant-focused-dissemination.noema",
+  "parent": "examples/v016/kant-subgroup-dissemination.noema",
+  "inherited_meaning_basis": "data/subgroup-dissemination-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "rst": "主張内容と背景内容の閉じた記述を区別して保持する二項の組。選択関数を受ける通常のNoema関数で表す。",
+    "rsu": "主張内容の記述を取り出す。",
+    "rsv": "背景内容の記述を取り出す。",
+    "rsw": "主張内容だけを否定した記述へ変換し、背景の記述をそのまま保持する。",
+    "rsx": "主張内容を指定状況で評価する。背景の成立を前提に真偽を補わない。",
+    "rsy": "背景内容を指定状況で評価する。背景不成立を主張内容の否定へ変換しない。",
+    "rsz": "主張内容の肯否を問う発話の記述を作る。元の組は背景を保持するが、返した発話型そのものに背景を埋め込む操作ではない。",
+    "rta": "明示した記述列上で、同じ視点と基準文脈の比較関係が非反射的・推移的であることを検査する。全順序は要求しない。",
+    "rtb": "焦点の記述以外の比較対象列が非空で、焦点を加えた範囲でrtaが成立し、焦点が全比較対象より指定尺度で上位にある。",
+    "rtd": "指定視点・基準文脈の尺度条件だけを背景内容にする。",
+    "rtf": "同じ焦点の記述から主張内容と背景の引数を構成する。構成時に内容を実行しない。",
+    "rtg": "尺度条件だけを背景にした組を構成する。",
+    "rtk": "内容記述の列を、同じ順序・重複を保った列の閉じた記述にする。",
+    "rqtj": "順序付き履歴の基準点より後の全機会で同じ条件を要求する。基準点は履歴に属し、将来機会は非空でなければならない。基準点自身での条件成立は要求しない。",
+    "hzoy": "hzovの母集団、各人の独立判断・自己離脱・相対範囲への伝播、全将来機会を保持し、部分集団の条件だけを引数にする内容。各点の母集団が人の範囲であること、全体に複数の該当者がおり、その中に部分集団の該当者がいることを要求する。",
+    "hzoz": "同じ30引数から部分集団の閉じた述語記述を受け取る枠を作る。受け取った述語を評価してhzoyへ渡す。内容の構成時に記述を評価するのではなく、構成された枠が適用される段階で評価する。",
+    "hzp2": "共通の30引数の閉じた記述から、hzozの階数1の枠記述を構成する。性向記述は記述値として持ち上げ、その内容をこの段階では実行しない。",
+    "rqtk": "同じ閉じた階数1の枠へ一つの部分集団述語記述を値として適用し、閉じた内容記述を構成する。部分集団の述語や内容を構成時には実行しない。",
+    "rqtl": "部分集団述語記述の列の全要素へ同じ枠を適用する。順序と重複を保ち、比較対象ごとに母集団・行為者・経路・将来範囲を変えない。",
+    "rqtm": "焦点と比較対象の部分集団述語を同じ枠へ適用し、主張内容と尺度条件だけの背景をrtgで組にする。背景に比較対象の実際の成立は要求しない。視点・尺度の基準文脈・比較関係は明示した閉じた記述で渡す。"
+  },
+  "imported_definitions_from": "data/scalar-backgrounds-basis-v1.json",
+  "new_signatures": {
+    "rst": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 2
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 2
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "rsu": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 2
+      }
+    },
+    "rsv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 2
+      }
+    },
+    "rsw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "rsx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "rsy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "rsz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "message",
+        "rank": 2
+      }
+    },
+    "rta": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rtb": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rtd": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "content"
+    },
+    "rtf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "sequence",
+                  "element": {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 1
+                  }
+                },
+                "individual",
+                "situation",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": "content",
+                      "rank": 1
+                    },
+                    {
+                      "kind": "description",
+                      "result": "content",
+                      "rank": 1
+                    },
+                    "situation"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              }
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "rtg": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              }
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "rtk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        "rank": 1
+      }
+    },
+    "rqtj": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzoy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "message"
+              }
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vt",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vu",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vv",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vw",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vx",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "situation"
+            }
+          }
+        },
+        {
+          "name": "vy",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vz",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v2",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "number"
+          }
+        },
+        {
+          "name": "v3",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "number"
+          }
+        },
+        {
+          "name": "v4",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "v5",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v6",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "content"
+    },
+    "hzoz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "message"
+              }
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vt",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vu",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vv",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vw",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vx",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "situation"
+            }
+          }
+        },
+        {
+          "name": "vy",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vz",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v2",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "number"
+          }
+        },
+        {
+          "name": "v3",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "number"
+          }
+        },
+        {
+          "name": "v4",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "v5",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        ],
+        "result": "content"
+      }
+    },
+    "hzp2": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "situation"
+            }
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "situation"
+            }
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "situation"
+            }
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "situation"
+            }
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "individual"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "individual"
+              ],
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "individual"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "individual"
+              ],
+              "result": "situation"
+            }
+          }
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "individual"
+              ],
+              "result": "situation"
+            }
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "vt",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "vu",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "situation"
+            }
+          }
+        },
+        {
+          "name": "vv",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vw",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vx",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": {
+                "kind": "sequence",
+                "element": "situation"
+              }
+            }
+          }
+        },
+        {
+          "name": "vy",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vz",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "v2",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "number"
+            }
+          }
+        },
+        {
+          "name": "v3",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "number"
+            }
+          }
+        },
+        {
+          "name": "v4",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "individual"
+            }
+          }
+        },
+        {
+          "name": "v5",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "situation"
+                ],
+                "result": "truth"
+              }
+            }
+          ],
+          "result": "content"
+        },
+        "rank": 1
+      }
+    },
+    "rqtk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual",
+                      "situation"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 1
+      }
+    },
+    "rqtl": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual",
+                      "situation"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "situation"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        }
+      }
+    },
+    "rqtm": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual",
+                      "situation"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "situation"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    }
+  },
+  "limitations": [
+    "比較対象ごとに変えるのは部分集団述語の閉じた記述だけである。共通の内容の定義はhzooを再利用し、自己思考や伝播を別の不透明な基本述語へ置き換えない。",
+    "後見役の焦点は既存hzhbの閉じた述語として渡せる。比較対象を非後見役に限定せず、どの比較範囲を選ぶかは明示する必要がある。",
+    "rqtmは尺度だけの背景を採る候補である。部分集団外にも該当者が実在するという追加条件を自動では加えない。sogarの全用法や唯一の読みを実装したとはしない。",
+    "尺度の向きは指定された関係の意味規約による。確率・予想外の程度・注目すべき程度などを自動補完しない。尺度・視点・比較対象が原文に適切かは未確定。",
+    "全将来内容同士を比較する明示した作用範囲である。各将来点の内部で背景を評価する読みや、自由の仮定、Denn、比喩、著者への実際の帰属は未完。",
+    "既存32文と七単位の確認を保持する。新たな著者主張・対応範囲・意味確認済み単位は加算しない。"
+  ]
+}
