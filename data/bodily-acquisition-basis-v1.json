@@ -1,0 +1,828 @@
+{
+  "status": "task_indexed_capacity_and_prospective_bodily_acquisition",
+  "document": "examples/v016/kant-bodily-acquisition.noema",
+  "library": "examples/v016/task-indexed-capacity.noema",
+  "parent": "examples/v016/kant-falling-depiction.noema",
+  "inherited_meaning_basis": "data/falling-depiction-basis-v1.json",
+  "primitives": {
+    "hzuq": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "task",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ本人・閉じた活動記述・基準状況について、行使能力の評価に採る機会の候補。別活動の候補を無条件に流用せず、実際に起きた状況とは限らない。"
+    },
+    "hzur": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "task",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ活動の行使能力の評価で、本人側の技能・習慣・身体状態などの基盤が基準から保持される。能力そのものの同一性を仮定せず、将来の取得後の基盤へ置換しない。"
+    },
+    "hzus": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "task",
+        "candidate"
+      ],
+      "meaning_ja": "同じ活動を行う外的な機会が本人に与えられる。技能や成功、規範上の許可とは別の条件。"
+    },
+    "hzut": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "task",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ本人・活動記述・基準で、行使能力の評価候補の通常性を厳密に優先する関係。成功する候補だけを後から通常と選び直さない。"
+    },
+    "hzuu": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "task",
+        "method",
+        "anchor",
+        "execution"
+      ],
+      "meaning_ja": "同じ活動について、基準時点の本人側の基盤を行使する方法の範囲。新たな技能基盤を先に習得する準備計画を、既有の行使方法に数えない。"
+    },
+    "hzuv": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "task",
+        "method",
+        "anchor",
+        "execution"
+      ],
+      "meaning_ja": "同じ活動・方法・基準・実行状況でhzuuの範囲内外が評価済みである。範囲外と未知を区別する。"
+    },
+    "hzv2": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "task",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ本人が同じ活動の能力を経験から得ると仮定的に見込む候補。活動記述と基準を保持し、実現済みの出来事や全可能性の集合、数値確率とはしない。"
+    }
+  },
+  "definitions": {
+    "rqvv": "同じ閉じた活動記述を六つの能力評価入力へ渡し、既存rqvmで評価条件の整合性を調べる。達成内容と記述の対応は呼出側の明示的な契約であり、この一般形が意味同一性を自動判定するものではない。",
+    "rqvw": "rqvvと同じ活動・本人・基準に結んだ入力を既存rqvnへ渡し、通常機会での現在の行使能力を判定する。既存の評価不足・準備方法・現在の外的障害の区別を保持する。",
+    "hzuw": "同じ本人のzalについて、活動を明示した入力と既存の利用可能方法・結果・選択結果をrqvvへ渡す。知的活動専用のhzsc等を使わない。",
+    "hzux": "hzuwと同じ活動・本人・基準・評価入力によるrqvwの行使能力。活動内容は同じ本人のzal、活動記述もzalに固定する。",
+    "hzv5": "同じ本人・経験・試行時点でzalを試み、その経験の一つの結果が実際にrqvuの転倒を満たし、その同じ結果時点が取得の終点以前である。早い非転倒の結果と遅い転倒の結果を混ぜない。",
+    "hzuy": "同じ本人・取得過程の少数回の経験列をr5へ渡し、各転倒hzv5が終点までにあり、各経験が同じ取得へ寄与する。両端のhzuwが整い、hzuxの能力がない前状態からある後状態へ移る。",
+    "hzuz": "指定本人と回数基準の文脈について、hzuyの取得過程が終わる状況の内容。過程を人や見込み候補の間で一つに固定しない。",
+    "hzv3": "同じ本人・zal・基準で選ぶ非空の将来候補の全てにhzuzが成立するという見込み。実際の転倒・学習の発生は断言せず、回数の基準は元の文脈に保つ。",
+    "hzv4": "同じ学習節fvで、自立的活動の取得見込みfrを身体的活動の取得見込みhzv3で非字義的に提示する。本人を対応させ、両内容の実際の真理や完全同一性は要求しない。"
+  },
+  "new_signatures": {
+    "rqvv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "content"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "rqvw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "content"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzuq": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzur": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzus": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzut": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzuu": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzuv": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzuw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    },
+    "hzux": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    },
+    "hzv5": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzuy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "hzuz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "content"
+    },
+    "hzv2": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzv3": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    },
+    "hzv4": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "六つの評価関係と取得見込みを活動記述で区別する。個別の身体技能を一語の未知述語へ置換せず、同じ一般能力条件へ接続するための文脈入力である。",
+    "一般形では達成内容と活動記述を別に受ける。呼出側が同じ活動と本人に結ぶ必要があり、身体側ではzal(person)と記述zalを使う。任意の同義な記述への自動移行は行わない。",
+    "能力の現在の基盤と、事前に別の基盤を学習する準備方法を区別する。通常性・基盤・方法区分・結果範囲の具体的な評価モデルを原文が一意に指定しているとはしない。",
+    "転倒は取得の終点までに完了する一つの同じ結果で判定する。傷害や全結果での転倒、各経験が単独で十分・必要な原因であることは要求しない。",
+    "能力の不在から取得への変化という既存の読解を身体側へ構成する。熟達の程度的な改善、身体移動zalの歩行と走行の区別、würden・wohlの語用論の全ては未確定。",
+    "身体側と知的活動側は別の内容記述である。比喩の提示が実際の学習を証明することはなく、著者の心理・教育上の主張の実証を言語の完成条件にしない。",
+    "既存39文と九単位の意味判断を保ち、学習の比喩帰属を一文加える。部分草案の範囲と全体確認済み587文字は増やさない。"
+  ]
+}
