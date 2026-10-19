@@ -1,0 +1,431 @@
+{
+  "status": "graded_actual_change_and_retention_with_explicit_reference_schema",
+  "document": "examples/v016/kant-graded-change.noema",
+  "parent": "examples/v016/kant-acquired-affection.noema",
+  "inherited_meaning_basis": "data/acquired-affection-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "r2cl": "同じ評価関係の同じ状況で、指定値が尺度内にあり、評価された値であり、その状況で評価された全値と同一である。評価欠落、多値、尺度外の値を確定した程度として扱わない。",
+    "r2cm": "同じ尺度の厳密な全順序rqsqと最高値の手前の近接域rqssを検査し、指定状況の一意な評価値r2clがその近接域にある。最高値への到達、確率の大きさ、過去の変化とは分ける。",
+    "r2cn": "同じ順序付き履歴の実際の過程tgで本人が変化を受け、同じ尺度・評価関係の一意な前後値が厳密に増加し、後端が近接域に入る。前端が既に近接域にある場合も許す。単に後端が近いことや前後の並置だけでは成立しない。",
+    "r2co": "r2cnの同じ変化の後端から、同じ履歴に属する後続または同時の基準まで、近接域にある状態を保持する。域内での増減は許し、前後区間の全過程での単調増加や最高値への到達、未来の永続は要求しない。",
+    "r2cp": "本人の現在の未成熟bfに、r2coの程度変化と結果状態の保持を結ぶ部分ひな形。評価関係へ本人・bfの記述・比較基準・現在の評価文脈・各履歴点・程度を同じ順で渡す。本性として何を比較するか、尺度と評価の根拠は明示的な引数として残す。"
+  },
+  "new_signatures": {
+    "r2cl": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2cm": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2cn": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2co": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vo",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2cp": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              "situation",
+              "situation",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "content"
+    }
+  },
+  "limitations": [
+    "カント第三段落のbeinaheとgewordenenの作用範囲を検討するための構成。現在の近さ、近接域への新規の進入、近接域内を含む程度の進行を区別する。原文の唯一の読解や段落全体の確認とはしない。",
+    "近接域は上端に近いが上端そのものを含まない既存rqssの厳密な読みを採る。割合・確率・距離・等間隔や固定した数値閾値は与えず、近さの基準は入力として明示する。",
+    "実際の過程とその本人への作用は既存ag・laで結ぶ。尺度値の増加だけから因果や変化過程を捏造しない。途中の単調性や連続性は要件にしない。",
+    "比較基準・尺度・評価関係は全履歴点で固定する。値の一意性は検査するが、現実の評価根拠の妥当性、比較対象の選定、近接域の適切さは別途必要である。",
+    "r2cpの比較基準は未充足の明示的な引数。本性の内容を値や未解釈な原文専用記号へ置換した完成訳ではない。後天的な定着を生来の起源と区別するための比較特性の構成は残る。",
+    "51本文文と十二単位の既存判断を保つ。第一文の個々人の困難・自己の働きかけ・also、人称と量化、著者への帰属は接続せず、意味確認済み分量を増やさない。"
+  ]
+}
