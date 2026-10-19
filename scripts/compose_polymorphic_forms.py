@@ -1,0 +1,82 @@
+"""Classify reusable function expressions independently of their typed arity."""
+from copy import deepcopy
+from functools import lru_cache
+import json
+from noema.constructed import parse, format_graph
+from noema.meaning_catalog import load_catalog
+from noema.semantic_reviews import digest
+from scripts.compose_grounded_step import ROOT, closure
+from scripts.compose_courageous_undertaking import replace_symbols
+
+PARENT = 'examples/v016/kant-conditioned-persistence.noema'
+PARENT_BASIS = 'data/conditioned-persistence-basis-v1.json'
+FULL = 'examples/v016/kant-polymorphic-forms.noema'
+CORE = 'examples/v016/polymorphic-forms-core.noema'
+LIBRARY = 'examples/v016/template-codes.noema'
+BASIS = 'data/polymorphic-forms-basis-v1.json'
+ANNOTATIONS = 'data/polymorphic-forms-identifiers-v1.json'
+MAPPING = {'h22': 'r2fg', 'h27': 'r2fh', 'r2er': 'r2fi', 'r2es': 'r2fj', 'r2et': 'r2fk', 'r2ez': 'r2fl'}
+PRIMITIVES = {
+    'r2fd': (['code'], '同じ文書の層0の真偽型記述が、型Tの一引数関数x↦(x=x)を閉じた式Mへ適用した構文の引用であり、Tが任意の引数数・引数型・結果型を持つ関数型であること。型付き正規化後の構造をnoema.expression_codes.is_template_codeで検査する。引用内容を実行せず、同じ真理値の別構文を同一化しない。'),
+    'hzzza': (['form', 'code', 'context'], 'この対象は、同じ文脈で繰り返し参照して用いる固定した表現の構成を、この正規的な関数式コードとして保持する。コードの元の関数は零個以上の任意の型の引数を持てる。内容の真理、使用の実行回数、適切さ、能力、物理的な保存媒体は含めない。'),
+}
+MEANINGS = {
+    'r2fe': '同じ対象・式コード・文脈について、コードの構造がr2fdに適合し、その同じコードを固定した表現の構成として保持する関係がある。保持関係を引数で渡し、単なる真の式や別コードの保持では代用しない。',
+    'r2ff': 'r2feを満たす層0の関数式コードがある対象。式の引数を一人の個体へ限定せず、零引数、複数引数、数値や関数や列などの引数も保持できる。引用の全域に量化するため、有限の既知コード一覧をその全域としない。',
+    'r2fg': 'Formelnの構成として、r2ffに保持関係hzzzaを渡す。固定した再利用可能な式の構成を持つものという読みは維持し、旧h22の一項の型という実装上の制約を外す。語義や慣習の成立を完了したとはしない。',
+    'r2fh': '規定hd2または任意の型・引数数の定型表現r2fgである対象。両者の重なりを許し、どちらか一方だけの存在や使用を主張しない。',
+    'r2fi': '対象分類をr2fhへ広げた同じ活動の道具関係。使用・誤用・因果・未成熟の持続r2eqは変更しない。',
+    'r2fj': '対象と利用者の二位置を、厳密に二要素の列からr2fiへ渡す。足枷の描写との位置対応を保つ。',
+    'r2fk': '第三文の同じ箇所で、型と引数数を一般化した対象側r2fjを既存の身体的足枷h2bで描く帰属。帰属から内容の実際の成立は導かない。',
+    'r2fl': '基準状況でr2fhに属する同じ対象と本人に、既存r2eyの条件付き作用を結ぶ未採用候補。分類だけを一般化し、継続の強さや著者帰属は追加しない。',
+    'r2fm': '旧来の一個体引数の内容関数の記述を、層0の共通型コードへ既存o aで包む明示的な移行式。元の型・構文・参照先を保持し、式を実行しない。保持関係を自動で移行したり、全ての型をこの一項へ変換したりはしない。',
+}
+LIMITS = [
+    '共通の型は元の式を隠して捨てる型消去ではない。型付きの包みと元の式を引用構文に保持し、復元時に型を再検査する。包みの真理値を元の意味としない。',
+    '一般APIは引用の層を保持する。本文分類r2fd/r2ffは旧h22と同じ層0を対象とする。高い層の記述を層0へ落とす規則や、全層を一つの型として量化する機能は追加しない。',
+    '関数型の引数数と引数・結果の型は列挙した例へ固定しない。ただし通常の文書検査と深さ・資源上限は保つ。全ての自然言語の定型句を自動でNoema式へ変換したとはしない。',
+    'hzzzaは表現が構成を保持する関係の解釈入力であり、慣習・媒体・表現一般の成立をこのコード操作だけで説明したものではない。旧hw2から新保持関係への事実の移行には明示したコード対応が必要である。',
+    '対象分類だけを広げ、第三文の帰属52を更新する。他の53文、先頭二文と十二全単位の判断を保持する。規定の拘束性、一般化の範囲、指示、持続の強さ、第三文全体の意味確認は未完である。',
+]
+
+
+@lru_cache(None)
+def parent(): return load_catalog(ROOT, PARENT_BASIS)
+
+
+def build():
+    old = parent(); assert not (set(MEANINGS) | set(PRIMITIVES)) & set(old.entries)
+    doc = deepcopy(old.document); statements = doc['statements']; doc['statements'] = []; size = len(doc['declarations'])
+    doc = parse(format_graph(doc, 'compact') + '''
+r r2fd[i[c]] c.r hzzza[a i[c] d] c.
+d r2fe[form a code i[c] point d stored h[a i[c] d] c] c[w[k r2fd[v code]][c[v stored][v form v code v point]]].
+d r2ff[form a point d stored h[a i[c] d] c] c[g code i[c][k r2fe[v form v code v point v stored]]].
+d r2fg[form a] e[b point[k r2ff[v form v point p hzzza]]].
+''')
+    for name in ('h27', 'r2er', 'r2es', 'r2et', 'r2ez'):
+        row = replace_symbols(deepcopy(old.entries[name]['declaration']), MAPPING)
+        row['name'] = MAPPING[name]; doc['declarations'].append(row)
+    doc = parse(format_graph(doc, 'compact') + '''
+d r2fm[pattern i[h[a] e]] i[c][o a[r[i[template h[a] e][e[v template][v template]]]][v pattern]].
+''')
+    assert len(statements) == 54 and statements[52]['body']['symbol'] == 'r2et'
+    statements[52] = replace_symbols(statements[52], MAPPING)
+    doc['statements'] = statements; doc = parse(format_graph(doc, 'compact'))
+    core = deepcopy(doc); core.update(declarations=closure(doc, ['r2fk', 'r2fl', 'r2fm']), statements=doc['statements'][52:53])
+    library = deepcopy(doc); library.update(declarations=closure(doc, ['r2fe', 'r2ff', 'r2fm']), statements=[])
+    added = doc['declarations'][size:]; by_name = {d['name']: d for d in added}; assert len(added) == 11
+    basis = dict(status='reusable_expression_classification_without_unary_type_restriction', document=FULL,
+        parent=PARENT, inherited_meaning_basis=PARENT_BASIS,
+        primitives={n: dict(parameters=by_name[n]['parameters'], result=by_name[n]['result'], arguments=args, meaning_ja=meaning) for n, (args, meaning) in PRIMITIVES.items()},
+        definitions=MEANINGS, new_signatures={d['name']: {k: d[k] for k in ('parameters', 'result')} for d in added}, limitations=LIMITS)
+    body = format_graph(doc, 'compact') + '\n'
+    annotations = json.loads((ROOT / 'data/conditioned-persistence-identifiers-v1.json').read_text(encoding='utf-8'))
+    annotations.update(document=FULL, document_sha256=digest(body.encode('utf-8')))
+    enc = lambda x: json.dumps(x, ensure_ascii=False, indent=2) + '\n'
+    return {FULL: body, CORE: format_graph(core, 'compact') + '\n', LIBRARY: format_graph(library, 'compact') + '\n', BASIS: enc(basis), ANNOTATIONS: enc(annotations)}
+
+
+if __name__ == '__main__':
+    from scripts.audit_opening_scope import write_exact
+    for path, body in build().items(): write_exact(ROOT / path, body)
+    print('Nine definitions, one structural predicate and one storage relation; statement 52 updated', flush=True)
