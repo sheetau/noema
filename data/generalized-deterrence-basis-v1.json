@@ -1,0 +1,355 @@
+{
+  "status": "generic_intimidation_and_frequency_adopted",
+  "document": "examples/v016/kant-generalized-deterrence.noema",
+  "parent": "examples/v016/kant-recognized-example.noema",
+  "inherited_meaning_basis": "data/recognized-example-basis-v1.json",
+  "primitives": {
+    "hzyl": {
+      "parameters": [
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ基準で、先行する不成功例を知った対象者の反応を一般化して述べる比較状況。例との遭遇・認識の環境や対象者間の差を検討する範囲であり、実際に起きた履歴だけに限定しない。活動の意味と指示する対象集団は基準に固定し、異なる課題や学習済みの別の集団へ交換しない。反応の成功だけで選定しない。"
+    },
+    "hzym": {
+      "parameters": [
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ基準の比較状況について、背景条件の通常性を比べる厳密な優先関係。認識の環境や外的な阻害などの比較理由を与えるもので、萎縮・回避の成立や観測回数そのものを順位とはしない。反射・循環・推移性違反は構成側で検査する。"
+    },
+    "hzyn": {
+      "parameters": [
+        "situation",
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "anchor",
+        "candidate",
+        "preferred_case",
+        "other_case"
+      ],
+      "meaning_ja": "同じ基準・比較状況内の事例について、一般的反応を述べるための通常性を比べる厳密な優先関係。特異な受容条件や例の認識環境などを比較理由とする。萎縮した事例だけを優先することは正当化しない。この順位は頻度計算の事例を削除する条件ではない。"
+    }
+  },
+  "definitions": {
+    "r2bd": "同じ基準に固定した比較範囲と通常性順序について、非空の極小比較状況すべてで、その状況の過不足ない非空・重複なしの適格事例列に応答が過半数かつ基準文脈の割合条件を満たす。状況の選択と状況内の頻度を二段階で評価し、基準状況の観測だけや一事例の成功と同一視しない。",
+    "r2be": "指定した個体事例の範囲に属し、その範囲の他事例に通常性で劣後しない事例を選ぶ。状況型のrqt2と同じ順序条件を、個体型の事例へ適用する。",
+    "r2bf": "指定した個体事例の範囲で通常性順序の非反射性・推移性と、各事例が極小または極小事例に劣後する条件を要求する。比較不能な事例を黙って除かない。",
+    "r2bg": "r2bfの条件を満たす同じ範囲に極小事例が少なくとも一つあり、その全てで応答が成立する。劣後する事例の例外を許す。数値割合や全事例での成立とは異なる。",
+    "r2bh": "比較状況での事例の適格性、対象者が人であること、基準状況の同じ対象集団djへの所属、比較状況での同じ先行例grの認識を結ぶ。対象集団を比較先で選び直さない。",
+    "r2bi": "同じ基準・比較状況の範囲について、通常比較状況ごとにr2bhの事例全体でhzucの因果的回避が過半数かつ基準の割合条件を満たす。萎縮の通常事例だけへ分母を縮めず、回避しない例外も残す。",
+    "r2bj": "同じ基準に固定した通常比較状況ごとに、r2bhの範囲の通常事例すべてでhzubの因果的萎縮が成立する。現況の全事例が萎縮するという旧条件とは異なり、比較不能な通常事例での失敗は拒否する。",
+    "r2bk": "同じ基準における一般的な因果的萎縮r2bjと、通常比較状況での因果的回避の頻度r2biを合わせる。無修飾の一般的反応と明示的な頻度の範囲を分ける。現況の反応だけから補わない。",
+    "r2bl": "更新したr2bkを著者へ帰属し、学習の見込みに後続する本文順を保持する。引用した反応の真理は実行しない。",
+    "r2bm": "危険の程度e4と更新したr2bkを、既存の同じ質的な期待比較へ渡す。PかつQとPかつ非Qを比較し、頻度の数値を期待比較と同一視しない。",
+    "r2bn": "更新後の一般化された反応r2bkと期待背景r2bmを、同じ本文箇所の主張と背景の組にする。",
+    "r2bo": "危険の程度・学習の理由・本文順を保持し、一般化した萎縮と回避の主張と期待背景を同じ著者・範囲・文脈へ帰属する。"
+  },
+  "new_signatures": {
+    "r2bd": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2be": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2bf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2bg": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "hzyl": {
+      "parameters": [
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzym": {
+      "parameters": [
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzyn": {
+      "parameters": [
+        "situation",
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "truth"
+    },
+    "r2bh": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2bi": {
+      "parameters": [],
+      "result": "content"
+    },
+    "r2bj": {
+      "parameters": [],
+      "result": "content"
+    },
+    "r2bk": {
+      "parameters": [],
+      "result": "content"
+    },
+    "r2bl": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "r2bm": {
+      "parameters": [],
+      "result": "content"
+    },
+    "r2bn": {
+      "parameters": [],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "r2bo": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "無修飾のmacht ... schüchternを通常事例についての一般的な因果反応、gemeiniglichを通常比較状況での事例頻度として読む。唯一の語義や原著者の心理理論の証明とはしない。",
+    "対象集団の所属は基準dj、認識された例と反応は比較状況に置く。基準の現況で誰かが実際に萎縮・回避したことを一般化の必須条件にしない。",
+    "比較範囲と二つの通常性順序は明示的な解釈入力である。観測から自動推定せず、結果から都合よく順位を作らない。何を通常とするかの経験的根拠はこの形式だけでは証明しない。",
+    "萎縮の極小事例と、回避頻度を計る事例全体は異なる。後者は既存の非空・重複なし・適格性・網羅性を保持し、有限・等重みという制約が残る。",
+    "架空の例、萎縮の語義全体、学習の見込みの作用範囲、末尾一文と段落全体の通し判断は残る。今回だけで原文の新しい意味確認済み分量を増やさない。"
+  ]
+}
