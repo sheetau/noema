@@ -1,0 +1,13 @@
+from scripts.check_representative_teaching import independence_checks,actual_checks,identity_checks,structure_checks
+
+
+def test_delegated_business_representative_voice_and_conformity_are_distinct():independence_checks()
+
+
+def test_actual_teaching_same_office_and_assigned_recipients():actual_checks()
+
+
+def test_same_principal_subject_message_and_evaluation_point():identity_checks()
+
+
+def test_inherited_meanings_source_images_unknowns_and_quoted_execution():structure_checks()
