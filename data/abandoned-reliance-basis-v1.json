@@ -1,0 +1,632 @@
+{
+  "status": "agentive_abandonment_antecedent_candidate",
+  "document": "examples/v016/kant-abandoned-reliance.noema",
+  "parent": "examples/v016/kant-depicted-referents.noema",
+  "inherited_meaning_basis": "data/depicted-referents-basis-v1.json",
+  "definitions": {
+    "r2gl": "指定した全比較場面が保持条件と外的機会を満たし、非空で有効な通常場面の全てで応答の真偽が指定極性と一致する。現在の実行は要求しない。負極性は肯定傾向の単なる否定ではなく、同じ有効な比較で応答がない傾向を積極的に要求する。",
+    "r2gm": "同じ順序付き履歴の同じ過程について、対象への作用、本人の行為主体性、生起、同じ前後の性質を変える構成内容、同じ後性質への結果生成を結ぶ。前では前性質だけ、後では後性質だけが成立する。状態評価と変化・因果には同じ閉じた記述を渡す一般形。",
+    "r2gn": "同じ対象を同じ本人が同じ活動で吟味せず使うr2epと、その活動の生起がある。誤用という評価、能力不足、未成熟、反復歴や成功はこの応答の成立条件に追加しない。",
+    "r2go": "同じ提示文脈・対象・本人・基準について、保持条件と外的機会を全比較場面で確認し、その通常場面でr2gnの応答が指定極性となる傾向。現在使っていないだけでは負極性を満たさず、吟味して使う行為は吟味のない応答に数えない。",
+    "r2gp": "提示文脈whと先行する種類r2fhを受けて選ぶ対象が非空で、その全てについて同じ本人に肯定のr2goがある。対象範囲を評価時点ごとに選び直さない。",
+    "r2gq": "r2gpと同じ固定された非空の指示対象範囲の全てについて、同じ本人に負極性のr2goがある。吟味した上での利用、自力で判断する能力の不足、後日の再依存の可能性を排除しない。",
+    "r2gr": "一般的な行為主体による性質交替r2gmの前後記述を、r2gpとr2gqへ静的に固定した形。脱引用を除き、内容として引用できる。意味の同値を任意に推測して別記述へ置き換える特殊化ではない。",
+    "r2gs": "同じ本人・過程・前後を、知的活動側の同じ仮定履歴と順序に置き、r2grの傾向の交替へ結ぶ。変化内容hzidと結果生成g3にも同じ前後記述を渡し、単に傾向が変わっただけでは本人による離脱としない。",
+    "r2gt": "この仮定の終点に至る同じ本人の過程があり、同じ固定対象群への吟味のない使用傾向を、通常場面でその応答がない傾向へ自ら変えるという第四文の前件候補。実際の離脱や後件の能力・不慣れを本文の事実として断定するものではない。"
+  },
+  "primitives": {
+    "hzzzo": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ提示文脈・対象・本人・基準で、その対象を手段として用いるかが問題になる比較場面。応答の成否から場面を選ばない。本人側の基盤の保持と外的機会は別の入力で全候補について検査する。"
+    },
+    "hzzzp": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "この対象への応答の比較で、基準の本人の関連する構成・理解・習慣・方針などの基盤を保つ。応答の真偽そのものや能力の同一性を保存条件にせず、新たな訓練で別の基盤へ交換しない。前後の基準をまたいで基盤が同一であるという意味ではない。"
+    },
+    "hzzzq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "person",
+        "candidate"
+      ],
+      "meaning_ja": "この対象を手段として扱う活動を本人が行える外的な局面がある。吟味の能力、実際の使用、適切さ、成功は要求しない。使用しなかった反例を機会がないことにして除かない。"
+    },
+    "hzzzr": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ対象・本人・基準の比較場面について、妨害や背景条件から先の場面を通常とする厳密な優先関係。吟味のない使用をしたかどうかを優先根拠にしない。非反射性・推移性・極小候補への到達はrqt4で検査する。"
+    },
+    "hzzzs": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "case",
+        "point"
+      ],
+      "meaning_ja": "この本人について、知的活動側の仮定の終点へ至る同じ履歴に属する状況。身体的な足枷の描写履歴h2rや、別の仮定の履歴を混ぜない。前後の履歴への所属と順序は別に検査する。"
+    }
+  },
+  "new_signatures": {
+    "hzzzo": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzzzp": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzzzq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzzzr": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzzzs": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "r2gl": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "truth"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gm": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gn": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2go": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "truth"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gp": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    },
+    "r2gq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    },
+    "r2gr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gs": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gt": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "content"
+    }
+  },
+  "limitations": [
+    "第四文のabwürfeの対象側を、規定・定型表現への吟味のない使用傾向を自らやめるという候補として構成する。自然言語の唯一の語義や、依存一般の必要十分条件を確定したものではない。",
+    "肯定傾向も負極性の傾向も、有効な通常機会の全てで応答を検査する。混合した通常応答を、どちらかの確定した傾向へ丸めない。現実の一時点の不使用、空の比較、保持条件や機会の欠落は負極性の傾向ではない。",
+    "使用を吟味しないことと、不適切な使用・経験による習慣形成・本人の過去の方針宣言は区別する。元から意識的に依存を選んだという歴史を補わない。",
+    "選択した対象群を一つの過程の前後で扱う。複合過程の内部の各対象への離脱時点、部分的な離脱、離脱後の永久の保持はこの前件に含めない。前後の実際の応答の生起も要求しない。",
+    "変化の構成内容・本人の行為主体性・結果生成は別々に要求する。過程と因果関係の認定は解釈入力であり、単なる前後の真偽差だけで本人の作用を認定しない。",
+    "指示対象は同じ提示文脈で固定する。本文の第四文の二帰属や比喩はまだこの前件へ置き換えない。知的な課題の不確かな遂行、不慣れ、譲歩と限定を持つ後件との接続が必要である。",
+    "前件が成立しても、自分の理解力を使う能力の獲得や未成熟の消滅を導かない。吟味して規定を使うことや、後に依存が戻る可能性も禁止しない。原文対応範囲・意味確認済み分量は増やさない。"
+  ],
+  "specialization": {
+    "source": "r2gm",
+    "target": "r2gr",
+    "bound_positions": [
+      6,
+      7
+    ],
+    "removed_disquotations": 4
+  }
+}
