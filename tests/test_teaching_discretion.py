@@ -1,0 +1,13 @@
+from scripts.check_teaching_discretion import independence_checks,identity_checks,appointment_checks,structure_checks
+
+
+def test_authority_own_criterion_and_appointment_remain_distinct():independence_checks()
+
+
+def test_exact_source_role_subject_message_reference_and_point():identity_checks()
+
+
+def test_native_same_past_appointment_and_current_business():appointment_checks()
+
+
+def test_unknowns_lexical_evidence_quotes_and_preserved_meanings():structure_checks()
