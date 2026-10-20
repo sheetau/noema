@@ -1,0 +1,105 @@
+"""Apply established performance reliability throughout the fifth-sentence course."""
+from copy import deepcopy
+from functools import lru_cache
+import json
+
+from noema.constructed import parse, format_graph
+from noema.meaning_catalog import load_catalog
+from noema.semantic_reviews import digest
+from scripts.compose_grounded_step import ROOT, closure
+
+PARENT = 'examples/v016/kant-fifth-sentence-scope.noema'
+PARENT_BASIS = 'data/fifth-sentence-scope-basis-v1.json'
+FULL = 'examples/v016/kant-reliable-course.noema'
+CORE = 'examples/v016/reliable-course-core.noema'
+BASIS = 'data/reliable-course-basis-v1.json'
+ANNOTATIONS = 'data/reliable-course-identifiers-v1.json'
+REBOUND = {
+    'h5d': 'r2ji', 'h5e': 'r2jj', 'h5i': 'r2jk', 'h5j': 'r2jl', 'h5k': 'r2jm',
+    'h5m': 'r2jn', 'h5o': 'r2jo', 'h5w': 'r2jp', 'r2iz': 'r2jq', 'r2ja': 'r2jr',
+    'r2jb': 'r2js', 'r2jc': 'r2jt', 'r2jd': 'r2ju', 'r2je': 'r2jv', 'r2jf': 'r2jw',
+    'r2jg': 'r2jx', 'h5g': 'r2jy',
+}
+MEANINGS = {
+    'r2jh': '同じ本人・判断・時点で、少なくとも一つの同じ課題について理由に支持される独立判断r2gyと、その同じ判断・課題の通常比較での確実な遂行r2ibが成立する。現在の理由支持だけや、別課題での確実性では足りない。',
+    'r2ji': '旧h5dと同じ本人・活動・完了点・基準時、全過程h5aと全判断h5bを保ち、rcsが検査する各判断へr2jhを渡す。完了点とその前の判断を要求し、途中の理由支持や通常比較の不足を無視しない。準備時点に判断を追加しない。',
+    'r2jj': '基準時までにr2jiを満たす知的活動があるという同じ本人の内容。理由支持に加えて通常比較での遂行の確かさを活動全体へ接続する。全人生の無誤謬性や将来の恒久的な能力ではない。',
+    'r2jk': '指定された完了点のr2jiの活動が同じ本人・基準時に存在する。時間的接続へ完了点を公開し、途中の判断条件はr2jiに保持する。',
+    'r2jl': '自己活動による自立達成h5hと確かな知的活動r2jkを、同じ本人の履歴ia・順序icでrctへ接続する。達成点≦活動完了点≦基準時を要求し、同時完了と過程の重なりを許す。',
+    'r2jm': '同じ本人についてr2jlの達成点と活動完了点がある内容。新しい成功者の条件であり、旧h5kの単なる継続した理由支持からは導かない。',
+    'r2jn': '指定列の各対象についてr2jmの肯定例か、基準時までのh4tの能力評価条件を要求する。旧h5kだけを満たす人を肯定例として評価不足を回避しない。新しい比較・応答の基本入力も完全な解釈を必要とする。',
+    'r2jo': 'r2jnの評価条件を満たす全対象列についてr2jmの該当者をh4kで数える。一人以上かつ文脈上の上限未満を要求する。譲歩背景は人数に数える条件へ加えない。',
+    'r2jp': '同じr2joの人数について、0から全人数までの領域で数量条件とh5vの代替をrczで比較して排除する。母集団・文脈・上限を保ち、確かな活動を欠く人を旧h5kのまま数えない。',
+    'r2jq': '同じ人のh4qの自立達成を認めた著者の通常予想keで、r2jmの確かな活動まで伴う成功を予想しないというjaの背景。新しい成功内容を否定対象にし、旧h5kとの対比へ戻さない。',
+    'r2jr': '同じ列・文脈で、実際のr2jmの該当者にr2jqの背景を分配する。比較の成否を人数条件へ混ぜず、非該当者に譲歩を要求しない。',
+    'r2js': '指定された全対象列にr2jpの少数者数と数量排除が成立する前景内容。予想keを実行しない。',
+    'r2jt': '同じ文脈の全対象aa・h4iの正確な列挙、r2jnの評価条件、r2jrの背景を要求する内容。少数であることや正の成功者数は背景へ重複させない。',
+    'r2ju': '全対象を表す有限列が存在してr2jsの前景が成立する内容。任意の有限列への量化を有限の候補へ置き換えない。',
+    'r2jv': '同じ全対象を表す有限列が存在してr2jtの背景が成立する内容。前景と同じ対象範囲・r2jmの成功条件を固定する。',
+    'r2jw': '同じ閉じた前景r2juと背景r2jvをrstで対にする。前景だけの否定と背景の否定を引き続き区別する。',
+    'r2jx': '前版と同じ結論箇所・著者・前景範囲・譲歩範囲・文脈へr2jwを帰属し、第四文の主節と理由からの推論提示と本文順序を保持する。引用内容の真理を実行しない。',
+    'r2jy': '同じ本人の確かな知的活動r2jjを、既存h4zの全過程で制御された身体歩行によって描くというqhの対応。旧h5eのままの対象側を残さず更新する。両活動の物理的同一性や真理値の一致を要求しない。',
+}
+LIMITS = [
+    'sicheren Gangの対象側を、実際に理由に支えられた独立判断を継続し、各判断の同じ基盤・課題で通常比較でも理由ある遂行が保たれる活動として読む。第四文の不確実性と同じr2ibの評価条件を使う。',
+    '比較場面・機会・基盤・対応活動・通常性は、応答の成否とは独立に定める既存hzzzt等の意味規約を保持する。空または不正な比較から確実性も不確実性も認定しない。',
+    '各判断で少なくとも一つの同じ課題を固定して実際と比較を照合する。すべての判断で話題が同一、すべての副次的な話題で確実、すべての将来場面で無失敗であることは要求しない。',
+    '歩行側は既存の均衡・足配置の制御h4zを保持する。通常比較による知的遂行の読みとの対応は非字義的であり、身体の力学的な確実性へ同一化しない。',
+    '自己形成h4m・h4nの原文照合、heraus zu wikkelnの解放描写、自己活動の因果が二つの成果へ及ぶ範囲、第五文と第三段落の通し判断は残る。この変更だけで一文完成としない。',
+    'h4tは能力評価の整合性条件であり、追加した比較の全情報が現実に観測済みであることを証明しない。未知の比較入力を偽として成功者数を減らしてはならない。',
+]
+
+
+@lru_cache(None)
+def parent():
+    return load_catalog(ROOT, PARENT_BASIS)
+
+
+def substitute(value, symbols):
+    """Change declaration references, never variables or arbitrary strings."""
+    if isinstance(value, list):
+        return [substitute(x, symbols) for x in value]
+    if not isinstance(value, dict):
+        return value
+    result = {k: substitute(v, symbols) for k, v in value.items()}
+    if 'symbol' in result:
+        result['symbol'] = symbols.get(result['symbol'], result['symbol'])
+    return result
+
+
+def build():
+    old = parent()
+    doc = deepcopy(old.document)
+    statements, doc['statements'] = doc['statements'], []
+    assert not set(MEANINGS) & set(old.entries)
+    doc = parse(format_graph(doc, 'compact') + '''
+d r2jh[person a judgment a point d] c[g topic a[w[
+ k r2gy[v person v judgment v topic v point]][k r2ib[v person v judgment v topic v point]]]].
+''')
+    for declaration in old.document['declarations']:
+        if declaration['name'] in REBOUND:
+            renamed = substitute(declaration, REBOUND)
+            renamed['name'] = REBOUND[declaration['name']]
+            if declaration['name'] == 'h5d':
+                renamed = substitute(renamed, {'h5c': 'r2jh'})
+            doc['declarations'].append(renamed)
+    doc = parse(format_graph(doc, 'compact'))
+    for index, before, after in ((14, 'h5g', 'r2jy'), (15, 'r2jg', 'r2jx')):
+        assert statements[index]['body']['symbol'] == before
+        statements[index] = dict(kind='assert', body=dict(kind='call', symbol=after, arguments=[]))
+    doc['statements'] = statements
+    core = deepcopy(doc)
+    core.update(declarations=closure(doc, ['r2jx', 'r2jy', 'rsw', 'rsx', 'rsy']),
+                statements=[statements[14], statements[15]])
+    added = doc['declarations'][len(old.document['declarations']):]
+    basis = dict(status='reliable_course_connected_to_fifth_sentence_partial',
+                 document=FULL, parent=PARENT, inherited_meaning_basis=PARENT_BASIS,
+                 primitives={}, definitions=MEANINGS, rebound_definitions=REBOUND,
+                 new_signatures={d['name']: {k: d[k] for k in ('parameters', 'result')} for d in added},
+                 limitations=LIMITS)
+    body = format_graph(doc, 'compact') + '\n'
+    annotations = json.loads((ROOT / 'data/fifth-sentence-scope-identifiers-v1.json').read_text(encoding='utf-8'))
+    annotations.update(document=FULL, document_sha256=digest(body.encode('utf-8')))
+    encoded = lambda value: json.dumps(value, ensure_ascii=False, indent=2) + '\n'
+    return {FULL: body, CORE: format_graph(core, 'compact') + '\n',
+            BASIS: encoded(basis), ANNOTATIONS: encoded(annotations)}
