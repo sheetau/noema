@@ -1,0 +1,216 @@
+{
+  "status": "depicted_plural_reference_candidate",
+  "document": "examples/v016/kant-depicted-referents.noema",
+  "parent": "examples/v016/kant-occasional-continuation.noema",
+  "inherited_meaning_basis": "data/occasional-continuation-basis-v2.json",
+  "definitions": {
+    "r2gf": "二つの非空な指定範囲の全要素が、与えた対応関係に参加する。対応辺の両端も必ず各範囲に属する。片側だけの網羅、無対応の要素、範囲外への辺を認めない。単射・一対一・物理的同一性は要求せず、多対多を許す。",
+    "r2gg": "非空の人物範囲の各人について、同じ人に属する二つの対象範囲と対応をr2gfで検査する。範囲外の人に属する選択や対応辺が一つでもあれば不整合とする。他人の対応を借りたり、都合の悪い選択を先に除いたりしない。",
+    "r2gh": "第一文からの同じ提示文脈の人物範囲について、第四文の描写上の除去対象h2sと、第三文の種類記述r2fhを受ける指示対象hzzzmを、同じ人のhzzznによって両側とも網羅する。種類記述は引用のまま渡し、規定や表現の内容・現実の作用を実行しない。",
+    "r2gi": "第三文r2geの同じ著者・主張・足枷の比喩・本文順序を保ち、同じ提示文脈でr2ghの指示対応を要求する。第四文から第三文への逆順も拒否する。描写上の時点で指示対象を選び直さない。",
+    "r2gj": "既存h3bの除去と不確かな跳躍の条件的描写への帰属に、同じ先行比喩と両側の指示対応r2giを接続する。条件内容の実行や、除去から知的能力の獲得への推論は行わない。",
+    "r2gk": "既存h4fの理由付き描写への帰属にも、条件文と同じr2giを接続する。理由節だけが別の除去対象・人物・先行箇所を使うことを許さない。知的活動の比喩の対象側はまだ構成し終えていない。"
+  },
+  "primitives": {
+    "hzzzm": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "antecedent",
+        "author",
+        "kind",
+        "person",
+        "target",
+        "scope"
+      ],
+      "meaning_ja": "先行箇所の同じ著者・種類記述を受けて、この人物について、この提示文脈で指示される対象。引用された種類を受ける指示の解釈であり、対象の内容や作用の真理、現実の物理的実在を断言する関係ではない。未知の指示を任意の対象で埋めず、仮定内の後状態から選び直さない。"
+    },
+    "hzzzn": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "antecedent",
+        "author",
+        "person",
+        "depicted",
+        "target",
+        "scope"
+      ],
+      "meaning_ja": "この箇所が同じ著者の先行比喩を受ける際の、同じ人物についての描写側の対象と指示対象の対応。この二つを物理的に同じ物とはしない。対応の解釈は提示文脈で固定し、除去の成否や仮定の後状態から有利な辺を選ばない。対応だけから状態・原因・能力の真理は導かない。"
+    }
+  },
+  "new_signatures": {
+    "hzzzm": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "hzzzn": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "r2gf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gg": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gh": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gi": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "r2gj": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "r2gk": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "第四文のsieを、第三文で足枷として描いた規定・定型表現を受ける指示とする候補。人物範囲は第一文から続く提示文脈に固定する。現実の全人類に個々の足枷の所有を要求する命題ではない。",
+    "複数形の指示には両側の対象範囲を明示する。一方を空にして成立させず、未対応の対象を黙って捨てない。一対一を要求せず、複数の描写対象と一つの概念対象の対応なども許す。原文が対応辺の本数を指定しているとはしない。",
+    "指示対象と対応辺の認定は意味規約に従う解釈入力である。一般形はその整合性を検査するが、自然言語の代名詞を自動解決するものではなく、現実の参照解釈の正しさを形式検査だけで証明しない。",
+    "規定・表現の使用をやめること、知的な課題への不確かな取り組み、不慣れの因果的説明を持つ対象側の条件文は未完。今回は既存の身体的描写を残して指示対応を接続する。本文の二つの帰属は同じ対応を使う。",
+    "auch・dennoch・nur、最小の溝の尺度と指示、自由な運動の種類、第五文と段落全体の意味確認は残る。今回の接続で第四文の意味一致や新しい原文対応文字数は加えない。"
+  ]
+}
