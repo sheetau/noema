@@ -1,0 +1,16 @@
+from scripts.check_doctrinal_statutes import scope_checks,content_checks,possibility_checks,endorsement_checks,structure_checks
+
+
+def test_same_church_and_exact_prescribed_plural_scope():scope_checks()
+
+
+def test_constructed_conjunction_preserves_code_without_truth_execution():content_checks()
+
+
+def test_contained_truth_keeps_membership_and_content_at_fixed_reference():possibility_checks()
+
+
+def test_same_constructed_doctrine_in_hypothetical_personal_endorsement():endorsement_checks()
+
+
+def test_imports_roundtrips_and_lexical_evidence():structure_checks()
