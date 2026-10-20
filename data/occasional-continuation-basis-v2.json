@@ -1,0 +1,343 @@
+{
+  "status": "occasion_conditioned_continuation_candidate",
+  "document": "examples/v016/kant-occasional-continuation.noema",
+  "parent": "examples/v016/kant-shared-fetters-scope.noema",
+  "inherited_meaning_basis": "data/shared-fetters-scope-basis-v1.json",
+  "primitives": {
+    "hzzzl": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "branch",
+        "point"
+      ],
+      "meaning_ja": "同じ提示文脈・対象・本人・基準・候補履歴において、その対象を手段に使うか、自分で適用を検討するかが問題になる活動の局面。実際に使用したか・未成熟が成立したかとは独立した背景入力であり、使わなかった反例を消すために局面でないことにしない。局面のない点も履歴と結果評価には残す。"
+    }
+  },
+  "definitions": {
+    "r2g4": "指定された履歴の基準以降の全点について、適用局面なら使用内容が成立するという候補条件。局面でない時点での行為は要求しない。履歴・順序・基準と開始局面の正当性は呼出側r2g5で全候補について別に検査する。",
+    "r2g5": "全比較候補の履歴が基準を含む厳密全順序を持ち、基準が適用局面であることを要求する。以降の全適用局面で使う候補が少なくとも一つあり、そのような全候補では基準以降の全点で、同じ候補と点の結果が成立する。適用局面だけへ結果範囲を切り縮めない。",
+    "r2g6": "正当な同じ履歴の現在で結果内容が成立し、その履歴の現在以前に生起した同じ行為が現在の結果に因果的に関わる。原因行為の現在の生起は要求せず、未来や別履歴の行為、単なる時間的先行や結果の共存を根拠にしない。",
+    "r2g7": "同じ対象・本人・基準・候補履歴で、現在以前のr2evの使用活動そのものが現在の同じ本人の未成熟bfを生じさせ、bfも成立する。行為が今起きない点でも、その行為の因果的関与が現在に残る場合を扱う。",
+    "r2ga": "基準で規定または定型表現r2fhに属する対象について、同じ本人が以後の適用局面で吟味せず使う比較候補では、同じ全履歴の将来各点にr2g7の因果的結果が続く。局面のない点を履歴から除外しない。",
+    "r2gb": "規定と定型表現を種類ごとに一般化する既存r2fuの応答を、局面ごとの使用と全将来の結果r2gaへ更新する。同じ事例の対象・本人・基準、種類ごとの通常性を保持する。",
+    "r2gc": "前二文からの同じ人物範囲r2fyを保ち、同じ提示文脈でr2gbを要求する第三文の候補内容。",
+    "r2gd": "前二文からの人物範囲と対象・本人の二位置を保ち、局面ごとの使用と全将来の結果r2gaを足枷の比喩の対象側へ渡す。",
+    "r2ge": "第三文の主張内容をr2gc、比喩の対象側をr2gdへ更新する。同格、言い直し、前後文との順序、引用内容を実行しない帰属を保持する。"
+  },
+  "new_signatures": {
+    "hzzzl": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "r2g4": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "content"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2g5": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "content"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2g6": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "content"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2g7": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2ga": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2gb": {
+      "parameters": [],
+      "result": "content"
+    },
+    "r2gc": {
+      "parameters": [],
+      "result": "content"
+    },
+    "r2gd": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        }
+      ],
+      "result": "content"
+    },
+    "r2ge": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "使用を各瞬間の活動へ固定しない読みとして、適用局面での継続使用と、行為の間にも残る因果的結果を採用する。原文が一意にこの条件付き形式を指定しているという主張ではない。",
+    "適用局面は背景として明示する。結果や使用の成否から都合よく選ばないが、現実の適用局面を漏れなく同定することは形式検査だけで証明できない。基準は使用を開始して比較する局面という既存の読みを保つ。",
+    "適用局面での行動の継続は、経験由来の慣れrch、無意識の習慣、意図的に採用された方針、技能や成功の保証とは別である。本文に学習経験や本人の宣言を補わない。",
+    "結果は基準以降の全点で要求する。過去の同じ使用活動から現在の結果への因果的関与も要求し、単に未成熟が続くだけでその対象の作用を認めない。各点で原因となる活動が同一である必要はない。",
+    "使用をやめた候補の停止以前だけを保証する演算や、使用をやめれば必ず成熟するとの逆向きの結論は含まない。無限の寿命、終点の不存在、時間の無上界性も要求しない。",
+    "第三文の語義・持続の強さの通し判断と、第四文の指示・知的活動への比喩対応は未完。新しい原文対応文字数や意味確認済み分量は加えない。"
+  ],
+  "correction": {
+    "previous_basis": "data/occasional-continuation-basis-v1.json",
+    "previous_sha256": "940a0f4039b966d95649cd56dc86f86718e2365b3233de8732ed77f2d9e2aad2",
+    "edits": [
+      {
+        "definition": "r2gb",
+        "old_reference": "r2g8",
+        "corrected_reference": "r2ga",
+        "before": "規定と定型表現を種類ごとに一般化する既存r2fuの応答を、局面ごとの使用と全将来の結果r2g8へ更新する。同じ事例の対象・本人・基準、種類ごとの通常性を保持する。",
+        "after": "規定と定型表現を種類ごとに一般化する既存r2fuの応答を、局面ごとの使用と全将来の結果r2gaへ更新する。同じ事例の対象・本人・基準、種類ごとの通常性を保持する。"
+      },
+      {
+        "definition": "r2gc",
+        "old_reference": "r2g9",
+        "corrected_reference": "r2gb",
+        "before": "前二文からの同じ人物範囲r2fyを保ち、同じ提示文脈でr2g9を要求する第三文の候補内容。",
+        "after": "前二文からの同じ人物範囲r2fyを保ち、同じ提示文脈でr2gbを要求する第三文の候補内容。"
+      },
+      {
+        "definition": "r2gd",
+        "old_reference": "r2g8",
+        "corrected_reference": "r2ga",
+        "before": "前二文からの人物範囲と対象・本人の二位置を保ち、局面ごとの使用と全将来の結果r2g8を足枷の比喩の対象側へ渡す。",
+        "after": "前二文からの人物範囲と対象・本人の二位置を保ち、局面ごとの使用と全将来の結果r2gaを足枷の比喩の対象側へ渡す。"
+      },
+      {
+        "definition": "r2ge",
+        "old_reference": "r2gb",
+        "corrected_reference": "r2gd",
+        "before": "第三文の主張内容をr2gc、比喩の対象側をr2gbへ更新する。同格、言い直し、前後文との順序、引用内容を実行しない帰属を保持する。",
+        "after": "第三文の主張内容をr2gc、比喩の対象側をr2gdへ更新する。同格、言い直し、前後文との順序、引用内容を実行しない帰属を保持する。"
+      }
+    ],
+    "reason": "未公開時の参照名変更で、日本語に隣接する四つの説明内参照が更新されなかった。Noema式は既に正しい。",
+    "executable_document_unchanged": true,
+    "historical_limitations": "limitationsは候補作成時の記録として保持する。第三文の通し判断は別のfetters-sentence-reading-v1.jsonに記録する。"
+  }
+}
