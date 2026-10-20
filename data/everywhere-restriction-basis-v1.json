@@ -1,0 +1,342 @@
+{
+  "status": "everywhere_restriction_under_explicit_reading",
+  "document": "examples/v016/kant-everywhere-restriction.noema",
+  "parent": "examples/v016/kant-single-ruler.noema",
+  "inherited_meaning_basis": "data/single-ruler-basis-v1.json",
+  "definitions": {
+    "r2us": "直前の将校・財務担当官・聖職者・統治者の四つの文章箇所を、原文順に固定した列。Hierの指示とüberallの量化で同じ列を使う。",
+    "r2ut": "この事例の箇所が、固定した四箇所r2usのいずれかに属する。世界の全ての場所・人・自由を対象にしない。",
+    "r2uu": "指定された同じ話者・呼び声・社会的方面について、著者の周囲の方面h232sと源泉h232t、役割、同じ禁止と肯定命令r2tqを結ぶ。先行三文の存在証人を明示した形で再利用する。",
+    "r2uv": "事例の箇所に応じて、同じ話者と発話を将校の教練、財務担当官の支払い、聖職者の信仰、世界の統治者の許可と服従へそれぞれ接続する。対応を入れ替えず、後の制約とは無関係な別命令を持ち込まない。",
+    "r2uw": "同じ事例・話者・発話・基準の固定された宛先範囲。前三者は同じ呼び声のh232u、統治者は同じ発話者のh233pを用いる。単に制約を受ける別の人を選ばない。",
+    "r2ux": "同じ事例と本人について、評価状況で当該指示の内容を満たす条件。前三者は本人に適用したr2tk/r2tl/r2tmの内容、統治者は同じ出所に対する本人のr2udの履行を評価する。統治者の議論への許可r2ueを禁止へ反転しない。",
+    "r2uy": "同じ事例の宛先の少なくとも一人に、本人以外の背景を保った自由選択候補h234nがあり、その候補では同じ当該指示の内容r2uxを満たさない。要求はその選択を適合するものとして残さないという非自明な制限を表す。現実の違反、物理的な不能、全選択肢の消滅は要求しない。",
+    "r2uz": "叙述上の現在と評価点を一致させ、異なる固定四事例の全てについて同じ話者・発話の対応r2uvと非自明な選択の制限r2uyを要求する。一事例の制限だけで全体を満たさず、各事例で全宛先の自由が全面的に失われたとは言わない。",
+    "r2va": "この全事例の制限r2uzを著者へ帰属し、Hierの指示範囲r2usと、直前の括弧文からの本文順序を同じ第五段落の提示文脈に結ぶ。発話の存在から規範の正当性を導く規則にはしない。"
+  },
+  "primitives": {
+    "h234l": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case_node",
+        "reference"
+      ],
+      "meaning_ja": "同じ基準で、この先行箇所の事例を具体化する発話者の参照。発話・役割・内容がその事例に一致することは合成定義で別に検査する。制限が見つかるかどうかによって人物を取り替えない。"
+    },
+    "h234m": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case_node",
+        "reference"
+      ],
+      "meaning_ja": "同じ基準で、この先行箇所の事例に当たる発話行為の参照。h234lの話者と同じ行為・宛先・内容を合成定義で照合する。別の命令や制約を述べる発話を代用しない。"
+    },
+    "h234n": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "case_node",
+        "person",
+        "reference",
+        "baseline",
+        "alternative"
+      ],
+      "meaning_ja": "同じ事例・本人・基準・現状を比較するとき、その本人の行動や態度の選び方として、当該要求による適否を条件にしなければ選択肢となる状況。本人以外の行動、発話者・発話・宛先、要求の範囲と内容、判断に必要な背景を保持し、本人の選択だけを変える。要求を満たす候補だけに事後選別せず、他人の不履行や背景の消失、論理的に不可能な事態だけで選択の制約を作らない。現実に選んだことや、要求による選択の物理的な強制・法的正当性は意味しない。"
+    },
+    "h234o": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "第五段落u0012の[537,581)で、ここでは至るところ自由の制限があると述べる文章箇所。"
+    },
+    "h234p": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "antecedent_nodes",
+        "context"
+      ],
+      "meaning_ja": "同じ著者・箇所・文脈のこの談話上の指示が、指定した先行箇所の列に示された事例を対象範囲として指す。地理的な全世界や同じ語を含む任意の箇所へ広げず、都合のよい一事例だけを抜き出さない。各事例の内容の真理や、その全てへの同じ述定は別に構成する。"
+    }
+  },
+  "new_signatures": {
+    "h234l": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual"
+    },
+    "h234m": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual"
+    },
+    "h234n": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "h234o": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "h234p": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "r2us": {
+      "parameters": [],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      }
+    },
+    "r2ut": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2uu": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "content"
+              }
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "message"
+              }
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2uv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2uw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2ux": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2uy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2uz": {
+      "parameters": [],
+      "result": "content"
+    },
+    "r2va": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "Hier ist überall Einschränkung der Freiheit.を、直前の四つの事例ではどれにも、本人の選択に任せない要求が含まれるという読みで構成する。四事例を地理的な全世界や全自由の全面的な消滅へ広げない。",
+    "制限は、その要求がなければ本人の選択肢となる候補の少なくとも一つが、当該要求を満たさないという意味である。要求への適合と、能力、実際の実行、物理的な強制、法的・道徳的な正当性を区別する。単なる発話の存在や、もともと不可能な選択だけを制限の証拠にはしない。",
+    "前三者では同じ本人への議論の不実行と教練・支払い・信仰を求める内容、統治者では同じ出所の要求に従う履行の内容を扱う。統治者の議論への容認を否定したり、全てを公的な理性使用の禁止へ揃えたりしない。",
+    "候補状況では同じ基準の要求・宛先・他者・関連する背景を保持し、その本人の選択だけを変える。制約される人と、指示の内容を評価する人・出所を取り替えない。自由選択候補の適切な供給は意味規約の一部であり、任意の別世界を入力して制限と認定しない。",
+    "各事例について少なくとも一人に選択の制限があることを要求する。überallを全四事例への量化と読み、全宛先の全行動を一律に制限するという強い主張は補わない。現実の誰かの違反や全員の服従も主張しない。",
+    "新しい主張は、同じ要求の内容が選択を制限するという著者の評価を追加する。先行する発話の提示だけから正当な義務や政策の効力を自動的に導く推論規則ではない。",
+    "統治者の履行条件r2udは全記述域の網羅性を含む。先行版の有限評価拒否と診断の限界を保持し、この文の局所検査でも境界を明記する。",
+    "続く[582,638)の阻害を問う文と[639,687)の非阻害・促進を問う文は未統合である。この一文の判断を両問や第五段落全体の完成へ拡張しない。"
+  ]
+}
