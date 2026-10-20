@@ -1,0 +1,13 @@
+from scripts.check_conscientious_imputation import component_checks,identity_checks,scope_checks,structure_checks
+
+
+def test_self_judgment_warrant_and_possibility_are_distinct():component_checks()
+
+
+def test_same_judgment_person_matter_reference_and_candidate():identity_checks()
+
+
+def test_all_scoped_matters_and_candidate_existence():scope_checks()
+
+
+def test_preserved_meanings_offline_evidence_and_unknown_rejection():structure_checks()
