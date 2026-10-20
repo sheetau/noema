@@ -1,0 +1,16 @@
+from scripts.check_scholarly_mission import scope_checks,independence_checks,binding_checks,norm_identity_checks,structure_checks
+
+
+def test_all_items_all_candidates_and_choice_of_time_and_method():scope_checks()
+
+
+def test_freedom_calling_and_execution_are_independent():independence_checks()
+
+
+def test_exact_eight_eleven_and_six_place_adapters():binding_checks()
+
+
+def test_norm_source_role_rank_bindings_reference_and_polarity():norm_identity_checks()
+
+
+def test_inherited_meanings_evidence_roundtrip_and_unknowns():structure_checks()
