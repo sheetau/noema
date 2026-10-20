@@ -1,0 +1,288 @@
+{
+  "status": "public_and_guardian_roles_bound_conditional_partial",
+  "document": "examples/v016/kant-public-reversal.noema",
+  "parent": "examples/v016/kant-collective-retention.noema",
+  "inherited_meaning_basis": "data/collective-retention-basis-v1.json",
+  "definitions": {
+    "r2mo": "同じ集団の完全な構成員列と、選択した人々の非空の列について、重複がなく全員が人であり、選択者全員が集団に属することを要求する。集団の全員と選択者の同一性や、結果に応じた選別を含意しない。",
+    "r2mp": "同じ後見人群の同じ先行する参加者が担う一つの共同的な生起行為が、同じ公衆の指定された各被作用者について知的未成熟bfを結果として生じさせ、各人にその状態が実際に成立する。対象範囲は非空で公衆の構成員に含まれる。全公衆員が以前は自立していたという条件や、全員への一律の効果を加えない。",
+    "r2mq": "異なる二人以上の扇動者が同じ公衆の後見役で、同じ扇動時点に啓蒙不能の指定条件を満たし、同じ一つの生起行為へ参加する。その同じ行為が同じ公衆を指定された後の圧力行為へ駆り立てるという関係をincitesで要求する。不能と扇動の具体的な定義は引数に残し、参加・人数だけで扇動を認定しない。",
+    "r2mr": "同じ公衆への先行するr2mpを保持し、先行する後見人はその時点の同じ公衆の後見役とする。同じ事例のr2mqの扇動条件が成立すれば、公衆が先行の参加後見人全員をr2mnの圧力で未成熟に留める。先行作用と扇動はいずれも圧力開始より前で同じ履歴内だが、両者の間の順序は追加しない。扇動者と先行後見人の一致・不一致を固定しない。"
+  },
+  "primitives": {},
+  "new_signatures": {
+    "r2mo": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2mp": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "r2mq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "r2mr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "situation"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "situation"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": "situation"
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "第三文の公衆・先行の作用者・後の被強制者を同じ事例へ結ぶ部分構成である。先行後見人群の全成員ではなく、実際に先行行為を担ったformerの全員を後の対象にする読みを採る。対象の同一性を、二つの無関係な存在から補わない。",
+    "先行作用の被作用者affectedは、公衆の中の文脈で指定された非空の範囲である。全公衆が一様に未成熟となる読み、変化前は全員自立していたという読みを勝手に加えない。原文の集団への述定として範囲が十分かを決める基準とその参照の充足は後続作業に残る。",
+    "扇動者は二人以上の後見役という複数の読み。先行の後見人や後の公衆側参加者と同じ集合とはしないが、重なりも禁止しない。本人の不能は扇動条件の内部で各扇動者だけに要求し、全ての後見人へ広げない。",
+    "先行する作用と扇動は共に後の圧力より厳密に前であるが、その二つの前後は原文がここで定めていないため固定しない。共通履歴の順序と始終点は有効性を検査する。各記述が原文の同じ事例を指すことは後続の閉じた参照供給で検査する必要がある。",
+    "guardianrole・incapable・incitesは具体的な意味構成を渡す関数引数であり、文全体を不透明な新しい基本語で置換していない。これらが未充足なので、本文への閉じた著者帰属や第三文全体の意味確認はまだ行わない。",
+    "既存の59文、先頭二文382非空白文字、十三の全単位判断を保持する。頚木の照応、際立て・自己の取り立て、扇動・不能の定義、偏見と害・報復の構成は残る。"
+  ]
+}
