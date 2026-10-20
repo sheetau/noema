@@ -1,0 +1,170 @@
+{
+  "status": "partial_qualitative_influence_and_question_core_checked",
+  "document": "examples/v016/qualitative-influence.noema",
+  "mechanisms": {
+    "exhaustive_mechanism_grade_combinations": 256,
+    "distinct_profiles": 5,
+    "contrasts": {
+      "equal_only": [
+        true,
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "gain_with_ties": [
+        true,
+        false,
+        true,
+        false,
+        true,
+        true
+      ],
+      "loss_with_ties": [
+        true,
+        true,
+        false,
+        true,
+        false,
+        false
+      ],
+      "mixed_effects": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false
+      ]
+    },
+    "native_intervention_solutions_evaluated": true,
+    "same_equations_and_factor_on_both_sides": true,
+    "columns": [
+      "valid",
+      "raw_decrease",
+      "raw_increase",
+      "assessed_decrease",
+      "nondecrease",
+      "nondecrease_with_gain"
+    ]
+  },
+  "guards": {
+    "contrasts": {
+      "missing_assessment": [
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "not_reflexive": [
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "cyclic_comparison": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "incomparable_cross_sides": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "empty_variables": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "duplicate_variables": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "factor_outside_variables": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "unassessed_nonsolutions": [
+        true,
+        false,
+        true,
+        false,
+        true,
+        true
+      ]
+    },
+    "unknown_inputs_refused": 3,
+    "missing_or_invalid_evidence_not_nonhindrance": true
+  },
+  "questions": {
+    "answer_sets": [
+      [
+        "harm",
+        "mixed"
+      ],
+      [
+        "help"
+      ]
+    ],
+    "empty_scope_has_no_forced_answer": true,
+    "same_candidate_across_scope_assessment_loss_and_gain": true,
+    "question_kind": "individual_answer_question"
+  },
+  "structure": {
+    "imported_declarations_and_meanings_preserved": 7,
+    "added_definitions": 10,
+    "added_primitives": 0,
+    "added_author_statements": 0,
+    "new_semantically_reviewed_characters": 0,
+    "roundtrips": true
+  },
+  "limitations": [
+    "第五段落の二問に必要な影響の比較を準備する一般ライブラリ。新たな原始関係・著者主張・原文意味判断は追加しない。原文の二問を記述済みとは数えない。",
+    "有限変数の二値構造モデルを用いるが、結果の比較尺度は数値や二値に限定しない。同じ方程式・背景で要因だけを固定するというモデル内部の対照であり、現実の社会的因果を同定した証拠ではない。",
+    "全解の交差比較は、非決定的な解同士を結ぶ追加の対応規則がないときの頑健な比較である。無関係な外生条件の違いを同じモデルに混ぜない。対を限定する必要があるモデルには、対応条件を明示する拡張が必要。",
+    "評価済みは比較入力の充足条件であり、著者が答えを知っているという心理状態ではない。入力が未知なら評価器は例外を返す。解がない・評価が欠ける・比較不能という既知の不適合は全てr2vdで拒否し、害がないという判断に置き換えない。",
+    "原文へ接続する前に、候補の制限とモデル要因の有無の対応、既存r2lnと同じ啓蒙への進行尺度、対象・期間・背景の固定、通常性または潜在性のどちらを採るかを確定する。数値尺度や全解での非悪化を原文が指定したものとはしない。",
+    "Welcheの候補範囲を直前の四個人だけへ縮めない。二問の同じ制限・啓蒙への照応、aberとsondernの対照、wohlの留保、garの焦点、後続の回答への接続は未完である。"
+  ],
+  "whole_sentence_semantically_verified": false,
+  "whole_unit_semantically_verified": false,
+  "verified_full_units": {
+    "kant-1784": 0,
+    "einstein-1905": 0
+  },
+  "source_sha256": {
+    "data/everywhere-restriction-basis-v1.json": "74d1db9fbdaf4eb0b92fe47af5280acc9f1c2ab217b77ddc51efeb93b662768a",
+    "data/qualitative-influence-basis-v1.json": "11552a84a2d497ac5c4035f75760503fda09dc535319d52f573d58f0528e7277",
+    "docs/qualitative-influence-v1.md": "bf24b1013ed4aba07fd23152fd838b90670c3cce852830d44453bcf4ebeb5527",
+    "examples/v016/kant-everywhere-restriction.noema": "9743a90b491dd235e53e620eb7e665f015a40960bb4a9d6e4b4431feaafed539",
+    "examples/v016/qualitative-influence.noema": "27b0c5a7bdc6ed610d6953f37d1bf8ea6a826a6d17dc25e0f6cd551056d68721",
+    "scripts/check_motive_causes.py": "95dea6b5fdf63760549159af7254b0fddeca91dcabb5928f4a220aa8064b0f0d",
+    "scripts/check_pastoral_roles.py": "091652f79467408afdef5ac7e50b1774b393dd42672f6b09b74ea2dec6a1dc82",
+    "scripts/check_qualitative_influence.py": "540eaeb2957a8ca69a024ed612217cf92ef933d221f87a56a08d9da954b248c6",
+    "scripts/compose_qualitative_influence.py": "acd0f7ba2436077c8be235ffbcdf695d76da69cc0724b07190aef2a97e683a4f",
+    "tests/test_qualitative_influence.py": "6d0990cc0907fa1759175d21708cc747862cb3a97224f7f0badc1bacf578282f"
+  }
+}
