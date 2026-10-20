@@ -1,0 +1,16 @@
+from scripts.check_clerical_public_freedom import native_checks,scope_checks,discourse_checks,unknown_checks,structure_checks
+
+
+def test_native_freedom_and_calling_without_communication_execution():native_checks()
+
+
+def test_all_same_clerical_cases_keep_person_church_creed_subject_and_scholar():scope_checks()
+
+
+def test_contrast_added_focus_and_background_preserve_scope_and_order():discourse_checks()
+
+
+def test_required_unknown_inputs_rejected():unknown_checks()
+
+
+def test_full_reading_preserved_evidence_and_roundtrips():structure_checks()
