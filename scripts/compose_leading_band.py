@@ -1,0 +1,111 @@
+"""Connect the literal leading-band depiction to the same opinion and person."""
+from copy import deepcopy
+from functools import lru_cache
+import json
+from noema.constructed import parse, format_graph
+from noema.meaning_catalog import load_catalog
+from noema.semantic_reviews import digest
+from scripts.compose_grounded_step import ROOT, closure
+
+PARENT = 'examples/v016/kant-prejudice-forecast.noema'
+PARENT_BASIS = 'data/prejudice-forecast-basis-v1.json'
+FULL = 'examples/v016/kant-leading-band.noema'
+CORE = 'examples/v016/leading-band-core.noema'
+BASIS = 'data/leading-band-basis-v1.json'
+ANNOTATIONS = 'data/leading-band-identifiers-v1.json'
+PRIMITIVES = {
+    'h227p': ('[a d] c', ['object', 'point'],
+              '同じ状況で物体が、長手方向に延び、厚みに比べ幅のある、曲げられる帯状の形を持つ。材質、色、数値寸法は固定しない。目的や実際の牽引はこの形状分類に含めない。'),
+    'h227q': ('[a a d] c', ['band', 'body', 'point'],
+              '同じ帯と身体が、直接または着衣等を介し、帯の張力を身体へ伝えられるように物理的につながっている。近くにあるだけでは足りず、首への装着や結び方は指定しない。'),
+    'h227r': ('[a a d] c', ['holder', 'object', 'point'],
+              '同じ人が同じ物体を、力を加えられるように身体で保持している。所有や、触れているだけの状態とは区別する。'),
+    'h227s': ('[a a a d] c', ['band', 'body', 'movement', 'point'],
+              '同じ帯を介して伝わる張力が、同じ身体の同じ移動行為の方向または移動可能な範囲を実際に制約している。帯の存在、接続、保持だけでこの力学的作用を認定しない。特定の操作者の意図、痛み、転倒を含意しない。'),
+}
+MEANINGS = {
+    'r2rs': '帯・本人・行為を区別し、意図的に作られた帯状物、子どもの歩行と外部補助、身体への接続、別の人による保持、同じ移動への張力の制約を結ぶ物理的描写。既存zaeで子どもの独立歩行zalを訓練用途とすることも要求し、訓練目的の達成までは要求しない。',
+    'r2rt': '同じ非空公衆範囲から公衆・基準・革命候補を取り、同じ大衆の成員と同じ旧意見群または新意見群に描写範囲を限定する。旧意見は候補の起点、新意見は同じ有効時間枠の後続点に置く。r2rcの成功で範囲を選別せず、予測の全称量化はr2rnに保つ。',
+    'r2ru': '順序付き三位置[意見,本人,行為]と内容評価点からなる描写範囲。意見と本人をr2rtで同じ予測の参照対象へ限定する。行為の役割は対象側と描写側で同じ第三位置を共有する。',
+    'r2rv': '同じ三位置と評価点に、既存r2rcの未吟味の意見を理由に用いる判断を結ぶ対象側。意見の単なる保有ではなく同じ本人の同じ判断への使用を要求する。',
+    'r2rw': '同じ三位置と評価点にr2rsを結ぶ描写側。意見を帯、本人を子ども、判断行為を歩行として提示する。現実の意見を物体、現実の公衆成員を子どもだと断定しない。',
+    'r2rx': '後半の同じ箇所h227n、著者wa、予測r2rn、段落文脈hzp3について、範囲r2ru・対象r2rv・描写r2rwを段階3の閉じた記述でh224nへ渡す。比喩を帰属するときにその物理的内容を実行しない。',
+    'r2ry': '既存の後半予測・語調・本文順序r2rqにLeitbandの非字義的提示r2rxを結ぶ。前半と既存の意味判断を保持し、第五文全体の通読の代わりにはしない。',
+}
+LIMITS = [
+    'Leitbandを、子どもの歩行を補助しながら導く幅広い帯として読む。Adelungの項目本文を取得し、DudenのGängelbandも補助的に確認した。二本であること、材質、結び方、年齢、階級や残酷な扱いは加えない。',
+    '形・接続・保持・張力による制約を別々の基礎関係にし、歩行zai、外部補助zaj、子どもzah、製作zad、訓練用途zaeを再利用する。訓練用途の独立歩行zalは目的として引用し、既に一人で歩けるという条件にはしない。',
+    '対応は[意見,本人,行為]の三位置と評価点を共有する。対象側は同じ意見を未吟味のまま判断の理由に用いるr2rc、描写側は同じ位置の帯で身体移動を導かれるr2rs。紐を保持する人は描写側だけの存在量化であり、現実側の秘密の操作者を補わない。',
+    '描写範囲は予測と同じ公衆・大衆・旧新意見群・革命候補の参照へ結ぶ。旧意見は起点、新意見は後続点に対応し、同じ本人が両時点で導かれることや同じ行為が持続することは要求しない。',
+    '比喩の範囲は関係の成功から切り出さない。未来の全革命候補についての予測、複数性、内容差、新しさ、大衆への広がりは既存r2rn/r2rkに保持する。身体的な出来事の真理や両側の因果の同一性はh224nの帰属から出ない。',
+    'Leitbandの描写は接続するが、vielleicht wohlの留保・譲歩、aber/sondernの対比、niemalsの否定範囲と第五文全体の通読は残る。確認済み文字数は増やさない。',
+]
+
+
+@lru_cache(None)
+def parent():
+    return load_catalog(ROOT, PARENT_BASIS)
+
+
+def family(name, body):
+    return ('d ' + name + '[roles j[a]] e[b point[g opinion a[g person a[g act a['
+            'w[e[v roles][l[a][v opinion v person v act]]][' + body + ']]]]]].')
+
+
+def definitions():
+    return '''
+d r2rs[band a person a act a point d] c[
+ w[u[e[v band][v person]]][w[u[e[v band][v act]]][w[u[e[v person][v act]]][
+ w[k zad[v band v point]][w[k h227p[v band v point]][w[k zah[v person]][
+ w[k zae[v band r[p zah] r[p zal] v point]][
+ w[k dg[v act v point]][w[k zai[v person v act v point]][w[k zaj[v person v act v point]][
+ w[k h227q[v band v person v point]][w[k h227s[v band v person v act v point]][
+ g holder a[w[k aa[v holder]][w[u[e[v holder][v person]]][k h227r[v holder v band v point]]]]
+ ]]]]]]]]]]]]
+].
+d r2rt[opinion a person a point d] c[
+ g public a[g reference d[g candidate d[
+ w[k h222e[v public v reference]][w[k hg[k mp[k h223i[v public v reference]] v person]][
+ w[g act a[k r2qx[v public v reference v act v candidate]]][
+ w[k hzne[k h222g[v public v reference] k h222h[v public v reference v candidate] v candidate]][
+ x[w[e[v point][k h222h[v public v reference v candidate]]][k hg[k h227l[v public v reference] v opinion]]][
+ w[k r2qs[v public v reference v candidate k h222h[v public v reference v candidate] v point]][
+ k hg[k h227m[v public v reference v candidate] v opinion]]]
+ ]]]]
+ ]]]
+].
+''' + family('r2ru', 'k r2rt[v opinion v person v point]') + family(
+        'r2rv', 'k r2rc[v person v opinion v act v point]') + family(
+        'r2rw', 'k r2rs[v opinion v person v act v point]') + '''
+d r2rx[] c[k h224n[k h227n[] k wa[] r d[k r2rn[]]
+ r d[p r2ru] r d[p r2rv] r d[p r2rw] k hzp3[]]].
+d r2ry[] c[w[k r2rq[]][k r2rx[]]].
+'''
+
+
+def build():
+    old = parent()
+    doc = deepcopy(old.document)
+    statements, doc['statements'] = doc['statements'], []
+    assert not (set(PRIMITIVES) | set(MEANINGS)) & set(old.entries)
+    doc = parse(format_graph(doc, 'compact') +
+                ''.join('r ' + n + s[0] + '.' for n, s in PRIMITIVES.items()) + definitions())
+    added = doc['declarations'][len(old.document['declarations']):]
+    assert statements[-1] == dict(kind='assert', body=dict(kind='call', symbol='r2rq', arguments=[]))
+    statement = dict(kind='assert', body=dict(kind='call', symbol='r2ry', arguments=[]))
+    doc['statements'] = statements[:-1] + [statement]
+    core = deepcopy(doc)
+    core.update(declarations=closure(doc, ['r2ry']), statements=[statement])
+    decls = {d['name']: d for d in added}
+    basis = dict(status='leading_band_depiction_integrated_partial', document=FULL, parent=PARENT,
+                 inherited_meaning_basis=PARENT_BASIS, definitions=MEANINGS,
+                 primitives={n: dict(parameters=decls[n]['parameters'], result=decls[n]['result'],
+                                     arguments=s[1], meaning_ja=s[2]) for n, s in PRIMITIVES.items()},
+                 new_signatures={d['name']: {k: d[k] for k in ('parameters', 'result')} for d in added},
+                 limitations=LIMITS)
+    body = format_graph(doc, 'compact') + '\n'
+    annotations = json.loads((ROOT / 'data/prejudice-forecast-identifiers-v1.json').read_text(encoding='utf-8'))
+    annotations.update(document=FULL, document_sha256=digest(body.encode('utf-8')))
+    encoded = lambda value: json.dumps(value, ensure_ascii=False, indent=2) + '\n'
+    return {FULL: body, CORE: format_graph(core, 'compact') + '\n',
+            BASIS: encoded(basis), ANNOTATIONS: encoded(annotations)}
