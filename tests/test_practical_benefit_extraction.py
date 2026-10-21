@@ -1,0 +1,13 @@
+from scripts.check_practical_benefit_extraction import all_checks,reference_checks,quotation_checks,structure_checks
+
+
+def test_all_benefits_share_actual_application_and_causal_results():all_checks()
+
+
+def test_same_cleric_congregation_source_content_and_unknown_inputs():reference_checks()
+
+
+def test_quotation_does_not_assert_the_benefits():quotation_checks()
+
+
+def test_unchanged_imports_roundtrips_and_primary_evidence():structure_checks()
