@@ -1,0 +1,13 @@
+from scripts.check_unrestricted_scholarly_freedom import range_checks,connection_checks,discourse_checks,structure_checks
+
+
+def test_all_candidate_ranges_and_nonempty_written_characterization():range_checks()
+
+
+def test_same_cleric_scholarly_capacity_and_both_freedoms():connection_checks()
+
+
+def test_contrast_apposition_explanation_and_unexecuted_attribution():discourse_checks()
+
+
+def test_whole_sentence_review_and_preserved_judgments():structure_checks()
