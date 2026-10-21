@@ -1,0 +1,8 @@
+from scripts.check_covenant_question import reference_checks,example_checks,purpose_checks,expectation_checks,discourse_checks,structure_checks
+
+def test_same_reference_positive_negative_and_message_force():reference_checks()
+def test_nonexhaustive_inclusive_examples_and_same_selfname():example_checks()
+def test_same_formation_arguments_project_to_both_purposes():purpose_checks()
+def test_strict_expectation_order_without_executing_goals():expectation_checks()
+def test_question_and_answer_discourse_quotes_without_execution():discourse_checks()
+def test_preserved_meanings_reviews_and_source_reading():structure_checks()
