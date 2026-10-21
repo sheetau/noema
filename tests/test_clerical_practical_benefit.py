@@ -1,0 +1,13 @@
+from scripts.check_clerical_practical_benefit import connection_checks,witness_checks,discourse_checks,structure_checks
+
+
+def test_same_case_connections_and_all_five_conditions():connection_checks()
+
+
+def test_common_existential_witnesses_and_unbounded_domain_refusal():witness_checks()
+
+
+def test_scoped_discourse_and_nonfactive_attribution():discourse_checks()
+
+
+def test_full_sentence_review_preserved_evidence_and_roundtrips():structure_checks()
