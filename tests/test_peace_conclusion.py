@@ -1,0 +1,10 @@
+from scripts.check_peace_conclusion import terms_checks,prior_war_checks,declaration_checks,formation_checks,classification_checks,confirmation_checks,integrated_checks,structure_checks
+
+def test_peace_content_distinguishes_truce_and_exact_bindings():terms_checks()
+def test_all_target_pairs_have_prior_war_without_allied_wars():prior_war_checks()
+def test_same_authorized_human_declares_for_same_political_party():declaration_checks()
+def test_native_mutual_undertaking_with_unexecuted_peace_terms():formation_checks()
+def test_conclusion_in_same_valid_history_before_candidate():classification_checks()
+def test_peace_kind_supplied_to_same_solemn_instrument():confirmation_checks()
+def test_native_peace_conclusion_through_same_contract_confirmation():integrated_checks()
+def test_preserved_meanings_source_and_roundtrips():structure_checks()
