@@ -1,0 +1,8 @@
+from scripts.check_public_confirmation import office_checks,representation_checks,practice_checks,solemnity_checks,confirmation_checks,structure_checks
+
+def test_highest_public_office_and_same_holder():office_checks()
+def test_direct_or_delegated_estate_representation():representation_checks()
+def test_same_public_deliberation_and_unexecuted_practice():practice_checks()
+def test_solemn_greatest_with_ties_and_fixed_comparison():solemnity_checks()
+def test_confirming_agents_and_instruments_keep_same_contract():confirmation_checks()
+def test_preserved_source_meanings_and_roundtrips():structure_checks()
