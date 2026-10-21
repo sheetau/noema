@@ -1,0 +1,13 @@
+from scripts.check_clerical_resignation_condition import connection_checks,witness_checks,discourse_checks,structure_checks
+
+
+def test_conditional_names_and_same_case_content_connections():connection_checks()
+
+
+def test_shared_cross_sentence_witnesses_and_full_domain_refusal():witness_checks()
+
+
+def test_scoped_components_explanatory_direction_and_nonfactive_attribution():discourse_checks()
+
+
+def test_whole_sentence_review_preserved_evidence_and_roundtrips():structure_checks()
