@@ -1,0 +1,6 @@
+from scripts.check_normative_nullity import consequence_checks,confirmation_checks,reference_checks,structure_checks
+
+def test_all_consequences_not_only_duties_or_permissions():consequence_checks()
+def test_same_source_despite_hypothetical_confirmation():confirmation_checks()
+def test_sixth_paragraph_normative_assessor():reference_checks()
+def test_preserved_meanings_sources_and_roundtrips():structure_checks()
