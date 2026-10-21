@@ -1,0 +1,10 @@
+from scripts.check_fifth_paragraph import coverage_checks,transition_checks,preservation_checks
+
+
+def test_whole_paragraph_coverage_including_question_answer_dash():coverage_checks()
+
+
+def test_question_answer_and_final_reason_connections():transition_checks()
+
+
+def test_current_corrected_bindings_and_unchanged_evidence():preservation_checks()
