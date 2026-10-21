@@ -1,0 +1,10 @@
+from scripts.check_promissory_oath import act_checks,formation_checks,structure_checks
+
+
+def test_solemn_witness_and_accountability_same_act_without_executing_content():act_checks()
+
+
+def test_oath_strengthens_each_reciprocal_undertaking_without_replacing_it():formation_checks()
+
+
+def test_pinned_source_imports_and_historical_reading():structure_checks()
