@@ -1,0 +1,16 @@
+from scripts.check_guardian_irrationality import criterion_checks,grounding_checks,reference_focus_checks,discourse_checks,structure_checks
+
+
+def test_concrete_coherence_condition_for_all_guardians():criterion_checks()
+
+
+def test_same_specified_requirement_policy_and_consequence():grounding_checks()
+
+
+def test_common_references_and_the_guardian_himself():reference_focus_checks()
+
+
+def test_author_attribution_self_focus_and_backward_reason():discourse_checks()
+
+
+def test_preserved_reviews_source_reading_and_roundtrips():structure_checks()
