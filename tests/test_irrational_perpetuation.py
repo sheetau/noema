@@ -1,0 +1,16 @@
+from scripts.check_irrational_perpetuation import evaluation_checks,persistence_checks,adapter_checks,consequence_checks,structure_checks
+
+
+def test_applicable_coherence_failure_without_policy_execution():evaluation_checks()
+
+
+def test_all_selected_contents_persist_on_the_same_future_history():persistence_checks()
+
+
+def test_native_content_unquotation_and_exact_result_bindings():adapter_checks()
+
+
+def test_evaluation_and_causal_consequence_are_independent():consequence_checks()
+
+
+def test_imports_evidence_and_roundtrips():structure_checks()
