@@ -1,0 +1,8 @@
+from scripts.check_human_enlightenment_block import topic_checks,population_checks,future_checks,causal_checks,formation_checks,structure_checks
+
+def test_normal_independent_judgment_per_topic():topic_checks()
+def test_partial_gain_and_generation_turnover():population_checks()
+def test_all_future_pairs_without_extinction_shortcut():future_checks()
+def test_same_agreement_causes_same_humanity_result():causal_checks()
+def test_same_covenant_with_additional_unexecuted_purpose():formation_checks()
+def test_preserved_meanings_source_and_roundtrips():structure_checks()
