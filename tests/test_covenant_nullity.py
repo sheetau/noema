@@ -1,0 +1,9 @@
+from scripts.check_covenant_nullity import reference_checks,nullity_checks,family_checks,conditional_checks,enumeration_checks,discourse_checks,structure_checks
+
+def test_same_contract_normative_assessor_and_reference():reference_checks()
+def test_native_all_consequences_under_hypothetical_confirmation():nullity_checks()
+def test_exact_argument_families_keep_contract_and_community():family_checks()
+def test_hypothetical_formation_with_native_generic_quantification():conditional_checks()
+def test_three_confirmations_and_their_inclusive_aggregate():enumeration_checks()
+def test_same_anaphora_hypothesis_categorical_nullity_and_concession():discourse_checks()
+def test_preserved_prior_reviews_source_and_roundtrips():structure_checks()
