@@ -1,0 +1,16 @@
+from scripts.check_covenant_entitlement import scope_checks,binding_checks,norm_checks,polarity_checks,structure_checks
+
+
+def test_clerical_and_delegated_routes_preserve_religious_scope():scope_checks()
+
+
+def test_fixed_formation_anchor_and_exact_five_target_arguments():binding_checks()
+
+
+def test_permission_and_opposed_demand_without_executing_formation():norm_checks()
+
+
+def test_same_negative_question_and_response_with_all_candidates():polarity_checks()
+
+
+def test_unchanged_dependencies_and_source_question_answer():structure_checks()
