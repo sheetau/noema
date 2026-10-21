@@ -1,0 +1,19 @@
+from scripts.check_conscientious_service_exit import service_checks,possibility_checks,departure_checks,duty_checks,conditional_checks,structure_checks
+
+
+def test_same_office_activity_and_conscientious_allowance():service_checks()
+
+
+def test_no_possible_service_is_stronger_than_no_guaranteed_method():possibility_checks()
+
+
+def test_actual_future_self_departure_and_binding_identity():departure_checks()
+
+
+def test_positive_exit_duty_does_not_execute_its_content():duty_checks()
+
+
+def test_belief_and_complete_consequent_share_hypothetical_cases():conditional_checks()
+
+
+def test_preserved_meanings_evidence_and_roundtrips():structure_checks()
