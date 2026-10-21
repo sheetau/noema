@@ -1,0 +1,13 @@
+from scripts.check_spiritual_guardians_v2 import order_checks,guardian_policy_checks,target_checks,structure_checks
+
+
+def test_published_matter_person_contract_rejects_inverted_relation():order_checks()
+
+
+def test_corrected_guardians_and_native_universal_policy():guardian_policy_checks()
+
+
+def test_exact_corrected_policy_in_adapter_evaluation_and_consequence():target_checks()
+
+
+def test_unchanged_evidence_and_current_manuscript_call_sites():structure_checks()
