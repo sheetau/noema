@@ -1,0 +1,16 @@
+from scripts.check_perceived_doctrinal_conflict import native_checks,nonfactive_checks,binding_checks,hypothetical_checks,structure_checks
+
+
+def test_actual_discernment_and_fallible_belief():native_checks()
+
+
+def test_belief_and_quotation_do_not_execute_their_contents():nonfactive_checks()
+
+
+def test_four_names_keep_the_same_person_source_standard_and_reference():binding_checks()
+
+
+def test_hypothesis_keeps_belief_and_consequence_inside_all_selected_cases():hypothetical_checks()
+
+
+def test_preserved_meanings_evidence_and_roundtrips():structure_checks()
