@@ -1,0 +1,16 @@
+from scripts.check_irrevisable_confession import content_checks,persistence_checks,terms_checks,formation_checks,structure_checks
+
+
+def test_same_content_adoption_and_substantive_revision_are_independent():content_checks()
+
+
+def test_complete_future_does_not_skip_temporary_changes():persistence_checks()
+
+
+def test_exact_party_agreement_body_creed_subject_bindings():terms_checks()
+
+
+def test_each_party_undertakes_toward_every_other_in_same_act():formation_checks()
+
+
+def test_imports_source_range_primary_page_and_roundtrips():structure_checks()
