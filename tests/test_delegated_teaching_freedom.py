@@ -1,0 +1,16 @@
+from scripts.check_delegated_teaching_freedom import target_checks,independence_checks,identity_checks,integration_checks,structure_checks
+
+
+def test_same_native_freedom_through_constructed_quote_and_bindings():target_checks()
+
+
+def test_actual_and_normative_negation_are_independent():independence_checks()
+
+
+def test_norm_source_exact_payload_and_negative_polarity():identity_checks()
+
+
+def test_congregational_content_and_nonexecuted_quotation():integration_checks()
+
+
+def test_unchanged_imports_evidence_and_roundtrips():structure_checks()

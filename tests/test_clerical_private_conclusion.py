@@ -1,0 +1,13 @@
+from scripts.check_clerical_private_conclusion import connection_checks,generalization_checks,discourse_checks,structure_checks
+
+
+def test_same_case_reason_and_freedom_contents():connection_checks()
+
+
+def test_all_uses_and_utterances_without_assuming_actual_instances():generalization_checks()
+
+
+def test_two_explanations_scope_addition_concession_and_conclusion():discourse_checks()
+
+
+def test_whole_sentence_review_preservation_and_roundtrips():structure_checks()
