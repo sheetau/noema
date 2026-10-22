@@ -1,0 +1,9 @@
+from scripts import check_germ_figurative_connection as check
+
+
+def test_same_comparison_person_and_fixed_depiction_referents():check.family_checks()
+def test_distinct_closed_descriptions_without_literal_truth():check.presentation_checks()
+def test_same_lower_regime_cover_and_prior_attribution():check.cover_checks()
+def test_each_members_germ_and_same_appositive_property():check.germ_checks()
+def test_all_selected_comparisons_and_all_four_connections():check.whole_checks()
+def test_source_provenance_quote_ranks_and_roundtrips():check.structure_checks()
