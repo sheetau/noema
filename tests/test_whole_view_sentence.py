@@ -1,0 +1,11 @@
+from scripts import check_whole_view_sentence as check
+
+
+def test_exact_course_census_humans_and_internal_relations():check.course_checks()
+def test_one_whole_consideration_act_and_exact_scope():check.whole_act_checks()
+def test_generic_conditional_without_actual_observer():check.generic_checks()
+def test_first_sentence_pattern_anchor_and_alternatives():check.pattern_checks()
+def test_native_expectation_and_paradox_with_actual_pattern():check.local_integration_checks()
+def test_same_person_profiles_and_whole_sentence_projection():check.projections_checks()
+def test_authorship_evidence_analogy_conditions_and_anaphors():check.discourse_checks()
+def test_prior_reviews_bodies_meanings_and_source_binding():check.structure_checks()
