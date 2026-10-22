@@ -1,0 +1,8 @@
+from scripts import check_manifest_example as check
+
+
+def test_realized_example_requires_same_content_and_public_states():check.instance_checks()
+def test_availability_support_and_manifestness_are_independent():check.manifestation_checks()
+def test_closed_content_keeps_all_target_arguments():check.content_checks()
+def test_source_example_and_target_government_remain_distinct():check.binding_checks()
+def test_inherited_meanings_and_notations_preserved():check.structure_checks()
