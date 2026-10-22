@@ -1,0 +1,6 @@
+from scripts.check_present_epoch_sentence import content_checks,setting_checks,discourse_checks,structure_checks
+
+def test_same_current_question_negative_and_progress():content_checks()
+def test_source_settings_close_the_same_progress():setting_checks()
+def test_conditional_answer_contrast_and_attribution():discourse_checks()
+def test_preserved_reviews_and_complete_sentence_reading():structure_checks()
