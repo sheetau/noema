@@ -1,0 +1,9 @@
+from scripts import check_legislative_public_permissions as check
+
+
+def test_general_public_use_has_its_own_royal_permission():check.general_checks()
+def test_offers_preserve_the_same_quoted_target_and_all_arguments():check.offer_checks()
+def test_all_lists_codes_and_individual_candidates_are_quantified():check.quantifier_checks()
+def test_every_subject_receives_all_three_permissions():check.population_checks()
+def test_policy_quote_keeps_the_frame_without_executing_it():check.policy_quote_checks()
+def test_roundtrips_ranks_and_inherited_meanings():check.structure_checks()
