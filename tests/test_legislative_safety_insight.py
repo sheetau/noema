@@ -1,0 +1,9 @@
+from scripts import check_legislative_safety_insight as check
+
+
+def test_all_causal_tables_match_independent_solutions():check.causal_checks()
+def test_model_providers_keep_the_same_policy_interest_and_context():check.model_binding_checks()
+def test_all_interests_and_backgrounds_have_nonvacuous_safe_comparisons():check.scope_checks()
+def test_factive_insight_requires_same_grasped_grounded_content():check.cognitive_checks()
+def test_the_same_royal_policy_safety_is_the_object_of_insight():check.policy_connection_checks()
+def test_quote_ranks_roundtrips_and_inherited_meanings():check.structure_checks()
