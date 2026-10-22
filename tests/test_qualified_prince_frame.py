@@ -1,0 +1,7 @@
+from scripts.check_qualified_prince_frame import qualification_checks,generality_checks,discourse_checks,reference_checks,structure_checks
+
+def test_same_prince_office_appraisal_and_rejection():qualification_checks()
+def test_general_claim_existence_and_counterexample():generality_checks()
+def test_scoped_consequence_and_object_focus_nonfactive():discourse_checks()
+def test_every_closed_name_matches_its_frame():reference_checks()
+def test_ranked_profiles_and_preserved_evidence():structure_checks()
