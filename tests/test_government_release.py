@@ -1,0 +1,8 @@
+from scripts.check_government_release import government_checks,episode_checks,native_episode_checks,collective_checks,first_checks,structure_checks
+
+def test_public_human_agents_of_an_institution():government_checks()
+def test_same_person_event_transition_and_causal_benefit():episode_checks()
+def test_native_norm_change_and_collective_release():native_episode_checks()
+def test_complete_release_preserves_previously_free_members():collective_checks()
+def test_first_release_compares_other_governments():first_checks()
+def test_existing_definitions_and_evidence_preserved():structure_checks()
