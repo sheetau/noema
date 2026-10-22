@@ -1,0 +1,8 @@
+from scripts import check_frank_legal_criticism as check
+
+
+def test_criticism_is_own_public_assessment_of_the_same_law():check.criticism_checks()
+def test_frankness_checks_relevant_items_outside_the_public_list():check.frankness_checks()
+def test_thoughts_criticism_and_prior_adoption_share_the_frame():check.conjunction_checks()
+def test_quoted_conjunction_keeps_all_slots_and_fixed_prior_anchor():check.binding_checks()
+def test_roundtrips_ranks_and_inherited_meanings():check.structure_checks()
