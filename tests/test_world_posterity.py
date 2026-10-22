@@ -1,0 +1,7 @@
+from scripts.check_world_posterity import population_checks,response_checks,merit_checks,integration_checks,structure_checks
+
+def test_complete_current_and_future_populations():population_checks()
+def test_grateful_response_keeps_scope_time_and_roles():response_checks()
+def test_both_deserved_responses_without_actual_future_attitudes():merit_checks()
+def test_qualified_prince_conclusion_keeps_both_scopes():integration_checks()
+def test_rank_and_unchanged_parent_evidence():structure_checks()
