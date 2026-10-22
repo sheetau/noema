@@ -1,0 +1,7 @@
+from scripts import check_royal_example as check
+
+
+def test_example_requires_the_same_realized_policy_and_cognition():check.realized_checks()
+def test_no_superior_yet_allows_equal_predecessors_and_future_superiors():check.precedence_checks()
+def test_same_example_public_regard_monarch_and_comparison_pattern():check.connection_checks()
+def test_quote_ranks_inherited_meanings_roundtrips_and_lexical_evidence():check.structure_checks()
