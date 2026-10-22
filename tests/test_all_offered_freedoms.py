@@ -1,0 +1,8 @@
+from scripts import check_all_offered_freedoms as check
+
+def test_arbitrary_list_description_construction():check.sequence_checks()
+def test_candidates_do_not_require_prior_permission_or_duty_fulfillment():check.candidate_checks()
+def test_same_targets_for_freedom_and_nonrestriction():check.freedom_connections()
+def test_all_candidates_and_person_wide_nonrestriction():check.quantifier_checks()
+def test_same_clerical_scope_and_comparison_supply():check.source_scope_checks()
+def test_preserved_meanings_roundtrips_and_rank():check.structure_checks()
