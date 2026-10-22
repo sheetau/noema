@@ -1,0 +1,8 @@
+from scripts import check_social_attitude_paths as check
+
+def test_actual_manifestation_causes_the_same_acquired_state():check.acquisition_checks()
+def test_finite_path_links_people_content_and_time():check.path_checks()
+def test_only_final_recipient_must_retain_through_anchor():check.retention_checks()
+def test_actual_shared_policy_attitude_without_policy_truth():check.common_state_checks()
+def test_same_people_cross_the_original_jurisdiction():check.foreign_reach_checks()
+def test_prior_evidence_and_rank_preservation():check.structure_checks()
