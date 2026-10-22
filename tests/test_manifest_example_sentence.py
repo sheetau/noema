@@ -1,0 +1,8 @@
+from scripts import check_manifest_example_sentence as check
+
+
+def test_same_prior_roles_and_current_feed_manifest_example():check.settings_checks()
+def test_prior_witnesses_extend_without_replacing_government_or_origin():check.witness_checks()
+def test_all_qualified_rulers_and_fixed_present_preserved():check.universal_checks()
+def test_reason_concession_and_same_government_anaphora():check.discourse_checks()
+def test_full_reading_inherited_evidence_and_source_correction():check.structure_checks()
