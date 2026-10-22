@@ -1,0 +1,7 @@
+from scripts import check_enlightened_person_conditions as check
+
+
+def test_native_practical_scope_quality_and_standing_ability():check.ability_checks()
+def test_same_person_point_reference_for_ability_and_fear():check.connection_checks()
+def test_self_emphasis_and_scoped_premise_do_not_execute_content():check.discourse_checks()
+def test_inherited_meanings_sources_quote_ranks_and_roundtrips():check.structure_checks()
