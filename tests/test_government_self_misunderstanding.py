@@ -1,0 +1,8 @@
+from scripts import check_government_self_misunderstanding as check
+
+
+def test_institutional_self_understanding_and_both_error_polarities():check.judgment_checks()
+def test_external_condition_requires_same_government_and_person():check.external_checks()
+def test_hindrance_uses_same_condition_goal_and_matched_branches():check.hindrance_checks()
+def test_error_and_hindrance_are_joined_without_inferred_causation():check.combined_checks()
+def test_prior_meanings_and_native_notation_preserved():check.structure_checks()
