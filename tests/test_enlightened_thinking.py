@@ -1,0 +1,8 @@
+from scripts import check_enlightened_thinking as check
+
+
+def test_practical_support_keeps_actor_activity_and_enlightenment():check.support_checks()
+def test_the_manner_and_grounds_belong_to_the_same_held_judgment():check.manner_checks()
+def test_religious_thinking_extends_to_the_same_legislative_safety():check.connection_checks()
+def test_the_antecedent_is_the_same_enlightenment_process_kind():check.anaphora_checks()
+def test_preserved_meanings_ranks_and_roundtrips():check.structure_checks()
