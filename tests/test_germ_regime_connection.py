@@ -1,0 +1,9 @@
+from scripts import check_germ_regime_connection as check
+
+
+def test_native_dispositions_growth_and_unchanged_civic_permissions():check.regime_checks()
+def test_same_history_closed_interval_excludes_external_points():check.interval_checks()
+def test_existential_endpoints_and_fixed_third_sentence_reference():check.endpoint_checks()
+def test_namely_same_property_without_asserting_its_truth():check.apposition_checks()
+def test_every_regime_growth_argument_and_temporal_point():check.binding_checks()
+def test_provenance_quote_ranks_and_roundtrips():check.structure_checks()
