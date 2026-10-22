@@ -1,0 +1,6 @@
+from scripts.check_grateful_regard import benefit_checks,attitude_checks,response_checks,structure_checks
+
+def test_delayed_benefit_and_fixed_recognized_content():benefit_checks()
+def test_valuation_recognition_regard_and_grounding():attitude_checks()
+def test_grateful_praise_does_not_imply_performed_benefit():response_checks()
+def test_ranked_composition_and_preserved_evidence():structure_checks()
