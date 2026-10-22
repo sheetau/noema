@@ -1,0 +1,5 @@
+from scripts.check_seventh_paragraph import coverage_checks,transition_checks,preservation_checks
+
+def test_complete_fixed_source_coverage():coverage_checks()
+def test_shared_references_and_discourse_between_all_four_sentences():transition_checks()
+def test_preserve_prior_judgments_and_sentence_evidence():preservation_checks()

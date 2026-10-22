@@ -1,0 +1,5 @@
+from scripts.check_named_epoch_sentence import component_checks,discourse_checks,structure_checks
+
+def test_same_progress_and_native_personal_epoch_profile():component_checks()
+def test_scoped_classification_explanatory_name_and_reference():discourse_checks()
+def test_source_reading_and_preserved_evidence():structure_checks()
