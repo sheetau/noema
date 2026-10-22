@@ -1,0 +1,7 @@
+from scripts.check_haughty_designation import reciprocity_checks,content_checks,adoption_checks,appraisal_checks,structure_checks
+
+def test_reciprocal_stance_and_due_respect_distinct():reciprocity_checks()
+def test_same_respect_content_and_binding_direction():content_checks()
+def test_adopted_self_naming_is_not_quotation():adoption_checks()
+def test_nonempty_all_use_appraisal_and_counterexamples():appraisal_checks()
+def test_preserved_evidence_and_roundtrips():structure_checks()
