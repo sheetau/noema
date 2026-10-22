@@ -1,0 +1,871 @@
+{
+  "status": "same_army_normal_command_compliance_and_present_availability_partial",
+  "document": "examples/v016/disciplined-availability.noema",
+  "primitives": {
+    "aa": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person"
+      ],
+      "meaning_ja": "対象が人である。理解力・勇気・社会的地位の有無を人であることの条件にしない。"
+    },
+    "ha": {
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "有理数の通常の加算。"
+    },
+    "hc": {
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "有理数の厳密な大小比較。第一引数が第二引数より小さい。"
+    },
+    "hd": {
+      "parameters": [
+        "truth"
+      ],
+      "result": "number",
+      "arguments": [
+        "condition"
+      ],
+      "meaning_ja": "真理値の数値指示関数。真を1、偽を0とする。この全条件をheでも記述し、割合の検査時に要求する。"
+    },
+    "h233d": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "point"
+      ],
+      "meaning_ja": "この状況で、この制度的集団は政治的共同体の軍務を担う軍事組織である。単に武器を持つ集団、武装した警察、競技団体とは区別する。現に戦闘中であることやその政治的正当性を要求しない。"
+    },
+    "hzyconstituted": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "group",
+        "point"
+      ],
+      "meaning_ja": "同じ制度の編成の扱いで、集団が一つの組織単位として置かれている。実際の能力や外部法体系の承認とは別。"
+    },
+    "hzyassigned": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "group",
+        "community",
+        "mission",
+        "point"
+      ],
+      "meaning_ja": "同じ制度が同じ集団に、指定共同体について閉じた記述の任務を割り当てている。任務の現在の達成や能力は含意しない。"
+    },
+    "hzyoffices": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "institution",
+        "group",
+        "point"
+      ],
+      "meaning_ja": "同じ制度・集団にこの役職が置かれている。誰が保持するかと任務上の責任は別に結ぶ。"
+    },
+    "hzyholders": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "role",
+        "institution",
+        "group",
+        "point"
+      ],
+      "meaning_ja": "同じ制度・集団でこの人物が同じ役職を保持する。別役職の地位、実際の発令、正当性を補わない。"
+    },
+    "hzyresponsibilities": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "institution",
+        "group",
+        "community",
+        "mission",
+        "point"
+      ],
+      "meaning_ja": "同じ役職が、同じ制度・集団・対象共同体について指定された閉じた任務記述に関わる責任を持つ。別共同体や同じ真理値の別記述へ移転しない。"
+    },
+    "hzydirects": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "institution",
+        "group",
+        "point"
+      ],
+      "meaning_ja": "同じ制度のこの役職には、同じ集団の指揮を担当する役割がある。別集団で指揮を担当するだけでは足りず、実際の命令、法的正当性や全指揮官の列挙は要求しない。"
+    },
+    "hzzoccurs": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "point"
+      ],
+      "meaning_ja": "同じ出来事がこの点で生起する。計画・可能性・割当だけから生起を補わない。"
+    },
+    "hzzcommanded": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "group",
+        "point"
+      ],
+      "meaning_ja": "この出来事は同じ集団の指揮の下にある活動である。別集団の活動又は単なる地理的一致と分け、指揮の法的正当性は要求しない。"
+    },
+    "hzzopponentof": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "event",
+        "point"
+      ],
+      "meaning_ja": "同じ出来事のこの点での使用行為が向けられる相手集団。自集団との不一致と構成員は合成側で確認する。"
+    },
+    "hzzactorof": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "event",
+        "point"
+      ],
+      "meaning_ja": "同じ出来事のこの点での一つの道具使用行為を担う人物。実際の使用と所属は別に結ぶ。"
+    },
+    "hzztargetof": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "event",
+        "point"
+      ],
+      "meaning_ja": "同じ出来事のこの点での道具使用行為が向けられる人物。別行為の対象で代用しない。"
+    },
+    "hzztoolof": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "event",
+        "point"
+      ],
+      "meaning_ja": "同じ出来事のこの点での使用行為に用いる道具。実際の使用と物理的な作用能力は別に結ぶ。"
+    },
+    "hzzmembers": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "person",
+        "point"
+      ],
+      "meaning_ja": "同じ点でこの人物がこの集団の構成員である。準備・任務の同じ集団の範囲を指し、名簿や成功者だけに選別しない。"
+    },
+    "hzzopposes": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "opponent",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "同じ対象共同体に関して二集団の目的又は要求が対立する。防衛・侵攻の区別や正当性はここから導かない。"
+    },
+    "hzzinstrument": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "tool",
+        "point"
+      ],
+      "meaning_ja": "身体の一部そのものではなく外的な物理的手段として使用する道具。これだけで武器の種類や実際の使用は断定しない。"
+    },
+    "hzzused": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "person",
+        "tool",
+        "point"
+      ],
+      "meaning_ja": "同じ出来事で同じ人物が同じ道具をこの点で実際に使っている。保有や他人の使用と分ける。"
+    },
+    "hzzagainst": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "person",
+        "target",
+        "point"
+      ],
+      "meaning_ja": "同じ出来事でこの人物の使用行為が同じ対象者に向けられている。対象への現実の負傷や制約は要求しない。"
+    },
+    "hzzonbehalf": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "同じ出来事が指定共同体のための活動として帰属する。帰属だけで実際の利益又は合法性を補わない。"
+    },
+    "hzzrestricted": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "tool",
+        "target",
+        "point"
+      ],
+      "meaning_ja": "この点で同じ道具の物理的作用により、指定対象の身体的行為能力が制約されている。命令や制度上の禁止、別原因による不能と区別する。"
+    },
+    "hzztoolmethods": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "operator",
+        "tool",
+        "target",
+        "method",
+        "start"
+      ],
+      "meaning_ja": "同じ設定・開始点でこの方法を実行できる。現実の実行や結果の成功は別に評価する。"
+    },
+    "hzztooloutcomes": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "operator",
+        "tool",
+        "target",
+        "method",
+        "start",
+        "end"
+      ],
+      "meaning_ja": "同じ方法と開始点の想定される結果状況の範囲。成功した結果だけを選別せず、実際の未来と同一視しない。"
+    },
+    "hzztoolselected": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "operator",
+        "tool",
+        "target",
+        "method",
+        "start",
+        "end"
+      ],
+      "meaning_ja": "同じ方法と開始点について評価対象に選ぶ結果状況。選択基準は固定し、達成に都合のよい結果だけを残さない。非空・想定結果への包含・全選択結果での達成は既存xa/xdで確認する。"
+    },
+    "hzzunitmethods": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "community",
+        "method",
+        "start"
+      ],
+      "meaning_ja": "同じ設定・開始点でこの方法を実行できる。現実の実行や結果の成功は別に評価する。"
+    },
+    "hzzunitoutcomes": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "community",
+        "method",
+        "start",
+        "end"
+      ],
+      "meaning_ja": "同じ方法と開始点の想定される結果状況の範囲。成功した結果だけを選別せず、実際の未来と同一視しない。"
+    },
+    "hzzunitselected": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "community",
+        "method",
+        "start",
+        "end"
+      ],
+      "meaning_ja": "同じ方法と開始点について評価対象に選ぶ結果状況。選択基準は固定し、達成に都合のよい結果だけを残さない。非空・想定結果への包含・全選択結果での達成は既存xa/xdで確認する。"
+    },
+    "h26ve": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "number",
+      "arguments": [
+        "group",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "同じ集団・対象共同体について、この固定基準で軍事的な集団の人数が多いと扱う最小人数。実際の人数や結果を見る前に比較対象と運用上の規模に即して定める文脈入力。原文に具体的な人数を補わず、単に一人以上を多数としない。1より大きいことを合成側で確認する。"
+    },
+    "h26vf": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "group",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ固定基準と評価点について、同じ集団の全構成員を列挙する名簿。実在の成員範囲はhzzmembersと照合し、名簿だけで人数を認定しない。未配置の者、失敗する者を都合よく除かず、他集団や別時点の名簿を流用しない。非空・重複なし・過不足なしは合成側で確認する。"
+    },
+    "h26vg": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "commander",
+        "group",
+        "plan",
+        "anchor"
+      ],
+      "meaning_ja": "同じ制度・共同体・固定基準で、この指揮担当者が同じ集団にこの計画を現在の編成と指揮・連絡・資源の下で実行させられる。通常の軍務として対象になる計画を全て含め、成功する計画だけを残さない。新たな軍隊の編成、訓練、指揮担当の獲得を先に要するものは含めず、その通常の用途に間に合う実際の利用可能性とする。固定距離や秒数、現在の出動、法的正当性は含意しない。"
+    },
+    "h26vh": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "commander",
+        "group",
+        "plan",
+        "anchor",
+        "end"
+      ],
+      "meaning_ja": "同じ制度・共同体・基準・指揮者・集団・計画・開始点の通常の軍務遂行について、想定する結果状況。部隊又は各人の成功だけで結果範囲を絞らない。通常の運用という背景条件は固定基準で明示する。"
+    },
+    "h26vi": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "commander",
+        "group",
+        "plan",
+        "anchor",
+        "end"
+      ],
+      "meaning_ja": "同じ設定の通常の軍務遂行について評価する結果状況。背景条件と選択規則を先に固定し、失敗を見て除外しない。非空で想定結果に含まれ、全選択結果で全成員の命令内容が満たされることは合成側で検査する。あらゆる異常事態での成功を要求する入力ではない。"
+    },
+    "h26vj": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "commander",
+        "group",
+        "person",
+        "plan",
+        "item",
+        "anchor"
+      ],
+      "meaning_ja": "同じ制度・共同体・基準・指揮者・集団・構成員・計画・開始点について選択する命令記録。履行できる命令だけを採らず、同じ人の任務上の全役職に対する要求を網羅する。待機・行為の差控えも内容になり得るが、空の記録を規律の証拠としない。"
+    },
+    "h26vk": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "commander",
+        "group",
+        "person",
+        "plan",
+        "item",
+        "anchor"
+      ],
+      "meaning_ja": "同じ命令記録が受け手へ要求する際の役職。別の制度・軍隊・人物の役職と取り替えない。"
+    },
+    "h26vl": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "commander",
+        "group",
+        "person",
+        "plan",
+        "item",
+        "anchor"
+      ],
+      "meaning_ja": "同じ命令記録の対象となる行為。閉じた行為記述と極性は別に結び、同じ真理値の別行為へ取り替えない。"
+    },
+    "h26vm": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": "content"
+        }
+      },
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "commander",
+        "group",
+        "person",
+        "plan",
+        "item",
+        "anchor"
+      ],
+      "meaning_ja": "同じ命令記録の閉じた行為記述。受け手と行為を適用して結果状況で評価する。引用の構文を保ち、同じ真理値の別記述との同一視をしない。"
+    },
+    "h26vn": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "commander",
+        "group",
+        "person",
+        "plan",
+        "item",
+        "anchor"
+      ],
+      "meaning_ja": "同じ命令記録の極性。真は内容の実現、偽はその不成立を要求する。実現の成否そのものではない。"
+    },
+    "h26vo": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "community",
+        "reference",
+        "issuer",
+        "group",
+        "plan",
+        "recipient",
+        "role",
+        "activity",
+        "description",
+        "polarity",
+        "anchor"
+      ],
+      "meaning_ja": "同じ制度・共同体・固定基準において、この計画の遂行のため同じ開始点で固定する、指定指揮者から同じ集団の同じ受け手・役職への行為記述・極性の要求。現在既に発令したという出来事とは分け、計画に従って与える要求も含む。別の計画・発令者・受け手の要求を流用せず、結果を見て免除しない。要求の合法性や受け手の賛同は含めない。"
+    }
+  },
+  "definitions": {
+    "he": "真理値の両方について指示関数hdの値を制約する。真なら1、偽なら0である。",
+    "hf": "列の各出現について性質の真偽を指示関数で数え、加算する。重複を自動削除しない生の出現数であり、人数として使う条件は別に検査する。",
+    "hg": "個体が列のいずれかの位置に現れる。",
+    "hh": "各個体の出現数が1を超えない。指示関数と加算・比較の意味規約の下で重複を拒否する。",
+    "hi": "重複がなく、列の各個体が指定した母集団の種類に属する。対象の全列挙や非空性はこの条件だけでは主張しない。",
+    "rcm": "指示関数の規約を満たし、列が非空・重複なしで、指定範囲に属する個体の全てを過不足なく列挙する。適格な個体だけを含むhiに、範囲全体との同値を加える。",
+    "xa": "指定した人・方法・開始状況について、評価対象の結果が空でなく、全て想定結果に含まれる。",
+    "xd": "実行できる方法のうち、xaを満たす評価対象の全結果で目的が成立する方法がある。他の方法の評価範囲が妥当であることまでは含まない。",
+    "rvz": "同じ制度・集団・対象共同体・任務記述・文脈について、役職が置かれ、本人が保持し、その役職に任務上の責任がある。",
+    "rwa": "制度が集団を構成し、対象共同体と任務を割り当てている。その文脈の構成員は非空で、各人がrvzを満たす役職を少なくとも一つ持つ。全員が同じ役職を持つ必要はない。",
+    "rwb": "rwaと同じ制度・集団・任務で、指定した本人が責任を持つ役職を保持し、その役職が同じ集団を指揮する役割を持つ。指揮者が部隊の構成員であることは要求しない。",
+    "rwc": "同じ操作者・道具・対象について、道具の物理的作用により対象の身体的行為能力が制約される結果を実現する方法がある。既存xdで利用可能性、非空の評価結果、想定結果への包含、全評価結果の達成を要求する。",
+    "rwd": "同じ出来事が同じ集団の指揮下で起き、構成員が別の対立集団の構成員へ道具を向けて使用し、その道具による身体的制約が可能である。出来事の対象共同体への帰属も照合する。現在の負傷や制約の成立は要求しない。",
+    "rwe": "指定集団・共同体・状況についてrwdを満たす出来事が存在する。",
+    "rwf": "同じ集団・対象共同体の方法でrweを達成できる。平時の基準状況でrweが成立していることは要求しない。",
+    "hzzmission": "rwfを集団・対象共同体から得る内容にし、任務記述として使う。",
+    "r6e6": "同じ点で軍事組織h233dである集団について、同じ指揮者・制度・対象共同体・hzzmissionの武力行使準備任務を既存rwbへ結ぶ。構成員は同じhzzmembersの非空の全員で人、指揮者も人である。役職と指揮担当は同じ制度・集団へ固定する。",
+    "r6e7": "r6e6の割当と軍事的制度位置に加え、同じ集団・共同体が同じ点でhzzmissionの実際の準備能力を持つ。割当だけ、別集団の技能又は現に戦闘していることを代用しない。",
+    "r6fa": "同じ集団・共同体・固定基準の閾値は1より大きく、h26vfの同じ点の名簿がhzzmembersの全成員をrcmで過不足なく非空・重複なしに列挙し、その人数が閾値以上である。名簿の水増しや成功者だけの抽出を多数としない。",
+    "r6fb": "同じ指揮者・制度・集団・対象共同体・点について、r6e7の軍事的編成と準備能力、およびr6faの人数条件を合わせる。大きい集団と準備できる集団を別々に選ばない。",
+    "r6fc": "同じ指揮者・集団・共同体・基準・点に、r6fbを満たす制度が一つ以上ある。制度は各要件で共通の証人であり、個別に別制度の役職・任務・指揮担当を集めない。",
+    "r6fd": "同じ人物・対象共同体・固定基準に、r6fcを満たす集団が一つ以上あるという内容。軍隊の規律、手元での即応的利用、公的平穏の因果保証は後続の追加条件で、ここから自動的に導かない。",
+    "rpl": "選択した各項目が、指定された職務の役割範囲に属し、同じ本人・基準文脈に対する同じ出所・職務・活動・記述・極性の要求である。空の一覧でも真だが、一覧が全義務を尽くすことは含めない。",
+    "rpm": "rplの全選択要求について、その記述内容が同じ比較状況で各要求の極性に一致する。基準文脈の要求を評価しており、比較状況で要求が新設・免除されたことを条件にしない。",
+    "rtw": "選択した全記録について、指定出所・本人・役割・活動・記述・極性の要求が基準文脈に存在し、同じ記述が評価状況でその極性を満たす。役割の範囲も検査する。",
+    "rtx": "同じ出所・本人・基準文脈の、指定役割範囲に属する全活動・全記述・両極性の要求が記録に含まれる。選択した出所以外の要求を混ぜない。",
+    "rty": "要求記録の網羅性rtxと、記録の妥当性・履行rtwを合わせた内容。要求の成立と履行の評価状況を分ける。",
+    "ruq": "同じ計画者・集団・基準文脈で利用可能な一つの計画について、非空で想定結果に含まれる評価対象の全結果で、同じ構成員全員の指定目標が成立する。",
+    "rut": "利用可能な計画が少なくとも一つあり、その全てでruqが成立する。成功する一計画だけを選んだことを全計画での適合とみなさない。",
+    "rvf": "同じ指揮者・集団・構成員・計画・基準文脈の役割範囲と要求記録をrtyへ結ぶ。要求関係にも集団・計画を固定し、別計画や別の集団の要求を流用しない。",
+    "r6fe": "同じ制度・軍隊・共同体・人物・開始点について、この役職が置かれ、本人が保持し、同じhzzmissionの任務に責任を持つ。命令対象の役職範囲を外部の真偽入力で縮めず、既存の役職関係から導く。",
+    "r6ff": "同じ指揮者・制度・軍隊・共同体・構成員・計画・固定基準・開始点の命令を既存rvf/rtyへ結ぶ内容。役職範囲はr6feで導き、全行為記述の要求網羅性と、同じ記録の妥当性・結果での履行を保つ。",
+    "r6fg": "同じ人・計画・開始点の命令記録は非空であり、全選択記録の役職がr6feの同じ制度・軍隊・人物・任務の役職である。空の要求や無関係の役職だけで規律を満たさない。実際の要求と履行はr6ffが別に検査する。",
+    "r6fh": "同じ指揮者・制度・軍隊・共同体・固定基準・点で、r6fbの人数と武力行使準備能力があり、全利用可能計画の全成員に非空の任務上の命令記録r6fgがあり、rutにより少なくとも一計画が利用でき、全利用可能計画の非空の全選択結果で全成員の命令内容r6ffが成立する。名簿・所属・開始点と利用可能性は全要件で共通。",
+    "r6fi": "同じ指揮者・軍隊・共同体・固定基準についてr6fhを満たす制度が一つ以上ある内容。軍務の割当と準備能力、人数、規律と利用可能性に同じ制度の証人を使う。",
+    "r6fj": "同じ指揮者・共同体・固定基準についてr6fiを満たす軍隊が一つ以上ある内容。人数を満たす軍隊と本人が使える規律ある軍隊を別々に選ばない。公的平穏の因果保証はこの条件だけでは得られない。"
+  },
+  "imported_symbols": {
+    "aa": "data/numerous-armed-formation-basis-v1.json",
+    "ha": "data/numerous-armed-formation-basis-v1.json",
+    "hc": "data/numerous-armed-formation-basis-v1.json",
+    "hd": "data/numerous-armed-formation-basis-v1.json",
+    "he": "data/numerous-armed-formation-basis-v1.json",
+    "hf": "data/numerous-armed-formation-basis-v1.json",
+    "hg": "data/numerous-armed-formation-basis-v1.json",
+    "hh": "data/numerous-armed-formation-basis-v1.json",
+    "hi": "data/numerous-armed-formation-basis-v1.json",
+    "rcm": "data/numerous-armed-formation-basis-v1.json",
+    "h233d": "data/numerous-armed-formation-basis-v1.json",
+    "xa": "data/numerous-armed-formation-basis-v1.json",
+    "xd": "data/numerous-armed-formation-basis-v1.json",
+    "rvz": "data/numerous-armed-formation-basis-v1.json",
+    "rwa": "data/numerous-armed-formation-basis-v1.json",
+    "rwb": "data/numerous-armed-formation-basis-v1.json",
+    "hzyconstituted": "data/numerous-armed-formation-basis-v1.json",
+    "hzyassigned": "data/numerous-armed-formation-basis-v1.json",
+    "hzyoffices": "data/numerous-armed-formation-basis-v1.json",
+    "hzyholders": "data/numerous-armed-formation-basis-v1.json",
+    "hzyresponsibilities": "data/numerous-armed-formation-basis-v1.json",
+    "hzydirects": "data/numerous-armed-formation-basis-v1.json",
+    "rwc": "data/numerous-armed-formation-basis-v1.json",
+    "rwd": "data/numerous-armed-formation-basis-v1.json",
+    "rwe": "data/numerous-armed-formation-basis-v1.json",
+    "rwf": "data/numerous-armed-formation-basis-v1.json",
+    "hzzoccurs": "data/numerous-armed-formation-basis-v1.json",
+    "hzzcommanded": "data/numerous-armed-formation-basis-v1.json",
+    "hzzopponentof": "data/numerous-armed-formation-basis-v1.json",
+    "hzzactorof": "data/numerous-armed-formation-basis-v1.json",
+    "hzztargetof": "data/numerous-armed-formation-basis-v1.json",
+    "hzztoolof": "data/numerous-armed-formation-basis-v1.json",
+    "hzzmembers": "data/numerous-armed-formation-basis-v1.json",
+    "hzzopposes": "data/numerous-armed-formation-basis-v1.json",
+    "hzzinstrument": "data/numerous-armed-formation-basis-v1.json",
+    "hzzused": "data/numerous-armed-formation-basis-v1.json",
+    "hzzagainst": "data/numerous-armed-formation-basis-v1.json",
+    "hzzonbehalf": "data/numerous-armed-formation-basis-v1.json",
+    "hzzrestricted": "data/numerous-armed-formation-basis-v1.json",
+    "hzztoolmethods": "data/numerous-armed-formation-basis-v1.json",
+    "hzztooloutcomes": "data/numerous-armed-formation-basis-v1.json",
+    "hzztoolselected": "data/numerous-armed-formation-basis-v1.json",
+    "hzzunitmethods": "data/numerous-armed-formation-basis-v1.json",
+    "hzzunitoutcomes": "data/numerous-armed-formation-basis-v1.json",
+    "hzzunitselected": "data/numerous-armed-formation-basis-v1.json",
+    "hzzmission": "data/numerous-armed-formation-basis-v1.json",
+    "h26ve": "data/numerous-armed-formation-basis-v1.json",
+    "h26vf": "data/numerous-armed-formation-basis-v1.json",
+    "r6e6": "data/numerous-armed-formation-basis-v1.json",
+    "r6e7": "data/numerous-armed-formation-basis-v1.json",
+    "r6fa": "data/numerous-armed-formation-basis-v1.json",
+    "r6fb": "data/numerous-armed-formation-basis-v1.json",
+    "r6fc": "data/numerous-armed-formation-basis-v1.json",
+    "r6fd": "data/numerous-armed-formation-basis-v1.json",
+    "rpl": "data/unrestricted-others-basis-v1.json",
+    "rpm": "data/unrestricted-others-basis-v1.json",
+    "rtw": "data/scoped-obedience-basis-v1.json",
+    "rtx": "data/scoped-obedience-basis-v1.json",
+    "rty": "data/scoped-obedience-basis-v1.json",
+    "ruq": "data/joint-readiness-basis-v1.json",
+    "rut": "data/joint-readiness-basis-v1.json",
+    "rvf": "data/commanded-protection-basis-v1.json"
+  },
+  "import_source_sha256": {
+    "data/commanded-protection-basis-v1.json": "10d47a97093f093c63e78e1d47220f92c0192f6751d3225113260eda27a6df92",
+    "data/joint-readiness-basis-v1.json": "9ea07b7d928f93d58949382171f3de88982da8be9e5aa92f2092ab23dacbb3e3",
+    "data/numerous-armed-formation-basis-v1.json": "953d59ea1d89bb2a39e017c473e3ff92cca1946869996da0c20a838f73371fc5",
+    "data/scoped-obedience-basis-v1.json": "2f17a82b24cf802f0054b895882cebf20f496d6546e0fde52272436e93623d1f",
+    "data/unrestricted-others-basis-v1.json": "23458afdd9e54368f2c050b82ece2ff0a8840fd5ff8951981c9fea51fcc3eb10",
+    "examples/v016/commanded-protection.noema": "b39d8b9ae20261541008268266f7d2a9061dcdb6d8a43c8eb7f87203ad0b83ef",
+    "examples/v016/numerous-armed-formation.noema": "4534f289c7c7a976fce80750b5aa2d02c44336325b52189d266667f4237ee964"
+  },
+  "limitations": [
+    "u0017第一文wohldisciplinirtesとzur Hand hatに向けた依存群。規律は、通常の軍務の対象範囲で任務上の命令に全成員が安定して適合するという強い操作的な読み。全利用可能計画と全選択結果を要求するが、通常の範囲外の異常事態まで無例外の成功としない。訓練の履歴、服従する心理的な理由、例外の確率を別の語義として追加してはいない。",
+    "手元での利用は、同じ指揮担当者が現在の編成・資源・連絡の下で通常の用途に間に合う形で実行させられることと読む。抽象的に部隊が活動できることだけでは足りず、新たな軍隊や指揮担当を獲得する可能性とは分ける。h26vgはこの実際の利用可能性の文脈入力であり、地理的距離・輸送・全伝達機構の分解までは行わない。",
+    "対象計画、結果範囲と選択規則は結果から独立に固定する。役職範囲は同じ制度の実際の任務上の役職から導き、各構成員について空でない記録を要求する。待機や差控えを含むため、現実に戦闘・強制を行っている必要はない。指揮権の正当性は追加しない。",
+    "旧rvf/rty/rtx/rtw/rpm/rplとrut/ruqを変更せず再利用する。要求網羅性の全記述域量化は保持する。有限診断の二記述へのインスタンス化を全域の証明とは扱わず、全域の直接実行は拒否する。",
+    "旧rvhの共同体の活動可能性・保有の保護を公的平穏へ流用しない。次は同じ軍隊の利用と同じ共同体のr572の平穏を因果比較へ結ぶ必要がある。第一文全体の限定・Freistaat・引用命令・談話・通読は未完。本文119主張・登録簿v203・19全単位判断と確認文字数は変更しない。"
+  ]
+}
