@@ -1,0 +1,7 @@
+from scripts.check_religious_collective_assessment import scope_checks,native_ability_checks,ratio_checks,dialogue_checks,structure_checks
+
+def test_religious_scope_and_fixed_person():scope_checks()
+def test_native_qualified_ability_and_reference_identity():native_ability_checks()
+def test_complete_population_and_monotone_anonymous_ratio():ratio_checks()
+def test_fixed_current_dialogue_and_valid_negation():dialogue_checks()
+def test_preservation_and_roundtrips():structure_checks()
