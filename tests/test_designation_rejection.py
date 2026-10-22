@@ -1,0 +1,8 @@
+from scripts.check_designation_rejection import discretion_checks,pattern_checks,naming_checks,rejection_checks,binding_checks,structure_checks
+
+def test_exact_policy_discretion_and_duty():discretion_checks()
+def test_named_pattern_and_actual_policy_independent():pattern_checks()
+def test_same_naming_event_subject_and_label():naming_checks()
+def test_own_practical_rejection_is_not_nonuse():rejection_checks()
+def test_closed_references_and_exact_binding_columns():binding_checks()
+def test_preserved_evidence_and_roundtrips():structure_checks()
