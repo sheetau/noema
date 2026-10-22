@@ -1,0 +1,7 @@
+from scripts.check_judgment_performance_quality import performance_checks,concrete_checks,construction_checks,ability_checks,structure_checks
+
+def test_actual_conditions_and_stable_performance():performance_checks()
+def test_native_condition_contents():concrete_checks()
+def test_closed_task_construction_and_execution():construction_checks()
+def test_native_current_and_supported_ability():ability_checks()
+def test_preserved_dependencies_and_roundtrips():structure_checks()
