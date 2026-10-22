@@ -1,0 +1,7 @@
+from scripts.check_prince_merit_scope import comparison_checks,supplied_checks,scope_checks,structure_checks
+
+
+def test_same_comparison_relation_and_nonfactive_complete_evaluation():comparison_checks()
+def test_bound_assessment_and_both_complete_criterion_sequences():supplied_checks()
+def test_each_qualified_prince_has_own_complete_release_witness():scope_checks()
+def test_existing_meanings_and_exact_grade_changes():structure_checks()
