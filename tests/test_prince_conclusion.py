@@ -1,0 +1,6 @@
+from scripts.check_prince_conclusion import ability_checks,merit_checks,discourse_checks,structure_checks
+
+def test_native_individual_attainment():ability_checks()
+def test_shared_subject_merit_without_performing_response():merit_checks()
+def test_scoped_subject_emphasis_and_closed_references():discourse_checks()
+def test_composition_and_prior_evidence():structure_checks()
