@@ -1,0 +1,9 @@
+from scripts.check_humanity_release import population_checks,episode_checks,ruler_checks,first_checks,selected_checks,structure_checks
+
+
+def test_complete_dated_populations():population_checks()
+def test_birth_and_death_do_not_replace_release():episode_checks()
+def test_same_monarch_and_public_institution():ruler_checks()
+def test_common_priority_criterion_with_changing_populations():first_checks()
+def test_selected_event_and_individual_benefit():selected_checks()
+def test_existing_meanings_and_evidence_preserved():structure_checks()
