@@ -1,0 +1,8 @@
+from scripts.check_prince_sentence import audience_checks,merit_checks,source_checks,discourse_checks,structure_checks
+
+
+def test_each_praise_can_have_its_own_human_audience():audience_checks()
+def test_same_merit_and_both_cohorts_with_open_audience():merit_checks()
+def test_source_settings_and_independent_name_appraisal():source_checks()
+def test_authored_sentence_contrasts_focus_and_shared_triples():discourse_checks()
+def test_whole_sentence_reading_and_prior_judgments():structure_checks()
