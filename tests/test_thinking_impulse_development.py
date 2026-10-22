@@ -1,0 +1,9 @@
+from scripts import check_thinking_impulse_development as check
+
+
+def test_same_reasoned_thinking_target_is_nonfactive_for_disposition():check.target_checks()
+def test_valid_normal_alternatives_and_independent_response_order():check.normality_checks()
+def test_favorable_inclination_and_inner_impulse_are_distinct():check.pair_checks()
+def test_same_latent_process_and_valid_both_endpoint_assessments():check.development_checks()
+def test_all_scope_process_and_callback_bindings():check.adapter_checks()
+def test_provenance_legacy_meanings_quote_ranks_and_roundtrips():check.structure_checks()
