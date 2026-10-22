@@ -1,0 +1,7 @@
+from scripts.check_qualified_pursuit_opening import goal_checks,pursuit_checks,opportunity_checks,opening_checks,structure_checks
+
+def test_same_qualified_ability_goal_and_reference():goal_checks()
+def test_pursuit_without_inferred_achievement():pursuit_checks()
+def test_practical_opportunity_without_forcing_or_prohibition():opportunity_checks()
+def test_newly_opened_same_person_opportunity():opening_checks()
+def test_preservation_and_roundtrips():structure_checks()
