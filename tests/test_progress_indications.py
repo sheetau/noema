@@ -1,0 +1,8 @@
+from scripts.check_progress_indications import family_checks,indication_checks,source_checks,assessment_checks,dialogue_checks,structure_checks
+
+def test_fixed_actual_claim_and_corresponding_scenarios():family_checks()
+def test_fallible_signs_and_complete_comparison():indication_checks()
+def test_exact_source_target_and_all_case_guard():source_checks()
+def test_progress_inputs_assessed_in_all_cases():assessment_checks()
+def test_same_progress_in_question_and_answer():dialogue_checks()
+def test_preservation_and_roundtrips():structure_checks()
