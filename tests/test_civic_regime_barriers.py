@@ -1,0 +1,9 @@
+from scripts import check_civic_regime_barriers as check
+
+
+def test_every_intervention_solution_matches_the_same_civic_regime():check.regime_matching_checks()
+def test_native_causal_barrier_and_actual_observation():check.causal_checks()
+def test_nonempty_all_barrier_targets_use_the_same_tasks():check.target_scope_checks()
+def test_all_model_and_ability_provider_arguments_are_bound():check.adapter_checks()
+def test_same_appearance_barrier_context_and_unexecuted_quotation():check.content_checks()
+def test_preserved_bodies_meanings_ranks_and_provenance():check.structure_checks()
