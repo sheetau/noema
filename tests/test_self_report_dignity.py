@@ -1,0 +1,8 @@
+from scripts.check_self_report_dignity import message_checks,reporting_checks,standard_checks,appraisal_checks,reference_checks,structure_checks
+
+def test_message_is_same_persons_duty_self_report():message_checks()
+def test_actual_reporting_and_dequoted_action():reporting_checks()
+def test_all_nonempty_minimum_standards():standard_checks()
+def test_outer_appraisal_adequacy_and_report_independent():appraisal_checks()
+def test_exact_references_and_nonfactive_judgment():reference_checks()
+def test_ranked_roundtrips_and_preserved_evidence():structure_checks()
