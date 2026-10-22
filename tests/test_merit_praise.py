@@ -1,0 +1,6 @@
+from scripts.check_merit_praise import praise_checks,merit_checks,integration_checks,structure_checks
+
+def test_praise_expression_aspect_and_actual_communication():praise_checks()
+def test_both_deserved_responses_without_actual_performance():merit_checks()
+def test_same_qualified_subject_and_two_conclusions():integration_checks()
+def test_ranked_composition_and_preserved_evidence():structure_checks()
