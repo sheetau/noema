@@ -1,0 +1,9 @@
+from scripts import check_deliberate_retention as check
+
+
+def test_uncultivated_state_has_same_human_and_reference():check.state_checks()
+def test_retention_goal_requires_same_whole_interval_and_cause():check.attainment_checks()
+def test_goal_is_constructed_without_executing_its_truth():check.purpose_checks()
+def test_deliberate_actual_interference_can_fail_its_purpose():check.intervention_checks()
+def test_noninterference_covers_every_target_and_activity():check.absence_checks()
+def test_inherited_meanings_and_notations_preserved():check.structure_checks()
