@@ -1,0 +1,8 @@
+from scripts import check_legislative_formulations as check
+
+
+def test_same_holder_office_and_legislative_responsibility():check.office_checks()
+def test_all_clauses_and_all_normative_expression_parts():check.representation_checks()
+def test_shared_revision_question_without_forced_content_identity():check.revision_checks()
+def test_same_law_previously_enacted_and_separate_adopter():check.enactment_checks()
+def test_existing_meanings_source_and_roundtrips():check.structure_checks()
