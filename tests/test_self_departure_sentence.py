@@ -1,0 +1,10 @@
+from scripts import check_self_departure_sentence as check
+
+
+def test_all_future_points_and_configuration_completeness():check.horizon_checks()
+def test_noninterference_is_sufficient_and_quality_is_not_an_antecedent():check.conditional_checks()
+def test_same_person_candidate_and_reference_reach_each_provider():check.provider_checks()
+def test_eventual_native_gradual_departure_of_the_same_person():check.outcome_checks()
+def test_all_people_and_candidates_without_common_deadline():check.population_checks()
+def test_author_attribution_and_nur_without_executing_world_content():check.discourse_checks()
+def test_source_reading_and_preserved_evidence():check.structure_checks()
