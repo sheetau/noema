@@ -1,0 +1,10 @@
+from scripts import check_civic_intellectual_options as check
+
+
+def test_civic_permission_keeps_source_role_activity_and_closed_target():check.civic_norm_checks()
+def test_civic_degree_compares_same_population_and_options():check.civic_comparison_checks()
+def test_intellectual_task_composes_all_matters_and_reasoned_judgments():check.task_goal_checks()
+def test_native_opportunity_assessment_and_incapacity_are_distinct():check.opportunity_checks()
+def test_intellectual_gain_requires_assessment_of_both_sides():check.mental_comparison_checks()
+def test_providers_and_paired_comparison_keep_all_bindings():check.adapter_checks()
+def test_existing_meanings_legacy_inclusion_and_provenance():check.structure_checks()

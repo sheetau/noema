@@ -1,0 +1,7 @@
+from scripts import check_civic_advantage_appearance as check
+
+
+def test_nonfactive_appearance_keeps_same_complete_comparison():check.appearance_checks()
+def test_names_and_actual_candidate_regime_pairs_are_bound():check.names_and_points_checks()
+def test_closed_quotation_and_callback_context():check.quotation_and_adapter_checks()
+def test_existing_bodies_meanings_ranks_and_evidence():check.structure_checks()
