@@ -1,0 +1,6 @@
+from scripts import check_noninterference_interval as check
+
+
+def test_any_retention_setting_can_supply_the_same_goal():check.configuration_checks()
+def test_every_member_actor_activity_and_interval_point_is_checked():check.interval_checks()
+def test_existing_meanings_and_notations_preserved():check.structure_checks()

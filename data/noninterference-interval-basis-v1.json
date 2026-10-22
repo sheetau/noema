@@ -1,0 +1,347 @@
+{
+  "status": "complete_retention_configurations_and_interval_noninterference_partial",
+  "document": "examples/v016/noninterference-interval.noema",
+  "primitives": {
+    "aa": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person"
+      ],
+      "meaning_ja": "対象が人である。理解力・勇気・社会的地位の有無を人であることの条件にしない。"
+    },
+    "hzie": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "要因側の対象",
+        "要因の性質記述",
+        "結果側の対象",
+        "結果の性質記述",
+        "評価状況"
+      ],
+      "meaning_ja": "指定した評価状況で、第一対象について記述された要因が、第二対象について記述された結果の成立に因果的に寄与する関係。説明としての採用、二内容の単なる共存、時間的先行だけでは成立しない。要因と結果はNoemaの性質記述で指定し、両内容の実際の成立はrqquで別に検査する。唯一・十分・必要な原因であることや、特定の介入モデルを付け加えない。"
+    },
+    "df": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "act",
+        "context"
+      ],
+      "meaning_ja": "この人が、この文脈で当該行為に能動的な当事者として参加する。他人の行為が同時に起きただけでは含めない。"
+    },
+    "dg": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "context"
+      ],
+      "meaning_ja": "この文脈で、その行為が実際に生じる。行為の構成員や結果の因果的な説明は別条件である。"
+    },
+    "h223g": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "arguments": [
+        "individual"
+      ],
+      "meaning_ja": "指定個体を引用内で指すために使う閉じた呼称の記述候補。外側の変数の値を引用へ暗黙に取り込む演算ではない。呼称が実際に元の個体を指すことは利用側で評価して一致を検査する。複数の呼称の同義性や任意の個体の命名可能性は保証しない。"
+    },
+    "h223h": {
+      "parameters": [
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "arguments": [
+        "situation"
+      ],
+      "meaning_ja": "指定状況を引用内で指すために使う閉じた呼称の記述候補。状況の時刻名や文字列だけを意味へ置き換えず、利用側でその参照先と元の状況の一致を検査する。全状況の自動命名や任意の別表記の同義性は含意しない。"
+    },
+    "h246c": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "member",
+        "reference"
+      ],
+      "meaning_ja": "この固定基準で、この人が指定された成員集団に属している。会場での同席、当日の出席、発話の受領、政治的な市民権とは区別する。集団の全ての該当成員について同じ関係を使い、都合のよい受け手だけを選ばない。"
+    },
+    "h26rh": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "この人について、経験・学習・考察による思考や判断習慣の形成が未発達で、事柄や他者の見方を区別して吟味する素養が乏しい状態がある。Rohigkeitをこの論述における未陶冶として読む基本概念。単独の知識項目の不知、礼儀違反、暴力性、人種・階級・民族の属性とはしない。生得的な固定性、本人の責任、他者の指導なしに理解力を使えないこと、全道徳的欠陥は含意しない。判断基準はreferenceに固定し、未知を未陶冶やその不在へ補わない。"
+    },
+    "h26ri": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "target",
+        "state",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "この活動は、同じ本人が記述された状態から移っていくことに関わる条件・情報・機会・依存の配置へ、人為的に手を加えて組み替え又は保つ操作である。künstelnをこの文脈での作為的な介入として読む。単なる同席、自然な状態の持続、無関係な人工物の制作、状態移行への介入を伴わない理由の提示と区別する。妨害又は保持という目的、実行、成功、秘密性・虚偽・悪意・政府の権限は別条件であり、この関係だけから補わない。"
+    },
+    "h26rj": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "activity",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ活動への本人の関与が、自分が何をするかの把握に基づく選択・制御に結び付いている。反射的な反応、偶然の作用、単に結果を予想したことと区別する。手段を意図的に扱うことを表し、全副作用の予見、特別に長い熟慮、道徳的な悪さの自覚は要求しない。実際の能動的参加と特定の目的内容は別に結ぶ。"
+    },
+    "h26rk": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "activity",
+        "goal",
+        "point"
+      ],
+      "meaning_ja": "本人が同じ活動の計画・遂行で目指す目的内容を、閉じた段階1の記述として指定する。既存hzuと同じ目的関係を、引用の評価を含む保持・因果内容の段階に適用する。単なる予測・好み・他人の目的とは区別し、活動の実行、目的の真理・達成・実現可能性をこの関係だけから要求しない。引用内容をこの関係で実行しない。"
+    },
+    "h26rp": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "activity",
+        "target",
+        "configuration",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ行為者・活動・対象者・固定基準・活動点について、保持目的として記述できる関連する期間設定の全範囲に、この設定が属する。設定は履歴・順序・現在の始点・終点を閉じた記述で指定する。同じ状態の保持を目指す実際の目的があればそれを表す設定を必ず含み、目的の採用・成功・活動の実行に基づき事後選別しない。始点はこの活動点に一致し、少なくとも一つの設定を与える。完全性は解釈入力の条件である。"
+    },
+    "h26rq": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "configuration",
+        "reference"
+      ],
+      "meaning_ja": "同じ保持目的の期間設定と固定基準が指定するhistoryの閉じた記述。実際に達成された期間の選別ではなく、目的として目指す内容の構成要素である。四記述は同じ設定を共有し、真理や実現可能性は目的採用時に実行しない。別の活動点への呼称を同じ始点と扱わない。"
+    },
+    "h26rr": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation",
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "configuration",
+        "reference"
+      ],
+      "meaning_ja": "同じ保持目的の期間設定と固定基準が指定するbeforeの閉じた記述。実際に達成された期間の選別ではなく、目的として目指す内容の構成要素である。四記述は同じ設定を共有し、真理や実現可能性は目的採用時に実行しない。別の活動点への呼称を同じ始点と扱わない。"
+    },
+    "h26rs": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "arguments": [
+        "configuration",
+        "reference"
+      ],
+      "meaning_ja": "同じ保持目的の期間設定と固定基準が指定するfirstの閉じた記述。実際に達成された期間の選別ではなく、目的として目指す内容の構成要素である。四記述は同じ設定を共有し、真理や実現可能性は目的採用時に実行しない。別の活動点への呼称を同じ始点と扱わない。"
+    },
+    "h26rt": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "arguments": [
+        "configuration",
+        "reference"
+      ],
+      "meaning_ja": "同じ保持目的の期間設定と固定基準が指定するlastの閉じた記述。実際に達成された期間の選別ではなく、目的として目指す内容の構成要素である。四記述は同じ設定を共有し、真理や実現可能性は目的採用時に実行しない。別の活動点への呼称を同じ始点と扱わない。"
+    }
+  },
+  "definitions": {
+    "eb": "二つの性質記述をそれぞれの対象へ適用し、両内容が指定状況で成立する。原因としての採用は含まない。",
+    "rqqu": "同じ二対象・要因記述・結果記述・状況で両内容が成立し、hzieの因果的な寄与関係がある。原因説明として採用されたというeaや、両内容の共存だけとは区別する。",
+    "ta": "空でない履歴の状況について、先行関係が非反射的・推移的であり、異なる二状況が比較できる。履歴内の厳密な全順序を要求する。",
+    "r2mj": "指定した先行時点で同じ行為が生起したという性質記述を作る。後の評価時点に行為の再発を要求せず、圧力行為の生起を因果要因として引用する。",
+    "r2mk": "同じ本人・性質について、非空の厳密な順序付き履歴の異なる始点と終点の間で、両端を含む全時点に性質が成立する。評価時点は終点以後の履歴内である。取得や新しい変化は要求せず、途中の喪失や未来の未完了を保持と数えない。",
+    "r5ty": "同じ固定基準の集団が非空で全成員が人間である。現在人口との完全一致はr5t3で既存r5scへ結ぶ。",
+    "r6ap": "同じ固定基準の下で、人aaにh26rhの未陶冶があるという人物状態。知的未成熟bfや自由の不在と同じ定義へ置き換えない。",
+    "r6aq": "同じ活動の始点生起r2mjが、同じ本人の同じ状態の期間全体の保持r2mkへ因果的に寄与し、実際に両内容が成立するというrqquの達成内容。保持には順序付き履歴、異なる両端、全中間点が要る。これは目的として引用する内容であり、現在の目的採用時には実行しない。",
+    "r6ar": "活動・対象者の閉じた呼称と、同じ履歴・順序・始終点・状態の閉じた記述をr6aqへ構文として適用し、段階1の保持目的を作る。記述をデータとして引用し直して渡すため、目標を構成するだけで未来の保持や寄与を評価しない。",
+    "r6as": "同じ人の行為者と対象者について、同じ活動の生起・能動的参加、作為的介入、意図的な選択・制御を結び、その同じ活動による同じ対象者の保持r6arを目的とする。始点は現在の活動点で、同じ状態が対象者に現在成立する。目的を持つだけの未実行、別人への目標、別活動による寄与、未来の成功の追加を避ける。",
+    "r6at": "同じ固定基準のr6apを閉じた状態記述としてr6asへ渡す。未陶冶の実際の現在状態と、その状態へ働く操作と、その保持を目指す内容を同じものにする。基準と個体の呼称が指す対象も検査する。",
+    "r6au": "指定された非空の対象範囲について、そのどの対象にも、指定された介入関係を満たす行為者・活動の組が存在しない。無関係な対象への活動を混ぜず、候補関係を全ての行為者・活動について渡す。対象が空なだけで非介入としない。",
+    "r6av": "同じ固定集団が非空で全員人間r5tyであることを保ち、その全成員h246cをr6auの対象範囲にする。介入述語は本人・活動・対象の三引数を保ち、特定の政府だけや成功した活動だけへ範囲を狭めない。",
+    "rlz": "同じ履歴で始点から終点までを両端込みで選ぶ。中間点を結果に応じて除外しない。",
+    "r6a5": "同じ行為者・活動・対象・基準・点の全設定h26rpの中に、同じ四記述をr6atへ渡して意図的な保持操作を満たす設定がある。目的を一つの選択された期間へ固定せず、別設定の失敗や不採用で実際の目的を消さない。",
+    "r6a6": "同じ行為者・活動・対象・基準・点について、期間設定の範囲が非空で、その全設定の始点の呼称が同じ活動点を指す。目標達成・未来の履歴の真理・終点までの実現可能性は要求しない。設定欠落を非介入へ補わない。",
+    "r6a7": "同じ非空の人間集団と有効な順序付き期間について、全区間の各点・全成員・全行為者・全活動のr6a6を要求し、期間中のどの点にもr6a5の意図的保持操作が存在しないとする。始終点だけの非介入、政府だけの非介入、一つの目的期間だけの不在へ狭めない。"
+  },
+  "imported_symbols": {
+    "aa": "data/deliberate-retention-basis-v1.json",
+    "eb": "data/deliberate-retention-basis-v1.json",
+    "hzie": "data/deliberate-retention-basis-v1.json",
+    "rqqu": "data/deliberate-retention-basis-v1.json",
+    "ta": "data/deliberate-retention-basis-v1.json",
+    "df": "data/deliberate-retention-basis-v1.json",
+    "dg": "data/deliberate-retention-basis-v1.json",
+    "h223g": "data/deliberate-retention-basis-v1.json",
+    "h223h": "data/deliberate-retention-basis-v1.json",
+    "r2mj": "data/deliberate-retention-basis-v1.json",
+    "r2mk": "data/deliberate-retention-basis-v1.json",
+    "h246c": "data/deliberate-retention-basis-v1.json",
+    "r5ty": "data/deliberate-retention-basis-v1.json",
+    "h26rh": "data/deliberate-retention-basis-v1.json",
+    "h26ri": "data/deliberate-retention-basis-v1.json",
+    "h26rj": "data/deliberate-retention-basis-v1.json",
+    "h26rk": "data/deliberate-retention-basis-v1.json",
+    "r6ap": "data/deliberate-retention-basis-v1.json",
+    "r6aq": "data/deliberate-retention-basis-v1.json",
+    "r6ar": "data/deliberate-retention-basis-v1.json",
+    "r6as": "data/deliberate-retention-basis-v1.json",
+    "r6at": "data/deliberate-retention-basis-v1.json",
+    "r6au": "data/deliberate-retention-basis-v1.json",
+    "r6av": "data/deliberate-retention-basis-v1.json",
+    "rlz": "data/gradual-self-departure-basis-v1.json"
+  },
+  "import_source_sha256": {
+    "data/deliberate-retention-basis-v1.json": "7a0cc2773b349256f2c798b26fe0450df2ca14bf25877761c42af50454dbdaa8",
+    "data/gradual-self-departure-basis-v1.json": "5581bd5d472862a61d5489b48ce052339fcbe2a053f60eb52d024f9aeefcd8c2",
+    "examples/v016/deliberate-retention.noema": "99ab03121c8ce3aac2d81946a19cc91092bcbad618d6c92509d7ae31d577e27f",
+    "examples/v016/gradual-self-departure.noema": "c7ddbaf560dbfa1bc0d9c52a9213ef9caac1c4a7d0802b2ad1fa0ae5fe416d56"
+  },
+  "limitations": [
+    "u0015第五文の非介入条件を全関連期間へ接続する依存群。活動点ごとの保持目的の全設定を量化し、そのどれかで意図的な操作があれば介入に数える。目的の成功や実現可能性は要求しない。",
+    "設定の完全性は、実際の同じ保持目的を表す記述があれば必ず含めるというh26rpの意味規約である。有限試験が現実の全意図や全記述の探索を終えたことを意味しない。構文的に可能な目的は真理評価から分け、目的を採らない活動にも非空の候補設定を与える。",
+    "設定欠落や他の活動点への始点の誤参照を非介入としない。目的の未来の保持を現在実行することなく、始点の呼称だけを活動点へ結ぶ。行為者・活動・対象・評価点を変えずに全設定を調べる。",
+    "関連期間は固定された履歴の両端込み全区間で、結果を見て介入点を除かない。本文では自己からの離脱と同じ候補履歴・期間を共有する必要がある。終点以後の全未来や世界の全無関係な人への操作の不在は述べない。",
+    "Die Menschenの範囲と本文の候補経過、wenn man nur nichtの条件・限定、同じ過程の後件、全文帰属は未接続。正本116主張と既存判断を保存し、新たな確認文字数は0。"
+  ]
+}

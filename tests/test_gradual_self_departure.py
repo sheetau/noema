@@ -1,0 +1,8 @@
+from scripts import check_gradual_self_departure as check
+
+
+def test_qualitative_stages_allow_setbacks_but_not_large_jumps():check.gradual_checks()
+def test_same_person_work_and_result_form_self_initiated_departure():check.departure_checks()
+def test_raw_state_cut_and_formation_scale_are_consistent():check.state_measure_checks()
+def test_same_process_and_interval_connect_all_three_conditions():check.combined_checks()
+def test_existing_meanings_and_notations_preserved():check.structure_checks()
