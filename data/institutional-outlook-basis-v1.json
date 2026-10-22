@@ -1,0 +1,950 @@
+{
+  "status": "same_introduction_purpose_and_separate_figurative_expectation",
+  "document": "examples/v016/institutional-outlook.noema",
+  "primitives": {
+    "aa": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person"
+      ],
+      "meaning_ja": "対象が人である。理解力・勇気・社会的地位の有無を人であることの条件にしない。"
+    },
+    "ha": {
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "有理数の通常の加算。"
+    },
+    "hc": {
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "有理数の厳密な大小比較。第一引数が第二引数より小さい。"
+    },
+    "hd": {
+      "parameters": [
+        "truth"
+      ],
+      "result": "number",
+      "arguments": [
+        "condition"
+      ],
+      "meaning_ja": "真理値の数値指示関数。真を1、偽を0とする。この全条件をheでも記述し、割合の検査時に要求する。"
+    },
+    "ic": {
+      "parameters": [
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "earlier",
+        "later",
+        "context"
+      ],
+      "meaning_ja": "この文脈の時間的履歴で第一の状況が第二より先行する。taによって履歴内の順序条件を検査する。"
+    },
+    "mp": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "group"
+      ],
+      "meaning_ja": "説明対象の集団を構成する人々の列。集団という対象と列の対応を与え、割合の計算には既存の母集団条件も要求する。"
+    },
+    "dg": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "context"
+      ],
+      "meaning_ja": "この文脈で、その行為が実際に生じる。行為の構成員や結果の因果的な説明は別条件である。"
+    },
+    "h237c": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "この人が同じ基準においてこの政治的共同体の成員である。読者として向けられた範囲や、たまたま共同体の場所にいることとは分ける。現在の官職、全政策への同意、実際の事務への参加は別条件である。"
+    },
+    "h257z": {
+      "parameters": [
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "reference",
+        "candidate",
+        "point"
+      ],
+      "meaning_ja": "同じ固定した議論の範囲と同じ候補において、前後の時代を読む経過の履歴にこの時点が属する。比較対象の時代を含む経過全体を与え、間の不都合な点だけを落とさない。候補は一つの経過を指定し、別候補の時点を混ぜない。順序は同じ候補のicで与える。"
+    },
+    "h26ca": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "law",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "この内容は、同じ政治的共同体の人々の外的な共同行為・公的秩序を規律する規範を、公的に拘束する法として定める案の種類に属する。私的な希望、経験上の自然法則、任意の助言と分ける。実際の採択、現行法での承認、道徳的正当性、特定の法形式や強制の実行は要求しない。全規範内容は別に条項へ結ぶ。"
+    },
+    "h26cb": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "law",
+        "clause",
+        "reference"
+      ],
+      "meaning_ja": "同じ法案と固定基準について、その法として定める規範内容の完全な範囲にこの条項項目が含まれる。現在成立している条項や賛同できる条項だけへ狭めず、単なる文書の物理的な段落とも同一視しない。要求・許可・禁止だけでなく資格・権能・それらの維持や変更も対象とでき、具体的な内容は同じh26ccで指定する。"
+    },
+    "h26cc": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          ],
+          "result": "content"
+        }
+      },
+      "arguments": [
+        "clause",
+        "reference"
+      ],
+      "meaning_ja": "同じ条項項目と固定基準に対応する、閉じたNoemaの規範内容関数。正確な法・人民・政治的共同体の順の三個体列を受け、その法における規律の成立状態を返す。適用される人・役割・条件・内容極性・規範上の効果は関数の中に明示し、条項の名称だけで代用しない。正当性の外部評価や規律対象の行為の実際の履行は、法の規律状態自体と区別する。対象外の項目には全域関数の任意の値を与えてよい。"
+    },
+    "h26cd": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "actor",
+        "people",
+        "community",
+        "law",
+        "reference",
+        "candidate",
+        "point"
+      ],
+      "meaning_ja": "この同じ行為は、同じ候補経過・点で、この主体による、この人民にこの法律を課す公的な採択判断として帰属され、その同じ法案を共同の規律として定める内容を持つ。単なる提案・要望・他法への投票・受動的な服従ではない。行為の生起、制度上の成立効果、正当な資格・理性的な共同意思は別に確認する。集団が主体でもよいが、全成員が直接投票したことや全員一致を補わない。"
+    },
+    "h26ce": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "people",
+        "community",
+        "law",
+        "reference",
+        "candidate",
+        "point"
+      ],
+      "meaning_ja": "同じ候補経過・点で、この採択行為が、指定の法律を指定の人民の同じ政治的共同体において効力を持つ公的規律として定める制度上の働きをする。新設だけでなく同じ規律の確認・再設定を含む。条項状態の偶然の併存、別行為の効果、物理的な服従の強制とは区別する。規律状態は別に構成し、この制度的な働きだけで道徳的正当性・採択資格・現実の行為生起を導かない。"
+    },
+    "sc": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "scene"
+      ],
+      "meaning_ja": "複数の記された表現を、一つの作品としてまとめた情報的対象。記号一般・作品・記された表現の一般的な基礎説明は残る。"
+    },
+    "hzwr": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "work",
+        "scene"
+      ],
+      "meaning_ja": "その記録は、その状況で、指定された作品の記された表現を実現する記録である。同じ話題への言及や要約だけを、その作品の記録として補わない。作品として採る単位と版の範囲は解釈で固定し、別の作品の記録と混同しない。内容の真理や、読者の理解を要求しない。"
+    },
+    "hzws": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "carrier",
+        "scene"
+      ],
+      "meaning_ja": "その状況で、その同じ記録が、記憶内の像だけではない外部の媒体に、後から参照できる持続する痕跡として保持されている。媒体への言及や、現在は消失した記録の過去の所在とは区別する。紙・印刷・製本など特定の材質や技法には限定しない。"
+    },
+    "hzwt": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "scene"
+      ],
+      "meaning_ja": "その状況で、その記録の表現を適切な読み取り方によって識別し参照できる。現在の特定の読者が手元に持つこと、当該言語を理解すること、全内容への理解や賛同は要求しない。破壊・消失して読めない痕跡を読めるものとして補わない。"
+    },
+    "ca": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "situation"
+      ],
+      "meaning_ja": "activityはその人自身の理性を使う活動の記述である。実行済みの出来事に限定せず、これから行う活動や禁じられた活動も分類できる。"
+    },
+    "cb": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "role",
+        "situation"
+      ],
+      "meaning_ja": "その活動の記述において、その人はその立場で発言・行動する。職業としてその地位にあるだけでは、全活動をその立場に帰属させない。"
+    },
+    "cc": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "audience",
+        "situation"
+      ],
+      "meaning_ja": "その活動の記述が、その相手・公衆に向けられている。実際に何人が聞いたかという人数とは区別する。"
+    },
+    "cd": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "situation"
+      ],
+      "meaning_ja": "その立場は、自分の理性に基づく見解を公衆の検討へ提示する学識者としての立場である。職業名や資格の有無だけによる分類にはしない。一般的な役割の構成からの定義は未完。"
+    },
+    "ce": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "audience",
+        "situation"
+      ],
+      "meaning_ja": "その相手は読者世界全体としての公衆である。個別の職務内の会衆・受講者や、単に人数の多い集まりと同一視しない。"
+    },
+    "cg": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "situation"
+      ],
+      "meaning_ja": "その人が記述された活動を、その状況で実際に行う。活動の種類・想定される立場・許可の存在とは別の事実。"
+    },
+    "h7k": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "addressee",
+        "role",
+        "target_description",
+        "bindings",
+        "polarity",
+        "context"
+      ],
+      "meaning_ja": "指定の規範の出所が、名宛人にその立場で、記述へ同じ順序の引数列を渡した対象内容の指定極性を満たすよう要求する。対象内容が別の規範状態でもよく、その現実の成立とは分ける。"
+    },
+    "h7l": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "addressee",
+        "role",
+        "target_description",
+        "bindings",
+        "polarity",
+        "context"
+      ],
+      "meaning_ja": "指定の規範の出所が、名宛人にその立場で、同じ記述・引数列で指定された内容の極性を積極的に許可する。許可された内容の実行や、義務との同一視を含まない。"
+    },
+    "h242g": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "written_work",
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "この活動の内容上の構成では、同じ記された作品を介して、同じ宛先へ本人の見解を向ける。作品への単なる言及、別の作品の流通、別の宛先への発信では満たさない。書かれた記録と媒体は別に構成する。特定の印刷・製本技術、実際の発信・読了・理解・賛同は含意しない。"
+    },
+    "h243u": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "criterion",
+        "target",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "指定対象が、この固定基準で解釈した同じ評価条件を評価点で満たす。評価条件の適用対象としての妥当性、条件の道徳的正当性、誰かの評価結果への賛同は別である。不明を不充足にしない。"
+    },
+    "h243v": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "criterion",
+        "target",
+        "reference"
+      ],
+      "meaning_ja": "この固定基準では指定条件が、この対象の備えるべき性質・遂行水準を評価する条件として採られている。単なる好き嫌いや無関係な対象の条件を混ぜず、充足・不充足を見て条件を事後選択しない。採用基準が唯一または無条件に正しいとはしない。"
+    },
+    "h243w": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "notes",
+        "remark",
+        "reference"
+      ],
+      "meaning_ja": "指定された注記のまとまりの構成上、この言語的な所見・説明がその一つの部分である。対象事項について明確化・検討・指摘を行う内容の部分であり、無関係な文字列の同居とは区別する。構想された情報的まとまりも対象にでき、外部記録や制作済みを要求しない。"
+    },
+    "h243x": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "remark",
+        "target",
+        "criterion",
+        "content_family",
+        "reference"
+      ],
+      "meaning_ja": "この所見が、同じ対象・評価条件・固定基準を指定の閉じた内容関数へ渡した内容を論点として分析・説明・指摘する。対象一般への言及だけでは足りず、所見全体を短い二値命題一つに限定しない。内容の真理、著者の断定や受け手の同意は要求しない。"
+    },
+    "h243y": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "この活動の構成は、同じ本人が指定された記述作品を自分の所見として作成する活動である。既存の他人の作品を所有すること、別作品の作成とは区別する。分類・計画としての関係であり、活動の実行・制作完了・外部記録の現存は含意しない。"
+    },
+    "h243z": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "work",
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "この活動は指定作品を同じ公衆が取り上げて検討できるよう提供する活動として構成されている。単に作品名を言うこと、別作品の流通、宛先のない保管とは区別する。実際の提供・受領・読了・評価は含意しない。"
+    },
+    "h244b": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "point"
+      ],
+      "meaning_ja": "この評価点で、同じ本人が同じ活動を通じて指定作品の記述を作り出した。単なる実行一般、他人の制作、すでにある作品の所持や複製媒体の移動だけとは区別する。作品の正しさや独創性を含意しない。"
+    },
+    "h244c": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "work",
+        "audience",
+        "point"
+      ],
+      "meaning_ja": "この評価点で、同じ提供活動を通じて指定作品が同じ公衆の検討に供され、取り上げ得る状態になっている。全員の実際の受領・読了・理解・判断・同意は要求しない。単なる活動の生起や非公開の記録だけでは満たさない。"
+    },
+    "h26cs": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "regime",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "この制度配置は、同じ政治的共同体における宗教上の教え・礼拝・奉仕の共同行為を、規則や役割と運営の仕組みによって組織するものとして位置付く。宗教組織という人々の集団、単独の信条文書、個人の内心だけとは区別する。特定教派・現実の採用・真理・正当性は要求せず、配置の現在の存続は別に結ぶ。"
+    },
+    "h26ct": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "field",
+        "regime",
+        "reference"
+      ],
+      "meaning_ja": "同じ制度配置における宗教上の教え・実践・組織運営のあり方を扱う検討領域。今批評が許される話題だけへ縮めず、別制度・一人の無関係な私事や軍事組織の活動へ取り替えない。どの欠点を指摘するか、その真偽や是認は別に記述する。"
+    },
+    "h26cu": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "community",
+        "reference",
+        "candidate",
+        "point"
+      ],
+      "meaning_ja": "同じ固定基準と候補経過のこの点で、この人が同じ政治的共同体の市民に属する。各点での完全な成員範囲を指定し、批評済み・許可済み・学識者の肩書・聖職者・賛成者だけに限らない。選挙権、現代の国籍法、血統を補わず、時点間の加入・離脱も排除しない。人であることは利用側でも確認する。"
+    },
+    "h26cv": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "regime",
+        "community",
+        "reference",
+        "candidate",
+        "point"
+      ],
+      "meaning_ja": "この同じ候補経過のこの点に、指定された同じ宗教上の制度配置が、その政治的共同体で共同行為を組織する秩序として運用・維持されている。法案の検討、過去の一度の採用、別制度の存続、全成員の賛同や服従、正当性とは区別する。いつ導入されたかと存続する期間全体は別に構成する。"
+    },
+    "h26cw": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "regime",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "指定された制度配置の下で同じ共同体の市民に公的な批評の許否を与える制度上の規範の出所。固定基準で同じ出所を追跡し、各人・各時点の許可が得られるよう事後に出所を選び替えない。特定の統治者名・規制担当者やその道徳的正当性を補わず、許可と反対要求はh7l/h7kで同じ内容へ与える。"
+    },
+    "h26cx": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "reference",
+        "candidate",
+        "start",
+        "end"
+      ],
+      "meaning_ja": "この同じ行為に属する決定が、その候補経過で開始から終了までの期限を指定する。期限は導入時の決定内容に含まれ、後から成功した範囲だけを切り出すものではない。日付又は同じ経過で終点を一意に定める条件で指定できるが、単なるいつか・無期限・延長し続ける終点ではない。行為の現実の生起、履歴への所属、前後関係、期間の短さやその間の成立内容は別に検査する。"
+    },
+    "h26cy": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "community",
+        "regime",
+        "reference",
+        "candidate",
+        "start",
+        "end"
+      ],
+      "meaning_ja": "同じ共同体の同じ制度の暫定的な維持を評価する固定基準に照らし、この候補経過の開始から終了までの時間的長さが短い。短長の比較尺度と許容幅は固定基準に属し、許可・実行成功・洞察到達に合わせて広げない。点の個数や語数ではなく時間の長さの文脈的比較であり、原文にない日数・数値の閾値は補わない。期限が指定されること、順序、制度の維持とは別の関係である。"
+    },
+    "h26cz": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "regime",
+        "community",
+        "reference",
+        "candidate",
+        "point"
+      ],
+      "meaning_ja": "この同じ行為が、この候補経過のこの点で、指定された宗教上の制度配置を同じ政治的共同体の運用される秩序として導入する制度的な働きをする。法の採択と別行為の効果、単に既存の制度が同時に存続すること、目的として考えるだけの場合とは区別する。全ての構成要素の歴史上初の発明や、以前の同じ教えの不在は要求しない。行為の生起、法の条項状態、以後の存続・正当性は別に結ぶ。"
+    },
+    "h26c2": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "同じ共同体の宗教上の共同行為を規律する公的な法を比較するとき、固定した評価基準に照らして左の法のよさが右に少なくとも劣らない。規律の内容の改善という本文の文脈で比較し、幸福量・多数の好み・現行権力の承認・唯一の真の宗教へ置き換えない。同じ二対象の比較尺度を反対向きでも保ち、改善成功に応じて変えない。法の規律の成立と本人の期待は別条件である。"
+    },
+    "h26c3": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "activity",
+        "target",
+        "bindings",
+        "reference",
+        "candidate",
+        "anchor"
+      ],
+      "meaning_ja": "同じ行為主体が、同じ活動の計画又は遂行において、渡された閉じた内容族を同じ順序付き個体列・固定基準・候補経過・起点へ適用した内容を達成目標として採用する。hztlの目的志向と同じ区別を保ち、状況を個体へ符号化せず型付き引数で固定する。活動の生起、目標の真理・成功・実現可能性、唯一の動機、全成員の個別の心理的同意は要求しない。"
+    },
+    "h26c4": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "activity",
+        "target",
+        "bindings",
+        "reference",
+        "candidate",
+        "anchor"
+      ],
+      "meaning_ja": "同じ主体が、同じ活動に関わるこの起点で、指定内容の到来を見込み待ち受ける将来志向の態度を持つ。内容は閉じた内容族と同じ個体列・固定基準・候補経過・起点で明示する。単なる願望、起きてもよいという許可、確実な知識、到来の現実の成立とは区別し、数値確率や全可能世界での成立は要求しない。集団へ帰属する場合も全成員の内心の一致は補わない。"
+    }
+  },
+  "definitions": {
+    "hf": "列の各出現について性質の真偽を指示関数で数え、加算する。重複を自動削除しない生の出現数であり、人数として使う条件は別に検査する。",
+    "hg": "個体が列のいずれかの位置に現れる。",
+    "hh": "各個体の出現数が1を超えない。指示関数と加算・比較の意味規約の下で重複を拒否する。",
+    "hi": "重複がなく、列の各個体が指定した母集団の種類に属する。対象の全列挙や非空性はこの条件だけでは主張しない。",
+    "ta": "空でない履歴の状況について、先行関係が非反射的・推移的であり、異なる二状況が比較できる。履歴内の厳密な全順序を要求する。",
+    "rkh": "同じ非空履歴の厳密な全順序上で、基準点以降の指定終点に到達条件が成立し、それより前の全点で維持内容が成立し、到達条件はまだ成立しない。終点は基準点以降の最初の到達点である。終点以後に維持内容が不成立になるとは要求しない。",
+    "r45d": "同じ人々の集団の構成員列mpが人のみからなり重複せず非空で、同じ固定基準の政治的共同体の成員h237cと過不足なく一致する。読者の世界全体ceや局所的な教区の会衆を人民全体と同一視せず、民族的同質性や現代の国籍制度を追加しない。",
+    "r5ei": "同じ固定基準の人民がr45dにより政治的共同体の全成員と過不足なく一致し、同じ法案がその共同体の公的規律h26caであり、条項h26cbの全範囲が非空である枠組み。採択済み・正当とされた案だけへ限定せず、条項内容を実行しない。",
+    "r5ej": "同じr5eiの枠組みの全条項について、閉じたh26ccの規範内容を同じ法・人民・共同体の順の三対象に適用し、同じ点でその規律状態が成立する。全条項に同じ基準・同じ点を使い、別々の時点の成立を合算しない。規律が以前は不在だったという条件を加えない。",
+    "r5ek": "同じ主体・人民・共同体・法律・活動・候補点について、r5ei、採択の行為生起dg、公的な採択判断h26cd、同じ行為による制度上の設定h26ce、同じ全条項状態r5ejを結ぶ。他人や別行為の採択と条項状態の偶然の共存を許さない。",
+    "rqxk": "指定した作品と媒体の間に、その同じ作品を実現し、その同じ媒体に保持され、その同じ状況で参照可能な記録が存在する。三関係の記録を共有する。作品に一つの媒体しかないこと、媒体に一作品しかないこと、作品と写しの同一性は導かない。",
+    "sd": "作品を実現する参照可能な記録が、少なくとも一つの持続する外部媒体に保持される。rqxkで作品・記録・媒体・状況を結ぶ。作品の内容と複製媒体を区別し、特定の人による所持・理解・利用は要求しない。",
+    "zzo": "理性を使う活動を、学識者の立場で、読者世界全体へ向けて行うという分類。活動の実行自体は主張しない。",
+    "zzq": "その人がその活動を実行するという、状況ごとの内容。",
+    "rdu": "同じ指定対象への許可rdtがあり、その反対極性への要求がない。",
+    "r2zi": "本人が人であり、同じ本人の理性使用ca、同じ活動での立場cb、学識者としての立場cd、読者世界全体へ向けるcc/ceを同時に満たす公的使用zzoであるという分類。誰か一人の特定例に限らず、各本人・活動・立場・基準を同じ引数で受ける。実際の実行や全読者の受領は要求しない。",
+    "r3z": "同じ人の学識者としての公的使用r2zi、同じ活動の本来の公衆cc/ce、同じ作品を介してその公衆へ向ける活動構成h242gを結ぶ。作品と外部記録の実在sc/sdはここでは要求せず、候補を実行する結果内のr3yへ委ねる。",
+    "r326": "同じ対象について、固定基準で採用された備えるべき条件h243vが評価点で満たされないh243uという欠点の内容。どの観点で何が不十分かを二引数に分け、未知・無関係な条件・評価点の違いを不充足へ補わない。",
+    "r33a": "注記のまとまりに少なくとも一つの所見があり、その各所見が同じ検討領域とある明示した評価条件についてr326の不充足内容を論点として扱う。個々の所見は説明・分析を持てる。欠点や条件の現実の成立、所見への賛同は要求しない。",
+    "r33d": "本人による同じ作成活動の実行zzq、同じ作品の実際の作成h244b、その記述作品scと外部記録sdを結ぶ内容。計画だけ、別人の作品、別活動での制作を実行済みへ補わない。",
+    "r33e": "本人による同じ提出活動の実行zzqと、同じ記述作品sc・外部記録sd、その公衆の検討に供するh244cを結ぶ内容。目的である公衆の判断の達成は実行条件へ混ぜない。",
+    "r33f": "同じ本人・作成活動・提出活動・注記・公衆について、r33dの作成とr33eの提供を同じ評価点で結ぶ内容。これは両実行の接続であり、各活動への規範的保護や先後の時刻を追加しない。",
+    "r33g": "本人・作成活動・注記の正確な三個体列からr33dの作成実行内容を構成する。順序と長さを保ち、作品の作成と外部記録を含む対象を閉じた記述として扱う。",
+    "r33h": "本人・提出活動・注記・公衆の正確な四個体列からr33eの提出実行内容を構成する。提出の目的である読者の判断を実行条件へ追加しない。",
+    "r33i": "本人・作成活動・提出活動・注記・公衆の正確な五個体列からr33fの両実行内容を構成する。作成と提出の単独内容r33g/hとは別に追跡する。",
+    "r5e5": "同じ政治的共同体・宗教上の制度・評価点の市民について、その制度の同じ検討領域への非空の欠点所見r33a、自分の作成活動h243yと学識者の使用r2zi、同じ作品を同じ本来の公衆へ書面で提供するr3z/h243zを結ぶ候補。制作済み・許可・欠点の真理・読者判断の達成や目的を選別条件にしない。",
+    "r5e6": "同じ市民の同じ学識者の立場に、同じ制度の規範出所h26cwから、所見の作成r33g、同じ公衆への提出r33h、両方r33iのそれぞれについてrduの衝突のない積極的許可がある。全てに同じ点・本人・作品・活動を使い、両実行の許可だけで片方の禁止を見落とさない。実行は引用したまま扱う。",
+    "r5e7": "同じ市民・制度・共同体・基準・候補点について、公的な批評の候補r5e5が少なくとも一つあり、その全候補に同じr5e6の自由がある。既に書けた所見や許可された活動だけへ範囲を絞らず、空の候補範囲を自由としない。",
+    "r5fa": "同じ制度がh26csの宗教上の配置であり、その点の全市民h26cuについて、人であることと、その本人のr5e7の批評の自由を要求する。市民の帰属を固定基準の一時点の名簿に凍結せず、同じ候補の各評価点で追う。市民が一人もいない場合の普遍条件から市民の存在を追加しない。",
+    "r5fb": "同じ共同体・制度・固定基準・候補経過・評価点で、その制度がh26cvにより存続し、全市民への批評の自由r5faがある。別制度や別時点の存続と自由を合算しない。導入や期間全体はこの一点の条件とは別である。",
+    "r5fc": "同じ共同体・制度・固定基準・候補経過を固定したr5fbの時間内容。後続の期間・到達条件の構成へ渡せるが、この内容を作るだけで全期間の成立、最初の到達点、改正や廃止を主張しない。",
+    "r5fd": "同じ固定基準・候補経過の完全な履歴h257z/icがtaの厳密全順序をなし、開始と終了がともにその履歴に属し、開始が終了より厳密に先である非零の有界期間。外部点、逆転、循環、欠けた順序、瞬間だけの空期間を拒む。離散時間や終点後の廃止は要求しない。",
+    "r5fe": "同じr5fdの期間が同じ導入行為の決定で指定されh26cx、その同じ期間が固定基準で短いh26cy。順序だけから短さを導かず、単に短いだけで一定の期限が定まっているとしない。",
+    "r5ff": "同じ主体・人民・共同体・法・活動・基準・候補・開始点について、全条項を含む公的採択r5ek、その共同体の宗教上の配置h26cs、その同じ行為による同じ制度の導入h26czを結ぶ。主体を人民へ束縛すれば自己賦課の導入例となるが、この定義自体は主体一般である。",
+    "r5fg": "同じr5fdの期間の開始を含み終了を含まない全履歴点に、同じ制度・共同体・基準・候補のr5fc、すなわち制度存続と各点の全市民の書面批評の自由を要求する。都合のよい点の部分集合へ縮めず、開始時だけの許可や別制度・別経過の維持では満たさない。終点自体とその後の継続・廃止は決めない。",
+    "r5fh": "同じ採択活動による制度導入r5ffと、その活動の指定した短い期間r5fe、その全期間の同じ制度と全市民の批評の維持r5fgを結ぶ。一つの候補の中での内容であり、現実の導入・規範的許可・目的・期待・洞察到達をこの連言から追加しない。",
+    "r5fi": "同じr5fhの指定期間の終了が、渡された同じ到達内容の開始以後の最初の成立点であることをrkhで結ぶ。制度と批評はそこまで維持され、未到達のまま無期限に続くrkjの分岐はない。具体的な洞察内容は呼出側で与え、全候補や現実で到達するという予言にはしない。",
+    "r5fj": "同じ共同体の公的な法として元の法と別の法を分類し、固定基準で双方の自己比較と、新しい法が元の法以上・逆は不成立という厳密な改善を要求する。r5ejで同じ完全な人民に対する改善法の非空の全条項の規律が同じ点に成立する。単なる別名・同程度・比較不能・悪化では足りず、元の法の完全な廃止や特定教派は要求しない。",
+    "r5fk": "正確な人民・共同体・元の法の三個体列と基準・候補・起点から、その候補の完全な順序履歴に属する起点より後の点でr5fjの改善法の全条項の規律が成立するという時間内容を作る。改善法は引用した内容の内側で存在量化し、期待する時点に特定の後継法が成立していることを要求しない。",
+    "r5fl": "正確な活動・共同体・制度の三個体列と基準・候補・起点から、同じ有効な履歴の起点以後に、その同じ活動が生起し、同じ宗教制度を導入して実施状態にする内容を作る。法の採択資格や全条項はこの目的内容へ重ねず、実際の採択は外側で別に結ぶ。",
+    "r5fm": "同じ主体・活動が、同じ活動・共同体・制度の三個体列と同じ基準・候補・起点によるr5flを目的として採用する。目的を引用したまま扱い、たまたま制度が導入されたことから目的を導かない。",
+    "r5fn": "同じ主体・活動が、同じ人民・共同体・元の法の三個体列と同じ基準・候補・起点によるr5fkを期待する字義的な描写。本文のgleichsamに対応する見立ての描写側に使う部品であり、暫定的な制度を実施する内容そのものには連言しない。",
+    "r5fo": "同じ主体・人民・共同体・法・制度・採択活動・基準・候補・開始と終了について、r5fhの一定の短期の制度導入と批評の維持に、同じ開始を起点とするr5fmの導入目的を加える。期待の字義内容r5fn、よりよい制度の実現、全人民の一致した内心は要求しない。",
+    "r5fp": "同じr5foに、指定した到達内容が同じ期限で初めて成立するr5fiを接続する。短期・採択・導入・目的・継続・到達の各条件を同じ候補と同じ活動へ保持する。具体的な洞察内容と全文の可能性・談話帰属は呼出側に残る。"
+  },
+  "imported_symbols": {
+    "aa": "data/temporary-institution-basis-v1.json",
+    "ha": "data/temporary-institution-basis-v1.json",
+    "hc": "data/temporary-institution-basis-v1.json",
+    "hd": "data/temporary-institution-basis-v1.json",
+    "hf": "data/temporary-institution-basis-v1.json",
+    "hg": "data/temporary-institution-basis-v1.json",
+    "hh": "data/temporary-institution-basis-v1.json",
+    "hi": "data/temporary-institution-basis-v1.json",
+    "ta": "data/temporary-institution-basis-v1.json",
+    "ic": "data/temporary-institution-basis-v1.json",
+    "mp": "data/temporary-institution-basis-v1.json",
+    "dg": "data/temporary-institution-basis-v1.json",
+    "rkh": "data/temporary-institution-basis-v1.json",
+    "h237c": "data/temporary-institution-basis-v1.json",
+    "r45d": "data/temporary-institution-basis-v1.json",
+    "h257z": "data/temporary-institution-basis-v1.json",
+    "h26ca": "data/temporary-institution-basis-v1.json",
+    "h26cb": "data/temporary-institution-basis-v1.json",
+    "h26cc": "data/temporary-institution-basis-v1.json",
+    "h26cd": "data/temporary-institution-basis-v1.json",
+    "h26ce": "data/temporary-institution-basis-v1.json",
+    "r5ei": "data/temporary-institution-basis-v1.json",
+    "r5ej": "data/temporary-institution-basis-v1.json",
+    "r5ek": "data/temporary-institution-basis-v1.json",
+    "sc": "data/temporary-institution-basis-v1.json",
+    "hzwr": "data/temporary-institution-basis-v1.json",
+    "hzws": "data/temporary-institution-basis-v1.json",
+    "hzwt": "data/temporary-institution-basis-v1.json",
+    "rqxk": "data/temporary-institution-basis-v1.json",
+    "sd": "data/temporary-institution-basis-v1.json",
+    "ca": "data/temporary-institution-basis-v1.json",
+    "cb": "data/temporary-institution-basis-v1.json",
+    "cc": "data/temporary-institution-basis-v1.json",
+    "cd": "data/temporary-institution-basis-v1.json",
+    "ce": "data/temporary-institution-basis-v1.json",
+    "cg": "data/temporary-institution-basis-v1.json",
+    "zzo": "data/temporary-institution-basis-v1.json",
+    "zzq": "data/temporary-institution-basis-v1.json",
+    "rdu": "data/temporary-institution-basis-v1.json",
+    "h7k": "data/temporary-institution-basis-v1.json",
+    "h7l": "data/temporary-institution-basis-v1.json",
+    "r2zi": "data/temporary-institution-basis-v1.json",
+    "h242g": "data/temporary-institution-basis-v1.json",
+    "r3z": "data/temporary-institution-basis-v1.json",
+    "h243u": "data/temporary-institution-basis-v1.json",
+    "h243v": "data/temporary-institution-basis-v1.json",
+    "h243w": "data/temporary-institution-basis-v1.json",
+    "h243x": "data/temporary-institution-basis-v1.json",
+    "h243y": "data/temporary-institution-basis-v1.json",
+    "h243z": "data/temporary-institution-basis-v1.json",
+    "h244b": "data/temporary-institution-basis-v1.json",
+    "h244c": "data/temporary-institution-basis-v1.json",
+    "r326": "data/temporary-institution-basis-v1.json",
+    "r33a": "data/temporary-institution-basis-v1.json",
+    "r33d": "data/temporary-institution-basis-v1.json",
+    "r33e": "data/temporary-institution-basis-v1.json",
+    "r33f": "data/temporary-institution-basis-v1.json",
+    "r33g": "data/temporary-institution-basis-v1.json",
+    "r33h": "data/temporary-institution-basis-v1.json",
+    "r33i": "data/temporary-institution-basis-v1.json",
+    "h26cs": "data/temporary-institution-basis-v1.json",
+    "h26ct": "data/temporary-institution-basis-v1.json",
+    "h26cu": "data/temporary-institution-basis-v1.json",
+    "h26cv": "data/temporary-institution-basis-v1.json",
+    "h26cw": "data/temporary-institution-basis-v1.json",
+    "r5e5": "data/temporary-institution-basis-v1.json",
+    "r5e6": "data/temporary-institution-basis-v1.json",
+    "r5e7": "data/temporary-institution-basis-v1.json",
+    "r5fa": "data/temporary-institution-basis-v1.json",
+    "r5fb": "data/temporary-institution-basis-v1.json",
+    "r5fc": "data/temporary-institution-basis-v1.json",
+    "h26cx": "data/temporary-institution-basis-v1.json",
+    "h26cy": "data/temporary-institution-basis-v1.json",
+    "h26cz": "data/temporary-institution-basis-v1.json",
+    "r5fd": "data/temporary-institution-basis-v1.json",
+    "r5fe": "data/temporary-institution-basis-v1.json",
+    "r5ff": "data/temporary-institution-basis-v1.json",
+    "r5fg": "data/temporary-institution-basis-v1.json",
+    "r5fh": "data/temporary-institution-basis-v1.json",
+    "r5fi": "data/temporary-institution-basis-v1.json"
+  },
+  "import_source_sha256": {
+    "data/temporary-institution-basis-v1.json": "0a4216d50d8c32ec2a62e2bf491f666cd3314d0594d66865d0769ce72daf03a3",
+    "examples/v016/temporary-institution.noema": "94e47fbb094176ba9bfb1e0be8c987b4cf82dc0fd12fff91914021efaa1cd681"
+  },
+  "limitations": [
+    "u0013第七文[1437,2309)の期待と導入目的の依存群。um eine gewisse Ordnung einzuführenは同じ採択行為による同じ宗教上の制度の導入目的と読む。一定の秩序という不定の対象は全文の量化で指定し、特定教派の固有名を補わない。",
+    "eines bessernの省略された対象を、直前のein solches Gesetzを受けるよりよい法と読む。Ordnungは女性名詞であり、einesの形と直前の中性名詞Gesetzからこの照応を採る。これは文脈と語形に基づく明示読解で、法と制度配置を同一個体に潰さない。よりよさは固定文脈での厳密な比較として分け、評価基準をこの語だけから一意に決定したとはしない。",
+    "gleichsam in der Erwartungは暫定制度を、よりよい法を待つものになぞらえる挿入的な提示と読む。その字義的な期待内容をr5fnへ構成し、実際の全市民の心理状態としてr5fo/r5fpへ連言しない。見立てと同じ本文対象・著者の対応は全文統合で別に接続する必要がある。",
+    "期待は同じ主体・活動についての将来志向の態度として意味を明示する。旧riの選んだ全予想候補での成立という確信的なモデルを、この挿入句にそのまま課さない。期待内容の未来性・改善比較・実施対象はNoemaで構成するが、心理機構や期待の正当性の一般理論を証明するものではない。",
+    "目的と期待の内容族は、個体列と三つの状況引数を分ける。目的は段階0、全条項を評価するr5ejを含む期待対象は段階1の閉じた内容族を引用し、基準・候補・起点の値を個体に偽装したり、実行時に文字列の引用を生成したりしない。態度の成立から引用内容を実行しない。",
+    "目的の実現と導入事実は論理的に別である。本文の仮定候補ではr5fhが実際の導入を別途要求し、r5fmは同じ導入活動の目的を要求する。改善法の到来は目的内容に混ぜず、終点で旧制度が廃止される条件も追加しない。",
+    "公的洞察・確証・共同提案に足りる程度、保護・非妨害、聖職者への取り立て、可能性・wohl・Nun・gleichsamの談話帰属と全文通読は残る。確認済み文字数は増やさない。"
+  ]
+}
