@@ -1,0 +1,8 @@
+from scripts.check_progress_indications_sentence import depiction_checks,component_checks,source_checks,indication_checks,discourse_checks,structure_checks
+
+def test_newly_open_physical_depiction():depiction_checks()
+def test_same_progress_and_both_components():component_checks()
+def test_closed_indication_settings():source_checks()
+def test_fallible_plural_indications():indication_checks()
+def test_fourth_stage_attribution_and_discourse():discourse_checks()
+def test_sentence_reading_and_preserved_reviews():structure_checks()
