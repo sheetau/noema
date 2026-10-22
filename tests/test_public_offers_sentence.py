@@ -1,0 +1,8 @@
+from scripts import check_public_offers_sentence as check
+
+def test_other_people_are_outside_the_same_prior_scope():check.other_scope_checks()
+def test_every_unrestricted_other_gets_the_same_freedom():check.other_permission_checks()
+def test_all_clerical_bindings_are_quantified():check.clerical_quantifier_checks()
+def test_same_source_reference_and_both_clauses():check.source_checks()
+def test_attribution_contrast_and_a_fortiori_do_not_execute_content():check.discourse_checks()
+def test_source_fragments_and_inherited_evidence():check.structure_checks()
