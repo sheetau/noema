@@ -1,0 +1,9 @@
+from scripts.check_religious_freedom_policy import content_checks,norm_checks,interference_checks,policy_checks,duty_checks,adapter_checks,structure_checks
+
+def test_personal_religious_content():content_checks()
+def test_two_polarities_and_positive_permissions():norm_checks()
+def test_same_agent_interference_and_choice():interference_checks()
+def test_every_person_every_choice_and_assessment():policy_checks()
+def test_duty_self_judgment_and_policy_are_independent():duty_checks()
+def test_exact_bindings_and_quotation_levels():adapter_checks()
+def test_fixed_source_preserved_main_and_reviews():structure_checks()
