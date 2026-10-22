@@ -1,0 +1,9 @@
+from scripts.check_conscience_choice import classification_checks,reasoning_checks,binding_checks,choice_checks,native_policy_checks,universal_checks,structure_checks
+
+def test_person_specific_conscience_matters():classification_checks()
+def test_own_reasoning_without_success_requirement():reasoning_checks()
+def test_exact_binding_sequences_and_role():binding_checks()
+def test_permissions_requirements_and_actual_interference():choice_checks()
+def test_complete_native_policy_and_quote():native_policy_checks()
+def test_every_person_matter_and_judgment_candidate():universal_checks()
+def test_closed_beneficiary_state_and_preserved_parents():structure_checks()
