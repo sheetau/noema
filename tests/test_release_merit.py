@@ -1,0 +1,8 @@
+from scripts.check_release_merit import ground_checks,praise_checks,merit_checks,binding_checks,structure_checks
+
+
+def test_closed_first_release_preserves_all_arguments_and_rank():ground_checks()
+def test_native_rank_one_grateful_praise_is_nonfactive():praise_checks()
+def test_true_ground_and_all_nonempty_standards_without_performance():merit_checks()
+def test_same_release_benefit_both_cohorts_and_qualified_prince():binding_checks()
+def test_prior_meanings_structure_and_evidence_preserved():structure_checks()
