@@ -1,0 +1,11 @@
+from scripts import check_faculty_development_room as check
+
+
+def test_named_faculty_owned_used_and_all_reasoned_task_matters():check.faculty_goal_checks()
+def test_complete_task_range_and_every_history_point_keeps_regime():check.endpoint_checks()
+def test_assessed_development_method_is_separate_from_task_execution():check.development_checks()
+def test_all_faculties_can_include_already_full_faculties():check.scope_checks()
+def test_current_low_regime_and_every_low_intervention_solution():check.causal_room_checks()
+def test_fixed_scopes_and_callback_arguments():check.adapter_checks()
+def test_same_barrier_targets_and_combined_content():check.content_checks()
+def test_preserved_meanings_provenance_roundtrips_and_ranks():check.structure_checks()
