@@ -1,0 +1,6 @@
+from scripts import check_retrospective_emphasis as check
+
+
+def test_maximum_priority_allows_ties_but_not_incomparable_topics():check.maximum_checks()
+def test_actual_prior_choice_and_current_emphasis_without_concept_execution():check.retrospective_checks()
+def test_inherited_concept_and_notation_are_preserved():check.structure_checks()
