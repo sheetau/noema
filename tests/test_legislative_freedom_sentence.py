@@ -1,0 +1,8 @@
+from scripts import check_legislative_freedom_sentence as check
+
+
+def test_general_condition_and_same_named_royal_example():check.content_checks()
+def test_embedded_permission_and_safety_focuses():check.focus_checks()
+def test_all_discourse_bindings_without_executing_quoted_contents():check.discourse_checks()
+def test_entire_ninth_paragraph_without_gaps_or_double_counting():check.paragraph_checks()
+def test_inherited_reviews_meanings_annotations_and_quote_ranks():check.structure_checks()
