@@ -1,0 +1,158 @@
+{
+  "status": "each_feared_adverse_prospect_requires_available_grounds_partial",
+  "document": "examples/v016/prospect-grounded-apprehension.noema",
+  "primitives": {
+    "h26u4": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "episode",
+        "point"
+      ],
+      "meaning_ja": "同じ本人がこの評価点でこの心理状態を経験している。状態の名前、他人の状態、単なる傾向から現実の経験を補わない。"
+    },
+    "h26u5": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "episode",
+        "topic",
+        "point"
+      ],
+      "meaning_ja": "この心理状態が同じ点で指定の閉じた性質記述を対象としている。記述の真理や対象の実在を要求せず、同じ外延の別記述へ対象関係を自動移転しない。"
+    },
+    "h26u6": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "episode",
+        "point"
+      ],
+      "meaning_ja": "この心理状態には同じ点で不快な情動が伴う。不利益の冷静な予測、単なる否定判断、回避した事実とは分ける。"
+    },
+    "h26u7": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "episode",
+        "point",
+        "prospect"
+      ],
+      "meaning_ja": "この心理状態で同じ評価点に恐れの対象として具体的に予期している候補経過。思い浮かべただけの可能性や本人が除外している仮定は含めない。実際の未来や確実視とは分け、根拠の有無によって候補を選別しない。"
+    },
+    "h26va": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "reference",
+        "prospect"
+      ],
+      "meaning_ja": "同じ固定評価基準で、この候補経過の実現はこの本人にとって不利益となる。候補での評価であり、現在又は実際の未来の害、他人だけの不利益を意味しない。"
+    },
+    "h26vb": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "reason",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ固定基準で、この評価点に本人が検討の根拠として利用できる理由。世界のどこかに存在するだけの資料、他人にだけ利用可能な理由と分ける。実際の採用や判断の正しさは要求しない。"
+    },
+    "h26vc": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "reason",
+        "topic",
+        "reference",
+        "point",
+        "prospect"
+      ],
+      "meaning_ja": "同じ本人・対象記述・固定基準・評価点について、この理由は、この不利益候補を恐れの対象として見込む十分な認識的根拠になる。利用可能な反対証拠による敗北も同じ基準で考慮する。感情が発生した原因、本人の確信、単なる理由の存在、演繹的証明、実際の害とは区別する。支持の十分性は固定した解釈入力であり、未評価を支持の不在へ変換しない。"
+    }
+  },
+  "definitions": {
+    "rvv": "同じ本人・情動状態・対象記述・基準文脈について、既存rvmの不快な不利益予期を状態ごとに取り出す。",
+    "rvw": "本人が基準文脈で利用できる理由があり、その理由が同じ対象記述について、同じ状態で予期する不利益候補の少なくとも一つを支持する。支持の対象を別の記述や候補で代用しない。",
+    "rvx": "rvvを満たす状態のうち、rvwを満たさない状態が少なくとも一つある。別の情動状態への理由でこの状態を根拠付けない。",
+    "rvy": "全対象記述についてrvxが成立しない。恐れ全般の不在ではなく、理由に支えられない不利益予期の不在という候補。有限の話題一覧には限定しない。",
+    "r6en": "同じ本人・対象記述・評価点・一つの候補経過について、利用できる理由の少なくとも一つがその同じ候補を支持する。別候補の理由を流用しない。",
+    "r6eo": "同じ情動状態で予期され本人に不利益なこの候補について、r6enの利用可能な支持理由がない。情動の経験・対象・不快さはr6epで結ぶ。",
+    "r6ep": "同じ本人・情動状態・対象記述・点に既存rvvの不快な不利益予期があり、その同じ状態の候補にr6eoが少なくとも一つある。支持される別候補が混在していても、支持のない候補を見落とさない。",
+    "r6eq": "同じ本人・対象記述・点にr6epを満たす情動状態が存在する。別状態の根拠は当該候補への支持にならない。",
+    "r6er": "全ての閉じた対象性質記述についてr6eqがない。根拠のある恐れや実際の害を否定せず、実行器が列挙できない記述全域を有限標本に置き換えない。",
+    "r6es": "同じ本人・対象記述・固定基準について、r6eqへ経験・対象・情動・候補・不利益・利用可能性・支持の各関係を接続し、その不成立を点ごとに返す。固定基準を変えて支持を借用しない。",
+    "r6et": "r6esと同じ具体的な七関係・本人・固定基準でr6erの全対象範囲を接続する。影の比喩を根拠のない恐れの不在とする読みの内容候補であり、字義的な影、啓蒙、軍隊、発言能力はここから導かない。"
+  },
+  "imported_symbols": {
+    "rvv": "data/supported-apprehension-basis-v1.json",
+    "rvw": "data/supported-apprehension-basis-v1.json",
+    "rvx": "data/supported-apprehension-basis-v1.json",
+    "rvy": "data/supported-apprehension-basis-v1.json"
+  },
+  "import_source_sha256": {
+    "examples/v016/supported-apprehension.noema": "b603f613f5835177b16666805f770269a484eafe6e7fafd13208dd26242157fe",
+    "data/supported-apprehension-basis-v1.json": "64d479cc2c29d275faf3b15264da82082cdde6e02e8df8fffcf6689be7245d82"
+  },
+  "limitations": [
+    "u0017第一文のsich nicht vor Schatten fürchtetを、本人が対象として恐れる不利益候補の各々に利用可能な認識的根拠があるという明示的な読みで進める。関連するAdelungの慣用表現は補助であり、カントの意図の唯一性を証明しない。",
+    "旧rvyは一状態に支持される候補が一つあれば足りた。この群は各恐れられる不利益候補について支持を要求する強い読みで、旧定義・旧判断・本文を変更せず別識別子に置く。",
+    "理由は恐れの心理的発生原因ではなく候補を見込む認識的根拠。支持されても害が実現しないことがあり、根拠なく恐れた害が実現することもある。感情の強さの適切さ、身体反応、全知、無謬性、生涯の性格は要件にしない。",
+    "心理状態の対象は個体性質の閉じた構文で表す既存rvvを再利用する。全記述への量化を保持し、検査ではその本体を明示した二記述に適用する。全域の直接評価は拒否する。",
+    "一般現在の人物条件への束縛、比喩対応と否定の談話上の提示、selbst aufgeklärtの宗教から立法への範囲、軍隊・平穏・Freistaat・引用命令・第一文全体はまだ未統合。確認文字数は増やさない。"
+  ]
+}

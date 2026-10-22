@@ -1,0 +1,7 @@
+from scripts import check_prospect_grounded_apprehension as check
+
+
+def test_each_adverse_prospect_and_same_episode():check.prospect_checks()
+def test_grounding_uses_same_person_topic_reference_point_and_prospect():check.binding_checks()
+def test_full_description_domain_is_not_replaced_by_samples():check.domain_checks()
+def test_source_collation_provenance_and_notation_roundtrips():check.structure_checks()
