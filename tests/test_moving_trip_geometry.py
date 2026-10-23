@@ -1,0 +1,7 @@
+from scripts.check_moving_trip_geometry import numeric_checks,comotion_checks,path_checks,connection_checks,structure_checks
+
+def test_intersections_and_two_elapsed_equations():assert numeric_checks()['two_intersections_match_existing_elapsed_equations_on_exact_rationals']
+def test_comotion_full_histories_and_unsampled_time_domain():assert comotion_checks()['full_real_time_domain_refused']
+def test_same_light_endpoints_and_all_complete_paths():assert path_checks()['native_sde_and_sb_same_three_events']
+def test_current_records_comoving_observers_and_quoted_test():assert connection_checks()['criterion_application_does_not_execute_midpoint_or_qo']
+def test_prior_meaning_judgments_and_source_preserved():assert structure_checks()['prior_meanings_and_review_preserved']
