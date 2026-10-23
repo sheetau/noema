@@ -1,37 +1,40 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v207.json",
-  "progress_report": "reports/written-progress-v186.json",
+  "review_index": "data/semantic-review-index-v208.json",
+  "progress_report": "reports/written-progress-v187.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0001–u0003",
-    "scope": "カントは明示した解釈の下で全20単位・15,513非空白文字の意味判断を完了した。次はアインシュタインの正本einstein-density-origins.noemaとbasisの既存206主張を確認し、冒頭の表題u0001・著者u0002・磁石と導体の導入段落u0003から原刊との照合と意味要件の整理を進める。既存草案の対応率54.23%を意味完成率とせず、部分記述・数式対応・全文の判断を区別する。まず原刊891頁、保存済み原文・単位表、既存本文の該当主張と依存定義を照合し、不足する関係を再利用可能な単位で構成する。既存0.14正本を必要なく一括移行しない。カントの最終文は123番目の主張、段落選択119–122、登録簿v207。カントの次の未使用名はr6mt・h27esだが、アインシュタイン側の名前空間を先に確認する。",
+    "unit": "einstein-1905:u0001・u0003",
+    "scope": "アインシュタイン冒頭891頁の表題・著者表示・導入第一段落を原刊画像と照合済み。u0002の著者表示は一般定義rqqxを0.14のeiaaへ同じ本体・意味で移し、既存著者rdへ接続した。正本207主張、登録簿v208、u0002全14非空白文字の判断を登録済み。次はdata/einstein-opening-obligations-v1.jsonの要件に従い、表題と導入に共通する物体の運動・静止・相対運動を構成する。既存worldlinesのzzbu（単位付き座標）・zzbv（対象と出来事）・sa/sb/sd/se、占有zk/zo、物体zm、別語彙接続sepw/sepxが再利用候補。点状対象の軌跡を延長のある物体へ説明なしに置き換えず、同じ物質点・評価系・時間範囲を保持する。占有集合の不変だけでは対称形の回転や内部運動を排除できない。weは光放出時の運動の入力、zneは電磁気学の分野参照であり一般概念の完成ではない。運動の合成後は磁石・導体・電磁相互作用と通常の理解への帰属へ進む。導入の五文は[0,209),[210,307),[308,549),[550,770),[771,1203)。全段落1023非空白文字は未完。新しいEinstein側の名前はeiaa/eiab・eira–eirgを使用済み。",
     "start_here": [
+      "data/einstein-opening-obligations-v1.json",
+      "docs/einstein-opening-v1.md",
+      "data/einstein-opening-source-reading-v1.json",
+      "data/einstein-author-credit-basis-v1.json",
+      "scripts/compose_worldlines.py",
       "docs/einstein-reconciliation-v1.md",
-      "docs/density-origins-v1.md",
-      "data/einstein-density-origins-basis-v1.json",
-      "examples/v014/einstein-density-origins.noema",
-      "artifacts/written-units-v1/einstein-1905.json",
-      "reports/written-sources-v1.json",
-      "docs/semantic-review-v1.md"
+      "scripts/compose_einstein_author_credit.py"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/collective-return-sentence-v1.json",
-    "whole_unit_reviews": 20,
+    "language_checkpoint": "reports/einstein-author-credit-v1.json",
+    "whole_unit_reviews": 21,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/government-causal-extension-v1.json",
-    "source_collation": "data/tenth-paragraph-source-reading-v1.json",
+    "dependency_checkpoint": "data/einstein-opening-obligations-v1.json",
+    "source_collation": "data/einstein-opening-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
-    "paragraph_checkpoint": "reports/tenth-paragraph-v1.json"
+    "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
+    "einstein_whole_unit_reviews": 1,
+    "einstein_reviewed_nonblank_characters": 14,
+    "einstein_review_checkpoint": "reports/einstein-author-credit-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は0/282。部分草案209単位・原文対応19,314/35,614非空白文字（54.23%）であり、二作品の目標は未完。",
+    "アインシュタインの全単位意味確認は1/282・14/35,614非空白文字（著者表示のみ）。部分草案210単位・原文対応19,328/35,614非空白文字（54.27%）。表題と導入段落・本文全体は未完であり、二作品の目標は継続中。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
