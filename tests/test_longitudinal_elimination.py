@@ -1,0 +1,11 @@
+from scripts.check_longitudinal_elimination import relative_checks,origin_join_checks,elimination_checks,presentation_checks,structure_checks
+
+def test_same_time_relative_motion_over_entire_interval():assert relative_checks()['full_real_time_pair_quantification_refused']
+
+def test_current_origin_and_same_ray_measurements():assert origin_join_checks()['current_origin_position_vt_and_auxiliary_ray_coordinate_bound']
+
+def test_native_time_elimination_without_fixing_phi():assert elimination_checks()['native_sni_snh_snj_and_same_event_elimination_checked']
+
+def test_contrast_consequence_and_substitution_attribution():assert presentation_checks()['quoted_contents_not_executed']
+
+def test_prior_judgments_and_source_reading():assert structure_checks()['prior_whole_unit_judgment_preserved']
