@@ -1,0 +1,7 @@
+from scripts.check_conductor_cases import logical_checks,binding_checks,capacity_checks,current_separation_checks,structure_checks
+
+def test_comparison_condition_and_nonvacuous_cases():logical_checks()
+def test_all_comparison_slots_and_both_conductor_contexts():binding_checks()
+def test_separate_successful_capacity_trials():capacity_checks()
+def test_actual_currents_do_not_inherit_capacity_thresholds():current_separation_checks()
+def test_preserved_manuscript_and_source_references():structure_checks()
