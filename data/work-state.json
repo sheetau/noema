@@ -1,45 +1,44 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v322.json",
-  "progress_report": "reports/written-progress-v300.json",
+  "review_index": "data/semantic-review-index-v323.json",
+  "progress_report": "reports/written-progress-v301.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0117（静止系に静止する物体を運動系から見た同じ結果）",
-    "scope": "実装親はexamples/v014/einstein-speed-boundary-forecast.noema、意味規約data/speed-boundary-forecast-basis-v1.json、識別表記data/speed-boundary-forecast-identifiers-v1.json。336主張・全119単位を登録簿v322・監査v300で確認した。u0116全三文511本文文字・M0201–M0206の判断はdata/einstein-shape-dimension-u0116-review-v1.json、選択主張332–335に固定。次のu0117は同じ原刊903頁のEs ist klarからwerden. —まで。Kに静止する別の適格物体をkから見る場合にも同じ結果が成り立つ、という著者の明白さの提示を構成する。同じ物体をK/k双方に静止させず、物体の静止系・観測系・現在の全物質点記録と各系の同時刻を入れ替える。ejgj/ejgp/ejgm/ejgqは現在のK/kと正X速度を固定しているため、そのまま再利用せず必要な引数化を新定義で行う。eipfも正X速度専用で、逆向きの運動は符号付き成分を持つ全点履歴へ結ぶ。数学側のstv/stw/sreは符号付き速度を扱い、幅は速度の二乗に依存する。同じ結果の範囲を直前の形状・三軸寸法と明示した境界の読みから点検し、単に同じという原始記号や前文引用だけで代用しない。ist klarには既存zdg（compose_reciprocal_claim.py）が候補。未使用定義ejhw、原始記号eisoi。数値検査では古い演算別名zzbb/zzbd/zzbgを明示し、定義域外でも評価される補助項には明示した境界を置く。",
+    "unit": "einstein-1905:u0118（kの原点の時計の設定と進み方の問い）",
+    "scope": "実装親はexamples/v014/einstein-reciprocal-shape-results.noema、意味規約data/reciprocal-shape-results-basis-v1.json、識別表記data/reciprocal-shape-results-identifiers-v1.json。337主張・全120単位を登録簿v323・監査v301で確認した。u0117全137本文文字の判断はdata/einstein-reciprocal-shape-u0117-review-v1.json、主張336へ固定。次のu0118はWir denken uns fernerからWie schnell geht diese Uhr, vom ruhenden System aus betrachtet?までの二文。原刊903頁末から904頁へ続くため、保存済み903頁に加えて904頁の原本を取得・照合する。M0207=t、M0208=τ、M0209=k、M0210=τ。同じ一つの時計がKに静止した場合にt、kに静止した場合にτを示せるという能力は、別の代替設定として構成する。実際の設定はkの座標原点に置きτを示す校正であり、同時に二系に静止させない。考察への追加ferner、選択する時計群、実際の原点・全履歴・全局所表示・各系の現在座標と校正へ接続する。二文目はKから見た同じ時計の進み方の問いであり、後続の√(1−(v/V)²)を答えとして先に埋めない。旧compose_origin_clock.pyのsuz/sve/svdとzidは代替能力・設定・問いの草案があるが、x4/shdなど旧境界を使うので現在の全点履歴・現在記録・局所時刻へ接続し直す。compose_clock_site_time.py、compose_clock_definition_scope.pyの現在の時計・局所表示・時刻規約を再利用する。u0119以降の方程式と進み率の導出は次の範囲。未使用定義ejij、原始記号eisoi。",
     "start_here": [
-      "scripts/review_shape_dimension_paragraph.py",
-      "scripts/compose_material_shape_dimensions.py",
-      "scripts/compose_directional_contraction_claim.py",
-      "scripts/compose_planar_shape_limit.py",
-      "scripts/compose_speed_boundary_forecast.py",
-      "scripts/compose_shape_contraction.py",
+      "scripts/compose_origin_clock.py",
+      "scripts/check_origin_clock.py",
+      "scripts/compose_clock_site_time.py",
+      "scripts/compose_clock_definition_scope.py",
       "scripts/compose_rod_methods.py",
-      "scripts/compose_reciprocal_claim.py",
+      "scripts/compose_final_transform_claim.py",
+      "data/einstein-reciprocal-shape-u0117-review-v1.json",
       "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/speed-boundary-forecast-v1.json",
-    "whole_unit_reviews": 139,
+    "language_checkpoint": "reports/reciprocal-shape-results-v1.json",
+    "whole_unit_reviews": 140,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/planar-shape-limit-v1.json",
-    "source_collation": "data/einstein-speed-boundary-forecast-source-reading-v1.json",
+    "dependency_checkpoint": "reports/einstein-shape-dimension-paragraph-review-v1.json",
+    "source_collation": "data/einstein-reciprocal-shape-results-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
-    "einstein_whole_unit_reviews": 119,
-    "einstein_reviewed_nonblank_characters": 17834,
-    "einstein_review_checkpoint": "reports/einstein-shape-dimension-paragraph-review-v1.json",
+    "einstein_whole_unit_reviews": 120,
+    "einstein_reviewed_nonblank_characters": 17971,
+    "einstein_review_checkpoint": "reports/einstein-reciprocal-shape-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
-    "einstein_paragraph_checkpoint": "reports/einstein-shape-dimension-paragraph-review-v1.json"
+    "einstein_paragraph_checkpoint": "reports/einstein-reciprocal-shape-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は119/282・17,834/35,614非空白本文文字、正本336主張。u0116全三文511本文文字・六数式を原刊903頁と照合し、有限射影幅、同時刻の座標形状、光速未満からの平面への極限、物質的対象の許容速度域における到達不能な上限という読みの下で通読判断した。超光速での同じ考察の物理的適用の不成立と、同じ理論における光速の役割の後続への補足的予告を接続した。予告を既に実証した事実へ替えず、数値的な有限βの不存在だけから物理的不能を導かない。有限検査・通読判断・物理的真理は別である。部分草案227単位・原文対応26,160/35,614非空白文字（73.45%）。u0117以降と二作品全体の目標は継続中。",
+    "アインシュタインの全単位意味確認は120/282・17,971/35,614非空白本文文字、正本337主張。u0117全137本文文字を原刊903頁に照合し、直前の形状・三軸寸法・程度と明示した光速極限の同じ規則を両方向へ適用するという読みの下で通読判断した。静止系と観測系の交換を全物質点履歴・現在の四記録・速度の符号・各系の時刻区間・実際の形状と幅へ接続した。両方向の物体を同一個体に固定せず、負方向では移動中心と極限平面の符号を保ち、正の縮小率と半軸を保つ。著者の明白さの提示を処理系の証明認定とせず、後続への予告や時計の結論をこの文で証明済みにしない。有限検査・通読判断・物理的真理は別である。部分草案227単位・原文対応26,160/35,614非空白文字（73.45%）。u0118以降と二作品全体の目標は継続中。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }

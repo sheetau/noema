@@ -1,0 +1,10 @@
+from scripts.check_reciprocal_shape_results import motion_checks,correspondence_checks,setting_checks,shape_width_checks,limit_checks,scope_checks,presentation_checks,structure_checks
+
+def test_signed_complete_motion():assert motion_checks()['signed_displacement_and_complete_material_history']
+def test_inverse_current_four_records():assert correspondence_checks()['native_inverse_spatial_and_time_equations']
+def test_exchanged_physical_setting():assert setting_checks()['rest_and_observer_histories_frames_units_and_velocity_bound']
+def test_whole_shape_and_each_width():assert shape_width_checks()['complete_shape_and_each_actual_width_in_observer_time']
+def test_signed_plane_limits():assert limit_checks()['both_signed_whole_shape_limits_and_transverse_projection']
+def test_one_rule_both_frame_orders():assert scope_checks()['same_rule_two_distinct_frame_roles_and_opposite_velocity']
+def test_author_clarity():assert presentation_checks()['author_assertion_clarity_and_source_order']
+def test_preserved_source_and_meanings():assert structure_checks()['prior_whole_unit_judgments_preserved']
