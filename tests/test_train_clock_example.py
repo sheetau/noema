@@ -1,0 +1,7 @@
+from scripts.check_train_clock_example import referent_checks,indication_and_simultaneity_checks,conditional_paraphrase_checks,presentation_checks,structure_checks
+
+def test_same_deictic_referents_and_arrival_in_both_quotes():assert referent_checks()['same_arrival_across_both_quotations']
+def test_hour_hand_indication_and_native_time_equality():assert indication_and_simultaneity_checks()['native_simultaneity_value_comparison']
+def test_conditional_approximate_paraphrase_without_actual_events():assert conditional_paraphrase_checks()['both_physical_contents_quoted_not_executed']
+def test_example_attribution_and_author_note_one():assert presentation_checks()['note_one_anchor_preserved']
+def test_previous_judgments_and_source_anchor():assert structure_checks()['prior_reviews_and_three_sentences_preserved']

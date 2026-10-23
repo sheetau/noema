@@ -1,0 +1,6 @@
+from scripts.check_local_simultaneity_note import locality_checks,caveat_checks,presentation_checks,structure_checks
+
+def test_same_and_nearly_same_place_scope():assert locality_checks()['exact_and_approximately_same_place']
+def test_imprecision_necessary_abstraction_and_nondiscussion():assert caveat_checks()['abstraction_required_not_already_performed']
+def test_author_note_one_and_its_anchor():assert presentation_checks()['same_author_document_and_note_one']
+def test_previous_sentences_and_original_note_source():assert structure_checks()['prior_reviews_and_four_sentences_preserved']
