@@ -1,0 +1,6 @@
+from scripts.check_measured_space_sentence import setting_checks,coordinate_checks,presentation_checks,structure_checks
+
+def test_same_initial_instruments_and_selected_parallel_motion():assert setting_checks()['rest_ruler_and_comoving_ruler_have_distinct_frame_conditions']
+def test_all_six_coordinates_bound_to_their_own_frame_and_role():assert coordinate_checks()['all_six_symbols_bound_to_exact_frame_and_axis']
+def test_thought_setting_and_nonexecuting_attribution():assert presentation_checks()['quoted_rules_and_physical_content_not_executed_by_attribution']
+def test_preserved_evidence_and_complete_first_sentence_review():assert structure_checks()['whole_sentence_completion']

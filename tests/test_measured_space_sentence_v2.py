@@ -1,0 +1,4 @@
+from scripts.check_measured_space_sentence_v2 import presentation_checks,structure_checks
+
+def test_reuse_of_previous_names_is_not_current_renaming():assert presentation_checks()['previous_naming_location_required_current_renaming_rejected']
+def test_corrected_sentence_is_reviewed_again_not_rebound():assert structure_checks()['old_sentence_judgment_superseded_not_rebound']
