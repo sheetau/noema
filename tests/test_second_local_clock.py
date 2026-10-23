@@ -1,0 +1,8 @@
+from scripts.check_second_local_clock import constitution_checks,conditional_checks,native_local_checks,intention_checks,presentation_checks,structure_checks
+
+def test_exact_full_constitution():assert constitution_checks()['extra_or_missing_characteristics_rejected']
+def test_conditional_additional_clock():assert conditional_checks()['existing_local_possibility_reused']
+def test_native_B_observations():assert native_local_checks()['native_B_clock_reading_and_all_event_method_executed']
+def test_intention_and_assumption():assert intention_checks()['intention_targets_same_added_assumption']
+def test_two_additions_and_insertion():assert presentation_checks()['both_additive_relations_and_parenthetical_intention_preserved']
+def test_source_and_preserved_reading():assert structure_checks()['four_place_symbols_and_page_boundary_checked']
