@@ -1,0 +1,8 @@
+from scripts.check_clock_transfer_claim import seconds_checks,arrival_checks,approximation_checks,conditional_checks,presentation_checks,structure_checks
+
+def test_transfer_elapsed_seconds():assert seconds_checks()['elapsed_duration_distinct_from_coordinate_time']
+def test_same_arrival_comparison():assert arrival_checks()['non_synchrony_distinct_from_directional_lag']
+def test_qualified_total_lag():assert approximation_checks()['real_neighborhood_quantifiers_retained']
+def test_original_conditional_scope():assert conditional_checks()['original_setup_antecedent_not_strengthened_by_interval_laws']
+def test_transfer_presentation():assert presentation_checks()['peculiar_appraisal_is_nonfactive_and_discussion_scoped']
+def test_transfer_claim_preservation():assert structure_checks()['extra_interval_laws_outside_author_message']
