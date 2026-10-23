@@ -1,0 +1,5 @@
+from scripts.check_magnet_source import witness_checks,case_checks,structure_checks
+
+def test_exterior_field_and_physical_source():witness_checks()
+def test_same_magnet_in_both_cases_without_current_assumption():case_checks()
+def test_source_ranges_and_preserved_reviews():structure_checks()
