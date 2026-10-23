@@ -1,0 +1,6 @@
+from scripts.check_carrier_relative_motion import history_checks,motion_checks,binding_checks,structure_checks
+
+def test_carrier_worldline_and_full_containment():history_checks()
+def test_relative_motion_under_translation_rotation_and_return():motion_checks()
+def test_electric_event_on_same_carrier_worldline():binding_checks()
+def test_preserved_manuscript_and_review():structure_checks()
