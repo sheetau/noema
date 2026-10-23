@@ -1,0 +1,990 @@
+{
+  "status": "standard_relative_conductor_reading",
+  "document": "examples/v014/einstein-conductor-reading.noema",
+  "parent": "examples/v014/einstein-electric-response.noema",
+  "inherited_meaning_basis": "data/electric-response-basis-v1.json",
+  "primitives": {
+    "eirp": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "standard",
+        "body",
+        "source",
+        "timeunit",
+        "quantityunit",
+        "threshold",
+        "minimumspan"
+      ],
+      "meaning_ja": "指定した評価基準が、この元状況の同じ物体と量・時間単位に適用され、輸送率の閾値と最小持続時間を定める。作用の許容範囲、尺度、過渡応答を除く評価時間、通常の輸送と無視する漏れの区別を結果を見る前に固定するという文脈上の基準設定。成功例に合わせた閾値の引下げや試行後の分類変更を許さない。これは物体が成功するという分類ではなく、評価の物理的・実用的な基準の帰属である。単一の普遍的数値境界を意味しない。"
+    },
+    "eirq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "standard",
+        "body",
+        "operation",
+        "source"
+      ],
+      "meaning_ja": "同じ評価基準の下で、この操作が同じ物体の電荷輸送を調べる通常の電気的な駆動・接続の試行に属する。作用の強さ、準備・待ち時間、温度・相・接触・幾何学的尺度を基準の許容範囲に保つ。材料の破壊・変質や別物体の混入による通過を試行種類へ含めず、許容性自体はeirkとも照合する。電場・電位差等の電気的作用を加える役割であり、単なる外力による物体全体の運搬や偶発的な熱揺らぎの選別とは区別する。成功は含意しない。"
+    },
+    "eirr": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "standard",
+        "operation",
+        "source",
+        "body",
+        "frame",
+        "context",
+        "timeunit",
+        "quantityunit",
+        "lower",
+        "upper",
+        "sections",
+        "cumulative",
+        "current"
+      ],
+      "meaning_ja": "同じ基準・操作・元状況について、結果文脈の同じ物体・系・単位・区間・全断面に割り当てた累積輸送量と率の履歴が、その試行によって現れる物理的な輸送応答であるという帰属。単なる共存や時間的先行から認定せず、無関係な既存電流を成功へ混入しないための背景と応答の分離を基準に従って保つ。零又は弱い応答もこの帰属を持ち得る。閾値超過・持続・物理的可能性・導体の分類は合成側で別に要求する。一般的な物理的応答の基礎関係として採り、微視的な因果機構の導出や実験の実施を意味しない。"
+    }
+  },
+  "definitions": {
+    "eice": "有効な実数で与えた履歴区間内に、正の最小持続時間以上の長さを持つ非退化な応答区間を指定する。率の閾値と最小持続時間は正とし、零閾値で任意の漏れを、零時間で瞬間値を成功にしない。数値基準の物理的な適切さはeirpが別に指定する。",
+    "eicf": "同じ物体の完全な電流履歴eibfの、全断面範囲内の同じ有向断面について、eiceの応答区間の全実時刻で電流の絶対値が指定閾値を超える。端点や標本だけを持続としない。一つの試行が示す応答であり、全断面・全時刻・全試行の成功とはしない。",
+    "eicg": "同じ物体・系・文脈・単位・完全な電流履歴と、固定された正の閾値・最小時間について、eicfを満たす断面と向きと応答区間が存在する。短い一過性応答、閾値以下の漏れ、区間外の値は成功にならない。",
+    "eich": "同じ物体・元状況にあらかじめ適用する基準eirp、その基準に属する電気的試行eirq、物質を保持する許容性eirk、同じ試行の可能な結果zrdpossibleを結ぶ。その結果の同じ全電流履歴が試行に由来する応答であるeirrと、eicgの持続条件を要求する。元状況に現に電流が流れることや試行の実施済みを要求しない。",
+    "eici": "同じ基準・物体・元状況・単位・閾値・最小時間の下で、eichを満たす試行と可能結果が存在する。履歴の六関数族を同じ元状況・操作・結果で選ぶ。通常の条件で材料を変えず有意な電荷輸送を持続させられる物体、という導体の文脈依存の読みに用いる。特定担体の剛体内軌跡、電子種、Ohm則、二値因果モデルの全解保証を語義に加えない。"
+  },
+  "new_signatures": {
+    "eirp": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth"
+    },
+    "eirq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eirr": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eice": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eicf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        },
+        {
+          "name": "vn",
+          "sort": "individual"
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eicg": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eich": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "situation"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eici": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual",
+              "situation"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "導入u0003のLeiterを、通常の条件で材料を変えず有意な電荷輸送を持続できる物体として読むための基準付き語義構成である。量・尺度・試行範囲に相対的で、物質を一つの普遍的閾値で二分する定理ではない。",
+    "eirp/eirq/eirrは基準の帰属、試行の種類、物理的応答への帰属という基礎規約である。数値や有限試験の成功からそれらの適切さを自動認定しない。説明のない「導体」原始記号や原語の綴りで判定を代用しない。",
+    "語義を成立させる試行は、本文の磁石と導体が動く二場合とは別の可能な性質評価である。本文で現に流れる電流へ正の下限・一方向の持続・一定の駆動を追加しない。評価試行と原文中の現象の文脈を区別して適用する。",
+    "特定の点状担体を全区間追跡できること、参照物体の剛性、線形Ohm則、電流がない側との強い二値対照は導体の必要条件にしない。過去の補助定義は、その条件が適切な説明を表すために保持する。",
+    "原文の具体的な解釈文脈・基準と語義の結合、磁石・電磁相互作用、二場合の物理的比較条件、起電力・エネルギー、著者への帰属と全文判断は未完。原文207主張と著者表示判断を保持する。"
+  ]
+}

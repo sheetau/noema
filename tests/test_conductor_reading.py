@@ -1,0 +1,6 @@
+from scripts.check_conductor_reading import window_checks,trial_checks,capacity_checks,structure_checks
+
+def test_positive_threshold_and_sustained_response_window():window_checks()
+def test_standard_trial_response_and_possible_result_binding():trial_checks()
+def test_capacity_without_current_in_original_situation():capacity_checks()
+def test_preserved_manuscript_and_review():structure_checks()
