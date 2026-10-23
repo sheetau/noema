@@ -1,0 +1,442 @@
+{
+  "status": "current_spatial_affine_rows_and_actual_ray_calibration",
+  "document": "examples/v014/einstein-spatial-affine-calibration.noema",
+  "parent": "examples/v014/einstein-transverse-ray-claim.noema",
+  "inherited_meaning_basis": "data/transverse-ray-claim-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "ei6y": "空間三役割のいずれかについて、一つの行列の同じ役割行と定数ベクトルの同じ成分を取り出し、候補関数を全有効実数四入力でそのアフィン式smdへ結ぶ。係数を入力ごとに選び直さず、時間役割を空間行として扱わない。",
+    "ei6z": "同じ現在変換のアフィン条件eizfと全入力延長ei6yを保持し、全現在座標対の同じ出来事対応eiyyについて候補関数の値がkの指定空間成分に一致することを要求する。測定範囲と全実数延長を区別する。",
+    "ei62": "一つの対象出来事に現在のK/k両四座標eiyxを結び、指定空間候補のK四入力での値を同じk座標成分へ一致させる。具体的な光線や原点の端点を、同じ行列行の候補関数へ接続する。",
+    "ei63": "同じk原点の零点出来事と、後の正のK時刻にある原点の対象出来事を現在の両座標へ結ぶ。原点の全k静止・K並進eizm、零から当該時刻までの全一次軌道と出会い、現在の代表軌道、Kでの(v*t,0,0)、kでの三座標零を保持する。任意の単位時刻に出来事があるとは要求しない。",
+    "ei64": "同じ空間候補の値を、零点、正の原点時刻、独立した正の三光線到達時刻の五点へ結ぶ数値的較正条件。光のK座標は(V*T,0,0,T)、(v*T,w*T,0,T)、(v*T,0,w*T,T)であり、対応するk成分は同じa,V,vの縦・横式である。五点一致だけではアフィン性を意味しない。",
+    "ei65": "現在の縦光線ei5y、両横光線ei6eと同じ原点出来事ei63を、一つの現在アフィン行列・定数ベクトルへ結ぶ。各空間候補zfhはその同じ行の全入力延長と全現在対応を満たし、実際の五出来事の測定と、各々の正の到達時刻を使うei64の五点条件を満たす。",
+    "ei66": "同じ現在設定について、全測定範囲と三本の光線に共通する行列・定数ベクトル、および正時刻の原点出来事が存在してei65を満たすという追加の十分条件。一般四式を述べる著者の推論への解釈前提であり、原文が全条件を逐一述べたとはしない。"
+  },
+  "new_signatures": {
+    "ei6y": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ei6z": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ei62": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ei63": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ei64": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ei65": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "ei66": {
+      "parameters": [],
+      "result": "content"
+    }
+  },
+  "limitations": [
+    "u0081–u0084の全座標式へ進むための依存群。著者主張と全単位意味判断をまだ増やさず、係数の再表示、四式・βの提示と原刊との全文判断を次の統合へ残す。",
+    "先行のlinearの読みを保持し、空間三候補を同じ現在eizfの行列行・定数成分によるアフィン式で全実数入力へ延長する。未測定の全四組が現実の出来事として実現するとは要求しない。",
+    "三本の光線だけでは空間アフィン行を決められないため、同じk原点が後の正時刻にも空間ラベル零を持つ条件を明示する。原点は同じ全履歴eizm、現在eiyxと実際の出会いへ結び、別の点や単に数値を補った出来事へ交換しない。",
+    "原点の時刻と各光線の到達時刻は独立な正値であり、1にも同じ時刻にも固定しない。原点の実際の時刻は現在のK運動区間内に置く。原文に明記されない測定選択と五点の十分性は解釈上の追加条件として記録する。",
+    "五点の候補関数値は、実際の両系測定と数値較正の双方へ同じ関数を渡して結ぶ。五点で合う非線形関数を排除する役割は別の全入力アフィン条件ei6yに持たせる。",
+    "同じa=zeq(v)を使い、縦光線のξと横光線のη/ζを流用せず、Kの各到達時刻と対応する座標を使う。後段φ=spcへの再表示は別であり、a=1を先取りしない。",
+    "全入力量化・関数の存在量化は有限評価を拒否する。有限の関数指紋・有理数の較正補題と現在依存の結合検査は、一般実数体の定理や物理的導出・原文との同義性の自動証明ではない。旧判断・定義・証拠を保存する。"
+  ]
+}
