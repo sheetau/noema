@@ -1,0 +1,8 @@
+from scripts.check_frame_light_law import local_checks,scope_checks,segment_checks,physical_checks,pair_checks,structure_checks
+
+def test_each_frames_current_local_times():assert local_checks()['no_K_reference_or_time_getter_used_for_k']
+def test_complete_nonempty_light_scope():assert scope_checks()['extra_bad_segment_and_extra_missing_current_time_rejected']
+def test_selected_events_and_current_tuples():assert segment_checks()['each_frame_uses_its_own_measurements']
+def test_native_physical_path_and_rate():assert physical_checks()['different_frame_lengths_and_elapsed_times_can_share_same_V']
+def test_same_physical_light_in_two_frames():assert pair_checks()['numerical_equality_of_times_and_lengths_not_required']
+def test_prior_whole_judgment_preserved():assert structure_checks()['prior_whole_unit_judgment_preserved']
