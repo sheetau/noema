@@ -1,0 +1,1474 @@
+{
+  "status": "arbitrary_current_polygon_clock_paths_and_return_claim",
+  "document": "examples/v014/einstein-polygon-clock-claim.noema",
+  "parent": "examples/v014/einstein-clock-transfer-claim.noema",
+  "inherited_meaning_basis": "data/clock-transfer-claim-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "sxd": "有限列の各出現に対応する実数切断の値を順次加算する。空列の値は零。入力の有効性は利用側で課す。",
+    "sxj": "全区間の座標時間差の和。順序の正当性や同じ時計であることを単独では要求しない。",
+    "sxk": "全区間の指示差の和。同じ指示関数の端点を用いる。",
+    "ejkx": "指定した共通速さの、同じ時計の全閉区間の三次元直線等速経路。ejkdの現在表示・完全な代表軌跡・全候補と全実時刻を保ち、速さを引数に一般化する。端点だけで中途の経路を済ませない。",
+    "ejky": "一つの正の時間幅の区間について、同じ時計の出発と到着の現在表示を同じ出来事・記録・指示・場所の関数へ結び、ejkxの全直線経路を要求する。",
+    "ejkz": "非空の任意有限区間列が同じ出来事で順に接続し、全出現で同じ時計・速さと共有された記録/指示/場所の関数を使ってejkyを満たす。幾何学的な同じ場所の再訪や自己交差を禁止しない。",
+    "ejk2": "折れ線全体の比較設定。両時計は全初期区間で同じK時刻に同じ指示を持って静止し、参照時計は全移送期間終着場所に残る。初期表示と到着表示は現在の局所記録へ結ぶ。出発と初期参照出来事、出発と終着の場所は一致してよい。",
+    "ejk3": "同じ任意有限折れ線の完全な経路ejkzと初期同期・参照時計・到着比較ejk2を結ぶ原文の設定。移動時計の平方根の率や到着遅れを前件へ加えない。",
+    "ejk4": "同じ折れ線の全区間について、共通速さの平方根の率による全時刻の指示法則ejkbと端点差sxiを採る追加解釈。折れ点の同じ出来事・単一指示を共有し、区間間での指示リセットを許さない。",
+    "ejk5": "同じ経路・比較設定にejk4と参照時計の全区間の率1、実際の参照指示差、同じ端点に関する望遠和ejk6を加えた補足の指示法則。加速応答を慣性運動から証明したとはしない。",
+    "ejk6": "同じ順序付き列の全出現について、K時間差の和sxjが出発から到着の差、指示差の和sxkが同じ時計の全指示差に等しい。正の全所要時間を保つ。和の一致だけで経路や区間法則を認定しない。",
+    "ejk7": "同じ折れ線の正の全K所要時間と実際の到着指示差を共通の正尺度で秒へ換算し、共通速さの二次近似と残差へ結ぶ。初期座標時刻、一区間だけの時間、前の特定時計の固定記録を代用しない。",
+    "ejla": "同じ到着出来事・場所に属する現在の二指示が非一致で、移動時計が小さく、差が全所要時間と共通速さの遅れ率の積である。共通秒換算、二次近似と固定全所要時間の四次以上の留保を合わせた、前段と同じ結果。",
+    "ejlb": "同じ折れ線の出発と到着が正の時間を隔てた異なる出来事で、同じ場所と三座標位置へ帰還する。場所の一致を出来事や時刻の同一性へ替えない。",
+    "ejlc": "任意の有限列とその区間・記録・指示・場所の関数、同じ二時計・共通速さ・初期と移送の設定について、ejk3なら同じ到着結果ejlaを述べる内容。全列・全関数・全実数量化を保持する。",
+    "ejld": "同じ任意範囲で、ejk3と帰還ejlbなら同じejlaが成立する内容。A=Bの場合を明示するが、帰還という条件を折れ線全体の一般主張へ追加しない。",
+    "ejle": "任意の同じ設定ejk3で、区間と折れ点に追加指示変化を生じないejk5を採用する補足の解釈内容。原文の前件へこの物理的理想化を混入しない。",
+    "ejlf": "補足の全区間指示法則ejleを用いて一般の折れ線結果ejlcを読むzflの解釈注記。著者の発話メッセージ外へ置く。",
+    "ejlg": "前段の現在の移送結果ejkmから任意折れ線での同じ結果ejlcへ拡張する著者の提示と、直ちに認められるという明白さzdgを同じ内容へ帰属する。",
+    "ejlh": "同じ一般の折れ線結果ejlcに続いて、出発地点と終着地点が一致する場合ejldも同じく成立すると著者が明示する。一般結果からの適用であり、場所の一致を同じ出来事への帰還にしない。",
+    "ejli": "u0127前半の一般折れ線への拡張と明白さejlgを述べるメッセージ。",
+    "ejlj": "前半を同じ著者・論説へ帰属し、直線移送の帰結zi7に続ける。補足解釈ejlfは発話外へ併記する。",
+    "ejlk": "u0127後半の帰還でも同じ結果が成立するejlhを述べるメッセージ。",
+    "ejll": "後半を同じ著者・論説へ帰属し、前半の一般折れ線の後に続ける。"
+  },
+  "new_signatures": {
+    "sxd": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      }
+    },
+    "sxj": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      }
+    },
+    "sxk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      }
+    },
+    "ejkx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejky": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejkz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejk2": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        },
+        {
+          "name": "vn",
+          "sort": "individual"
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejk3": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        },
+        {
+          "name": "vn",
+          "sort": "individual"
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejk4": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejk6": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejk5": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        },
+        {
+          "name": "vn",
+          "sort": "individual"
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejk7": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        },
+        {
+          "name": "vn",
+          "sort": "individual"
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": "situation"
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vt",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vu",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vv",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ejla": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        },
+        {
+          "name": "vl",
+          "sort": "individual"
+        },
+        {
+          "name": "vm",
+          "sort": "individual"
+        },
+        {
+          "name": "vn",
+          "sort": "individual"
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejlb": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejlc": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejld": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejle": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejlf": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "ejlg": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejlh": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejli": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ejlk": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ejlj": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "ejll": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0127全155非空白本文文字とM0233–M0236のA/B/A/Bを原刊904頁へ照合する。Man sieht sofort、dies Resultat、auch dann noch、任意のpolygonale Linie、und zwar auch dann、AとBの一致を保持する。",
+    "折れ線は任意の非空有限列で表す。各実際の移動区間は正の所要時間と共通の正の速さv<Vを持つ。隣接する同じ頂点を重複記載した零区間は経路を変えない表記上の冗長として除き、待機時間を暗黙に追加しない。速さを区間ごとに変える場合は今回の前段と同じ結果ではなく加重和が必要である。",
+    "同じ幾何学的な辺や場所への再訪、自己交差は排除しない。出来事には各到達時刻を含め、前区間の終わりと次区間の始まりでは同じ出来事と一つの記録・指示・場所関数を共有する。幾何学的位置だけが等しい別出来事を折れ点の接続にしない。",
+    "全区間の現在表示、完全な代表軌跡、全実時刻の存在と全候補の経路条件を保持する。全有限列・関数・実数の量化を有限標本へ替えず、検査用の小さい領域を実際の主張範囲にしない。",
+    "A=Bは同じ場所へ正の全時間の後で戻る場合であり、出発と帰着は異なる出来事である。両時計が初め同じ場所・同じ出来事で比較されることを許し、u0126の異なる地点や初期出来事の条件を流用しない。初期同期・参照時計の残留・到着直後の同所比較は前段と同じ読みで保持する。",
+    "同じ結果は、全所要時間に対する到着時の遅れと、共通秒換算による二次近似・固定全所要時間の四次以上の留保を含む。全所要時間は全区間の時間差の和と同じ端点の差へ結ぶ。距離固定で時間も速度依存の族の無条件のO(v⁴)や具体的残差係数は追加しない。",
+    "方向転換・発進・停止に追加の指示変化がないという全区間法則はejle/ejlfの発話外の補足解釈へ置く。著者が述べる原文の前件ejk3をその法則で狭めず、著者の一般主張を記述することと加速時計の物理的導出を区別する。",
+    "Man sieht sofortは、前段の同じ結果の拡張が直ちに認められるという著者の明白さの提示と読む。全読者の認知の事実、反応時間、処理系の証明済み認定にしない。und zwar以下は一般範囲を帰還に限定するのではなく、その場合も含まれると明示する。",
+    "新しい原始記号は追加しない。u0128の連続曲線への適用を仮定する発話と地球上の時計への適用は後続である。"
+  ]
+}
