@@ -1,0 +1,8 @@
+from scripts.check_affine_time_claim import coefficient_join_checks,native_coefficient_checks,formula_checks,uncertainty_checks,presentation_checks,structure_checks
+
+def test_same_current_coefficients_in_premise():assert coefficient_join_checks()['same_tau_matrix_seven_witnesses_speed_time_and_phi_bound']
+def test_native_partial_and_phi_binding():assert native_coefficient_checks()['nonzero_offset_still_allowed_before_origin_condition']
+def test_native_formula_scope_and_unfixed_scale():assert formula_checks()['full_formula_real_domain_refused']
+def test_current_stage_speed_function_candidates():assert uncertainty_checks()['equal_at_one_speed_does_not_identify_functions']
+def test_three_source_roles_and_order():assert presentation_checks()['quoted_contents_not_executed']
+def test_preserved_prior_judgments_and_source():assert structure_checks()['prior_whole_unit_judgment_preserved']
