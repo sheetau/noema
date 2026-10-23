@@ -1,0 +1,7 @@
+from scripts.check_current_distribution import scope_checks,distribution_checks,snapshot_checks,integration_checks,structure_checks
+
+def test_complete_oriented_section_scope():scope_checks()
+def test_whole_distribution_and_individual_failures():distribution_checks()
+def test_native_section_time_comparisons():snapshot_checks()
+def test_shared_motion_distribution_bindings_and_real_domain():integration_checks()
+def test_preserved_manuscript_and_review():structure_checks()
