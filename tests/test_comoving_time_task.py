@@ -1,0 +1,9 @@
+from scripts.check_comoving_time_task import history_checks,event_checks,quantifier_checks,candidate_checks,clock_totality_checks,presentation_checks,structure_checks
+
+def test_complete_motion_and_own_rest():assert history_checks()['complete_representative_not_material_internals']
+def test_same_event_and_distinct_frame_times():assert event_checks()['unequal_t_and_tau_allowed_without_K_clock_at_every_point']
+def test_full_point_time_ranges_and_existential_bindings():assert quantifier_checks()['all_points_times_and_real_time_coverage_preserved']
+def test_tau_question_uses_auxiliary_coordinate_and_current_graph():assert candidate_checks()['question_has_same_candidate_condition']
+def test_all_local_clocks_and_no_extra_values():assert clock_totality_checks()['extra_readings_rejected_not_only_candidate_existence']
+def test_author_task_and_purpose_roles():assert presentation_checks()['three_sentence_author_order_preserved']
+def test_prior_meanings_and_evidence_unchanged():assert structure_checks()['prior_homogeneity_review_preserved']
