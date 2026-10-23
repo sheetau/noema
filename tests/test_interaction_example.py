@@ -1,0 +1,6 @@
+from scripts.check_interaction_example import attribution_checks,message_checks,coupling_checks,structure_checks
+
+def test_example_invitation_is_nonfactive():attribution_checks()
+def test_consideration_has_directive_force_and_same_readers():message_checks()
+def test_magnet_conductor_and_coupling_share_arguments():coupling_checks()
+def test_source_range_and_preserved_judgments():structure_checks()
