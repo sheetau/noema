@@ -1,0 +1,7 @@
+from scripts.check_charge_transport_current import transport_checks,derivative_checks,comparison_checks,integration_checks,structure_checks
+
+def test_signed_transport_and_physical_binding():transport_checks()
+def test_current_derivative_and_charge_kind():derivative_checks()
+def test_current_time_course_comparison():comparison_checks()
+def test_relative_motion_connection_and_full_domains():integration_checks()
+def test_preserved_manuscript_and_review():structure_checks()
