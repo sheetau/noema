@@ -1,0 +1,6 @@
+from scripts.check_electric_response import contrast_checks,record_checks,adapter_checks,structure_checks
+
+def test_independent_intervention_solutions_and_grounding():contrast_checks()
+def test_same_body_electric_force_and_current_records():record_checks()
+def test_physical_profiles_in_both_intervention_solutions():adapter_checks()
+def test_library_reuse_and_preserved_manuscript():structure_checks()
