@@ -1,0 +1,6 @@
+from scripts.check_magnetic_action import vector_checks,record_checks,combined_checks,structure_checks
+
+def test_signed_magnetic_cross_product():vector_checks()
+def test_same_carrier_velocity_field_event_and_units():record_checks()
+def test_electromagnetic_sum_keeps_force_contributions_distinct():combined_checks()
+def test_preserved_manuscript_and_review():structure_checks()
