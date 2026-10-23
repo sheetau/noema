@@ -1,0 +1,7 @@
+from scripts.check_observer_contrast import rest_checks,quantity_checks,judgment_checks,presentation_checks,structure_checks
+
+def test_stationary_representative_requires_complete_history():assert rest_checks()['full_real_history_refused']
+def test_same_moving_rod_rest_frame_length():assert quantity_checks()['same_rod_current_rest_frame_measurement_and_zav']
+def test_opposite_criteria_and_judgment_declaration_distinction():assert judgment_checks()['judgment_contents_not_executed_or_assumed_true']
+def test_hypothetical_consequence_gloss_reason_and_contrast():assert presentation_checks()['hypothetical_scope_reason_and_ordered_contrast']
+def test_prior_reviews_and_meanings_unchanged():assert structure_checks()['prior_meanings_and_reviews_preserved']
