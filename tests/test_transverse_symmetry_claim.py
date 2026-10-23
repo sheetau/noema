@@ -1,0 +1,9 @@
+from scripts.check_transverse_symmetry_claim import scope_checks,numeric_checks,presentation_checks,structure_checks
+
+def test_current_measurement_and_conditional_biconditional():assert scope_checks()['or_is_conditional_biconditional_not_one_way_implication']
+
+def test_native_fraction_to_phi_equivalence():assert numeric_checks()['native_two_fractions_and_phi_values_equivalent_for_nonzero_values']
+
+def test_meaning_symmetry_reason_and_ordered_consequences():assert presentation_checks()['spatial_symmetry_reason_assertion_and_obviousness_distinct']
+
+def test_current_comparison_scope_and_preserved_judgments():assert structure_checks()['prior_whole_unit_judgment_preserved']

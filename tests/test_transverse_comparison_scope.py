@@ -1,0 +1,11 @@
+from scripts.check_transverse_comparison_scope import shape_checks,eligibility_checks,range_checks,signed_checks,structure_checks
+
+def test_same_complete_material_and_intrinsic_shape():assert shape_checks()['same_end_length_cannot_hide_changed_material_or_internal_shape']
+
+def test_eligibility_without_equal_length_filter():assert eligibility_checks()['unequal_lengths_not_filtered_from_comparison']
+
+def test_complete_direction_range_and_length_invariance():assert range_checks()['native_situation_pairs_reject_unequal_same_speed_lengths']
+
+def test_signed_endpoint_records_and_two_fraction_equality():assert signed_checks()['negative_speed_uses_same_phi_at_negative_argument']
+
+def test_preserved_evidence_and_explicit_comparison_scope():assert structure_checks()['no_equal_length_filter_or_opaque_setting_selector']
