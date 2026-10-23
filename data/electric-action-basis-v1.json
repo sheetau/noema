@@ -1,0 +1,558 @@
+{
+  "status": "signed_charge_electric_action_dependency",
+  "document": "examples/v014/einstein-electric-action.noema",
+  "parent": "examples/v014/einstein-charge-transport-capacity.noema",
+  "inherited_meaning_basis": "data/charge-transport-capacity-basis-v1.json",
+  "primitives": {
+    "eirl": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "carrier",
+        "frame",
+        "event",
+        "context"
+      ],
+      "meaning_ja": "この記録が、その担体に当該系・出来事・文脈で働く電気的な力の寄与を記述するという作用の帰属。重力・支持力・磁気的寄与を含む合力の記録とは区別する。力は方向を持つ機械的作用の量であり、同じ状態の運動量変化への寄与またはそれを釣り合わせる機械的作用と比較して同定する基礎的な物理量として採る。電荷との数値比例や力の非零だけからこの帰属を推測しない。仮定上の記録も許し、実測済みの標識ではない。"
+    },
+    "eirm": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "chargeunit",
+        "fieldunit",
+        "forceunit",
+        "conversion",
+        "context"
+      ],
+      "meaning_ja": "同じ文脈で電場を単位正電荷あたりの電気的な力として読む規約に従い、指定した電荷単位と電場単位の積を力単位へ直す正の係数がconversionである。数値関数や同じ名前だけでは単位規約は成立しない。電荷は電気的作用の強さと二つの極性を記述する加法的な符号付き物理量として採り、全体の符号選択と単位尺度を規約へ固定する。電場は同じ系・地点・時刻の電気的作用を、十分小さい静止試験電荷への力/電荷の極限で同定する物理量として解釈する。個別の有限試験が系を乱さないことや実験の実施を自動認定しない。"
+    },
+    "eirn": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "frame",
+        "field",
+        "unit",
+        "context"
+      ],
+      "meaning_ja": "指定系・文脈の同じ成分場の数値が、この場の量単位で表示されているという帰属。場の物理的種類と領域は別の場割当で指定し、単位が同じ別の場や、同じ数値の異なる単位を同一視しない。"
+    }
+  },
+  "definitions": {
+    "eibq": "有効な符号付き電荷・電場成分・力成分について、正の単位換算係数を含むforce=conversion×charge×electricを要求する。一成分の数値関係であり、物理的な作用への帰属は含まない。零電荷を割らずに扱い、正負の電荷による向きの反転を保存する。",
+    "eibr": "互いに異なる既存の三空間軸yn/yo/ypに対してeibqを要求する電気的力のベクトル関係。同じ電荷と換算係数を三成分へ共有し、大きさだけの等値や一成分だけの一致で代用しない。",
+    "eibs": "同じ点状担体・系・出来事・文脈に、単位と尺度付きの電気量の記録sbw2、四座標zpb、領域内の場割当znnとscb2による評価、電気的な力として特定した記録eirlと力ベクトルzpcを結ぶ。eirmの単位整合を保ち、eibrの三成分関係を要求する。他の力を含む合力、別の出来事の電荷、別系の電場を代入しない。電荷への電気的作用の構成であり、磁気力や担体の運動をこれだけで説明しない。"
+  },
+  "new_signatures": {
+    "eirl": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eirm": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eirn": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eibq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eibr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eibs": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "number"
+        },
+        {
+          "name": "vk",
+          "sort": "number"
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "電荷・力の基礎量は明示した物理的同定規約として採り、名称だけや有限検査の任意の真偽で説明済みにはしない。eibsはその入力を数値・対象・場所・時刻へ接続する。実際の校正手順、場への試験電荷の影響の極限、力と運動量の一般的な力学をこの三定義だけで機械的に証明してはいない。",
+    "任意の符号付き電荷を扱い、値1や静止担体に限定しない。電気的寄与だけを述べ、全電磁力がqEであるとはしない。磁気力、散乱・抵抗、担体が物体を通過する機構は別に必要。",
+    "電荷と力の正の有理尺度は既存zof/sbw2の規約を使い、電場との積の単位換算はeirmへ明示する。原文へ現代SIの定数や特定の数値係数を補わない。",
+    "既存の電気量zor、場znn、力zpcの規約と旧主張を変更せず、この構成で作用の特定と単位規約を追加する。旧草案の意味完成を遡って認定しない。原文207主張と著者表示判断を保持し、新たな全文意味判断は加えない。"
+  ]
+}

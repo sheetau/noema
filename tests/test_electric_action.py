@@ -1,0 +1,5 @@
+from scripts.check_electric_action import arithmetic_checks,record_checks,structure_checks
+
+def test_signed_charge_and_three_force_components():arithmetic_checks()
+def test_same_carrier_event_field_units_and_electric_force():record_checks()
+def test_preserved_manuscript_and_review():structure_checks()
