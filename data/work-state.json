@@ -1,45 +1,45 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v333.json",
-  "progress_report": "reports/written-progress-v311.json",
+  "review_index": "data/semantic-review-index-v334.json",
+  "progress_report": "reports/written-progress-v312.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0129–u0132（速度合成の見出し・点の運動の仮定提示と記号説明）",
-    "scope": "実装親はexamples/v014/einstein-point-motion-records.noema、意味規約data/point-motion-records-basis-v1.json、識別表記data/point-motion-records-identifiers-v1.json。現在の点の全期間と定速度の依存群は8定義・新規基本記号0で検査済み。ejmsは同じ対象/出来事/記録/場所/系のeiyw・sb・実際の代表位置、ejmtは同じ三証人による時刻の記録、ejmuは完全なse・全現在候補・全実時刻、ejmvは任意原点と三定速度、ejmwは下端のsyr三式と全期間のejmv、ejmx/ejmyは既出のK/k・全配置eivz・同じ点zkbと二成分zkc/zkdを現在状況zb6へ接続し、ejmzは方程式の成否で選ばない現在記録範囲。次はu0129の速度合成定理の主題を同じ対象の二系での速度と系の相対運動へ構成し、深さ2・番号5の見出しへ結ぶ。u0130–u0132のbewegeの仮定採用、三式の提示、wξ/wηが定数である記号説明を同じ発話へ接続する。原刊905頁の4単位（40/102/0/27本文文字、七数式要素）はdata/einstein-point-motion-records-source-reading-v1.jsonで照合済み。本文発話と全体判断は未実施。位置対象を一つの三座標の世界線として読む。点の速度の光速上限や新しい原点設定を追加しない。識別注記は閉じた個体のみなのでzkc/zkdの実数値へ直接表記を付けず、必要なら表記個体と型付き規則へ結ぶ。続くu0133の課題提示・§3変換の適用とu0134の三式を見越し、ejmzの同じ全記録範囲を再利用する。未使用定義ejm2、原始記号eisoo。",
+    "unit": "einstein-1905:u0133–u0134（Kに対する点の運動を求める課題・§3変換の適用と三式）",
+    "scope": "実装親はexamples/v014/einstein-velocity-opening-claim.noema、意味規約data/velocity-opening-claim-basis-v1.json、識別表記data/velocity-opening-claim-identifiers-v1.json。第5節見出しと点の運動設定u0129–u0132は全単位判断済み。次はu0133のGesucht ist die Bewegung des Punktes relativ zum System Kを同じ点・K・現在の全履歴の求解課題へ構成し、後半の§3変換によるx,y,z,tの導入とu0134の三式を一続きに接続する。原刊905頁はartifacts/einstein-curved-clock-records-v1/page-905.jpgに保存済み。固定原文M0251はx=(wξ+v)/(1+vwξ/V²)t、y=√(1−(v/V)²)/(1+vwξ/V²)wηt、z=0。既存syt/sysの数値条件は再利用候補だが、旧syu/syv/syxのzka/shdによる履歴は現在の全期間の記録に置き換えて合成する。ejmzは同じ点の現在記録範囲、ejmsは同じ出来事/記録/場所の現行eiywと実際の位置、ejmu/ejmv/ejmwは全期間・定速度・原点を通る平面三式。ejm3/ejm4は二系で同じ点の同じ出来事の全範囲を結ぶ。現在の§3変換の全適用範囲へ両記録を接続し、式に合う記録だけを選ばない。分母非零は商の明示した定義域として確認し、点の光速上限を追加しない。原刊照合・不足の列挙・求解と代入の意味構成・対照検査・二単位の通読判断は未実施。未使用定義ejne、原始記号eisou。",
     "start_here": [
+      "scripts/compose_velocity_opening_claim.py",
       "scripts/compose_point_motion_records.py",
-      "scripts/check_point_motion_records.py",
-      "reports/point-motion-records-v1.json",
-      "data/einstein-point-motion-records-source-reading-v1.json",
       "scripts/compose_velocity_components.py",
-      "scripts/compose_physical_meaning_heading.py",
-      "scripts/compose_transformation_heading.py",
-      "docs/point-motion-records-v1.md",
+      "scripts/compose_origin_clock_equations.py",
+      "scripts/check_velocity_opening_claim.py",
+      "reports/velocity-opening-claim-v1.json",
+      "data/einstein-velocity-opening-source-reading-v1.json",
+      "docs/velocity-opening-claim-v1.md",
       "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/point-motion-records-v1.json",
-    "whole_unit_reviews": 151,
+    "language_checkpoint": "reports/velocity-opening-claim-v1.json",
+    "whole_unit_reviews": 155,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/point-motion-records-v1.json",
-    "source_collation": "data/einstein-point-motion-records-source-reading-v1.json",
+    "dependency_checkpoint": "reports/velocity-opening-claim-v1.json",
+    "source_collation": "data/einstein-velocity-opening-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
-    "einstein_whole_unit_reviews": 131,
-    "einstein_reviewed_nonblank_characters": 19591,
-    "einstein_review_checkpoint": "reports/einstein-curve-earth-claim-review-v1.json",
+    "einstein_whole_unit_reviews": 135,
+    "einstein_reviewed_nonblank_characters": 19760,
+    "einstein_review_checkpoint": "reports/einstein-velocity-opening-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
-    "einstein_paragraph_checkpoint": "reports/einstein-curve-earth-claim-review-v1.json"
+    "einstein_paragraph_checkpoint": "reports/einstein-velocity-opening-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は131/282・19,591/35,614非空白本文文字、正本350主張。u0128までの判断を保持した。今回は原刊905頁の第5節見出しと点の運動設定u0129–u0132を照合し、同じ点の現在記録と全期間、三定速度、原点を通る平面の三式、同じK/kと二成分を8定義で接続した。見出し主題・仮定提示・記号説明・全体判断は未完なので件数を増やさない。有限検査、明示した読みの意味判断、物理的真理は別である。部分草案227単位・原文対応26,160/35,614非空白文字（73.45%）。二作品全体の目標は継続中。",
+    "アインシュタインの全単位意味確認は135/282・19,760/35,614非空白本文文字、正本352主張。今回はu0129–u0132の第5節見出し、点の運動の仮定、三式と二定数の説明を接続し、169本文文字・七数式要素を通読判断した。見出しの合成規則・定理という主題と、同じ全期間の点の仮定提示・表記説明を区別する。有限検査、明示した読みの意味判断、物理的真理は別である。部分草案228単位・原文対応26,200/35,614非空白文字（73.57%）。u0133以降と二作品全体の目標は継続中。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }

@@ -1,0 +1,8 @@
+from scripts.check_velocity_opening_claim import relative_checks,event_binding_checks,composition_checks,designation_checks,presentation_checks,structure_checks
+
+def test_relative_three_components():assert relative_checks()['same_two_frames_units_and_all_three_relative_components']
+def test_current_same_event_witnesses():assert event_binding_checks()['both_current_record_and_place_share_the_given_event']
+def test_composition_physical_scope():assert composition_checks()['bidirectional_full_event_scope_not_coordinate_time_equality']
+def test_two_constant_designations():assert designation_checks()['two_notations_bind_same_point_and_distinct_constant_components']
+def test_heading_and_assumed_setting():assert presentation_checks()['assumption_and_two_notation_rules_attributed_without_execution']
+def test_velocity_opening_preservation():assert structure_checks()['heading_not_specific_formula_or_completed_proof']
