@@ -1,0 +1,7 @@
+from scripts.check_axis_projection import geometry_checks,physical_checks,orientation_checks,interval_checks,structure_checks
+
+def test_projection_and_signed_length_for_all_components():assert geometry_checks()['oblique_direction_scale_and_sign_distinguished']
+def test_physical_points_and_same_complete_histories():assert physical_checks()['every_physical_boundary_argument_checked']
+def test_arbitrary_guide_and_every_positive_direction_record():assert orientation_checks()['arbitrary_material_guide_not_assumed_positive']
+def test_fixed_value_and_points_over_full_real_interval():assert interval_checks()['native_all_real_time_evaluation_rejected']
+def test_existing_evidence_and_meanings_unchanged():assert structure_checks()['prior_meanings_and_reviews_preserved']
