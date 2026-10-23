@@ -1,0 +1,7 @@
+from scripts.check_moving_trip_reading import trial_checks,result_checks,note_checks,presentation_checks,structure_checks
+
+def test_trial_without_assuming_its_result():assert trial_checks()['no_elapsed_equations_or_constant_speed_in_initial_setting']
+def test_measured_length_units_and_both_elapsed_times():assert result_checks()['native_sdi_sdb_bind_both_elapsed_times']
+def test_local_rest_time_and_moving_clock_same_reading():assert note_checks()['arbitrary_eligible_record_not_only_three_trial_records']
+def test_attributed_setting_results_and_attached_note():assert presentation_checks()['quotes_do_not_execute_physics_or_clock_readings']
+def test_preserved_reviews_and_collated_source():assert structure_checks()['prior_meanings_and_review_preserved']
