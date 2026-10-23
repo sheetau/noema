@@ -1,0 +1,9 @@
+from scripts.check_synchrony_laws import role_checks,conditional_checks,generality_checks,native_checks,presentation_checks,structure_checks
+
+
+def test_clock_place_and_shared_A_bindings():assert role_checks()['same_A_in_both_premises_and_same_B_C_in_conclusion']
+def test_conditional_truth_tables():assert conditional_checks()['both_premises_required_and_mutual_conclusion_preserved']
+def test_universal_fork_includes_both_directions():assert generality_checks()['universal_fork_equivalent_to_mutual_form_in_all_three_object_relations']
+def test_native_synchrony_in_both_directions():assert native_checks()['native_qo_qn_db_with_two_opposite_light_trials']
+def test_numbered_list_and_nonfactive_attribution():assert presentation_checks()['same_intro_numbered_order_and_general_law_references']
+def test_source_and_previous_whole_units():assert structure_checks()['previous_whole_paragraph_and_assumption_preserved']
