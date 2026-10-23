@@ -1,0 +1,9 @@
+from scripts.check_axis_states import coordinate_checks,metadata_checks,assignment_checks,uniqueness_checks,coverage_checks,candidate_checks,structure_checks
+
+def test_coordinates_are_bound_to_physical_histories():assert coordinate_checks()['record_values_bound_to_physical_history']
+def test_snapshot_keeps_same_origin_and_all_axis_roles():assert metadata_checks()['same_origin_and_exact_three_roles_in_snapshot']
+def test_all_axis_members_are_included_in_snapshot_assignment():assert assignment_checks()['extra_hidden_member_cannot_be_omitted']
+def test_duplicate_states_and_uniqueness_are_distinguished():assert uniqueness_checks()['duplicate_equal_descriptions_allowed_but_conflicting_state_rejected']
+def test_real_time_coverage_is_not_an_endpoint_list():assert coverage_checks()['missing_intermediate_real_time_detected']
+def test_same_candidate_keeps_all_times_and_definite_states():assert candidate_checks()['same_motion_geometry_and_complete_time_population']
+def test_prior_evidence_preserved_with_composed_equivalence():assert structure_checks()['configuration_equivalence_composed_from_coordinates']

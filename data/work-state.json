@@ -1,17 +1,18 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v276.json",
-  "progress_report": "reports/written-progress-v255.json",
+  "review_index": "data/semantic-review-index-v277.json",
+  "progress_report": "reports/written-progress-v256.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0044（並進と全時刻の軸幾何は検査済み。配置状態・候補履歴・本文の統合）",
-    "scope": "u0044全687文字・526本文文字、第一文[0,292)226本文文字、後半[293,687)300本文文字。原刊897頁は保存・照合済み。現行eivzは同じ原点・軸・物差し・全時計への正X並進、eiv2/eiv7は静止を要求しない物質線・三軸の完全履歴、eiwa/eiwbは各時刻・全区間の三組の平行を与える。原点候補も同じseとeismhの軌道へ結合済み。次に、各静止系時刻の配置状態の存在・一意性を、実座標から構成する配置同値へ接続する。旧sfo/sfq/sfu/sfv/sgaとzck/zcl/zcmの役割を調べ、同じ原点と全軸の位置・役割・方向を追う。zclの配置断面を全履歴そのものにせず、配置同値を単なる状態識別子一致や方向だけの一致へ弱めない。並進eivzと軸幾何を同じ候補zci(history)へ結び、時刻ごとに別履歴を選ぶsfrではなく一つの運動が全時刻で平行となる存在・仮定を保持する。対称性の理由と採用の許容を帰属し、sfsだけから存在を証明しない。第一文の設定指示、k/K/v/xの導入・照応、括弧内tの常に静止系時刻という指定、本文順序と著者帰属も残る。zb4からzb6への対象保存を維持し、速度zb7を旧棒のybへ替えない。初期静止eiva/eivfやX支持直線一致を移動系の全期間へ課さず、時計内部静止・加速の機構・初期長不変・正方向一致を追加しない。既存268主張・45全単位判断は不変。次の未使用定義eiwc、原始記号eism3。",
+    "unit": "einstein-1905:u0044（配置一意性と全時刻被覆まで接続済み。平行候補・対称性・本文の統合）",
+    "scope": "u0044全687文字・526本文文字、第一文[0,292)226本文文字、後半[293,687)300本文文字。原刊897頁は保存・照合済み。今回[293,408)85本文文字の配置一意性へeiwc〜eiwjを接続した。eiwf(history,moment,pose)はsfuと同じ原点・全軸役割、全成員の実位置関数と断面ymの一致を保持し、eiwg(first,second,moment,context)が状態識別子によらない全点座標の同値性を与える。eiwhは対応状態の存在と全対応状態の同値性、eiwiは実時刻への記録の存在、eiwj(history)は同じeivz/eiv7とys・eislaの全時点範囲、全実時刻被覆・配置一意性を要求する。旧zcmは意味を変更せず、現行の構成では使わない。次はeiwjの同じ候補zci(history)へeiwb(ra,zbm,context)の全区間平行を結び、一つの候補運動の存在とその採用の仮定を保持する。時刻ごとに別履歴を選ぶ弱い条件へ替えない。比較する静止系raの同じ原点・三軸が初期zb4から維持され、その設定で静止することも確認・接続する。初期静止eiva/eivfを移動系へ課さず、X支持直線一致や正方向一致を全期間へ追加しない。対称性を根拠とする採用の許容を帰属し、可逆変換sfsだけで候補の存在を証明しない。第一文の設定指示、k/K/v/xの導入と照応、括弧内tの常に静止系時刻という指定、本文順序と著者帰属を統合して全段落を判断する。zb7を旧棒のybへ替えず、加速機構・時計内部静止・初期長不変を追加しない。現在268主張・45全単位判断は不変。次の未使用定義eiwk、原始記号eism3。",
     "start_here": [
-      "docs/moving-axes-v1.md",
+      "docs/axis-states-v1.md",
+      "scripts/compose_axis_states.py",
+      "scripts/check_axis_states.py",
+      "data/einstein-axis-states-source-reading-v1.json",
       "scripts/compose_moving_axes.py",
-      "scripts/check_moving_axes.py",
-      "data/einstein-moving-axes-source-reading-v1.json",
       "scripts/compose_frame_motion.py",
       "scripts/compose_parallel_histories.py",
       "scripts/compose_frame_instruments.py",
@@ -21,13 +22,13 @@
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/moving-axes-v1.json",
+    "language_checkpoint": "reports/axis-states-v1.json",
     "whole_unit_reviews": 65,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/moving-axes-v1.json",
-    "source_collation": "data/einstein-moving-axes-source-reading-v1.json",
+    "dependency_checkpoint": "reports/axis-states-v1.json",
+    "source_collation": "data/einstein-axis-states-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
     "einstein_whole_unit_reviews": 45,
@@ -39,7 +40,7 @@
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は45/282・11,017/35,614非空白本文文字。u0044の動く三軸の幾何と全区間の平行性を、全物質点・原点の完全履歴へ結ぶ依存群を検査した。配置状態の一意性・候補運動の存在・対称性の説明と本文接続が残るため全単位件数は増やさない。部分草案226単位・原文対応25,941/35,614非空白文字（72.84%）。u0044以降と二作品全体の目標は継続中。",
+    "アインシュタインの全単位意味確認は45/282・11,017/35,614非空白本文文字。u0044の同じ候補履歴について、全実時刻の被覆と全選択時点での軸配置の存在・一意性を接続した。平行な候補運動の存在・対称性による採用と本文接続が残るため全単位件数は増やさない。部分草案226単位・原文対応25,941/35,614非空白文字（72.84%）。u0044以降と二作品全体の目標は継続中。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
