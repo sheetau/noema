@@ -1,0 +1,215 @@
+{
+  "status": "stationary_clock_definition_and_reasoned_time_naming",
+  "document": "examples/v014/einstein-rest-system-time.noema",
+  "parent": "examples/v014/einstein-empirical-light-constant.noema",
+  "inherited_meaning_basis": "data/empirical-light-constant-basis-v1.json",
+  "primitives": {
+    "eisks": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0022で直前に定義した時間規約を呼ぶための呼称個体。印字形die Zeit des ruhenden Systemsを識別表記に保持し、指示対象は命名行為で結ぶ。字面から絶対時間や全系の共通時間を導かない。"
+    },
+    "eiskt": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0022の、静止系に静止する時計による定義の重要性と、その系への所属を理由とした命名を述べる箇所。"
+    },
+    "eisku": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "time",
+        "rule",
+        "frame",
+        "unit",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "timeという時間規約の時刻付与の適用基準が、同じdocumentの同じframe・unitで閉じたruleにより与えられるという規約と規則の対応。ruleは出来事・時計・場所・指示値・状況の関係型であり、同じtimeの値の解釈と比較を保持する。規則の採用済み、時計の静止、各対象への実際の読取りの存在はこの対応だけから導かず、別に合成する。候補の別時間、局所規約一つ、全系共通の規約へ黙って交換しない。"
+    },
+    "eiskv": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでcontentの条件を、同じdocumentの定義の意味と適用範囲を理解する上で肝要なものとして取り立てる。論述上の重要性の帰属であり、論理的必然性の演算子、感情的な好み、内容の自明性や証明済みの認定とは区別する。条件の内容とその成立は合成側で保つ。"
+    }
+  },
+  "definitions": {
+    "einx": "同じ出来事・時計・場所・値・状況がeingの時刻付与条件を満たすなら、その時計と共通参照時計が指定frameで静止し、局所時計が指定場所にあるという条件。原文の時計による方法の範囲を取り出し、実際の時計の存在を追加しない。",
+    "einy": "全ての出来事・時計・場所・実数表現について、時刻付与の規則eingの適用が同じ静止系raのeinxを満たすという内容。有限標本への限定ではなく、定義本体の連言から得る一般的な条件である。",
+    "einz": "先に提案・定義した同じ時間規約eisjdを、同じ系ra・単位rbのeingへ結び、その適用で時計がraに静止するeinyを合わせる。時間の当該系への所属をこの操作上の依存として読む。",
+    "ein2": "直前の箇所rjで行った定義採用einiと、同じ規約・時計・系への依存einzを合わせ、先にこの方法で時間を定義したことを保持する。",
+    "ein3": "同じ著者が現在の箇所でeisksという呼称を、直前に定義した同じ時間規約eisjdに採用する命名行為。新しい時間規約を定義し直す行為とはしない。",
+    "ein4": "先の静止時計による定義ein2の成立と重要性、現在の命名ein3、その理由としての系への所属einzを同じ文で結ぶ。重要性と理由の向きを取り違えない。",
+    "ein5": "定義の重要性・所属・理由付き命名ein4を述べるメッセージ。静止系の名称を絶対静止や全系共通の時間の主張へ替えない。",
+    "ein6": "著者・論説への帰属、直前の定義箇所rjを受ける振り返り、速度定数の採用tmからの本文順序を保持する。改頁標識は新たな命題としない。"
+  },
+  "new_signatures": {
+    "eisks": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eiskt": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eisku": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eiskv": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "einx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "einy": {
+      "parameters": [],
+      "result": "content"
+    },
+    "einz": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ein2": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ein3": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ein4": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ein5": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ein6": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0022全207文字・177非空白本文文字を、原刊894頁末から895頁冒頭へ続く一文として読む。セミコロン前後の定義の重要性と理由付き命名を共に保持する。A0006は空の改頁標識であり、追加内容や脚注命題ではない。",
+    "die eben definierte Zeitは直前にeingで定義した同じ時刻規約を指す。先の共通時間候補eisjdがその規約として採用されたという連続性を明示し、別の時間規約や局所A時間だけへ替えない。",
+    "時計の同じ系での静止と所在はeing→qu→qt→saf/saeの連言から取り出す。全実数表現に量化した条件einyを有限標本で評価せず、この限定された含意は定義の展開と連言除去によって確認する。",
+    "Zugehörigkeitを、同じ系に静止する時計と同じ参照時計を用いて時刻を与えるという操作上の系への依存として読む。物体の容器への所属、時間が空間内に物として存在すること、絶対静止や全系で共通の時刻を意味させない。",
+    "Wesentlichは定義理解にとっての重要性の帰属であり、論理的必然性や自明性の主張にはしない。wegenは系への所属einzから命名ein3へ向かう理由として保持し、名前が静止条件を生むという逆向きにしない。",
+    "wir nennenは著者が議論を進める声による現在の命名宣言。引用形を保持し、同じ名称と対象を既存eisd4で結ぶ。著者以外の人数、社会全体の承認、既に他者がその名を使った事実は補わない。",
+    "定義の採用と名前の使用は物理的な読取りの実施ではない。有限例は規則の結合・別系への交換・命名・提示を検査し、全物理状況や原文との意味同値の自動証明とはしない。u0023以降の第二節は残る。"
+  ]
+}

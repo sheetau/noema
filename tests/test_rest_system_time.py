@@ -1,0 +1,9 @@
+from scripts.check_rest_system_time import definitional_checks,clock_checks,reference_and_naming_checks,logic_checks,presentation_checks,structure_checks
+
+
+def test_stationary_constraint_follows_from_definition():assert definitional_checks()['implication_by_definition_unfolding_and_conjunction_elimination']
+def test_same_frame_and_unbounded_domain():assert clock_checks()['unbounded_general_property_not_finitely_sampled']
+def test_same_time_and_reasoned_naming():assert reference_and_naming_checks()['same_just_defined_time_rule_frame_unit_and_designation']
+def test_definition_importance_naming_and_reason():assert logic_checks()['definition_naming_importance_and_reason_all_retained']
+def test_retrospective_reference_and_order():assert presentation_checks()['just_defined_reference_and_source_order_preserved']
+def test_printed_name_source_and_previous_judgments():assert structure_checks()['exact_printed_name_and_page_break_checked']
