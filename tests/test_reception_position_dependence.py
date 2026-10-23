@@ -1,0 +1,8 @@
+from scripts.check_reception_position_dependence import native_case_checks,pair_checks,witness_checks,drawback_and_knowledge_checks,presentation_checks,structure_checks
+
+def test_native_case_keeps_reception_assignment():assert native_case_checks()
+def test_matched_positions_and_different_values():assert pair_checks()
+def test_noninvariance_requires_a_counterexample():assert witness_checks()
+def test_drawback_and_empirical_knowledge():assert drawback_and_knowledge_checks()
+def test_contrast_and_parenthetical_attribution():assert presentation_checks()
+def test_source_and_first_sentence_binding():assert structure_checks()
