@@ -1,0 +1,6 @@
+from scripts.check_kinematics_headings import simultaneity_checks,topic_checks,presentation_checks,structure_checks
+
+def test_same_physical_time_with_valid_unique_assignments():assert simultaneity_checks()['unbounded_uniqueness_refused']
+def test_kinematics_and_definition_topic_composition():assert topic_checks()['physical_schemas_not_executed']
+def test_numbered_hierarchy_and_nonassertive_heading_roles():assert presentation_checks()['headings_not_physical_assertions']
+def test_source_collation_and_preserved_judgments():assert structure_checks()['prior_reviews_preserved']
