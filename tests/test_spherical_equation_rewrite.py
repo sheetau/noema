@@ -1,0 +1,15 @@
+from scripts.check_spherical_equation_rewrite import binding_checks,numeric_checks,target_checks,premise_checks,chain_checks,presentation_checks,structure_checks
+
+def test_same_event_and_current_record_pair():assert binding_checks()['same_event_two_current_records_wave_emission_frames_context']
+
+def test_four_equations_preserve_squared_sphere():assert numeric_checks()['same_current_four_equations_and_both_sphere_records']
+
+def test_arbitrary_arrivals_require_k_records():assert target_checks()['missing_k_record_rejected_for_each_K_arrival']
+
+def test_whole_current_premise():assert premise_checks()['same_current_nonempty_wave_K_equation_four_equations_and_record_coverage']
+
+def test_same_calculation_is_low_burden():assert chain_checks()['native_chain_and_nonnegative_total_same_existential_method']
+
+def test_rewrite_evaluation_and_author():assert presentation_checks()['rewrite_and_evaluation_share_node_author_section']
+
+def test_source_and_preserved_meanings():assert structure_checks()['prior_whole_unit_judgment_preserved']
