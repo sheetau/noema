@@ -1,0 +1,8 @@
+from scripts.check_temporal_judgments import component_checks,account_checks,universal_scope_checks,consideration_checks,presentation_checks,structure_checks
+
+def test_simultaneity_relation_is_quoted_not_asserted():assert component_checks()['relation_classification_not_physical_truth']
+def test_all_items_of_same_account():assert account_checks()['nonempty_all_relation_items']
+def test_all_judgments_with_temporal_content():assert universal_scope_checks()['all_temporally_relevant_judgments']
+def test_property_and_methodological_requirement():assert consideration_checks()['property_and_consideration_requirement_both_kept']
+def test_author_attribution_and_order():assert presentation_checks()['same_author_document_and_order']
+def test_prior_reviews_and_sentence_readings_preserved():assert structure_checks()['prior_reviews_and_two_sentences_preserved']
