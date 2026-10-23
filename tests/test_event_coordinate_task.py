@@ -1,0 +1,8 @@
+from scripts.check_event_coordinate_task import measurement_checks,binding_checks,correspondence_checks,equation_checks,presentation_checks,structure_checks
+
+def test_measured_three_coordinates_determine_place():assert measurement_checks()['native_sha_eixu_and_all_location_candidates_checked']
+def test_same_event_location_and_clock_time():assert binding_checks()['same_event_place_frame_tuple_time_and_context_bound']
+def test_complete_same_event_correspondence():assert correspondence_checks()['native_sgu_sgv_sgw_and_modern_side_bindings_checked']
+def test_equation_question_requires_exact_solution_set():assert equation_checks()['native_sgx_sgy_sgz_exact_solution_set_and_question_agree']
+def test_claim_and_unsolved_task_are_presented():assert presentation_checks()['claim_and_equation_task_order_and_scope_distinguished']
+def test_previous_measurement_paragraph_is_preserved():assert structure_checks()['all_previous_meanings_and_u0045_review_preserved']
