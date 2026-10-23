@@ -1,0 +1,9 @@
+from scripts.check_transverse_endpoint_claim import numeric_checks,scope_checks,presentation_checks,structure_checks
+
+def test_both_endpoint_formulas_and_same_four_transform():assert numeric_checks()['negative_phi_not_replaced_by_absolute_value']
+
+def test_current_pair_and_every_time_nonvacuous_scope():assert scope_checks()['no_vacuous_empty_scope_or_single_sample_substitute']
+
+def test_question_attention_and_ordered_displays():assert presentation_checks()['both_endpoints_and_ordered_numbered_displays_preserved']
+
+def test_current_manuscript_and_preserved_evidence():assert structure_checks()['prior_whole_unit_judgment_preserved']
