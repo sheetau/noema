@@ -1,0 +1,9 @@
+from scripts.check_reception_time_alternative import setup_and_arrival_checks,assignment_checks,record_checks,all_records_checks,possibility_checks,presentation_checks,structure_checks
+
+def test_same_observer_origin_and_vacuum_arrival():assert setup_and_arrival_checks()
+def test_reception_indication_and_original_event_roles():assert assignment_checks()
+def test_each_record_field_and_reading():assert record_checks()
+def test_all_eligible_arrival_records():assert all_records_checks()
+def test_optional_choice_not_actual_execution():assert possibility_checks()
+def test_concessive_presentation_and_order():assert presentation_checks()
+def test_source_and_preserved_paragraph():assert structure_checks()
