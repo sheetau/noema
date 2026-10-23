@@ -1,0 +1,8 @@
+from scripts.check_parallel_choice import reference_checks,candidate_checks,symmetry_checks,notation_checks,presentation_checks,structure_checks
+
+def test_reference_axes_remain_static_without_stopping_moving_axes():assert reference_checks()['moving_frame_not_given_static_condition']
+def test_one_candidate_is_parallel_for_the_whole_interval():assert candidate_checks()['one_candidate_meets_admissibility_and_whole_interval_alignment']
+def test_symmetry_does_not_supply_an_existence_proof():assert symmetry_checks()['symmetry_does_not_imply_parallel_candidate_existence']
+def test_all_t_occurrences_use_rest_frame_time():assert notation_checks()['rest_time_rule_and_every_occurrence_bound']
+def test_permission_setting_and_attribution_do_not_execute_physics():assert presentation_checks()['permission_not_assumption_execution_or_physical_truth']
+def test_prior_meanings_and_sentence_forces_preserved():assert structure_checks()['setting_directive_and_permission_claim_distinguished']

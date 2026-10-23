@@ -1,0 +1,407 @@
+{
+  "status": "complete_frame_motion_and_symmetry_licensed_assumption",
+  "document": "examples/v014/einstein-parallel-choice.noema",
+  "parent": "examples/v014/einstein-axis-states.noema",
+  "inherited_meaning_basis": "data/axis-states-basis-v1.json",
+  "primitives": {
+    "ud": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "author",
+        "premise_nodes",
+        "conclusion_node",
+        "context"
+      ],
+      "meaning_ja": "著者が指定した文章箇所の集合を根拠側として、結論箇所を帰結として提示する。論理的含意、証明の妥当性、因果関係とは区別する。根拠の十分性を判定する関係ではない。"
+    },
+    "eism3": {
+      "parameters": [
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "individual"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "individual"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "domain",
+        "forward",
+        "inverse",
+        "reference",
+        "axis",
+        "context"
+      ],
+      "meaning_ja": "同じ物理的設定のreferenceと指定した運動方向axisを保つ空間的な対称操作が、候補domainの記述上でforwardとinverseとして作用する。恒等写像という名前や任意の候補番号の置換だけでは認めず、設定を区別しない非自明な空間操作に由来するという物理的な分類を保つ。対称な候補がその操作で不変でもよい。領域保存・可逆性・許容条件の保存はsfsで別に構成し、特定の結論を持つ候補の存在や推論の十分性は含めない。"
+    },
+    "eism4": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "adoption",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "agentが同じdocumentのscopeにおける論考を進めるため、adoptionとして記述した仮定採用を行ってよいという認識上の権原・正当な許容がある。単に禁止されていないこと、本人の希望、法的な権利、採用済み、採用内容の真理や証明とは異なる。閉じた採用行為の記述に同じ内容と範囲を固定する。"
+    },
+    "eism5": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "第三節で引用符付きtとして言及される時刻記号の呼称個体。同じ静止系時刻の適用規則を合成側で結ぶ。実数値そのものや特定の時計の個体ではない。"
+    },
+    "eism6": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "use",
+        "designation",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentのscopeでdesignationを意味のある記号として用いる出現の全範囲にuseが属する。本文・式・挿入説明を含む同じ記号の使用を扱い、都合のよい標本だけに限定しない。語形がたまたま同じ別の記号や別の議論は混ぜず、範囲の完全性を有限列挙から認定しない。"
+    },
+    "eism7": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "use",
+        "rule",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentの記号使用useにおいて、対象・値・状況の役割を閉じたruleに従って解釈する。規則を一度引用するだけではなく当該使用への適用を保持し、引用から測定済みや値の実在を導かない。"
+    },
+    "eisna": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "この設定で第二の座標系を指す小文字kという記号の呼称個体。対象zbmとの結合は命名行為で保持する。"
+    },
+    "eisnb": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "この設定で既出の静止基準を指す大文字Kという記号の呼称個体。対象raとの結合は命名行為で保持する。"
+    }
+  },
+  "definitions": {
+    "eiwk": "同じ静止基準raの原点・三軸を初期設定から引き継ぎ、現行eiv7の全軸幾何、全物質点の静止eipw、代表原点の完全な静止eit2を同じ運動比較期間へ結ぶ。移動側に静止を課さない。",
+    "eiwl": "同じ設定の移動側の全原点・軸・計器の正X並進eivzと三軸幾何eiv7、静止側のeiwkを合わせる。初期長さ保存、時計同期や加速機構を追加しない。",
+    "eiwm": "同じ候補履歴にeiwjの全時刻被覆と配置一意性、静止基準の同じ軸のeiwkを要求する。候補ごとに異なる設定を持てるが、初期対象と速度は共通である。",
+    "eiwn": "一つの候補履歴eiwmに、同じ期間を通して対応三軸が平行であるeiwbを課す。時刻ごとに別の候補を選んで済ませない。",
+    "eiwo": "全時刻で平行な許容候補eiwnが一つ存在するという可能性の内容。まだ特定の候補を現実化したり証明済みとしたりしない。",
+    "eiwp": "第一文で設定したzb6を同じ選択候補zcjの文脈に固定し、全静止系時刻に軸配置が存在し一意であるeiwmを述べる内容。平行候補の存在とは区別する。",
+    "eiwq": "同じ設定と運動方向を保つ空間的対称操作eism3と、候補領域での可逆性・許容条件eiwmの保存sfsを結ぶ理由内容。これだけでeiwoの存在を導かない。",
+    "eiwr": "同じ著者が平行候補の存在eiwoを第三節の議論へ仮定として採用する行為内容。許容の対象として引用する。",
+    "eiws": "eiwrを採用してよいという認識上の権原eism4と、その根拠としてeiwqの対称性を挙げるzctを合わせる。採用行為や引用内の物理条件を実行しない。",
+    "eiwt": "指定した時点・値・状況について、同じ静止系ra・時間単位rbの有効で存在するylの値を指すという時刻記号の適用規則。移動側の時刻を代入しない。",
+    "eiwu": "tの量の解釈をeiwtへ固定し、同じ論説で同じ記号を使う非空の全範囲eism6へ同じ規則を適用する。immerを一つの使用例や第三節内だけへの指定に弱めない。",
+    "eiwv": "第一文で採用する、同じ運動後の設定zb6におけるeiwlの条件内容。",
+    "eiww": "同じ二系をk/Kとして参照する記号の採用と、初期設定へ追加するeiwvの仮定採用を合わせた第一文の設定操作。",
+    "eiwx": "Es werde ... erteiltとmitteilen mögeを、一つの設定操作eiwwへの指示として保持するメッセージ。実際の加速実施の報告ではない。",
+    "eiwy": "第一文の設定指示eiwxを同じ著者・論説へ帰属し、u0043の初期設定の後という本文順序を保持する。",
+    "eiwz": "同じ設定の帰結として配置一意性eiwpを述べ、平行候補の存在を仮定してよいというeiws、tの全使用の規定eiwuとその括弧による補足を合わせる第二文の内容。",
+    "eiw2": "第二文の帰結・認識上の許容・対称性の根拠・時刻記号の挿入説明を述べるメッセージ。平行運動の実証へ替えない。",
+    "eiw3": "第二文全体を同じ著者・論説へ帰属し、第一文の後に置く。"
+  },
+  "new_signatures": {
+    "ud": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eism3": {
+      "parameters": [
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "individual"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "individual"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eism4": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eism5": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eism6": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eism7": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisna": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eisnb": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eiwk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiwl": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiwm": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiwn": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiwo": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiwp": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiwq": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiwr": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiws": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiwt": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiwu": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiwv": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiww": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiwx": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eiwy": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "eiwz": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiw2": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eiw3": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0044全687文字・526本文文字を対象とする。Es werde ... erteilt / mitteilen mögeは第一文の設定指示、Jeder Zeit ... entspricht dannはその設定内の帰結、befugt anzunehmenは認識上の正当な許容として読む。",
+    "小文字kは同じ第二系zbm、大文字Kは既出の静止基準raを指す記号の導入と読む。速度vはzb7、増加するxは静止系の正X方向であり、前の棒のybと同一視しない。M0070/M0073/M0074のtは同じ静止系時刻の記号である。",
+    "原点・三軸・物差し・全時計へ同じ正X速度を与える。軸と物差しは全物質点、時計は代表配置を追う。加速機構、加速中の剛性、運動前後の長さ不変、同期済みや内部時計停止を補わない。",
+    "各静止系時刻の配置一意性はeiwjで全実時刻を覆い、全対応記述の同じ原点・全軸成員の座標一致を要求する。物質線の幾何と静止側の同じ原点・軸を完全履歴に結ぶ。",
+    "so beschaffen sein kannは全期間で平行な一つの許容運動があるという候補存在として読む。befugtはその存在内容を仮定として採用してよいという権原であり、仮定の真理、採用完了又は特定候補の現実化を主張しない。",
+    "Symmetriegründenは、同じ設定と運動方向を保つ空間的対称操作の下で許容条件が保存されるという理由として明示する。原文は具体的な変換・運動方程式・存在証明を与えないため、回転角や反射面を特定せず、空間操作への対応をeism3の物理的な意味入力として保持する。任意の候補番号の置換を対称性とみなさず、可逆性と条件保存はsfsで構成する。理由への帰属とその十分性は分ける。",
+    "対応三軸は全時刻で平行とするが、逆向きも許す。二原点、正方向又はX支持直線の一致は追加しない。静止側の軸の保持を、移動側の静止へ取り違えない。",
+    "括弧のimmerは、この議論の同じt記号の全使用が静止系時刻の規則eiwtに従うこと。規則の引用から時刻測定の実行や全系共通の時間を導かない。",
+    "wirは著者が論考を進める声とし、読者全員の同意や物理学者集団の人数を補わない。帰結提示ud・括弧補足eisa5・理由帰属zctは内容の真理を自動で実行しない。有限検査と全段落の通読判断は分け、二作品全体は未完である。"
+  ]
+}
