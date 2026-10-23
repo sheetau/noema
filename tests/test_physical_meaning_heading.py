@@ -1,0 +1,6 @@
+from scripts.check_physical_meaning_heading import motion_checks,subject_checks,presentation_checks,structure_checks
+
+def test_representative_motion_and_real_domain():assert motion_checks()['native_real_quantification_refused']
+def test_rigid_body_and_clock_subjects():assert subject_checks()['clock_representative_motion_not_internal_mechanism_motion']
+def test_both_subjects_and_heading_structure():assert presentation_checks()['section_four_depth_two_parent_part_one']
+def test_preserved_whole_unit_judgments():assert structure_checks()['prior_whole_unit_judgments_preserved']
