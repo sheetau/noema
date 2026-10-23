@@ -1,0 +1,11 @@
+from scripts.check_third_frame_geometry import numeric_checks,geometry_checks,record_checks,scope_checks,structure_checks
+
+def test_signed_double_transform_all_eight_equalities():assert numeric_checks()['eight_equalities_and_both_signed_phi_values_checked']
+
+def test_full_frame_axis_and_common_zero():assert geometry_checks()['all_three_origin_records_and_four_third_coordinates_required']
+
+def test_same_event_total_three_records():assert record_checks()['nonempty_every_event_three_records_and_value_uniqueness']
+
+def test_all_triples_and_complete_chains():assert scope_checks()['existence_intermediate_and_final_all_required']
+
+def test_preserved_evidence_and_current_dependencies():assert structure_checks()['old_record_paths_excluded']
