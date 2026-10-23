@@ -1,0 +1,8 @@
+from scripts.check_frame_motion import representative_checks,history_checks,identity_checks,population_checks,frame_checks,structure_checks
+
+def test_full_representative_path_not_endpoint_interpolation():assert representative_checks()['positive_x_only_and_mid_interval_deviation_checked']
+def test_material_and_representative_history_bindings():assert history_checks()['all_material_members_and_representative_positions_kept_separate']
+def test_same_origin_axes_and_complete_clock_population():assert identity_checks()['clock_additions_and_losses_detected']
+def test_all_carried_objects_without_freezing_clock_internals():assert population_checks()['clock_internal_parts_not_sent_to_material_motion']
+def test_three_components_share_the_same_frame_velocity():assert frame_checks()['same_complete_frame_motion_and_three_speed_components']
+def test_prior_evidence_and_source_reading_preserved():assert structure_checks()['prior_meanings_and_reviews_preserved']

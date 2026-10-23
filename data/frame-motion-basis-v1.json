@@ -1,0 +1,199 @@
+{
+  "status": "complete_frame_translation_dependency",
+  "document": "examples/v014/einstein-frame-motion.noema",
+  "parent": "examples/v014/einstein-frame-instruments.noema",
+  "inherited_meaning_basis": "data/frame-instruments-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "eivu": "指定対象の同じ基準系・単位・正の区間で、三代表位置関数の完全なse履歴と、下端での同じ位置から正のX速度で動くeitf履歴を結ぶ。全区間で同じ出来事・座標へ対応し、端点の値だけでは並進としない。時計の内部点は量化しない。",
+    "eivv": "同じ物質軸又は物差しの全成員・全時刻の履歴へeipfとeigyを適用し、静止系raで既出zb7の正X並進と剛性を保持する。以前の棒の速度yb、初期静止長、加速過程を混ぜない。",
+    "eivw": "同じ対象の代表位置をeismhから取得し、同じra・ta・rb・期間・zb7へeivuを適用する。原点又は時計の巨視的な配置を追い、時計表示の進みを位置の速度へ替えない。",
+    "eivx": "sfjの初期設定から後の設定への対象保存を使い、同じ唯一の原点と異なる三軸の全役割を保持する。各軸は同じ原点から出るものとして引き継ぐが、初期静止のeivfを動く設定へ適用しない。時計群はsfjの両方向の範囲一致で保持する。",
+    "eivy": "同じ対象を引き継いだ設定で、原点はeivw、三軸と物差しはeivv、配備した全時計は型・校正とeivwを満たす。物質軸と物差しの全点並進、時計の代表配置の並進を分け、どの計器も省略しない。",
+    "eivz": "eivyの実物と位置履歴を、現行eiojの全固定配置・全時点の並進へ結び、同じ二系の三速度成分をzb7・零・零へ固定する。以前の相対速度候補zbiも同じ値とする。各系の時計時刻の一致や全時刻での平行軸配置の仮定を追加しない。"
+  },
+  "new_signatures": {
+    "eivu": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eivv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0044第一文の原点・軸・物差し・時計に共通する定速度の依存群。原刊897頁の文面と小文字k/v/x・大文字Kを照合した。設定指示の著者への帰属、後半の配置と対称性、括弧内の時刻呼称、段落全体の意味判断は未完。",
+    "zb4からzb6へ同じ対象を引き継ぐ思考上の設定である。加速する物理的な方法、加速中の剛性、初期静止状態との長さ不変や時計の位相・同期を要求しない。",
+    "時計はeismhの代表配置を追う。針・歯車の全物質点をeipfへ渡さない。軸と物差しは巨視的に理想化した物質体の全成員を追い、二端だけや一つの標識に縮めない。",
+    "全位置履歴は既存se・eiad、全固定配置の範囲はeiojのeislbへ接続する。物理的な全対象・全時刻の完全性は有限標本から認定しない。原点と時計の同じ世界線への二履歴の結合により、候補の位置関数だけを信頼しない。",
+    "静止系raの長さ単位taと時間単位rbで正X方向の速度zb7を用いる。三成分の値を明示し、旧棒設定のybと同一視しない。速度上限や光速の条件はこの文に加えない。",
+    "後の軸の全時刻の平行性・配置の一意性と対称性による選択の正当化は別に接続する。初期のX支持直線一致、二原点一致、正方向一致を運動全区間へ追加しない。"
+  ]
+}
