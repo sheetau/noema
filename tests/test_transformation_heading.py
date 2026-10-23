@@ -1,0 +1,7 @@
+from scripts.check_transformation_heading import assignment_checks,correspondence_checks,topic_checks,heading_checks,structure_checks
+
+def test_four_components_and_current_local_time():assert assignment_checks()['all_real_coordinate_uniqueness_preserved_and_refused']
+def test_same_event_and_directed_pairing():assert correspondence_checks()['same_event_witness_not_two_different_events']
+def test_transformation_theory_topic():assert topic_checks()['no_formula_discovery_or_physical_model_execution_implied']
+def test_numbered_heading_and_parent_scope():assert heading_checks()['full_and_core_heading_not_physical_assertions']
+def test_prior_meanings_and_reviews_preserved():assert structure_checks()['prior_meanings_and_reviews_preserved']
