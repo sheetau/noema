@@ -1,0 +1,477 @@
+{
+  "status": "comoving_direct_and_synchronized_endpoint_measurement_methods",
+  "document": "examples/v014/einstein-rod-methods.noema",
+  "parent": "examples/v014/einstein-rod-experiment.noema",
+  "inherited_meaning_basis": "data/rod-experiment-basis-v1.json",
+  "primitives": {
+    "eisl3": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "procedure",
+        "movingframe",
+        "restframe",
+        "moving",
+        "comparison",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、movingの操作を、restframeでcomparisonの状況が成立していた場合と同じprocedureの仕方で行うものとして比較する。movingframeとrestframeの対応、同じ対象・道具・観測者・単位・操作規則は引用した規則に固定する。比較するのは物差しを当てて直接読むという手順であり、二状況の実在、同じ数値結果、全物理法則の不変性を要求しない。"
+    },
+    "eisl4": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "endpoint",
+        "event",
+        "clock",
+        "place",
+        "frame",
+        "timeunit",
+        "value",
+        "context"
+      ],
+      "meaning_ja": "同じobserverが、endpointのeventに関して、frameのplaceに設置されたclockの局所表示と既定の時刻規約を手段として、その端点が指定時刻valueに位置するplaceを確定する操作。単に数値が一致しているだけで観測・決定を推測せず、端点の出来事・場所・局所表示・同期・指定値への一致は別条件で要求する。信号を遠隔で受け取った時刻や、物差しによる二地点間距離の測定と分ける。"
+    },
+    "eisl5": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "subject",
+        "designation",
+        "methods",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、subjectに対して列methodsの各操作で得る値候補を、同じdesignationの量として呼ぶことを認める。後の方法も先の方法に加えて同じ量の呼称を適用できるという分類上の許容であり、各規則は対象・単位・状況を保つ閉じた記述である。呼称の採用を義務にせず、値の実在・唯一性や方法間の数値的一致は含意しない。"
+    },
+    "eisl6": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0031第二文の引用符付きLänge des Stabesという量の呼称。指す棒と許容する測定規則の範囲は合成で指定する。"
+    }
+  },
+  "definitions": {
+    "eipw": "指定した同じ物体・基準系・設定の全物質点履歴をeiahへ渡し、正の区間幅で静止を要求する。移動側と静止側の時刻を同一視しない。",
+    "eipx": "同じ指定物体の静止系raでの全物質点履歴へeipfを適用し、既出のybによる正のX方向等速並進を要求する。棒・物差し・観測者の巨視的な位置を同じ区間で追う。",
+    "eipy": "同じ棒・物差し・観測者が静止系で同じybの並進を行い、同じ移動側系xlでは全区間静止する条件。棒には既存eipkの剛性・軸配置を保持し、移動系の全固定配置にも同じ速度成分のeiojを要求する。",
+    "eipz": "同じ棒・観測者・物差しについて、指定系での直接接触と尺度の読取りsbeを、三者の全履歴の静止、正の長さ、棒の剛性と軸長eipeへ結ぶ共通の直接測定規則。数値だけから読みを認定しない。",
+    "eip2": "先行する方法aのsbiと、全履歴の同伴eipy、移動系での直接測定eipzを結ぶ。先の問いで参照した方法を同じ対象・道具・尺度の下で具体化する。",
+    "eip3": "同じ共通の直接測定規則eipzを静止系raの想定へ適用する比較側の条件。実際に三者が静止系で止まったとは主張しない。",
+    "eip4": "同じ棒の二端標識を長軸の両端、各出来事と場所へ結び、第一節のeingで静止時計・局所表示・共通参照rcの時刻を与える。両値を同じ指定時刻xvに一致させ、同じ端点の世界線・時刻・三座標もsbへ結ぶ。",
+    "eip5": "既存eipkの運動する棒についてeip4の二端の時刻・場所を保持し、同じ観測者がそれぞれの局所時計を使ってその場所を確定する操作を結ぶ。観測者の静止は要求しない。",
+    "eip6": "先行する方法bのsbkと、時計を用いた二端位置の確定eip5、今回は静止系で静止する同じ物差しの全履歴を結ぶ。既存th/xhの二地点間距離と、同じ指定時刻の軸長eipaが同じ値である。棒へ直接物差しを当てる方法aへ交換しない。",
+    "eip7": "著者が同じ考察範囲で方法aのeip2を提示し、その直接測定手順を、三者が静止系で静止しているなら行うeip3と同じeipzとして比較する内容。比較から値の一致を導かない。",
+    "eiqa": "方法aの提示と静止の場合への手順比較eip7を述べるメッセージ。実測結果の報告ではない。",
+    "eiqb": "方法aを同じ著者・論説へ帰属し、先の問いのコロンに続く第一項とする。",
+    "eiqc": "著者が方法bのeip6を提示し、用いる時刻規則eingを第一節へ参照する。同じ棒に対する方法aとbの両値候補をLänge des Stabesと呼び得るという追加の許容を結ぶ。",
+    "eiqd": "方法bの時計・距離の測定と長さの呼称の許容eiqcを述べるメッセージ。二方法の同値や相対性原理からの結論ではない。",
+    "eiqe": "方法bを同じ著者・論説へ帰属し、方法aの後の第二項として保持する。二文と改頁を一つの方法の説明として扱う。"
+  },
+  "new_signatures": {
+    "eisl3": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisl4": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisl5": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisl6": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eipw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eipx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eipy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eipz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eip2": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eip3": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eip4": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eip5": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eip6": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eip7": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiqa": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eiqb": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "eiqc": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiqd": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eiqe": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0030の方法a全243文字・207本文文字、u0031の方法b全420文字・353本文文字、M0048のtを対象とする。原刊895頁から896頁への改頁で方法bを分断しない。",
+    "三者の同伴と静止は測定操作の間の巨視的な配置・物質点履歴について読む。生体の内部運動や物差しの微視的熱運動を禁止せず、測定時の位置を定める理想化された代表配置を用いる。棒の全物質点・全時刻の剛性と並進は保持する。",
+    "移動側xlと静止側raの同じ長さ単位ta・時間単位rbを使うが、両系の時刻や同時性を等置しない。各系の全履歴はその系の時間区間で読む。方法aの長さを初期値yaと同じにする結論はu0032まで加えない。",
+    "方法aのebenso, wie wennは同じ物差しを当てて直接読む手順の比較。比較側の静止の現実化、同じ値、法則全体の不変性をこの句から追加しない。",
+    "方法bは同じ二端標識・出来事・静止系の場所・局所時計表示を結び、両端の値を同じxvへ固定する。遠隔受信の時刻や移動する棒の時計で代用しない。観測者自身が静止している条件は加えない。",
+    "同じ物差しxjは方法aではxlに、方法bではraに静止する。ye/yfの別設定で評価し、両系へ同時に静止するとは主張しない。二地点間の距離を測る操作xhと棒への直接接触xd/xeを分ける。",
+    "長軸の端面中心を二端として追跡し、形状の帰属はeislq、世界線と座標はse/sb、時刻はeingへ結ぶ。幾何学的標識は必ず物質点であるとは要求しない。",
+    "ebenfallsとbezeichnen kannは方法bの値も棒の長さという呼称に含め得ることとして保持する。呼称を強制せず、方法間の値の一致・相違、値の存在・一意性や測定実行済みを語句だけから補わない。",
+    "原文の操作はu0029で導入した思考上の考察範囲xyに属する。有限検査は依存群の引数、局所時計、指定時刻、測定行為、型付き引用、比較・呼称の役割を検査し、全実数履歴や物理的真理を証明しない。"
+  ]
+}

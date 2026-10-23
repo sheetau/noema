@@ -1,0 +1,7 @@
+from scripts.check_rod_methods import comoving_checks,endpoint_checks,measurement_checks,presentation_checks,structure_checks
+
+def test_comoving_complete_histories_and_direct_measurement():assert comoving_checks()['all_three_bodies_comove_and_rest_in_same_moving_frame']
+def test_same_endpoint_events_and_local_clock_displays():assert endpoint_checks()['same_time_inside_motion_interval']
+def test_localization_and_same_ruler_distance_not_observer_rest():assert measurement_checks()['no_method_b_observer_stationarity']
+def test_procedure_comparison_permissive_naming_and_quotes():assert presentation_checks()['quotes_do_not_execute_measurements']
+def test_original_pages_and_retained_question_clock_judgments():assert structure_checks()['prior_question_clock_and_rod_judgments_preserved']
