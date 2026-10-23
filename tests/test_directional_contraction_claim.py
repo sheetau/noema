@@ -1,0 +1,7 @@
+from scripts.check_directional_contraction_claim import dimension_checks,speed_checks,scope_checks,presentation_checks,structure_checks
+
+def test_dimensions_have_actual_witnesses_and_correct_ratio():assert dimension_checks()['finite_rest_dimensions_and_each_observed_width_exist']
+def test_same_rest_size_speed_ordering():assert speed_checks()['same_positive_rest_width_under_two_admissible_speeds']
+def test_generic_body_shape_and_common_axis():assert scope_checks()['all_bodies_all_shapes_and_same_eligibility_on_both_sides']
+def test_author_contrast_and_consequence():assert presentation_checks()['contrast_and_both_consequences_preserve_direction']
+def test_source_and_previous_judgments():assert structure_checks()['prior_whole_unit_judgments_preserved']
