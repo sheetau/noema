@@ -1,0 +1,9 @@
+from scripts.check_arbitrary_start_claim import connection_checks,choice_checks,shift_checks,derivative_checks,scope_checks,presentation_checks,structure_checks
+
+def test_same_point_time_and_tau_in_baseline_and_possible_result():assert connection_checks()['same_point_coordinates_time_and_function_in_both_contexts']
+def test_each_point_can_choose_its_own_trial_and_possible_outcome():assert choice_checks()['native_pointwise_existence_and_possible_outcome_binding']
+def test_shift_changes_only_three_spatial_origins():assert shift_checks()['native_spatial_shift_preserves_time_and_function_values']
+def test_local_derivatives_are_bound_at_each_point():assert derivative_checks()['each_point_has_its_own_derivative_values']
+def test_all_spatial_scope_and_real_quantifier_refusal():assert len(scope_checks()['real_quantification_refused'])==4
+def test_notice_and_reasoned_consequence_keep_same_premise():assert presentation_checks()['notice_possible_choice_and_same_equation_consequence_connected']
+def test_previous_judgment_and_reused_definitions_are_unchanged():assert structure_checks()['previous_differential_judgment_preserved']
