@@ -1,0 +1,9 @@
+from scripts.check_transverse_derivative_claim import trial_checks,scope_checks,calculus_checks,midpoint_checks,global_checks,presentation_checks,structure_checks
+
+def test_same_trial_candidates_and_departure_values():assert trial_checks()['same_departure_point_coordinates_time_gap_and_component_bound']
+def test_all_trials_and_both_nonempty_axis_ranges():assert scope_checks()['additional_bad_trial_rejected']
+def test_both_actual_partial_slices_and_same_regularities():assert calculus_checks()['zero_partial_is_not_local_constancy']
+def test_same_transverse_midpoint_arguments():assert midpoint_checks()['same_tau_three_arguments_and_equal_transverse_elapsed_times_checked']
+def test_all_spatial_scope_and_real_quantifier_refusals():assert len(global_checks()['real_quantification_refused'])==4
+def test_attention_analogy_and_conclusion_roles():assert presentation_checks()['quoted_claim_not_executed_as_proof']
+def test_preserved_source_judgment_and_reused_calculus():assert structure_checks()['previous_whole_unit_judgment_preserved']
