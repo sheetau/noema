@@ -1,0 +1,8 @@
+from scripts.check_kinematic_replacement import snapshot_checks,configuration_checks,scope_checks,length_checks,presentation_checks,structure_checks
+
+def test_complete_coordinate_images_not_only_endpoints():assert snapshot_checks()['interior_and_transverse_shape_changes_detected']
+def test_same_body_rigidity_motion_rest_and_admissible_placement():assert configuration_checks()['same_material_members_and_admissible_configuration_required']
+def test_every_selected_body_and_some_rest_configuration():assert scope_checks()['nonempty_full_selected_body_range_and_every_body_checked']
+def test_two_method_values_with_existence_and_numeric_uniqueness():assert length_checks()['projection_only_and_full_real_domain_refused']
+def test_tacit_assumption_and_attributed_reformulation():assert presentation_checks()['unknown_explicitness_not_negated']
+def test_source_and_unchanged_previous_length_claims():assert structure_checks()['prior_length_claims_and_meanings_preserved']
