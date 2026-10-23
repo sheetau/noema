@@ -1,0 +1,10 @@
+from scripts.check_event_time_summary import indication_checks,reference_checks,native_checks,adoption_checks,summary_logic_checks,presentation_checks,structure_checks
+
+
+def test_coincident_local_indication():assert indication_checks()['same_event_and_local_indication_not_just_same_number']
+def test_same_reference_for_all_assignments():assert reference_checks()['separate_reference_per_assignment_rejected']
+def test_native_light_synchrony_connection():assert native_checks()['native_qu_qt_saf_qo_qn_db_connections_checked']
+def test_experiential_means_and_both_definitions():assert adoption_checks()['both_time_and_simultaneity_adopted']
+def test_retrospective_reason_and_obviousness():assert summary_logic_checks()['grounds_result_reason_and_obviousness_all_required']
+def test_two_sentence_presentations():assert presentation_checks()['source_order_and_existing_definition_node_preserved']
+def test_source_and_prior_judgments():assert structure_checks()['previous_synchrony_judgments_preserved']
