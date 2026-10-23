@@ -1,0 +1,52 @@
+"""Connect the origin clock's proportional time and difference rewrite."""
+from copy import deepcopy
+import json
+from noema.grammar import parse,format_graph
+from noema.extraction import extract_document
+from noema.semantic_reviews import digest
+from scripts.compose_origin_clock_equations import ROOT,read
+from scripts.compose_solid_sphere_geometry import bind
+from scripts.compose_material_relative_frame import define
+from scripts.compose_relativity_conjecture import content
+from scripts.compose_two_postulates import quote
+from scripts.compose_limits import v,call as k,op,both
+
+PARENT='examples/v014/einstein-origin-clock-equations.noema';PARENT_BASIS='data/origin-clock-equations-basis-v1.json'
+FULL='examples/v014/einstein-origin-clock-time.noema';CORE='examples/v014/origin-clock-time-core.noema'
+BASIS='data/origin-clock-time-basis-v1.json';ANNOTATIONS='data/origin-clock-time-identifiers-v1.json';INDEX=340
+MEANINGS={
+ 'ejjl':'同じ原点時計の現在の全記録範囲ejjdについて、全ての局所記録対ejitでsvjのτ=t√(1−(v/V)²)とτ=t−(1−√(1−(v/V)²))tを共に要求する。比例式と差の式は同じKのt、kのτ、光速V、速度vを共有する。',
+ 'ejjm':'同じ時計zie・現在状況zb6についての比例式と差の式の内容。原点配置、校正された表示、全時刻の比較はejjdへ接続し、数値式を満たす記録だけを範囲に選ばない。',
+ 'ejjn':'著者が直前の同じ時計の時間変換と軌道式ejjgから、比例式と差の式ejjmを得ると提示するzc。Es ist alsoの帰結を同じ前提・結論・第四節へ結ぶ。',
+ 'ejjo':'同じ時計の比例式・差の式への帰結ejjnを述べるメッセージ。',
+ 'ejjp':'帰結の提示を同じ著者・論説へ帰属し、直前の二式の箇所ziiから今回のzijへ続ける。u0123の導入とu0124の表示を一つの帰結として接続する。',
+}
+LIMITS=[
+ 'u0123のEs ist alsoとu0124のM0216を原刊904頁で照合する。二式に続く帰結として、τ=t√(1−(v/V)²)=t−(1−√(1−(v/V)²))tという等号連鎖を保持する。',
+ '既存svjはτ=右辺第一項とτ=右辺第二項の二等式を連言する。実数値の同値関係の下では原文の隣り合う二等式と同じ内容である。平方根・同じtへの積・外側と内側の減算を省かない。',
+ 'tは同じ出来事のKの座標時刻、τは同じ出来事のkの座標時刻であり、現在の設定で時計が実際に表示する値に一致する。負の座標時刻も保持し、常に正の経過時間と読み替えない。',
+ '全局所対ejitと全現在範囲ejjdを継承する。原点と校正、代表軌跡、同じ出来事の対応を失わず、数値の一致だけで別の場所や時計の表示を代用しない。現在の0<v<Vの物理設定と正の平方根を保持する。',
+ 'Es ist alsoは直前の時間式とx=vtからの著者の帰結提示と読む。提示への帰属は処理系が原論文の物理理論を証明したという意味ではない。',
+ '表示末尾のコンマは後続のworaus folgtへ続く。今回の表示に単位秒当たりの遅れ、四次以上を除いた近似、運搬時計の帰結を追加しない。率の問いの答えには異なる時刻の比較が必要で、一つの零時刻だけから特定の率を認定しない。',
+ '新しい原始記号は追加しない。有限切断モデルでの数値・結合検査と原文の通読判断は、実数全域の一般定理や意味同値の自動証明とは区別する。',
+]
+
+def definitions():
+    clock=v('clock');ctx=v('context');own=v('own');lab=v('lab')
+    every=bind(('own','lab'),'a','f',op('y',k('ejit',clock,own,lab,ctx),k('svj',lab,own)))
+    text=define('ejjl',[('clock','a'),('context','d')],both(k('ejjd',clock,ctx),every))
+    text+=content('ejjm',k('ejjl',k('zie'),k('zb6')))
+    text+=content('ejjn',k('zc',k('zij'),k('rd'),quote('ejjg'),quote('ejjm'),k('eisn5'),v('point')))
+    text+='d ejjo[] f[j s[k ejjn[]]].\n'
+    text+=define('ejjp',[],both(k('eir3',k('zij'),k('rd'),k('eirf'),quote('ejjo'),k('ri')),k('ue',k('zii'),k('zij'),k('ri')),op('u',op('e',k('zii'),k('zij')))))
+    return text
+
+def build():
+    old=parse(read(PARENT));assert len(old['statements'])==INDEX;doc=deepcopy(old);doc['statements']=[]
+    assert not set(MEANINGS)&{d['name'] for d in old['declarations']}
+    doc=parse(format_graph(doc,'compact')+definitions());doc['statements']=old['statements']+[dict(kind='assert',body=dict(kind='call',symbol='ejjp',arguments=[]))];added=doc['declarations'][len(old['declarations']):]
+    basis=dict(status='origin_clock_proportional_time_and_difference_presented',document=FULL,parent=PARENT,inherited_meaning_basis=PARENT_BASIS,primitives={},definitions=MEANINGS,new_signatures={d['name']:{key:d[key] for key in ('parameters','result')} for d in added},limitations=LIMITS)
+    body=format_graph(doc,'compact')+'\n';core=extract_document(doc,roots=list(MEANINGS),statement_indices=[INDEX]).document
+    ann=json.loads(read('data/origin-clock-equations-identifiers-v1.json'));ann.update(document=FULL,document_sha256=digest(body.encode('utf-8')))
+    enc=lambda x:json.dumps(x,ensure_ascii=False,indent=2)+'\n'
+    return {FULL:body,CORE:format_graph(core,'compact')+'\n',BASIS:enc(basis),ANNOTATIONS:enc(ann)}
