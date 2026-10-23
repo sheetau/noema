@@ -1,0 +1,9 @@
+from scripts.check_simultaneity_conclusion import local_checks,time_checks,motion_checks,logic_checks,norm_checks,presentation_checks,structure_checks
+
+def test_local_display_and_existential_binding():assert local_checks()['native_saf_common_reference_and_same_local_display']
+def test_unique_time_and_same_frame_rule():assert time_checks()['all_real_uniqueness_preserved_and_native_domain_refused']
+def test_current_nonzero_relative_translation():assert motion_checks()['nonzero_vector_any_axis_and_sign']
+def test_universal_not_existential_comparison():assert logic_checks()['changed_and_preserved_pairs_do_not_satisfy_universal']
+def test_prohibition_and_epistemic_requirement():assert norm_checks()['norm_requires_all_four_times_and_universal_scope']
+def test_conclusion_roles_and_nonfactive_attribution():assert presentation_checks()['author_attribution_does_not_require_claim_truth']
+def test_prior_meanings_and_reviews_unchanged():assert structure_checks()['prior_meanings_and_reviews_preserved']
