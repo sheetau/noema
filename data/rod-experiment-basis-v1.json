@@ -1,0 +1,487 @@
+{
+  "status": "rod_initial_measurement_imagined_translation_and_two_method_question",
+  "document": "examples/v014/einstein-rod-experiment.noema",
+  "parent": "examples/v014/einstein-rod-geometry.noema",
+  "inherited_meaning_basis": "data/rod-geometry-basis-v1.json",
+  "primitives": {
+    "eislr": {
+      "parameters": [],
+      "result": "situation",
+      "arguments": [],
+      "meaning_ja": "長軸をX軸上へ置いた後、並進運動を与える前の棒の静止設定。初期測定yc及び運動後ydと区別する。"
+    },
+    "eisls": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "frame",
+        "timeunit",
+        "context"
+      ],
+      "meaning_ja": "指定系・時間単位のcontextで全履歴を扱う区間の始時刻候補。同じ設定の棒と物差しへ共通に渡す。有限標本の最初の観測時刻ではなく、区間の妥当性と全域性は合成で要求する。"
+    },
+    "eislt": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "frame",
+        "timeunit",
+        "context"
+      ],
+      "meaning_ja": "eislsと同じ指定による区間の終時刻候補。数値の有効性・順序・幅と全区間の物理的対応を別に要求する。"
+    },
+    "eislu": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      },
+      "arguments": [
+        "body",
+        "frame",
+        "lengthunit",
+        "timeunit",
+        "axis",
+        "context"
+      ],
+      "meaning_ja": "同じbodyの履歴について、指定frame・長さ単位・時間単位・空間軸役割・contextの各物質点又は幾何学的標識から、その点の実数時刻に対する座標候補関数を選ぶ。数値だけで物理的帰属を認定せず、全物質点にはeiad、軸標識にはseの全区間出来事対応を要求する。"
+    },
+    "eislv": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "body",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "同じ物体・評価系・設定で長軸の一方の端面中心として指定する幾何学的標識の候補。eislqと全履歴への接続でその役割を確かめる。端面中心を必ず物質点とはしない。"
+    },
+    "eislw": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "body",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "eislvと対になる、同じ物体の他方の長軸端面中心の候補。向きの正負や移動前後の数値長の一致はこの選択から要求しない。"
+    },
+    "eislx": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "body",
+        "before",
+        "placed"
+      ],
+      "meaning_ja": "同じ物体をbeforeの設定から、その後のplacedの位置・向きへ置き直す思考上の操作。物体の構成と大きさを保った配置変更として扱い、その後の運動付与や現実の実行と分ける。置き直す位置・向きは到達設定の座標条件で別に指定し、加速中の軌跡や実現可能性は含意しない。"
+    },
+    "eisly": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0029の第二文、長軸をX軸上へ置き、その後に棒へ正のX方向等速並進を与えると考える箇所。"
+    },
+    "eislz": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "construction",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでconstructionの閉じた内容の設定又は操作を、scopeの思考上の構成として想定する。著者の考察上の行為を記述し、その内容の物理的実在、実行、信念、実現可能性の証明を要求しない。"
+    },
+    "eisl2": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "body",
+        "frame",
+        "setting",
+        "condition",
+        "question",
+        "methods",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、同じbodyをframeに対してsettingのconditionで扱う考察のquestionを、列methodsに指定した後続の操作によって解くものとして想定する。questionの方法付き値候補と列の方法の指示を対応させ、同じscope・documentを保つ。これは問いをどの操作で調べるかという想定であり、答えの存在・一意性、二操作の値の一致、現実の測定完了、conditionの現実での成立を断言しない。"
+    }
+  },
+  "definitions": {
+    "eiph": "同じ指定物体の全物質点をeirhで選び、同じ静止系ra・単位ta/rb・設定の共通区間と各点の三座標をeiahへ渡す。区間に正の時間幅を要求し、瞬間に位置があるだけで静止としない。",
+    "eipi": "初期設定でsbqの同じ棒xi・静止物差しxj・正の初期長yaの読みを保持し、棒の全履歴・剛性・軸長eipeと物差しの全区間静止eiphを結ぶ。同じ時刻規約の共通区間を使い、測定観測者は存在だけを要求する。",
+    "eipj": "軸配置後の同じ棒についてeipeの静止・剛性・初期長yaと、eipdの長軸のX軸上配置を要求する。配置変更だけの段階であり、移動後の長さへyaを代入しない。",
+    "eipk": "同じ棒xiの指定設定で、同じ静止系・単位・全物質点履歴・長軸をeipgへ渡し、既出のybを正のX方向一定速度とする。加速過程を等速区間へ混ぜない。",
+    "eipl": "第一文で仮定する初期静止棒、同じく静止した物差しによる初期長の内容。指定設定ycへeipiを適用し、現実の実測を本文外で断言しない。",
+    "eipm": "同じ棒の初期測定ycから軸配置eislr、その後の運動ydへの順を保ち、eipj/eipkと二方法ye/yfへの同じ運動の継承を結ぶ思考構成。配置の前後と移動後を混同しない。",
+    "eipn": "同じ論説で棒xiと物差しxjを考察対象として導入し、第一文の初期内容eiplを範囲xyで仮定として採用する。物理的な対象の実在を要求しない。",
+    "eipo": "初期の棒と測定長を設定として置くeipnの指示メッセージ。現実の実験を実行せよという命令ではない。",
+    "eipp": "第一文の設定指示を著者と論説へ帰属し、第二原理の速度・時間説明からの順序を保持する。",
+    "eipq": "著者が第二文でeipmの配置と運動を思考上に構成し、同じ考察範囲の仮定として採用するという内容。思考の構成と内容の真理を分ける。",
+    "eipr": "第二文の想定を行う著者の記述eipqを述べるメッセージ。",
+    "eips": "第二文を同じ著者・論説へ帰属し、初期の設定文の後へ置く。",
+    "eipt": "著者が同じ範囲でsbvの二方法付き長さの問いを提示し、運動設定ydの同じ棒xiについて後続の二操作でその問いを調べると想定する。長さの主題、コロンに続く二項の順序を保持する。",
+    "eipu": "問いの提示と二操作による決定の想定eiptを述べるメッセージ。実測値や二操作の値の一致を述べない。",
+    "eipv": "第三文を同じ著者・論説へ帰属し、棒の運動を想定した第二文の後へ置く。"
+  },
+  "new_signatures": {
+    "eislr": {
+      "parameters": [],
+      "result": "situation"
+    },
+    "eisls": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      }
+    },
+    "eislt": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      }
+    },
+    "eislu": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      }
+    },
+    "eislv": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual"
+    },
+    "eislw": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual"
+    },
+    "eislx": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisly": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eislz": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisl2": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eiph": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eipi": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eipj": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eipk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eipl": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eipm": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eipn": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eipo": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eipp": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "eipq": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eipr": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eips": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "eipt": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eipu": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eipv": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0029の496転記文字・395本文文字とM0043〜M0047を三文として扱う。第一文のEs seiは設定を置く指示、第二文のWir denken unsは思考上の操作、第三文のWir fragenは問いの提示と二操作による決定の想定と読む。Wirを著者の論述上の声とし、実験参加者の複数性を要求しない。",
+    "初期測定yc、軸上へ置いた静止設定eislr、運動後yd、二測定ye/yfを区別する。配置は初期長と構成を保つ置き直し、加速は機構を指定しない思考上の運動付与とする。運動後に初期長yaを要求しない。",
+    "同じ棒xi、同じ物差しxj、同じ静止系ra、長さ単位taと時間単位rbを保つ。lはya、vはyb、X/xは同じ系の第一空間成分ynを指す。ybは正の一定速度であり、光速度tcや任意の数値を補わない。",
+    "直線状の長軸を持つ巨視的な棒を採用し、軸の端面中心は幾何学的標識でもよい。断面の厚みを零にせず、形状同定eislq・物差しの接触xd・読みxeは明示した物理的入力として用いる。幾何と全物質点の剛性・静止・並進は合成条件へ展開する。",
+    "原文の初期長は同じ静止物差しを当てた直接の読みとして扱う。観測者の存在だけを置き、後続の観測者xkとの同一性や初期観測者の静止は追加しない。物差しの静止は同じ区間の全物質点履歴で要求する。",
+    "二方法は既存のsbi/sbkを区別したsbvの前方参照。方法の内部の詳述はu0030/u0031で判断する。ここでは両方法を同じ運動する棒の長さの候補条件として参照し、値の存在・唯一性・一致や測定完了を要求しない。",
+    "有限検査は履歴の引数、設定・測定・規則の同一性、問いの候補、引用と提示を区別する。全実数時刻と全物理状況の証明を行わず、既存の依存群の検査を保持する。"
+  ]
+}

@@ -1,0 +1,8 @@
+from scripts.check_rod_experiment import history_checks,measurement_checks,stage_checks,question_checks,presentation_checks,structure_checks
+
+def test_same_complete_history_slots_and_axis_roles():assert history_checks()['all_history_slots_and_three_axes_bound']
+def test_same_initial_rod_ruler_reading_without_extra_observer_conditions():assert measurement_checks()['reading_required_not_inferred_from_geometry']
+def test_initial_placement_motion_and_two_measurement_stages():assert stage_checks()['placement_then_motion_then_two_method_inheritance']
+def test_method_tagged_question_preserves_empty_and_different_answers():assert question_checks()['same_different_and_absent_answers_allowed']
+def test_instruction_imagination_question_and_nonfactive_quotes():assert presentation_checks()['quotations_do_not_execute_physics_or_answers']
+def test_new_source_roles_and_preserved_prior_judgments():assert structure_checks()['prior_judgments_and_geometry_checks_preserved']
