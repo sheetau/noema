@@ -1,0 +1,3 @@
+from scripts.review_rod_length_claims import build_report
+
+def test_complete_naming_necessity_and_announcement_sentences():assert build_report()['whole_units_semantically_verified']

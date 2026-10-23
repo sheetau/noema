@@ -1,0 +1,7 @@
+from scripts.check_rod_length_claims import quantity_checks,uniqueness_checks,candidate_question_checks,presentation_checks,structure_checks
+
+def test_quantity_names_connected_to_same_rod_frame_and_axis_length():assert quantity_checks()['native_same_time_axis_distance_and_rest_axis_length']
+def test_existence_numeric_uniqueness_and_comparison_scope():assert uniqueness_checks()['full_real_domain_not_enumerated_or_proved']
+def test_real_cut_candidate_and_future_value_question():assert candidate_question_checks()['unknown_cut_rejected']
+def test_prospective_naming_necessity_and_future_announcement():assert presentation_checks()['quotes_do_not_execute_measurements_principles_or_derivations']
+def test_source_and_unchanged_prior_method_judgments():assert structure_checks()['prior_methods_and_meanings_preserved']
