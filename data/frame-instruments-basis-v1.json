@@ -1,0 +1,315 @@
+{
+  "status": "initial_frames_and_exact_instruments_setting",
+  "document": "examples/v014/einstein-frame-instruments.noema",
+  "parent": "examples/v014/einstein-material-axes.noema",
+  "inherited_meaning_basis": "data/material-axes-basis-v1.json",
+  "primitives": {
+    "eismw": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right",
+        "standard",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "standardが同じ二物差しの構成と目盛りを比較する完全な共通規約を定める。材質、形状・寸法、部品の構成と結合、目盛の配置と同じ長さ単位への校正、同じ条件での固有応答を対象とする。一致した特徴だけを選ぶ検査表ではない。個体番号、設置場所、測定中の位置を構成上の同一性へ含めず、全運動状態で同じ測定値になるとの法則も含めない。個々の特徴の一致は別に合成する。"
+    },
+    "eismx": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "standard",
+        "feature",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "物差しの同じstandardで、構成と目盛りを漏れなく比較すべき全特徴範囲にfeatureが属する。一致した項目や測定済み標本だけへ狭めない。方式や形状を特定の製品へ限定せず、同じ意味・物理単位で比較できる規約を使う。"
+    },
+    "eismy": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "ruler",
+        "feature",
+        "standard",
+        "value",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "rulerの構成について、同じstandardのfeatureの質的又は数量的な内容がvalueで記述される。共通規約で同定する内容であり、単なる型番の同一性、検査結果の真偽、現在の測定結果ではない。余分な部品・異なる目盛りなども全記述へ含め、未知を空集合や共通値へ補わない。数量的な記述は同じ単位で同定する。"
+    },
+    "eismz": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "designation",
+        "frame",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "nodeが空間的な配置を指定するとき、同じdocumentでframeに与えたdesignationの呼称を引用的に再使用し、そのframeを静止した空間配置の記述基準とする。原呼称を文法的に活用した修飾語も同じ対象への参照として扱う。新しい絶対静止空間の導入、別の系への改名、全物体が静止する事実ではなく、同じ既出基準への呼称上の照応である。個々の配置の静止は別に合成する。"
+    },
+    "eism2": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "base",
+        "explanation",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでbaseに導入又は指定した同じ対象について、それがこの文脈でどのような構成・理解を指すかをexplanationとして説明的に言い直す。d. h.のような同じ対象への説明を保ち、別案への交換、単なる追加事実、原因又は時間的後続へ替えない。二つの記述の構文一致や全文脈での論理的同値の証明を要求せず、引用内容の条件は別に保持する。"
+    }
+  },
+  "definitions": {
+    "eivh": "物差しの同じ一特徴について、両者の非空の構成記述集合が両方向に一致する。余分な記述又は片側の未知を、共通する一項目で隠さない。",
+    "eivi": "二つの物差しについて、完全な共通規約と非空の全特徴範囲を選び、全特徴にeivhの厳密な一致を要求する。近似や現在の長さ測定値一つの一致へ弱めない。",
+    "eivj": "同じ時計の型と校正eisdf、時間単位rb、初期静止基準raへの静止cc、同じ期間と三位置関数のeit2による代表配置の完全な静止を結ぶ。歯車・針の全物質点を静止させず、遠隔同期や表示値の一致は加えない。",
+    "eivk": "同じ物差しの型、共通の長さ単位、全物質点の静止eipwと剛性eigy、初期期間の目盛付き長さ比較尺度としての校正eisefを結ぶ。対応する方法があることを要求するが、位置決定や実測の実行は要求しない。",
+    "eivl": "異なる二系に異なる剛な物差しと非空の全時計範囲を与えるsfaを、物差しの全特徴一致eiviと時計の全構成一致eildへ接続する。両物差しの現行eivkと、両群に属するすべての時計のeivjを保持する。",
+    "eivm": "既出の静止基準raと後で動かすzbmを異なる二つの座標系として置く、説明元の内容。二系だけが世界に存在するという限定ではない。",
+    "eivn": "同じ二系のそれぞれにeivfの三本の剛な物質線・共通原点・直交・全軸範囲・初期静止を要求する、第一文の説明内容。",
+    "eivo": "同じ初期設定zb4のraとzbmにeivgのX支持直線一致と対応Y/Z平行を要求する、第二文の配置内容。",
+    "eivp": "同じ初期設定・二系の物差しと全時計にeivlを要求する、第三文の計器と厳密な一致の内容。",
+    "eivq": "第一文の二系とその構成、第二文の対応軸配置、第三文の同等な計器を同じ初期設定へ合わせる。後続の運動付与は含めない。",
+    "eivr": "後で動かす同じ第二系の参照を導入し、既出静止基準の引用呼称を保持し、二系の構成を説明的に言い直したうえで、同じ全設定eivqを第三節の議論の仮定として採用する操作。",
+    "eivs": "u0043の三文にわたる同じ設定操作eivrを指示するメッセージ。現実の実験設置や内容の真理の報告へ替えない。",
+    "eivt": "段落全体の設定指示eivsを同じ著者・論説へ帰属し、第三節見出しからの本文順序を保持する。"
+  },
+  "new_signatures": {
+    "eismw": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eismx": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eismy": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eismz": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eism2": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eivh": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivi": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivj": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivl": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eivm": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eivn": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eivo": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eivp": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eivq": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eivr": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eivs": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eivt": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "原刊897頁のu0043全441文字・361非空白本文文字とM0063/M0064/M0065のX/Y/Zを対象とする。三文のSeien ... gegeben、mögen、sei、es seienを一つの初期設定への指示として読む。",
+    "静止空間は既出の静止系raを基準とする配置であり、引用されたruhendenは同じ呼称への文法的な再使用として保持する。絶対静止空間又は全物体の静止を導入しない。第二系zbmはこの設定で新たに参照を置き、後続で動かす同じ対象として追う。",
+    "d. h.は同じ二座標系の構成を三物質線によって説明する言い直しである。原点の場所には各物質線の点があるが、二系の原点や二X軸の物体そのものを同一視しない。逆向きの平行軸も許し、原文にない右手性を加えない。",
+    "genau gleichは両物差しと両群の全時計について、その構成と尺度仕様の全特徴が正確に一致するという読みを採る。時計には第一節のeildを再利用し、物差しにも非空の全特徴と全記述集合の両方向一致を要求する。型番や近似測定、特徴の一部だけで済ませない。",
+    "構成の一致は同じ個体、現在の指示値、初期の表示位相、遠隔同期、運動後の同じ進みや全系の長さ不変ではない。仕様比較の完全性は物理的な記述規約であり、製作・検定の手順を原文へ追加せず、仮定的な理想計器の厳密な一致を記述できるようにする。",
+    "各系に非空の時計群を与え、両群の全時計のすべての組合せを比較する。時計数の具体値・一台だけ・すでに同期済みという条件は追加しない。初期配置の静止は時計の代表位置に適用し、内部機構の運動を止めない。",
+    "物差しは初期設定の全物質点の静止と剛性、校正された長さ尺度へ結ぶ。校正方法の存在は物差しとしての条件であり、実際の測定結果や後続での空間測定の完了ではない。物差しの記述尺度と計器の仕様の完全性を有限標本から推測しない。",
+    "有限検査、原刊照合、明示した読みでの通読判断を分ける。u0044の原点・軸・計器への運動付与、対称性の説明と後続の変換は未完であり、今回の設定へ先取りしない。"
+  ]
+}

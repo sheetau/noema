@@ -1,0 +1,7 @@
+from scripts.check_frame_instruments import exact_checks,calibration_checks,population_checks,setting_checks,structure_checks
+
+def test_exact_specifications_include_extra_features():assert exact_checks()['extra_missing_and_unknown_characteristics_rejected']
+def test_ruler_and_clock_calibration_and_static_placement():assert calibration_checks()['clock_representative_static_without_freezing_internal_parts']
+def test_all_instruments_in_both_frames():assert population_checks()['two_nonempty_groups_and_every_clock_pair']
+def test_setting_directive_explanation_and_reference():assert setting_checks()['assumption_adoption_and_author_attribution_do_not_execute_physics']
+def test_prior_evidence_and_directive_force():assert structure_checks()['setting_directive_not_truth_assertion']
