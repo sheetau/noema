@@ -1,0 +1,10 @@
+from scripts.check_clock_site_time import clock_checks,network_checks,protocol_checks,local_checks,moment_checks,coverage_checks,presentation_checks,structure_checks
+
+def test_clock_rest_keeps_internal_operation():assert clock_checks()['own_frame_complete_representative_rest_not_clock_internals']
+def test_entire_clock_population_and_light_network():assert network_checks()['all_initial_clocks_and_all_pairs_required']
+def test_all_light_trials_are_required():assert protocol_checks()['nonempty_all_trials_and_completeness_not_single_success']
+def test_same_local_clock_event_and_display():assert local_checks()['native_local_readout_saf_and_same_display_checked']
+def test_event_and_time_roles_are_connected():assert moment_checks()['nonempty_and_all_moment_correspondences_match_local_value']
+def test_only_clock_sites_but_every_event_there():assert coverage_checks()['all_events_at_all_clock_sites_not_all_space']
+def test_two_method_references_and_directive():assert presentation_checks()['two_first_section_references_and_both_time_symbols_bound']
+def test_previous_sentence_is_preserved():assert structure_checks()['first_sentence_and_all_prior_meanings_preserved']
