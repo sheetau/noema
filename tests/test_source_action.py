@@ -1,0 +1,5 @@
+from scripts.check_source_action import action_checks,classification_checks,structure_checks
+
+def test_native_source_contribution_and_host_event():action_checks()
+def test_same_magnet_and_conductor_classification():classification_checks()
+def test_source_scope_and_preserved_reviews():structure_checks()
