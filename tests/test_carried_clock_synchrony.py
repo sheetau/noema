@@ -1,0 +1,7 @@
+from scripts.check_carried_clock_synchrony import local_checks,attachment_checks,coverage_checks,pair_presentation_checks,structure_checks
+
+def test_same_local_event_without_stationary_carried_clock():assert local_checks()['no_carried_clock_stationarity_or_direct_reference_synchrony']
+def test_physical_attachment_and_full_endpoint_worldline():assert attachment_checks()['clock_position_and_endpoint_share_complete_worldline']
+def test_every_time_requires_matching_valid_record():assert coverage_checks()['complete_record_metadata_not_sufficient_by_itself']
+def test_pair_thought_setting_gloss_and_qualified_name():assert pair_presentation_checks()['quotes_do_not_execute_moving_or_stationary_clocks']
+def test_original_a_b_and_prior_unchanged_judgments():assert structure_checks()['prior_methods_and_meanings_preserved']
