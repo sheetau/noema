@@ -1,0 +1,10 @@
+from scripts.check_coordinate_measurement import magnitude_checks,instrument_checks,procedure_checks,projection_checks,identity_checks,candidate_checks,uniqueness_checks,structure_checks
+
+def test_signed_value_has_nonnegative_magnitude():assert magnitude_checks()['zero_negative_signed_and_nonnegative_magnitude_distinguished']
+def test_same_single_ruler_calibration_and_complete_history():assert instrument_checks()['single_given_ruler_is_entire_tool_range']
+def test_actual_method_reading_and_distance():assert procedure_checks()['calibration_of_different_method_rejected']
+def test_projection_and_same_measurement_value():assert projection_checks()['negative_and_zero_coordinates_use_nonnegative_measurements']
+def test_initial_objects_and_current_guide():assert identity_checks()['initial_given_ruler_origin_and_role_axis_preserved']
+def test_every_existential_witness_slot():assert candidate_checks()['two_value_domain_distinguishes_all_existential_slots']
+def test_existence_and_all_value_uniqueness():assert uniqueness_checks()['selected_candidate_exists_and_all_other_values_equal']
+def test_preserved_prior_meaning_and_evidence():assert structure_checks()['prior_meanings_and_reviews_preserved']

@@ -1,0 +1,352 @@
+{
+  "status": "calibrated_signed_coordinate_measurement_dependency",
+  "document": "examples/v014/einstein-coordinate-measurement.noema",
+  "parent": "examples/v014/einstein-axis-projection.noema",
+  "inherited_meaning_basis": "data/axis-projection-basis-v1.json",
+  "primitives": {
+    "eisnc": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "method",
+        "first",
+        "last",
+        "frame",
+        "unit",
+        "length",
+        "context"
+      ],
+      "meaning_ja": "observerがmethodの長さ比較・移し取り・必要な分割という操作を同じcontextで実行し、同じframeのfirstとlastの距離をunitでlengthとして得る。単なる数値候補、校正済みの方法が存在するだけの状態、別の方法の結果と区別する。使う物差しの全範囲は既存eisejで指定し、個々の道具の校正・剛性・配置・同じ物差しによる読取りxh及び幾何学的距離は合成側で要求する。始点と終点が同じ位置の場合の零距離も含む。"
+    }
+  },
+  "definitions": {
+    "eixc": "有効な非負の距離lengthと有効な符号付き値valueの平方が等しい。絶対値を新演算にせず、正・負・零の座標を同じ非負距離へ結ぶ。",
+    "eixd": "指定の物差しを同じ方法で使う唯一の道具とし、全道具範囲eisejを個体一致の双条件で限定する。型・系・単位・正の使用区間、同じ全成員履歴の静止と剛性、同じ方法・系・単位・期間での校正eisefを要求する。静止期間はこの測定配置の期間である。",
+    "eixe": "同じ観測者・方法・物差し・二地点・系・単位・非負距離について、方法の実行eisnc、同じ道具による読取りxh、空間距離th、eixdの校正と物理履歴を結ぶ。校正可能性や幾何数値の一致だけで実測を認定しない。",
+    "eixf": "同じ軸・原点・方向標識・対象地点・射影点・系・役割の全期間の符号付き距離eixbを、同じ原点から同じ射影点へのeixeの実測とeixcの絶対値へ結ぶ。原点に射影される点も扱い、測定距離を負値にしない。",
+    "eixg": "eixfへその系に与えた同じ物差しを渡し、物差しの配備zbxと初期個体の同一性、現在と初期の同じ原点・同じ役割の軸、現行の方向標識を要求する。別の道具や別の役割で同じ数値を得ても代用しない。",
+    "eixh": "同じ地点・系・役割・有効な符号付き値について、射影点、観測者、方法、非負距離が存在しeixgを満たす。射影候補zcvの一つに限定せず、物理的射影と実測を満たす全候補を認める。",
+    "eixi": "zcyで選ぶ同じ地点・系・役割・長さ単位の座標がeixhを満たし、あらゆるeixhの実数値候補と値が一致する。測定方法・観測者・射影点の個体同一性を要求せず、異なる値の候補を隠さない。"
+  },
+  "new_signatures": {
+    "eisnc": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eixc": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eixd": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eixe": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eixf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": "individual"
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eixg": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eixh": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eixi": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0045第一文の測定依存群であり、270本文主張と既存の判断を維持する。全空間・全三成分・両系の思考設定、時計配置点の時刻設定とu0045全体の意味判断は次に接続する。",
+    "このcontextは一つの静止した測定配置の全期間である。物差しの再配置を含む全操作期間や全空間測定の全期間に一つのeipwを要求する定義として使わない。次の統合では、同じ空間配置・対象・軸・尺度を保持する測定配置ごとの文脈を結ぶ必要がある。",
+    "方法の実行と道具の範囲を新しい一般的関係eisncと既存eisejで接続する。校正した任意の方法を、別の方法によるxh読取りの説明に流用しない。新関係は全文の真偽・三成分の存在・一意性を一入力に隠さない。",
+    "理想的に校正された物差しとEuclid幾何の長さ比較として読む。任意の実数を有限回で全桁計算できることや現実の機器の無限精度を要求しない。実際の測定操作は意味規約付き入力で、有限検査を実測証拠とはしない。",
+    "射影点は物差し又は軸の物質成員に限定しない。軸の支持直線上の幾何点として前段eixbで確認する。零値は非負距離へ含み、符号は全正方向記録と実座標から決める。",
+    "原文の同じ初期計器を維持するが、初期と運動後の長さ値、両系の座標値、両系の正方向が同一であることは加えない。全候補の一意性は値に関する条件であり、各測定手順が唯一であるとはしない。",
+    "存在量化の結合は小さい有限域で各位置を識別し、実数量化の本体を別に検査する。完全履歴と全実数候補は有限評価を拒否し、未知の入力を偽又は零に補わない。"
+  ]
+}
