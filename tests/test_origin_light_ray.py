@@ -1,0 +1,8 @@
+from scripts.check_origin_light_ray import origin_checks,path_checks,trace_checks,connection_checks,substitution_checks,structure_checks
+
+def test_same_clock_origin_and_separate_spatial_gauge():assert origin_checks()['moving_spatial_labels_zero_are_separate_from_clock_convention']
+def test_full_positive_ray_and_same_emission():assert path_checks()['actual_emission_must_be_departure_not_an_earlier_event']
+def test_native_full_trajectory_constructor():assert trace_checks()['full_real_history_refused']
+def test_same_tau_phi_and_two_current_paths():assert connection_checks()['native_tau_application_to_both_endpoints_checked']
+def test_native_two_displayed_formulas():assert substitution_checks()['K_time_moving_time_xprime_and_xi_distinguished']
+def test_preserved_whole_judgments():assert structure_checks()['prior_whole_unit_judgment_preserved']
