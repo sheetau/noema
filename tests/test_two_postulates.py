@@ -1,0 +1,6 @@
+from scripts.check_two_postulates import adoption_and_naming_checks,compatibility_checks,appearance_and_intent_checks,structure_checks
+
+def test_same_adopted_targets_and_prospective_naming():assert adoption_and_naming_checks()['prospective_scope_bound_to_same_content']
+def test_joint_compatibility_uses_one_setting():assert compatibility_checks()['native_sqh_shared_witness']
+def test_only_apparent_incompatibility_and_nonfactive_intent():assert appearance_and_intent_checks()['intention_not_completed_adoption']
+def test_whole_sentence_and_preserved_readings():assert structure_checks()['prior_reviews_preserved']
