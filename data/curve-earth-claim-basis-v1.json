@@ -1,0 +1,837 @@
+{
+  "status": "assumed_curve_extension_and_current_earth_clock_rate_comparison",
+  "document": "examples/v014/einstein-curve-earth-claim.noema",
+  "parent": "examples/v014/einstein-curved-clock-records.noema",
+  "inherited_meaning_basis": "data/curved-clock-records-basis-v1.json",
+  "primitives": {
+    "eisol": {
+      "parameters": [
+        "content",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "subject",
+        "reference",
+        "candidate"
+      ],
+      "meaning_ja": "同じ内容と基準状況について、先行の議論と比較の前提を保って物理的帰結を評価する許容候補状況。候補は内容の真偽を調べる前に定め、後件が成立するものだけを選ばない。全論理的可能世界や規範的な許可とは区別する一般的な推論範囲の入力。候補の非空性と基準状況の包含、全候補での成立は利用側で要求する。"
+    },
+    "eisom": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "固定原文einstein-1905:u0128のM0239/M0241で、同じ閉曲線を帰還する所要時間を秒で表すtの識別表記。ejltの同じ経路の規則へ結び、絶対座標時刻や文字盤の指示値と区別する。"
+    },
+    "eison": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "individual"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "individual"
+              },
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation",
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "designation",
+        "rule",
+        "text",
+        "context"
+      ],
+      "meaning_ja": "指定された表記を、同じ文章・提示文脈の型付き量の規則へ結ぶ識別関係。既存eisloと同じ記号解釈の関係を、経路の全引数と秒数を共有する規則の型で用いる。語形の一致だけから物理量の同一性や規則の真理を認定しない。"
+    }
+  },
+  "definitions": {
+    "ejlz": "同じK閉区間全体の時計の現在表示を、実時刻から指示を得る一つの関数へ結ぶ。完全な代表軌跡・校正、全現在候補の同じ指示、全実時刻での表示存在を要求する。一定率や平方根の答え、他の時計との同期は含めない。",
+    "ejma": "同じ指示関数の前後二時刻について、正の平均歩度と正のK時間差の積が実際の指示差に等しい。両指示と両時刻の有効性を保ち、文字盤の原点を率に含めず、零時間の割算を使わない。",
+    "ejmb": "共通の正の比較時間区間で、二つの現在指示関数から求めた正の平均歩度が存在し、第一が第二より小さく、同じ差・参照率・比較範囲が非常に小さいという程度基準を満たす。",
+    "ejmc": "同じ地球の赤道と一方の極に固定された異なる二時計が、復元弾性の回転振動系を調速に用い、同じ構造・性状を持ち、その他の完全な比較条件が一致する。歩度の答えや初期同期を前件へ追加しない。",
+    "ejmd": "同じ地球時計の設定ejmcに、二時計の全期間の現在指示関数ejlzを結ぶ観測設定。離れた二時計を同じ出来事や場所へ同定せず、同じK尺度と時間区間で比較する。",
+    "ejme": "ejmdが成立し、二時刻が同じK期間内で厳密に前後するなら、その同じ二時計の指示関数についてejmbのごく小さい歩度差が成立するという条件付き関係。",
+    "ejmf": "任意の同じ二時計・場所・現在指示関数と、同じ比較期間内の任意の正の時間幅についてejmeを述べる内容。langsamer laufenを比較期間にわたる歩度の遅さとして読む。",
+    "ejmg": "一様回転の地球という明示した背景の下、基準設定自身を含む非空の許容候補全てで同じ地球時計の比較内容ejmfが成立するという推論上の必要性。mußを義務や処理系の物理的証明としない。",
+    "ejmh": "同じ閉曲線の設定を満たす全ケースで、ejluの全期間指示法則を採る補足のモデル内容。原文の前件を狭めず、厳密率と近似残差を用いるための発話外注記へ接続する。",
+    "ejmi": "著者が現在の前段の折れ線結果の箇所zjbを証明済みとして扱い、その結果から曲線へ拡張する内容ejlxを同じ推論範囲zjdで仮定として採用する提示。",
+    "ejmj": "同じ前段結果と拡張仮定ejlyから閉曲線の帰還結果ejlwが得られるという著者の帰結提示。仮定の後に置き、所要時間tを同じ経路引数の秒数規則ejltへ結ぶ。",
+    "ejmk": "同じ閉曲線の帰還結果ejlwから、赤道と極の二時計についてejmgの必要性付き比較を著者が帰結として述べる提示。同所の帰還比較と離れた時計の歩度比較を区別する。",
+    "ejml": "閉曲線の全期間法則ejmhを用いて同じ帰還結果ejlwを読む補足注記。著者の発話外に置き、著者が追加前提を全て明記したことや、その現実成立を補わない。",
+    "ejmm": "u0128第一文の拡張仮定と前段の証明済みという位置付けejmiを述べるメッセージ。",
+    "ejmn": "その仮定提示を同じ著者・論説へ帰属し、前段の折れ線での帰還zjcに続ける。",
+    "ejmo": "同じ第一文の閉曲線の帰結と所要時間の説明ejmjを述べるメッセージ。",
+    "ejmp": "閉曲線の帰結を同じ著者・論説へ帰属し、仮定の後に置く。補足の全期間法則ejmlはメッセージ外に併記する。",
+    "ejmq": "u0128第二文の地球時計の必要性付き比較と先行帰結への接続ejmkを述べるメッセージ。",
+    "ejmr": "第二文を同じ著者・論説へ帰属し、閉曲線の帰還結果の後に続ける。"
+  },
+  "new_signatures": {
+    "eisol": {
+      "parameters": [
+        "content",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisom": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eison": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "individual"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "individual"
+              },
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation",
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "ejlz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejma": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ejmb": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejmc": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejmd": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejme": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejmf": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejmg": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejmh": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejmi": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejmj": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejmk": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ejml": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "ejmm": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ejmo": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ejmq": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ejmn": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "ejmp": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "ejmr": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0128の全二文552非空白本文文字と五数式要素を原刊904–905頁で照合する。曲線への仮定、前段の証明済みという位置付け、同じ推論範囲の帰結、初期同期・一定の速さ・閉曲線帰還・所要時間t・残る時計との差、地球時計の構造・その他同条件・赤道/極・程度・必要性を保持する。",
+    "曲線は既存ejlpのC1位置と連続速度、端点での片側微分、共通の正の光速未満の速さで読む。前段の現在表示と全期間の初期同期/残留、同じ到着、秒換算と固定所要時間での近似留保を継承する。全実数・全関数の量化を有限標本へ替えない。",
+    "前段の厳密率を近似残差の構成基準とする読みで、全期間の理想指示法則はejmh/ejmlの発話外注記に置く。著者が採る曲線への拡張仮定と、この読解上の補足を区別し、原文の前件ejlqを狭めない。",
+    "Unruhuhrは、時計の機械的構成として、慣性体と復元弾性を持つ軸周りの往復回転系を歩度調整に用いる時計と読む。既存zjg/zjh/zjiを部分・振動作用・調速機能の意味入力として合成し、振り子時計や単なる任意の時計へ替えない。脱進機の設計や全力学の導出は本文の主張に追加しない。",
+    "同じ構造・性状cdと、その他の選択条件全ての一致syjを別々に要求する。比較条件の範囲は非空で完全なものとして与え、両者で成立しない条件も一致に含む。運動と地理的位置そのものはその他同条件の対象外であり、必要な環境条件の数値を補わない。",
+    "地球を同じ軸周りに一様回転する物体として比較する背景を明示する。赤道は表面の軸方向座標零・軸距離正、極は表面の軸距離零・軸方向座標非零として両極を含む。離れた時計は同じ現在表示の出来事を共有せず、比較のために初期同期や対面帰還を要求しない。",
+    "langsamer laufenは同じK尺度・期間内の任意の正の時間幅について、実際の指示差から得る正の平均歩度が小さいという読み。別々の文字盤原点を許し、瞬間の指示値の大小を歩度差にしない。小ささは既存zjvの文脈基準に残し、原文にない数値閾値を設定しない。",
+    "mußは同じ物理的前提と一様回転背景を保つ非空の許容候補全てで同じ比較内容が成立するという推論上の必要性と読む。基準設定自身も範囲へ含める。候補は結果の真偽から選ばず、全論理的可能性や規範的義務、実世界での正しさの認定とはしない。",
+    "帰結として述べることと物理的に十分な導出を区別する。発話内の引用内容を有限評価で実行せず、原刊の主張・仮定を記述する。一般的な候補状況の関係と型付き記号解釈、tの識別表記だけを追加し、新しい時計の物理法則を原始記号へ隠さない。"
+  ]
+}

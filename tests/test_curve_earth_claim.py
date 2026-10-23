@@ -1,0 +1,9 @@
+from scripts.check_curve_earth_claim import mechanism_checks,profile_checks,rate_checks,binding_checks,necessity_checks,presentation_checks,structure_checks
+
+def test_mechanical_clocks_and_geography():assert mechanism_checks()['all_three_mechanical_witnesses_and_part_roles_checked']
+def test_complete_current_profiles():assert profile_checks()['current_all_candidates_and_all_real_times_connected']
+def test_rates_from_display_differences():assert rate_checks()['independent_dial_origins_and_arbitrary_positive_windows']
+def test_earth_pair_and_time_binding():assert binding_checks()['same_two_functions_window_scope_and_situation']
+def test_physical_necessity_scope():assert necessity_checks()['native_nonempty_necessity_includes_reference']
+def test_curve_earth_source_attribution():assert presentation_checks()['quoted_physical_claims_not_executed']
+def test_curve_earth_preservation():assert structure_checks()['earth_rates_use_current_displays_not_old_rate_oracle']
