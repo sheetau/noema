@@ -1,0 +1,11 @@
+from scripts.check_spatial_method_claim import target_checks,chain_checks,premise_checks,presentation_checks,structure_checks
+
+def test_same_spatial_candidate_and_prior_tau():assert target_checks()['all_four_native_equations_and_tau_input_roles_distinguished']
+
+def test_same_low_burden_chain_uses_light_equations():assert chain_checks()['native_chain_fold_nonnegative_total_and_same_method_used']
+
+def test_two_principles_and_same_ray_premises():assert premise_checks()['same_two_principles_frames_V_context_and_tau_preserved']
+
+def test_author_roles_and_conditional_rewrite():assert presentation_checks()['quoted_contents_not_executed']
+
+def test_prior_judgments_and_source_preserved():assert structure_checks()['prior_whole_unit_judgment_preserved']
