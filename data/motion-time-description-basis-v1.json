@@ -1,0 +1,864 @@
+{
+  "status": "time_function_description_and_prior_physical_time_clarification",
+  "document": "examples/v014/einstein-motion-time-description.noema",
+  "parent": "examples/v014/einstein-point-position.noema",
+  "inherited_meaning_basis": "data/point-position-basis-v1.json",
+  "primitives": {
+    "eisem": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "point",
+        "frame",
+        "context",
+        "lengthunit",
+        "timeunit",
+        "lower",
+        "upper",
+        "x",
+        "y",
+        "z",
+        "criterion"
+      ],
+      "meaning_ja": "recordが同じ物質点pointのframeに対する運動を記述するために、同じ長さ・時間単位、対象期間の下限と上限、三つの座標関数x,y,zを割り当てる数学的記述である。関数の入力は同じ時間変数、出力は同じ対象の各Cartesian座標である。期間はその記述課題の全対象期間で、測定済み時刻だけを抜き出さない。criterionはこのデータが物理的履歴に正しく対応するための閉じた条件の記述であり、単なる記号の綴りにせず同じ対象と全期間への対応を規定する。条件を引用したことからその成立や実測済みを導かない。"
+    },
+    "eisen": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "point",
+        "frame",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "agentが同じdocumentの議論で、pointのframeに対する運動を記述しようとする意図を持つ。対象の位置の時間的な推移を説明することが目的であり、動かす意図、既に記述した事実、動力学法則を導出する意図へ替えない。条件文内の意図であり、その場での実際の意図の存在は別である。"
+    },
+    "eiseo": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentのここで扱う座標の時間関数による記述の範囲にrecordが属する。指定された全ての該当記述を対象とし、物理的意味や時間理解の得られた記述だけを後から選ばない。記述の数式上の型と対象への割当は別に合成する。"
+    },
+    "eisep": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "record",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "agentが同じdocumentの記述手段としてrecordの三座標の値を時間の関数として与える。単なる三つの関数の存在ではなく、任意の対象時刻を入力として各座標値を指定する表示を提示する行為・方法である。数式、暗黙的な定義など表示形式を一つに固定せず、任意実数の全桁を有限計算するアルゴリズムや個別時刻の実測を要求しない。"
+    },
+    "eiseq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "record",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "agentがここで用いるrecordの数学的記述に、どの物質点のどの位置と時間を表すかという確定した物理的意味がある。数学的な変数を物理的な対象・出来事・尺度への指示として使う解釈の成立であり、式の型が合うことや数値計算できることだけとは区別する。軌道の予測が実際に正しいこと、観測で実証したこと、他の読者も理解したことは含意しない。"
+    },
+    "eiser": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "interpretation",
+        "record",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "interpretationがここでrecordの入力変数として用いる時間について、何を時間値として割り当て、どの出来事を同じ時刻と扱うのかを定める意味規約である。同じ記述の系と単位・指示対象を保持し、時間という綴りや無関係な哲学的定義だけにしない。後で論説が具体化する時計指示と同時性の規約を、この時点で完成・達成済みとは要求しない。"
+    },
+    "eises": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "interpretation",
+        "record",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "agentが同じrecordの記述に用いる時間のinterpretationについて、その指示・適用条件を取り違えず把握できる明確な理解へ到達している。語を見たこと、何となく知っていること、物理的な記述が成功したことだけから推測しない。理解の対象と記述を保持し、到達の先行性は別の時間順序で指定する。"
+    },
+    "eiset": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "固定原文einstein-1905:u0010[0,126)の第一文。物質点の運動を記述するため三座標を時間の関数として与えるという方法を述べる箇所。"
+    },
+    "eiseu": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "固定原文einstein-1905:u0010[127,337)の第二文。数学的記述の物理的意味には時間の意味の先行理解が必要であると注意を促す箇所。"
+    }
+  },
+  "definitions": {
+    "eiii": "同じ文脈で物体の構成点として追跡する物質点。物体全体や空間点へ替えず、静止・実際の位置変化は要求しない。",
+    "eiij": "非退化な有効実時間区間と、その全入力で有効な実座標を返す三関数。数学的な時間依存を保ち、定数関数・往復・非等速を除かず、有限標本や微分可能性へ縮めない。",
+    "eiik": "同じ物質点・系・文脈と異なる長さ・時間単位について、eiijの三関数を持つ記述recordを定める。既存seを正しい全履歴対応の基準として引用し、数学的な記述の提示からその物理的真理を実行しない。",
+    "eiil": "同じ著者・物質点・系・論説に対して、同じ範囲の数学的記述eiikがあり、その同じrecordを三座標の時間関数という手段で与える。",
+    "eiim": "先行の同じ系raで物質点の運動を記述しようとするとき、その点の三座標を時間の関数として与えるという一般的な方法の条件内容。特定の点の運動・記述意図の現実の存在を追加しない。",
+    "eiin": "第一文の方法的条件内容eiimを主張するメッセージ。",
+    "eiio": "第一文の同じ著者・論説への帰属と、前の位置指定段落からの本文順序。",
+    "eiip": "同じ論説の範囲に属し、同じraの物質点と時間関数の型eiikを持つ全数学的記述の分類。物理的意味の成立や提示済みで対象範囲を制限しない。",
+    "eiiq": "同じ記述の時間の意味規約があり、それについて同じ使用者が現在より厳密に前の状況で明確な理解へ到達している。本文順序ではなく既存zm4の時間的先行を使う。",
+    "eiir": "同じ種類の全数学的記述と全使用者について、物理的意味があるなら時間の意味を先に理解しているという必要条件。逆向きの十分性・二条件の無条件の成立は追加しない。",
+    "eiis": "第二文の必要条件eiirを主張するメッセージ。",
+    "eiit": "第二文の同じ著者・論説への帰属と、第一文からの順序、既存zeiによる注意すべき事項としての提示を結ぶ。読者が実際に注意したことや証明済みは要求しない。"
+  },
+  "new_signatures": {
+    "eisem": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eisen": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eiseo": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisep": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eiseq": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eiser": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eises": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eiset": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eiseu": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eiii": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiij": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eiik": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eiil": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiim": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiin": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eiio": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "eiip": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiiq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiir": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eiis": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eiit": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "第一文のWirは論述を進める著者の方法的な声として読み、複数人の集団や読者全員の現実の行為を補わない。Wollen … so …は意図に対する一般的な記述方法の条件で、実際の運動の存在や点を動かす意思ではない。",
+    "Bewegungの記述は位置の時間的経過を表す運動学的な記述であり、定数の軌跡という特殊場合も許す。静止だけ、等速だけ、微分可能な関数だけへの限定や力・運動方程式を追加しない。",
+    "三関数の型と、同じ物質点・系・尺度・対象期間への割当を明示し、seの完全な履歴対応を記述の正しさの基準として引用する。式に物理的意味があることと、その軌道が実際に正しいことを区別する。",
+    "derartige mathematische Beschreibungは同じ三座標の時間関数の記述型を指す。erst dann … wennは先行理解を必要条件として読み、理解さえあれば全ての数学的記述が物理的意味を得るという十分条件は補わない。",
+    "manはその記述を物理的に解釈して用いる任意の使用者として読む。時間の理解は同じ記述の変数の指示・適用規約の明確な把握で、単なる語の知識や成功結果からの推定とは区別する。vorherは現在の使用より厳密に前の状況とし、zeiで注意喚起も保持する。",
+    "固定u0010の前二文286非空白文字を扱う。後二文の時間判断と同時的出来事、列車と時計の引用例、段落全体の通読判断は未完。局所検査を同義性の自動証明や全実数の列挙としない。"
+  ]
+}

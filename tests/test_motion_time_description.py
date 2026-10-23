@@ -1,0 +1,9 @@
+from scripts.check_motion_time_description import mathematical_checks,description_checks,giving_and_class_checks,prior_understanding_checks,necessary_condition_checks,presentation_checks,structure_checks
+
+def test_three_full_time_functions_and_domain_refusal():assert mathematical_checks()['all_three_coordinate_functions']
+def test_same_description_with_quoted_history_criterion():assert description_checks()['physical_history_criterion_quoted_not_executed']
+def test_conditional_method_and_description_scope():assert giving_and_class_checks()['giving_not_function_existence_alone']
+def test_prior_grasp_of_same_time_interpretation():assert prior_understanding_checks()['strictly_prior_not_simultaneous_or_later']
+def test_prior_understanding_is_necessary_not_sufficient():assert necessary_condition_checks()['prior_grasp_necessary_not_sufficient']
+def test_author_attribution_and_attention():assert presentation_checks()['attention_separate_from_truth']
+def test_prior_reviews_and_partial_sentence_reading():assert structure_checks()['prior_reviews_preserved']
