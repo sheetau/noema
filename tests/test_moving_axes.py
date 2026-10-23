@@ -1,0 +1,7 @@
+from scripts.check_moving_axes import geometry_checks,history_checks,triad_checks,parallel_checks,structure_checks
+
+def test_actual_moving_geometry_detects_intermediate_rotation():assert geometry_checks()['intermediate_rotation_and_bent_hidden_member_detected']
+def test_origin_candidates_share_the_same_complete_worldline():assert history_checks()['material_and_representative_origins_share_complete_worldline']
+def test_complete_triad_and_all_axis_roles_at_every_time():assert triad_checks()['all_three_complete_lines_and_every_time_bound']
+def test_all_three_parallel_pairs_share_the_whole_interval():assert parallel_checks()['same_two_histories_across_all_times']
+def test_prior_evidence_preserved_without_static_assumption():assert structure_checks()['no_rest_assumption_in_moving_geometry']

@@ -1,0 +1,271 @@
+{
+  "status": "complete_time_dependent_material_axis_geometry",
+  "document": "examples/v014/einstein-moving-axes.noema",
+  "parent": "examples/v014/einstein-frame-motion.noema",
+  "inherited_meaning_basis": "data/frame-motion-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "eiv2": "線状支持体の全物質点の剛な完全履歴を保ち、指定原点の軌道を、同じ物体側の座標関数と代表位置eismhの双方から同じseへ結ぶ。正の区間の全時刻でeiu7の直線性・原点の所在・非零方向標識を要求する。静止や特定速度は加えない。",
+    "eiv3": "同じ物体・基準系・原点・方向標識の指定時刻の実際の位置差の一成分。初期時刻に固定せず、原点の平行移動を方向そのものへ混ぜない。",
+    "eiv4": "同じ時刻の二物質線にeiu7の全成員の直線配置を要求し、その実方向をsexcの平行へ渡す。逆向き、異なる原点、離れた支持直線を許す。",
+    "eiv5": "同じ時刻の二物質線の全成員の直線配置と非零の実方向をeiu6へ渡し、直交を要求する。ラベルだけや初期方向だけで判定しない。",
+    "eiv6": "同じ時刻の一座標系を、唯一の原点、異なる三物質線、全軸役割、原点からの出発、全点剛性と実座標による直交へ結ぶ。参照はraだが、その基準に対する静止は要求しない。",
+    "eiv7": "同じ系の三軸それぞれにeiv2の完全履歴を要求し、共通の正の時間区間の全時刻でeiv6の同じ三軸構成を保持する。原点の各候補関数を同じ原点の出来事へ結ぶ。",
+    "eiwa": "異なる二系の同時刻のeiv6を保持し、同じ三役割の各組にeiv4の幾何学的平行を要求する。X軸も支持直線の一致に強めず、二原点や正方向の一致を追加しない。",
+    "eiwb": "二系それぞれの完全な三軸履歴eiv7を保ち、同じ静止基準raの全区間でeiwaの三組の平行を要求する。時刻ごとに対象や役割を選び直さず、有限の時点標本で代用しない。運動候補の存在や採用の正当化は別に述べる。"
+  },
+  "new_signatures": {
+    "eiv2": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiv3": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      }
+    },
+    "eiv4": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eiv5": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eiv6": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eiv7": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiwa": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eiwb": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0044の各静止系時刻の軸配置と全時刻の平行性を支える依存群である。配置を表す状態の存在・同値性、候補履歴の存在、対称性の理由、設定指示、段落全体の著者帰属と意味判断はまだ追加しない。",
+    "物質線の同じ全成員、原点に位置する成員、原点から離れた同じ方向標識を全時刻で要求する。線状支持体の物理的な連続性は既存eismvの明示的理想化であり、有限点から認定しない。",
+    "原点標識は各軸の物質点そのものに同一視しない。各軸側から取る原点の位置関数とeismhの代表位置関数を、同じ原点・系・単位・区間の完全なseへ渡す。異なる候補を単に同じ名前で呼んで済ませない。",
+    "静止条件eivaやeivfを移動系へ流用しない。一般の時間依存する直線配置を記述し、u0044第一文の正X並進は現行eivzと別に接続する。加速中の剛性、初期長さ保存、時計内部静止を要求しない。",
+    "対応三軸の平行には逆向きと横方向に離れた支持直線を許す。X支持直線の一致はu0043の初期条件であり、ここで全時刻へ追加しない。具体的な運動の選択を対称性だけから証明しない。",
+    "有限評価は時刻ごとの数値幾何・全成員範囲・軌道と軸役割の引数結合を識別する。全実時刻の量化は保持し、そのままの有限評価を拒否する。検査で取り出す量化変数の各場合を全域証明とはしない。"
+  ]
+}
