@@ -1,0 +1,8 @@
+from scripts.check_planar_shape_limit import projection_checks,image_checks,neighborhood_checks,connection_checks,presentation_checks,structure_checks
+
+def test_transverse_projection_preserves_holes():assert projection_checks()['exact_transverse_projection_not_bounding_rectangle']
+def test_forward_image_and_regular_transform():assert image_checks()['native_forward_image_matches_native_inverse_substitution']
+def test_whole_shape_limit_neighborhood():assert neighborhood_checks()['one_neighborhood_for_all_positions_of_fixed_shape']
+def test_same_body_time_and_shape_family():assert connection_checks()['same_actual_material_shape_and_each_K_time']
+def test_author_and_limit_interpretation():assert presentation_checks()['author_statement_and_limit_interpretation_separate']
+def test_source_and_preserved_meanings():assert structure_checks()['prior_whole_unit_judgments_preserved']
