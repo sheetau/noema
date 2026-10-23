@@ -1,0 +1,7 @@
+from scripts.check_sphere_zero_slice import numeric_checks,scope_checks,binding_checks,presentation_checks,structure_checks
+
+def test_native_formula_and_distinct_frame_times():assert numeric_checks()['K_simultaneous_endpoints_have_distinct_nonzero_k_times']
+def test_full_K_zero_time_surface():assert scope_checks()['all_selected_records_both_directions_and_nonempty_surface']
+def test_same_event_and_current_transformation():assert binding_checks()['same_event_in_both_frames_not_equal_times']
+def test_author_rewrite_of_same_slice():assert presentation_checks()['quoted_rewrite_not_executed_as_physical_proof']
+def test_prior_judgments_preserved():assert structure_checks()['prior_whole_unit_judgments_preserved']
