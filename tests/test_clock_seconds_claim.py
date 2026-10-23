@@ -1,0 +1,9 @@
+from scripts.check_clock_seconds_claim import exact_checks,pair_checks,all_interval_checks,approximation_checks,asymptotic_checks,presentation_checks,structure_checks
+
+def test_exact_elapsed_seconds():assert exact_checks()['positive_elapsed_seconds_and_exact_loss']
+def test_same_clock_pairs_and_common_scale():assert pair_checks()['same_scale_on_actual_lab_and_clock_differences']
+def test_every_current_interval():assert all_interval_checks()['native_seconds_relations_across_all_current_pairs']
+def test_approximation_not_equality():assert approximation_checks()['exact_lag_second_order_value_and_residual_distinct']
+def test_quantified_remainder():assert asymptotic_checks()['native_real_quantifiers_not_finitely_sampled']
+def test_author_consequence_and_reexpression():assert presentation_checks()['exact_consequence_and_qualified_reexpression_attributed_in_order']
+def test_source_and_preserved_judgments():assert structure_checks()['prior_whole_unit_judgments_preserved']

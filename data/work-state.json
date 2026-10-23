@@ -1,44 +1,43 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v326.json",
-  "progress_report": "reports/written-progress-v304.json",
+  "review_index": "data/semantic-review-index-v327.json",
+  "progress_report": "reports/written-progress-v305.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0125（単位秒当たりの遅れと四次以上を除いた近似）",
-    "scope": "実装親はexamples/v014/einstein-origin-clock-time.noema、意味規約data/origin-clock-time-basis-v1.json、識別表記data/origin-clock-time-identifiers-v1.json。341主張・全127単位を登録簿v326・監査v304で確認した。次はu0125のworaus folgtからzurückbleibt.まで。M0217は厳密な一秒あたりの遅れ1−√(1−(v/V)²)、M0218は四次以上を省いた(v/V)²/2。原刊904頁はartifacts/einstein-origin-clock-setting-v1/に保存済み。今回の比例式と差の式の内容ejjm、同じ時計zie・状況zb6・現在の全局所記録対ejit/ejjdを引き継ぐ。二つのK記録の正の時間差と同じ時計のτ指示差を共通尺度で秒へ換算し、単位時間に規格化した遅れを結ぶ。一秒ちょうどの区間が実際に測定済みとは要求しない。旧compose_clock_delay.pyのsvp/svq/svt/svu/svv、svy/swcのBig-O型条件は再利用候補だが、swd/swe/swf/swiのzac/zdz/svcは現在の記録と全時間の率ejiuへ接続し直す。秒zikと線形換算zilの既存規約を保ち、座標の任意の単位を無条件に秒と同一視しない。oderは同じ遅れの近似表示への言い換え、四次以上の留保は速度比の零近傍でO((v/V)^4)という明示した読みを保持する。全実数域の量化を有限標本へ替えず、近似値と厳密値を等置せず、原文にない残差の具体的上下限を著者の主張へ混ぜない。woraus folgt、Kから見た同じ時計の指示、pro Sekunde、Sek.、bis auf Größen vierter und höherer Ordnung、zurückbleibtを全て点検する。u0126以降のAからBへの移送は後続。未使用定義ejjq、原始記号eisoi。",
+    "unit": "einstein-1905:u0126（初期同期・AからBへの直線移送・到着時の遅れ）",
+    "scope": "実装親はexamples/v014/einstein-clock-seconds-claim.noema、意味規約data/clock-seconds-claim-basis-v1.json、識別表記data/clock-seconds-claim-identifiers-v1.json。343主張・全128単位を登録簿v327・監査v305で確認した。次はu0126全体（Hieraus ergibt sich以下の二文）。原刊904頁はartifacts/einstein-origin-clock-setting-v1/に保存済み。原点時計の厳密な秒の遅れejju、留保付き近似ejjv、全現在記録対ejit/ejjdと率ejiuを引き継ぐ。既存compose_clock_transfer.pyのswl–sxa、二時計・A/B・出発/初期参照/到着・各指示の識別を再利用候補として点検する。初期のK静止と同期、離れた二地点での同時指示、時計のAからBへの全時間の直線等速移送、初めからBに残る時計、到着時の同じ場所での比較を現在の記録と代表軌跡へ接続する。端点だけで経路や全時刻の存在を済ませず、全実数域の量化を有限標本へ替えない。原点時計の慣性運動だけから発進・停止中の挙動は導けないため、追加の指示変化がないという区間法則の解釈を明示する。M0229の½t(v/V)²秒と所要時間tの同定、共通の秒換算、四次以上の留保を全経過の厳密な遅れと結ぶ。Big-Oは固定所要時間についての読みとし、距離固定で所要時間も速度に依存する族に無条件のO(v⁴)を主張しない。Hierausの前段参照、eigentümlicheの著者評価、条件構文、非同期と遅れの対比まで点検する。原文にない具体的な残差係数の上下限を追加しない。u0127の折れ線と帰還、u0128の曲線と地球上の時計は後続。未使用定義ejj5、原始記号eisoi。",
     "start_here": [
-      "scripts/compose_origin_clock_time.py",
+      "scripts/compose_clock_seconds_claim.py",
+      "scripts/compose_clock_transfer.py",
+      "scripts/check_clock_transfer.py",
       "scripts/compose_origin_clock_question.py",
-      "scripts/compose_clock_delay.py",
-      "scripts/check_clock_delay.py",
-      "scripts/compose_asymptotics.py",
-      "docs/clock-delay-v1.md",
-      "data/einstein-origin-clock-time-u0124-review-v1.json",
+      "data/einstein-clock-seconds-u0125-review-v1.json",
+      "docs/clock-seconds-claim-v1.md",
       "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/origin-clock-time-v1.json",
-    "whole_unit_reviews": 147,
+    "language_checkpoint": "reports/clock-seconds-claim-v1.json",
+    "whole_unit_reviews": 148,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/einstein-origin-clock-equations-review-v1.json",
-    "source_collation": "data/einstein-origin-clock-time-source-reading-v1.json",
+    "dependency_checkpoint": "reports/einstein-origin-clock-time-review-v1.json",
+    "source_collation": "data/einstein-clock-seconds-claim-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
-    "einstein_whole_unit_reviews": 127,
-    "einstein_reviewed_nonblank_characters": 18326,
-    "einstein_review_checkpoint": "reports/einstein-origin-clock-time-review-v1.json",
+    "einstein_whole_unit_reviews": 128,
+    "einstein_reviewed_nonblank_characters": 18460,
+    "einstein_review_checkpoint": "reports/einstein-clock-seconds-claim-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
-    "einstein_paragraph_checkpoint": "reports/einstein-origin-clock-time-review-v1.json"
+    "einstein_paragraph_checkpoint": "reports/einstein-clock-seconds-claim-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は127/282・18,326/35,614非空白本文文字、正本341主張。u0123のEs ist alsoとu0124のM0216を原刊904頁で通読し、全9本文文字と一つの数式要素を判断した。同じ原点時計の全現在記録へτ=t√(1−(v/V)²)とτ=t−(1−√(1−(v/V)²))tの二等式を接続し、実数値の同値関係の下で原文の等号連鎖を保持する。負の座標時刻、正の平方根、同じ出来事のK/k記録と前の二式からの著者の帰結提示を保つ。有限検査・通読判断・物理的真理は別であり、単位秒の遅れや近似を先取りしない。部分草案227単位・原文対応26,160/35,614非空白文字（73.45%）。u0125以降と二作品全体の目標は継続中。",
+    "アインシュタインの全単位意味確認は128/282・18,460/35,614非空白本文文字、正本343主張。u0125の全134本文文字と二つの数式要素を原刊904頁で通読し判断した。同じ時計の時間順の全記録対へ共通の秒換算を適用し、厳密な単位秒の遅れ1−√(1−(v/V)²)、二次近似(v/V)²/2と速度比の零近傍の四次誤差条件を接続した。有限検査・通読判断・物理的真理は別であり、発進停止を含む移送時計の挙動を先取りしない。部分草案227単位・原文対応26,160/35,614非空白文字（73.45%）。u0126以降と二作品全体の目標は継続中。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
