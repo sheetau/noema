@@ -1,0 +1,8 @@
+from scripts.check_solid_sphere_geometry import geometry_checks,history_checks,record_checks,coverage_checks,setting_checks,structure_checks
+
+def test_full_solid_ball_and_independent_boundary():assert geometry_checks()['unbounded_coverage_and_neighborhood_refused']
+def test_same_history_rigidity_rest_and_shape():assert history_checks()['same_full_history_rigidity_rest_and_snapshot_required']
+def test_current_records_and_material_positions():assert record_checks()['member_and_time_and_every_coordinate_checked']
+def test_all_material_members_and_times():assert coverage_checks()['native_individual_quantifiers_preserved']
+def test_same_sphere_origin_frames_and_velocity():assert setting_checks()['frame_times_not_identified']
+def test_prior_whole_unit_judgments_preserved():assert structure_checks()['prior_whole_unit_judgments_preserved']
