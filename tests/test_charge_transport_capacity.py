@@ -1,0 +1,7 @@
+from scripts.check_charge_transport_capacity import threshold_checks,witness_checks,modal_checks,integration_checks,structure_checks
+
+def test_signed_threshold_response():threshold_checks()
+def test_current_response_witness():witness_checks()
+def test_capacity_and_possible_trial_bindings():modal_checks()
+def test_two_case_capacity_integration_and_real_time_refusal():integration_checks()
+def test_preserved_manuscript_and_review():structure_checks()
