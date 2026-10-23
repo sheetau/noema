@@ -1,0 +1,7 @@
+from scripts.check_sufficient_postulates import premise_checks,consistency_checks,construction_checks,witness_checks,structure_checks
+
+def test_same_sufficient_postulates_without_hidden_premise():assert premise_checks()['no_third_independent_physical_premise']
+def test_consistency_of_same_theory_and_conditions():assert consistency_checks()['same_theory_and_conditions']
+def test_rest_basis_and_qualified_target():assert construction_checks()['same_rest_basis_route_and_target']
+def test_shared_existential_construction_witnesses():assert witness_checks()['all_three_existential_slots_bound']
+def test_preserved_readings_and_whole_third_sentence():assert structure_checks()['prior_reviews_preserved']
