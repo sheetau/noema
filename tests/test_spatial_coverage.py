@@ -1,0 +1,10 @@
+from scripts.check_spatial_coverage import point_checks,orientation_checks,axis_checks,triad_checks,transfer_checks,candidate_checks,coverage_checks,structure_checks
+
+def test_point_positions_and_static_histories():assert point_checks()['different_measurement_periods_allowed']
+def test_every_positive_direction_across_settings():assert orientation_checks()['opposite_record_rejected_independently_of_zero_coordinate']
+def test_actual_axis_and_arbitrary_material_guide():assert axis_checks()['negative_material_guide_allowed']
+def test_three_material_axes_and_initial_identities():assert triad_checks()['all_three_own_frame_axes_exact_roles_and_unique_origin']
+def test_preserved_space_without_freezing_the_ruler():assert transfer_checks()['ruler_relocation_not_forbidden_by_axis_preservation']
+def test_actual_measurements_and_global_uniqueness():assert candidate_checks()['global_uniqueness_covers_all_measurement_settings']
+def test_every_place_component_and_both_frames():assert coverage_checks()['every_place_and_all_three_components_required']
+def test_existing_meanings_and_judgments_preserved():assert structure_checks()['prior_meanings_and_reviews_preserved']
