@@ -1,33 +1,33 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v336.json",
-  "progress_report": "reports/written-progress-v314.json",
+  "review_index": "data/semantic-review-index-v337.json",
+  "progress_report": "reports/written-progress-v315.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0135–u0138（第一近似・速さと角度の導入。u0139前半も含めて解釈照合）",
-    "scope": "実装親はexamples/v014/einstein-point-motion-claim.noema、意味規約data/point-motion-claim-basis-v1.json、識別表記data/point-motion-claim-identifiers-v1.json。u0133–u0134の課題・§3変換の参照と代入・K三式は全体判断済み。次はu0135第一文の速度の平行四辺形則が我々の理論では第一近似でのみ成立するという帰結・留保を、同じ点の三速度と現行の変換後成分へ構成する。続くWir setzen:、u0136のU²=(dx/dt)²+(dy/dt)²とw²=wξ²+wη²、u0137 und、u0138 α=arctg(wη/wξ)を同じ定義導入に結ぶ。原刊905頁はartifacts/einstein-curved-clock-records-v1/page-905.jpgに保存済み。u0139前半はαをvとwの間の角と読む説明で、逆正接の枝・符号・零成分の適用範囲をこの文と合わせて明示する必要がある。旧compose_speed_magnitudeのsznは非負ノルム、szqは二微分とノルムだが、旧szr/szs/sztはzka/shd/syu/zkeに依存するため現在のejmu/ejmv/ejmw/ejnlと実際の座標関数eismhへ接続し直す。実際のdx/dtを単なる成分名や有限差分へ替えない。旧compose_direction_anglesのs2eは二候補の逆正接関係、s2fは主値、s2hは向きなし角で互いに同義ではない。枝未確定の旧s2kや単位円の二成分だけを原文全体の完成扱いにせず、採用する角・角度測度の解釈と零速度/縦成分零の扱いを先に整理する。第一近似の小量・次数・適用範囲も原文から計画し、点の速度上限を根拠なく追加しない。後続M0257の式には旧compose_angle_compositionと訂正層の証拠があるが、その式の完成は別途。未使用定義ejnw、原始記号eisox。",
+    "unit": "einstein-1905:u0135–u0138（第一近似の提示、速さと角度の導入。u0139前半を含めて解釈照合）",
+    "scope": "実装親はexamples/v014/einstein-velocity-first-order.noema、意味規約data/velocity-first-order-basis-v1.json、識別表記data/velocity-first-order-identifiers-v1.json。u0135第一文の成分内容ejocまで依存群を構成済み。次はalsoの帰結とnach unserer Theorieの限定を、現在の先行内容ejnpと同じ著者の提示へ結ぶ。第一近似は光速を固定しv,wξ,wηを共通倍率で零へ近づけたときの線形項として読む。ejn4は実微分、ejobは全係数と厳密一般則への反例存在、ejnyは同じ点の全現在履歴・K/k定速度との接続。原文の展開変数の逐語指定や全ての組での不一致とはしない。続くWir setzen:、u0136のU²=(dx/dt)²+(dy/dt)²とw²=wξ²+wη²、u0137 und、u0138 α=arctg(wη/wξ)を同じ定義導入へ結ぶ。原刊905頁はartifacts/einstein-curved-clock-records-v1/page-905.jpg。u0139前半のαをvとwの間の角とする説明も読み、逆正接の枝・符号・零成分の範囲を明示する。旧compose_speed_magnitudeのsznとszqは再利用候補だが現行親に含まれないため依存を確認する。旧szr/szs/sztのzka/shd/syu/zkeへ戻さず、ejmu/ejmv/ejmw/ejnlと実際の座標関数eismhへ接続する。dx/dtを成分名や有限差分に替えない。旧compose_direction_anglesのs2e（二候補）、s2f（主値）、s2h（向きなし角）は異なる。枝未確定のs2kや単位円二成分だけを角度測度も含めた全体完成とせず、採用する解釈を先に整理する。点の光速上限は追加しない。後続M0257には旧compose_angle_compositionと訂正層の証拠があるが完成は別途。未使用定義ejod、原始記号eisox。",
     "start_here": [
+      "scripts/compose_velocity_first_order.py",
+      "docs/velocity-first-order-v1.md",
       "scripts/compose_point_motion_claim.py",
-      "scripts/compose_point_motion_transform.py",
       "scripts/compose_point_motion_records.py",
       "scripts/compose_speed_magnitude.py",
       "scripts/compose_direction_angles.py",
-      "scripts/compose_angle_composition.py",
-      "reports/einstein-point-motion-claim-review-v1.json",
-      "artifacts/written-units-v1/einstein-1905.json",
+      "reports/velocity-first-order-v1.json",
+      "data/einstein-velocity-first-order-source-reading-v1.json",
       "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/point-motion-claim-v1.json",
+    "language_checkpoint": "reports/velocity-first-order-v1.json",
     "whole_unit_reviews": 157,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/point-motion-transform-v1.json",
-    "source_collation": "data/einstein-point-motion-claim-source-reading-v1.json",
+    "dependency_checkpoint": "reports/velocity-first-order-v1.json",
+    "source_collation": "data/einstein-velocity-first-order-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
     "einstein_whole_unit_reviews": 137,
@@ -39,7 +39,7 @@
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は137/282・19,929/35,614非空白本文文字、正本354主張。今回はu0133–u0134の求解課題、先行第三節で展開した変換の参照、K四数量の導入、結果の三式を本文へ接続し、169本文文字と三数式要素を通読判断した。非零分母は商の明示した定義域で、原文に印刷された条件とは区別する。有限検査、明示した読みの意味判断、物理的真理は別である。部分草案228単位・原文対応26,200/35,614非空白文字（73.57%）。u0135以降と二作品全体の目標は継続中。",
+    "アインシュタインの全単位意味確認は137/282・19,929/35,614非空白本文文字、正本354主張を保持。u0135第一文の平行四辺形則、共通倍率による一次の読み、厳密一般則の不成立、同じ点の速度との接続を12定義・新規基本記号なしで構成した。帰結・我々の理論という限定の提示とWir setzen以下は未接続であり、今回の局所440対照例の通過によって文や全単位の完成数を増やさない。負の分母・特殊な厳密一致を保ち、点の速度上限を追加しない。部分草案228単位・原文対応26,200/35,614非空白文字（73.57%）。二作品全体の目標は継続中。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
