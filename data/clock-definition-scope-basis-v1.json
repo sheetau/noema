@@ -1,0 +1,830 @@
+{
+  "status": "local_clock_definition_adequacy_and_remote_task_limit",
+  "document": "examples/v014/einstein-clock-definition-scope.noema",
+  "parent": "examples/v014/einstein-clock-definition-proposal.noema",
+  "inherited_meaning_basis": "data/clock-definition-proposal-basis-v1.json",
+  "primitives": {
+    "eisgd": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "problem",
+        "author",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentのcontextでauthorが取り組もうとする具体的なtaskがproblemという時間定義の問題に属する。es sich darum handeltに当たる課題の設定であり、既に達成したことや単なる無関係の課題名ではない。条件文で用いるとき、全ての課題が実際に取り組まれているとは主張しない。"
+    },
+    "eisge": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "event",
+        "context"
+      ],
+      "meaning_ja": "同じtaskで時間を規定する対象となる出来事の全範囲の一員がeventである。成功した測定や時計のそばにある出来事だけを後から選別せず、課題で指定した対象を保つ。非空性・場所の限定・出来事型は合成側で要求する。"
+    },
+    "eisgf": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "place",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "同じclockがframeでcontextの時点にまさに所在する場所がplaceである。ebenを現在の所在の指定として保持し、時計が以前いた場所や後で運ぶ先へ交換しない。世界線全体で静止することや絶対位置は要求しない。既存cbによる配置とも結ぶ。"
+    },
+    "eisgg": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "clock",
+        "frame",
+        "unit",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "taskは、対象出来事に同じclockを基準とする時間の値を与えるという時間的評価の課題である。何を出来事の時刻とするかを定め、その値によって同時・先後等を比較できることを目指す。時計の表示出来事の値を対象出来事へどう結ぶかも課題に含み、受信時刻との無条件な同一視、計器を読むだけの行為、倫理的な評価ではない。場所・達成・規則の十分性は別に定める。"
+    },
+    "eisgh": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "series",
+        "place",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "同じtaskで相互の時間関係を定めようとする出来事系列の一つがseriesで、その系列がplaceで起こるものとして指定される。系列は出来事の継起を局所的な順にまとめた対象で、単なる文字列、物体の集合、一つの時刻値とは区別する。eisgiがその全構成出来事を与える。各系列内の順序を保ったまま系列間の時間対応を問題にし、系列間の同期や既知の相対時刻は先取りしない。"
+    },
+    "eisgi": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "series",
+        "event",
+        "context"
+      ],
+      "meaning_ja": "同じseriesを構成する出来事の全範囲にeventが属する。各系列内の継起の同一性を保つ構成関係であり、系列同士の時間対応が既に確定したことではない。系列の位置や実際の出来事型は合成側で確認し、都合のよい構成員の抜粋にしない。"
+    },
+    "eisgj": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "clock",
+        "frame",
+        "unit",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "taskは、同じframe・unitで異なる場所の出来事系列を相互に時間的に結ぶ課題である。各系列内の継起を保持して、どの出来事が他系列のどの時刻・同時性・先後に対応するかを同じclockに結び付けた尺度で定めることを目指す。単なる空間的な連結、各系列を別々に番号付けしただけ、既に同期済みの断言ではない。少なくとも二つの異なる系列と場所、および全構成出来事は別に要求する。"
+    },
+    "eisgk": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "requirement",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "requirementは同じtaskをその指定範囲で完了するために満たすべき規約上の必要条件の一つである。対象全体に値を与えられること、同じ対象に曖昧な値を残さないこと、要求された時間比較を保つこと等、当該課題の全必要条件を指定する。成功するものだけに範囲を狭めず、未知の条件を不成立又は空集合として扱わない。"
+    },
+    "eisgl": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "proposal",
+        "task",
+        "speaker",
+        "clock",
+        "hand",
+        "frame",
+        "unit",
+        "document",
+        "requirement",
+        "rule",
+        "context"
+      ],
+      "meaning_ja": "同じproposalの時計指示による規則を、ruleが記述する局所的な指示と出来事の対応として用いるだけで、同じtaskのrequirementが満たされる。話者・時計・短針・系・尺度・文脈を保ち、別の時計の追加、未指定の遠隔同期や光伝播補正による解決を、この規則だけの充足へ混ぜない。個別の条件の充足を指定し、全条件について十分であるかは合成で量化する。実際の測定済みを必要としない規則の適用能力である。"
+    },
+    "eisgm": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "display",
+        "clock",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "局所的な同一場所の理想化の下で、対象eventの生起と同じclockのdisplayという指示出来事がその場で一致して対応する。時計の針が一周した別時点の同じ表示や遠方から届いた信号の受信を、対象の生起そのものへ交換しない。局所的な出来事一致の対応を与え、未知の遠隔時計の同時性や普遍的時刻の値から逆算しない。両出来事の場所・読みは合成で確認する。"
+    },
+    "eisgn": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "solution",
+        "kind",
+        "clock",
+        "frame",
+        "unit",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "solutionが、kindの閉じた型で記述する種類の時間的課題を同じclock・frame・unitで満たす手続きである。系列とその構成出来事という同じ対象範囲を保ち、系列間の比較を要求する記述と、個々の遠隔出来事の時刻を要求する記述を替えた際も、別の出来事や尺度にすり替えない。手続きの適用範囲と得られる時刻・比較を同じものとして評価する。種類間の同等性はこの入力だけでは断言せず、両種類の解となる手続きの一致を合成で要求する。"
+    },
+    "eisgo": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "claim",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでclaimの限定を保った内容を、単なる見かけの可能性ではなく実際に成り立つこととして確認して提示する。in der Tatの確認の働きであり、限定を外した先行見込みの全承認、独立の実験証明、読み手の確信を要求しない。内容自体の成立は別の合成で保持する。"
+    },
+    "eisgp": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "target",
+        "explanation",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでtargetの課題の記述を述べる途中に、explanationを言い換えの理由を示す挿入として提示する。二つの言い方が同じ課題に帰着するという説明を保持し、無関係な代案の列挙、別の選択肢との排他的な選択、時間的な後続へ替えない。内容は引用して同定し、挿入という提示だけからその真理を導かない。"
+    },
+    "eisgq": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "固定原文einstein-1905:u0011[201,639)の第二文。前文の同じ定義案の局所的十分性と異所での不十分性、遠隔出来事の時間的評価との言い換えを述べる箇所。"
+    }
+  },
+  "definitions": {
+    "eijr": "同じ短針の指示eijiを同じ場所の対象出来事と局所的一致eisgmで対応させ、対象と表示の同じ読みを結ぶ時刻付与規則。現在の時計所在を保ち、全体静止・遠隔同期・周期回数を追加しない。",
+    "eijs": "taskの対象出来事が非空で、その全てが同じplace・frameにあるという範囲。局所で成功した一部だけに限定しない。",
+    "eijt": "同じ時計に基づく時間的評価の課題で、その時計の現在の所在場所だけを対象とするeijsを満たす。異所を一つでも含む課題や空の課題はこの局所限定へ入れない。",
+    "eiju": "系列の全構成出来事が非空で、同じplace・frameにある。系列間の時間対応はここで要求しない。",
+    "eijv": "同じ時計の尺度へ異所の出来事系列を相互に時間的に結ぶ課題。少なくとも二つの異なる系列・場所を持ち、指定された全系列の構成出来事がその指定場所にある。",
+    "eijw": "同じ時計に基づき、現在の時計の場所から局所的に離れた場所の出来事へ時間的評価を与える課題。対象出来事は非空で全てその遠隔範囲にあり、単なる近接場所を遠隔として扱わない。",
+    "eijx": "同じtaskに非空の必要条件範囲があり、その全条件を同じproposalの局所規則eijrだけで満たせるという十分性。",
+    "eijy": "同じtaskの必要条件のうち少なくとも一つを同じproposalの局所規則eijrだけでは満たせないという不十分性。規則も条件も未知の場合を偽として補わない。",
+    "eijz": "同じ対象・時計・系・尺度について、異所の系列を時間的に結ぶeijvと遠隔出来事を時間的に評価するeijwの解となる手続きが両方向に一致する。手続きの実装済みや存在は追加せず、二つの課題の同等性を述べる。",
+    "eij2": "同じ時間定義に取り組む全課題について、時計の現在の場所だけを対象とするなら同じ案が十分であるという条件内容。",
+    "eij3": "同じ時間定義に取り組む全課題について、異所系列の連結又は遠隔出来事の時間的評価を対象とするなら同じ案は不十分であるという条件内容。適用範囲が変わると通用しなくなることであり、時計が経年劣化するという意味ではない。",
+    "eij4": "同じclock・frame・unit・論説についてeijzを述べる挿入説明の内容。",
+    "eij5": "前文と同じ定義案eijjを保持し、局所の十分性eij2、遠隔の不十分性eij3、二課題の同等性eij4を同じ評価文脈で結ぶ。",
+    "eij6": "第二文の全内容eij5を主張するメッセージ。見かけの可能性に弱めず、前文の全困難の解決を無条件に承認しない。",
+    "eij7": "同じ著者・論説への帰属、局所の成立を実際の確認として提示するin der Tat、局所と遠隔の対比、同等性の挿入説明、第一文からの順序を結ぶ。"
+  },
+  "new_signatures": {
+    "eisgd": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisge": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgf": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgg": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgh": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgi": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgj": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgk": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgl": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgm": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgn": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgo": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgp": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eisgq": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eijr": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eijs": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eiju": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eijt": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eijv": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eijw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eijx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eijy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eijz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "eij2": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eij3": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eij4": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eij5": {
+      "parameters": [],
+      "result": "content"
+    },
+    "eij6": {
+      "parameters": [],
+      "result": "message"
+    },
+    "eij7": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "Eine solche Definitionは前文の同じ案eisf5・時間定義の問題eisf6を指す。同じ著者の時計eisf7・短針eisga・ra・尺度eisgbを保持する。新たな同期方式や7時の例を追加しない。",
+    "genügtは課題の非空の全必要条件を当該規則だけで満たせるという十分性、genügt nicht mehrは必要条件を少なくとも一つ満たせないという不十分性として読む。実際の測定済み・時計の故障・時間の経過による劣化とはしない。",
+    "ausschließlichとebenは現在の時計所在だけに対象を限定する。表示と対象出来事の局所的一致を結び、別周期の同じ針位置や遠隔信号の受信を対象生起そのものに替えない。脚注で述べた局所的理想化の留保を維持する。",
+    "Ereignisreihenは各場所で局所的に順を持つ出来事系列であり、系列間の時間対応を与える課題とする。固定された全構成員と場所を保持し、単に異なる二つの名前があることへ縮めない。",
+    "遠隔は同一場所でも同じ局所尺度で近接した場所でもない範囲と読む。数値距離、光速補正、遠隔時計の存在・同期を原文へ追加しない。二つの課題の同等性は同じ対象と尺度の解手続きの両方向一致として読む。",
+    "wennとsobaldは課題の適用範囲による条件を保持する。in der Tatは限定した局所内容の確認、aberは対比、oder以下は同じ課題に帰着する挿入説明として記述する。",
+    "必要条件・個別充足・手続きの適合範囲は意味規約を持つ入力であり、有限対照例から物理的妥当性や任意の課題の解法を自動証明しない。第二文373文字を記述した後、第一文と合わせた全段落545文字の通読判断を別に行う。"
+  ]
+}
