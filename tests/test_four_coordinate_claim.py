@@ -1,0 +1,11 @@
+from scripts.check_four_coordinate_claim import numeric_checks,system_checks,graph_checks,presentation_checks,structure_checks
+
+def test_four_native_values_and_changed_coefficient():assert numeric_checks()['phi_is_a_times_beta_not_the_old_coefficient']
+
+def test_four_equation_system_and_current_task():assert system_checks()['all_four_native_equation_sides_and_order_checked']
+
+def test_current_exact_correspondence_scope():assert graph_checks()['equal_value_alias_and_extra_missing_pairs_distinguished']
+
+def test_author_presentation_separate_from_interpretation():assert presentation_checks()['interpretive_annotation_outside_author_message']
+
+def test_prior_judgments_and_fixed_source():assert structure_checks()['prior_whole_unit_judgment_preserved']
