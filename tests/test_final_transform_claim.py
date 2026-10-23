@@ -1,0 +1,11 @@
+from scripts.check_final_transform_claim import branch_checks,equation_checks,scope_checks,presentation_checks,structure_checks
+
+def test_two_relations_and_separate_positive_branch():assert branch_checks()['negative_common_unit_is_counterexample_to_two_relations_alone']
+
+def test_final_four_equations_and_beta():assert equation_checks()['all_four_omissions_rejected_on_distinguishing_output']
+
+def test_current_exact_correspondence():assert scope_checks()['missing_and_extra_pairs_rejected']
+
+def test_author_consequence_and_external_annotation():assert presentation_checks()['positive_branch_annotation_outside_author_message']
+
+def test_preserved_judgments_and_current_scope():assert structure_checks()['prior_whole_unit_judgment_preserved']
