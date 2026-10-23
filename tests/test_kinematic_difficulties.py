@@ -1,0 +1,7 @@
+from scripts.check_kinematic_difficulties import consideration_checks,difficulty_checks,cause_checks,sentence_checks,structure_checks
+
+def test_insufficient_consideration_of_same_circumstance():assert consideration_checks()['same_fact_and_practice']
+def test_plural_current_difficulties_in_same_inquiry():assert difficulty_checks()['plural_and_complete_contextual_scope']
+def test_foundational_cause_without_excluding_other_causes():assert cause_checks()['other_causes_allowed']
+def test_shared_witnesses_and_first_sentence_reference():assert sentence_checks()['same_preceding_circumstance_retained']
+def test_preserved_judgments_and_second_sentence():assert structure_checks()['prior_reviews_preserved']
