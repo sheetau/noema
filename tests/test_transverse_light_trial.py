@@ -1,0 +1,8 @@
+from scripts.check_transverse_light_trial import numeric_checks,trial_checks,segment_checks,geometry_checks,connection_checks,structure_checks
+
+def test_transverse_speed_and_both_positive_elapsed_times():assert numeric_checks()['total_speed_not_transverse_speed']
+def test_native_two_clock_roundtrip_for_both_transverse_axes():assert trial_checks()['both_full_parallel_k_paths_and_distinct_axes_required']
+def test_diagonal_K_segments_keep_current_clocks():assert segment_checks()['both_diagonal_K_segments_keep_geometric_lengths_and_current_local_times']
+def test_full_diagonal_histories_and_same_event_meetings():assert geometry_checks()['full_real_histories_refused']==2
+def test_current_coordinates_candidate_and_global_conditions():assert connection_checks()['native_real_witness_quantification_refused']==2
+def test_only_documented_adaptations_and_prior_evidence_preserved():assert structure_checks()['exact_trial_axis_adaptation_and_only_two_K_axis_constraints_removed']
