@@ -1,0 +1,6 @@
+from scripts.check_rigid_body_kinematics import pair_checks,guard_and_binding_checks,domain_checks,structure_checks
+
+def test_all_material_pairs_not_just_marks_or_endpoints():assert pair_checks()['stretch_and_hidden_third_point_deformation_detected']
+def test_same_history_metric_members_and_interval():assert guard_and_binding_checks()['complete_history_and_fixed_metric_required']
+def test_real_time_quantification_is_not_sampled():assert domain_checks()['full_real_time_domain_refused']
+def test_preserved_reviews_and_new_source_collation():assert structure_checks()['no_new_author_assertion']
