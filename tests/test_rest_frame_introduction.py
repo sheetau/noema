@@ -1,0 +1,7 @@
+from scripts.check_rest_frame_introduction import introduction_checks,purpose_checks,goal_content_checks,presentation_checks,structure_checks
+
+def test_hypothetical_introduction_of_same_newton_frame():assert introduction_checks()['physical_condition_not_asserted_by_adoption']
+def test_same_naming_act_with_two_purposes():assert purpose_checks()['goal_achievement_not_required']
+def test_prospective_distinction_and_conception_clarity():assert goal_content_checks()['distinction_and_conception_clarity_different_goals']
+def test_setup_directive_and_naming_declaration():assert presentation_checks()['setup_directive_and_naming_assertion_distinguished']
+def test_source_identity_and_preserved_judgments():assert structure_checks()['same_existing_frame_reference']
