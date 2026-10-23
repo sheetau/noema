@@ -1,0 +1,584 @@
+{
+  "status": "current_clock_transfer_phase_records_and_interval_laws_dependency",
+  "document": "examples/v014/einstein-clock-transfer-records.noema",
+  "parent": "examples/v014/einstein-clock-seconds-claim.noema",
+  "inherited_meaning_basis": "data/clock-seconds-claim-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "ejj5": "同じ時計のKでの現在の局所表示候補ejikを、同じ出来事・状況の実際の代表軌跡sbと三座標へ結ぶ。指示値の正誤では候補を選ばず、対象出来事・表示出来事・記録・場所を保持する。",
+    "ejj6": "同じ現在の局所表示候補について、指定した有効な実数指示が対象出来事と表示出来事の双方で読まれ、他の全ての有効な指示も同じ値である。K座標時刻と同じ値であることは要求しない。",
+    "ejj7": "指定した時計・対象出来事・K記録・場所・指示値・状況について、一つの表示出来事がejj6を満たす。到着時に二時計を比較する際も同じ対象出来事と場所を渡す。",
+    "ejka": "指定したK時刻に、同じ時計・状況のejj5を満たす出来事・表示・現在記録・場所が一組存在する。四つの証人と記録時刻を共有する。",
+    "ejkb": "正の幅のK閉区間の完全な代表軌跡と校正を持つ同じ時計について、全現在候補の指示がinitialreading+rate*(t−lower)となり、全実時刻に同じ値を指示するejkcの一組が存在する。正の一定率と任意の共通表示原点を許し、端点だけで中途のリセットを見逃さない。",
+    "ejkc": "指定したK時刻に指定した指示値を持つejj6の出来事・表示・現在記録・場所が一組存在する。時刻の証人と指示の証人を独立に選ばない。",
+    "ejkd": "同じ時計のKでの出発・到着記録について、正の所要時間と速さ、端点距離、全閉区間の代表軌跡、全時刻での現在表示候補の存在、全候補の三次元線形補間swpを結ぶ。端点が合うだけの迂回や非等速移動を許さない。",
+    "ejke": "同じ時計がKの正の閉区間全体で代表位置を一定に保つeit2を満たし、その位置が現在記録と同じ一意な場所placeである。針や内部機構の停止を要求せず、初期静止と移送中のBへの残留へ同じ規則を適用する。",
+    "ejkf": "二時計・A/B・出発/初期B表示/到着・三つのK記録を現在表示へ結ぶ移送設定。初期区間末端で出発し、両時計は全初期区間で静止して同じK時刻に同じ指示を持つ。B時計は全移送区間Bに残り、移送時計は全区間AからBへ直線等速移動する。到着時の二指示は同じ出来事とBに属する。移送時計の進み率の答えはこの設定に含めない。",
+    "ejkg": "同じ移送設定ejkfに、移動時計がf=√(1−(v/V)²)、B時計が1という全区間の指示法則ejkbを加える。両端も含む現在表示と初期指示を使い、発進・停止の追加指示変化がないという明示した区間法則の解釈を表す。原点時計の慣性運動だけからこれを証明したとはしない。",
+    "ejkh": "同じ移送についてejkgを保ち、正の所要時間に対する移動時計とB時計の実際の出発・到着指示差を、それぞれ率fと1のejisへ接続する。全期間の法則と端点の代数的比較を区別する。"
+  },
+  "new_signatures": {
+    "ejj5": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejj6": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejj7": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejka": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejkc": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejkb": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejkd": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejke": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejkf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vo",
+          "sort": "situation"
+        },
+        {
+          "name": "vp",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejkg": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vo",
+          "sort": "situation"
+        },
+        {
+          "name": "vp",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ejkh": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vo",
+          "sort": "situation"
+        },
+        {
+          "name": "vp",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0126全体へ接続する意味依存群。原刊904頁の二文を照合し、初期同期、同じ時計の直線移送、初めからBにある時計、到着時の同所比較を現在表示と完全な代表軌跡へ更新する。本文への帰属と一単位全体の判断は後続であり、意味確認済み件数を増やさない。",
+    "初期同期はKの同じ時刻に両時計が全初期区間で同じ指示を示す読み。Kの時間尺度を共有する正しい率1の時計を用い、両方に共通の指示原点は任意とする。初期区間を出発で閉じ、移送区間は出発から到着までとする。区間を選ぶ規約であり、原文にない待機時間の数値を指定しない。",
+    "現在の局所候補ejik、同所表示eisgm、場所付き現在四記録eiyw、同じ時計の代表軌跡sb/se、正の尺度・校正を引き継ぐ。旧swl/swm/swqのshd/x4の範囲へ戻らず、指示差の成否から候補を選ばない。全時刻の存在と全候補の正しい指示を分ける。",
+    "全時間の初期同期は同時刻の同じ指示として表す。初期の光往復試行の実施済みや新たな測定操作を要求しない。到着時の非同期は後続で同所の異なる指示として記述し、移送前後を一つの無限定な静止状況にしない。",
+    "AとBを異なる地点、正の速さv<Vと正の所要時間の直線移送として読む。方向は三次元の端点差で定まり、正のX軸に限定しない。後のA=Bの帰還や折れ線へこの単一区間の条件をそのまま流用しない。",
+    "移送中の平方根の率とB時計の率1は追加の理想化を明示する区間法則である。発進・停止で指示の追加変化がないことを含むが、加速度応答の物理的導出や一般の加速時計仮説の証明ではない。原文の条件付き主張へ解釈として接続し、著者の明記した追加前提として捏造しない。",
+    "所要時間と到着指示差の共通秒換算、二次近似と四次以上の留保、Hierausの前段参照、eigentümlicheの評価、非同期と遅れの対比、著者の条件付き提示は後続で統合する。原始記号は追加しない。"
+  ]
+}

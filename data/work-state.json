@@ -1,31 +1,33 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v327.json",
-  "progress_report": "reports/written-progress-v305.json",
+  "review_index": "data/semantic-review-index-v328.json",
+  "progress_report": "reports/written-progress-v306.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0126（初期同期・AからBへの直線移送・到着時の遅れ）",
-    "scope": "実装親はexamples/v014/einstein-clock-seconds-claim.noema、意味規約data/clock-seconds-claim-basis-v1.json、識別表記data/clock-seconds-claim-identifiers-v1.json。343主張・全128単位を登録簿v327・監査v305で確認した。次はu0126全体（Hieraus ergibt sich以下の二文）。原刊904頁はartifacts/einstein-origin-clock-setting-v1/に保存済み。原点時計の厳密な秒の遅れejju、留保付き近似ejjv、全現在記録対ejit/ejjdと率ejiuを引き継ぐ。既存compose_clock_transfer.pyのswl–sxa、二時計・A/B・出発/初期参照/到着・各指示の識別を再利用候補として点検する。初期のK静止と同期、離れた二地点での同時指示、時計のAからBへの全時間の直線等速移送、初めからBに残る時計、到着時の同じ場所での比較を現在の記録と代表軌跡へ接続する。端点だけで経路や全時刻の存在を済ませず、全実数域の量化を有限標本へ替えない。原点時計の慣性運動だけから発進・停止中の挙動は導けないため、追加の指示変化がないという区間法則の解釈を明示する。M0229の½t(v/V)²秒と所要時間tの同定、共通の秒換算、四次以上の留保を全経過の厳密な遅れと結ぶ。Big-Oは固定所要時間についての読みとし、距離固定で所要時間も速度に依存する族に無条件のO(v⁴)を主張しない。Hierausの前段参照、eigentümlicheの著者評価、条件構文、非同期と遅れの対比まで点検する。原文にない具体的な残差係数の上下限を追加しない。u0127の折れ線と帰還、u0128の曲線と地球上の時計は後続。未使用定義ejj5、原始記号eisoi。",
+    "unit": "einstein-1905:u0126（移送時計の秒換算・近似・帰結提示の全文統合）",
+    "scope": "実装親はexamples/v014/einstein-clock-transfer-records.noema、意味規約data/clock-transfer-records-basis-v1.json、識別表記data/clock-transfer-records-identifiers-v1.json。343主張・全128単位を登録簿v328・監査v306で保持した。u0126全体（Hieraus ergibt sich以下の二文、424本文文字・14数式要素）は原刊904頁へ照合済みだが全体判断は未実施。今回のejj5/ejj6/ejj7は同じ時計・対象出来事・表示・K現在記録・場所と全指示の一意性を結ぶ。ejka/ejkcは同じ四証人で時刻と表示の存在を保持する。ejkbは任意の表示原点と正率による全候補・全実時刻の指示法則。ejkdはswo/swpと現在表示・完全な代表軌跡による三次元直線等速移送。ejkeは初期とB残留の全区間の代表静止。ejkf(COMMON)は初期同期と全直線移送と同所到着の設定、ejkgは移動時計fとB時計1の全区間法則、ejkhは実際の端点指示差をejisへ結ぶ。旧compose_clock_transfer.pyのCOMMON/CONSTANTSの二時計・場所・三出来事・三記録・四指示・二状況を継承する。次はこの同じ設定へ到着差、共通秒換算、M0229の½t(v/V)²秒、四次以上の留保、所要時間tを接続する。旧swv/swk/swy/swwは数値核の再利用候補で、swm/swl/swqの旧shd/x4は使わない。正本の原点時計の前段内容ejju/ejjvをHierausの参照に保つ。発進停止の追加変化がない区間法則は解釈注記として著者の発話外へ置く（zfl、compose_final_transform_claim.pyのejeeを参照）。原文の条件付き主張の前件を、著者が述べていない指示法則で黙って狭めない。有限検査や物理的証明の不足を理由に著者の主張を弱めない。eigentümlicheの特有・意外な帰結という評価、folgendeの後続内容、非同期と遅れの対比、到着と初めからBの対照を保持する。既存zld/zleは注目価値で驚きとは区別する規約なので、そのまま特異性へ読み替えない。必要ならKantのcompose_reversal_focus.pyの一般的な特異性提示h224rの考え方を適切な版の型で再利用する。Big-Oは固定所要時間の読みを明示し、距離固定でTも速度依存の場合を無条件のO(v⁴)にせず、具体的な残差係数を著者へ追加しない。原刊保存先artifacts/einstein-origin-clock-setting-v1/。u0127の折れ線と帰還、u0128の曲線と地球時計は後続。未使用定義ejki、原始記号eisoi。",
     "start_here": [
-      "scripts/compose_clock_seconds_claim.py",
+      "scripts/compose_clock_transfer_records.py",
+      "scripts/check_clock_transfer_records.py",
       "scripts/compose_clock_transfer.py",
       "scripts/check_clock_transfer.py",
-      "scripts/compose_origin_clock_question.py",
-      "data/einstein-clock-seconds-u0125-review-v1.json",
-      "docs/clock-seconds-claim-v1.md",
+      "scripts/compose_clock_seconds_claim.py",
+      "scripts/compose_final_transform_claim.py",
+      "data/einstein-clock-transfer-records-source-reading-v1.json",
+      "docs/clock-transfer-records-v1.md",
       "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/clock-seconds-claim-v1.json",
+    "language_checkpoint": "reports/clock-transfer-records-v1.json",
     "whole_unit_reviews": 148,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/einstein-origin-clock-time-review-v1.json",
-    "source_collation": "data/einstein-clock-seconds-claim-source-reading-v1.json",
+    "dependency_checkpoint": "reports/clock-seconds-claim-v1.json",
+    "source_collation": "data/einstein-clock-transfer-records-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
     "einstein_whole_unit_reviews": 128,
@@ -37,7 +39,7 @@
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は128/282・18,460/35,614非空白本文文字、正本343主張。u0125の全134本文文字と二つの数式要素を原刊904頁で通読し判断した。同じ時計の時間順の全記録対へ共通の秒換算を適用し、厳密な単位秒の遅れ1−√(1−(v/V)²)、二次近似(v/V)²/2と速度比の零近傍の四次誤差条件を接続した。有限検査・通読判断・物理的真理は別であり、発進停止を含む移送時計の挙動を先取りしない。部分草案227単位・原文対応26,160/35,614非空白文字（73.45%）。u0126以降と二作品全体の目標は継続中。",
+    "アインシュタインの全単位意味確認は128/282・18,460/35,614非空白本文文字、正本343主張を保持する。u0126は原刊904頁で全424本文文字と14数式要素を照合し、現在表示・全初期期間の同期と静止・全移送期間の直線経路・Bへの残留・同所到着の依存群を実装した。全期間の指示法則と端点差も接続したが、秒換算と近似・四次以上の留保・評価と著者帰属の統合、全単位通読判断が残るため確認済み件数は増やさない。有限検査、明示した読みの意味判断、物理的真理は別である。部分草案227単位・原文対応26,160/35,614非空白文字（73.45%）。二作品全体の目標は継続中。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
