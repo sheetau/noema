@@ -1,0 +1,13 @@
+from scripts.check_transverse_measured_length import length_checks,time_checks,vector_checks,transverse_checks,branch_checks,structure_checks
+
+def test_native_simultaneous_positive_axis_distance():assert length_checks()['opposite_orientation_does_not_make_negative_length']
+
+def test_native_record_existence_and_all_time_measurement():assert time_checks()['all_real_times_require_same_positive_length']
+
+def test_every_member_and_signed_vector_translation():assert vector_checks()['internal_member_drift_not_hidden_by_correct_endpoints']
+
+def test_actual_transverse_motion_and_same_proper_rod():assert transverse_checks()['actual_nonzero_axis_perpendicularity_in_multiple_directions']
+
+def test_length_branch_not_unproved_positive_phi():assert branch_checks()['positive_branch_is_explicit_extra_condition_not_endpoint_theorem']
+
+def test_preserved_evidence_without_new_whole_unit_claim():assert structure_checks()['prior_whole_unit_judgment_preserved']

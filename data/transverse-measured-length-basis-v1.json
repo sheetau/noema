@@ -1,0 +1,490 @@
+{
+  "status": "current_measured_length_and_general_transverse_motion_dependencies",
+  "document": "examples/v014/einstein-transverse-measured-length.noema",
+  "parent": "examples/v014/einstein-transverse-endpoint-claim.noema",
+  "inherited_meaning_basis": "data/transverse-endpoint-claim-basis-v1.json",
+  "primitives": {},
+  "definitions": {
+    "ejcx": "同じ棒の指定長軸の全履歴eipcと、同じ系の現在両端記録ejceを結ぶ。二端の異なる出来事の時刻値を等しくし、その同じ時刻の同じ履歴の軸長eipaをlengthとする。正の長さ・校正された三次元距離を要求し、時刻の異なる二記録や符号付き一成分差を長さとみなさない。",
+    "ejcy": "同じ棒・二端・系・文脈について、指定時刻にejcxの現在両端記録が存在し、その同時刻距離がlengthである。出来事と記録の四位置を別々に量化し、名前の一意性は要求しない。",
+    "ejcz": "正の時間幅を持つ同じ系の対象区間の全実数時刻に、同じ棒の現在両端記録と同じ正の測定長ejcyが存在する。測定済み一時刻だけ又は空虚な全称へ縮めない。長さは同じ系の測定座標から得る同時刻距離。",
+    "ejc2": "現在の正速度側の同じ横棒のejcf、両端の現在二系記録と一般式ejcj、Kでの全時刻の測定長ejczを結び、その正の長さが同じl/φ(v)であるとする条件。距離は絶対値だが原文の結論は符号付き商に等しいため、この条件は正の枝を選ぶ。端点式だけからこの等式を自動導出したとはしない。",
+    "ejc3": "同じ物体の非空の完全な全物質点履歴と計量を保持し、全成員の全順方向時刻対で各成分の変位を同じ符号付き速度成分と経過時間の積へeiohで結ぶ。三成分の零・負・斜方向を許す一般の一定並進。端点だけやX方向だけに限定しない。",
+    "ejc4": "同じ棒・二端・系・文脈の全履歴、同じ三成分の全点並進ejc3、全時刻の現在測定長ejczを保持する。各時刻の実際の端差ベクトルと速度ベクトルを非零直交eiu6へ結ぶ。速度零、潰れた軸、平行な運動を横運動としない。",
+    "ejc5": "相異なる測定系と固有静止系で同じ棒・二端・単位を保ち、固有系の正の時間幅・全点静止・剛性・正の固有長eipeと、測定系での全点三成分並進・横運動・現在測定長ejc4を結ぶ。方向比較の一つの物理設定の条件であり、設定間の同一性・完全な比較範囲や長さの不変性はまだ主張しない。"
+  },
+  "new_signatures": {
+    "ejcx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "situation"
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ejcy": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ejcz": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ejc2": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "situation"
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ejc3": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "situation"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ejc4": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ejc5": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0101の測定長と方向一般の対称性のための依存群。著者の結論・物理的意味の提示・対称性の理由・正負比較・oderの同値書換え・全文判断はまだ追加しない。既存318主張と102単位の判断を保持する。",
+    "長さは同じ系の同時刻の両端を、現在の時計と位置測定の規約により定めた座標から得る正のユークリッド距離と読む。eipa/eisddが校正計量、ejce/eiyxが現在の測定と世界線・履歴を保持する。特定の観測者による物差しの操作をこの文へ新たに要求せず、原文が省略した実験の実施報告を補わない。",
+    "同じ端標識を長軸へeipcで割り当て、その完全な履歴と実際の現在記録へ結ぶ。前段の縦棒xi専用のeiqg、又は未接続のza/shd/zgjの旧条件を流用しない。幾何学的標識を必ず物質点と同一とはしない。",
+    "一般測定長ejcx/ejczは軸方向や符号を限定しない。前段の表示の二端差がl/φ(v)なら幾何学的距離はl/|φ(v)|。原文が測定長をl/φ(v)と述べるejc2は、その符号付き商が正の長さであるという追加の向きの読みを明示し、端点代数だけから正のφが証明できたことにしない。",
+    "ejc3/ejc4は三成分の符号付き速度を用い、反転だけでなく斜方向の横運動も表す。方向を表すラベルではなく、全成員の履歴と各時刻の自軸との直交へ結ぶ。比較設定の全範囲を作る際は同じ棒・固有形状・尺度・速度の大きさを保ち、長さが等しくなる設定だけを選別しない。",
+    "固有系と測定系の時刻・区間端を等置しない。ここでは各設定の物理条件までであり、設定間の同じ物質点・形状の対応や運動方向・向きへの不変性は後続の合成課題。",
+    "有限評価は現在両端測定と距離の本体、量化の引数接続、明示した時刻での全物質点の並進と直交を対照する。全実数域・全物理履歴・全方向の実現を有限標本で証明せず、未知座標を零へ補わない。"
+  ]
+}
