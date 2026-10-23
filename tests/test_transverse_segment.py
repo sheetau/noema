@@ -1,0 +1,11 @@
+from scripts.check_transverse_segment import segment_checks,history_checks,motion_checks,record_checks,structure_checks
+
+def test_segment_containment_and_complete_height_coverage():assert segment_checks()['endpoints_alone_insufficient']
+
+def test_complete_history_and_same_axis_segment():assert history_checks()['same_body_members_families_units_endpoints_and_interval']
+
+def test_full_translation_and_actual_transverse_axis():assert motion_checks()['same_time_actual_endpoint_difference_and_nondegeneracy']
+
+def test_current_endpoint_record_and_same_time_history():assert record_checks()['actual_history_at_same_record_time_and_inside_interval']
+
+def test_preserved_evidence_and_no_whole_unit_claim():assert structure_checks()['prior_whole_unit_judgment_preserved']
