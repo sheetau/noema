@@ -1,0 +1,9 @@
+from scripts.check_empirical_light_constant import numeric_checks,physical_checks,printed_binding_checks,scope_checks,presentation_checks,structure_checks
+
+
+def test_positive_roundtrip_rate_equation():assert numeric_checks()['positive_product_equation_matches_displayed_quotient']
+def test_physical_protocol_without_reflection_clock_synchrony():assert physical_checks()['reflection_clock_offset_does_not_change_roundtrip_rate']
+def test_displayed_formula_bindings():assert printed_binding_checks()['named_A_B_departure_return_and_same_V_checked']
+def test_one_common_value_over_all_applicable_trials():assert scope_checks()['per_trial_rates_do_not_make_one_universal_constant']
+def test_empirical_adoption_and_connected_sentence():assert presentation_checks()['one_sentence_formula_parenthesis_addition_and_order_preserved']
+def test_source_and_previous_readings():assert structure_checks()['previous_clock_and_event_time_judgments_preserved']
