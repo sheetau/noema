@@ -1,0 +1,13 @@
+from scripts.check_wave_compatibility_conclusion import propagation_checks,wave_checks,argument_checks,compatibility_checks,presentation_checks,structure_checks
+
+def test_every_ray_and_interval_of_same_wave():assert propagation_checks()['all_selected_wave_intervals_require_same_emission_and_measured_V']
+
+def test_both_frames_front_and_propagation():assert wave_checks()['same_wave_emission_both_frames_and_fixed_physical_setting']
+
+def test_same_argument_in_hereby():assert argument_checks()['same_setting_and_equation_and_wave_conclusion_bound']
+
+def test_same_two_principles_one_setting():assert compatibility_checks()['current_two_principles_native_shared_admissible_setting']
+
+def test_author_claims_proof_completion():assert presentation_checks()['proof_status_attached_to_same_compatibility_node']
+
+def test_source_and_prior_stage_preserved():assert structure_checks()['prior_equation_and_earlier_unproved_stage_preserved']
