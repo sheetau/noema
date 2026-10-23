@@ -1,0 +1,6 @@
+from scripts.check_observable_contrast import comparison_checks,distinction_checks,discourse_checks,structure_checks
+
+def test_general_relative_history_and_same_observable():comparison_checks()
+def test_every_permitted_account_distinguishes_cases():distinction_checks()
+def test_usual_view_and_ordered_contrast_are_nonfactive():discourse_checks()
+def test_source_sentence_scope_and_preserved_reviews():structure_checks()
