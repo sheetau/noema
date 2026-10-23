@@ -1,0 +1,10 @@
+from scripts.check_consistent_synchrony import point_checks,native_trial_checks,family_checks,possibility_checks,content_checks,presentation_checks,structure_checks
+
+
+def test_unbounded_finite_point_scope():assert point_checks()['all_finite_family_quantification_not_sampled']
+def test_one_clock_history_across_trials():assert native_trial_checks()['independent_trial_solutions_not_one_shared_solution']
+def test_one_configuration_for_the_whole_family():assert family_checks()['pairwise_separate_witnesses_rejected']
+def test_candidate_scope_and_result():assert possibility_checks()['same_result_required_not_actual_success']
+def test_assumption_and_general_relations():assert content_checks()['possibility_and_laws_are_distinct_assumed_contents']
+def test_definition_reference_and_forward_list():assert presentation_checks()['previous_definition_and_ordered_forward_laws_preserved']
+def test_source_and_previous_whole_paragraph():assert structure_checks()['previous_whole_paragraph_binding_preserved']
