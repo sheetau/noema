@@ -1,0 +1,9 @@
+from scripts.check_point_motion_records import local_checks,binding_checks,coverage_checks,velocity_checks,planar_checks,setup_checks,structure_checks
+
+def test_current_point_record():assert local_checks()['same_object_event_record_place_frame_and_actual_position']
+def test_point_record_witnesses():assert binding_checks()['every_slot_of_shared_three_and_two_witnesses_checked']
+def test_complete_point_motion_coverage():assert coverage_checks()['complete_history_all_current_candidates_and_all_real_times']
+def test_actual_constant_velocity():assert velocity_checks()['endpoint_only_detours_rejected_by_interior_instance']
+def test_original_planar_equations():assert planar_checks()['nonzero_phase_start_does_not_reset_coordinate_origin']
+def test_same_frames_and_components():assert setup_checks()['frame_speed_not_substituted_for_point_components']
+def test_point_motion_preservation():assert structure_checks()['current_point_motion_not_old_history_oracle']
