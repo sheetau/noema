@@ -1,0 +1,9 @@
+from scripts.check_third_frame_claim import rule_checks,purpose_checks,presentation_checks,structure_checks
+
+def test_third_frame_coordinate_rules():assert rule_checks()['all_three_spatial_roles_and_third_frame_time_rule']
+
+def test_same_intention_purpose_and_actual_introduction():assert purpose_checks()['actual_introduction_and_same_prior_function_intention_required']
+
+def test_naming_result_and_author_attribution():assert presentation_checks()['same_premise_and_full_chain_result_author_scope_and_order']
+
+def test_source_prior_evidence_and_current_dependencies():assert structure_checks()['prior_whole_unit_judgment_preserved']
