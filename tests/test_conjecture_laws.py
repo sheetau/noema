@@ -1,0 +1,6 @@
+from scripts.check_conjecture_laws import frame_and_law_checks,representation_checks,negative_and_content_checks,structure_checks
+
+def test_every_mechanically_qualified_frame():assert frame_and_law_checks()['all_qualified_frames_not_one_pair']
+def test_same_law_for_all_corresponding_representations():assert representation_checks()['native_sar_saq_sap']
+def test_no_corresponding_properties_in_both_branches():assert negative_and_content_checks()['shared_content_point']
+def test_preserved_manuscript_and_collation():assert structure_checks()['no_new_author_assertion']
