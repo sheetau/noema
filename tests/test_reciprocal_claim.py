@@ -1,0 +1,11 @@
+from scripts.check_reciprocal_claim import numeric_checks,rest_checks,scope_checks,presentation_checks,structure_checks
+
+def test_time_free_spatial_formula_and_reciprocity():assert numeric_checks()['reciprocity_not_each_phi_one_or_origin_identity']
+
+def test_full_frame_mutual_rest():assert rest_checks()['native_all_placements_all_moments_and_availability_required']
+
+def test_current_all_record_identity_scope():assert scope_checks()['identity_requires_record_existence_and_distinct_frames']
+
+def test_attributed_inferences_obviousness_and_order():assert presentation_checks()['three_ordered_inferences_and_same_identity_obviousness']
+
+def test_source_and_preserved_meanings():assert structure_checks()['prior_whole_unit_judgment_preserved']
