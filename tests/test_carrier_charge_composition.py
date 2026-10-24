@@ -1,0 +1,6 @@
+from scripts.check_carrier_charge_composition import sum_checks,partition_checks,physical_checks,structure_checks
+
+def test_signed_unordered_sum():assert sum_checks()['all_sampled_finite_extensions_and_permutations_checked']
+def test_complete_carrier_partition():assert partition_checks()['complete_disjoint_physical_material_partition']
+def test_physical_charge_composition():assert physical_checks()['density_equations_and_local_rigidity_share_complete_arguments']
+def test_preservation():assert structure_checks()['all_408_statements_meanings_and_original_evidence_preserved']
