@@ -1,0 +1,11 @@
+from scripts.check_wave_cycle_frequency import period_checks,normalization_checks,frequency_checks,temporal_checks,trace_checks,doppler_checks,binding_checks,witness_checks,structure_checks
+
+def test_least_common_positive_period():assert period_checks()['least_positive_period_excludes_multiples_and_constant_profiles']
+def test_phase_cycle_uses_normalized_profiles_and_pi():assert normalization_checks()['shared_normalized_profiles_integral_pi_and_twice_pi_required']
+def test_frequency_period_and_units():assert frequency_checks()['angular_rate_cycle_period_and_frequency_distinct']
+def test_both_time_profiles_and_phase_origin():assert temporal_checks()['both_time_profiles_share_rate_offset_and_least_period']
+def test_native_phase_along_path_and_interval():assert trace_checks()['native_four_coordinate_phase_pulled_along_same_time_path']
+def test_two_frame_frequency_and_period_ratios():assert doppler_checks()['same_cycle_in_both_frames']
+def test_same_wave_and_all_new_period_roles():assert binding_checks()['all_47_roles_and_both_temporal_branches_required']
+def test_all_43_shared_witnesses():assert witness_checks()['every_witness_slot_and_absent_witness_checked']
+def test_old_evidence_and_roundtrip():assert structure_checks()['old_370_statements_and_judgments_preserved']
