@@ -1,0 +1,7 @@
+from scripts.check_ninth_section_opening import physical_checks,equation_checks,binder_checks,presentation_checks,structure_checks
+
+def test_physical_interpretation():assert physical_checks()['physical_density_and_velocity_share_setting']
+def test_separate_displayed_equations():assert equation_checks()['same_fields_points_axes_density_velocity_and_jets']
+def test_shared_quantifiers():assert binder_checks()['same_tuple_under_hypothesis_and_law']
+def test_full_presentation_and_heading():assert presentation_checks()['starting_premise_notation_displays_and_conditional_foundation_connected']
+def test_prior_evidence_preserved():assert structure_checks()['all_408_prior_statements_and_meanings_preserved']
