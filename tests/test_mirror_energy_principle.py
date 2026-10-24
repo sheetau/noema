@@ -1,0 +1,7 @@
+from scripts.check_mirror_energy_principle import budget_checks,equation_checks,quantifier_checks,presentation_checks,structure_checks
+
+def test_same_physical_budget():assert budget_checks()['conservation_not_in_adoption']
+def test_energy_work_and_pressure_equations():assert equation_checks()['zero_speed_work_does_not_determine_pressure']
+def test_all_shared_quantifier_slots():assert quantifier_checks()['boolean_side_and_native_infinite_domains_preserved']
+def test_four_sentence_presentation():assert presentation_checks()['quoted_claims_not_executed_to_establish_presentation']
+def test_source_and_history_preserved():assert structure_checks()['all_402_previous_statements_and_meanings_preserved']
