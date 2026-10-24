@@ -1,43 +1,42 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v352.json",
-  "progress_report": "reports/written-progress-v330.json",
+  "review_index": "data/semantic-review-index-v353.json",
+  "progress_report": "reports/written-progress-v331.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0156–u0160（第三節の変換の適用、六変換式、βの説明）",
-    "scope": "実装親examples/v014/einstein-vacuum-equation-assumption.noema、意味規約data/vacuum-equation-assumption-basis-v1.json、識別表記data/vacuum-equation-assumption-identifiers-v1.json。正本358主張。u0153–u0155の同じ仮定文全体はdata/einstein-vacuum-equation-assumption-u0153/u0154/u0155-review-v1.jsonに判断を記録し、旧文152をejtdへ置換済み。ejsxは現在のK=ra、ta/rb、znk/znl/znm、同じ四単位・二係数と速度単位tbの校正。ejsyはその証人の存在、ejszは同じ真空ejsmと全六式s5yをV=tcへ接続、ejs6がその閉じた仮定内容。ejtaはug・eisch・eisox・ufで仮定と表示式を結び、ejs7は二つの表記をejs4/ejs5の全領域成分一致と物理的規約へ結ぶ。ejtb/ejtc/ejtdが一文の説明・帰属。第六節eispgと仮定範囲znoは別。次のu0156はこの式へ第三節の変換を適用し、電磁過程を速度vの移動系で記述すると得られる式を導入する。u0157(M0291)は907頁、u0158(M0292)は908頁に続く六式、u0159のwobeiとu0160(M0293)はβの説明まで続く同じ文として計画する。旧文153のzc(znq,rd,quote s6p,quote s6o,zno,ri)は部分草案で、s6pが旧s5zと途中変換ssoを参照している。現在の仮定ejs6と第三節の最終変換ejehに接続し直す必要がある。scripts/compose_field_transform.pyのs6i/jは同じ旧座標での場成分混合、s6k/lは速度-vの逆座標写像を合成して新座標関数にするもの、s6mは領域逆像、s6nは新六式。物理的な移動系の実測場と未確認のまま同一視しない。reports/field-transform-v1.jsonには六回転式だけからは変換後の六式を導けない反例E=(x,0,0),H=0がある。真空語から発散条件を黙って足さず、著者の導出提示と検査器の健全性証明を分ける。必要なら既存compose_field_constraints.py/compose_total_differential.pyの全微分と連鎖律条件を読む。電磁過程はeig3/eisc3の電荷輸送・電気/磁気作用の語彙、第三節参照はeisovを再利用できる。u0161の磁気的質量への作用の説明は別の後続課題。原刊907/908頁の保存画像を照合。未使用定義ejte、原始記号eispn。",
+    "unit": "einstein-1905:u0161–u0162（相対性原理による移動系の六式と物理的な場の定義）",
+    "scope": "実装親examples/v014/einstein-field-transformation-application.noema、意味規約data/field-transformation-application-basis-v1.json、識別表記data/field-transformation-application-identifiers-v1.json。正本358主張。直前u0156–u0160の一文は旧文153をejtpへ置換して全五単位判断済み。ejte/ejtf/ejtgは同じ電磁過程と全所属出来事の両系の記録、ejth/ejtjは全所属出来事の両記録の存在と全記録対の対応、ejtiは同じssnと速度-vのs46による四成分逆変換・領域逆像。ejtkはejs6を同じ比較設定zb6で適用し、第三節の最終ejehへ結ぶ。ejtl/ejtnは著者の書換え提示zd3、第三節参照eisov、六式s6o、wobeiとβの補足を接続する。六回転式だけでは変換後の六式を導けない既存反例E=(x,0,0),H=0と全関数域の有限列挙拒否を保持。次のu0161は相対性原理による条件付き要求で、静止系で成立するなら移動系でも成立する同じ六式と、移動系の電気的・磁気的質量への力によって定義する新しい場を含む。u0162のM0300まで一文として計画する。旧文154のzc(zny,rd,quote sae2,quote saf2,zno,ri)とscripts/compose_law_specialization.pyは部分草案。sae2は旧相対性原理sawと適用条件sad2、saf2は旧s5zからsac2への条件文、sac2はznr/zns/zntの新六式。現在の原理・真空・単位・物理的定義へ接続し直す必要がある。znr/znsは計算上のs6k/s6lとは別の移動系の二場であり、両者の等値や共通係数を先取りしない。magnetische Massenを電荷の運動による磁気作用だけへ黙って置換せず、原文の電気的・磁気的質量とponderomotorischの採用解釈を明示する。現行語彙の場・機械力・単位・真空の関連定義を先に探し、不足する一般関係だけを追加する。原刊908頁の保存画像とM0294–M0300を照合。未使用定義ejtq、原始記号eisps。",
     "start_here": [
-      "docs/vacuum-equation-assumption-v1.md",
+      "docs/field-transformation-application-v1.md",
+      "scripts/compose_field_transformation_application.py",
+      "scripts/compose_law_specialization.py",
       "scripts/compose_vacuum_equation_assumption.py",
       "scripts/compose_field_transform.py",
-      "scripts/check_field_transform.py",
-      "scripts/compose_point_motion_claim.py",
-      "scripts/compose_kinematic_foundation.py",
       "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/vacuum-equation-assumption-v1.json",
-    "whole_unit_reviews": 178,
+    "language_checkpoint": "reports/field-transformation-application-v1.json",
+    "whole_unit_reviews": 183,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/sixth-section-heading-v1.json",
-    "source_collation": "data/einstein-vacuum-equation-assumption-source-reading-v1.json",
+    "dependency_checkpoint": "reports/vacuum-equation-assumption-v1.json",
+    "source_collation": "data/einstein-field-transformation-application-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
-    "einstein_whole_unit_reviews": 158,
-    "einstein_reviewed_nonblank_characters": 21646,
-    "einstein_review_checkpoint": "reports/einstein-vacuum-equation-assumption-review-v1.json",
+    "einstein_whole_unit_reviews": 163,
+    "einstein_reviewed_nonblank_characters": 21856,
+    "einstein_review_checkpoint": "reports/einstein-field-transformation-application-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
-    "einstein_paragraph_checkpoint": "reports/einstein-vacuum-equation-assumption-review-v1.json"
+    "einstein_paragraph_checkpoint": "reports/einstein-field-transformation-application-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は158/282・21,646/35,614非空白本文文字、正本358主張。u0153–u0155の静止系Kでの真空の方程式の仮定、六式、二つのベクトルの意味説明を一文として接続し、全三単位・165本文文字と4数式要素を確認した。13定義、三成分場の表記を解釈する1基本関係、4参照個体を追加。旧文152だけを置き換え、他357主張・旧版・旧証拠・既判断を保持。局所313対照と構造検査、判断検査、登録簿v352・監査v330を通過。部分草案232単位・原文対応26,606/35,614非空白文字（74.71%）。Kraftは同じ系の電気側・磁気側の場の強さという明示した読み。仮定を現実の真理へ替えず、発散条件や後続変換の健全性を補わない。全実数・全関数域の有限列挙拒否を保持。u0156以降と二作品全体の目標は未完。",
+    "アインシュタインの全単位意味確認は163/282・21,856/35,614非空白本文文字、正本358主張。u0156–u0160の第三節の変換の適用、改頁をまたぐ六式、wobeiとβを一文として接続し、全五単位・210本文文字と4数式要素を確認した。12定義、過程の場による記述と出来事の所属の2基本関係、3参照個体を追加。旧文153だけを置き換え、他357主張・旧版・旧証拠・既判断を保持。局所232対照と構造検査、判断検査、登録簿v353・監査v331を通過。部分草案233単位・原文対応26,816/35,614非空白文字（75.3%）。同じ電磁過程の全所属出来事を両系で記述する読みを明示し、全実数四組に実測記録があるとはしない。六回転式だけでは変換後の六式が導けない反例を保持し、著者の導出提示と処理系の証明を区別する。全実数・全関数域の有限列挙拒否を保持。u0161以降と二作品全体の目標は未完。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
