@@ -1,0 +1,918 @@
+{
+  "status": "same_radiation_boundary_as_ellipsoid_and_zero_time_equation",
+  "document": "examples/v014/einstein-light-ellipsoid-surface.noema",
+  "parent": "examples/v014/einstein-portion-energy-inquiry.noema",
+  "inherited_meaning_basis": "data/portion-energy-inquiry-basis-v1.json",
+  "primitives": {
+    "eistu": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0206の、同じ球面を動く系で見た楕円体面として述べ、τ=0の式を導入するコロンまでの箇所。"
+    },
+    "eistv": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0207=M0359の、前の同じ球面の新系時刻τ=0の方程式を表示する箇所。"
+    }
+  },
+  "definitions": {
+    "ekoi": "三位置に対する三角線形写像L(x,y,z)=(factor*x,y−sheary*x,z−shearz*x)。非空間成分は零とし、時刻成分の変換とは区別する。",
+    "ekoj": "factorが正の場合のekoiの逆写像(u,v,w)↦(u/factor,v+sheary*u/factor,w+shearz*u/factor)。許容性は利用側で要求する。",
+    "ekok": "有効な三係数と位置・正のfactorについて、ekoiとekojを両順序で合成すると各三成分が元へ戻る条件。三角写像の可逆性を特定軸だけで代用しない。",
+    "ekol": "有効な正のfactorと半径、三係数・中心・位置について、L(position−center)の三平方和がradius²に等しいという面。可逆な線形写像による正半径球面の逆像を楕円体面とする一般的な幾何学の構成。閉内部又は中身を持つ物体とは区別する。",
+    "ekom": "同じV/vと波面方向について、新系時刻timeの球面像の中心を、逆Lorentz変換後の三つの時間項を消すLの逆像として構成する。旧系の中心を同じ数値の新系位置として転記しない。",
+    "ekon": "同じ有効四座標における実際の逆Lorentz球面secdへの所属と、同じ時刻の中心ekom・正の三角係数によるekolへの所属が双方向に一致することと、同じ三角写像の両順序の位置復元を結ぶ。球面上の正例だけを比較しない。",
+    "ekoo": "許容速度・正半径・単位波面方向のeklzと正のDについて、全有効四座標でekonを要求する。動く系で見る面が全時刻で平行移動する同じ楕円体面であるという構成。τ=0だけ又は有限標本へ縮めない。",
+    "ekop": "印刷された(βξ−aβ(v/V)ξ)²+(η−bβ(v/V)ξ)²+(ζ−cβ(v/V)ξ)²の左辺を構成する。第一項も差として明示し、全三成分の符号と二乗を保つ。",
+    "ekoq": "有効な三位置とeklzの下で、τ=0の実際の逆Lorentz球面seceへの所属と、ekop=R²という印刷式が双方向に一致する条件。原点や面上だけの一致ではない。",
+    "ekor": "同じ幾何条件の全有効三位置についてekoqを要求し、新系時刻零の球面を表示式で過不足なく表す。旧系時刻零を同時に要求しない。",
+    "ekos": "前の質問と同じ68設定のうちK,V,波範囲,同じ部分,状況を固定し、残る63役割でekn7なら同じ幾何のekooとなるという内容。放射部分と無関係な単独の図形へ替えない。",
+    "ekot": "同じ63役割・同じekn7の下で、同じ球面のτ=0の表示式ekorを述べる内容。両内容の半径・方向・V/vと参照範囲を共有する。",
+    "ekou": "著者による楕円体面の主張uhと、τ=0の式の表示eisox、コロンによる表示導入ufと順序ue、先の同じ光の部分の質問への後方参照eisraを保つ。原文にない導出済み・自明性を追加しない。",
+    "ekov": "同じ面の楕円体としての記述と零時刻方程式の提示ekouを述べるメッセージ。",
+    "ekow": "u0206–u0207の一続きの文を同じ著者・論説へ帰属し、前のエネルギー質問に続ける。"
+  },
+  "new_signatures": {
+    "eistu": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eistv": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "ekoi": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      }
+    },
+    "ekoj": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      }
+    },
+    "ekok": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekol": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekom": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      }
+    },
+    "ekon": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekoo": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekop": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      }
+    },
+    "ekoq": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekor": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekos": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ekot": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ekou": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ekov": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ekow": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "原刊913頁のu0206–u0207を一文として読む。M0358はτ=0、M0359は三つの差の二乗和=R²であり、保存MathMLと原刊の対応を確認する。ξ,η,ζは既出k=zbmの三位置である。",
+    "楕円体面は可逆な線形写像による正半径球面の像という一般的な幾何学の意味で構成する。Lの行列式はD>0であり、LᵀLの二次形式は正定値となる。主軸の直交対角化や半軸値を別途求めたとはしない。せん断項を落として座標軸に沿う回転楕円体へ替えない。",
+    "形状の説明は新系の任意時刻で保持し、表示式だけをτ=0へ限定する。中心は一般に新系で動く。原刊はτ=0の表示を選んでおり、新旧時刻零が同じ出来事集合であるとはしない。",
+    "正の半径と可逆性により面は非空・閉・有界で、面とその内部の区別を保つ。球の特殊形を楕円体から排除せず、零相対速度も許容する。厳密な光速以上はeklzが拒否する。全実数の位相的性質や主軸定理を自動証明したという記録ではない。",
+    "前のekn7の同じ物理部分・波・校正単位・領域履歴と初期部分輸送を引き継ぐ。今回の図形式を物理対象の同一性又は無流出入の代用にしない。球面は物質的な剛体殻や光速で静止する慣性観測者ではない。",
+    "im bewegten System betrachtetは同じ対象のk座標による同時形状として読む。著者による考察の視点であり光学的な写真像や網膜像ではない。著者の形状主張・式の提示と、その数学的又は物理的真理の証明を分ける。",
+    "有理切断の対照と多項式補題、無限域の有限評価拒否、原文の通読判断はそれぞれの範囲を保持する。後続u0208–u0209のS/S′命名と体積比、以後の総量比は今回の完成範囲へ含めない。"
+  ]
+}
