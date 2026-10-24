@@ -1,0 +1,8 @@
+from scripts.check_point_particle_dynamics import numeric_checks,physical_checks,history_checks,acceleration_checks,binder_checks,structure_checks
+
+def test_signed_equations_and_coherent_units():assert numeric_checks()['all_three_local_field_components']
+def test_same_particle_fields_charge_mass_and_units():assert physical_checks()['rest_condition_does_not_assume_equation']
+def test_complete_local_history_calibration():assert history_checks()['extra_records_not_ignored']
+def test_native_second_derivative_and_instantaneous_rest():assert acceleration_checks()['zero_velocity_with_nonzero_acceleration']
+def test_all_setting_slots():assert binder_checks()['context_and_coordinate_point_are_distinct']
+def test_structure_and_preserved_prior_evidence():assert structure_checks()['all_413_prior_statements_and_meanings_preserved']
