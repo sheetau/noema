@@ -1,0 +1,7 @@
+from scripts.check_pressure_leading_approximation import analytic_checks,quantifier_checks,agreement_checks,presentation_checks,structure_checks
+
+def test_same_real_limit_and_order():assert analytic_checks()['leading_order_distinguished_from_linear_order']
+def test_all_shared_roles():assert quantifier_checks()['all_98_shared_roles_and_boolean_side_preserved']
+def test_empirical_and_theoretical_agreement():assert agreement_checks()['plural_nonempty_scope_and_current_theory_exclusion']
+def test_source_presentation():assert presentation_checks()['quoted_result_not_executed_as_exact_truth']
+def test_source_and_history():assert structure_checks()['all_404_previous_statements_and_meanings_preserved']
