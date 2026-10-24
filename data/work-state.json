@@ -1,30 +1,30 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v415.json",
-  "progress_report": "reports/written-progress-v393.json",
+  "review_index": "data/semantic-review-index-v416.json",
+  "progress_report": "reports/written-progress-v394.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0227–u0232の第九節冒頭、対流電流を含む原系の場の式と密度・速度の説明",
-    "scope": "正本examples/v014/einstein-eighth-section-heading.noema、規約data/eighth-section-heading-basis-v1.json、識別表記data/eighth-section-heading-identifiers-v1.json。408主張、230件29672文字。第八節u0202–u0226は全単位判断済み。次は第九節のu0228–u0232を一つの意味依存群として計画し、見出しu0227も内容へ接続する。原系M0383の六式、M0384の電気側三対角偏微分の和ρ、ρ=4π倍の電荷密度、同じ電気量の三速度、電荷を小さい剛体（イオン・電子）へ不変に結び付ける仮定、Lorentzの電気力学・光学の電磁的基礎という位置付け、著者の出発点とwhere説明を保持する。既存seme/semg/semh/semj/seml（compose_convection_fields）と局所密度・量単位・物質速度の定義を再利用し、原始assignedだけで物理的帰属を済ませない。下位の旧草案と現在の意味規約を確認してから追加する。後続M0389の磁気側三式は原刊でも1/Vが欠けるため、印刷形semf/semi/semkと導出候補を区別して保存する。原系へ磁気発散零を暗黙に補わず、複数電荷種の合計を単一速度にまとめない。u0227–u0238は次節u0239まで。次の未使用定義ekxe、原始記号eisvx。",
+    "unit": "einstein-1905:u0227–u0232の第九節冒頭、担体への不変な電荷結合と理論の基礎を統合",
+    "scope": "正本examples/v014/einstein-convective-charge-setting.noema、規約data/convective-charge-setting-basis-v1.json、識別表記data/convective-charge-setting-identifiers-v1.json。408主張、230件29672文字。新規ekxe–ekxmの9定義で、同じ電荷分布の物理的保有量eisvx・有限加法性seor/seow・球平均極限seoj・4pi規格化seml・全時間の座標単位eisqd・全担体の座標時刻速度seoc・原系の六式semhを接続した。ekxmは非空領域の各点で九つの局所証人を一組として共有し、非零密度の担体支持と全成員の一価速度場を要求する。零密度で担体や速度零を要求せず、混合速度の多種を一流へ縮めない。次はu0232の後文の小さい剛体（既存eigyを適切な系・範囲で再利用）、イオン/電子という担体の読み、同じ担体への電荷の不変な付着、Lorentzの電気力学と動く物体の光学の電磁的基礎という条件付き位置付けを構成する。その後u0228の出発点、u0230のwhere説明、u0229/31の式とu0232第一文、u0227見出しを一群として本文へ統合する。旧源M0383/M0384と校正を同じK・V=tc・ta/rbへ明示適用し、単位換算1と1/V等は後続適用時に固定する。M0389の磁気側の1/V欠落は印刷形semfと導出候補を分けて保存。次の未使用定義ekxn、原始記号eisvy。",
     "start_here": [
-      "docs/eighth-section-heading-v1.md",
-      "scripts/compose_convection_fields.py",
-      "scripts/compose_density_units.py",
-      "scripts/compose_density_frame_binding.py",
-      "scripts/compose_local_density.py",
+      "docs/convective-charge-setting-v1.md",
+      "scripts/compose_convective_charge_setting.py",
+      "scripts/compose_rigid_body_kinematics.py",
+      "scripts/compose_material_body_motion.py",
+      "scripts/compose_kinematic_foundation.py",
       "scripts/compose_sixth_section_heading.py"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。 新規の意味判断モジュールは生成済みの本文・規約・証拠を読む。パスや定数だけのために最新composeをimportして過去全体のimport連鎖を作らない（review_reflected_light_inquiry.pyで再帰上限を避けた構成を参照）。"
   },
   "verification": {
-    "language_checkpoint": "reports/eighth-section-heading-v1.json",
+    "language_checkpoint": "reports/convective-charge-setting-v1.json",
     "whole_unit_reviews": 250,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/mean-light-energy-v1.json",
-    "source_collation": "data/einstein-eighth-section-heading-reading-v1.json",
+    "dependency_checkpoint": "reports/convection-fields-v1.json",
+    "source_collation": "data/einstein-convective-charge-obligations-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
     "einstein_whole_unit_reviews": 230,
@@ -36,7 +36,7 @@
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は230/282・29,672/35,614非空白本文文字。第八節見出しu0202の103文字を、同じ光の平均総エネルギーの二系変換と、完全鏡に及ぼされる放射圧の理論という二主題へ接続・判断した。5定義、一般関係1、参照個体1、本文主張1を追加。304対照、局所3検査と全単位判断2検査、登録簿v415・監査v393を通過。既存407主張と判断を保存。第八節u0202–u0226の全25単位が判断済み。部分草案251単位・原文対応30,802/35,614非空白本文文字（86.49%）。有限検査を原文同義性又は物理法則の自動証明としない。",
+    "アインシュタインの全単位意味確認は230/282・29,672/35,614非空白本文文字。第九節冒頭の依存群に9定義・一般的保有量関係1を追加し、325対照・局所5検査、登録簿v416・監査v394を通過。既存408主張と判断を保存。電荷・密度・速度・六式の物理的接続は完成したが、小さい剛体・イオン/電子・不変な付着・理論の基礎・著者提示と本文統合が残り、全単位判断を増やさない。部分草案251単位・原文対応30,802/35,614非空白本文文字（86.49%）。有限検査を極限存在や原文同義性の自動証明としない。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
