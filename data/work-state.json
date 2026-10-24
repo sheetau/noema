@@ -1,32 +1,31 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v349.json",
-  "progress_report": "reports/written-progress-v327.json",
+  "review_index": "data/semantic-review-index-v350.json",
+  "progress_report": "reports/written-progress-v328.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0152（第六節の見出し：真空の方程式の変換と運動による起電力の性質）",
-    "scope": "実装親examples/v014/einstein-electrodynamic-part-heading.noema、意味規約data/electrodynamic-part-heading-basis-v1.json、識別表記data/electrodynamic-part-heading-identifiers-v1.json。正本357主張。u0152全文は「§ 6. Transformation der Maxwell-Hertzschen Gleichungen für den leeren Raum. Über die Natur der bei Bewegung in einem Magnetfeld auftretenden elektromotorischen Kräfte.」。同じ第二部eispbの深さ2・表示番号6の下位節を、eihqで主題と結ぶ。節範囲はu0152から次の§7/u0178直前まで。直前は第二部見出しeispc。旧znoは§6冒頭の方程式を仮定する範囲なので、節全体と無条件に同一視しない。現行文152=ug(znp,rd,quote s5z,zno,ri)はu0153以降の仮定で、見出しは未接続。主題の二部分を保持する必要がある。第一はMaxwell-Hertzの真空方程式の変換。既存s5yは同じ二場・四座標領域・正のVで六つの回転式を構成し、s5t/uが18偏微分へ接続するが、これだけで物理的な真空は表さない。eiscaは光の伝播経路に媒体がない条件で、任意の場領域へそのまま代入不可。場の物理的規約eibs/eicoと、適用領域の物質・源の不在の明示が必要。旧znk/znl/znmの未完部分を名前だけで済ませない。六式と追加の発散条件は区別し、変換の正しさを見出しから証明しない。変換の研究主題eismrは同じ対象の二表示と二表示系を閉じた関係へ渡す一般形。第二は磁場中の運動で生じる起電力の性質について。局所的な力/電荷の駆動eidzと単位eisar・運動起因eisasがあるが、磁石・導体の一例の条件を見出し一般へ強制しない。eicnは磁場非零でも速度が平行なら力零を許す。性質・説明対象という主題と、特定の力の公式・説明完了の断言を区別する。原刊907頁画像artifacts/written-facsimiles-v1/einstein-1905-unlp-p907-0.jpg。未使用定義ejsj、原始記号eispd。",
+    "unit": "einstein-1905:u0152（真空領域と場の共通定義を、方程式の同定・変換と起電力の性質の主題へ接続）",
+    "scope": "実装親examples/v014/einstein-vacuum-field-domain.noema、意味規約data/vacuum-field-domain-basis-v1.json、識別表記data/vacuum-field-domain-identifiers-v1.json。正本357主張は未変更。u0152全文「§ 6. Transformation der Maxwell-Hertzschen Gleichungen für den leeren Raum. Über die Natur der bei Bewegung in einem Magnetfeld auftretenden elektromotorischen Kräfte.」。今回の共有定義はscripts/compose_vacuum_field_domain.py。ejsjは有効な相異なる四座標役割と領域所属、ejskは全個体に対するeiroの物質占有の不存在、ejslは同じ系・長さ時間単位・Cartesian規約、ejsmは非空の全領域での真空。ejsnはznn/eirn/eirm/eiruで同じ物理的な二場・単位・正の換算係数、ejsoは同じ真空領域との結合、ejspは同じ二場・領域・lightをs5yの六式へ渡す。FIELDSの引数順はframe,lengthunit,timeunit,context,region,chargeunit,electricunit,magneticunit,forceunit,electricconversion,magneticconversion,electricfield,magneticfield。ejspは最後にlightを追加。全座標関数量化は有限列挙を拒否し、検査の二点代入を正本へ持ち込まない。次にこの規約を現在の場znl/znm・領域znk・光速度tc及び同じ系/尺度へ適用し、Maxwell-Hertzの方程式の同定と変換という主題へ結ぶ必要がある。正のlightだけで物理的光速度を同定せず、場と力の係数を1や1/Vへ先取りしない。六回転式と発散条件を区別し、真空の追加だけで変換後の式が導けたとしない。変換の研究主題eismrは同じ対象の二表示と二表示系を保持する一般形。原文第二部分には磁場中の運動による起電力とその性質・説明という研究主題が残る。eidz/eisar/eisasの局所的な力/電荷と単位・運動起因は利用できるが、磁石・導体の一例の条件を一般見出しへ強制しない。磁場非零でも平行運動で力零を許すeicnの範囲を保つ。既存zhrは方程式の物理的意味を対象特性について検討する節題で、型や原文にない参照を追加して流用しない。見出しは同じ第二部eispbの深さ2・表示番号6、範囲u0152–u0177、直前の部見出しeispcへeihqで接続する。旧znoは冒頭の仮定範囲なので節全体と同一視しない。文152からはu0153以降の仮定で、見出しは未接続。原刊907頁画像artifacts/written-facsimiles-v1/einstein-1905-unlp-p907-0.jpg。未使用定義ejsq、原始記号eispd。",
     "start_here": [
+      "docs/vacuum-field-domain-v1.md",
+      "scripts/compose_vacuum_field_domain.py",
       "scripts/compose_field_equations.py",
       "scripts/compose_field_transform.py",
-      "scripts/compose_field_constraints.py",
       "scripts/compose_transformation_heading.py",
-      "scripts/compose_vacuum_light_postulate.py",
-      "scripts/compose_electric_action.py",
-      "scripts/compose_magnetic_action.py",
       "scripts/compose_moving_conductor_case.py",
-      "docs/electrodynamic-part-heading-v1.md"
+      "scripts/compose_magnetic_action.py",
+      "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/electrodynamic-part-heading-v1.json",
+    "language_checkpoint": "reports/vacuum-field-domain-v1.json",
     "whole_unit_reviews": 174,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/kinematics-headings-v1.json",
+    "dependency_checkpoint": "reports/electrodynamic-part-heading-v1.json",
     "source_collation": "data/einstein-electrodynamic-part-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
@@ -35,11 +34,12 @@
     "einstein_review_checkpoint": "reports/einstein-electrodynamic-part-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
-    "einstein_paragraph_checkpoint": "reports/einstein-electrodynamic-part-review-v1.json"
+    "einstein_paragraph_checkpoint": "reports/einstein-electrodynamic-part-review-v1.json",
+    "dependency_obligations": "data/einstein-vacuum-field-obligations-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は154/282・21,335/35,614非空白本文文字、正本357主張。今回はu0151全26本文文字を、第二部の階層・番号・電気力学の主題案内として判断した。1定義と区分・見出し箇所の参照個体2個を追加し、以前の356主張と旧証拠を保持。局所33対照と構造検査、意味判断記録の検証、登録簿v349・監査v327を通過。主題の案内を全物理領域の真理、下位節の完成や応用課題の達成としない。部分草案230単位・原文対応26,346/35,614非空白文字（73.98%）。u0152以降と二作品全体の目標は未完。",
+    "アインシュタインの全単位意味確認は154/282・21,335/35,614非空白本文文字、正本357主張。今回はu0152と続く仮定で共有する、非空の全領域での物質占有の不存在・物理的な二場と単位・同じ領域への六式の結合を7定義で構成した。新しい基本記号なし。以前の357主張と旧証拠を保持。局所106対照と構造検査、登録簿v350・監査v328を通過。見出しの二主題への接続、方程式と光速度の同定、起電力の一般化、原文全体の判断は残るため、今回は意味確認済み単位数を増やさない。部分草案230単位・原文対応26,346/35,614非空白文字（73.98%）。全実数・全関数域の量化は有限列挙を拒否し、二点代入を全空間の実証にはしない。u0152以降と二作品全体の目標は未完。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
