@@ -1,0 +1,5 @@
+from scripts.check_eighth_section_heading import correspondence_checks,heading_checks,structure_checks
+
+def test_energy_correspondence():assert correspondence_checks()['all_64_shared_witness_slots_and_five_exposed_roles_checked']
+def test_two_topics_and_section():assert heading_checks()['section_eight_hierarchy_and_both_order_edges']
+def test_preservation_and_source():assert structure_checks()['previous_407_statements_and_meanings_preserved']
