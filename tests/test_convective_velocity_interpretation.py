@@ -1,0 +1,6 @@
+from scripts.check_convective_velocity_interpretation import event_checks,calibration_checks,binder_checks,structure_checks
+
+def test_all_material_events_and_actual_new_flow():assert event_checks()['missing_new_records_not_hidden_by_vacuity']
+def test_frame_neutral_calibration():assert calibration_checks()['units_light_and_both_conversions_preserved']
+def test_shared_content_and_foundation_inputs():assert binder_checks()['all_32_velocity_content_binders_shared']
+def test_K_specialization_and_old_evidence():assert structure_checks()['K_specialization_preserves_original_model_exactly']
