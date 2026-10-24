@@ -1,0 +1,69 @@
+"""Construct real planar angle measures from the existing integral and geometry."""
+from copy import deepcopy
+import json
+from noema.grammar import parse,format_graph
+from noema.extraction import extract_document
+from noema.semantic_reviews import digest
+from scripts.compose_velocity_magnitude_claim import ROOT,read
+from scripts.compose_direction_angles import definitions as angle_definitions
+from scripts.compose_solid_sphere_geometry import bind
+from scripts.compose_material_relative_frame import define
+from scripts.compose_limits import R,v,call as k,app,op,both
+
+PARENT='examples/v014/einstein-velocity-magnitude-claim.noema'
+PARENT_BASIS='data/velocity-magnitude-claim-basis-v1.json'
+FULL='examples/v014/einstein-velocity-angle-measure.noema';CORE='examples/v014/velocity-angle-measure-core.noema'
+BASIS='data/velocity-angle-measure-basis-v1.json';ANNOTATIONS='data/velocity-angle-measure-identifiers-v1.json'
+MEANINGS={
+ 's2g':'実切断による二つの非零ベクトルの向き付きの角。余弦を内積、正弦を有向面積と、二つの大きさの積へ接続する。',
+ 'ejor':'実数比ratioの逆正接の主値principalを、実直線上の1/(1+t²)の零からratioまでの積分で指定する。正方向の既存積分sedeを使い、負のratioでは区間を反転し積分値を負にする。ratio零ではprincipal零を明示する。有限和や浮動小数値を定義としない。',
+ 'ejos':'非零の縦成分xと横成分yについてx*ratio=yを満たす同じ比の主値principalと円周率piを用い、象限を選んだ実数角angleを(-pi,pi]に取る。x正なら主値、x負かつy非負なら主値+pi、x負かつy負なら主値-pi。零の除算や主値のみへの置換を認めない。',
+ 'ejot':'単位円の二成分から同じ象限の実数角を得る。余弦非零ではejos、余弦零・正弦±1では角±pi/2とする。直角の枝でratioとprincipalを零の補助値に固定するが、印刷された商やその逆正接が定義されたとはしない。',
+ 'ejou':'同じ二つの非零ベクトルの内積と有向面積により得た余弦・正弦を、ejotの実数角へ接続する。向きは第一ベクトルから第二ベクトルへ取り、両方の大きさ、成分、比、主値、円周率と測度を共有する。',
+ 'ejov':'同じ現在のK/kの実際の相対速度(v,0,0)、正のv、kでの同じ点の平面速度と速さを用い、zktの単位円成分と候補の実数角をejouで接続する。零の点速度には角を与えない。垂直方向は幾何学的な角として許す。',
+ 'ejow':'ejovと同じ物理設定・単位円成分・三つの実数証人を用い、元の二成分(wξ,wη)もejosへ渡す。幾何学的な角と印刷された成分比の逆正接を同じ角へ結び、縦成分零では後者を定義しない。',
+}
+LIMITS=[
+ 'u0137–u0139前半のための依存群。著者による定義導入、und、角と見るという提示はまだ接続せず、文や全単位の完了判断を追加しない。',
+ 'この段階では向き付き平面角の代表(-pi,pi]を選び、arctgを後続の幾何学的説明と成分の象限で枝を選ぶ逆関係として読む。現代の主値だけを原文全域へ当てはめず、Einsteinの歴史的規約が一意に立証されたとはしない。',
+ '正の系の速度vは既存の軸設定に合わせる。点の速度成分の正負は制限せず、新たな光速上限も加えない。零ベクトルでは角なし、縦成分零では商なしとする。元の速度運動式の有効性まで否定しない。',
+ '旧部分草案s2k/s2mは枝未確定と向きなし角であり、特に横成分負で今回の向き付き角とは異なる。既存文はこの依存段階では保全する。次の本文統合では二つの旧部分主張の置換と対応表更新が必要で、矛盾した読みを残したまま全単位判断しない。旧定義・旧本文・旧判断は履歴証拠として保存する。',
+ '単位円成分を実数測度と同一視せず、既存の全実数の積分sede、積分によるpiのsedi、内積・有向面積s2gを合成する。解析上の存在・一意性や一般定理を有限検査だけで証明したとはしない。',
+ '原刊の後続の速度合成式M0257と、その分母の符号や平方根・速さに関する適用域は別途扱う。',
+]
+
+
+def definitions():
+    text=next(line for line in angle_definitions(True).splitlines() if line.startswith('d s2g['))+'\n'
+    zero=k('bb','n p a b');one=k('bb','n p b b');half=k('bb','n p b c')
+    eq=lambda a,b:k('sca',a,b);lt=lambda a,b:k('bg',a,b);neg=lambda a:k('bf',zero,a)
+    valid=lambda ns:[k('ba',v(n)) for n in ns]
+    ratio,principal,pi,angle=map(v,('ratio','principal','pi','angle'))
+    scalar=['ratio','principal']
+    integral=op('x',both(eq(ratio,zero),eq(principal,zero)),op('x',both(lt(zero,ratio),k('sede',zero,ratio,'p sedh',principal)),both(lt(ratio,zero),k('sede',ratio,zero,'p sedh',neg(principal)))))
+    text+=define('ejor',[(n,R) for n in scalar],both(*valid(scalar),integral))
+    x,y=map(v,('x','y'));branch=['x','y','ratio','principal','pi','angle'];hp=k('shv',half,pi)
+    choices=op('x',both(lt(zero,x),eq(angle,principal)),both(lt(x,zero),op('x',both(op('u',lt(y,zero)),eq(angle,k('bd',principal,pi))),both(lt(y,zero),eq(angle,k('bf',principal,pi))))))
+    text+=define('ejos',[(n,R) for n in branch],both(*valid(branch),op('u',eq(x,zero)),eq(k('shv',x,ratio),y),k('ejor',ratio,principal),k('sedi',pi),lt(neg(hp),principal),lt(principal,hp),choices,lt(neg(pi),angle),op('u',lt(pi,angle))))
+    cosine,sine=map(v,('cosine','sine'));circle=['cosine','sine','ratio','principal','pi','angle']
+    vertical=both(eq(cosine,zero),eq(ratio,zero),eq(principal,zero),op('x',both(eq(sine,one),eq(angle,hp)),both(eq(sine,neg(one)),eq(angle,neg(hp)))))
+    text+=define('ejot',[(n,R) for n in circle],both(*valid(circle),k('s2c',cosine,sine),k('sedi',pi),op('x',k('ejos',cosine,sine,ratio,principal,pi,angle),vertical)))
+    vector=['x','y','radius','otherx','othery','otherradius','cosine','sine'];allargs=vector+['ratio','principal','pi','angle']
+    text+=define('ejou',[(n,R) for n in allargs],both(k('s2g',*(v(n) for n in vector)),k('ejot',*(v(n) for n in circle))))
+    truth=op('e','n p a b','n p a b');cosine=app(k('zkt'),truth);sine=app(k('zkt'),op('u',truth))
+    value=v('value');ctx=v('context');speed=k('zb7')
+    shared=both(k('sbg',speed),k('ejm2',k('ra'),k('zbm'),ctx,speed,zero,zero),k('ejoj',k('zkq'),ctx),k('ejou',speed,zero,speed,k('zkc'),k('zkd'),k('zkq'),cosine,sine,ratio,principal,pi,value))
+    for name,body in (('ejov',shared),('ejow',both(shared,k('ejos',k('zkc'),k('zkd'),ratio,principal,pi,value)))):
+        text+=define(name,[('value',R),('context','d')],bind(('ratio','principal','pi'),R,'g',body))
+    return text
+
+
+def build():
+    old=parse(read(PARENT));doc=deepcopy(old);doc['statements']=[]
+    assert not set(MEANINGS)&{d['name'] for d in old['declarations']}
+    doc=parse(format_graph(doc,'compact')+definitions());doc['statements']=old['statements'];added=doc['declarations'][len(old['declarations']):]
+    basis=dict(status='real_oriented_angle_dependency_not_author_presentation',document=FULL,parent=PARENT,inherited_meaning_basis=PARENT_BASIS,primitives={},definitions=MEANINGS,new_signatures={d['name']:{key:d[key] for key in ('parameters','result')} for d in added},limitations=LIMITS)
+    body=format_graph(doc,'compact')+'\n';core=extract_document(doc,roots=list(MEANINGS),statement_indices=[]).document
+    ann=json.loads(read('data/velocity-magnitude-claim-identifiers-v1.json'));ann.update(document=FULL,document_sha256=digest(body.encode('utf-8')))
+    enc=lambda x:json.dumps(x,ensure_ascii=False,indent=2)+'\n'
+    return {FULL:body,CORE:format_graph(core,'compact')+'\n',BASIS:enc(basis),ANNOTATIONS:enc(ann)}
