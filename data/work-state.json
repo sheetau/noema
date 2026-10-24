@@ -1,42 +1,43 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v351.json",
-  "progress_report": "reports/written-progress-v329.json",
+  "review_index": "data/semantic-review-index-v352.json",
+  "progress_report": "reports/written-progress-v330.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0153–u0155（静止系Kへの仮定、六回転式、電気側・磁気側の成分説明）",
-    "scope": "実装親examples/v014/einstein-sixth-section-heading.noema、意味規約data/sixth-section-heading-basis-v1.json、識別表記data/sixth-section-heading-identifiers-v1.json。正本358主張、u0152全文の判断はdata/einstein-sixth-section-u0152-review-v1.json。第六節はeispg、見出しeisph、第二部eispb、冒頭仮定範囲znoは別。新しい主題ejsvはejsqの真空・物理的二場・六式・光速度と、eiu2の同一出来事二座標表示を用いた変換研究、ejssの局所的な磁気作用を用いた起電力の性質の研究を引用する。見出しは一般規約の案内なので、現在のznl/znm/znkを真として仮定しない。この具体的適用が次の作業。u0153は静止系Kで真空のMaxwell-Hertz方程式が成立すると仮定する導入、u0154はM0287の六式、u0155は(X,Y,Z)と(L,M,N)が電気的・磁気的力のベクトルを表す説明。旧文152のug(znp,rd,quote s5z,zno,ri)は部分草案で、s5zはznnとs5yのみ。ejsqへ同じ系ra・長さ時間単位ta/rb・文脈・領域znk・現在の二場znl/znmと電荷/場/力単位・正換算係数を結び、既出V=tcと速度単位tbを共有する必要がある。FIELDS順はscripts/compose_vacuum_field_domain.pyを読む。場/領域の物理的規約を仮定内容へ置き、仮定の導入・表示式・成分の説明という役割を分けて一群として接続する。現時点の換算係数を1や1/Vへ固定しない。六式の偏微分はs5t/s5u、全領域と六条件はs5y。発散条件を補わず、全関数量化を有限標本で代用しない。後続u0161の磁気的質量への作用という説明と単位電荷の磁気作用を同一と断言しない。原刊907頁画像artifacts/written-facsimiles-v1/einstein-1905-unlp-p907-0.jpg。原文u0173–u0176は見出しの解釈文脈として読んだだけで、全体判断は未実施。未使用定義ejsx、原始記号eispi。",
+    "unit": "einstein-1905:u0156–u0160（第三節の変換の適用、六変換式、βの説明）",
+    "scope": "実装親examples/v014/einstein-vacuum-equation-assumption.noema、意味規約data/vacuum-equation-assumption-basis-v1.json、識別表記data/vacuum-equation-assumption-identifiers-v1.json。正本358主張。u0153–u0155の同じ仮定文全体はdata/einstein-vacuum-equation-assumption-u0153/u0154/u0155-review-v1.jsonに判断を記録し、旧文152をejtdへ置換済み。ejsxは現在のK=ra、ta/rb、znk/znl/znm、同じ四単位・二係数と速度単位tbの校正。ejsyはその証人の存在、ejszは同じ真空ejsmと全六式s5yをV=tcへ接続、ejs6がその閉じた仮定内容。ejtaはug・eisch・eisox・ufで仮定と表示式を結び、ejs7は二つの表記をejs4/ejs5の全領域成分一致と物理的規約へ結ぶ。ejtb/ejtc/ejtdが一文の説明・帰属。第六節eispgと仮定範囲znoは別。次のu0156はこの式へ第三節の変換を適用し、電磁過程を速度vの移動系で記述すると得られる式を導入する。u0157(M0291)は907頁、u0158(M0292)は908頁に続く六式、u0159のwobeiとu0160(M0293)はβの説明まで続く同じ文として計画する。旧文153のzc(znq,rd,quote s6p,quote s6o,zno,ri)は部分草案で、s6pが旧s5zと途中変換ssoを参照している。現在の仮定ejs6と第三節の最終変換ejehに接続し直す必要がある。scripts/compose_field_transform.pyのs6i/jは同じ旧座標での場成分混合、s6k/lは速度-vの逆座標写像を合成して新座標関数にするもの、s6mは領域逆像、s6nは新六式。物理的な移動系の実測場と未確認のまま同一視しない。reports/field-transform-v1.jsonには六回転式だけからは変換後の六式を導けない反例E=(x,0,0),H=0がある。真空語から発散条件を黙って足さず、著者の導出提示と検査器の健全性証明を分ける。必要なら既存compose_field_constraints.py/compose_total_differential.pyの全微分と連鎖律条件を読む。電磁過程はeig3/eisc3の電荷輸送・電気/磁気作用の語彙、第三節参照はeisovを再利用できる。u0161の磁気的質量への作用の説明は別の後続課題。原刊907/908頁の保存画像を照合。未使用定義ejte、原始記号eispn。",
     "start_here": [
-      "docs/sixth-section-heading-v1.md",
-      "scripts/compose_sixth_section_heading.py",
-      "scripts/compose_vacuum_field_domain.py",
-      "scripts/compose_field_equations.py",
+      "docs/vacuum-equation-assumption-v1.md",
+      "scripts/compose_vacuum_equation_assumption.py",
       "scripts/compose_field_transform.py",
+      "scripts/check_field_transform.py",
+      "scripts/compose_point_motion_claim.py",
+      "scripts/compose_kinematic_foundation.py",
       "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/sixth-section-heading-v1.json",
-    "whole_unit_reviews": 175,
+    "language_checkpoint": "reports/vacuum-equation-assumption-v1.json",
+    "whole_unit_reviews": 178,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/vacuum-field-domain-v1.json",
-    "source_collation": "data/einstein-sixth-section-source-reading-v1.json",
+    "dependency_checkpoint": "reports/sixth-section-heading-v1.json",
+    "source_collation": "data/einstein-vacuum-equation-assumption-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
-    "einstein_whole_unit_reviews": 155,
-    "einstein_reviewed_nonblank_characters": 21481,
-    "einstein_review_checkpoint": "reports/einstein-sixth-section-review-v1.json",
+    "einstein_whole_unit_reviews": 158,
+    "einstein_reviewed_nonblank_characters": 21646,
+    "einstein_review_checkpoint": "reports/einstein-vacuum-equation-assumption-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
-    "einstein_paragraph_checkpoint": "reports/einstein-sixth-section-review-v1.json"
+    "einstein_paragraph_checkpoint": "reports/einstein-vacuum-equation-assumption-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は155/282・21,481/35,614非空白本文文字、正本358主張。u0152の第六節の二主題を7定義、研究主題の2基本関係と3参照個体で接続し、原刊と文脈を照合して全単位判断を記録した。旧357主張と旧証拠を保持。局所120対照と構造検査、判断検査、登録簿v351・監査v329を通過。部分草案231単位・原文対応26,492/35,614非空白文字（74.39%）。見出しの引用から現実の場の成立や変換の健全性を認定しない。起電力は正の単位試験電荷への局所作用という明示した読み。全実数・全関数域の量化は有限列挙を拒否し、局所検査を全空間の実証にはしない。u0153以降と二作品全体の目標は未完。",
+    "アインシュタインの全単位意味確認は158/282・21,646/35,614非空白本文文字、正本358主張。u0153–u0155の静止系Kでの真空の方程式の仮定、六式、二つのベクトルの意味説明を一文として接続し、全三単位・165本文文字と4数式要素を確認した。13定義、三成分場の表記を解釈する1基本関係、4参照個体を追加。旧文152だけを置き換え、他357主張・旧版・旧証拠・既判断を保持。局所313対照と構造検査、判断検査、登録簿v352・監査v330を通過。部分草案232単位・原文対応26,606/35,614非空白文字（74.71%）。Kraftは同じ系の電気側・磁気側の場の強さという明示した読み。仮定を現実の真理へ替えず、発散条件や後続変換の健全性を補わない。全実数・全関数域の有限列挙拒否を保持。u0156以降と二作品全体の目標は未完。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
