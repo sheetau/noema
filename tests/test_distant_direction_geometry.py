@@ -1,0 +1,11 @@
+from scripts.check_distant_direction_geometry import source_curve_checks,limit_point_checks,limit_scope_checks,spatial_angle_checks,real_angle_checks,printed_checks,binding_checks,witness_checks,structure_checks
+
+def test_source_direction_and_constant_spatial_curve():assert source_curve_checks()['source_to_observer_orientation_preserved']
+def test_receding_direction_errors_and_collision():assert limit_point_checks()['strict_error_bound_and_collision_rejection']
+def test_epsilon_cutoff_distance_order_and_all_positions():assert limit_scope_checks()['forall_epsilon_exists_cutoff_order_checked']
+def test_spatial_inner_product_and_positive_speed():assert spatial_angle_checks()['three_spatial_components_and_speed_norm_used']
+def test_real_angle_and_all_branches():assert real_angle_checks()['zero_half_pi_and_positive_pi_branches']
+def test_same_cycle_and_printed_positive_sqrt_form():assert printed_checks()['printed_positive_sqrt_form_equals_same_cycle_factor']
+def test_all_setting_roles_and_shared_angle_inputs():assert binding_checks()['all_52_roles_and_same_pi_direction_frequency_bound']
+def test_all_48_witnesses():assert witness_checks()['every_shared_witness_and_absent_value_checked']
+def test_old_evidence_and_language_roundtrip():assert structure_checks()['old_370_statements_and_judgments_preserved']
