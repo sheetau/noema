@@ -1,0 +1,7 @@
+from scripts.check_field_answer_records import record_checks,completeness_checks,method_checks,family_checks,structure_checks
+
+def test_record_payload_and_question():assert record_checks()['actual_typed_payload_metadata_and_native_question_checked']
+def test_all_typed_answers_preserved():assert completeness_checks()['both_field_quantifiers_and_all_native_answers_preserved']
+def test_same_physical_method_setting():assert method_checks()['both_global_coordinate_conventions_bound']
+def test_ordered_subproblem_attachment():assert family_checks()['actual_record_at_same_ordered_slot_and_entire_series_checked']
+def test_old_evidence_preserved():assert structure_checks()['all_406_previous_statements_and_meanings_preserved']
