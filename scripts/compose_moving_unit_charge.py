@@ -1,0 +1,56 @@
+"""Connect the unit-charge inference to the current first principle and records."""
+from copy import deepcopy
+import json
+from noema.grammar import parse,format_graph
+from noema.extraction import extract_document
+from noema.semantic_reviews import digest
+from scripts.compose_vacuum_field_domain import ROOT,read
+from scripts.compose_material_relative_frame import define
+from scripts.compose_relativity_conjecture import content,evaluate
+from scripts.compose_two_postulates import quote
+from scripts.compose_limits import v,call as k,op,both
+
+PARENT='examples/v014/einstein-point-charge-calibration.noema'
+PARENT_BASIS='data/point-charge-calibration-basis-v1.json'
+FULL='examples/v014/einstein-moving-unit-charge.noema'
+CORE='examples/v014/moving-unit-charge-core.noema'
+BASIS='data/moving-unit-charge-basis-v1.json'
+ANNOTATIONS='data/moving-unit-charge-identifiers-v1.json'
+INDEX=164
+MEANINGS={
+ 'ejwl':'同じ点状電気量zolについてKで値1とする先行仮定ejwfと、現在の第一原理eionを合わせた、著者が移動系での値1の根拠とする内容。校正試行のKへの静止を後続の全ての状態へ延長せず、旧sawや未接続のsca2を使わない。',
+ 'ejwm':'先行仮定と同じ点状電気量zolについて、同じ出来事zoo・電気量種zor・単位zou・尺度1・文脈で、移動系zbmで測った値1の別記録zpdを要求するscc2の内容。Kの記録をコピーしたものと認定せず、別系の記録そのものを結ぶ。',
+ 'ejwn':'同じ著者が相対性原理と先行仮定ejwlに基づき、同じ電気量の移動系での値1のejwmを結論として提示する。Relativitätsprinzipの呼称を現在の第一原理eionへ結び、引用した前提から結論が自動的に証明されたとはしない。',
+ 'ejwo':'原理による同じ電気量の移動系での値1の推論提示ejwnを述べるメッセージ。',
+ 'ejwp':'u0173第三文を同じ著者・論説へ帰属し、第二文の校正説明の後に置く。旧文164だけを置き換え、仮定された電気量を実測済みの結果へ変えない。',
+}
+LIMITS=[
+ '原刊909頁のu0173第三文を通読する。dieseは直前の点状電気量zol、auchはKでの値1に加えて同じ移動系kでの値1、elektrische Masseは符号付き電気量を指す。慣性質量や第二対象zomへ参照を替えない。',
+ '相対性原理に基づくという著者の推論を、前提と結論の引用を持つzcで記述する。前提の原理eionと結論の測定結果は異なる内容であり、引用の接続から電荷不変性の定理を認定しない。原理だけであらゆる量の数値が不変になるという新しい規則は導入しない。',
+ '同じ電気量単位zou・尺度1を二系で採る読みを明示する。値だけ1にして単位や極性を替える読みではない。量種と単位は先行する点電荷の作用による校正へ結ばれ、二系の結果記録は別のものとして保持する。',
+ '原文が別の評価時刻を指定しない第三文では、先行の同じ対象の出来事zooについて系を替えて測った値を述べると読む。力を評価する後続の出来事zpoとの同一性や電気量の時間保存はまだ補わない。',
+ '校正説明ejwhのKに静止した試行を、第三文の前提から後続全期間の静止へ無断で延長しない。前提には電気量1の仮定ejwfを使い、その仮定の物理的な校正は先行文163に保持する。',
+ '新しい基本記号は追加しない。既存の点状の電気量、単位付き結果、現在の相対性原理、内容引用、推論提示、呼称と本文順序を合成する。旧文164以外の357主張・旧版・旧証拠・既判断は保持する。',
+ 'u0173全体は未完。第一文の直前六式の解釈導入、第四・第五文の現在の二場と力・静止の接続、第六文の二つの言い表しへの導入は残る。検査成功を段落全体の意味判断へ変換しない。',
+]
+
+def definitions():
+    p=v('point');author=k('rd');scope=k('zno');node=k('zpg')
+    text=content('ejwl',both(evaluate('ejwf'),evaluate('eion')))
+    text+=content('ejwm',both(k('eisqc',k('zol'),p),evaluate('scc2')))
+    text+=content('ejwn',both(k('zc',node,author,quote('ejwl'),quote('ejwm'),scope,p),k('eisch',k('eisk3'),quote('eion'),scope,p)))
+    text+='d ejwo[] f[j s[k ejwn[]]].\n'
+    text+=define('ejwp',[],both(k('eir3',node,author,k('eirf'),quote('ejwo'),k('ri')),k('ue',k('eisqj'),node,k('ri')),op('u',op('e',k('eisqj'),node))))
+    return text
+
+def build():
+    old=parse(read(PARENT));assert len(old['statements'])==358
+    assert not set(MEANINGS)&{d['name'] for d in old['declarations']}
+    doc=deepcopy(old);doc['statements']=[];doc=parse(format_graph(doc,'compact')+definitions())
+    doc['statements']=deepcopy(old['statements']);doc['statements'][INDEX]=dict(kind='assert',body=dict(kind='call',symbol='ejwp',arguments=[]))
+    added=doc['declarations'][len(old['declarations']):]
+    basis=dict(status='current_relativity_based_moving_unit_charge_inference',document=FULL,parent=PARENT,inherited_meaning_basis=PARENT_BASIS,primitives={},definitions=MEANINGS,new_signatures={d['name']:{key:d[key] for key in ('parameters','result')} for d in added},limitations=LIMITS)
+    body=format_graph(doc,'compact')+'\n';core=extract_document(doc,roots=list(MEANINGS),statement_indices=[INDEX]).document
+    ann=json.loads(read('data/point-charge-calibration-identifiers-v1.json'));ann.update(document=FULL,document_sha256=digest(body.encode('utf-8')))
+    enc=lambda x:json.dumps(x,ensure_ascii=False,indent=2)+'\n'
+    return {FULL:body,CORE:format_graph(core,'compact')+'\n',BASIS:enc(basis),ANNOTATIONS:enc(ann)}
