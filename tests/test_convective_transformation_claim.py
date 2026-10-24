@@ -1,0 +1,5 @@
+from scripts.check_convective_transformation_claim import binder_checks,presentation_checks,structure_checks
+
+def test_one_setting_across_assumption_and_displays():assert binder_checks()['same_33_parameters_in_both_results']
+def test_full_transformation_presentation():assert presentation_checks()['assumption_anaphora_two_sections_inference_and_displays_connected']
+def test_source_and_prior_evidence():assert structure_checks()['all_410_prior_statements_and_meanings_preserved']
