@@ -1,40 +1,45 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v348.json",
-  "progress_report": "reports/written-progress-v326.json",
+  "review_index": "data/semantic-review-index-v349.json",
+  "progress_report": "reports/written-progress-v327.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0151（第二部の見出し）",
-    "scope": "実装親examples/v014/einstein-kinematic-transition-claim.noema、意味規約data/kinematic-transition-claim-basis-v1.json、識別表記data/kinematic-transition-claim-identifiers-v1.json。正本356主張。次は原刊907頁u0151全文「II. Elektrodynamischer Teil.」。第一部と同じ見出し構成eihqを再利用し、第二部の区分・見出し箇所、親eirf、深さ1・表示番号2、電気力学の主題quote p eie5を結ぶ。eisdvは部をまたぐ節番号を許し、見出しの支配範囲に下位見出しと本文を含める。第一部eisdxはu0006からu0151直前まで。新たな第二部の参照と同じ著者の論説における順序を、現行u0150の移行znjから接続する。主題の案内と分野内の主張・導出完了を区別する。次のu0152は§6見出しで、Maxwell-Hertz方程式、空の空間、磁場中の運動に伴う起電力の性質を含むため、その意味要件を別途整理する。u0153の本文仮定は現行文152から始まり、見出し番号と本文文番号を混同しない。原刊907頁画像artifacts/written-facsimiles-v1/einstein-1905-unlp-p907-0.jpg。未使用定義ejsi、原始記号eispb。",
+    "unit": "einstein-1905:u0152（第六節の見出し：真空の方程式の変換と運動による起電力の性質）",
+    "scope": "実装親examples/v014/einstein-electrodynamic-part-heading.noema、意味規約data/electrodynamic-part-heading-basis-v1.json、識別表記data/electrodynamic-part-heading-identifiers-v1.json。正本357主張。u0152全文は「§ 6. Transformation der Maxwell-Hertzschen Gleichungen für den leeren Raum. Über die Natur der bei Bewegung in einem Magnetfeld auftretenden elektromotorischen Kräfte.」。同じ第二部eispbの深さ2・表示番号6の下位節を、eihqで主題と結ぶ。節範囲はu0152から次の§7/u0178直前まで。直前は第二部見出しeispc。旧znoは§6冒頭の方程式を仮定する範囲なので、節全体と無条件に同一視しない。現行文152=ug(znp,rd,quote s5z,zno,ri)はu0153以降の仮定で、見出しは未接続。主題の二部分を保持する必要がある。第一はMaxwell-Hertzの真空方程式の変換。既存s5yは同じ二場・四座標領域・正のVで六つの回転式を構成し、s5t/uが18偏微分へ接続するが、これだけで物理的な真空は表さない。eiscaは光の伝播経路に媒体がない条件で、任意の場領域へそのまま代入不可。場の物理的規約eibs/eicoと、適用領域の物質・源の不在の明示が必要。旧znk/znl/znmの未完部分を名前だけで済ませない。六式と追加の発散条件は区別し、変換の正しさを見出しから証明しない。変換の研究主題eismrは同じ対象の二表示と二表示系を閉じた関係へ渡す一般形。第二は磁場中の運動で生じる起電力の性質について。局所的な力/電荷の駆動eidzと単位eisar・運動起因eisasがあるが、磁石・導体の一例の条件を見出し一般へ強制しない。eicnは磁場非零でも速度が平行なら力零を許す。性質・説明対象という主題と、特定の力の公式・説明完了の断言を区別する。原刊907頁画像artifacts/written-facsimiles-v1/einstein-1905-unlp-p907-0.jpg。未使用定義ejsj、原始記号eispd。",
     "start_here": [
-      "scripts/compose_kinematics_headings.py",
-      "scripts/compose_electrodynamics_title.py",
-      "scripts/compose_kinematic_transition_claim.py",
-      "docs/semantic-review-v1.md"
+      "scripts/compose_field_equations.py",
+      "scripts/compose_field_transform.py",
+      "scripts/compose_field_constraints.py",
+      "scripts/compose_transformation_heading.py",
+      "scripts/compose_vacuum_light_postulate.py",
+      "scripts/compose_electric_action.py",
+      "scripts/compose_magnetic_action.py",
+      "scripts/compose_moving_conductor_case.py",
+      "docs/electrodynamic-part-heading-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。"
   },
   "verification": {
-    "language_checkpoint": "reports/kinematic-transition-claim-v1.json",
-    "whole_unit_reviews": 173,
+    "language_checkpoint": "reports/electrodynamic-part-heading-v1.json",
+    "whole_unit_reviews": 174,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/parallel-group-claim-v1.json",
-    "source_collation": "data/einstein-kinematic-transition-source-reading-v1.json",
+    "dependency_checkpoint": "reports/kinematics-headings-v1.json",
+    "source_collation": "data/einstein-electrodynamic-part-source-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
-    "einstein_whole_unit_reviews": 153,
-    "einstein_reviewed_nonblank_characters": 21309,
-    "einstein_review_checkpoint": "reports/einstein-kinematic-transition-review-v1.json",
+    "einstein_whole_unit_reviews": 154,
+    "einstein_reviewed_nonblank_characters": 21335,
+    "einstein_review_checkpoint": "reports/einstein-electrodynamic-part-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
-    "einstein_paragraph_checkpoint": "reports/einstein-kinematic-transition-review-v1.json"
+    "einstein_paragraph_checkpoint": "reports/einstein-electrodynamic-part-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は153/282・21,309/35,614非空白本文文字、正本356主張。今回はu0150全153本文文字を、課題相対的な必要性・二原理を導出の基礎とする運動学・命題群の共同利用という明示した読みで判断した。15定義・新しい基本記号なし。旧文150/151を更新し他354主張と旧証拠を保持。局所133対照と構造検査、意味判断記録の検証、登録簿v348・監査v326を通過。全閉記述量化は有限列挙を拒否し、有限代入検査と著者の全導出・応用の実証、意味判断を区別する。部分草案229単位・原文対応26,297/35,614非空白文字（73.84%）。u0151以降と二作品全体の目標は未完。",
+    "アインシュタインの全単位意味確認は154/282・21,335/35,614非空白本文文字、正本357主張。今回はu0151全26本文文字を、第二部の階層・番号・電気力学の主題案内として判断した。1定義と区分・見出し箇所の参照個体2個を追加し、以前の356主張と旧証拠を保持。局所33対照と構造検査、意味判断記録の検証、登録簿v349・監査v327を通過。主題の案内を全物理領域の真理、下位節の完成や応用課題の達成としない。部分草案230単位・原文対応26,346/35,614非空白文字（73.98%）。u0152以降と二作品全体の目標は未完。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }
