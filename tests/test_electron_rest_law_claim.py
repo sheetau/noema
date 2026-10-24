@@ -1,0 +1,8 @@
+from scripts.check_electron_rest_law_claim import future_checks,content_checks,premise_checks,presentation_checks,binder_checks,structure_checks
+
+def test_right_initial_change():assert future_checks()['native_future_domain_keeps_base_point_and_excludes_past']
+def test_same_particle_local_setting_and_conditional_motion():assert content_checks()['position_change_allows_instantaneous_rest']
+def test_only_the_following_independent_law():assert premise_checks()['required_same_independent_law_and_no_extra_law']
+def test_naming_notation_and_authored_display():assert presentation_checks()['quoted_physics_not_executed']
+def test_all_setting_and_law_binders():assert binder_checks()['all_30_law_and_setup_binders_checked']
+def test_structure_and_prior_evidence():assert structure_checks()['all_413_prior_statements_and_meanings_preserved']
