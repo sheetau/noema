@@ -1,0 +1,72 @@
+"""Join the speed/angle definitions and present the angle's geometric reading."""
+from copy import deepcopy
+import json
+from noema.grammar import parse,format_graph
+from noema.extraction import extract_document
+from noema.semantic_reviews import digest
+from scripts.compose_velocity_angle_measure import ROOT,read
+from scripts.compose_material_relative_frame import define
+from scripts.compose_relativity_conjecture import content
+from scripts.compose_two_postulates import quote
+from scripts.compose_limits import R,v,call as k,op,both
+
+PARENT='examples/v014/einstein-velocity-angle-measure.noema';PARENT_BASIS='data/velocity-angle-measure-basis-v1.json'
+FULL='examples/v014/einstein-velocity-angle-claim.noema';CORE='examples/v014/velocity-angle-claim-core.noema'
+BASIS='data/velocity-angle-claim-basis-v1.json';ANNOTATIONS='data/velocity-angle-claim-identifiers-v1.json';INDICES=(131,132)
+RULE='i[h['+R+' d] c]'
+PRIMITIVES={
+ 'eiso4':([],R,'現在の同じ点とK/kの速度設定で、αとして指定する実数角度測度への参照。既存zktは単位円の二成分を指し、この参照とは型を区別する。両者の接続、枝、定義域はejow/ejovで明示し、任意の数値を補わない。'),
+ 'eiso5':([],'a','u0138とu0139前半で同じ角を指すαという表記の個体。実数測度や単位円座標対そのものとは区別し、役割をejoyへ結ぶ。'),
+ 'eiso6':([],'a','u0135末のWir setzenからu0136のU/w、u0137のund、u0138のαまでの一続きの定義導入全体の箇所。速さ部分eisoz、三式zkr/zks/zkuを含む範囲として同定する。'),
+ 'eiso7':([('node','a'),('author','a'),('quantity',RULE),('role',RULE),('scope','a'),('reference','d')],'c','著者がnodeで、quantityの閉じた候補値・状況の規則が同定する量を、同じ値と状況に対するroleの規則で記述する意味・役割として理解するよう提示する。何の量をどの対象・関係・条件の量として捉えるかは両規則の合成内容に保持する。新たな量の命名、単なる式の書換え、法的な命令とは区別し、提示から内容の真理・実験の実施・全値の存在や一意性を導かない。'),
+}
+MEANINGS={
+ 'ejox':'有効な実数角度の候補が、同じαの測度への参照eiso4に等しい。角の取得や物理的な役割はejow/ejovへ置く。',
+ 'ejoy':'同じ点zkbについて、元の成分比の逆正接と二速度の向き付き角を共有するejowの候補値を、同じ測度eiso4に結ぶαの表記役割。単位円成分zktも同じejowで接続する。',
+ 'ejoz':'著者が同じ第五節で、二速度の成分比から枝を選んで得る実数角ejowをαの値ejoxとして定義導入し、α表記の役割ejoyを同じ論説へ結ぶ。',
+ 'ejo2':'同じ提示文脈におけるU/wの二定義ejomとαの定義ejozを連言し、wの式からαの式への順序と別箇所であることを保持する。undを同じWir setzenに属する追加の定義として表す。',
+ 'ejo3':'三つの量の同じ定義導入ejo2を述べるメッセージ。',
+ 'ejo4':'三量の定義導入全体を同じ著者・論説へ帰属し、第一近似の帰結の後、速さ部分の後に角の式が来る本文順序を保持する。旧文131の枝未確定の部分主張を置き換える。',
+ 'ejo5':'同じαの実数測度ejoxを、同じ現在の系速度と点速度の間の角ejovとして理解するよう著者が提示する。dannは直前の定義導入を受ける説明の進行であり、運動の後時刻や法的義務とはしない。',
+ 'ejo6':'αの幾何学的な意味の提示ejo5を述べるメッセージ。',
+ 'ejo7':'角の定義に続く同じαの意味の説明を同じ著者・論説へ帰属する。旧文132の向きなし角の部分主張を置き換え、今回の明示した枝の読みと食い違う主張を現行稿に残さない。',
+}
+LIMITS=[
+ 'u0135の第一近似の帰結とWir setzen、u0136の既判断の二式、u0137のund、u0138の逆正接指定、u0139前半の角と見る説明を同じ点・K/k・第五節に結ぶ。u0139後半のNach einfacher Rechnung ergibt sichとM0257は今回の範囲外。',
+ 'αは正の系速度vから点の平面速度への向き付き角の代表(-π,π]として読む。成分比の逆正接は全象限の枝を幾何学的な向きと共に選び、現代の主値だけへ制限しない。歴史的な枝の規約が原文だけから一意に立証されたとはしない。',
+ '実数測度は既存の実直線上の積分による逆正接とπで構成し、単位円成分zktと別の型として接続する。負の成分を許す。零ベクトルには角なし、縦成分零では商なしとし、幾何学的な直角の指定と区別する。点の光速上限は加えない。',
+ 'Wir setzenの第一人称複数は同じ論説の著者による定義操作と読む。undは三定義の連言と同じ本文順序に保持する。ist dann ... anzusehenは直前の指定量を幾何学的な役割として理解する説明であり、単なる再命名や実世界の計測済み事実としない。',
+ '旧s2k/s2mと旧本文・検証・判断は履歴として保存する。現行稿の文131と132のみを新しい定義提示・説明へ置き換える。元の二つの主張と新しい内容が等価とは認定せず、変更していない過去の判断だけを依存一致で引き継ぐ。',
+ 'u0135第一文は既存の共通速度倍率での一次化と厳密一般則の不成立という読みを保持する。U/wの非負速さ、実際の同じ二微分・全期間・尺度、零の速さも保ち、角度の定義域制限を速さの二定義へ追加しない。',
+ '新規の基本関係eiso7は型付き量の意味・役割を説明する一般の提示関係であり、角度の積分や物理内容を原始化しない。他の三記号は値・表記・本文箇所の参照。検査通過と全実数の定理・原文の意味判断を区別する。',
+]
+
+
+def definitions():
+    text=''.join('r '+n+'['+' '.join(t for _,t in fs)+'] '+result+'.\n' for n,(fs,result,_) in PRIMITIVES.items())
+    value=v('value');ctx=v('context');point=v('point');author=k('rd');scope=k('eisoq')
+    text+=define('ejox',[('value',R),('context','d')],both(k('ba',value),k('ba',k('eiso4')),k('sca',value,k('eiso4'))))
+    text+=define('ejoy',[('object','a'),('value',R),('context','d')],both(op('e',v('object'),k('zkb')),k('ejow',value,ctx),k('ejox',value,ctx)))
+    text+=content('ejoz',both(k('zb',k('zku'),author,'r[p ejow]','r[p ejox]',scope,point),k('eislo',k('eiso5'),'r[p ejoy]',k('eirf'),point)))
+    text+=content('ejo2',both(op('t',k('ejom'),point),op('t',k('ejoz'),point),k('ue',k('zks'),k('zku'),point),op('u',op('e',k('zks'),k('zku')))))
+    text+='d ejo3[] f[j s[k ejo2[]]].\n'
+    text+=define('ejo4',[],both(k('eir3',k('eiso6'),author,k('eirf'),quote('ejo3'),k('ri')),k('ue',k('eisoy'),k('eiso6'),k('ri')),k('ue',k('eisoz'),k('zku'),k('ri')),op('u',op('e',k('eisoy'),k('eiso6'))),op('u',op('e',k('eisoz'),k('zku')))))
+    text+=content('ejo5',k('eiso7',k('zkv'),author,'r[p ejox]','r[p ejov]',scope,point))
+    text+='d ejo6[] f[j s[k ejo5[]]].\n'
+    text+=define('ejo7',[],both(k('eir3',k('zkv'),author,k('eirf'),quote('ejo6'),k('ri')),k('ue',k('zku'),k('zkv'),k('ri')),op('u',op('e',k('zku'),k('zkv')))))
+    return text
+
+
+def build():
+    old=parse(read(PARENT));assert len(old['statements'])==356;doc=deepcopy(old);doc['statements']=[]
+    assert not (set(MEANINGS)|set(PRIMITIVES))&{d['name'] for d in old['declarations']}
+    doc=parse(format_graph(doc,'compact')+definitions());doc['statements']=deepcopy(old['statements'])
+    for i,name in zip(INDICES,('ejo4','ejo7')):doc['statements'][i]=dict(kind='assert',body=dict(kind='call',symbol=name,arguments=[]))
+    added=doc['declarations'][len(old['declarations']):]
+    primitives={d['name']:dict(parameters=d['parameters'],result=d['result'],arguments=[n for n,_ in PRIMITIVES[d['name']][0]],meaning_ja=PRIMITIVES[d['name']][2]) for d in added if d['kind']=='primitive'}
+    basis=dict(status='combined_speed_angle_definition_and_geometric_reading_presented',document=FULL,parent=PARENT,inherited_meaning_basis=PARENT_BASIS,primitives=primitives,definitions=MEANINGS,new_signatures={d['name']:{key:d[key] for key in ('parameters','result')} for d in added},replaced_partial_statements=list(INDICES),limitations=LIMITS)
+    body=format_graph(doc,'compact')+'\n';core=extract_document(doc,roots=list(MEANINGS),statement_indices=list(INDICES)).document
+    ann=json.loads(read('data/velocity-angle-measure-identifiers-v1.json'));ann.update(document=FULL,document_sha256=digest(body.encode('utf-8')))
+    ann['entries'].append(dict(symbol='eiso5',role='designation',forms=[dict(text='α',language='de',role='printed_identifying_form')]))
+    enc=lambda x:json.dumps(x,ensure_ascii=False,indent=2)+'\n'
+    return {FULL:body,CORE:format_graph(core,'compact')+'\n',BASIS:enc(basis),ANNOTATIONS:enc(ann)}
