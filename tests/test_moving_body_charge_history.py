@@ -1,0 +1,7 @@
+from scripts.check_moving_body_charge_history import quantity_checks,history_checks,pair_checks,binder_checks,structure_checks
+
+def test_real_body_total_and_time_constancy():assert quantity_checks()['internal_redistribution_not_forbidden']
+def test_all_records_and_arbitrary_material_motion():assert history_checks()['no_all_material_points_at_rest_requirement']
+def test_two_histories_same_events_and_conditional_constancy():assert pair_checks()['only_constancy_transferred_not_numeric_equality']
+def test_whole_setting_binders():assert binder_checks()['all_20_setting_binders_shared']
+def test_preserved_statements_and_unrestricted_motion():assert structure_checks()['no_partwise_constancy_or_rigidity_or_uniform_motion_in_setting']
