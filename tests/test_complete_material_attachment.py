@@ -1,0 +1,6 @@
+from scripts.check_complete_material_attachment import amount_checks,completeness_checks,shared_checks,structure_checks
+
+def test_physical_amount_existence():assert amount_checks()['native_existential_body_and_all_physical_slots_checked']
+def test_complete_material_domain():assert completeness_checks()['old_coarse_domain_counterexample_reproduced']
+def test_same_rigid_body_attachment():assert shared_checks()['all_attachment_and_rigidity_references_shared']
+def test_preservation():assert structure_checks()['all_408_statements_meanings_and_original_evidence_preserved']
