@@ -1,0 +1,7 @@
+from scripts.check_carrier_field_correspondence import location_checks,event_checks,witness_checks,global_checks,structure_checks
+
+def test_same_material_event_coordinates():assert location_checks()['native_all_four_coordinates_share_body_matter_and_time']
+def test_all_relevant_material_events():assert event_checks()['every_selected_material_event_requires_correspondence']
+def test_ten_shared_local_witnesses():assert witness_checks()['all_ten_witness_positions_checked_with_two_values']
+def test_whole_field_domain():assert global_checks()['nonempty_domain_and_both_points_required']
+def test_preservation():assert structure_checks()['all_408_statements_meanings_and_original_evidence_preserved']
