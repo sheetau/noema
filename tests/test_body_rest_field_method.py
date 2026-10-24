@@ -1,0 +1,8 @@
+from scripts.check_body_rest_field_method import event_checks,region_checks,binding_checks,physical_checks,transformation_checks,structure_checks
+
+def test_same_event_generic_frames():assert event_checks()['generic_frames_same_event_and_all_records']
+def test_regions_and_both_history_intervals():assert region_checks()['both_history_intervals_at_actual_coordinate_times']
+def test_all_physical_setting_roles():assert binding_checks()['every_body_process_frame_unit_period_and_field_role_checked']
+def test_both_physical_field_attributions():assert physical_checks()['physical_attribution_separate_from_numeric_agreement']
+def test_native_two_field_answer():assert transformation_checks()['native_two_field_question_and_actual_transformed_answers']
+def test_unchanged_history():assert structure_checks()['all_406_previous_statements_and_meanings_preserved']
