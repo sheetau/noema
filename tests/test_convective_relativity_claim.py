@@ -1,0 +1,7 @@
+from scripts.check_convective_relativity_claim import law_checks,common_law_checks,content_checks,presentation_checks,structure_checks
+
+def test_concrete_foundation_and_common_law_identity():assert law_checks()['same_concrete_conditional_law_and_inquiry']
+def test_native_common_law_scope_and_nonconforming_candidates():assert common_law_checks()['nonconforming_candidates_not_excluded']
+def test_same_context_and_qualified_conclusion():assert content_checks()['conditional_conclusion_not_unconditional']
+def test_full_authored_reason_and_conclusion():assert presentation_checks()['quoted_physics_not_evaluated']
+def test_structure_and_preserved_evidence():assert structure_checks()['all_411_prior_statements_and_meanings_preserved']
