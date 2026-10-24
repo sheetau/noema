@@ -1,0 +1,6 @@
+from scripts.check_convective_transformed_quantities import numeric_checks,field_checks,connection_checks,structure_checks
+
+def test_signed_transformed_quantities():assert numeric_checks()['zero_density_keeps_velocity']
+def test_native_inverse_coordinate_fields():assert field_checks()['native_inverse_coordinates_and_all_components_executed']
+def test_shared_physical_and_equation_connections():assert connection_checks()['same_setting_new_fields_density_velocity_points_and_jets']
+def test_prior_evidence_and_hypothesis_separation():assert structure_checks()['all_410_prior_statements_and_meanings_preserved']
