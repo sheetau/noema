@@ -1,0 +1,1995 @@
+{
+  "status": "seven_wave_equations_amplitude_vectors_and_normal_direction",
+  "document": "examples/v014/einstein-wave-display.noema",
+  "parent": "examples/v014/einstein-distant-wave-source.noema",
+  "inherited_meaning_basis": "data/distant-wave-source-basis-v1.json",
+  "primitives": {
+    "eissb": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "anchor",
+        "author",
+        "prior",
+        "expanded",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "authorが同じscopeのanchorで導入したpriorを、nodeでexpandedとして明示又は説明する。同じ仮定設定の対象・系・単位・量の割当と適用範囲を保持し、数式の表示又はそこで用いる量の説明をその内部に位置付ける。別の設定で偶然成立する内容や、独立した現実の実験報告へ切り離さない。説明による新しい真理・導出の健全性・引用の自動実行はこの関係だけから認定しない。"
+    },
+    "eissc": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "固定原文einstein-1905:u0181で、直前の六成分の係数を二つの振幅ベクトルとして、三方向値を波面法線の方向余弦として説明する箇所。語の内容は同じ係数と位相の合成へ接続する。"
+    }
+  },
+  "definitions": {
+    "ekbe": "指定した三成分を同じ三空間軸へ割り当てるベクトル表現。非空間役割の拡張値は零であり、時空点としての時刻成分を持つとは解釈しない。",
+    "ekbf": "Φ=ω(t−(ax+by+cz)/V)という同じ位相を四座標の関数として作る。空間の三項全体をVで割り、ωを括弧全体へ掛ける既存sds2を使う。",
+    "ekbg": "同じ有効な四座標で、指定phaseの値と位相式を等置し、その同じphase値の正弦を六つの各係数へ掛けた値と、電気側・磁気側の各三成分をそれぞれ等置する七式。各成分の位置と同じ位相を保持する。",
+    "ekbh": "指定領域内の全有効四座標についてekbgの七式を要求する。これだけで領域の非空性や物理的な実在を断言せず、設定側の条件を共有する。",
+    "ekbi": "先行の同じ遠方源と近似設定ekazを保持し、その正弦・位相・六振幅から構成した二つの近似表現場と位相関数について、同じ全領域で七式ekbhを述べる。実際の二場を無条件に厳密な正弦波へ置換しない。",
+    "ekbj": "六つの同じ係数を二つの三成分ベクトルへ結び、それぞれの非負の大きさを三成分の二乗和の平方根に対応させる。各成分の符号と相対方向を失わず、振幅を一成分だけで代用しない。",
+    "ekbk": "正のVとω及び単位三方向の下で、同時刻の二位置が同じ指定phase値を持つことと、その位置差が方向ベクトルに直交することを同値として述べる。Cartesian基底の単位方向の三成分を法線の方向余弦として読む局所条件。",
+    "ekbl": "同じekbiの設定・近似場・位相・六係数について、二振幅ベクトルとその大きさekbjを述べ、同じ時間と領域にある全位置対に法線条件ekbkを要求する。異なる波・時刻・近似場の断片を混ぜない。",
+    "ekbm": "K・V・第七節を固定し、先行と同じ31役割の証人を共有する七表示式を含む仮定内容。",
+    "ekbn": "ekbmと同じ設定を、二振幅ベクトルと波面法線の方向余弦まで明示する内容。局所的な近似と物理場の規約を保持する。",
+    "ekbo": "u0180の七表示式を先行u0179の同じ仮定内容の明示として著者へ帰属する。表示の等号を実際の二場の近似誤差零という追加主張へ変えない。",
+    "ekbp": "七表示式の提示ekboを述べるメッセージ。",
+    "ekbq": "七表示式を同じ著者・論説に接続し、源の仮定に続く別の表示箇所とする。",
+    "ekbr": "Hierbeiの説明を直前の七表示式と同じ係数・位相の解釈として著者へ帰属する。新しい波を導入しない。",
+    "ekbs": "振幅と法線の説明ekbrを述べるメッセージ。",
+    "ekbt": "u0181の説明を同じ著者・論説に接続し、七表示式に続く別の箇所として保持する。"
+  },
+  "new_signatures": {
+    "eissb": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eissc": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "ekbe": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      }
+    },
+    "ekbf": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          },
+          {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          },
+          {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          },
+          {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      }
+    },
+    "ekbg": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekbh": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekbi": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": "individual"
+        },
+        {
+          "name": "vl",
+          "sort": "situation"
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vt",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vu",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vv",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vw",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vx",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vy",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vz",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v2",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v3",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v4",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v5",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v6",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v7",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vba",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vbb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vbc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekbj": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekbk": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vd",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "ve",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vl",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekbl": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "individual"
+        },
+        {
+          "name": "vf",
+          "sort": "individual"
+        },
+        {
+          "name": "vg",
+          "sort": "individual"
+        },
+        {
+          "name": "vh",
+          "sort": "individual"
+        },
+        {
+          "name": "vi",
+          "sort": "individual"
+        },
+        {
+          "name": "vj",
+          "sort": "individual"
+        },
+        {
+          "name": "vk",
+          "sort": "individual"
+        },
+        {
+          "name": "vl",
+          "sort": "situation"
+        },
+        {
+          "name": "vm",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vn",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vo",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vp",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vq",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vr",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vt",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "name": "vu",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vv",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vw",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vx",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vy",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vz",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v2",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v3",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v4",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v5",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v6",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "v7",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vba",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vbb",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "name": "vbc",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "ekbm": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ekbn": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ekbo": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ekbp": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ekbq": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "ekbr": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ekbs": {
+      "parameters": [],
+      "result": "message"
+    },
+    "ekbt": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "u0180のM0320は六成分と位相の七等式を一つの表示として読む。X,Y,ZとL,M,Nはu0179で十分な近似として使う表現場の成分であり、実際の物理場との誤差は先行のseat/eisrwに残す。表示の等号から誤差が零とはしない。",
+    "Φは同じ四座標の共通位相、ωはその時間に対する正の角周波数パラメータである。V=tc、K=raと同じ尺度を保ち、ωを通常の一秒あたり周期数νと数値同一視しない。関数値としての位相をその綴りの個体へ置き換えない。",
+    "六係数は三つずつ同じ校正されたCartesian空間基底のベクトル成分であり、正規化した同じ正弦に掛かる振幅係数として読む。符号・偏光方向を保ち、各ベクトルの大きさは非負の二乗和平方根で定まる。測定済みの記録や新しい物理定数を追加しない。",
+    "波面は同時刻の等位相面と読む。同じ位相の二位置差がn=(a,b,c)と直交し、nの長さが1であることを法線と方向余弦の構成に使う。別時刻の等位相点を同一の空間波面へ混ぜない。正のω,Vと位相の符号が伝播側の向きを固定し、波面に垂直な向きを無条件に逆転させない。",
+    "法線は近似表現の平面波面について述べる。誤差を持つ実際の場の全波面が厳密な平面であること、全空間・全時間に同じ近似が成り立つこと、横波の振幅関係や場の全方程式を追加しない。",
+    "Hierbeiは直前の同じ係数と位相を説明する役割とする。七式と振幅・法線の説明は先行仮定の内部の明示であり、別の現実の放射実験が成立したという追加の存在主張にしない。",
+    "有限検査では同じ四座標の七式、六係数と二ベクトル、同時刻の位置差と位相差を正確な切断算術で対照する。診断用の波形を正弦と称さず、実数全域の正弦・領域・全設定量化を有限標本へ交換しない。",
+    "u0178の第七節主題、u0182の移動系観測者による問いと変換の適用、以降の変換後の表示・物理的周波数の説明は別途必要である。"
+  ]
+}
