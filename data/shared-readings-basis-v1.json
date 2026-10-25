@@ -1,0 +1,589 @@
+{
+  "status": "shared_completion_and_unresolved_readings",
+  "document": "examples/v016/shared-readings-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "readingcontains": "候補列に同じ構文の発話記述がある。内容を実行しない。",
+    "readingsempty": "候補列が空である。列挙の完了や内容の偽は含意しない。",
+    "readingsambiguous": "候補列に異なる発話記述が二つ以上ある。同じ記述の重複を数えない。",
+    "readingssingle": "候補列に一種類だけの発話記述がある。列挙の完了は別条件。",
+    "readingsabsence": "列挙が完了しており候補がない。内容の否定ではない。",
+    "readingsresolved": "列挙が完了し、候補が一種類である。内容の真理を含意しない。",
+    "readingssubset": "左の候補が全て右に含まれる。空の左も許す。",
+    "readingssame": "左右の候補が相互に含まれる。順序と重複を候補集合の違いとしない。",
+    "readingnarrowing": "変更後の候補が非空で全て変更前に含まれる。同じ集合も許す。",
+    "readingrevision": "候補または完了状態が変化し、同じ出典・文脈・根拠で各追加/除外が許可され、必要な完了状態の根拠もある。",
+    "readinglinked": "二更新の出典・文脈が同じで、前更新の後状態と次更新の前状態の候補集合と完了状態が等しい。",
+    "ellipsisresult": "二つの個体と基準状況を受け取る閉じた発話ひな形の記述に、指定した三つの引数記述を適用する。",
+    "ellipsisvalid": "与えた補完結果の記述が、同じひな形と三引数から構成した記述と厳密に一致する。",
+    "ellipsislicensed": "異なる元箇所/補完先について、構成結果が一致し、同じ文脈・根拠・ひな形・引数の補完が許可される。"
+  },
+  "public_contracts": {
+    "readingcontains": {
+      "arguments": [
+        {
+          "role": "readings",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "現在列挙した発話記述の列。内容の論理和ではない。"
+        },
+        {
+          "role": "reading",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "調べる一つの発話記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingsempty": {
+      "arguments": [
+        {
+          "role": "readings",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "現在列挙した発話記述の列。内容の論理和ではない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingsambiguous": {
+      "arguments": [
+        {
+          "role": "readings",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "現在列挙した発話記述の列。内容の論理和ではない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingssingle": {
+      "arguments": [
+        {
+          "role": "readings",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "現在列挙した発話記述の列。内容の論理和ではない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingsabsence": {
+      "arguments": [
+        {
+          "role": "readings",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "現在列挙した発話記述の列。内容の論理和ではない。"
+        },
+        {
+          "role": "complete",
+          "sort": "truth",
+          "interpretation": "候補の列挙がこの文脈と解釈基準で尽くされたという判断。根拠を保持する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingsresolved": {
+      "arguments": [
+        {
+          "role": "readings",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "現在列挙した発話記述の列。内容の論理和ではない。"
+        },
+        {
+          "role": "complete",
+          "sort": "truth",
+          "interpretation": "候補の列挙がこの文脈と解釈基準で尽くされたという判断。根拠を保持する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingssubset": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "包含の左側の候補列。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "包含の右側の候補列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingssame": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "包含の左側の候補列。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "包含の右側の候補列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingnarrowing": {
+      "arguments": [
+        {
+          "role": "before",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の候補列。"
+        },
+        {
+          "role": "after",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の候補列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingrevision": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "解釈対象の出典箇所、または省略の先行箇所。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "同じ解釈文脈。"
+        },
+        {
+          "role": "before",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の候補列。"
+        },
+        {
+          "role": "beforeclosed",
+          "sort": "truth",
+          "interpretation": "変更前の列挙完了状態。"
+        },
+        {
+          "role": "after",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の候補列。"
+        },
+        {
+          "role": "afterclosed",
+          "sort": "truth",
+          "interpretation": "変更後の列挙完了状態。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "変更または補完を認める理由・証拠記録。"
+        },
+        {
+          "role": "change",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "truth"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出典・文脈・候補記述・根拠・追加/除外の判断。真の極性が追加、偽が除外。"
+        },
+        {
+          "role": "coverage",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "sequence",
+                "element": {
+                  "kind": "description",
+                  "result": "message"
+                }
+              },
+              "truth",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出典・文脈・変更後候補列・完了状態・根拠の整合する判断。列挙の十分性を自動証明しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "readinglinked": {
+      "arguments": [
+        {
+          "role": "priorsource",
+          "sort": "individual",
+          "interpretation": "前更新の出典箇所。"
+        },
+        {
+          "role": "priorcontext",
+          "sort": "individual",
+          "interpretation": "前更新の文脈。"
+        },
+        {
+          "role": "priorafter",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "前更新の変更後候補列。"
+        },
+        {
+          "role": "priorclosed",
+          "sort": "truth",
+          "interpretation": "前更新の変更後完了状態。"
+        },
+        {
+          "role": "nextsource",
+          "sort": "individual",
+          "interpretation": "次更新の出典箇所。"
+        },
+        {
+          "role": "nextcontext",
+          "sort": "individual",
+          "interpretation": "次更新の文脈。"
+        },
+        {
+          "role": "nextbefore",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "次更新の変更前候補列。"
+        },
+        {
+          "role": "nextclosed",
+          "sort": "truth",
+          "interpretation": "次更新の変更前完了状態。"
+        }
+      ],
+      "result": "truth"
+    },
+    "ellipsisresult": {
+      "arguments": [
+        {
+          "role": "template",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "主体・関係項・基準状況を受け取る閉じた発話関数の記述。"
+        },
+        {
+          "role": "subject",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "補完後の主体の閉じた個体記述。"
+        },
+        {
+          "role": "related",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "所有者等の関係項の閉じた個体記述。"
+        },
+        {
+          "role": "anchor",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "補完後の基準状況の閉じた記述。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "message"
+      }
+    },
+    "ellipsisvalid": {
+      "arguments": [
+        {
+          "role": "template",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "主体・関係項・基準状況を受け取る閉じた発話関数の記述。"
+        },
+        {
+          "role": "subject",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "補完後の主体の閉じた個体記述。"
+        },
+        {
+          "role": "related",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "所有者等の関係項の閉じた個体記述。"
+        },
+        {
+          "role": "anchor",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "補完後の基準状況の閉じた記述。"
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "補完後の発話の閉じた記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "ellipsislicensed": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "解釈対象の出典箇所、または省略の先行箇所。"
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "interpretation": "省略を補う箇所。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "同じ解釈文脈。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "変更または補完を認める理由・証拠記録。"
+        },
+        {
+          "role": "template",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "主体・関係項・基準状況を受け取る閉じた発話関数の記述。"
+        },
+        {
+          "role": "subject",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "補完後の主体の閉じた個体記述。"
+        },
+        {
+          "role": "related",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "所有者等の関係項の閉じた個体記述。"
+        },
+        {
+          "role": "anchor",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "補完後の基準状況の閉じた記述。"
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "補完後の発話の閉じた記述。"
+        },
+        {
+          "role": "license",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "situation"
+                  ],
+                  "result": "message"
+                }
+              },
+              {
+                "kind": "description",
+                "result": "individual"
+              },
+              {
+                "kind": "description",
+                "result": "individual"
+              },
+              {
+                "kind": "description",
+                "result": "situation"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "先行箇所・補完先・文脈・根拠・ひな形・三引数に対する許可判断。構文一致と区別する。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "design_sources": [
+    "docs/quotation-construction-v1.md",
+    "docs/shared-quotation-v1.md",
+    "docs/spec-v014.md"
+  ],
+  "limitations": [
+    "補完候補や省略の許可、候補列挙の完了、変更根拠の十分性は自動推測しない。",
+    "構文上異なる同義表現を自動同一化しない。候補保持と内容の真理を区別する。",
+    "共通の補完関数は個体二つと状況一つのひな形。その他の型には既存の可変長記述適用を使う。",
+    "円文字の共有語彙登録と第三者読解は未完。"
+  ]
+}
