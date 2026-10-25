@@ -1,0 +1,737 @@
+{
+  "status": "shared_explicit_temporal_readings",
+  "document": "examples/v016/shared-time-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "chronology": "履歴が空でなく、その履歴内で先行関係が厳密な全順序をなす。",
+    "timewindow": "空でない順序付き履歴内の、空でない凸な部分範囲。途中の履歴点を除かない。",
+    "holdsall": "空でない範囲の全状況で指定した内容が成立する。範囲の時間的整合性は別途timewindowで確認する。",
+    "processextent": "同じ順序付き履歴の厳密に前後する二状況を、指定した実際の変化過程が結ぶ。",
+    "becomes": "processextentを満たす同じ過程の前で内容が偽、後で真である。因果機構は含意しない。",
+    "windowbefore": "整合した範囲の全点が同じ履歴内の基準時より厳密に前である。",
+    "windowafter": "整合した範囲の全点が同じ履歴内の基準時より厳密に後である。",
+    "windowat": "同じ履歴内の基準時が整合した範囲に含まれる。",
+    "windowoverlap": "二つの整合した範囲に共通する状況が少なくとも一つある。",
+    "windowwithin": "第1の整合した範囲の全点が第2の整合した範囲に含まれる。",
+    "eventunderway": "同じ出来事の整合した進行範囲が基準時を含み、より前の進行点があり、基準時までに指定の完了条件が成立していない。将来の完了を要求しない。",
+    "eventcompleteby": "同じ出来事の整合した進行範囲に完了点があり、それより後の進行点がなく、完了点は基準時以前である。",
+    "eventonce": "全該当出来事の進行範囲が整合し、そのうち指定範囲と重なる出来事がちょうど一つ存在する。",
+    "eventevery": "対象期間が空でなく、各期間に全体が含まれる整合した該当出来事が少なくとも一つある。期間も整合した時間範囲である。"
+  },
+  "public_contracts": {
+    "chronology": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "timewindow": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "window",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "評価する時間範囲。境界を含むかと粒度を指定する。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "holdsall": {
+      "arguments": [
+        {
+          "role": "window",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "評価する時間範囲。境界を含むかと粒度を指定する。"
+        },
+        {
+          "role": "content",
+          "sort": "content",
+          "interpretation": "各状況で評価する同じ内容。"
+        }
+      ],
+      "result": "truth"
+    },
+    "processextent": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "対象となる同一の出来事。"
+        },
+        {
+          "role": "earlier",
+          "sort": "situation",
+          "interpretation": "過程の前状況。"
+        },
+        {
+          "role": "later",
+          "sort": "situation",
+          "interpretation": "過程の後状況。"
+        },
+        {
+          "role": "process",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と実際の前後状況の対応。観察者や別人の過程を混ぜない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "becomes": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "対象となる同一の出来事。"
+        },
+        {
+          "role": "earlier",
+          "sort": "situation",
+          "interpretation": "過程の前状況。"
+        },
+        {
+          "role": "later",
+          "sort": "situation",
+          "interpretation": "過程の後状況。"
+        },
+        {
+          "role": "process",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と実際の前後状況の対応。観察者や別人の過程を混ぜない。"
+        },
+        {
+          "role": "content",
+          "sort": "content",
+          "interpretation": "各状況で評価する同じ内容。"
+        }
+      ],
+      "result": "truth"
+    },
+    "windowbefore": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "window",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "評価する時間範囲。境界を含むかと粒度を指定する。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "判定の基準時。発話時・報告内の現在を呼出側で区別する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "windowafter": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "window",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "評価する時間範囲。境界を含むかと粒度を指定する。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "判定の基準時。発話時・報告内の現在を呼出側で区別する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "windowat": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "window",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "評価する時間範囲。境界を含むかと粒度を指定する。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "判定の基準時。発話時・報告内の現在を呼出側で区別する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "windowoverlap": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第1時間範囲。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第2時間範囲。"
+        }
+      ],
+      "result": "truth"
+    },
+    "windowwithin": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第1時間範囲。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第2時間範囲。"
+        }
+      ],
+      "result": "truth"
+    },
+    "eventunderway": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "対象となる同一の出来事。"
+        },
+        {
+          "role": "trace",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と、その出来事が実際に進行する状況の対応。未知を不在に置き換えない。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "判定の基準時。発話時・報告内の現在を呼出側で区別する。"
+        },
+        {
+          "role": "culmination",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出来事が指定の目的・課題の完了条件に達した状況。停止や観測の欠落だけでは成立しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "eventcompleteby": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "対象となる同一の出来事。"
+        },
+        {
+          "role": "trace",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と、その出来事が実際に進行する状況の対応。未知を不在に置き換えない。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "判定の基準時。発話時・報告内の現在を呼出側で区別する。"
+        },
+        {
+          "role": "culmination",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出来事が指定の目的・課題の完了条件に達した状況。停止や観測の欠落だけでは成立しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "eventonce": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "window",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "評価する時間範囲。境界を含むかと粒度を指定する。"
+        },
+        {
+          "role": "events",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話題の活動・主体・対象等に該当する出来事。主体等の対応をここで明示する。"
+        },
+        {
+          "role": "trace",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と、その出来事が実際に進行する状況の対応。未知を不在に置き換えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "eventevery": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        },
+        {
+          "role": "periods",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "反復を評価する期間の全範囲。"
+        },
+        {
+          "role": "windows",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各期間と、その期間に含まれる状況の対応。"
+        },
+        {
+          "role": "events",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話題の活動・主体・対象等に該当する出来事。主体等の対応をここで明示する。"
+        },
+        {
+          "role": "trace",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と、その出来事が実際に進行する状況の対応。未知を不在に置き換えない。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "source_renamings": {
+    "examples/v014/persistence.noema": {
+      "ta": "chronology",
+      "tb": "timewindow",
+      "tc": "holdsall"
+    },
+    "examples/v014/transitions.noema": {
+      "tg": "processextent",
+      "th": "becomes"
+    }
+  },
+  "limitations": [
+    "有限モデルは連続時間の証明ではない。",
+    "進行・完了・一度・毎回の明示した読みを提供し、全用法の自動判定はしない。",
+    "履歴、出来事の境界、完了条件、主体・対象、期間の選定を解釈入力として保持する。",
+    "Native共通定義の円文字への語彙登録と第三者読解は未完。"
+  ]
+}
