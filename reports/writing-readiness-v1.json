@@ -1,0 +1,164 @@
+{
+  "schema": "noema-writing-readiness-1",
+  "visual_freeze_verified": true,
+  "standalone_decoding_complete": false,
+  "collision_witnesses": [
+    {
+      "readings": [
+        "rain(town)",
+        "rain(home)"
+      ],
+      "same_registry": true,
+      "source_different": true,
+      "visible_equal": true,
+      "left": {
+        "kind": "assert",
+        "body": {
+          "kind": "call",
+          "symbol": "rain",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "town",
+              "arguments": []
+            }
+          ]
+        }
+      },
+      "right": {
+        "kind": "assert",
+        "body": {
+          "kind": "call",
+          "symbol": "rain",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "home",
+              "arguments": []
+            }
+          ]
+        }
+      },
+      "visible_sha256": [
+        "a48e130ce25690abd74a917341a36955edd7aeafbbcb70a12eb444905b4f16b0",
+        "a48e130ce25690abd74a917341a36955edd7aeafbbcb70a12eb444905b4f16b0"
+      ]
+    },
+    {
+      "readings": [
+        "above(birdone,treeone)",
+        "above(aki,nao)"
+      ],
+      "same_registry": true,
+      "source_different": true,
+      "visible_equal": true,
+      "left": {
+        "kind": "assert",
+        "body": {
+          "kind": "call",
+          "symbol": "above",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "birdone",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "treeone",
+              "arguments": []
+            }
+          ]
+        }
+      },
+      "right": {
+        "kind": "assert",
+        "body": {
+          "kind": "call",
+          "symbol": "above",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "aki",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "nao",
+              "arguments": []
+            }
+          ]
+        }
+      },
+      "visible_sha256": [
+        "586a553dd81dd301f4d6a3d566104d22ef027848978ac6191fcb4956055e1fc7",
+        "586a553dd81dd301f4d6a3d566104d22ef027848978ac6191fcb4956055e1fc7"
+      ]
+    }
+  ],
+  "registry_order_witness": {
+    "source": {
+      "kind": "assert",
+      "body": {
+        "kind": "call",
+        "symbol": "give",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "aki",
+            "arguments": []
+          },
+          {
+            "kind": "call",
+            "symbol": "book",
+            "arguments": []
+          },
+          {
+            "kind": "call",
+            "symbol": "nao",
+            "arguments": []
+          }
+        ]
+      }
+    },
+    "same_source": true,
+    "registry_order_changes_visible": true,
+    "visible_sha256": [
+      "93858840eb9ac134c79b1d7bd8543f6b09b625d4dad45ebf8ab3f5b41ec7a52e",
+      "fd7c3a32a3792e9be6bca747ad8d82e716ca3edab4c24fed73867a3bf4bbc1d0"
+    ]
+  },
+  "manuscripts": {
+    "kant-1784": {
+      "path": "examples/v016/kant-reviewed-complete-v1.noema",
+      "sha256": "fc3e1988ad9bb182c3fcabd20ef0c7150a34eb774a479ca4276b1dc8759cc7bc",
+      "statements": 119,
+      "declarations": {
+        "primitive": 2120,
+        "definition": 3941
+      }
+    },
+    "einstein-1905": {
+      "path": "examples/v014/einstein-reviewed-complete-v1.noema",
+      "sha256": "b4363520b6c7ea2769c34280238a7bb12cba2276dafab2d109c5602e2a1a3646",
+      "statements": 283,
+      "declarations": {
+        "primitive": 1857,
+        "definition": 4398
+      }
+    }
+  },
+  "meaning_checkpoint": "reports/written-progress-v432.json",
+  "source_sha256": {
+    "examples/v016/branch-circle-samples.noema": "67f6d84420f3f612af4e09c510464344e1fc4a4c91586fc917da101dcc698c1e",
+    "data/writing-freeze-v1.json": "a085d71414a6b74b297a0945d517d67b045441e838bebe86b57c669013f9c1b4",
+    "scripts/check_writing_freeze.py": "661355c8273bb1c0c78cf8ae2bcd5f4d59fc1b946cf2bbe4263654b3ae03b54b",
+    "scripts/contextual_opening_script.py": "15227e9fc38dcb7567e33fe00b4b2dd7738c01ecd5552cc1df9686ca2a401f6d",
+    "scripts/balanced_circle_script.py": "a96f66f6115df990750e738745e0724c4841adcb1df4f6559272cd78b87cda1c"
+  },
+  "limits": [
+    "A successful freeze check is not a successful optical decoder.",
+    "A shared learned vocabulary is allowed; a per-document dictionary/AST sidecar is not.",
+    "No new natural-language coverage or semantic equivalence is certified here."
+  ]
+}
