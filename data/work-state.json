@@ -5,9 +5,11 @@
   "progress_report": "reports/written-progress-v432.json",
   "next_work": {
     "work": "writing",
-    "unit": "試作09でカント冒頭四段落を各一枚へ拡大・Noemaの行間を拡張済み。",
-    "scope": "output/kant-page-script-v2/に原文592語に対応する全40主張のNoemaのみの18行画像と、Richardson公刊英訳1798年版の対応画像を作成。前版に対し原文2倍、図形主部243から490へ約2倍。文字倍率0.94から0.53、行送りの基準136から210へ変更し、実際の行間も拡張。6検査通過。定義参照を残す表記であり、原文・本文・旧描画器は変更していない。通常文①③の意味と形の生成はdocs/kant-page-script-v1.md。未解決は、文ごとの辞書番号にも依存する語の形を人が識別できる規則へ整理すること、枝の順序と文境界を画像だけから一意に復元すること、参照と展開の粒度を揃えること。次はユーザーの見た目・読み方への評価を反映する。画像だけの完全復号は未証明。旧goalは再開しない。",
+    "unit": "文頭の構文に応じた形・試作10をカント四段落へ適用。",
+    "scope": "前版の全40主張に付いた左の導入線は描画側の一律処理だった。新しいcontextual_opening_script.pyで、結合22件は上下半径線、引用引数11件は中心から斜線、関数引数4件は大円の円周から斜線、評価1件は中心線なしとし、通常の導入線は2件へ。文番号・語の綴り・乱数では選ばず、直接の構文と衝突検査で決定。output/kant-page-script-v3/へ同じ原文592語・全40主張を18行で描画、文字倍率0.53と広い行間を維持。英訳画像は前版と同一。既存本文・判断・旧描画器は保存。未解決は画像だけからの語の識別、枝の順序と文境界の復元、参照と展開の粒度。次はユーザーの見た目・読み方への評価を反映する。旧goalは再開しない。",
     "start_here": [
+      "docs/kant-page-script-v3.md",
+      "scripts/contextual_opening_script.py",
       "docs/kant-page-script-v2.md",
       "docs/kant-page-script-v1.md",
       "docs/balanced-circle-script-v9.md",
@@ -39,7 +41,7 @@
     "assembly_checkpoint": "reports/reviewed-works-assembly-v1.json",
     "cultural_example_checkpoint": "reports/local-reciprocity-custom-v1.json",
     "alphabet_prototype": "reports/balanced-circle-script-v9.json",
-    "alphabet_page_proof": "reports/kant-page-script-v2.json"
+    "alphabet_page_proof": "reports/kant-page-script-v3.json"
   },
   "limits": [
     "二作品の全302単位・51,127非空白本文文字について、明示した解釈の下での全文判断と六成果物の完成監査を保存。判断はアシスタントによるもので、独立査読・同義性の自動証明・原著者の理論の真理の証明ではない。",
