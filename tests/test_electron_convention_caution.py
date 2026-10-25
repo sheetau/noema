@@ -1,0 +1,8 @@
+from scripts.check_electron_convention_caution import numerical_checks,selection_checks,caution_checks,presentation_checks,binding_checks,structure_checks
+
+def test_response_maps_and_native_history():assert numerical_checks()
+def test_independent_operational_selection():assert selection_checks()
+def test_care_degree_and_requirement():assert caution_checks()
+def test_source_presentation_without_quote_execution():assert presentation_checks()
+def test_nonempty_universal_scope_and_shared_bindings():assert binding_checks()
+def test_preserved_evidence_and_structure():assert structure_checks()
