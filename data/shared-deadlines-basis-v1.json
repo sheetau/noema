@@ -1,0 +1,2577 @@
+{
+  "status": "shared_deadline_fulfillment_and_grounded_release",
+  "document": "examples/v016/shared-deadlines-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "chronology": "履歴が空でなく、その履歴内で先行関係が厳密な全順序をなす。",
+    "normrequired": "指定された出所・本人・役割・活動・記述・極性・文脈について要求がある。",
+    "normwitness": "同じ規範が同じ出所・文脈で認められ、本人・役割へ適用され、その規範と理由が同じ対象・極性を支える。",
+    "groundedrule": "各対象についてnormwitnessを満たす同じ規範と理由の組が存在する、という要求または許可の関係を作る。",
+    "speechpresented": "指定した同じ発話行為が生起し、同じ人が提示者となり、非空の受け手範囲の各人へ、同じ対象に関する同じ発話記述を示す。受け手が理解・同意したこと、内容の真理、公的使用かどうかは含まない。",
+    "speechto": "同じ生起する行為で同じ人が、指定受け手へ同じ対象・発話記述を提示する。単独受け手への条件であり、他の受け手の存在を排除しない。",
+    "speechtargeted": "同じ提示と、その同じ行為・対象・発話記述が指定行為者の行為記述を求める対象として扱うという明示的解釈を結ぶ。",
+    "speechpromise": "話者自身の行為を対象とする提示に、同じ話者が同じ受け手に対して同じ発話行為で当該行為を自ら引き受ける表明を結ぶ。単なる未来予測や受け手の行為への依頼と区別する。",
+    "deadlinevalid": "同じ非空の時間履歴に厳密な全順序があり、起点・期限・評価点がそこに属し、起点は期限より前、評価点は起点以後である。",
+    "deadlinewindow": "履歴内で起点より後、期限以下、評価点以下の時点を選ぶ関数。枠の妥当性はdeadlinevalidで別に確認する。",
+    "deadlineobserved": "妥当な枠内で、指定行為者の行為内容が起点より後かつ期限・評価点以下のどこかで成立する。",
+    "deadlineachieved": "同じ閉じた行為記述を評価してdeadlineobservedの条件を調べる。本人や行為記述を置き換えない。",
+    "deadlineclause": "一個体の行為関数と履歴・順序・起点・期限・対象活動から、二個体の規範用内容関数を構成する。活動同一性と、その評価点までの期限内実現を内容とする。",
+    "deadlinedescription": "同じ行為・時間枠・対象活動の閉じた記述をdeadlineclauseの引用へ適用し、規範用の閉じた記述を構成する。行為内容は実行しない。",
+    "deadlinerequired": "妥当な時間枠で、同じ出所・本人・役割・対象活動・構成した期限条件について、起点時点の肯定的要求がある。後日の再解釈で起点の記録を書き換えない。",
+    "deadlinefreedat": "妥当な起点以後の指定時点に、同じ要求対象を解除する権限が指定主体にあり、その主体が同じ理由で解除したという二関係がある。単なる採用記録の撤回ではない。",
+    "deadlinereleased": "起点の要求があり、評価点までに権限と理由を持つ解除の証人がある。期限後の解除も含む。",
+    "deadlinefulfilled": "起点の要求があり、同じ本人・行為・活動に対する期限条件が評価点までに成立した。解除との排他性は要求しない。",
+    "deadlinepending": "起点の要求があり、評価点が期限以下で、関連範囲の調査完了が明示され、期限内の実現も解除もまだない。期限の時点自体も含む。",
+    "deadlinebreached": "評価点が期限より後で、起点の要求と関連範囲の調査完了があり、期限までに実現も有効な解除もなかった。期限後の実現・解除でこの履歴条件は消えない。",
+    "deadlinelate": "起点の要求と調査完了があり、期限内の実現はないが、期限後から評価点までに同じ行為内容が成立する。解除済みかどうかとは独立した遅い実現の条件。",
+    "promisedeadline": "同じ話者・行為記述の約束が提示され、その提示状況が期限条件の起点と一致し、その起点に構成した期限条件への要求がある。約束だけから要求の有効性を推測しない。"
+  },
+  "public_contracts": {
+    "chronology": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間的履歴に属する状況の全範囲。観測された点だけへ無断で縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行。異なる履歴の可能性や評価上の順位と混同しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normrequired": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normwitness": {
+      "arguments": [
+        {
+          "role": "norm",
+          "sort": "individual",
+          "interpretation": "採用または適用される規範の個体。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "規範の適用または比較候補の選択に用いる明示的な根拠の個体。"
+        },
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "recognized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "規範・出所・文脈の採用関係。普遍的な正当性の証明とはしない。"
+        },
+        {
+          "role": "applicable",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "規範・本人・役割・文脈に対する適用関係。例外・優先順位を反映する場合は採用規約を明示する。"
+        },
+        {
+          "role": "supports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ規範・理由・七対象項目の根拠関係。要求用と許可用を分け、何を根拠として認めたかを説明する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "groundedrule": {
+      "arguments": [
+        {
+          "role": "recognized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "規範・出所・文脈の採用関係。普遍的な正当性の証明とはしない。"
+        },
+        {
+          "role": "applicable",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "規範・本人・役割・文脈に対する適用関係。例外・優先順位を反映する場合は採用規約を明示する。"
+        },
+        {
+          "role": "supports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ規範・理由・七対象項目の根拠関係。要求用と許可用を分け、何を根拠として認めたかを説明する。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual",
+          "individual",
+          "individual",
+          {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "truth",
+          "situation"
+        ],
+        "result": "truth"
+      }
+    },
+    "speechpresented": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "audience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechto": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechtargeted": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "actor",
+          "sort": "individual",
+          "interpretation": "求める行為の主体。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechpromise": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        },
+        {
+          "role": "undertakes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話者・受け手・提示行為・行為記述・状況の、当該行為を自分に課すものとして引き受ける表明。内心の意思、成功、有効な義務の存在を含意しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlinevalid": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間履歴の全時点範囲。観測された点だけへ縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行関係。"
+        },
+        {
+          "role": "issued",
+          "sort": "situation",
+          "interpretation": "約束または要求の起点。"
+        },
+        {
+          "role": "due",
+          "sort": "situation",
+          "interpretation": "履行と解除を期限内として認める最終時点。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlinewindow": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間履歴の全時点範囲。観測された点だけへ縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行関係。"
+        },
+        {
+          "role": "issued",
+          "sort": "situation",
+          "interpretation": "約束または要求の起点。"
+        },
+        {
+          "role": "due",
+          "sort": "situation",
+          "interpretation": "履行と解除を期限内として認める最終時点。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "situation"
+        ],
+        "result": "truth"
+      }
+    },
+    "deadlineobserved": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual",
+          "interpretation": "内容を実行評価する行為者。"
+        },
+        {
+          "role": "operation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "本人から状況ごとの行為内容を返す関数。"
+        },
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間履歴の全時点範囲。観測された点だけへ縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行関係。"
+        },
+        {
+          "role": "issued",
+          "sort": "situation",
+          "interpretation": "約束または要求の起点。"
+        },
+        {
+          "role": "due",
+          "sort": "situation",
+          "interpretation": "履行と解除を期限内として認める最終時点。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlineachieved": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual",
+          "interpretation": "内容を実行評価する行為者。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間履歴の全時点範囲。観測された点だけへ縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行関係。"
+        },
+        {
+          "role": "issued",
+          "sort": "situation",
+          "interpretation": "約束または要求の起点。"
+        },
+        {
+          "role": "due",
+          "sort": "situation",
+          "interpretation": "履行と解除を期限内として認める最終時点。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlineclause": {
+      "arguments": [
+        {
+          "role": "operation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "本人から状況ごとの行為内容を返す関数。"
+        },
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ時間履歴の全時点範囲。観測された点だけへ縮めない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その履歴での厳密な先行関係。"
+        },
+        {
+          "role": "issued",
+          "sort": "situation",
+          "interpretation": "約束または要求の起点。"
+        },
+        {
+          "role": "due",
+          "sort": "situation",
+          "interpretation": "履行と解除を期限内として認める最終時点。"
+        },
+        {
+          "role": "performance",
+          "sort": "individual",
+          "interpretation": "同じ要求対象となる活動の識別子。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual"
+        ],
+        "result": "content"
+      }
+    },
+    "deadlinedescription": {
+      "arguments": [
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": "content"
+        }
+      }
+    },
+    "deadlinerequired": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求を出す制度・規範・立場の出所。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ要求を負う本人。約束との接続では同じ話者。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "要求の対象となる本人の役割。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出所・本人・役割・活動・記述・極性・状況に対する要求。起点の記録を保持する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlinefreedat": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求を出す制度・規範・立場の出所。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ要求を負う本人。約束との接続では同じ話者。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "要求の対象となる本人の役割。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "point",
+          "sort": "situation",
+          "interpretation": "解除の効力と行為を同じ時点として記録する状況。"
+        },
+        {
+          "role": "authority",
+          "sort": "individual",
+          "interpretation": "解除を行う権限主体。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "同じ解除の理由・証拠識別子。"
+        },
+        {
+          "role": "authorized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "権限主体・出所・本人・役割・活動・期限条件記述・起点・解除時点について解除権限があるという明示的入力。"
+        },
+        {
+          "role": "releases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "権限主体・理由・出所・本人・役割・活動・期限条件記述・起点・解除時点について解除したという明示的入力。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlinereleased": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求を出す制度・規範・立場の出所。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ要求を負う本人。約束との接続では同じ話者。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "要求の対象となる本人の役割。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出所・本人・役割・活動・記述・極性・状況に対する要求。起点の記録を保持する。"
+        },
+        {
+          "role": "authorized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "権限主体・出所・本人・役割・活動・期限条件記述・起点・解除時点について解除権限があるという明示的入力。"
+        },
+        {
+          "role": "releases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "権限主体・理由・出所・本人・役割・活動・期限条件記述・起点・解除時点について解除したという明示的入力。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlinefulfilled": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求を出す制度・規範・立場の出所。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ要求を負う本人。約束との接続では同じ話者。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "要求の対象となる本人の役割。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出所・本人・役割・活動・記述・極性・状況に対する要求。起点の記録を保持する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlinepending": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求を出す制度・規範・立場の出所。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ要求を負う本人。約束との接続では同じ話者。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "要求の対象となる本人の役割。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出所・本人・役割・活動・記述・極性・状況に対する要求。起点の記録を保持する。"
+        },
+        {
+          "role": "authorized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "権限主体・出所・本人・役割・活動・期限条件記述・起点・解除時点について解除権限があるという明示的入力。"
+        },
+        {
+          "role": "releases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "権限主体・理由・出所・本人・役割・活動・期限条件記述・起点・解除時点について解除したという明示的入力。"
+        },
+        {
+          "role": "complete",
+          "sort": "truth",
+          "interpretation": "対象期間の実現・解除について関連記録を尽くしたという明示。標本で見つからないことや未知入力の既定値ではない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlinebreached": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求を出す制度・規範・立場の出所。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ要求を負う本人。約束との接続では同じ話者。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "要求の対象となる本人の役割。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出所・本人・役割・活動・記述・極性・状況に対する要求。起点の記録を保持する。"
+        },
+        {
+          "role": "authorized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "権限主体・出所・本人・役割・活動・期限条件記述・起点・解除時点について解除権限があるという明示的入力。"
+        },
+        {
+          "role": "releases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "権限主体・理由・出所・本人・役割・活動・期限条件記述・起点・解除時点について解除したという明示的入力。"
+        },
+        {
+          "role": "complete",
+          "sort": "truth",
+          "interpretation": "対象期間の実現・解除について関連記録を尽くしたという明示。標本で見つからないことや未知入力の既定値ではない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "deadlinelate": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求を出す制度・規範・立場の出所。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ要求を負う本人。約束との接続では同じ話者。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "要求の対象となる本人の役割。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ本人の行為内容を返す閉じた段階0の関数記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出所・本人・役割・活動・記述・極性・状況に対する要求。起点の記録を保持する。"
+        },
+        {
+          "role": "complete",
+          "sort": "truth",
+          "interpretation": "対象期間の実現・解除について関連記録を尽くしたという明示。標本で見つからないことや未知入力の既定値ではない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "promisedeadline": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        },
+        {
+          "role": "undertakes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話者・受け手・提示行為・行為記述・状況の、当該行為を自分に課すものとして引き受ける表明。内心の意思、成功、有効な義務の存在を含意しない。"
+        },
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求を出す制度・規範・立場の出所。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "要求の対象となる本人の役割。"
+        },
+        {
+          "role": "performancedescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "要求対象活動の閉じた個体記述。"
+        },
+        {
+          "role": "historydescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "履歴範囲の閉じた記述。"
+        },
+        {
+          "role": "orderdescription",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "時間順序の閉じた記述。"
+        },
+        {
+          "role": "issueddescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "起点の閉じた状況記述。"
+        },
+        {
+          "role": "duedescription",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "期限の閉じた状況記述。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "状態を評価する時点。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ出所・本人・役割・活動・記述・極性・状況に対する要求。起点の記録を保持する。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_sources": [
+    {
+      "document": "examples/v016/shared-time-v1.noema",
+      "basis": "data/shared-time-basis-v1.json",
+      "names": [
+        "chronology"
+      ]
+    },
+    {
+      "document": "examples/v016/shared-norms-v1.noema",
+      "basis": "data/shared-norms-basis-v1.json",
+      "names": [
+        "normrequired",
+        "normwitness",
+        "groundedrule"
+      ]
+    },
+    {
+      "document": "examples/v016/shared-speech-v1.noema",
+      "basis": "data/shared-speech-basis-v1.json",
+      "names": [
+        "speechpresented",
+        "speechto",
+        "speechtargeted",
+        "speechpromise"
+      ]
+    }
+  ],
+  "limitations": [
+    "一回の起点から期限までに少なくとも一度成立すれば満たす、肯定的な期限要求の読み。起点を除き期限を含む。持続義務・反復・複数条項の全履行・遡及的免責・再有効化を自動で含めない。",
+    "期限時点の解除は期限内として扱う。期限後の解除は現在までに解除済みでも、期限時点の不履行を消さない。この明示した規約をあらゆる制度に共通する規則とはしない。",
+    "起点に要求があったことは、規範の正当性の普遍的証明ではない。既存groundedrule/normwitnessで同じ根拠を構成できる。解除権限と解除行為は追加の明示的解釈入力。",
+    "fulfilled、released、breached、lateは排他的な状態名ではない。遅い実現や期限後の解除と、過去の期限不履行は併存する。調査完了の明示がない場合、pending/breached/lateの否定的条件を成立としない。",
+    "要求対象の規範記述は引用したdeadlineclauseへ同じ閉じた引数記述を適用して構成する。真偽が偶然同じ別の行為・活動・時点の記述へ置換しない。",
+    "時間履歴は将来の評価点を含む枠としても記述できるが、観測完了とは別。有限評価器は論理演算を短絡しないため、条件の外の時点も含め実行に必要な解釈が未知なら拒否する。未知を不実現へ変換しない。",
+    "有限モデルと単枠束縛診断は、連続時間全域や実際の約束・制度の認定根拠を証明しない。会話採用記録の撤回だけで要求の解除を補わない。"
+  ]
+}
