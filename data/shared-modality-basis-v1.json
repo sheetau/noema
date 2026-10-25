@@ -1,0 +1,604 @@
+{
+  "status": "shared_parameterized_modality_and_ability",
+  "document": "examples/v016/shared-modality-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "candidatenecessary": "内容と文脈について指定された候補状況が非空で、その全候補で同じ内容が成立する。現在状況の真理や、あらゆる理論での論理的必然性とは区別する。",
+    "necessaryactual": "candidatenecessaryに加えて同じ内容が現在状況でも成立する。候補の全称条件だけで現実の成立を補うこととの違いを明示する比較用の関係。",
+    "assessmentvalid": "指定した人・方法・開始状況について、評価対象の結果が空でなく、全て想定結果に含まれる。",
+    "methodpossible": "実行できる方法があり、その想定結果の少なくとも一つで目的が成立する。成功の可能性であり保証ではない。",
+    "methodguaranteed": "実行できる方法があり、その想定結果が空でなく、全結果で目的が成立する。",
+    "assessedability": "実行できる方法のうち、assessmentvalidを満たす評価対象の全結果で目的が成立する方法がある。他の方法の評価範囲が妥当であることまでは含まない。",
+    "methodsassessable": "実行できる全方法について評価対象が空でなく想定結果の部分集合である。実行できる方法がなければこの整合条件は成立する。",
+    "assessmentdecisive": "assessedabilityの達成方法を一つ確認できるか、methodsassessableにより全方法の評価範囲が整合する。能力の有無をこの解釈内で判定できる条件。",
+    "assessedinability": "methodsassessableによって全方法の評価範囲の整合性を確認した上で、assessedabilityの達成方法がない。単なるassessedabilityの否定とは区別し、未評価の方法を不可能扱いしない。",
+    "candidateexists": "内容と評価文脈に対して選択された候補状況が一つ以上ある。内容の成立は要求しない。",
+    "candidateempty": "内容と評価文脈に対して選択された候補状況がない。候補に関する情報不足を意味しない。",
+    "candidatepossible": "選択された候補状況の少なくとも一つで内容が成立する。現在の成立、実行可能な方法、許可を含意しない。",
+    "candidateexcluded": "候補状況が非空で、その全てで内容が成立しない。候補が空の場合とは区別する。",
+    "candidatecontingent": "同じ選択範囲に、内容が成立する候補と成立しない候補がともにある。真理値が未指定だという情報不足とは区別する。"
+  },
+  "public_contracts": {
+    "candidatenecessary": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "necessaryactual": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "candidateexists": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "candidateempty": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "candidatepossible": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "candidateexcluded": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "candidatecontingent": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "assessmentvalid": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "outcomes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "selected",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "実行可能性、想定結果、目標、評価基準を同じ主体と開始状況で与える。"
+      ]
+    },
+    "methodpossible": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "outcomes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "実行可能性、想定結果、目標、評価基準を同じ主体と開始状況で与える。"
+      ]
+    },
+    "methodguaranteed": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "outcomes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "実行可能性、想定結果、目標、評価基準を同じ主体と開始状況で与える。"
+      ]
+    },
+    "assessedability": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "outcomes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "selected",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "実行可能性、想定結果、目標、評価基準を同じ主体と開始状況で与える。"
+      ]
+    },
+    "methodsassessable": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "outcomes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "selected",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "実行可能性、想定結果、目標、評価基準を同じ主体と開始状況で与える。"
+      ]
+    },
+    "assessmentdecisive": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "outcomes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "selected",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "実行可能性、想定結果、目標、評価基準を同じ主体と開始状況で与える。"
+      ]
+    },
+    "assessedinability": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "outcomes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "selected",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "実行可能性、想定結果、目標、評価基準を同じ主体と開始状況で与える。"
+      ]
+    }
+  },
+  "source_renamings": {
+    "examples/v014/derivation-modalities.noema": {
+      "s5k": "candidatenecessary",
+      "s5l": "necessaryactual"
+    },
+    "examples/v013/contextual-ability.noema": {
+      "xa": "assessmentvalid",
+      "xb": "methodpossible",
+      "xc": "methodguaranteed",
+      "xd": "assessedability",
+      "xe": "methodsassessable",
+      "xf": "assessmentdecisive",
+      "xg": "assessedinability"
+    }
+  },
+  "limitations": [
+    "候補選定と評価対象の妥当性の実質的な根拠は解釈側が与える。未指定を空集合とみなさない。",
+    "一般的な許可・可能性・能力の語義を一つの候補関係に同一化しない。",
+    "名前・型・定義本体の一致だけで基本記号の意味の一致を認定しない。",
+    "二作品の本文・原文の意味判断・完成件数は変更しない。円文字の公開語彙への接続は未完。"
+  ]
+}
