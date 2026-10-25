@@ -1,0 +1,7 @@
+from scripts.check_electron_deflection_response import numeric_checks,physical_checks,shared_checks,binding_checks,structure_checks
+
+def test_signed_transverse_responses_and_ratio():assert numeric_checks()
+def test_actual_fields_forces_units_and_acceleration():assert physical_checks()
+def test_shared_background_and_separate_allowed_trials():assert shared_checks()
+def test_every_trial_witness_and_public_role():assert binding_checks()
+def test_prior_evidence_and_source_scope_preserved():assert structure_checks()
