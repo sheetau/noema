@@ -1,19 +1,15 @@
 {
   "schema_version": "noema-work-state-1",
-  "objective": "二作品の全文記述は明示した解釈の下で完成。円と線による書記体系の見た目を固定し、付属データなしの読み戻し・番号に依存しない語彙・残る意味領域の一般化を引き継ぐ。発音・翻訳器は対象外。",
+  "objective": "二作品の意味確認完了と現行字体の固定を維持。現在の作業範囲・未解決事項は .noema-project/ledger.sqlite を正本とする。",
   "review_index": "data/semantic-review-index-v456.json",
   "progress_report": "reports/written-progress-v432.json",
   "next_work": {
     "work": "writing",
-    "unit": "現行字体を固定。次に着手する課題は語の識別の最小対。",
-    "scope": "現在の図形では同じ辞書でもrain(town)とrain(home)が一致する。公開された語の識別規則を作り、辞書順・追加に依存せず読めることを最初に確認する。その後、枝の順序・範囲・境界・行継続、定義を含む自立文書、共通語彙と自然言語の意味領域へ進む。詳細と受入条件は引き継ぎを参照。今回これらの実装や停止中goalの再開は行っていない。",
+    "unit": "SQLite台帳の current / writing-identity を参照。",
+    "scope": "python -X utf8 -m scripts.project_notes brief を入口とし、必要な記録を get で読む。このJSONは本文・登録簿・監査の選択を担い、詳細な引き継ぎを二重管理しない。",
     "start_here": [
-      "docs/language-readiness-handoff.md",
-      "docs/writing-system.md",
-      "reports/writing-readiness-v1.json",
-      "data/writing-freeze-v1.json",
-      "scripts/contextual_opening_script.py",
-      "examples/v016/branch-circle-samples.noema"
+      "docs/project-records.md",
+      "docs/writing-system.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。 新規の意味判断モジュールは生成済みの本文・規約・証拠を読む。パスや定数だけのために最新composeをimportして過去全体のimport連鎖を作らない（review_reflected_light_inquiry.pyで再帰上限を避けた構成を参照）。"
   },
@@ -40,11 +36,18 @@
     "alphabet_page_proof": "reports/kant-page-script-v3.json",
     "writing_freeze": "data/writing-freeze-v1.json",
     "writing_readiness": "reports/writing-readiness-v1.json",
-    "writing_cleanup": "reports/writing-cleanup-v1.json"
+    "writing_cleanup": "reports/writing-cleanup-v1.json",
+    "document_retention": "reports/document-retention-v1.json"
   },
   "limits": [
     "二作品の全302単位・51,127非空白本文文字について、明示した解釈の下での全文判断と六成果物の完成監査を保存。判断はアシスタントによるもので、独立査読・同義性の自動証明・原著者の理論の真理の証明ではない。",
     "Noemaのあらゆる意味に対する表現率は未測定。0.15/0.16は明示的に選ぶ仕様で、高階関数の一般的な静的効果・停止性の証明や無限領域の万能評価器は提供しない。文化規約の適用例は架空の共同体の局所定義。",
     "自動翻訳器とモデル比較は保留。goalの実行制御はこのファイルでは行わない。"
-  ]
+  ],
+  "records": {
+    "ledger": ".noema-project/ledger.sqlite",
+    "command": "python -X utf8 -m scripts.project_notes brief",
+    "authoritative": true,
+    "disposable": false
+  }
 }

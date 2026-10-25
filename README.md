@@ -5,12 +5,12 @@
 ## 開発の再開
 
 ```powershell
-python -X utf8 -m scripts.project_work brief
+python -X utf8 -m scripts.project_notes brief
 ```
 
-見た目は[現行書記体系](docs/writing-system.md)で固定しました。次の課題と着手順は[言語完成への引き継ぎ](docs/language-readiness-handoff.md)を参照してください。
+見た目は[現行書記体系](docs/writing-system.md)で固定しました。次の課題と着手順はSQLite台帳の `brief` / `get` で読みます。[記録の管理手順](docs/project-records.md)を参照してください。
 
-[現在地](docs/STATUS.md) → [作業・検証手順](docs/WORKFLOW.md) → 必要な個別仕様・判断記録の順に読みます。正本と次の作業の参照先は [work-state.json](data/work-state.json) にあります。
+[現在地](docs/STATUS.md) → [作業・検証手順](docs/WORKFLOW.md) → 必要な個別仕様・判断記録の順に読みます。言語本文と検証の参照先は [work-state.json](data/work-state.json)、次の作業は `.noema-project/ledger.sqlite` にあります。
 
 ## 意味と完成の基準
 
@@ -29,4 +29,4 @@ python -X utf8 -m scripts.project_work brief
 python -X utf8 -m scripts.project_work history "因果"
 ```
 
-SQLiteはローカルの検証キャッシュ・実行記録・履歴検索索引に使用します。言語仕様・意味判断・原文との対応・履歴本文はファイルとGitに保存します。
+SQLiteは引き継ぎ・退役文書の正本と、検証キャッシュ・実行記録を別DBで管理します。言語仕様・意味判断・原文との対応はファイルとGitに保存します。台帳はキャッシュと一緒に削除しないでください。

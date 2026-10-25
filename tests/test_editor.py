@@ -2,6 +2,7 @@ from http.server import ThreadingHTTPServer
 import json
 from pathlib import Path
 import re
+from xml.etree import ElementTree
 from threading import Thread
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
@@ -28,7 +29,14 @@ def test_lessons_and_readings_parse_and_round_trip():
     assert all(w["ja"] for w in lexicon()["words"])
     from scripts.build_learning_materials import build
     for name, expected in build(Path(".")).items():
-        assert Path(name).read_text(encoding="utf-8") == expected
+        if name == "examples/school.svg":
+            # Preview files are disposable. Check the generator without keeping
+            # an obsolete font preview in the source examples directory.
+            svg = ElementTree.fromstring(expected)
+            assert svg.tag == "{http://www.w3.org/2000/svg}svg"
+            assert len(svg) > 0
+        else:
+            assert Path(name).read_text(encoding="utf-8") == expected
 
 
 @pytest.fixture

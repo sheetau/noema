@@ -20,4 +20,4 @@ python -X utf8 -m scripts.proof_kant_page_script_v3
 python -X utf8 -m scripts.project_work check --module scripts.check_writing_freeze --tests tests/test_script.py tests/test_script_v2.py --verify reports/writing-readiness-v1.json
 ```
 
-整理対象267ファイルは `.history/writing-retired-v1/` へ退避済み。削除は自動承認レビューに拒否されたため実施していない。[削除用の実パス一覧](../cleanup-delete-paths.txt) の先頭にある退避フォルダを利用者が削除できる。各ファイルの元パス、サイズ、ハッシュ、退避パスは [整理記録](../reports/writing-cleanup-v1.json) に保存した。以後の通常出力は現行版に限定し、旧画像を一括再生成しない。
+旧字体・出力267ファイルの整理は[前回の記録](../reports/writing-cleanup-v1.json)を参照。削除用一覧と退避フォルダは現在存在しません。文書と引き継ぎは[SQLite台帳](project-records.md)へ整理しました。現行画像と依存コードは維持し、旧画像を一括再生成しません。
