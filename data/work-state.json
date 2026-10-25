@@ -1,43 +1,42 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v440.json",
-  "progress_report": "reports/written-progress-v417.json",
+  "review_index": "data/semantic-review-index-v441.json",
+  "progress_report": "reports/written-progress-v418.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0252第一文とu0254–u0258の全文統合：質量の問い、力の説明・ばね秤の例示、規約と二質量表示",
-    "scope": "正本はeinstein-electron-force-measurement.noema（423主張、旧全文判断255件）。新しい依存15定義と物理的対応3関係を追加し、全文判断はまだ追加していない。elyは同じPAIR42+forcerecord+forceのkの電気的機械力eibs。fieldunitには同じelectricunitを渡す。elzは零基準・単調な校正曲線、el2は弾性要素+目盛り+静止装置、el3は元の力記録を物理的に可能な結果で比較して同じ三成分を読む試行。el4/5は一つの装置・要素を共有し各軸の別試行を許す。el6/7は同じ現在の力と測定可能性。emaは力の存在、embは同じ全38束縛に対する力と測定可能性の閉じた内容。原文のkは元の電子へ瞬間静止する系で、装置の静止は可能結果側。電子の元の加速軌道を測定結果へ丸ごと複製しない。emcはCONVENTION46の力・派生加速度単位A T²=L, M A=F・kの力/Kの加速度の規約。emdは二係数候補（実三成分seph+全六実数の係数同定sepi）、emeは同じ設定を外側で固定した二実数質問、emfは縦μβ³・横μβ²の結論候補、emgは条件付き同値。今後は通常の考え方への沿い方、縦横の命名と幾何、zunächst、例えばという括弧の例示、力の呼称、条件付き規約採用、平方根の分母を含む二表示式、著者帰属を接続し一群を再読する。M0417の六等号とu0252第二文は前段elq–elxで統合済み。原刊919頁はPDF index28/.noema-cache/einstein-919.png。新定義の内容と検査境界はdocs/electron-force-measurement-v1.mdへ。次の未使用定義emh、原始記号eisyu。u0239、u0252、u0254–u0278が未判断、u0279–u0282は保存。小tとkのτ微分を区別するv2訂正を維持する。 例示は既存eir5(node,author,prior,quote(target),context)、挿入補足はeisa5(node,author,quote(target),quote(qualification),reference)を再利用できる。",
+    "unit": "einstein-1905:u0259：別の力・加速度の定義による質量数値と、電子の運動理論を比較するときの注意",
+    "scope": "正本はeinstein-electron-directional-masses.noema（426主張）。u0252とu0254–u0258の六単位を全文判断し、u0253の旧六等号判断も維持した。問い423→書換え422→力・ばね秤例示424→条件付き二質量425という本文順はueとsource_order_statementsに明示する。現在の力はk、加速度はK。embは同じ力の可能測定、emd/emeは同じ規約での二係数候補と質問、emjはμβ³・μβ²と原刊の二分数、emt/encは呼称・数値法則の保持を前件とする条件文。次はu0259全文を、別の定義の選択と数値の変化、Naturlichの位置付け、比較時に非常に慎重であるべきという帰結へ合成する。全ての異なる定義が必ず異なる値を返すと過度に量化しない。続くu0260は任意に小さな電荷の付与可能性による物質点への質量結果の拡張で、別の依存群として計画する。原刊919頁はPDF index28。新定義end、原始記号eiszcから未使用。未判断はu0239とu0259–u0278、u0279–u0282は保存。小tとkのτ微分を区別したv2訂正を維持する。詳細は新しいdocと固定検査・判断記録へ。",
     "start_here": [
-      "docs/electron-force-measurement-v1.md",
+      "docs/electron-directional-masses-v1.md",
+      "scripts/compose_electron_directional_masses.py",
+      "scripts/review_electron_directional_masses.py",
       "scripts/compose_electron_force_measurement.py",
-      "scripts/check_electron_force_measurement.py",
-      "scripts/compose_electron_mass_rewrite.py",
       "scripts/compose_mass_coefficients.py",
-      "scripts/compose_reflected_light_inquiry.py",
       "docs/semantic-review-v1.md"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。 新規の意味判断モジュールは生成済みの本文・規約・証拠を読む。パスや定数だけのために最新composeをimportして過去全体のimport連鎖を作らない（review_reflected_light_inquiry.pyで再帰上限を避けた構成を参照）。"
   },
   "verification": {
-    "language_checkpoint": "reports/electron-force-measurement-v1.json",
-    "whole_unit_reviews": 275,
+    "language_checkpoint": "reports/electron-directional-masses-v1.json",
+    "whole_unit_reviews": 281,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/electron-mass-rewrite-v1.json",
-    "source_collation": "data/einstein-electron-mass-rewrite-reading-v1.json",
+    "dependency_checkpoint": "reports/electron-force-measurement-v1.json",
+    "source_collation": "data/einstein-electron-directional-masses-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
-    "einstein_whole_unit_reviews": 255,
-    "einstein_reviewed_nonblank_characters": 32230,
-    "einstein_review_checkpoint": "reports/einstein-electron-mass-rewrite-review-v1.json",
+    "einstein_whole_unit_reviews": 261,
+    "einstein_reviewed_nonblank_characters": 32963,
+    "einstein_review_checkpoint": "reports/einstein-electron-directional-masses-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
     "einstein_paragraph_checkpoint": "reports/einstein-force-interpretation-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は255/282・32,230/35,614非空白本文文字。今回、同じkの力、校正されたばね秤での可能な測定、kの力とKの加速度の規約、二係数の候補を15定義・3一般関係で追加した。局所6検査・247対照、登録簿v440・監査v417を通過したが、問い・例示・命名・条件文・二表示式・著者帰属の全文統合は未完で、新しい全文判断は加えない。未知の入力と全実数・全関数域の有限認定を拒否する。既存423主張と旧判断を保存。u0239、u0252、u0254–u0278は未判断、u0279–u0282は保存。部分草案の旧対応集計251単位・30,802/35,614文字（86.49%）と区別する。意味判断はアシスタントによるものであり、独立査読ではない。",
+    "アインシュタインの全単位意味確認は261/282・32,963/35,614非空白本文文字。今回はu0252、u0254–u0258の六単位733文字を、質量の問い・同じkの力・ばね秤の例示・条件付き規約・原刊の二分数表示として接続し全文判断した。旧423主張を保存し3主張を追加。局所5検査・333対照、六単位判断の2検査、登録簿v441・監査v418を通過。全実数・全関数域の有限認定と未知入力を拒否する。未判断はu0239とu0259–u0278。部分草案の旧対応集計251単位・30,802/35,614文字（86.49%）と区別する。意味判断は明示した読みの下でのアシスタント判断であり、独立査読や同義性の自動証明ではない。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }

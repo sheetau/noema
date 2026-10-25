@@ -1,0 +1,7 @@
+from scripts.check_electron_directional_masses import numeric_checks,conditional_checks,presentation_checks,binding_checks,structure_checks
+
+def test_fraction_displays_and_actual_components():assert numeric_checks()
+def test_conditional_and_coefficient_contracts():assert conditional_checks()
+def test_question_example_names_and_derivation():assert presentation_checks()
+def test_bound_settings_and_candidate_pair():assert binding_checks()
+def test_preserved_source_and_structure():assert structure_checks()
