@@ -1,0 +1,10 @@
+from scripts.check_deflection_speed_determination import scalar_checks,quantity_checks,physical_checks,measurement_checks,possibility_checks,binding_checks,presentation_checks,structure_checks
+
+def test_arithmetic_and_acceleration_units():assert scalar_checks()
+def test_actual_quantity_descriptions():assert quantity_checks()
+def test_physical_trial_and_closed_formula_bindings():assert physical_checks()
+def test_calibration_acquisition_and_shared_records():assert measurement_checks()
+def test_success_and_all_speed_scope():assert possibility_checks()
+def test_all_measurement_witnesses_and_scope():assert binding_checks()
+def test_source_number_inference_names_and_display():assert presentation_checks()
+def test_prior_statements_and_source_preserved():assert structure_checks()
