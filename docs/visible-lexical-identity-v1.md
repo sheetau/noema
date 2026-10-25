@@ -37,3 +37,11 @@
 最小対の可視形状の相違、公開語彙の並べ替え・追加・別名による不変性、三つの高さ、経路の違い、平行移動と拡大縮小を検査する。異常入力の拒否は、接続の欠落、余分な形、語形の衝突、型違いで確認する。旧描画器の反例と固定資産は保存する。
 
 この規則はW1の最初の反例を扱う実装である。語の構成による拡張、文書内の新語・固有名の導入、同義・多義、W2の一般構文、W3の自立文書、画像だけを読む第三者試験がそろうまで、W1全体や言語の完成とは判定しない。既存の全文ページを置き換える段階でもない。
+
+実装入口は `scripts.visible_lexical_script`、検査結果は [visible-lexical-v2.json](../reports/visible-lexical-v2.json)、二つの可視例は `output/visible-lexical-v1/` にある。既存の幾何実装を利用するリポジトリ内の試作であり、インストールされたNoemaパッケージの公開APIにはまだ含めない。変更のない言語解析・意味検証の実装と、書記の試作を別のモジュールに置く。
+
+```powershell
+python -X utf8 -m scripts.project_work check --module scripts.check_visible_lexical --prepare --tests tests/test_visible_lexical.py tests/test_script.py tests/test_script_v2.py --verify reports/visible-lexical-v2.json
+```
+
+最初の検査報告v1とそのソースはGitに保持する。v2では、半径線と外部接続が同一直線になる場合に、円周を境に両者を分けて読む処理を加えた。固定資産は内容ハッシュで照合し、旧最小対の衝突を再現する。変更のない二作品の全文解析はこの局所検査で繰り返さず、全体監査に任せる。

@@ -7,10 +7,11 @@ import json
 from pathlib import Path
 
 from noema.constructed import parse
-from noema.visible_lexical import (
+from scripts.visible_lexical_script import (
     Lexicon, check_extension, compile_assertion, decode, to_svg, from_svg, STROKE,
 )
-from scripts.check_writing_freeze import build_report as check_freeze
+from scripts.check_writing_freeze import visible_signature
+from scripts.contextual_opening_script import compile_expression as old_compile
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'output/visible-lexical-v1'
@@ -96,18 +97,36 @@ def build_report():
         if (compile_assertion(entry['source'], successor)['shapes'] != entry['shapes']
                 or decode(entry['shapes'], successor) != entry['decoded']):
             raise ValueError('Lexicon addition changed old ink or reading')
-    old = check_freeze()
-    paths = [SOURCE, 'noema/visible_lexical.py', 'noema/resources/visible-lexicon-v1.json',
+    # Check retained content directly. Re-parsing the two unchanged full
+    # manuscripts here adds no evidence about this small lexical fragment.
+    manifest = json.loads((ROOT/'data/writing-freeze-v1.json').read_text(encoding='utf-8'))
+    for group in ('source_sha256', 'output_sha256'):
+        for path, expected in manifest[group].items():
+            if digest(path) != expected:
+                raise ValueError('Frozen visual asset changed: '+path)
+    old = json.loads((ROOT/'reports/writing-readiness-v1.json').read_text(encoding='utf-8'))
+    for path, expected in old['source_sha256'].items():
+        if digest(path) != expected:
+            raise ValueError('Historical readiness input changed: '+path)
+    for manuscript in old['manuscripts'].values():
+        if digest(manuscript['path']) != manuscript['sha256']:
+            raise ValueError('Completed manuscript changed')
+    doc = parse((ROOT/SOURCE).read_text(encoding='utf-8'))
+    registry = {d['name']: i for i,d in enumerate(doc['declarations'])}
+    original_collision = (visible_signature(old_compile(entries[0]['source'], reference_order=registry)) ==
+                          visible_signature(old_compile(entries[1]['source'], reference_order=registry)))
+    paths = [SOURCE, 'scripts/visible_lexical_script.py', 'noema/resources/visible-lexicon-v1.json',
              'tests/test_visible_lexical.py', 'scripts/check_visible_lexical.py',
              'docs/visible-lexical-identity-v1.md',
+             'reports/writing-readiness-v1.json',
              *old['source_sha256'],
              'scripts/branch_circle_script.py', 'scripts/circle_contact_script.py']
     return dict(schema='noema-visible-lexical-evidence-1',
                 status='first_W1_counterexample_resolved_in_explicit_fragment',
                 lexical_identity_complete=False, general_syntax_decoder_complete=False,
                 two_work_semantic_judgments_changed=False,
-                original_visible_collision_preserved=old['collision_witnesses'][0]['visible_equal'],
-                frozen_visual_assets_verified=old['visual_freeze_verified'],
+                original_visible_collision_preserved=original_collision,
+                frozen_visual_assets_verified=True,
                 new_visible_shapes_differ=entries[0]['shapes'] != entries[1]['shapes'],
                 append_only_extension_stable=True, cases=rows,
                 source_sha256={p:digest(p) for p in sorted(set(paths))},

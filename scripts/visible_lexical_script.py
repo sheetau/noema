@@ -288,6 +288,30 @@ def _connection(lines, groups):
     require(len(seen) == len(points), 'Disconnected ink')
 
 
+def _take_marks(main, segments):
+    """Separate radial lexical ink at the visible rim, even after line merging."""
+    center = (main['x'], main['y'])
+    marks, remaining = [], []
+    for s in segments:
+        if not _on_segment(center, s):
+            remaining.append(s)
+            continue
+        ends = [(s['x1'], s['y1']), (s['x2'], s['y2'])]
+        require(any(math.dist(p, center) < EPS for p in ends),
+                'A lexical ray must start at its center')
+        tip = max(ends, key=lambda p: math.dist(p, center))
+        distance = math.dist(center, tip)
+        dx, dy = (tip[0]-center[0])/distance, (tip[1]-center[1])/distance
+        diagonal = abs(dx) > EPS and abs(dy) > EPS
+        reach = main['r'] * (math.sqrt(2) if near(main['r'], LARGE) and diagonal else 1.)
+        require(distance >= reach-EPS, 'Incomplete lexical ray')
+        boundary = (center[0]+dx*reach, center[1]+dy*reach)
+        marks.append(line(center, boundary))
+        if distance > reach+EPS:
+            remaining.append(line(boundary, tip))
+    return marks, remaining
+
+
 def decode(shapes, lexicon=None):
     """Recover the canonical AST from visible primitives and shared vocabulary."""
     lexicon = lexicon or Lexicon()
@@ -308,10 +332,7 @@ def decode(shapes, lexicon=None):
     words, remaining = [], list(segments)
     for rings in groups:
         main = max(rings, key=lambda c: c['r'])
-        center = (main['x'], main['y'])
-        marks = [s for s in remaining if _on_segment(center, s)]
-        for mark in marks:
-            remaining.remove(mark)
+        marks, remaining = _take_marks(main, remaining)
         local = _translate(rings + marks, -main['x'], PITCH-main['y'])
         name, entry = lexicon.match(local)
         words.append((main['x'], name, entry))

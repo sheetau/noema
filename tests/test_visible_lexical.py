@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from noema.constructed import parse
-from noema.visible_lexical import (
+from scripts.visible_lexical_script import (
     Lexicon, check_extension, compile_assertion, decode, to_svg, from_svg,
     SMALL, MEDIUM, LARGE, PITCH, _translate,
 )
@@ -51,7 +51,7 @@ def test_independently_drawn_shapes_are_read_without_the_compiler(monkeypatch):
         dict(kind='circle', x=230., y=32., r=SMALL),
         dict(kind='line', x1=50.+LARGE, y1=32., x2=230.-MEDIUM, y2=32.),
     ]
-    import noema.visible_lexical as module
+    import scripts.visible_lexical_script as module
     monkeypatch.setattr(module, 'compile_assertion', lambda *a, **k: pytest.fail('Decoder used compiler'))
     assert decode(visible) == assertion('town')
     visible[3]['x'] += MEDIUM
@@ -104,6 +104,16 @@ def test_alias_is_canonicalized_without_allocating_another_shape():
     assert check_extension(Lexicon(), successor)
     assert compile_assertion(assertion('residence'), successor)['shapes'] == shape('home')
     assert decode(shape('home'), successor) == assertion('home')
+
+
+@pytest.mark.parametrize('direction', ['east', 'south', 'west', 'north'])
+def test_radial_mark_is_preserved_when_it_meets_the_connection(direction):
+    data = Lexicon().document()
+    data['entries']['rain']['form']['ray'] = direction
+    lexicon = Lexicon(data)
+    visible = shape(lexicon=lexicon, argument_rail=1)
+    assert decode(visible, lexicon) == assertion()
+    assert decode(from_svg(to_svg(visible)), lexicon) == assertion()
 
 
 def test_same_visible_form_cannot_be_registered_twice():
