@@ -1,0 +1,69 @@
+noema p p
+d memberof[va j[a] vb a] c[q[v va][e[n p a b][n p b b]][i[vc c vd a][x[v vc][e[v vd][v vb]]]]].
+d distinctmembers[va j[a]] c[c[q[v va][i[vb j[a]][e[n p a b][n p a b]]][i[vc h[j[a]] c vd a][i[ve j[a]][w[u[k memberof[v ve v vd]]][c[v vc][m[v ve][l[a][v vd]]]]]]]][l[a][]]].
+d focusentails[va i b[e] vb i b[e] vc h[d] c] c[f vd d[y[c[v vc][v vd]][y[t[s[v va]][v vd]][t[s[v vb]][v vd]]]]].
+d focusequivalent[va i b[e] vb i b[e] vc h[d] c] c[w[k focusentails[v va v vb v vc]][k focusentails[v vb v va v vc]]].
+d senseentry[va a vb a vc a vd i[h[j[a]] e] ve b vf j[a]] h[h[a a a i[h[j[a]] e] b j[a]] c] c[i[vg h[a a a i[h[j[a]] e] b j[a]] c][c[v vg][v va v vb v vc v vd v ve v vf]]].
+d entryvalid[va h[h[a a a i[h[j[a]] e] b j[a]] c] c] c[c[v va][i[vb a vc a vd a ve i[h[j[a]] e] vf b vg j[a]][w[e[d[v vg]][v vf]][k distinctmembers[v vg]]]]].
+d entrymatches[va h[h[a a a i[h[j[a]] e] b j[a]] c] c vb a vc a vd a ve i[h[j[a]] e] vf b vg j[a]] c[c[v va][i[vh a vi a vj a vk i[h[j[a]] e] vl b vm j[a]][w[e[v vh][v vb]][w[e[v vi][v vc]][w[e[v vj][v vd]][w[e[v vk][v ve]][w[e[v vl][v vf]][e[v vm][v vg]]]]]]]]].
+d entrysame[va h[h[a a a i[h[j[a]] e] b j[a]] c] c vb h[h[a a a i[h[j[a]] e] b j[a]] c] c] c[c[v va][i[vc a vd a ve a vf i[h[j[a]] e] vg b vh j[a]][c[v vb][i[vi a vj a vk a vl i[h[j[a]] e] vm b vn j[a]][w[e[v vc][v vi]][w[e[v vd][v vj]][w[e[v ve][v vk]][w[e[v vf][v vl]][w[e[v vg][v vm]][e[v vh][v vn]]]]]]]]]]].
+d entrycompatible[va h[h[a a a i[h[j[a]] e] b j[a]] c] c vb h[h[a a a i[h[j[a]] e] b j[a]] c] c] c[c[v va][i[vc a vd a ve a vf i[h[j[a]] e] vg b vh j[a]][c[v vb][i[vi a vj a vk a vl i[h[j[a]] e] vm b vn j[a]][y[w[e[v vc][v vi]][w[e[v vd][v vj]][e[v ve][v vk]]]][w[e[v vf][v vl]][w[e[v vg][v vm]][e[v vh][v vn]]]]]]]]].
+d sensecatalog[va j[h[h[a a a i[h[j[a]] e] b j[a]] c] c]] c[q[v va][e[n p a b][n p a b]][i[vb c vc h[h[a a a i[h[j[a]] e] b j[a]] c] c][w[v vb][w[k entryvalid[v vc]][q[v va][e[n p a b][n p a b]][i[vd c ve h[h[a a a i[h[j[a]] e] b j[a]] c] c][w[v vd][k entrycompatible[v vc v ve]]]]]]]]].
+d sensecandidates[va j[h[h[a a a i[h[j[a]] e] b j[a]] c] c] vb a vc a] c[w[k sensecatalog[v va]][q[v va][e[n p a b][n p a b]][i[vd c ve h[h[a a a i[h[j[a]] e] b j[a]] c] c][w[v vd][c[v ve][i[vf a vg a vh a vi i[h[j[a]] e] vj b vk j[a]][w[e[v vf][v vb]][e[v vg][v vc]]]]]]]]].
+d sensepossible[va j[h[h[a a a i[h[j[a]] e] b j[a]] c] c] vb a vc a vd a] c[w[k sensecandidates[v va v vb v vc]][q[v va][e[n p a b][n p b b]][i[ve c vf h[h[a a a i[h[j[a]] e] b j[a]] c] c][x[v ve][c[v vf][i[vg a vh a vi a vj i[h[j[a]] e] vk b vl j[a]][e[v vi][v vd]]]]]]]].
+d senseunique[va j[h[h[a a a i[h[j[a]] e] b j[a]] c] c] vb a vc a vd a] c[w[k sensecandidates[v va v vb v vc]][w[u[e[v va][l[h[h[a a a i[h[j[a]] e] b j[a]] c] c][]]]][q[v va][e[n p a b][n p a b]][i[ve c vf h[h[a a a i[h[j[a]] e] b j[a]] c] c][w[v ve][c[v vf][i[vg a vh a vi a vj i[h[j[a]] e] vk b vl j[a]][e[v vi][v vd]]]]]]]]].
+d senseresolved[va j[h[h[a a a i[h[j[a]] e] b j[a]] c] c] vb a vc a vd a ve c] c[w[v ve][k senseunique[v va v vb v vc v vd]]].
+d sensemultiple[va j[h[h[a a a i[h[j[a]] e] b j[a]] c] c] vb a vc a] c[w[k sensecandidates[v va v vb v vc]][q[v va][e[n p a b][n p b b]][i[vd c ve h[h[a a a i[h[j[a]] e] b j[a]] c] c][x[v vd][q[v va][e[n p a b][n p b b]][i[vf c vg h[h[a a a i[h[j[a]] e] b j[a]] c] c][x[v vf][c[v ve][i[vh a vi a vj a vk i[h[j[a]] e] vl b vm j[a]][c[v vg][i[vn a vo a vp a vq i[h[j[a]] e] vr b vs j[a]][u[e[v vj][v vp]]]]]]]]]]]]]].
+d sensechosen[va j[h[h[a a a i[h[j[a]] e] b j[a]] c] c] vb a vc a vd a ve a vf i[h[j[a]] e] vg b vh j[a] vi a vj h[a a a a i[h[j[a]] e] b j[a] a] c] c[w[k sensecandidates[v va v vb v vc]][w[q[v va][e[n p a b][n p b b]][i[vk c vl h[h[a a a i[h[j[a]] e] b j[a]] c] c][x[v vk][k entrymatches[v vl v vb v vc v ve v vf v vg v vh]]]]][c[v vj][v vd v vb v vc v ve v vf v vg v vh v vi]]]].
+d senseapplication[va i[h[j[a]] e] vb i[j[a]]] i[e][o a[v va][v vb]].
+d senseinstantiated[va i[h[j[a]] e] vb i[j[a]] vc b vd i[e]] c[w[e[d[s[v vb]]][v vc]][e[v vd][k senseapplication[v va v vb]]]].
+d senseinterpreted[va j[h[h[a a a i[h[j[a]] e] b j[a]] c] c] vb a vc a vd a ve a vf i[h[j[a]] e] vg b vh j[a] vi a vj h[a a a a i[h[j[a]] e] b j[a] a] c vk i[j[a]] vl i[e]] c[w[k sensechosen[v va v vb v vc v vd v ve v vf v vg v vh v vi v vj]][k senseinstantiated[v vf v vk v vg v vl]]].
+d meaningfocus[va i[h[j[a]] e] vb i[j[a]]] i b[e][o a[r b[i[va e][v va]]][k senseapplication[v va v vb]]].
+d meaningcases[va b vb j[i[j[a]]]] c[w[u[e[v vb][l[i[j[a]]][]]]][q[v vb][e[n p a b][n p a b]][i[vc c vd i[j[a]]][w[v vc][e[d[s[v vd]]][v va]]]]]].
+d meaningentails[va i[h[j[a]] e] vb i[h[j[a]] e] vc b vd j[i[j[a]]] ve h[d] c] c[w[k meaningcases[v vc v vd]][w[g vf d[c[v ve][v vf]]][q[v vd][e[n p a b][n p a b]][i[vg c vh i[j[a]]][w[v vg][k focusentails[k meaningfocus[v va v vh] k meaningfocus[v vb v vh] v ve]]]]]]].
+d meaningequivalent[va i[h[j[a]] e] vb i[h[j[a]] e] vc b vd j[i[j[a]]] ve h[d] c] c[w[k meaningcases[v vc v vd]][w[g vf d[c[v ve][v vf]]][q[v vd][e[n p a b][n p a b]][i[vg c vh i[j[a]]][w[v vg][k focusequivalent[k meaningfocus[v va v vh] k meaningfocus[v vb v vh] v ve]]]]]]].
+d senseequivalent[va h[h[a a a i[h[j[a]] e] b j[a]] c] c vb h[h[a a a i[h[j[a]] e] b j[a]] c] c vc j[i[j[a]]] vd h[d] c] c[w[k entryvalid[v va]][w[k entryvalid[v vb]][c[v va][i[ve a vf a vg a vh i[h[j[a]] e] vi b vj j[a]][c[v vb][i[vk a vl a vm a vn i[h[j[a]] e] vo b vp j[a]][w[w[e[v vf][v vl]][w[e[v vi][v vo]][e[v vj][v vp]]]][k meaningequivalent[v vh v vn v vi v vc v vd]]]]]]]]].
+d sensesynonymous[va h[h[a a a i[h[j[a]] e] b j[a]] c] c vb h[h[a a a i[h[j[a]] e] b j[a]] c] c vc j[i[j[a]]] vd h[d] c ve a vf h[a a a a a a] c] c[w[k senseequivalent[v va v vb v vc v vd]][c[v va][i[vg a vh a vi a vj i[h[j[a]] e] vk b vl j[a]][c[v vb][i[vm a vn a vo a vp i[h[j[a]] e] vq b vr j[a]][w[u[e[v vg][v vm]]][c[v vf][v vh v vg v vi v vm v vo v ve]]]]]]]].
+d sensepolysemous[va h[h[a a a i[h[j[a]] e] b j[a]] c] c vb h[h[a a a i[h[j[a]] e] b j[a]] c] c vc a vd h[a a a i[h[j[a]] e] a i[h[j[a]] e] a] c ve h[a a a i[h[j[a]] e] a i[h[j[a]] e] a] c] c[w[k entryvalid[v va]][w[k entryvalid[v vb]][c[v va][i[vf a vg a vh a vi i[h[j[a]] e] vj b vk j[a]][c[v vb][i[vl a vm a vn a vo i[h[j[a]] e] vp b vq j[a]][w[w[w[e[v vf][v vl]][e[v vg][v vm]]][w[u[e[v vh][v vn]]][u[e[v vi][v vo]]]]][w[c[v vd][v vf v vg v vh v vi v vn v vo v vc]][u[c[v ve][v vf v vg v vh v vi v vn v vo v vc]]]]]]]]]]].
+d sensehomonymous[va h[h[a a a i[h[j[a]] e] b j[a]] c] c vb h[h[a a a i[h[j[a]] e] b j[a]] c] c vc a vd h[a a a i[h[j[a]] e] a i[h[j[a]] e] a] c ve h[a a a i[h[j[a]] e] a i[h[j[a]] e] a] c] c[w[k entryvalid[v va]][w[k entryvalid[v vb]][c[v va][i[vf a vg a vh a vi i[h[j[a]] e] vj b vk j[a]][c[v vb][i[vl a vm a vn a vo i[h[j[a]] e] vp b vq j[a]][w[w[w[e[v vf][v vl]][e[v vg][v vm]]][w[u[e[v vh][v vn]]][u[e[v vi][v vo]]]]][w[c[v ve][v vf v vg v vh v vi v vn v vo v vc]][u[c[v vd][v vf v vg v vh v vi v vn v vo v vc]]]]]]]]]]].
+d senseframed[va i b[h[a i[h[j[a]] e]] e] vb a vc i[h[j[a]] e]] e[c[s[v va]][v vb v vc]].
+d sensereplaceable[va h[h[a a a i[h[j[a]] e] b j[a]] c] c vb h[h[a a a i[h[j[a]] e] b j[a]] c] c vc j[i[j[a]]] vd h[d] c ve a vf h[a a a a a a] c vg a vh i b[h[a i[h[j[a]] e]] e] vi h[a a a a a a i b[h[a i[h[j[a]] e]] e] a] c] c[w[k sensesynonymous[v va v vb v vc v vd v ve v vf]][c[v va][i[vj a vk a vl a vm i[h[j[a]] e] vn b vo j[a]][c[v vb][i[vp a vq a vr a vs i[h[j[a]] e] vt b vu j[a]][w[c[v vi][v vg v vk v vj v vl v vp v vr v vh v ve]][f vv d[y[c[v vd][v vv]][z[t[k senseframed[v vh v vj v vm]][v vv]][t[k senseframed[v vh v vp v vs]][v vv]]]]]]]]]]].
+r first[] a.
+r second[] a.
+r worda[] a.
+r wordb[] a.
+r contexta[] a.
+r contextb[] a.
+r sensea[] a.
+r senseb[] a.
+r occurrence[] a.
+r reason[] a.
+r agentrole[] a.
+r patientrole[] a.
+r now[] d.
+r later[] d.
+d payload[va a vb j[a] vc d] c[z[e[v va][k first[]]][z[e[v vb][l[a][k first[]]]][e[v vc][k now[]]]]].
+d firstmeaning[va j[a]] e[b vb[k payload[k first[] v va v vb]]].
+d aliasmeaning[va j[a]] e[b vb[k payload[k first[] v va v vb]]].
+d secondmeaning[va j[a]] e[b vb[k payload[k second[] v va v vb]]].
+d extensionalframe[va a vb i[h[j[a]] e]] e[s[k senseapplication[v vb r[l[a][k first[]]]]]].
+d wordframe[va a vb i[h[j[a]] e]] e[b vc[e[v va][k worda[]]]].
+d descriptionframe[va a vb i[h[j[a]] e]] e[b vc[e[v vb][r[p firstmeaning]]]].
+d worlds[va d] c[e[n p a b][n p a b]].
+d selected[va a vb a vc a vd a ve i[h[j[a]] e] vf b vg j[a] vh a] c[w[e[v va][k occurrence[]]][w[e[v vb][k worda[]]][w[e[v vc][k contexta[]]][w[e[v vd][k sensea[]]][w[e[v ve][r[p firstmeaning]]][w[e[v vf][n p b b]][w[e[v vg][l[a][k agentrole[]]]][e[v vh][k reason[]]]]]]]]]].
+d licensed[va a vb a vc a vd a ve a vf a] c[w[e[v va][k contexta[]]][w[e[v vb][k worda[]]][w[e[v vc][k sensea[]]][w[e[v vd][k wordb[]]][w[e[v ve][k sensea[]]][e[v vf][k reason[]]]]]]]].
+d related[va a vb a vc a vd i[h[j[a]] e] ve a vf i[h[j[a]] e] vg a] c[w[e[v va][k worda[]]][w[e[v vb][k contexta[]]][w[e[v vc][k sensea[]]][w[e[v vd][r[p firstmeaning]]][w[e[v ve][k senseb[]]][w[e[v vf][r[p secondmeaning]]][e[v vg][k reason[]]]]]]]]].
+d unrelated[va a vb a vc a vd i[h[j[a]] e] ve a vf i[h[j[a]] e] vg a] c[e[n p a b][n p b b]].
+d permitted[va a vb a vc a vd a ve a vf a vg i b[h[a i[h[j[a]] e]] e] vh a] c[w[e[v va][k occurrence[]]][w[e[v vb][k contexta[]]][w[e[v vc][k worda[]]][w[e[v vd][k sensea[]]][w[e[v ve][k wordb[]]][w[e[v vf][k sensea[]]][w[e[v vg][r b[p extensionalframe]]][e[v vh][k reason[]]]]]]]]]].
+q[k sensemultiple[l[h[h[a a a i[h[j[a]] e] b j[a]] c] c][k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]]] k worda[] k contexta[]]].
+q[k sensepolysemous[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]] k reason[] p related p unrelated]].
+q[k sensehomonymous[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]] k reason[] p related p unrelated]].
+q[k sensepolysemous[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]] k reason[] p unrelated p unrelated]].
+q[k sensepolysemous[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]] k reason[] p related p related]].
+q[k sensehomonymous[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]] k reason[] p unrelated p related]].
+q[k sensepolysemous[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k wordb[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]] k reason[] p related p unrelated]].
+q[k sensepolysemous[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k reason[] p related p unrelated]].
+q[k sensepossible[l[h[h[a a a i[h[j[a]] e] b j[a]] c] c][k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]]] k worda[] k contexta[] k senseb[]]].
+q[k sensepolysemous[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]] k first[] p related p unrelated]].
+q[k entrycompatible[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]]]].
+q[k entrysame[k senseentry[k worda[] k contexta[] k sensea[] r[p firstmeaning] n p b b l[a][k agentrole[]]] k senseentry[k worda[] k contexta[] k senseb[] r[p secondmeaning] n p b b l[a][k agentrole[]]]]].

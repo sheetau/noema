@@ -1,0 +1,2260 @@
+{
+  "status": "shared_contextual_lexical_senses",
+  "document": "examples/v016/shared-senses-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "memberof": "指定個体が有限列のいずれかの位置に現れる。順序と重複は所属の真偽を変えない。",
+    "distinctmembers": "有限列の個体に重複がない。空列でも成立する。",
+    "focusentails": "固定した比較状況の全てで、焦点内容が真なら比較内容も真である。空の比較域では空虚に成立し、全可能状況での論理的含意とは区別する。",
+    "focusequivalent": "同じ比較状況域で二内容が相互に含意する。記述の構文同一性や一般的な同義性を認定するものではない。",
+    "senseentry": "語形参照・文脈・語義識別子・閉じた意味関数記述・項数・順序付き役割列を一つの項目として保持する。内容は実行しない。",
+    "entryvalid": "senseentryで構成した項目について、項数が役割列の長さに等しく、役割の重複がない。意味関数の現実的な適切さや文脈の妥当性は別。",
+    "entrymatches": "項目の六つの欄が、指定した六つの値と過不足なく一致する。意味記述は構文で比較する。",
+    "entrysame": "二項目の六つの欄が一致する。高階関数全域を列挙して比較せず、格納した値を取り出す。",
+    "entrycompatible": "同じ語形・文脈・語義識別子を持つ二項目は、意味記述・項数・役割列も一致する。別のキーには一致を強制しない。",
+    "sensecatalog": "全項目がentryvalidを満たし、同じキーの項目の間に矛盾がない。完全に同じ項目の重複は許す。空の登録列も許す。",
+    "sensecandidates": "整合した登録列の全項目が、指定した同じ語形と文脈の候補である。空列を許し、列挙の完了や唯一性を含まない。",
+    "sensepossible": "同じ語形・文脈の整合した候補列に、指定の語義識別子がある。内容の真理は調べない。",
+    "senseunique": "同じ語形・文脈の整合した非空候補列が全て指定の語義識別子を持つ。同一項目の重複を別候補と数えない。",
+    "senseresolved": "senseuniqueに加え、候補列挙が完了している。唯一の観測候補から列挙の完了を推測しない。",
+    "sensemultiple": "整合した同じ語形・文脈の候補列に異なる語義識別子がある。登録上の複数性であり、多義と同音異義の分類や現実の曖昧さを自動認定しない。",
+    "sensechosen": "整合した同じ語形・文脈の候補列に六欄の一致する項目があり、同じ出現箇所・語形・文脈・語義・意味・項数・役割・理由の選択関係がある。選択後も候補列を保存する。",
+    "senseapplication": "閉じた意味関数記述へ、順序付き個体列の閉じた記述を適用し、閉じた内容記述を構成する。項数・語義選択・内容の真理は別条件。",
+    "senseinstantiated": "引数列の長さが指定項数に一致し、結果記述が同じ意味関数と同じ列の適用記述に一致する。内容を実行しない。",
+    "senseinterpreted": "sensechosenとsenseinstantiatedを同じ項目・意味・項数・引数列・結果記述で結ぶ。内容の真理や他の候補の排除は含まない。",
+    "meaningfocus": "意味関数の閉じた適用記述を、恒等適用で段階1の内容記述へ接続する。既存focusentails/focusequivalentへ渡すための変換。",
+    "meaningcases": "比較用の閉じた引数列の例が非空で、全例の長さが同じ項数に一致する。全ての可能な引数を列挙した証明ではない。",
+    "meaningentails": "非空の比較例と非空の比較状況域で、同じ引数列に適用した左の意味が右の意味を含意する。既存focusentailsを各例へ適用する。",
+    "meaningequivalent": "同じ非空の比較例・比較状況域で、二つの意味の適用内容が相互に含意する。領域外の同値性や引用内の置換を保証しない。",
+    "senseequivalent": "有効な二項目が同じ文脈・項数・順序付き役割を持ち、指定比較範囲でmeaningequivalentを満たす。語形と記述の一致は要求しない。",
+    "sensesynonymous": "異なる二つの語形の項目がsenseequivalentを満たし、同じ文脈・両語形・両語義・理由について同義として扱う明示的な規約がある。範囲内の検査と規約を区別して保持する。",
+    "sensepolysemous": "同じ語形・文脈に異なる語義識別子と意味記述があり、同じ二語義・意味・理由について関連を認める関係があり、無関連を認める関係はない。分類の解釈入力を真偽の一致から補わない。",
+    "sensehomonymous": "同じ語形・文脈の異なる二語義について、無関連を認める関係があり、関連を認める関係はない。関連の不在だけから無関連を推測しない。",
+    "senseframed": "閉じた枠を語形参照と意味記述へ適用し、その出現での内容を作る。枠は語形・記述そのものに言及でき、内容の真理だけで意味を代入しない。",
+    "sensereplaceable": "同じ二項目の同義規約と範囲内の同値に加え、同じ出現箇所・文脈・両語形/語義・閉じた枠・理由の置換許可があり、その枠へ各語形と意味を渡した内容も比較域で一致する。引用・認識・待遇などの差を同義性だけで消さない。"
+  },
+  "public_contracts": {
+    "memberof": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        },
+        {
+          "role": "member",
+          "sort": "individual",
+          "interpretation": "所属を調べる個体。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distinctmembers": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusentails": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternative",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "含意を比較する内容記述。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "含意を判定する固定状況域。生成関数ではその関数の閉じた記述を渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusequivalent": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternative",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "含意を比較する内容記述。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "含意を判定する固定状況域。生成関数ではその関数の閉じた記述を渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "senseentry": {
+      "arguments": [
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        },
+        {
+          "role": "sense",
+          "sort": "individual",
+          "interpretation": "同じ文脈での語義識別子。"
+        },
+        {
+          "role": "meaning",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "順序付きの個体列から内容を作る閉じた段階0の関数記述。"
+        },
+        {
+          "role": "arity",
+          "sort": "number",
+          "interpretation": "個体引数の数。役割列の長さとの一致で非負整数に制限する。"
+        },
+        {
+          "role": "roles",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "各引数位置の意味役割を示す重複なしの個体参照列。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "number",
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "truth"
+          }
+        ],
+        "result": "truth"
+      }
+    },
+    "entryvalid": {
+      "arguments": [
+        {
+          "role": "entry",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "六欄を保持する語義項目。"
+        }
+      ],
+      "result": "truth"
+    },
+    "entrymatches": {
+      "arguments": [
+        {
+          "role": "entry",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "六欄を保持する語義項目。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        },
+        {
+          "role": "sense",
+          "sort": "individual",
+          "interpretation": "同じ文脈での語義識別子。"
+        },
+        {
+          "role": "meaning",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "順序付きの個体列から内容を作る閉じた段階0の関数記述。"
+        },
+        {
+          "role": "arity",
+          "sort": "number",
+          "interpretation": "個体引数の数。役割列の長さとの一致で非負整数に制限する。"
+        },
+        {
+          "role": "roles",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "各引数位置の意味役割を示す重複なしの個体参照列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "entrysame": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        }
+      ],
+      "result": "truth"
+    },
+    "entrycompatible": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sensecatalog": {
+      "arguments": [
+        {
+          "role": "entries",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    },
+                    "number",
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "登録項目または候補項目の有限列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sensecandidates": {
+      "arguments": [
+        {
+          "role": "entries",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    },
+                    "number",
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "登録項目または候補項目の有限列。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sensepossible": {
+      "arguments": [
+        {
+          "role": "entries",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    },
+                    "number",
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "登録項目または候補項目の有限列。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        },
+        {
+          "role": "sense",
+          "sort": "individual",
+          "interpretation": "同じ文脈での語義識別子。"
+        }
+      ],
+      "result": "truth"
+    },
+    "senseunique": {
+      "arguments": [
+        {
+          "role": "entries",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    },
+                    "number",
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "登録項目または候補項目の有限列。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        },
+        {
+          "role": "sense",
+          "sort": "individual",
+          "interpretation": "同じ文脈での語義識別子。"
+        }
+      ],
+      "result": "truth"
+    },
+    "senseresolved": {
+      "arguments": [
+        {
+          "role": "entries",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    },
+                    "number",
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "登録項目または候補項目の有限列。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        },
+        {
+          "role": "sense",
+          "sort": "individual",
+          "interpretation": "同じ文脈での語義識別子。"
+        },
+        {
+          "role": "complete",
+          "sort": "truth",
+          "interpretation": "その語形と文脈で候補を尽くしたという明示的判断。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sensemultiple": {
+      "arguments": [
+        {
+          "role": "entries",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    },
+                    "number",
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "登録項目または候補項目の有限列。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sensechosen": {
+      "arguments": [
+        {
+          "role": "entries",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    },
+                    "number",
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "登録項目または候補項目の有限列。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        },
+        {
+          "role": "occurrence",
+          "sort": "individual",
+          "interpretation": "語義を選択または置換する同じ出現箇所。"
+        },
+        {
+          "role": "sense",
+          "sort": "individual",
+          "interpretation": "同じ文脈での語義識別子。"
+        },
+        {
+          "role": "meaning",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "順序付きの個体列から内容を作る閉じた段階0の関数記述。"
+        },
+        {
+          "role": "arity",
+          "sort": "number",
+          "interpretation": "個体引数の数。役割列の長さとの一致で非負整数に制限する。"
+        },
+        {
+          "role": "roles",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "各引数位置の意味役割を示す重複なしの個体参照列。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "選択・分類・同義・置換を認める同じ理由の参照。"
+        },
+        {
+          "role": "selected",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "number",
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出現箇所・語形・文脈・語義・意味記述・項数・役割列・理由の選択関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "senseapplication": {
+      "arguments": [
+        {
+          "role": "meaning",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "順序付きの個体列から内容を作る閉じた段階0の関数記述。"
+        },
+        {
+          "role": "arguments",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "順序付き個体引数列の閉じた記述。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      }
+    },
+    "senseinstantiated": {
+      "arguments": [
+        {
+          "role": "meaning",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "順序付きの個体列から内容を作る閉じた段階0の関数記述。"
+        },
+        {
+          "role": "arguments",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "順序付き個体引数列の閉じた記述。"
+        },
+        {
+          "role": "arity",
+          "sort": "number",
+          "interpretation": "個体引数の数。役割列の長さとの一致で非負整数に制限する。"
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "同じ意味の適用から構成した閉じた内容記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "senseinterpreted": {
+      "arguments": [
+        {
+          "role": "entries",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    },
+                    "number",
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "登録項目または候補項目の有限列。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "context",
+          "sort": "individual",
+          "interpretation": "登録・候補・選択・同義判断を共有する解釈文脈。"
+        },
+        {
+          "role": "occurrence",
+          "sort": "individual",
+          "interpretation": "語義を選択または置換する同じ出現箇所。"
+        },
+        {
+          "role": "sense",
+          "sort": "individual",
+          "interpretation": "同じ文脈での語義識別子。"
+        },
+        {
+          "role": "meaning",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "順序付きの個体列から内容を作る閉じた段階0の関数記述。"
+        },
+        {
+          "role": "arity",
+          "sort": "number",
+          "interpretation": "個体引数の数。役割列の長さとの一致で非負整数に制限する。"
+        },
+        {
+          "role": "roles",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "各引数位置の意味役割を示す重複なしの個体参照列。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "選択・分類・同義・置換を認める同じ理由の参照。"
+        },
+        {
+          "role": "selected",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "number",
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出現箇所・語形・文脈・語義・意味記述・項数・役割列・理由の選択関係。"
+        },
+        {
+          "role": "arguments",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "順序付き個体引数列の閉じた記述。"
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "同じ意味の適用から構成した閉じた内容記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "meaningfocus": {
+      "arguments": [
+        {
+          "role": "meaning",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "順序付きの個体列から内容を作る閉じた段階0の関数記述。"
+        },
+        {
+          "role": "arguments",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "順序付き個体引数列の閉じた記述。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 1
+      }
+    },
+    "meaningcases": {
+      "arguments": [
+        {
+          "role": "arity",
+          "sort": "number",
+          "interpretation": "個体引数の数。役割列の長さとの一致で非負整数に制限する。"
+        },
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          },
+          "interpretation": "比較に用いる閉じた個体引数列記述の有限列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "meaningentails": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "arity",
+          "sort": "number",
+          "interpretation": "個体引数の数。役割列の長さとの一致で非負整数に制限する。"
+        },
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          },
+          "interpretation": "比較に用いる閉じた個体引数列記述の有限列。"
+        },
+        {
+          "role": "worlds",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する状況域。"
+        }
+      ],
+      "result": "truth"
+    },
+    "meaningequivalent": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "arity",
+          "sort": "number",
+          "interpretation": "個体引数の数。役割列の長さとの一致で非負整数に制限する。"
+        },
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          },
+          "interpretation": "比較に用いる閉じた個体引数列記述の有限列。"
+        },
+        {
+          "role": "worlds",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する状況域。"
+        }
+      ],
+      "result": "truth"
+    },
+    "senseequivalent": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          },
+          "interpretation": "比較に用いる閉じた個体引数列記述の有限列。"
+        },
+        {
+          "role": "worlds",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する状況域。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sensesynonymous": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          },
+          "interpretation": "比較に用いる閉じた個体引数列記述の有限列。"
+        },
+        {
+          "role": "worlds",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する状況域。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "選択・分類・同義・置換を認める同じ理由の参照。"
+        },
+        {
+          "role": "licensed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ文脈・両語形・両語義・理由についての同義規約。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sensepolysemous": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "選択・分類・同義・置換を認める同じ理由の参照。"
+        },
+        {
+          "role": "related",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ語形・文脈・左語義/意味・右語義/意味・理由について関連を認める明示的関係。"
+        },
+        {
+          "role": "unrelated",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項について無関連を認める明示的関係。関連の単なる否定とは別。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sensehomonymous": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "選択・分類・同義・置換を認める同じ理由の参照。"
+        },
+        {
+          "role": "related",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ語形・文脈・左語義/意味・右語義/意味・理由について関連を認める明示的関係。"
+        },
+        {
+          "role": "unrelated",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "sequence",
+                      "element": "individual"
+                    }
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項について無関連を認める明示的関係。関連の単なる否定とは別。"
+        }
+      ],
+      "result": "truth"
+    },
+    "senseframed": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      {
+                        "kind": "sequence",
+                        "element": "individual"
+                      }
+                    ],
+                    "result": "content"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          },
+          "interpretation": "語形参照と意味記述を受けて内容を作る閉じた段階1の枠。内部の引用や態度を保持する。"
+        },
+        {
+          "role": "word",
+          "sort": "individual",
+          "interpretation": "語形または語彙項目への参照。内容の代わりとなる文字列ではなく、意味は別欄に保持する。"
+        },
+        {
+          "role": "meaning",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "順序付きの個体列から内容を作る閉じた段階0の関数記述。"
+        }
+      ],
+      "result": "content"
+    },
+    "sensereplaceable": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の左側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual",
+                  "individual",
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        {
+                          "kind": "sequence",
+                          "element": "individual"
+                        }
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "number",
+                  {
+                    "kind": "sequence",
+                    "element": "individual"
+                  }
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較・分類・置換の右側の項目または意味記述。型に従う。"
+        },
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            }
+          },
+          "interpretation": "比較に用いる閉じた個体引数列記述の有限列。"
+        },
+        {
+          "role": "worlds",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する状況域。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "選択・分類・同義・置換を認める同じ理由の参照。"
+        },
+        {
+          "role": "licensed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ文脈・両語形・両語義・理由についての同義規約。"
+        },
+        {
+          "role": "occurrence",
+          "sort": "individual",
+          "interpretation": "語義を選択または置換する同じ出現箇所。"
+        },
+        {
+          "role": "frame",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      {
+                        "kind": "sequence",
+                        "element": "individual"
+                      }
+                    ],
+                    "result": "content"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          },
+          "interpretation": "語形参照と意味記述を受けて内容を作る閉じた段階1の枠。内部の引用や態度を保持する。"
+        },
+        {
+          "role": "permitted",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": {
+                        "kind": "function",
+                        "parameters": [
+                          {
+                            "kind": "sequence",
+                            "element": "individual"
+                          }
+                        ],
+                        "result": "content"
+                      }
+                    }
+                  ],
+                  "result": "content"
+                },
+                "rank": 1
+              },
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出現箇所・文脈・左語形/語義・右語形/語義・閉じた枠・理由に対する明示的な置換許可。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_sources": [
+    {
+      "document": "examples/v016/shared-plurality-v1.noema",
+      "basis": "data/shared-plurality-basis-v1.json",
+      "names": [
+        "memberof",
+        "distinctmembers"
+      ]
+    },
+    {
+      "document": "examples/v016/shared-focus-v1.noema",
+      "basis": "data/shared-focus-basis-v1.json",
+      "names": [
+        "focusentails",
+        "focusequivalent"
+      ]
+    }
+  ],
+  "design_sources": [
+    "examples/v016/shared-readings-v1.noema",
+    "data/shared-readings-basis-v1.json"
+  ],
+  "limitations": [
+    "ENTRYは既存の関数型による六欄の符号化であり、senseentryで構成した項目を入力契約とする。同じ関数型の任意の関数をレコードとして認証する型や検査ではない。関数を外部から受け取る場合は構成元も確認する。",
+    "語形参照、登録語義、文脈ごとの候補、列挙完了、選択、内容評価を区別する。候補を内容の論理和へ潰さず、未確定を偽へ補わない。",
+    "意味関数は有限個の個体引数列から内容を作る型で、0項の命題・1項の性質・多項関係を同じ構成で扱う。任意型の多相関数を新設したものではない。他の型には既存の型付き引用適用を使う。",
+    "語形への参照と意味役割への参照は解釈入力であり、識別子を振るだけで語義を定義済みとはしない。例では意味本体と選択等の関係をNativeで構成する。",
+    "項目の整合・項数の検査は意味関数の全域性を保証しない。論理演算は短絡せず、部分的な意味関数に不正な引数を渡すと評価を拒否し得る。先に項数を確認し、意味の適用と真理評価を分ける。",
+    "非空の比較例と状況域における同値は、全引数・全可能状況・全言語使用の同値の証明ではない。同義規約・分類・置換許可の妥当性を有限検査から自動認定しない。",
+    "多義/同音異義の分類は二つの肯定的な解釈関係を区別し、両方ある場合や両方ない場合はどちらも認定しない。語源や文化的な関連を自動推定しない。",
+    "置換枠は語形と意味記述の双方を受ける。意味が比較域で一致しても、引用や認識・文体に関する枠の内容が変わる場合は置換を認めない。真理値の一致だけでは許可を補わない。",
+    "入力の未知は保持・引用できる範囲と実行評価が必要な範囲を分け、必要な入力の未知は拒否する。候補数を確信度や意味の重みに変換しない。円文字接続と第三者読解は別の検証。"
+  ]
+}
