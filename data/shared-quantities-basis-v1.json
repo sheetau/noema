@@ -1,0 +1,1542 @@
+{
+  "status": "shared_rational_quantities_and_contents",
+  "document": "examples/v016/shared-quantities-v1.noema",
+  "primitives": {
+    "rationalbelow": {
+      "symbol": "rationalbelow",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "左の有理数が右の有理数より厳密に小さい。等しい場合は偽。"
+    },
+    "rationaladd": {
+      "symbol": "rationaladd",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の和。浮動小数点への丸めはしない。"
+    },
+    "rationalnegate": {
+      "symbol": "rationalnegate",
+      "parameters": [
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "value"
+      ],
+      "meaning_ja": "有理数の加法逆元。元の数と加えると0となる有理数。"
+    },
+    "rationalmultiply": {
+      "symbol": "rationalmultiply",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の積。浮動小数点への丸めはしない。"
+    }
+  },
+  "definitions": {
+    "dimensionless": "全ての基底軸の指数が0である次元。無次元を表す。",
+    "dimensionproduct": "次元の積。各基底軸の指数を加算する。",
+    "dimensioninverse": "次元の逆。各基底軸の指数の符号を反転する。",
+    "dimensionquotient": "次元の商。分子側から分母側の指数を減算する。",
+    "dimensionpower": "次元の有理数乗。各指数にpowerを掛ける。値そのものの冪乗が定義できることは別に検査する。",
+    "dimensionequal": "全ての基底軸で指数が等しいという次元の同一性。",
+    "dimensionisscalar": "次元がdaと等しいという無次元条件。異なる無次元の量が同じ種類だとは推論しない。",
+    "basisdimension": "一つの基底軸の次元の特徴付け。その軸だけが指数1で、他の全ての軸は0。基本記号に名称を与えるだけで済ませない。",
+    "quantitycompatible": "量の種類・次元が同じで、二つの単位尺度が正の有理数であるという換算の適合条件。",
+    "quantityequal": "有理数の二つの読みが同じ量を表すという換算関係。diの条件に加えて、読み*単位尺度が等しい。",
+    "positivescales": "三つの有理数の単位尺度が全て正。",
+    "quantityproduct": "有理数の量の積。結果次元が入力次元の積で、基準単位へ換算した結果が入力値の積である。結果の量の種類を次元だけから決めない。",
+    "quantityquotient": "有理数の量の商。結果次元が入力次元の商で、分母が非零、尺度換算した値が乗算による商の等式を満たす。",
+    "memberof": "指定個体が有限列のいずれかの位置に現れる。順序と重複は所属の真偽を変えない。",
+    "distinctmembers": "有限列の個体に重複がない。空列でも成立する。",
+    "membercount": "重複のない有限列の長さが指定した数に等しい。空列は0。列が母集団を尽くすことは別に指定する。",
+    "unitregistered": "同じ状況で、単位・量の種類・次元・正の有理数尺度が登録関係を満たす。単位名だけから尺度を推定しない。",
+    "amountat": "同じ対象・量の種類・単位・状況について非負の読みが測定関係を満たし、次元と尺度が単位登録に一致する。",
+    "sameamount": "二対象の同じ状況でのamountatが成立し、種類・次元が同じで尺度換算後の値が等しい。二対象の個体同一性は要求しない。",
+    "amountless": "二対象の同じ状況でのamountatが成立し、種類・次元が同じで左の尺度換算後の値が右より小さい。",
+    "partitionof": "部分列に重複がなく、各部分が同じ全体の部分で、異なる部分が互いに重ならず、同じ状況で列が全体を尽くす。空列の完全性も別途要求する。",
+    "amountsum": "partitionofを満たし、同じ種類・単位・次元・尺度・状況で全体と各部分のamountatが成立し、部分の値の和が全体の値に等しい。",
+    "assignedmembers": "有限列の各個体を割当先へ写した列。元の順序と重複をそのまま残す。",
+    "containercontents": "列の各容器について、割当先の同じ部分がその容器の内容である関係を同じ状況で満たす。量や内容の相違は主張しない。",
+    "countedcontainers": "内容の割当が成立する、重複のない容器列の個数が指定数と等しい。空列は0。中身の量を個数から推定しない。",
+    "containeramount": "countedcontainersを満たす同じ内容割当の部分列についてamountsumが成立する。内容の重複や重なりを二重計上しない。"
+  },
+  "public_contracts": {
+    "rationalbelow": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        }
+      ],
+      "result": "truth"
+    },
+    "rationaladd": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        }
+      ],
+      "result": "number"
+    },
+    "rationalnegate": {
+      "arguments": [
+        {
+          "role": "value",
+          "sort": "number",
+          "interpretation": "有理数値。"
+        }
+      ],
+      "result": "number"
+    },
+    "rationalmultiply": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        }
+      ],
+      "result": "number"
+    },
+    "dimensionless": {
+      "arguments": [],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "number"
+      }
+    },
+    "dimensionproduct": {
+      "arguments": [
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "number"
+      }
+    },
+    "dimensioninverse": {
+      "arguments": [
+        {
+          "role": "dimension",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "基底軸から有理数指数への関数。採用する軸と意味を明示する。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "number"
+      }
+    },
+    "dimensionquotient": {
+      "arguments": [
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "number"
+      }
+    },
+    "dimensionpower": {
+      "arguments": [
+        {
+          "role": "dimension",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "基底軸から有理数指数への関数。採用する軸と意味を明示する。"
+        },
+        {
+          "role": "power",
+          "sort": "number",
+          "interpretation": "次元指数に掛ける有理数。値の冪乗の存在は別に調べる。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "number"
+      }
+    },
+    "dimensionequal": {
+      "arguments": [
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        }
+      ],
+      "result": "truth"
+    },
+    "dimensionisscalar": {
+      "arguments": [
+        {
+          "role": "dimension",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "基底軸から有理数指数への関数。採用する軸と意味を明示する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "basisdimension": {
+      "arguments": [
+        {
+          "role": "axis",
+          "sort": "individual",
+          "interpretation": "指定した基底次元の軸。"
+        },
+        {
+          "role": "dimension",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "基底軸から有理数指数への関数。採用する軸と意味を明示する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "quantitycompatible": {
+      "arguments": [
+        {
+          "role": "leftkind",
+          "sort": "individual",
+          "interpretation": "左側の量の種類。"
+        },
+        {
+          "role": "rightkind",
+          "sort": "individual",
+          "interpretation": "右側の量の種類。"
+        },
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        },
+        {
+          "role": "leftscale",
+          "sort": "number",
+          "interpretation": "左側の正の単位尺度。"
+        },
+        {
+          "role": "rightscale",
+          "sort": "number",
+          "interpretation": "右側の正の単位尺度。"
+        }
+      ],
+      "result": "truth"
+    },
+    "quantityequal": {
+      "arguments": [
+        {
+          "role": "leftkind",
+          "sort": "individual",
+          "interpretation": "左側の量の種類。"
+        },
+        {
+          "role": "rightkind",
+          "sort": "individual",
+          "interpretation": "右側の量の種類。"
+        },
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        },
+        {
+          "role": "leftscale",
+          "sort": "number",
+          "interpretation": "左側の正の単位尺度。"
+        },
+        {
+          "role": "rightscale",
+          "sort": "number",
+          "interpretation": "右側の正の単位尺度。"
+        },
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        }
+      ],
+      "result": "truth"
+    },
+    "positivescales": {
+      "arguments": [
+        {
+          "role": "firstscale",
+          "sort": "number",
+          "interpretation": "一つ目の正の尺度。"
+        },
+        {
+          "role": "secondscale",
+          "sort": "number",
+          "interpretation": "二つ目の正の尺度。"
+        },
+        {
+          "role": "thirdscale",
+          "sort": "number",
+          "interpretation": "三つ目の正の尺度。"
+        }
+      ],
+      "result": "truth"
+    },
+    "quantityproduct": {
+      "arguments": [
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        },
+        {
+          "role": "resultdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "結果の次元。"
+        },
+        {
+          "role": "leftscale",
+          "sort": "number",
+          "interpretation": "左側の正の単位尺度。"
+        },
+        {
+          "role": "rightscale",
+          "sort": "number",
+          "interpretation": "右側の正の単位尺度。"
+        },
+        {
+          "role": "resultscale",
+          "sort": "number",
+          "interpretation": "結果の正の単位尺度。"
+        },
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        },
+        {
+          "role": "result",
+          "sort": "number",
+          "interpretation": "結果の有理数値。"
+        }
+      ],
+      "result": "truth"
+    },
+    "quantityquotient": {
+      "arguments": [
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        },
+        {
+          "role": "resultdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "結果の次元。"
+        },
+        {
+          "role": "leftscale",
+          "sort": "number",
+          "interpretation": "左側の正の単位尺度。"
+        },
+        {
+          "role": "rightscale",
+          "sort": "number",
+          "interpretation": "右側の正の単位尺度。"
+        },
+        {
+          "role": "resultscale",
+          "sort": "number",
+          "interpretation": "結果の正の単位尺度。"
+        },
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        },
+        {
+          "role": "result",
+          "sort": "number",
+          "interpretation": "結果の有理数値。"
+        }
+      ],
+      "result": "truth"
+    },
+    "memberof": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        },
+        {
+          "role": "member",
+          "sort": "individual",
+          "interpretation": "所属を調べる個体。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distinctmembers": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "membercount": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        },
+        {
+          "role": "count",
+          "sort": "number",
+          "interpretation": "重複のない列に要求する個体数。有理数型だが成立時には非負整数になる。"
+        }
+      ],
+      "result": "truth"
+    },
+    "unitregistered": {
+      "arguments": [
+        {
+          "role": "kind",
+          "sort": "individual",
+          "interpretation": "体積・質量などの量の種類。物質の種類や次元そのものとは別に指定する。"
+        },
+        {
+          "role": "unit",
+          "sort": "individual",
+          "interpretation": "測定値を述べる単位の個体。"
+        },
+        {
+          "role": "dimension",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "基底軸から有理数指数への関数。採用する軸と意味を明示する。"
+        },
+        {
+          "role": "scale",
+          "sort": "number",
+          "interpretation": "基準単位に対する正の有理数尺度。基準の値は読みと尺度の積。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "registry",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "number"
+              },
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "単位・種類・次元・尺度・状況の登録関係。規約の整合性や実現を自動証明しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "amountat": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "量を測定する対象。"
+        },
+        {
+          "role": "kind",
+          "sort": "individual",
+          "interpretation": "体積・質量などの量の種類。物質の種類や次元そのものとは別に指定する。"
+        },
+        {
+          "role": "unit",
+          "sort": "individual",
+          "interpretation": "測定値を述べる単位の個体。"
+        },
+        {
+          "role": "dimension",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "基底軸から有理数指数への関数。採用する軸と意味を明示する。"
+        },
+        {
+          "role": "scale",
+          "sort": "number",
+          "interpretation": "基準単位に対する正の有理数尺度。基準の値は読みと尺度の積。"
+        },
+        {
+          "role": "reading",
+          "sort": "number",
+          "interpretation": "当該単位での非負の有理数値。このモジュールのamountは量の大きさを扱う。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "registry",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "number"
+              },
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "単位・種類・次元・尺度・状況の登録関係。規約の整合性や実現を自動証明しない。"
+        },
+        {
+          "role": "measurement",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "対象・量の種類・単位・読み・状況の測定関係。未知の測定を0や否定に置き換えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sameamount": {
+      "arguments": [
+        {
+          "role": "leftsubject",
+          "sort": "individual",
+          "interpretation": "比較の左側の測定対象。"
+        },
+        {
+          "role": "rightsubject",
+          "sort": "individual",
+          "interpretation": "比較の右側の測定対象。"
+        },
+        {
+          "role": "leftkind",
+          "sort": "individual",
+          "interpretation": "左側の量の種類。"
+        },
+        {
+          "role": "rightkind",
+          "sort": "individual",
+          "interpretation": "右側の量の種類。"
+        },
+        {
+          "role": "leftunit",
+          "sort": "individual",
+          "interpretation": "左側の単位。"
+        },
+        {
+          "role": "rightunit",
+          "sort": "individual",
+          "interpretation": "右側の単位。"
+        },
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        },
+        {
+          "role": "leftscale",
+          "sort": "number",
+          "interpretation": "左側の正の単位尺度。"
+        },
+        {
+          "role": "rightscale",
+          "sort": "number",
+          "interpretation": "右側の正の単位尺度。"
+        },
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "registry",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "number"
+              },
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "単位・種類・次元・尺度・状況の登録関係。規約の整合性や実現を自動証明しない。"
+        },
+        {
+          "role": "measurement",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "対象・量の種類・単位・読み・状況の測定関係。未知の測定を0や否定に置き換えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "amountless": {
+      "arguments": [
+        {
+          "role": "leftsubject",
+          "sort": "individual",
+          "interpretation": "比較の左側の測定対象。"
+        },
+        {
+          "role": "rightsubject",
+          "sort": "individual",
+          "interpretation": "比較の右側の測定対象。"
+        },
+        {
+          "role": "leftkind",
+          "sort": "individual",
+          "interpretation": "左側の量の種類。"
+        },
+        {
+          "role": "rightkind",
+          "sort": "individual",
+          "interpretation": "右側の量の種類。"
+        },
+        {
+          "role": "leftunit",
+          "sort": "individual",
+          "interpretation": "左側の単位。"
+        },
+        {
+          "role": "rightunit",
+          "sort": "individual",
+          "interpretation": "右側の単位。"
+        },
+        {
+          "role": "leftdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "左側の次元。"
+        },
+        {
+          "role": "rightdim",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "右側の次元。"
+        },
+        {
+          "role": "leftscale",
+          "sort": "number",
+          "interpretation": "左側の正の単位尺度。"
+        },
+        {
+          "role": "rightscale",
+          "sort": "number",
+          "interpretation": "右側の正の単位尺度。"
+        },
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "registry",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "number"
+              },
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "単位・種類・次元・尺度・状況の登録関係。規約の整合性や実現を自動証明しない。"
+        },
+        {
+          "role": "measurement",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "対象・量の種類・単位・読み・状況の測定関係。未知の測定を0や否定に置き換えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "partitionof": {
+      "arguments": [
+        {
+          "role": "parts",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "全体を構成する個体の有限列。"
+        },
+        {
+          "role": "whole",
+          "sort": "individual",
+          "interpretation": "同じ状況で部分列が尽くす対象。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "partof",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "部分・全体・状況の関係。"
+        },
+        {
+          "role": "disjoint",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "二部分が同じ状況で重ならないという関係。"
+        },
+        {
+          "role": "complete",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "部分列・全体・状況について過不足のない範囲を指定する関係。列の型や長さだけでは分からない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "amountsum": {
+      "arguments": [
+        {
+          "role": "parts",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "全体を構成する個体の有限列。"
+        },
+        {
+          "role": "whole",
+          "sort": "individual",
+          "interpretation": "同じ状況で部分列が尽くす対象。"
+        },
+        {
+          "role": "kind",
+          "sort": "individual",
+          "interpretation": "体積・質量などの量の種類。物質の種類や次元そのものとは別に指定する。"
+        },
+        {
+          "role": "unit",
+          "sort": "individual",
+          "interpretation": "測定値を述べる単位の個体。"
+        },
+        {
+          "role": "dimension",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "基底軸から有理数指数への関数。採用する軸と意味を明示する。"
+        },
+        {
+          "role": "scale",
+          "sort": "number",
+          "interpretation": "基準単位に対する正の有理数尺度。基準の値は読みと尺度の積。"
+        },
+        {
+          "role": "readings",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "number"
+          },
+          "interpretation": "対象と状況から、共通の指定単位での値を返す明示的な関数。測定関係と照合する。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "registry",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "number"
+              },
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "単位・種類・次元・尺度・状況の登録関係。規約の整合性や実現を自動証明しない。"
+        },
+        {
+          "role": "measurement",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "対象・量の種類・単位・読み・状況の測定関係。未知の測定を0や否定に置き換えない。"
+        },
+        {
+          "role": "partof",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "部分・全体・状況の関係。"
+        },
+        {
+          "role": "disjoint",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "二部分が同じ状況で重ならないという関係。"
+        },
+        {
+          "role": "complete",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "部分列・全体・状況について過不足のない範囲を指定する関係。列の型や長さだけでは分からない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "assignedmembers": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "割当を適用する個体の列。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "容器などの個体から、同じ内容物・部分を選ぶ明示的な関数。"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      }
+    },
+    "containercontents": {
+      "arguments": [
+        {
+          "role": "containers",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "数える容器の有限列。容器と内容の個体を混同しない。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "容器などの個体から、同じ内容物・部分を選ぶ明示的な関数。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "contains",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "内容の部分・容器・状況の関係。引数は内容が先、容器が後。"
+        }
+      ],
+      "result": "truth"
+    },
+    "countedcontainers": {
+      "arguments": [
+        {
+          "role": "containers",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "数える容器の有限列。容器と内容の個体を混同しない。"
+        },
+        {
+          "role": "count",
+          "sort": "number",
+          "interpretation": "容器列の個数。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "容器などの個体から、同じ内容物・部分を選ぶ明示的な関数。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "contains",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "内容の部分・容器・状況の関係。引数は内容が先、容器が後。"
+        }
+      ],
+      "result": "truth"
+    },
+    "containeramount": {
+      "arguments": [
+        {
+          "role": "containers",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "数える容器の有限列。容器と内容の個体を混同しない。"
+        },
+        {
+          "role": "count",
+          "sort": "number",
+          "interpretation": "容器列の個数。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "容器などの個体から、同じ内容物・部分を選ぶ明示的な関数。"
+        },
+        {
+          "role": "whole",
+          "sort": "individual",
+          "interpretation": "同じ状況で部分列が尽くす対象。"
+        },
+        {
+          "role": "kind",
+          "sort": "individual",
+          "interpretation": "体積・質量などの量の種類。物質の種類や次元そのものとは別に指定する。"
+        },
+        {
+          "role": "unit",
+          "sort": "individual",
+          "interpretation": "測定値を述べる単位の個体。"
+        },
+        {
+          "role": "dimension",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "number"
+          },
+          "interpretation": "基底軸から有理数指数への関数。採用する軸と意味を明示する。"
+        },
+        {
+          "role": "scale",
+          "sort": "number",
+          "interpretation": "基準単位に対する正の有理数尺度。基準の値は読みと尺度の積。"
+        },
+        {
+          "role": "readings",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "number"
+          },
+          "interpretation": "対象と状況から、共通の指定単位での値を返す明示的な関数。測定関係と照合する。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "単位登録・測定・部分・内容の関係を評価する同じ状況。測定条件や時点の選択を明示する。"
+        },
+        {
+          "role": "registry",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "number"
+              },
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "単位・種類・次元・尺度・状況の登録関係。規約の整合性や実現を自動証明しない。"
+        },
+        {
+          "role": "measurement",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "対象・量の種類・単位・読み・状況の測定関係。未知の測定を0や否定に置き換えない。"
+        },
+        {
+          "role": "partof",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "部分・全体・状況の関係。"
+        },
+        {
+          "role": "disjoint",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "二部分が同じ状況で重ならないという関係。"
+        },
+        {
+          "role": "complete",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "部分列・全体・状況について過不足のない範囲を指定する関係。列の型や長さだけでは分からない。"
+        },
+        {
+          "role": "contains",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "内容の部分・容器・状況の関係。引数は内容が先、容器が後。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_definitions": [
+    {
+      "document": "examples/v011/quantities.noema",
+      "names": {
+        "aa": "rationalbelow",
+        "ab": "rationaladd",
+        "ac": "rationalnegate",
+        "ad": "rationalmultiply",
+        "da": "dimensionless",
+        "db": "dimensionproduct",
+        "dc": "dimensioninverse",
+        "dd": "dimensionquotient",
+        "de": "dimensionpower",
+        "df": "dimensionequal",
+        "dg": "dimensionisscalar",
+        "dh": "basisdimension",
+        "di": "quantitycompatible",
+        "dj": "quantityequal",
+        "ds": "positivescales",
+        "dl": "quantityproduct",
+        "dm": "quantityquotient"
+      }
+    },
+    {
+      "document": "examples/v016/shared-plurality-v1.noema",
+      "names": {
+        "memberof": "memberof",
+        "distinctmembers": "distinctmembers",
+        "membercount": "membercount"
+      }
+    }
+  ],
+  "limitations": [
+    "既存の有理数比較・加算・加法逆元・乗算の4基本宣言を再利用する。関数の型だけでは標準算術の解釈を強制できないため、意味規約を保持する。",
+    "既存の次元・種類・尺度の13定義を保持する。新しい測定・内容の10定義を加える。複数モジュールの3定義は同じ本体で共有する。",
+    "amountatは非負の有理数量の大きさ。誤差区間、任意実数値、無理数尺度、原点移動、対数単位の万能換算へ読み替えない。旧実数版と座標定義は保持する。",
+    "登録・測定・部分・重なり・完全性の現実への根拠を自動認定しない。amountsumは加算の等式も要求し、任意の量が常に加法的とは推論しない。",
+    "容器数や部分数から量を導かない。全体の範囲と測定状況を固定する。未知入力は評価拒否する。",
+    "円文字共有辞書への登録、学習文書、第三者読解は未完。"
+  ]
+}

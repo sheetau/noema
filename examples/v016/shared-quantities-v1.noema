@@ -1,0 +1,31 @@
+noema p p
+r rationalbelow[b b] c.
+r rationaladd[b b] b.
+r rationalnegate[b] b.
+r rationalmultiply[b b] b.
+d dimensionless[] h[a] b[i[va a][n p a b]].
+d dimensionproduct[va h[a] b vb h[a] b] h[a] b[i[vc a][k rationaladd[c[v va][v vc] c[v vb][v vc]]]].
+d dimensioninverse[va h[a] b] h[a] b[i[vb a][k rationalnegate[c[v va][v vb]]]].
+d dimensionquotient[va h[a] b vb h[a] b] h[a] b[k dimensionproduct[v va k dimensioninverse[v vb]]].
+d dimensionpower[va h[a] b vb b] h[a] b[i[vc a][k rationalmultiply[c[v va][v vc] v vb]]].
+d dimensionequal[va h[a] b vb h[a] b] c[f vc a[e[c[v va][v vc]][c[v vb][v vc]]]].
+d dimensionisscalar[va h[a] b] c[k dimensionequal[v va k dimensionless[]]].
+d basisdimension[va a vb h[a] b] c[f vc a[w[y[e[v vc][v va]][e[c[v vb][v vc]][n p b b]]][y[u[e[v vc][v va]]][e[c[v vb][v vc]][n p a b]]]]].
+d quantitycompatible[va a vb a vc h[a] b vd h[a] b ve b vf b] c[w[e[v va][v vb]][w[k dimensionequal[v vc v vd]][w[k rationalbelow[n p a b v ve]][k rationalbelow[n p a b v vf]]]]].
+d quantityequal[va a vb a vc h[a] b vd h[a] b ve b vf b vg b vh b] c[w[k quantitycompatible[v va v vb v vc v vd v ve v vf]][e[k rationalmultiply[v ve v vg]][k rationalmultiply[v vf v vh]]]].
+d positivescales[va b vb b vc b] c[w[k rationalbelow[n p a b v va]][w[k rationalbelow[n p a b v vb]][k rationalbelow[n p a b v vc]]]].
+d quantityproduct[va h[a] b vb h[a] b vc h[a] b vd b ve b vf b vg b vh b vi b] c[w[k positivescales[v vd v ve v vf]][w[k dimensionequal[v vc k dimensionproduct[v va v vb]]][e[k rationalmultiply[v vf v vi]][k rationalmultiply[k rationalmultiply[v vd v vg] k rationalmultiply[v ve v vh]]]]]].
+d quantityquotient[va h[a] b vb h[a] b vc h[a] b vd b ve b vf b vg b vh b vi b] c[w[k positivescales[v vd v ve v vf]][w[u[e[v vh][n p a b]]][w[k dimensionequal[v vc k dimensionquotient[v va v vb]]][e[k rationalmultiply[k rationalmultiply[v vf v vi] k rationalmultiply[v ve v vh]]][k rationalmultiply[v vd v vg]]]]]].
+d memberof[va j[a] vb a] c[q[v va][e[n p a b][n p b b]][i[vc c vd a][x[v vc][e[v vd][v vb]]]]].
+d distinctmembers[va j[a]] c[c[q[v va][i[vb j[a]][e[n p a b][n p a b]]][i[vc h[j[a]] c vd a][i[ve j[a]][w[u[k memberof[v ve v vd]]][c[v vc][m[v ve][l[a][v vd]]]]]]]][l[a][]]].
+d membercount[va j[a] vb b] c[w[k distinctmembers[v va]][e[d[v va]][v vb]]].
+d unitregistered[va a vb a vc h[a] b vd b ve d vf h[a a h[a] b b d] c] c[w[k rationalbelow[n p a b v vd]][c[v vf][v vb v va v vc v vd v ve]]].
+d amountat[va a vb a vc a vd h[a] b ve b vf b vg d vh h[a a h[a] b b d] c vi h[a a a b d] c] c[w[k unitregistered[v vb v vc v vd v ve v vg v vh]][w[u[k rationalbelow[v vf n p a b]]][c[v vi][v va v vb v vc v vf v vg]]]].
+d sameamount[va a vb a vc a vd a ve a vf a vg h[a] b vh h[a] b vi b vj b vk b vl b vm d vn h[a a h[a] b b d] c vo h[a a a b d] c] c[w[k amountat[v va v vc v ve v vg v vi v vk v vm v vn v vo]][w[k amountat[v vb v vd v vf v vh v vj v vl v vm v vn v vo]][k quantityequal[v vc v vd v vg v vh v vi v vj v vk v vl]]]].
+d amountless[va a vb a vc a vd a ve a vf a vg h[a] b vh h[a] b vi b vj b vk b vl b vm d vn h[a a h[a] b b d] c vo h[a a a b d] c] c[w[k amountat[v va v vc v ve v vg v vi v vk v vm v vn v vo]][w[k amountat[v vb v vd v vf v vh v vj v vl v vm v vn v vo]][w[k quantitycompatible[v vc v vd v vg v vh v vi v vj]][k rationalbelow[k rationalmultiply[v vi v vk] k rationalmultiply[v vj v vl]]]]]].
+d partitionof[va j[a] vb a vc d vd h[a a d] c ve h[a a d] c vf h[j[a] a d] c] c[w[k distinctmembers[v va]][w[q[v va][e[n p a b][n p a b]][i[vg c vh a][w[v vg][c[v vd][v vh v vb v vc]]]]][w[q[v va][e[n p a b][n p a b]][i[vi c vj a][w[v vi][q[v va][e[n p a b][n p a b]][i[vk c vl a][w[v vk][y[u[e[v vj][v vl]]][c[v ve][v vj v vl v vc]]]]]]]]][c[v vf][v va v vb v vc]]]]].
+d amountsum[va j[a] vb a vc a vd a ve h[a] b vf b vg h[a d] b vh d vi h[a a h[a] b b d] c vj h[a a a b d] c vk h[a a d] c vl h[a a d] c vm h[j[a] a d] c] c[w[k partitionof[v va v vb v vh v vk v vl v vm]][w[k amountat[v vb v vc v vd v ve v vf c[v vg][v vb v vh] v vh v vi v vj]][w[q[v va][e[n p a b][n p a b]][i[vn c vo a][w[v vn][k amountat[v vo v vc v vd v ve v vf c[v vg][v vo v vh] v vh v vi v vj]]]]][e[q[v va][n p a b][i[vp b vq a][k rationaladd[v vp c[v vg][v vq v vh]]]]][c[v vg][v vb v vh]]]]]].
+d assignedmembers[va j[a] vb h[a] a] j[a][q[v va][l[a][]][i[vc j[a] vd a][m[v vc][l[a][c[v vb][v vd]]]]]].
+d containercontents[va j[a] vb h[a] a vc d vd h[a a d] c] c[q[v va][e[n p a b][n p a b]][i[ve c vf a][w[v ve][c[v vd][c[v vb][v vf] v vf v vc]]]]].
+d countedcontainers[va j[a] vb b vc h[a] a vd d ve h[a a d] c] c[w[k membercount[v va v vb]][k containercontents[v va v vc v vd v ve]]].
+d containeramount[va j[a] vb b vc h[a] a vd a ve a vf a vg h[a] b vh b vi h[a d] b vj d vk h[a a h[a] b b d] c vl h[a a a b d] c vm h[a a d] c vn h[a a d] c vo h[j[a] a d] c vp h[a a d] c] c[w[k countedcontainers[v va v vb v vc v vj v vp]][k amountsum[k assignedmembers[v va v vc] v vd v ve v vf v vg v vh v vi v vj v vk v vl v vm v vn v vo]]].
