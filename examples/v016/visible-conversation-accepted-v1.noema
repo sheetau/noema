@@ -1,0 +1,28 @@
+noema p p
+r aki[] a.
+r rationaladd[b b] b.
+d answercovers[va g[a] vb h[a] c] c[f vc a[y[h[v va][v vc]][c[v vb][v vc]]]].
+d answersound[va g[a] vb h[a] c vc h[a] c] c[f vd a[w[y[c[v vb][v vd]][h[v va][v vd]]][y[c[v vc][v vd]][u[h[v va][v vd]]]]]].
+d answercomplete[va g[a] vb h[a] c vc h[a] c vd c] c[w[k answersound[v va v vb v vc]][w[v vd][k answercovers[v va v vb]]]].
+d answerinformative[va h[a] c vb h[a] c] c[g vc a[x[c[v va][v vc]][c[v vb][v vc]]]].
+d answerpartial[va g[a] vb h[a] c vc h[a] c vd c] c[w[k answersound[v va v vb v vc]][w[k answerinformative[v vb v vc]][u[v vd]]]].
+d commitmentvalid[va j[a] vb j[i[f]]] c[e[d[v va]][d[v vb]]].
+d commitmenthas[va j[a] vb j[i[f]] vc a vd i[f]] c[w[k commitmentvalid[v va v vb]][c[q[v vb][i[ve b][e[n p a b][n p b b]]][i[vf h[b] c vg i[f]][i[vh b][x[w[e[v vg][v vd]][a[v va][v vh][v vc]]][c[v vf][k rationaladd[v vh n u b b]]]]]]][k rationaladd[d[v vb] n u b b]]]].
+d commitmentsubset[va j[a] vb j[i[f]] vc j[a] vd j[i[f]]] c[w[k commitmentvalid[v va v vb]][w[k commitmentvalid[v vc v vd]][f ve a[q[v vb][e[n p a b][n p a b]][i[vf c vg i[f]][w[v vf][y[k commitmenthas[v va v vb v ve v vg]][k commitmenthas[v vc v vd v ve v vg]]]]]]]]].
+d commitmentsame[va j[a] vb j[i[f]] vc j[a] vd j[i[f]]] c[w[k commitmentsubset[v va v vb v vc v vd]][k commitmentsubset[v vc v vd v va v vb]]].
+d commitmentincluded[va j[a] vb j[i[f]] vc j[a] vd j[i[f]] ve a vf i[f]] c[w[k commitmentvalid[v va v vb]][k commitmentsame[v vc v vd m[v va][l[a][v ve]] m[v vb][l[i[f]][v vf]]]]].
+d speechpresented[va a vb a vc h[a] c vd a ve i[h[a] f] vf d vg h[a d] c vh h[a a d] c vi h[a a a i[h[a] f] d] c] c[w[c[v vg][v vb v vf]][w[c[v vh][v va v vb v vf]][w[g vj a[c[v vc][v vj]]][f vk a[y[c[v vc][v vk]][c[v vi][v vb v vk v vd v ve v vf]]]]]]].
+d speechto[va a vb a vc a vd a ve i[h[a] f] vf d vg h[a d] c vh h[a a d] c vi h[a a a i[h[a] f] d] c] c[k speechpresented[v va v vb i[vj a][e[v vj][v vc]] v vd v ve v vf v vg v vh v vi]].
+d speechreceived[va a vb a vc a vd a ve i[h[a] f] vf d vg h[a d] c vh h[a a d] c vi h[a a a i[h[a] f] d] c vj h[a a a i[h[a] f] d] c] c[w[k speechto[v va v vb v vc v vd v ve v vf v vg v vh v vi]][c[v vj][v vb v vc v vd v ve v vf]]].
+d speechunderstood[va a vb a vc a vd a ve i[h[a] f] vf d vg h[a d] c vh h[a a d] c vi h[a a a i[h[a] f] d] c vj h[a a a i[h[a] f] d] c vk h[a a a i[h[a] f] d] c] c[w[k speechreceived[v va v vb v vc v vd v ve v vf v vg v vh v vi v vj]][c[v vk][v vb v vc v vd v ve v vf]]].
+d speechaccepted[va a vb a vc a vd a ve i[h[a] f] vf d vg h[a d] c vh h[a a d] c vi h[a a a i[h[a] f] d] c vj h[a a a i[h[a] f] d] c vk h[a a a i[h[a] f] d] c vl h[a a a i[h[a] f] d] c] c[w[k speechunderstood[v va v vb v vc v vd v ve v vf v vg v vh v vi v vj v vk]][c[v vl][v vb v vc v vd v ve v vf]]].
+d utteranceinstance[va i[h[a] f] vb i[a]] i[f][o a[v va][v vb]].
+d commitmentaccepted[va j[a] vb j[i[f]] vc j[a] vd j[i[f]] ve a vf a vg a vh a vi i[h[a] f] vj d vk h[a d] c vl h[a a d] c vm h[a a a i[h[a] f] d] c vn h[a a a i[h[a] f] d] c vo h[a a a i[h[a] f] d] c vp h[a a a i[h[a] f] d] c vq i[a]] c[w[k speechaccepted[v ve v vf v vg v vh v vi v vj v vk v vl v vm v vn v vo v vp]][w[e[v vh][s[v vq]]][k commitmentincluded[v va v vb v vc v vd v vg k utteranceinstance[v vi v vq]]]]].
+r nao[] a.
+d wcbookzqakizqakizq[va a] c[e[v va][k aki[]]].
+d wcbookzqakizqnaozq[va a] c[x[e[v va][k aki[]]][e[v va][k nao[]]]].
+d wcbookzqakizqbookzq[va a] c[e[n p a b][n p b b]].
+d wcbookzqtownzqakizq[va a] f[j s[b vb[k answercomplete[j v[p wcbookzqakizqnaozq] p wcbookzqakizqakizq p wcbookzqakizqbookzq e[n p a b][n p a b]]]]].
+d wcbookzqtownzqnaozq[va a] f[j s[b vb[k answerpartial[j v[p wcbookzqakizqnaozq] p wcbookzqakizqakizq p wcbookzqakizqbookzq e[n p a b][n p b b]]]]].
+d wcbookzqtownzqfruitzq[va a vb a vc a vd i[h[a] f] ve d] c[w[e[v va][k aki[]]][w[e[v vb][k nao[]]][w[e[v vc][k aki[]]][e[v vd][r[p wcbookzqtownzqakizq]]]]]].
+s[f va d[y[u[e[k aki[]][k nao[]]]][k commitmentaccepted[l[a][k aki[]] l[i[f]][k utteranceinstance[r[p wcbookzqtownzqnaozq] r[k aki[]]]] l[a][k aki[] k nao[]] l[i[f]][k utteranceinstance[r[p wcbookzqtownzqnaozq] r[k aki[]]] k utteranceinstance[r[p wcbookzqtownzqakizq] r[k aki[]]]] k aki[] k aki[] k nao[] k aki[] r[p wcbookzqtownzqakizq] v va i[vb a vc d][e[v vb][k aki[]]] i[vd a ve a vf d][w[e[v vd][k aki[]]][e[v ve][k aki[]]]] p wcbookzqtownzqfruitzq p wcbookzqtownzqfruitzq p wcbookzqtownzqfruitzq p wcbookzqtownzqfruitzq r[k aki[]]]]]].
