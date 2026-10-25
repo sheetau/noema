@@ -1,0 +1,2911 @@
+{
+  "status": "shared_presentations_uptake_and_explicit_speech_profiles",
+  "document": "examples/v016/shared-speech-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "speechpresented": "指定した同じ発話行為が生起し、同じ人が提示者となり、非空の受け手範囲の各人へ、同じ対象に関する同じ発話記述を示す。受け手が理解・同意したこと、内容の真理、公的使用かどうかは含まない。",
+    "speechattributed": "同じ本人・行為・対象・発話記述を非空の受け手群へ実際に提示し、その行為で同じ組織と役割の声として位置付ける。組織の実際の立場、本人の信念、権限、内容の真理を付けない。",
+    "speechdelegated": "rgaの同じ本人・行為・組織・役割に、活動の役割分類・委任・当該組織への奉仕を結ぶ。委任があることと、個々の発話が許可され正当であることは別である。",
+    "speechownvoice": "同じ人・行為・役割・対象・発話記述について、非空の受け手群への実際の提示と、話者本人を語りの帰属先とする明示的な関係が共に成立する。他者への帰属がないことの言い換えではなく、信念・真理・独創性・許可・職務の不在も含まない。",
+    "speechothervoice": "同じ発話についてrgbの委任・役割・奉仕・提示の条件が成立し、その帰属先が本人と異なる。異なる帰属先の声として語ることと、内容への本人の同意を区別する。",
+    "speechvoicepair": "同じ本人・文脈に、rhfを満たす行為とrheを満たす別の行為がある。行為ごとに役割・宛先範囲・対象・発話記述を保持し、他者の委任による発言と本人を帰属先とする発言を併記する。公的／私的という分類や許可はまだ加えない。",
+    "audiencewithin": "実際の受け手範囲は非空で、全員が指定した想定宛先範囲に含まれる。両範囲の一致や人数の閾値を要求しない。空の実際の受け手は不成立であり、公衆の分類ではない。",
+    "speechto": "同じ生起する行為で同じ人が、指定受け手へ同じ対象・発話記述を提示する。単独受け手への条件であり、他の受け手の存在を排除しない。",
+    "speechreceived": "同じ提示行為・受け手・対象・記述・状況で受領が成立する。理解や同意を含まない。",
+    "speechunderstood": "同じ提示と受領に、同じ行為からの記述の理解を結ぶ。理解は賛同や内容の真理ではない。",
+    "speechaccepted": "同じ提示・受領・理解に、同じ発話について明示的な受諾を結ぶ。行動の実現・内心の誠実さ・規範的有効性を含まない。",
+    "speechdeclined": "同じ提示・受領・理解に、同じ発話について明示的な辞退を結ぶ。受諾が無いこととは別条件。",
+    "speechtargeted": "同じ提示と、その同じ行為・対象・発話記述が指定行為者の行為記述を求める対象として扱うという明示的解釈を結ぶ。",
+    "speechrequest": "受け手の行為を対象とする提示に、同じ話者・提示行為・受け手・行為記述に対する引受けを求める表明を結ぶ。受諾・実行・権限は別。",
+    "speechadvice": "受け手の行為を対象とする提示に、話者が同じ理由によってその行為を指定目的に適するものと評価する関係と、その理由を同じ受け手へ同じ発話で示す関係を結ぶ。理由を示す助言という読みで、実際の有効性や目的達成を保証しない。",
+    "speechpromise": "話者自身の行為を対象とする提示に、同じ話者が同じ受け手に対して同じ発話行為で当該行為を自ら引き受ける表明を結ぶ。単なる未来予測や受け手の行為への依頼と区別する。",
+    "speechcommand": "受け手の行為を対象とする提示に、話者が同じ役割に基づく指示権限を同じ発話行為で行使すると表明する関係を結ぶ。主張した権限の正当性や服従を導かない。",
+    "requestrealized": "speechrequestが成立し、指定した後続状況で同じ行為記述を受け手へ適用した内容が成立する。受諾や依頼が原因だったことは別条件。",
+    "promiserealized": "speechpromiseが成立し、指定した後続状況で同じ行為記述を話者へ適用した内容が成立する。全条項の履行認定・期限違反・解除や法的有効性は扱わない。"
+  },
+  "public_contracts": {
+    "speechpresented": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "audience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechattributed": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "principal",
+          "sort": "individual",
+          "interpretation": "発話の帰属先。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "提示者の役割。"
+        },
+        {
+          "role": "audience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "voices",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・帰属先・役割・対象・記述・状況の声の帰属関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechdelegated": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "principal",
+          "sort": "individual",
+          "interpretation": "発話の帰属先。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "提示者の役割。"
+        },
+        {
+          "role": "audience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "voices",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・帰属先・役割・対象・記述・状況の声の帰属関係。"
+        },
+        {
+          "role": "positioned",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・役割・状況の分類。"
+        },
+        {
+          "role": "entrusted",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・役割・状況の委任関係。"
+        },
+        {
+          "role": "serves",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・帰属先・役割・状況の奉仕関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechownvoice": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "提示者の役割。"
+        },
+        {
+          "role": "audience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "voices",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・帰属先・役割・対象・記述・状況の声の帰属関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechothervoice": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "principal",
+          "sort": "individual",
+          "interpretation": "発話の帰属先。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "提示者の役割。"
+        },
+        {
+          "role": "audience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "voices",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・帰属先・役割・対象・記述・状況の声の帰属関係。"
+        },
+        {
+          "role": "positioned",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・役割・状況の分類。"
+        },
+        {
+          "role": "entrusted",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・役割・状況の委任関係。"
+        },
+        {
+          "role": "serves",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・帰属先・役割・状況の奉仕関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechvoicepair": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "voices",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・帰属先・役割・対象・記述・状況の声の帰属関係。"
+        },
+        {
+          "role": "serves",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・帰属先・役割・状況の奉仕関係。"
+        },
+        {
+          "role": "officeactivity",
+          "sort": "individual",
+          "interpretation": "職務側の同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "officeprincipal",
+          "sort": "individual",
+          "interpretation": "職務側の発話の帰属先。"
+        },
+        {
+          "role": "officerole",
+          "sort": "individual",
+          "interpretation": "職務側の提示者の役割。"
+        },
+        {
+          "role": "officeaudience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "職務側の実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "officesubject",
+          "sort": "individual",
+          "interpretation": "職務側の発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "officemessage",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "職務側の対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "publicactivity",
+          "sort": "individual",
+          "interpretation": "本人側の同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "publicrole",
+          "sort": "individual",
+          "interpretation": "本人側の提示者の役割。"
+        },
+        {
+          "role": "publicaudience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "本人側の実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "publicsubject",
+          "sort": "individual",
+          "interpretation": "本人側の発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "publicmessage",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "本人側の対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "positioned",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・役割・状況の分類。"
+        },
+        {
+          "role": "entrusted",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・役割・状況の委任関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "audiencewithin": {
+      "arguments": [
+        {
+          "role": "actual",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "実際の受け手の範囲。"
+        },
+        {
+          "role": "intended",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "想定した宛先の範囲。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechto": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechreceived": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "receives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為から同じ受け手が同じ対象・記述を受領した関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechunderstood": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "receives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為から同じ受け手が同じ対象・記述を受領した関係。"
+        },
+        {
+          "role": "understands",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為からの同じ対象・記述を受け手が理解した関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechaccepted": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "receives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為から同じ受け手が同じ対象・記述を受領した関係。"
+        },
+        {
+          "role": "understands",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為からの同じ対象・記述を受け手が理解した関係。"
+        },
+        {
+          "role": "accepts",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為に対する同じ受け手の明示的な受諾。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechdeclined": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "receives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為から同じ受け手が同じ対象・記述を受領した関係。"
+        },
+        {
+          "role": "understands",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為からの同じ対象・記述を受け手が理解した関係。"
+        },
+        {
+          "role": "declines",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為に対する同じ受け手の明示的な辞退。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechtargeted": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "actor",
+          "sort": "individual",
+          "interpretation": "求める行為の主体。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechrequest": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        },
+        {
+          "role": "solicits",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話者・提示行為・受け手・行為記述・状況について、受け手による当該行為の引受けを求める表明。実際の内心の欲求や受諾を条件にしない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechadvice": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "助言の理由として同じ発話で示す根拠。"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "受け手に関する目的の閉じた内容関数記述。目的の実現を評価しない。"
+        },
+        {
+          "role": "supports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話者・理由・受け手・行為記述・目的記述・状況の、行為が目的に適するとの評価関係。実際に妥当な推論であるとの認定と分ける。"
+        },
+        {
+          "role": "reasonshown",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ提示行為・受け手・理由・状況の、理由を明示した関係。別の発言から理由を借りない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechpromise": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        },
+        {
+          "role": "undertakes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話者・受け手・提示行為・行為記述・状況の、当該行為を自分に課すものとして引き受ける表明。内心の意思、成功、有効な義務の存在を含意しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechcommand": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "提示者の役割。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話者・役割・提示行為・受け手・行為記述・状況について、その役割の指示権限を行使すると表明する関係。権限の認可そのものではない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "requestrealized": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        },
+        {
+          "role": "solicits",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話者・提示行為・受け手・行為記述・状況について、受け手による当該行為の引受けを求める表明。実際の内心の欲求や受諾を条件にしない。"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation",
+          "interpretation": "内容の実現を調べる明示的な後続状況。"
+        },
+        {
+          "role": "before",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一状況が第二より前であるという順序関係。時刻を自動補完しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "promiserealized": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "主体から命題内容を作る閉じた行為関数の記述。予定された行為でよく、引用時は実行しない。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・対象・表面の発話記述・行為者・行為記述・状況の解釈上の結び付け。問いの形だけから依頼を推測しない。"
+        },
+        {
+          "role": "undertakes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "話者・受け手・提示行為・行為記述・状況の、当該行為を自分に課すものとして引き受ける表明。内心の意思、成功、有効な義務の存在を含意しない。"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation",
+          "interpretation": "内容の実現を調べる明示的な後続状況。"
+        },
+        {
+          "role": "before",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一状況が第二より前であるという順序関係。時刻を自動補完しない。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_definitions": [
+    {
+      "document": "examples/v014/speech-principals.noema",
+      "names": {
+        "rfo": "speechpresented",
+        "rga": "speechattributed",
+        "rgb": "speechdelegated",
+        "rhe": "speechownvoice",
+        "rhf": "speechothervoice",
+        "rhg": "speechvoicepair",
+        "rhh": "audiencewithin"
+      }
+    }
+  ],
+  "limitations": [
+    "7定義は既存speech-principalsの本体・語義を再利用する。新しい基本宣言を導入せず、残る対人的・規範的関係は型と解釈を明示する引数として渡す。",
+    "依頼/理由提示型の助言/約束/命令は明示的な読みの構成であり、表面形から自動分類しない。各プロフィールは排他的でも網羅的でもない。",
+    "targets/solicits/supports/undertakes/claimsの適用根拠は解釈入力である。これら社会的・志向的関係の一般理論を論理演算だけで還元したとは主張しない。",
+    "提示・受領・理解・受諾・辞退・実現を分ける。受諾と辞退は互いの単なる否定ではなく、無応答や矛盾した記録も記述できる。",
+    "行為者を依頼では受け手、約束では話者に固定する。引用した行為や発話の真理はプロフィール判定で評価せず、実現を問う場合だけ明示的に脱引用する。",
+    "権限の行使表明と権限の正当性、引受けと有効な義務、目的への適性評価と目的達成を区別する。期限・解除・不履行判定や部分回答・会話更新は別途接続する。",
+    "間接依頼は表面の問いの記述と求める行為をtargetsで結べるが、その結び付けを自動推測する仕組みではない。未知入力は偽や未受諾へ置き換えない。",
+    "円文字接続、他領域への適用、学習・第三者読解は続く課題。"
+  ]
+}
