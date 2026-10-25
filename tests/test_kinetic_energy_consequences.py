@@ -1,0 +1,8 @@
+from scripts.check_kinetic_energy_consequences import numerical_checks,physical_checks,possibility_checks,binding_checks,presentation_checks,structure_checks
+
+def test_three_dimensional_speed_and_scaled_formula():assert numerical_checks()
+def test_physical_quantities_without_preselected_speed_bound():assert physical_checks()
+def test_possible_histories_and_nonempty_boundary():assert possibility_checks()
+def test_every_witness_and_material_application_role():assert binding_checks()
+def test_inference_comparison_and_charge_addition_reference():assert presentation_checks()
+def test_prior_statements_meanings_and_source_preserved():assert structure_checks()
