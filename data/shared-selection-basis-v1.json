@@ -1,0 +1,233 @@
+{
+  "status": "shared_truth_numeric_selection",
+  "document": "examples/v016/shared-selection-v1.noema",
+  "primitives": {
+    "rationaladd": {
+      "symbol": "rationaladd",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の和。浮動小数点への丸めはしない。"
+    },
+    "rationalmultiply": {
+      "symbol": "rationalmultiply",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の積。浮動小数点への丸めはしない。"
+    },
+    "truthindicator": {
+      "symbol": "truthindicator",
+      "parameters": [
+        "truth"
+      ],
+      "result": "number",
+      "arguments": [
+        "condition"
+      ],
+      "meaning_ja": "真理値の数値指示関数。真を1、偽を0とする。この全条件をheでも記述し、割合の検査時に要求する。"
+    }
+  },
+  "definitions": {
+    "indicatorvalid": "真理値の両方について指示関数hdの値を制約する。真なら1、偽なら0である。",
+    "occurrencecount": "列の各出現について性質の真偽を指示関数で数え、加算する。重複を自動削除しない生の出現数であり、人数として使う条件は別に検査する。",
+    "memberof": "指定個体が有限列のいずれかの位置に現れる。順序と重複は所属の真偽を変えない。",
+    "distinctmembers": "有限列の個体に重複がない。空列でも成立する。",
+    "selectnumber": "真ならwhenyes、偽ならwhennoの有理数値を、既存の数値指示関数と積・和から構成する。引数の遅延評価ではない。",
+    "countselected": "指示関数の真偽両方の規約が成立し、列に同じ個体の重複がなく、該当個体の出現数が指定数に等しい。空列は0。"
+  },
+  "public_contracts": {
+    "rationaladd": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        }
+      ],
+      "result": "number"
+    },
+    "rationalmultiply": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        }
+      ],
+      "result": "number"
+    },
+    "memberof": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        },
+        {
+          "role": "member",
+          "sort": "individual",
+          "interpretation": "所属を調べる個体。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distinctmembers": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "truthindicator": {
+      "arguments": [
+        {
+          "role": "condition",
+          "sort": "truth",
+          "interpretation": "どちらの有理数値を選ぶかを表す既知の真理値。"
+        }
+      ],
+      "result": "number"
+    },
+    "indicatorvalid": {
+      "arguments": [],
+      "result": "truth"
+    },
+    "occurrencecount": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "計数する個体の有限列。出現数では重複を残し、個体数では重複を拒否する。"
+        },
+        {
+          "role": "property",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各個体が該当するかを表す既知の性質。"
+        }
+      ],
+      "result": "number"
+    },
+    "selectnumber": {
+      "arguments": [
+        {
+          "role": "condition",
+          "sort": "truth",
+          "interpretation": "どちらの有理数値を選ぶかを表す既知の真理値。"
+        },
+        {
+          "role": "whenyes",
+          "sort": "number",
+          "interpretation": "条件が真である場合の有理数値。引数は選択前に評価する。"
+        },
+        {
+          "role": "whenno",
+          "sort": "number",
+          "interpretation": "条件が偽である場合の有理数値。引数は選択前に評価する。"
+        }
+      ],
+      "result": "number"
+    },
+    "countselected": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "計数する個体の有限列。出現数では重複を残し、個体数では重複を拒否する。"
+        },
+        {
+          "role": "property",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各個体が該当するかを表す既知の性質。"
+        },
+        {
+          "role": "count",
+          "sort": "number",
+          "interpretation": "該当する個体に要求する個数。有理数型だが成立時は非負整数。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_definitions": [
+    {
+      "document": "examples/v014/proportions.noema",
+      "names": {
+        "ha": "rationaladd",
+        "hd": "truthindicator",
+        "he": "indicatorvalid",
+        "hf": "occurrencecount"
+      }
+    },
+    {
+      "document": "examples/v016/shared-quantities-v1.noema",
+      "names": {
+        "rationaladd": "rationaladd",
+        "rationalmultiply": "rationalmultiply"
+      }
+    },
+    {
+      "document": "examples/v016/shared-plurality-v1.noema",
+      "names": {
+        "memberof": "memberof",
+        "distinctmembers": "distinctmembers"
+      }
+    }
+  ],
+  "limitations": [
+    "truthindicatorは既存hdの基本規約を再利用する。新しい原始概念を作らない。真偽の両値はindicatorvalidで検査できる。",
+    "selectnumberは標準の指示関数・有理数加算・乗算という規約の下で値を選ぶ。型だけで任意の外部解釈を標準算術と認定しない。",
+    "引数の評価は従来どおり厳密。未選択側が未知でも評価は拒否し、0を掛けて不明値を消したことにしない。",
+    "occurrencecountは列の出現を数える。countselectedは列全体の重複を拒否し、母集団の完全性や代表性は別途指定する。",
+    "有限条件の数値選択は任意型の遅延条件式や、未知の個体を新設する操作ではない。円文字接続と多部分の可視例を続ける。"
+  ]
+}
