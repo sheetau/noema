@@ -1,0 +1,2233 @@
+{
+  "status": "shared_grounded_belief_revision",
+  "document": "examples/v016/shared-revision-v1.noema",
+  "primitives": {
+    "claimchoice": {
+      "parameters": [
+        "truth",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      },
+      "arguments": [
+        "condition",
+        "positive",
+        "negative"
+      ],
+      "meaning_ja": "条件が真なら第一の閉じた内容記述、偽なら第二の閉じた内容記述をそのまま返す。記述内容を実行せず、同義性で置換しない。"
+    }
+  },
+  "definitions": {
+    "itemcontentall": "基準文脈で対象に含まれる命題的部分が、評価状況で全て真である。既知の空集合なら真。含まれる規範・命令を自動的に真偽命題へ変換しない。",
+    "supportedtrueitem": "同じ主体がその段階で受け入れ、根拠による支持があり、同じ評価状況で内容が真となる命題項目。支持の一般理論や知識の十分条件を定義したものではない。",
+    "informationcontent": "固定した命題範囲でri2を満たす全項目の内容を同時に満たす状況を表す内容。既存rgqの連言構成を使い、項目数を知識量にしない。",
+    "informationpreserved": "異なる二段階の同じ主体について、比較状況の範囲が評価状況を含み、後段階のri3を満たす比較状況は全て前段階のri3も満たす。比較範囲内で以前の正しく支持された情報を失わない条件。",
+    "informationexpanded": "ri4に加え、前段階のri3を満たすが後段階には満たさない比較状況がある。正しく支持された情報が比較範囲内で厳密に増えるという拡大の候補。",
+    "errorsreduced": "ri4を保ちながら、後段階で受け入れた誤った内容は全て以前にもあり、以前の誤った内容の少なくとも一つが後段階には残らない。比較状況全体で同じ真偽を持つ別名項目へ置き換えただけなら除去と数えない。",
+    "errorscleared": "ri6を満たし、固定範囲内で後段階に受け入れられた偽の内容が一つも残らない。範囲外の全ての誤りを除いたとはしない。",
+    "candidatenecessary": "内容と文脈について指定された候補状況が非空で、その全候補で同じ内容が成立する。現在状況の真理や、あらゆる理論での論理的必然性とは区別する。",
+    "beliefselector": "同じ主体の候補関係を、共通の様相関数へ渡せる選択関数にする。内容の真理から候補を補わない。",
+    "beliefaccepted": "同じ主体が同じ閉じた記述を認識し、その内容が非空の全候補で真であるという信念の読み。実際の真理は別条件。",
+    "memberof": "指定個体が有限列のいずれかの位置に現れる。順序と重複は所属の真偽を変えない。",
+    "distinctmembers": "有限列の個体に重複がない。空列でも成立する。",
+    "proofstates": "有限順序を左から調べ、局所条件が成立し全ての前提が既に認定された項目を追加する。結果は認定項目の述語。順序全体の妥当性はproofverifiedで別に確認する。",
+    "proofverified": "重複しない有限列の全項目がproofstatesで認定される。前提の未記載・後方依存・循環を許さず、空列自体は妥当。局所条件や前提範囲の適切さは入力規約。",
+    "proofsupports": "有限順序全体が妥当で、その中に指定対象があり認定されている。内容が真だという一般的証明ではない。",
+    "candidatesincluded": "同じ主体の後段階の全候補が前段階の候補に含まれる。空の後候補も含めた集合関係で、受領や実際の真理を含めない。",
+    "candidatesame": "同じ主体の前後の候補状況集合が一致する。記述認識や証拠の変化までは判定しない。",
+    "candidatefiltered": "後候補が、前候補のうち同じ記述内容が真の状況と過不足なく一致する。空集合も許す構造条件で、受容の成立ではない。",
+    "beliefcorpus": "同じ項目の記述・主体・段階についてbeliefacceptedを適用する受容関係を構成する。記録の受領や現実の真理から受容を補わない。",
+    "claimcontents": "固定した項目から同じ閉じた記述を得て、その内容を返す関数。前後の比較中に項目の意味を変えない。",
+    "evidencebasis": "同じ主体が同じ段階で利用でき、同じ記述を持つ記録が、その段階の妥当な有限証拠列で認定されるという支持関係を構成する。受容や真理は別。",
+    "evidencereceived": "異なる前後段階の先行関係、同じ記録と記述、受け手・出所・受領出来事・前後段階の受領関係、後段階での利用可能性がある。記録の妥当性や信念変化を含めない。",
+    "evidenceused": "evidencereceivedに加え、同じ主体・記録・記述・理由・前後段階の採用関係、後段階の証拠列による認定、同じ記述への後段階のbeliefacceptedがある。既に同じ内容を信じていた場合も含む。",
+    "beliefupdated": "evidenceusedに加え、前後の候補集合または対象記述の認識状態が変わる。実際の真理や情報増加は別。",
+    "beliefadopted": "evidenceusedに加え、前段階のbeliefacceptedは成立していなかった。根拠だけが増えた場合と、新たに受け入れた場合を分ける。",
+    "evidencefiltered": "evidenceusedに加え、後候補がcandidatefilteredに一致する。後の受容条件から候補は非空となるが、実際の状況を含むことは補わない。",
+    "informationlinked": "同じ主体・同じ境界段階について、指定範囲の項目記述・受容・支持が前記録の後状態と次記録の前状態で一致する。範囲外の情報や候補集合全体、証拠グラフ全体の同一性は主張しない。"
+  },
+  "public_contracts": {
+    "itemcontentall": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual",
+          "interpretation": "比較する情報を受け入れる主体。"
+        },
+        {
+          "role": "point",
+          "sort": "situation",
+          "interpretation": "内容の真理を評価する状況。"
+        },
+        {
+          "role": "stage",
+          "sort": "situation",
+          "interpretation": "受容・支持を調べる段階。"
+        },
+        {
+          "role": "corpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について受け入れているという関係。単なる受領と区別する。"
+        },
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "同じ項目の内容を返す固定した関数。"
+        }
+      ],
+      "result": "truth"
+    },
+    "supportedtrueitem": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual",
+          "interpretation": "比較する情報を受け入れる主体。"
+        },
+        {
+          "role": "claim",
+          "sort": "individual",
+          "interpretation": "比較する命題項目。"
+        },
+        {
+          "role": "stage",
+          "sort": "situation",
+          "interpretation": "受容・支持を調べる段階。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "前後を通して固定する現実の真理の評価状況。"
+        },
+        {
+          "role": "corpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について受け入れているという関係。単なる受領と区別する。"
+        },
+        {
+          "role": "supported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について根拠による支持がある関係。真理は別に評価する。"
+        },
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "同じ項目の内容を返す固定した関数。"
+        }
+      ],
+      "result": "truth"
+    },
+    "informationcontent": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual",
+          "interpretation": "比較する情報を受け入れる主体。"
+        },
+        {
+          "role": "stage",
+          "sort": "situation",
+          "interpretation": "受容・支持を調べる段階。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "前後を通して固定する現実の真理の評価状況。"
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "前後で固定する命題項目の範囲。"
+        },
+        {
+          "role": "corpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について受け入れているという関係。単なる受領と区別する。"
+        },
+        {
+          "role": "supported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について根拠による支持がある関係。真理は別に評価する。"
+        },
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "同じ項目の内容を返す固定した関数。"
+        }
+      ],
+      "result": "content"
+    },
+    "informationpreserved": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual",
+          "interpretation": "比較する情報を受け入れる主体。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "前後を通して固定する現実の真理の評価状況。"
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "前後で固定する命題項目の範囲。"
+        },
+        {
+          "role": "corpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について受け入れているという関係。単なる受領と区別する。"
+        },
+        {
+          "role": "supported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について根拠による支持がある関係。真理は別に評価する。"
+        },
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "同じ項目の内容を返す固定した関数。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "内容情報を比較する状況範囲。前後で同じ範囲を保つ。"
+        }
+      ],
+      "result": "truth"
+    },
+    "informationexpanded": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual",
+          "interpretation": "比較する情報を受け入れる主体。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "前後を通して固定する現実の真理の評価状況。"
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "前後で固定する命題項目の範囲。"
+        },
+        {
+          "role": "corpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について受け入れているという関係。単なる受領と区別する。"
+        },
+        {
+          "role": "supported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について根拠による支持がある関係。真理は別に評価する。"
+        },
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "同じ項目の内容を返す固定した関数。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "内容情報を比較する状況範囲。前後で同じ範囲を保つ。"
+        }
+      ],
+      "result": "truth"
+    },
+    "errorsreduced": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual",
+          "interpretation": "比較する情報を受け入れる主体。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "前後を通して固定する現実の真理の評価状況。"
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "前後で固定する命題項目の範囲。"
+        },
+        {
+          "role": "corpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について受け入れているという関係。単なる受領と区別する。"
+        },
+        {
+          "role": "supported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について根拠による支持がある関係。真理は別に評価する。"
+        },
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "同じ項目の内容を返す固定した関数。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "内容情報を比較する状況範囲。前後で同じ範囲を保つ。"
+        }
+      ],
+      "result": "truth"
+    },
+    "errorscleared": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual",
+          "interpretation": "比較する情報を受け入れる主体。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "前後を通して固定する現実の真理の評価状況。"
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "前後で固定する命題項目の範囲。"
+        },
+        {
+          "role": "corpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について受け入れているという関係。単なる受領と区別する。"
+        },
+        {
+          "role": "supported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・項目・段階について根拠による支持がある関係。真理は別に評価する。"
+        },
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "interpretation": "同じ項目の内容を返す固定した関数。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "内容情報を比較する状況範囲。前後で同じ範囲を保つ。"
+        }
+      ],
+      "result": "truth"
+    },
+    "candidatenecessary": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "beliefselector": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "content",
+          "situation",
+          "situation"
+        ],
+        "result": "truth"
+      }
+    },
+    "beliefaccepted": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "認識・真理・証拠を比較する閉じた段階0の命題内容記述。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・文脈についてその記述を認識しているという関係。同じ真理値の別記述へ自動で拡張しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "memberof": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        },
+        {
+          "role": "member",
+          "sort": "individual",
+          "interpretation": "所属を調べる個体。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distinctmembers": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "proofstates": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "truth"
+      }
+    },
+    "proofverified": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "proofsupports": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "interpretation": "有限証拠列で認定または起源を調べる対象記録。"
+        }
+      ],
+      "result": "truth"
+    },
+    "candidatesincluded": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "更新・受領・信念を帰属する同じ主体。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・段階・候補状況の関係。候補の網羅性や実際の状況の包含は明示的入力。"
+        }
+      ],
+      "result": "truth"
+    },
+    "candidatesame": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "更新・受領・信念を帰属する同じ主体。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・段階・候補状況の関係。候補の網羅性や実際の状況の包含は明示的入力。"
+        }
+      ],
+      "result": "truth"
+    },
+    "candidatefiltered": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "更新・受領・信念を帰属する同じ主体。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・段階・候補状況の関係。候補の網羅性や実際の状況の包含は明示的入力。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "受領・採用・候補変更で同じ対象とする閉じた段階0の内容記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefcorpus": {
+      "arguments": [
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "命題項目から同じ閉じた内容記述を得る固定した関数。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・段階・候補状況の関係。候補の網羅性や実際の状況の包含は明示的入力。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・段階の認識関係。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual",
+          "situation"
+        ],
+        "result": "truth"
+      }
+    },
+    "claimcontents": {
+      "arguments": [
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "命題項目から同じ閉じた内容記述を得る固定した関数。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "content"
+      }
+    },
+    "evidencebasis": {
+      "arguments": [
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "命題項目から同じ閉じた内容記述を得る固定した関数。"
+        },
+        {
+          "role": "recordclaims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "証拠記録から同じ閉じた内容記述を得る関数。"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体が記録をその段階で利用できる関係。受容とは別。"
+        },
+        {
+          "role": "orders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "段階ごとの有限な証拠認定順序を返す。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの子記録・直接前提の関係を返す。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの証拠の局所認定条件を返す。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual",
+          "situation"
+        ],
+        "result": "truth"
+      }
+    },
+    "evidencereceived": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "更新・受領・信念を帰属する同じ主体。"
+        },
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "記録を受領した出所の識別子。起源の独立性をこの識別子だけで補わない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "同じ受領出来事の識別子。"
+        },
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "受領・採用する同じ証拠記録。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "受領・採用・候補変更で同じ対象とする閉じた段階0の内容記述。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "recordclaims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "証拠記録から同じ閉じた内容記述を得る関数。"
+        },
+        {
+          "role": "received",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "受け手・出所・出来事・記録・記述・前段階・後段階の受領関係。"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体が記録をその段階で利用できる関係。受容とは別。"
+        },
+        {
+          "role": "precedence",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定段階の厳密な先行関係。完全な時間履歴の検査をこの二点の呼出しだけで代替しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "evidenceused": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "更新・受領・信念を帰属する同じ主体。"
+        },
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "記録を受領した出所の識別子。起源の独立性をこの識別子だけで補わない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "同じ受領出来事の識別子。"
+        },
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "受領・採用する同じ証拠記録。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "受領・採用・候補変更で同じ対象とする閉じた段階0の内容記述。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "recordclaims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "証拠記録から同じ閉じた内容記述を得る関数。"
+        },
+        {
+          "role": "received",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "受け手・出所・出来事・記録・記述・前段階・後段階の受領関係。"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体が記録をその段階で利用できる関係。受容とは別。"
+        },
+        {
+          "role": "precedence",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定段階の厳密な先行関係。完全な時間履歴の検査をこの二点の呼出しだけで代替しない。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "採用理由の識別子。"
+        },
+        {
+          "role": "adopts",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記録・記述・理由・前段階・後段階についてその記録を採用したという明示的関係。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・段階・候補状況の関係。候補の網羅性や実際の状況の包含は明示的入力。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・段階の認識関係。"
+        },
+        {
+          "role": "orders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "段階ごとの有限な証拠認定順序を返す。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの子記録・直接前提の関係を返す。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの証拠の局所認定条件を返す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefupdated": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "更新・受領・信念を帰属する同じ主体。"
+        },
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "記録を受領した出所の識別子。起源の独立性をこの識別子だけで補わない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "同じ受領出来事の識別子。"
+        },
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "受領・採用する同じ証拠記録。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "受領・採用・候補変更で同じ対象とする閉じた段階0の内容記述。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "recordclaims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "証拠記録から同じ閉じた内容記述を得る関数。"
+        },
+        {
+          "role": "received",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "受け手・出所・出来事・記録・記述・前段階・後段階の受領関係。"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体が記録をその段階で利用できる関係。受容とは別。"
+        },
+        {
+          "role": "precedence",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定段階の厳密な先行関係。完全な時間履歴の検査をこの二点の呼出しだけで代替しない。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "採用理由の識別子。"
+        },
+        {
+          "role": "adopts",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記録・記述・理由・前段階・後段階についてその記録を採用したという明示的関係。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・段階・候補状況の関係。候補の網羅性や実際の状況の包含は明示的入力。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・段階の認識関係。"
+        },
+        {
+          "role": "orders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "段階ごとの有限な証拠認定順序を返す。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの子記録・直接前提の関係を返す。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの証拠の局所認定条件を返す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefadopted": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "更新・受領・信念を帰属する同じ主体。"
+        },
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "記録を受領した出所の識別子。起源の独立性をこの識別子だけで補わない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "同じ受領出来事の識別子。"
+        },
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "受領・採用する同じ証拠記録。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "受領・採用・候補変更で同じ対象とする閉じた段階0の内容記述。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "recordclaims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "証拠記録から同じ閉じた内容記述を得る関数。"
+        },
+        {
+          "role": "received",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "受け手・出所・出来事・記録・記述・前段階・後段階の受領関係。"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体が記録をその段階で利用できる関係。受容とは別。"
+        },
+        {
+          "role": "precedence",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定段階の厳密な先行関係。完全な時間履歴の検査をこの二点の呼出しだけで代替しない。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "採用理由の識別子。"
+        },
+        {
+          "role": "adopts",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記録・記述・理由・前段階・後段階についてその記録を採用したという明示的関係。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・段階・候補状況の関係。候補の網羅性や実際の状況の包含は明示的入力。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・段階の認識関係。"
+        },
+        {
+          "role": "orders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "段階ごとの有限な証拠認定順序を返す。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの子記録・直接前提の関係を返す。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの証拠の局所認定条件を返す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "evidencefiltered": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "更新・受領・信念を帰属する同じ主体。"
+        },
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "記録を受領した出所の識別子。起源の独立性をこの識別子だけで補わない。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "同じ受領出来事の識別子。"
+        },
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "受領・採用する同じ証拠記録。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "受領・採用・候補変更で同じ対象とする閉じた段階0の内容記述。"
+        },
+        {
+          "role": "before",
+          "sort": "situation",
+          "interpretation": "更新前の段階。"
+        },
+        {
+          "role": "after",
+          "sort": "situation",
+          "interpretation": "更新後の段階。"
+        },
+        {
+          "role": "recordclaims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "証拠記録から同じ閉じた内容記述を得る関数。"
+        },
+        {
+          "role": "received",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "受け手・出所・出来事・記録・記述・前段階・後段階の受領関係。"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体が記録をその段階で利用できる関係。受容とは別。"
+        },
+        {
+          "role": "precedence",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定段階の厳密な先行関係。完全な時間履歴の検査をこの二点の呼出しだけで代替しない。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "採用理由の識別子。"
+        },
+        {
+          "role": "adopts",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記録・記述・理由・前段階・後段階についてその記録を採用したという明示的関係。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・段階・候補状況の関係。候補の網羅性や実際の状況の包含は明示的入力。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・段階の認識関係。"
+        },
+        {
+          "role": "orders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          },
+          "interpretation": "段階ごとの有限な証拠認定順序を返す。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの子記録・直接前提の関係を返す。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "段階ごとの証拠の局所認定条件を返す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "informationlinked": {
+      "arguments": [
+        {
+          "role": "priorholder",
+          "sort": "individual",
+          "interpretation": "前の更新記録の主体。"
+        },
+        {
+          "role": "nextholder",
+          "sort": "individual",
+          "interpretation": "次の更新記録の主体。"
+        },
+        {
+          "role": "priorafter",
+          "sort": "situation",
+          "interpretation": "前の更新記録の後段階。"
+        },
+        {
+          "role": "nextbefore",
+          "sort": "situation",
+          "interpretation": "次の更新記録の前段階。"
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "前後で固定する命題項目の範囲。"
+        },
+        {
+          "role": "priorclaims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "前記録での項目記述。"
+        },
+        {
+          "role": "nextclaims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "次記録での項目記述。"
+        },
+        {
+          "role": "priorcorpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "前記録での受容関係。"
+        },
+        {
+          "role": "nextcorpus",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "次記録での受容関係。"
+        },
+        {
+          "role": "priorsupported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "前記録での支持関係。"
+        },
+        {
+          "role": "nextsupported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "次記録での支持関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "claimchoice": {
+      "arguments": [
+        {
+          "role": "condition",
+          "sort": "truth",
+          "interpretation": "分岐を決める既知の真偽値。"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "条件が真の場合に返す閉じた内容記述。"
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "条件が偽の場合に返す閉じた内容記述。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      }
+    }
+  },
+  "preserved_sources": [
+    {
+      "document": "examples/v014/epistemic-revision.noema",
+      "basis": "data/epistemic-revision-basis-v1.json",
+      "renaming": {
+        "rgq": "itemcontentall",
+        "ri2": "supportedtrueitem",
+        "ri3": "informationcontent",
+        "ri4": "informationpreserved",
+        "ri5": "informationexpanded",
+        "ri6": "errorsreduced",
+        "ri7": "errorscleared"
+      }
+    },
+    {
+      "document": "examples/v016/shared-evidence-v1.noema",
+      "basis": "data/shared-evidence-basis-v1.json",
+      "names": [
+        "candidatenecessary",
+        "beliefselector",
+        "beliefaccepted",
+        "memberof",
+        "distinctmembers",
+        "proofstates",
+        "proofverified",
+        "proofsupports"
+      ]
+    },
+    {
+      "document": "examples/v016/shared-claim-choice-v1.noema",
+      "basis": "data/shared-claim-choice-basis-v1.json",
+      "names": [
+        "claimchoice"
+      ]
+    }
+  ],
+  "limitations": [
+    "受領・利用可能性・採用・候補変化・情報増加・誤り除去・現在の真理は別条件。受け取っただけで知ったことにせず、同じ内容の再伝聞や恒真な内容の追加を情報増加としない。",
+    "候補の交差による更新は明示した一つの型。前候補が真の新情報と両立しない場合の候補拡大や全面改訂を禁止する一般規則ではない。",
+    "前後の内容比較は主体・項目範囲・内容関数・評価状況・比較状況を固定する。比較範囲外の全可能状況の同値や、知識量一般の数値化を主張しない。",
+    "証拠認定・受領・採用理由・認識・候補・先行関係は明示的解釈入力。内容記述を選ぶclaimchoice基本関数1語を共有し、これを意味の全面的還元と混同しない。",
+    "evidenceusedは同じ記述の後の受容と支持を要求するが、内容が真であることは含めない。情報増加と誤り除去は固定した現実の真理も検査する旧定義へ接続する。",
+    "informationlinkedは固定範囲の記述・受容・支持の一致。全候補集合・証拠台帳・範囲外の心理状態が同じであるという条件ではない。元の前後関係と証拠を別の関数値として保存し、古い状態を上書きしない。",
+    "内容が未知でも受領記録は引用のまま保持できる。内容評価を要する受容・含意・情報比較は未知入力を拒否する。論理演算は短絡しない。",
+    "段階0の内容記述を選ぶ型付き基本関数。真理の判定、未知条件の既定値、自然言語の解釈、任意型の多相的な選択を提供するものではない。",
+    "Noemaの通常の適用と同じく条件と両記述の構成には既知の値を要する。選択されない記述の内容真理まで実行するわけではない。",
+    "入力として構成した記述の一方を保持し、新しい記述や外部由来の未認定な記述を生成しない。"
+  ]
+}

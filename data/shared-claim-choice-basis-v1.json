@@ -1,0 +1,66 @@
+{
+  "status": "typed_content_description_choice",
+  "document": "examples/v016/shared-claim-choice-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "claimchoice": {
+      "parameters": [
+        "truth",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      },
+      "arguments": [
+        "condition",
+        "positive",
+        "negative"
+      ],
+      "meaning_ja": "条件が真なら第一の閉じた内容記述、偽なら第二の閉じた内容記述をそのまま返す。記述内容を実行せず、同義性で置換しない。"
+    }
+  },
+  "public_contracts": {
+    "claimchoice": {
+      "arguments": [
+        {
+          "role": "condition",
+          "sort": "truth",
+          "interpretation": "分岐を決める既知の真偽値。"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "条件が真の場合に返す閉じた内容記述。"
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "条件が偽の場合に返す閉じた内容記述。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      }
+    }
+  },
+  "limitations": [
+    "段階0の内容記述を選ぶ型付き基本関数。真理の判定、未知条件の既定値、自然言語の解釈、任意型の多相的な選択を提供するものではない。",
+    "Noemaの通常の適用と同じく条件と両記述の構成には既知の値を要する。選択されない記述の内容真理まで実行するわけではない。",
+    "入力として構成した記述の一方を保持し、新しい記述や外部由来の未認定な記述を生成しない。"
+  ]
+}
