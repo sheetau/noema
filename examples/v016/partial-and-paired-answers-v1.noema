@@ -1,0 +1,43 @@
+noema p p
+d answerconsistent[va h[a] c vb h[a] c] c[f vc a[u[w[c[v va][v vc]][c[v vb][v vc]]]]].
+d answersound[va g[a] vb h[a] c vc h[a] c] c[f vd a[w[y[c[v vb][v vd]][h[v va][v vd]]][y[c[v vc][v vd]][u[h[v va][v vd]]]]]].
+d answerinformative[va h[a] c vb h[a] c] c[g vc a[x[c[v va][v vc]][c[v vb][v vc]]]].
+d answercovers[va g[a] vb h[a] c] c[f vc a[y[h[v va][v vc]][c[v vb][v vc]]]].
+d answercomplete[va g[a] vb h[a] c vc h[a] c vd c] c[w[k answersound[v va v vb v vc]][w[v vd][k answercovers[v va v vb]]]].
+d answerpartial[va g[a] vb h[a] c vc h[a] c vd c] c[w[k answersound[v va v vb v vc]][w[k answerinformative[v vb v vc]][u[v vd]]]].
+d answerunsettled[va h[a] c vb h[a] c vc a] c[w[u[c[v va][v vc]]][u[c[v vb][v vc]]]].
+d answernone[va g[a]] c[f vb a[u[h[v va][v vb]]]].
+d pairanswerconsistent[va h[a a] c vb h[a a] c] c[f vc a[f vd a[u[w[c[v va][v vc v vd]][c[v vb][v vc v vd]]]]]].
+d pairanswersound[va g[a a] vb h[a a] c vc h[a a] c] c[f vd a[f ve a[w[y[c[v vb][v vd v ve]][h[v va][v vd v ve]]][y[c[v vc][v vd v ve]][u[h[v va][v vd v ve]]]]]]].
+d pairanswerinformative[va h[a a] c vb h[a a] c] c[g vc a[g vd a[x[c[v va][v vc v vd]][c[v vb][v vc v vd]]]]].
+d pairanswercovers[va g[a a] vb h[a a] c] c[f vc a[f vd a[y[h[v va][v vc v vd]][c[v vb][v vc v vd]]]]].
+d pairanswercomplete[va g[a a] vb h[a a] c vc h[a a] c vd c] c[w[k pairanswersound[v va v vb v vc]][w[v vd][k pairanswercovers[v va v vb]]]].
+d pairanswerpartial[va g[a a] vb h[a a] c vc h[a a] c vd c] c[w[k pairanswersound[v va v vb v vc]][w[k pairanswerinformative[v vb v vc]][u[v vd]]]].
+d pairanswerunsettled[va h[a a] c vb h[a a] c vc a vd a] c[w[u[c[v va][v vc v vd]]][u[c[v vb][v vc v vd]]]].
+d pairanswernone[va g[a a]] c[f vb a[f vc a[u[h[v va][v vb v vc]]]]].
+d answerfirstquestion[va g[a a]] g[a][j v[i[vb a][g vc a[h[v va][v vb v vc]]]]].
+d answersecondquestion[va g[a a]] g[a][j v[i[vb a][g vc a[h[v va][v vc v vb]]]]].
+d answerafterfirst[va g[a a] vb a] g[a][j v[i[vc a][h[v va][v vb v vc]]]].
+d answerbeforesecond[va g[a a] vb a] g[a][j v[i[vc a][h[v va][v vc v vb]]]].
+d speechpresented[va a vb a vc h[a] c vd a ve i[h[a] f] vf d vg h[a d] c vh h[a a d] c vi h[a a a i[h[a] f] d] c] c[w[c[v vg][v vb v vf]][w[c[v vh][v va v vb v vf]][w[g vj a[c[v vc][v vj]]][f vk a[y[c[v vc][v vk]][c[v vi][v vb v vk v vd v ve v vf]]]]]]].
+d speechto[va a vb a vc a vd a ve i[h[a] f] vf d vg h[a d] c vh h[a a d] c vi h[a a a i[h[a] f] d] c] c[k speechpresented[v va v vb i[vj a][e[v vj][v vc]] v vd v ve v vf v vg v vh v vi]].
+r aki[] a.
+r nao[] a.
+d replycontent[va a] e[b vb[k answercomplete[j v[i[vc a][x[e[v vc][k aki[]]][e[v vc][k nao[]]]]] i[vd a][e[v vd][k aki[]]] i[ve a][e[n p a b][n p b b]] e[n p a b][n p a b]]]].
+d replyform[va a] f[j s[k replycontent[v va]]].
+q[k answersound[j v[i[va a][x[e[v va][k aki[]]][e[v va][k nao[]]]]] i[vb a][e[v vb][k aki[]]] i[vc a][e[n p a b][n p b b]]]].
+q[k answerpartial[j v[i[va a][x[e[v va][k aki[]]][e[v va][k nao[]]]]] i[vb a][e[v vb][k aki[]]] i[vc a][e[n p a b][n p b b]] e[n p a b][n p b b]]].
+q[k answercomplete[j v[i[va a][x[e[v va][k aki[]]][e[v va][k nao[]]]]] i[vb a][e[v vb][k aki[]]] i[vc a][e[n p a b][n p b b]] e[n p a b][n p a b]]].
+q[k answerpartial[j v[i[va a][x[e[v va][k aki[]]][e[v va][k nao[]]]]] i[vb a][x[e[v vb][k aki[]]][e[v vb][k nao[]]]] i[vc a][e[n p a b][n p b b]] e[n p a b][n p b b]]].
+q[k answercomplete[j v[i[va a][x[e[v va][k aki[]]][e[v va][k nao[]]]]] i[vb a][x[e[v vb][k aki[]]][e[v vb][k nao[]]]] i[vc a][e[n p a b][n p b b]] e[n p a b][n p b b]]].
+q[k answercomplete[j v[i[va a][x[e[v va][k aki[]]][e[v va][k nao[]]]]] i[vb a][x[e[v vb][k aki[]]][e[v vb][k nao[]]]] i[vc a][e[n p a b][n p b b]] e[n p a b][n p a b]]].
+q[k answercomplete[j v[i[va a][e[n p a b][n p b b]]] i[vb a][e[n p a b][n p b b]] i[vc a][e[n p a b][n p b b]] e[n p a b][n p a b]]].
+q[k answerunsettled[i[va a][e[v va][k aki[]]] i[vb a][e[n p a b][n p b b]] k nao[]]].
+q[k pairanswerpartial[j v[i[va a vb a][w[e[v va][v vb]][x[e[v va][k aki[]]][e[v va][k nao[]]]]]] i[vc a vd a][w[e[v vc][k aki[]]][e[v vd][k aki[]]]] i[ve a vf a][e[n p a b][n p b b]] e[n p a b][n p b b]]].
+q[k pairanswercomplete[j v[i[va a vb a][w[e[v va][v vb]][x[e[v va][k aki[]]][e[v va][k nao[]]]]]] i[vc a vd a][w[e[v vc][v vd]][x[e[v vc][k aki[]]][e[v vc][k nao[]]]]] i[ve a vf a][e[n p a b][n p b b]] e[n p a b][n p a b]]].
+q[h[k answerfirstquestion[j v[i[va a vb a][w[e[v va][v vb]][x[e[v va][k aki[]]][e[v va][k nao[]]]]]]]][k aki[]]].
+q[h[k answersecondquestion[j v[i[va a vb a][w[e[v va][v vb]][x[e[v va][k aki[]]][e[v va][k nao[]]]]]]]][k nao[]]].
+q[h[j v[i[va a vb a][w[e[v va][v vb]][x[e[v va][k aki[]]][e[v va][k nao[]]]]]]][k aki[] k nao[]]].
+q[h[k answerafterfirst[j v[i[va a vb a][w[e[v va][v vb]][x[e[v va][k aki[]]][e[v va][k nao[]]]]]] k aki[]]][k nao[]]].
+q[f va d[k speechto[k aki[] k aki[] k nao[] k nao[] r[p replyform] v va i[vb a vc d][e[n p a b][n p a b]] i[vd a ve a vf d][e[n p a b][n p a b]] i[vg a vh a vi a vj i[h[a] f] vk d][e[n p a b][n p a b]]]]].
+q[f va d[t[k replycontent[k nao[]]][v va]]].
