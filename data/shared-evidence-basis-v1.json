@@ -1,0 +1,1602 @@
+{
+  "status": "shared_description_belief_and_finite_evidence_provenance",
+  "document": "examples/v016/shared-evidence-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "candidatenecessary": "内容と文脈について指定された候補状況が非空で、その全候補で同じ内容が成立する。現在状況の真理や、あらゆる理論での論理的必然性とは区別する。",
+    "candidateexists": "内容と評価文脈に対して選択された候補状況が一つ以上ある。内容の成立は要求しない。",
+    "candidateexcluded": "候補状況が非空で、その全てで内容が成立しない。候補が空の場合とは区別する。",
+    "candidatecontingent": "同じ選択範囲に、内容が成立する候補と成立しない候補がともにある。真理値が未指定だという情報不足とは区別する。",
+    "memberof": "指定個体が有限列のいずれかの位置に現れる。順序と重複は所属の真偽を変えない。",
+    "distinctmembers": "有限列の個体に重複がない。空列でも成立する。",
+    "beliefselector": "同じ主体の候補関係を、共通の様相関数へ渡せる選択関数にする。内容の真理から候補を補わない。",
+    "beliefnonempty": "同じ主体・文脈の候補状況が少なくとも一つある。記述内容を評価しない。",
+    "beliefaccepted": "同じ主体が同じ閉じた記述を認識し、その内容が非空の全候補で真であるという信念の読み。実際の真理は別条件。",
+    "beliefdenied": "同じ記述を認識し、非空の全候補でその内容が偽である。未知や認識の欠如を否定としない。",
+    "beliefunsettled": "同じ記述を認識し、その内容が真の候補と偽の候補の両方がある。",
+    "beliefaccurate": "beliefacceptedに加え、同じ評価文脈でその内容が真である。",
+    "beliefmistaken": "beliefacceptedに加え、同じ評価文脈でその内容が偽である。",
+    "evidenceobserved": "同じ記録・保持者・内容記述・文脈の記録関係と、同じ保持者・出来事・記述・文脈の観察関係がある。観察内容の真理を自動で含めない。",
+    "evidencereported": "異なる二記録が同じ記述を持ち、両保持者と前後の記録・同じ記述・文脈を結ぶ伝聞関係がある。前の記録の正当性や現在の内容真理は別に検査する。",
+    "evidencepremises": "前提記録列から、順序と重複を保った内容記述列を構成する。記述内容は実行しない。",
+    "evidenceinferred": "結論記録があり、重複しない前提記録列に結論自身を含まず、同じ主体が各前提を利用でき、同じ前提記述列・結論記述・規則・文脈の推論記録がある。論理的妥当性は別条件。",
+    "evidenceparents": "指定記録の直接の前提が、重複せず自分自身を含まない指定列の要素と過不足なく一致する。観察の空列・伝聞元の一要素列・推論の前提列を証拠グラフへ結ぶ。",
+    "evidencepremisestrue": "前提記述列の全内容が同じ評価状況で真である。空列なら真。",
+    "evidenceentails": "非空の比較状況範囲で、全前提内容が真なら結論内容が真となる。前提の現実の真理、比較範囲外の妥当性、主体による理解を含めない。",
+    "proofstates": "有限順序を左から調べ、局所条件が成立し全ての前提が既に認定された項目を追加する。結果は認定項目の述語。順序全体の妥当性はproofverifiedで別に確認する。",
+    "proofverified": "重複しない有限列の全項目がproofstatesで認定される。前提の未記載・後方依存・循環を許さず、空列自体は妥当。局所条件や前提範囲の適切さは入力規約。",
+    "proofsupports": "有限順序全体が妥当で、その中に指定対象があり認定されている。内容が真だという一般的証明ではない。",
+    "proofancestors": "有限順序に沿って、各項目自身と先に構成された前提の祖先を関係として構成する。循環や順序違いの拒否はproofverifiedで別に行う。",
+    "proofroots": "指定対象の祖先に結び付く起源識別子の集合を述語として構成する。重複経路でも同じ起源は同じ要素。入力の起源関係や順序自体を認定する条件ではない。",
+    "prooforigin": "妥当な有限証拠列が対象を認定し、その祖先に指定の起源がある。",
+    "proofsharedorigin": "両対象が同じ妥当な証拠列で認定され、その起源集合が交わる。異なる話者や記録でも同じ起源を共有し得る。",
+    "proofseparateorigins": "両対象が同じ妥当な証拠列で認定され、それぞれ非空の起源集合を持ち、両集合は交わらない。統計的・因果的独立を意味しない。",
+    "proofcorroborates": "同じ記述の二記録がproofseparateoriginsを満たすという出所上の別の裏付け。記述同義性や内容真理、確信度の加算は含めない。",
+    "beliefgrounded": "同じ主体のbeliefacceptedと、同じ主体が保持する同じ記述の対象記録へのproofsupportsが共に成立する。根拠付きの誤信念も許す。",
+    "beliefgroundedtrue": "beliefgroundedに加え、同じ文脈で内容が真である。知識一般の十分条件とはしない。"
+  },
+  "public_contracts": {
+    "candidatenecessary": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "candidateexists": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "candidateexcluded": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "candidatecontingent": {
+      "arguments": [
+        {
+          "role": "content",
+          "sort": "content"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "content",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "候補の選定根拠と内容を明示する。現実の成立、能力、許可を自動補完しない。"
+      ]
+    },
+    "memberof": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        },
+        {
+          "role": "member",
+          "sort": "individual",
+          "interpretation": "所属を調べる個体。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distinctmembers": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefselector": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "content",
+          "situation",
+          "situation"
+        ],
+        "result": "truth"
+      }
+    },
+    "beliefnonempty": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefaccepted": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "認識・真理・証拠を比較する閉じた段階0の命題内容記述。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・文脈についてその記述を認識しているという関係。同じ真理値の別記述へ自動で拡張しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefdenied": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "認識・真理・証拠を比較する閉じた段階0の命題内容記述。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・文脈についてその記述を認識しているという関係。同じ真理値の別記述へ自動で拡張しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefunsettled": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "認識・真理・証拠を比較する閉じた段階0の命題内容記述。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・文脈についてその記述を認識しているという関係。同じ真理値の別記述へ自動で拡張しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefaccurate": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "認識・真理・証拠を比較する閉じた段階0の命題内容記述。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・文脈についてその記述を認識しているという関係。同じ真理値の別記述へ自動で拡張しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefmistaken": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "認識・真理・証拠を比較する閉じた段階0の命題内容記述。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・文脈についてその記述を認識しているという関係。同じ真理値の別記述へ自動で拡張しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "evidenceobserved": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "観察・伝聞・推論の対象記録。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "holders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "記録からその記録を保持する主体を得る関数。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "記録から同じ閉じた内容記述を得る関数。名前だけで真理を与えない。"
+        },
+        {
+          "role": "recorded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記録・保持者・内容記述・文脈を結ぶ明示的関係。"
+        },
+        {
+          "role": "events",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "観察記録から対象の出来事を指定する関数。"
+        },
+        {
+          "role": "observed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "観察主体・出来事・内容記述・文脈についての観察報告の関係。内容が現実に真かは別。"
+        }
+      ],
+      "result": "truth"
+    },
+    "evidencereported": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "観察・伝聞・推論の対象記録。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "holders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "記録からその記録を保持する主体を得る関数。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "記録から同じ閉じた内容記述を得る関数。名前だけで真理を与えない。"
+        },
+        {
+          "role": "recorded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記録・保持者・内容記述・文脈を結ぶ明示的関係。"
+        },
+        {
+          "role": "prior",
+          "sort": "individual",
+          "interpretation": "伝聞元の記録。評価文脈は現在の記録と共通で、実際の発生時刻の前後は別途与える。"
+        },
+        {
+          "role": "relayed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "受け手・伝え手・新記録・元記録・同じ記述・文脈を結ぶ伝達関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "evidencepremises": {
+      "arguments": [
+        {
+          "role": "premises",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "推論で用いた有限の前提記録列。順序を保つ。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "記録から同じ閉じた内容記述を得る関数。名前だけで真理を与えない。"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": {
+          "kind": "description",
+          "result": "content"
+        }
+      }
+    },
+    "evidenceinferred": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "観察・伝聞・推論の対象記録。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "holders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "記録からその記録を保持する主体を得る関数。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "記録から同じ閉じた内容記述を得る関数。名前だけで真理を与えない。"
+        },
+        {
+          "role": "recorded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記録・保持者・内容記述・文脈を結ぶ明示的関係。"
+        },
+        {
+          "role": "premises",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "推論で用いた有限の前提記録列。順序を保つ。"
+        },
+        {
+          "role": "rule",
+          "sort": "individual",
+          "interpretation": "その推論記録で指定した規則の識別子。"
+        },
+        {
+          "role": "available",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "推論主体が同じ文脈で指定前提記録を利用できる関係。"
+        },
+        {
+          "role": "inferred",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "sequence",
+                "element": {
+                  "kind": "description",
+                  "result": "content"
+                }
+              },
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・結論記録・前提記述列・結論記述・規則・文脈について推論したという記録。"
+        }
+      ],
+      "result": "truth"
+    },
+    "evidenceparents": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual",
+          "interpretation": "観察・伝聞・推論の対象記録。"
+        },
+        {
+          "role": "premises",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "推論で用いた有限の前提記録列。順序を保つ。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "evidencepremisestrue": {
+      "arguments": [
+        {
+          "role": "descriptions",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ順序の前提内容記述列。"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation",
+          "interpretation": "前提内容の真理を評価する状況。"
+        }
+      ],
+      "result": "truth"
+    },
+    "evidenceentails": {
+      "arguments": [
+        {
+          "role": "descriptions",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "同じ順序の前提内容記述列。"
+        },
+        {
+          "role": "conclusion",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "結論の閉じた内容記述。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "含意を検査する非空の比較状況範囲。現実や全可能状況を自動で含めない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "proofstates": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "truth"
+      }
+    },
+    "proofverified": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "proofsupports": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "interpretation": "有限証拠列で認定または起源を調べる対象記録。"
+        }
+      ],
+      "result": "truth"
+    },
+    "proofancestors": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual"
+        ],
+        "result": "truth"
+      }
+    },
+    "proofroots": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "interpretation": "有限証拠列で認定または起源を調べる対象記録。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "roots",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記録・起源識別子の関係。観察出来事等への対応と網羅性は明示的入力で、異なる識別子の独立を補わない。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "truth"
+      }
+    },
+    "prooforigin": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "interpretation": "有限証拠列で認定または起源を調べる対象記録。"
+        },
+        {
+          "role": "origin",
+          "sort": "individual",
+          "interpretation": "比較する同一起源の識別子。"
+        },
+        {
+          "role": "roots",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記録・起源識別子の関係。観察出来事等への対応と網羅性は明示的入力で、異なる識別子の独立を補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "proofsharedorigin": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "individual",
+          "interpretation": "比較する第一の記録。"
+        },
+        {
+          "role": "right",
+          "sort": "individual",
+          "interpretation": "比較する第二の記録。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        },
+        {
+          "role": "roots",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記録・起源識別子の関係。観察出来事等への対応と網羅性は明示的入力で、異なる識別子の独立を補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "proofseparateorigins": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "individual",
+          "interpretation": "比較する第一の記録。"
+        },
+        {
+          "role": "right",
+          "sort": "individual",
+          "interpretation": "比較する第二の記録。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        },
+        {
+          "role": "roots",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記録・起源識別子の関係。観察出来事等への対応と網羅性は明示的入力で、異なる識別子の独立を補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "proofcorroborates": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "individual",
+          "interpretation": "比較する第一の記録。"
+        },
+        {
+          "role": "right",
+          "sort": "individual",
+          "interpretation": "比較する第二の記録。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        },
+        {
+          "role": "roots",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記録・起源識別子の関係。観察出来事等への対応と網羅性は明示的入力で、異なる識別子の独立を補わない。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "記録から同じ閉じた内容記述を得る関数。名前だけで真理を与えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefgrounded": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "認識・真理・証拠を比較する閉じた段階0の命題内容記述。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・文脈についてその記述を認識しているという関係。同じ真理値の別記述へ自動で拡張しない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "interpretation": "有限証拠列で認定または起源を調べる対象記録。"
+        },
+        {
+          "role": "holders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "記録からその記録を保持する主体を得る関数。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "記録から同じ閉じた内容記述を得る関数。名前だけで真理を与えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "beliefgroundedtrue": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual",
+          "interpretation": "候補状況と記述の認識を帰属する主体。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "interpretation": "認識・真理・証拠を比較する閉じた段階0の命題内容記述。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ記録と認識を評価する文脈。実際の真理の評価状況としても使う。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・文脈・候補状況の明示的な関係。現実を含むとは限らず、未知を空集合にしない。"
+        },
+        {
+          "role": "aware",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体・記述・文脈についてその記述を認識しているという関係。同じ真理値の別記述へ自動で拡張しない。"
+        },
+        {
+          "role": "order",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "認定する証拠記録を前提から結論へ並べた有限列。時刻の列ではない。"
+        },
+        {
+          "role": "parents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "子記録・直接の前提記録の関係。関連する前提を全て与えるという規約を要する。"
+        },
+        {
+          "role": "local",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "その記録の観察・伝聞・推論などを認定する局所条件。原則として本文の共通定義を合成して与え、真理の万能判定器とはしない。"
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "interpretation": "有限証拠列で認定または起源を調べる対象記録。"
+        },
+        {
+          "role": "holders",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "記録からその記録を保持する主体を得る関数。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          },
+          "interpretation": "記録から同じ閉じた内容記述を得る関数。名前だけで真理を与えない。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_sources": [
+    {
+      "document": "examples/v016/shared-modality-v1.noema",
+      "basis": "data/shared-modality-basis-v1.json",
+      "names": [
+        "candidatenecessary",
+        "candidateexists",
+        "candidateexcluded",
+        "candidatecontingent"
+      ]
+    },
+    {
+      "document": "examples/v016/shared-plurality-v1.noema",
+      "basis": "data/shared-plurality-basis-v1.json",
+      "names": [
+        "memberof",
+        "distinctmembers"
+      ]
+    }
+  ],
+  "design_sources": [
+    "examples/v013/epistemic.noema",
+    "data/epistemic-basis-v1.json",
+    "examples/v014/epistemic-revision.noema",
+    "data/epistemic-revision-basis-v1.json"
+  ],
+  "limitations": [
+    "候補状況と記述認識から構成する信念の読み。人間の信念の全用法・理解・記憶・合理性や論理的全知を説明する理論ではない。認識と実際の真理を分ける。",
+    "観察・伝達・利用可能性・推論・記録・候補・認識・起源は明示的な解釈入力。基本宣言を追加しないことを、これらの社会的意味を全て還元したことと混同しない。",
+    "有限の証拠依存列は、局所認定と指定された全前提に対する構造的条件。内容真理や証拠の信頼性を保証する論理証明ではない。局所推論にevidenceinferredと同じ前提記述のevidenceentailsを接続できる。",
+    "前提の利用・記述列・論理的含意・現実の前提真理は異なる。空の前提からの推論も明示できるが、出所集合が空なら別起源の裏付けとは認定しない。",
+    "同一起源の再伝聞は根集合の一要素として保持する。根集合が非空で交わらないことを確率的独立・共通原因の不在・真理や確信度の増加としない。起源の同定と網羅性は解釈規約。",
+    "候補範囲・比較範囲を明示し、有限検査を全可能状況での同値や妥当性へ昇格させない。beliefgroundedtrueを知識一般の十分条件としない。",
+    "未知の解釈は実行を拒否する。論理演算は短絡しないので、最終的に偽になる条件の内部でも必要な入力が未知なら拒否する。",
+    "認定列は一つの文脈での有限な依存順序であり、記録発生時刻や因果順序を自動で含めない。後から入力関係を変えて過去の記録を上書きする履歴更新は別に構成する。"
+  ]
+}

@@ -1,0 +1,32 @@
+noema p p
+d candidatenecessary[va e vb d vc h[e d d] c] c[w[g vd d[c[v vc][v va v vb v vd]]][f ve d[y[c[v vc][v va v vb v ve]][t[v va][v ve]]]]].
+d candidateexists[va e vb d vc h[e d d] c] c[g vd d[c[v vc][v va v vb v vd]]].
+d candidateexcluded[va e vb d vc h[e d d] c] c[w[g vd d[c[v vc][v va v vb v vd]]][f ve d[y[c[v vc][v va v vb v ve]][u[t[v va][v ve]]]]]].
+d candidatecontingent[va e vb d vc h[e d d] c] c[w[g vd d[w[c[v vc][v va v vb v vd]][t[v va][v vd]]]][g ve d[w[c[v vc][v va v vb v ve]][u[t[v va][v ve]]]]]].
+d memberof[va j[a] vb a] c[q[v va][e[n p a b][n p b b]][i[vc c vd a][x[v vc][e[v vd][v vb]]]]].
+d distinctmembers[va j[a]] c[c[q[v va][i[vb j[a]][e[n p a b][n p a b]]][i[vc h[j[a]] c vd a][i[ve j[a]][w[u[k memberof[v ve v vd]]][c[v vc][m[v ve][l[a][v vd]]]]]]]][l[a][]]].
+d beliefselector[va a vb h[a d d] c] h[e d d] c[i[vc e vd d ve d][c[v vb][v va v vd v ve]]].
+d beliefnonempty[va a vb d vc h[a d d] c] c[k candidateexists[b vd[e[n p a b][n p a b]] v vb k beliefselector[v va v vc]]].
+d beliefaccepted[va a vb i[e] vc d vd h[a d d] c ve h[a i[e] d] c] c[w[c[v ve][v va v vb v vc]][k candidatenecessary[s[v vb] v vc k beliefselector[v va v vd]]]].
+d beliefdenied[va a vb i[e] vc d vd h[a d d] c ve h[a i[e] d] c] c[w[c[v ve][v va v vb v vc]][k candidateexcluded[s[v vb] v vc k beliefselector[v va v vd]]]].
+d beliefunsettled[va a vb i[e] vc d vd h[a d d] c ve h[a i[e] d] c] c[w[c[v ve][v va v vb v vc]][k candidatecontingent[s[v vb] v vc k beliefselector[v va v vd]]]].
+d beliefaccurate[va a vb i[e] vc d vd h[a d d] c ve h[a i[e] d] c] c[w[k beliefaccepted[v va v vb v vc v vd v ve]][t[s[v vb]][v vc]]].
+d beliefmistaken[va a vb i[e] vc d vd h[a d d] c ve h[a i[e] d] c] c[w[k beliefaccepted[v va v vb v vc v vd v ve]][u[t[s[v vb]][v vc]]]].
+d evidenceobserved[va a vb d vc h[a] a vd h[a] i[e] ve h[a a i[e] d] c vf h[a] a vg h[a a i[e] d] c] c[w[c[v ve][v va c[v vc][v va] c[v vd][v va] v vb]][c[v vg][c[v vc][v va] c[v vf][v va] c[v vd][v va] v vb]]].
+d evidencereported[va a vb d vc h[a] a vd h[a] i[e] ve h[a a i[e] d] c vf a vg h[a a a a i[e] d] c] c[w[u[e[v va][v vf]]][w[c[v ve][v va c[v vc][v va] c[v vd][v va] v vb]][w[c[v ve][v vf c[v vc][v vf] c[v vd][v vf] v vb]][w[e[c[v vd][v va]][c[v vd][v vf]]][c[v vg][c[v vc][v va] c[v vc][v vf] v va v vf c[v vd][v va] v vb]]]]]].
+d evidencepremises[va j[a] vb h[a] i[e]] j[i[e]][q[v va][l[i[e]][]][i[vc j[i[e]] vd a][m[v vc][l[i[e]][c[v vb][v vd]]]]]].
+d evidenceinferred[va a vb d vc h[a] a vd h[a] i[e] ve h[a a i[e] d] c vf j[a] vg a vh h[a a d] c vi h[a a j[i[e]] i[e] a d] c] c[w[c[v ve][v va c[v vc][v va] c[v vd][v va] v vb]][w[k distinctmembers[v vf]][w[u[k memberof[v vf v va]]][w[q[v vf][e[n p a b][n p a b]][i[vj c vk a][w[v vj][w[c[v ve][v vk c[v vc][v vk] c[v vd][v vk] v vb]][c[v vh][c[v vc][v va] v vk v vb]]]]]][c[v vi][c[v vc][v va] v va k evidencepremises[v vf v vd] c[v vd][v va] v vg v vb]]]]]].
+d evidenceparents[va a vb j[a] vc h[a a] c] c[w[k distinctmembers[v vb]][w[u[k memberof[v vb v va]]][f vd a[z[c[v vc][v va v vd]][k memberof[v vb v vd]]]]]].
+d evidencepremisestrue[va j[i[e]] vb d] c[q[v va][e[n p a b][n p a b]][i[vc c vd i[e]][w[v vc][t[s[v vd]][v vb]]]]].
+d evidenceentails[va j[i[e]] vb i[e] vc h[d] c] c[w[g vd d[c[v vc][v vd]]][f ve d[y[c[v vc][v ve]][y[k evidencepremisestrue[v va v ve]][t[s[v vb]][v ve]]]]]].
+d proofstates[va j[a] vb h[a a] c vc h[a] c] h[a] c[q[v va][i[vd a][e[n p a b][n p b b]]][i[ve h[a] c vf a][c[i[vg c][i[vh a][x[c[v ve][v vh]][w[e[v vh][v vf]][v vg]]]]][w[c[v vc][v vf]][f vi a[y[c[v vb][v vf v vi]][c[v ve][v vi]]]]]]]].
+d proofverified[va j[a] vb h[a a] c vc h[a] c] c[w[k distinctmembers[v va]][c[i[vd h[a] c][q[v va][e[n p a b][n p a b]][i[ve c vf a][w[v ve][c[v vd][v vf]]]]]][k proofstates[v va v vb v vc]]]].
+d proofsupports[va j[a] vb h[a a] c vc h[a] c vd a] c[w[k proofverified[v va v vb v vc]][w[k memberof[v va v vd]][c[k proofstates[v va v vb v vc]][v vd]]]].
+d proofancestors[va j[a] vb h[a a] c] h[a a] c[q[v va][i[vc a vd a][e[n p a b][n p b b]]][i[ve h[a a] c vf a][i[vg a vh a][x[c[v ve][v vg v vh]][w[e[v vg][v vf]][x[e[v vh][v vf]][g vi a[w[c[v vb][v vf v vi]][c[v ve][v vi v vh]]]]]]]]]].
+d proofroots[va j[a] vb a vc h[a a] c vd h[a a] c] h[a] c[c[i[ve h[a a] c][i[vf a][g vg a[w[c[v ve][v vb v vg]][c[v vd][v vg v vf]]]]]][k proofancestors[v va v vc]]].
+d prooforigin[va j[a] vb h[a a] c vc h[a] c vd a ve a vf h[a a] c] c[w[k proofsupports[v va v vb v vc v vd]][c[k proofroots[v va v vd v vb v vf]][v ve]]].
+d proofsharedorigin[va a vb a vc j[a] vd h[a a] c ve h[a] c vf h[a a] c] c[w[k proofsupports[v vc v vd v ve v va]][w[k proofsupports[v vc v vd v ve v vb]][c[i[vg h[a] c vh h[a] c][g vi a[w[c[v vg][v vi]][c[v vh][v vi]]]]][k proofroots[v vc v va v vd v vf] k proofroots[v vc v vb v vd v vf]]]]].
+d proofseparateorigins[va a vb a vc j[a] vd h[a a] c ve h[a] c vf h[a a] c] c[w[k proofsupports[v vc v vd v ve v va]][w[k proofsupports[v vc v vd v ve v vb]][c[i[vg h[a] c vh h[a] c][w[g vi a[c[v vg][v vi]]][w[g vj a[c[v vh][v vj]]][u[g vk a[w[c[v vg][v vk]][c[v vh][v vk]]]]]]]][k proofroots[v vc v va v vd v vf] k proofroots[v vc v vb v vd v vf]]]]].
+d proofcorroborates[va a vb a vc j[a] vd h[a a] c ve h[a] c vf h[a a] c vg h[a] i[e]] c[w[e[c[v vg][v va]][c[v vg][v vb]]][k proofseparateorigins[v va v vb v vc v vd v ve v vf]]].
+d beliefgrounded[va a vb i[e] vc d vd h[a d d] c ve h[a i[e] d] c vf j[a] vg h[a a] c vh h[a] c vi a vj h[a] a vk h[a] i[e]] c[w[k beliefaccepted[v va v vb v vc v vd v ve]][w[e[c[v vj][v vi]][v va]][w[e[c[v vk][v vi]][v vb]][k proofsupports[v vf v vg v vh v vi]]]]].
+d beliefgroundedtrue[va a vb i[e] vc d vd h[a d d] c ve h[a i[e] d] c vf j[a] vg h[a a] c vh h[a] c vi a vj h[a] a vk h[a] i[e]] c[w[k beliefgrounded[v va v vb v vc v vd v ve v vf v vg v vh v vi v vj v vk]][t[s[v vb]][v vc]]].
