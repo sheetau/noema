@@ -1,0 +1,833 @@
+{
+  "status": "closing_acknowledgment_and_distinct_dates_connected",
+  "document": "examples/v014/einstein-closing-acknowledgment.noema",
+  "parent": "examples/v014/einstein-local-magnetic-radius.noema",
+  "inherited_meaning_basis": "data/local-magnetic-radius-basis-v1.json",
+  "primitives": {
+    "eis5z": {
+      "parameters": [
+        "individual",
+        "individual",
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "暦規約",
+        "年期間",
+        "年番号",
+        "文脈"
+      ],
+      "meaning_ja": "指定した紀元・年の区切りを含む暦規約の下で、この年期間にこの年番号が付く。別の暦や文脈の同じ番号とは同一視しない。"
+    },
+    "eis6a": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "暦規約",
+        "年期間",
+        "文脈"
+      ],
+      "meaning_ja": "この暦規約における、この年の月期間を暦順に並べた有限列。重複を含まず全ての月を一度ずつ含むという解釈契約。未指定の暦や年には空列等を推測して補わず解釈を保留する。"
+    },
+    "eis6b": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "暦規約",
+        "月期間",
+        "文脈"
+      ],
+      "meaning_ja": "この暦規約における、この月の日期間を暦順に並べた有限列。重複を含まず全ての日を一度ずつ含むという解釈契約。暦の改訂等で欠番がある場合、日付ラベルと列内順位は別途記述を要する。"
+    },
+    "eis6c": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "日付行の提示",
+        "文書",
+        "表示場所",
+        "文脈"
+      ],
+      "meaning_ja": "同じ提示が指定文書の日付行の場所欄としてこの場所を表示する。実際の執筆場所・刊行場所や提示者は含意しない。"
+    },
+    "eis6d": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "日付行の提示",
+        "文書",
+        "表示日期間",
+        "文脈"
+      ],
+      "meaning_ja": "同じ提示が指定文書の日付行の日付としてこの日期間を表示する。刊行日や実際の執筆完了日であることは含意しない。"
+    },
+    "eis6e": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "受け手",
+        "対象文献",
+        "受領時点",
+        "評価文脈"
+      ],
+      "meaning_ja": "その時点で、対象文献が受け手の手元へ届く受領が成立する。文献の利用可能な写しの取得も含み、単に宛てられたこと、紹介を読んだこと、内容の理解・賛同とは区別する。継続的な所持状態ではない。"
+    },
+    "eis6h": {
+      "parameters": [
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "時点",
+        "暦期間",
+        "文脈"
+      ],
+      "meaning_ja": "この評価文脈で、その時点がその暦期間内にある。表示する文脈と表示された日時を同一視せず、瞬間の完全な日時指定は要求しない。"
+    },
+    "eis5t": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "context"
+      ],
+      "meaning_ja": "二人が互いを個人的な親愛・継続的な好意と関心を向け合う相手として関係を持つ。単なる面識、同席、業務上の協力又は一方だけの評価と区別する友人関係。個別の援助の実行、意見の一致、無条件の信頼は含意しない。"
+    },
+    "eis5u": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "context"
+      ],
+      "meaning_ja": "二人が同じ職業上の活動領域における仕事仲間として関係を持つ。私的な交友、仕事の一時的な援助だけとは区別する同僚関係。同じ雇用契約・階級・職場の所在地や共同著者であることは要求しない。"
+    },
+    "eis5v": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "work",
+        "problem",
+        "context"
+      ],
+      "meaning_ja": "この研究活動が、指定された同じ問題を考察し解明しようとする作業である。問題の解決又は結論の真理は含意しない。"
+    },
+    "eis5w": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "document",
+        "problem",
+        "context"
+      ],
+      "meaning_ja": "この文書が指定問題をその本文の考察対象として扱う。単なる他文献の紹介や名前への言及だけとは区別する。考察の成功や問題の解決は含意しない。"
+    },
+    "eis5x": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "この箇所が同じ文書の論述を閉じる際の付言として提示される。結語という談話上の役割であり、数学的結論・最終の物理命題・印刷物の最終行と同一視しない。後置の日付や編集注記を許す。"
+    },
+    "eis5y": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "recipient",
+        "work",
+        "history",
+        "scope",
+        "occasions",
+        "context"
+      ],
+      "meaning_ja": "同じ本人が同じ研究に取り組んだ一続きの過去の作業を、history内のscopeが欠かさず指し、occasionsがその作業で支援の継続を評価すべき機会を全て指すという範囲の帰属。成功した支援だけから範囲を逆算せず、支援されなかった該当機会も含む。全ての時刻で行為を要求せず、別の研究や任意に短縮した区間を同一視しない。支援行為・意図・忠実さ自体の成立は含意しない。"
+    },
+    "eis6f": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "document",
+        "content",
+        "context"
+      ],
+      "meaning_ja": "この箇所で刊行側の注記が、同じ対象文書について引用した内容を報告する。著者の主張・同意や内容の真理を自動的に要求しない。報告内容の日時・対象・出来事は引用内容の別定義による。"
+    },
+    "eis6g": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "message"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "document",
+        "message",
+        "context"
+      ],
+      "meaning_ja": "指定文書に付された同じ箇所が引用した発話構成を提示するという文献上の帰属。著者の発話であるとは指定せず、日付行や刊行側注記も扱う。引用内容は実行せず、真偽・実際の印刷者を含意しない。"
+    },
+    "eis6i": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0276の結語としての謝辞全体の箇所。"
+    },
+    "eis6j": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0275の三関係の完全性についての総括箇所。全文判断は別途行う。"
+    },
+    "eis6k": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "同じ論説で扱い、同じ研究zrqworkが取り組んだ問題。問題名だけで本文を代用しない。"
+    },
+    "eis6l": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0276で同じ人物zrqpersonへ適用する名称個体。M. Bessoの綴りは識別表記に保存する。"
+    },
+    "eis6m": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0277の日付行の提示箇所。"
+    },
+    "eis6n": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0278の受理日についての刊行側の注記箇所。"
+    },
+    "eis6o": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "末尾の日付に用いる民用暦。西暦紀元、1月から12月の順、通常の日付ラベルを持つグレゴリオ暦として読む。現地の民用日でありUTC時刻を指定しない。"
+    },
+    "eis6p": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "末尾二行が共用する年期間。年番号1905は本文の条件で結ぶ。"
+    },
+    "eis6q": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "末尾二行が共用する月期間。第6月は本文の条件で結ぶ。"
+    },
+    "eis6r": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "受理注記が指す日期間。第6月の第30日は本文の条件で結ぶ。"
+    },
+    "eis6s": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0277で場所に適用する名称個体Bern。場所自体とは別の個体。"
+    },
+    "eis6t": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "u0277のBernが指す都市ベルンの局所参照。名称、国家、現在の座標や執筆イベントとは区別する。"
+    },
+    "eis6u": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "同じ論説を受け取る刊行側の受領主体。原文が個人名を記さない編集側の受け手であり、著者自身又は任意の読者ではない。査読での採択は意味しない。"
+    }
+  },
+  "definitions": {
+    "etm": "同じ受け手・寄与者・入力・研究について、同じ非空の過去の作業区間のある時点で寄与・産出・思考上の使用sewcがあり、現在の肯定的評価sewdがある。時制を評価の現在から分ける。",
+    "etn": "etmの四個体から内容への関数。過去の寄与と現在の価値判断の引数を同じ順序に保つ。",
+    "eto": "etnを既存sewgの四個体列へ接続した基準記述。順序と長さを保存する。",
+    "etp": "同じ著者が同じBessoについて、同じ研究への少なくとも二つの異なる有益な過去の入力をetoの基準で寄与として認める。現実の成功を認識へ追加しない。",
+    "etq": "etpの既知の引用基準を静的に展開した内容。未知の記述の実行や原文の自動証明ではない。",
+    "etr": "同じ研究と本文の問題を結び、同じ著者とBessoの友人・同僚関係、全作業・全支援機会の範囲帰属と、既存sewxの過去の継続的な目的志向の支援を合わせる。",
+    "ets": "同じ相手による過去の継続的支援etrと、同じ相手への複数の有益な着想の寄与の認識etqを結ぶ謝辞の主張内容。",
+    "ett": "結語として同じ著者がetsを述べ、M. Bessoという名称をその同じ相手へ適用する提示。引用内容の真理を実行しない。",
+    "etu": "u0276全体のメッセージ。",
+    "etv": "同じ著者・論説へu0276を帰属し、三関係の総括の後へ置く。",
+    "etw": "同じ暦・文脈の年番号と、その年の月列の指定位置の月を結ぶ。0始まりの月位置5は第6月。特定の日を選ばない。",
+    "etx": "既存rqrmを改名してそのまま再利用した年・月・日の暦アドレス。年、月位置、日位置を別の役割として保持する。",
+    "ety": "同じ論説の日付行で、名称Bernを同じ都市へ適用し、場所欄と1905年第6月の日期間表示を結ぶ。6月中の特定日や執筆完了日を追加しない。",
+    "etz": "u0277の日付行のメッセージ。",
+    "et2": "日付行を同じ文書へ帰属し、謝辞に続ける。発話者を著者へ固定しない。",
+    "et3": "同じ暦の1905年第6月第30日の内に、同じ論説が刊行側の受け手へ届く受領があるという内容。時刻は存在量化し、採択や刊行日とはしない。",
+    "et4": "刊行側の注記がet3の受領内容を報告する提示。著者の主張とは別に保持する。",
+    "et5": "u0278の受理日注記のメッセージ。",
+    "et6": "同じ文書の刊行側注記へu0278を帰属し、日付行の後へ置く。"
+  },
+  "new_signatures": {
+    "etx": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "number"
+        },
+        {
+          "name": "vf",
+          "sort": "number"
+        },
+        {
+          "name": "vg",
+          "sort": "number"
+        },
+        {
+          "name": "vh",
+          "sort": "situation"
+        },
+        {
+          "name": "vi",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vj",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          }
+        },
+        {
+          "name": "vk",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "sequence",
+              "element": "individual"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "eis5z": {
+      "parameters": [
+        "individual",
+        "individual",
+        "number",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis6a": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      }
+    },
+    "eis6b": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      }
+    },
+    "eis6c": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis6d": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis6e": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis6h": {
+      "parameters": [
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis5t": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis5u": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis5v": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis5w": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis5x": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis5y": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis6f": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis6g": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "message"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    "eis6i": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6j": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6k": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6l": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6m": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6n": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6o": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6p": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6q": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6r": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6s": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6t": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "eis6u": {
+      "parameters": [],
+      "result": "individual"
+    },
+    "etm": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "etn": {
+      "parameters": [],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual",
+          "individual",
+          "individual"
+        ],
+        "result": "content"
+      }
+    },
+    "eto": {
+      "parameters": [],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        ],
+        "result": "content"
+      }
+    },
+    "etp": {
+      "parameters": [],
+      "result": "content"
+    },
+    "etq": {
+      "parameters": [],
+      "result": "content"
+    },
+    "etr": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ets": {
+      "parameters": [],
+      "result": "content"
+    },
+    "ett": {
+      "parameters": [],
+      "result": "content"
+    },
+    "etu": {
+      "parameters": [],
+      "result": "message"
+    },
+    "etv": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "etw": {
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "number"
+        },
+        {
+          "name": "ve",
+          "sort": "number"
+        },
+        {
+          "name": "vf",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "ety": {
+      "parameters": [],
+      "result": "content"
+    },
+    "etz": {
+      "parameters": [],
+      "result": "message"
+    },
+    "et2": {
+      "parameters": [],
+      "result": "truth"
+    },
+    "et3": {
+      "parameters": [],
+      "result": "content"
+    },
+    "et4": {
+      "parameters": [],
+      "result": "content"
+    },
+    "et5": {
+      "parameters": [],
+      "result": "message"
+    },
+    "et6": {
+      "parameters": [],
+      "result": "truth"
+    }
+  },
+  "limitations": [
+    "原刊921頁の結語・日付行・受理注記を読む。u0276のich/mir/meinは同じ著者rd、M. Besso/demselbenは同じzrqperson、hier behandelten Problemeは同じ論説eirfが扱い同じ研究zrqworkが取り組んだ問題へ結ぶ。",
+    "treu zur Seite standは、同じ一続きの過去の研究の、支援が問われる全ての機会に、その研究を前進させる目的に向けた実行があるという明示した継続的支援の読み。機会を成功から選別せず、原文が特定しない時刻・頻度・援助方法・物理的同席・困難な状況を追加しない。目的の達成は必要条件にしない。",
+    "manche wertvolle Anregungは少なくとも二つの異なる思考上の入力と読む。単なる受信や二つの記録ではなく、過去の寄与と同じ研究での使用、現在の仕事に相対的な肯定的評価への著者の認識を保つ。入力の真理、返礼義務、金銭債務や特定の感情は追加しない。",
+    "新しい社会関係・範囲帰属・論述役割は一般的な意味規約であり、特定の人物や原文の一文全体を原始関係へ埋め込まない。友人関係だけから忠実な援助を推論せず、同僚関係から共同著作を推論しない。",
+    "Bern, Juni 1905.は場所と月の精度の日付行。実際の執筆場所・書き終えた日・刊行日ではない。日付をグレゴリオ暦の現地の民用年月日として読み、日付行に6月30日を補わない。",
+    "Eingegangen 30. Juni 1905.は同じ論説が刊行側へ届いた日を記す注記と読む。査読採択日ではない。日付行とは同じ年・月を共有し、日・時刻と受け手はその役割で別に結ぶ。括弧は独立した刊行側注記として保持し、著者の発話にしない。",
+    "旧441主張、既存定義・意味判断・証拠を保存する。有限の対照検査と通読による意味判断を分け、歴史的事実又は同義性の自動証明としない。u0239・u0265・u0275の全文判断は残る。"
+  ],
+  "reused_calendar_and_receipt_contracts": {
+    "eis5z": [
+      "data/calendar-dateline-basis-v1.json",
+      "hzir"
+    ],
+    "eis6a": [
+      "data/calendar-dateline-basis-v1.json",
+      "hzis"
+    ],
+    "eis6b": [
+      "data/calendar-dateline-basis-v1.json",
+      "hzit"
+    ],
+    "eis6c": [
+      "data/calendar-dateline-basis-v1.json",
+      "hziu"
+    ],
+    "eis6d": [
+      "data/calendar-dateline-basis-v1.json",
+      "hziv"
+    ],
+    "eis6e": [
+      "data/unreceived-reference-basis-v1.json",
+      "hzji"
+    ],
+    "eis6h": [
+      "data/dated-reading-basis-v1.json",
+      "hzjz"
+    ]
+  }
+}
