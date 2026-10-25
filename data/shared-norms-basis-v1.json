@@ -1,0 +1,1759 @@
+{
+  "status": "shared_normative_and_counterfactual_conventions",
+  "document": "examples/v016/shared-norms-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "permissionclear": "指定極性の積極的な許可があり、同じ対象の反対極性への要求がない。",
+    "demandconflict": "同じ対象の成立と不成立がともに要求される。",
+    "permissionconflict": "指定極性の積極的な許可と、反対極性への要求が併存する。",
+    "notforbidden": "反対極性への要求がない。積極的な許可の存在ではない。",
+    "normviolated": "指定極性への要求があり、同じ記述・本人・活動の実際の状態がその極性と一致しない。",
+    "normrequired": "指定された出所・本人・役割・活動・記述・極性・文脈について要求がある。",
+    "normpermitted": "指定された対象と極性への積極的な許可がある。反対要求の有無は別に調べる。",
+    "normforbidden": "指定された対象の反対極性が要求される。許可の欠如とは異なる。",
+    "normfulfilled": "指定極性への要求があり、同じ記述・本人・活動の実際の状態がその極性に一致する。",
+    "normoptional": "同じ対象の成立と不成立の両方が積極的に許可され、どちらへの要求もない。",
+    "normwitness": "同じ規範が同じ出所・文脈で認められ、本人・役割へ適用され、その規範と理由が同じ対象・極性を支える。",
+    "groundedrule": "各対象についてnormwitnessを満たす同じ規範と理由の組が存在する、という要求または許可の関係を作る。",
+    "contraryconditional": "現実で前提が偽で、比較候補が非空であり、全候補で前提と帰結が成立する。旧rqrsの本体を保存。",
+    "conditionalvalid": "比較候補が非空であり、全候補が同じ前提を満たす。現実の前提や帰結は条件にしない。",
+    "conditionalall": "妥当な非空の比較候補すべてで帰結が成立する。",
+    "conditionalmight": "妥当な非空の比較候補の少なくとも一つで帰結が成立する。",
+    "comparisonbest": "同じ現実状況の候補範囲で前提を満たし、それより優先される前提適合候補がない状況をすべて選ぶ関係。",
+    "comparisonordered": "前提適合候補上の優先関係が非反射的かつ推移的である。最良候補の存在は別条件。",
+    "orderedconditional": "前提適合候補の優先関係が厳密な半順序をなし、最良候補が非空で、その全てで帰結が成立する。",
+    "orderedmight": "前提適合候補の優先関係が厳密な半順序をなし、最良候補の少なくとも一つで帰結が成立する。",
+    "counterfactualsupported": "閉じた前提記述を実行してcontraryconditionalを満たし、各比較候補の選択が同じ視点・前提記述・理由・現実状況の根拠関係を満たす。"
+  },
+  "public_contracts": {
+    "permissionclear": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "demandconflict": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "permissionconflict": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "notforbidden": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normviolated": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normrequired": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normpermitted": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normforbidden": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normfulfilled": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normoptional": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "required",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への要求。要求を認定する規範と解釈を別途明示する。"
+        },
+        {
+          "role": "allowed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ七項目への積極的な許可。要求・禁止の不在や物理的可能性から補わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normwitness": {
+      "arguments": [
+        {
+          "role": "norm",
+          "sort": "individual",
+          "interpretation": "採用または適用される規範の個体。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "規範の適用または比較候補の選択に用いる明示的な根拠の個体。"
+        },
+        {
+          "role": "source",
+          "sort": "individual",
+          "interpretation": "要求または許可の出所。同じ規範体系や制度内で固定する。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "対象となる本人。"
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "interpretation": "本人のどの立場に対する規範か。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "実行・不実行を問題にする同じ活動。"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "本人と活動から内容を作る閉じたNoema関数の記述。原語の文や、その場の真偽で代用しない。"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth",
+          "interpretation": "真は記述の成立、偽は不成立への規範。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "規範と履行を評価する状況。"
+        },
+        {
+          "role": "recognized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "規範・出所・文脈の採用関係。普遍的な正当性の証明とはしない。"
+        },
+        {
+          "role": "applicable",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "規範・本人・役割・文脈に対する適用関係。例外・優先順位を反映する場合は採用規約を明示する。"
+        },
+        {
+          "role": "supports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ規範・理由・七対象項目の根拠関係。要求用と許可用を分け、何を根拠として認めたかを説明する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "groundedrule": {
+      "arguments": [
+        {
+          "role": "recognized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "規範・出所・文脈の採用関係。普遍的な正当性の証明とはしない。"
+        },
+        {
+          "role": "applicable",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "規範・本人・役割・文脈に対する適用関係。例外・優先順位を反映する場合は採用規約を明示する。"
+        },
+        {
+          "role": "supports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ規範・理由・七対象項目の根拠関係。要求用と許可用を分け、何を根拠として認めたかを説明する。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual",
+          "individual",
+          "individual",
+          {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "truth",
+          "situation"
+        ],
+        "result": "truth"
+      }
+    },
+    "contraryconditional": {
+      "arguments": [
+        {
+          "role": "actual",
+          "sort": "situation",
+          "interpretation": "条件文の基準となる現実状況。"
+        },
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各状況における仮定の真偽。"
+        },
+        {
+          "role": "consequent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ状況における帰結の真偽。"
+        },
+        {
+          "role": "selects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況と比較候補の対応。前提・帰結で別の候補を使わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "conditionalvalid": {
+      "arguments": [
+        {
+          "role": "actual",
+          "sort": "situation",
+          "interpretation": "条件文の基準となる現実状況。"
+        },
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各状況における仮定の真偽。"
+        },
+        {
+          "role": "consequent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ状況における帰結の真偽。"
+        },
+        {
+          "role": "selects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況と比較候補の対応。前提・帰結で別の候補を使わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "conditionalall": {
+      "arguments": [
+        {
+          "role": "actual",
+          "sort": "situation",
+          "interpretation": "条件文の基準となる現実状況。"
+        },
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各状況における仮定の真偽。"
+        },
+        {
+          "role": "consequent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ状況における帰結の真偽。"
+        },
+        {
+          "role": "selects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況と比較候補の対応。前提・帰結で別の候補を使わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "conditionalmight": {
+      "arguments": [
+        {
+          "role": "actual",
+          "sort": "situation",
+          "interpretation": "条件文の基準となる現実状況。"
+        },
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各状況における仮定の真偽。"
+        },
+        {
+          "role": "consequent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ状況における帰結の真偽。"
+        },
+        {
+          "role": "selects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況と比較候補の対応。前提・帰結で別の候補を使わない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "comparisonbest": {
+      "arguments": [
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各状況における仮定の真偽。"
+        },
+        {
+          "role": "eligible",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況ごとの比較対象範囲。背景を何として固定したかと範囲の根拠を明示する。"
+        },
+        {
+          "role": "closer",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ現実状況で左候補を右候補より優先する厳密な関係。距離の数値や全順序は要求しない。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "situation",
+          "situation"
+        ],
+        "result": "truth"
+      }
+    },
+    "comparisonordered": {
+      "arguments": [
+        {
+          "role": "actual",
+          "sort": "situation",
+          "interpretation": "条件文の基準となる現実状況。"
+        },
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各状況における仮定の真偽。"
+        },
+        {
+          "role": "eligible",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況ごとの比較対象範囲。背景を何として固定したかと範囲の根拠を明示する。"
+        },
+        {
+          "role": "closer",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ現実状況で左候補を右候補より優先する厳密な関係。距離の数値や全順序は要求しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "orderedconditional": {
+      "arguments": [
+        {
+          "role": "actual",
+          "sort": "situation",
+          "interpretation": "条件文の基準となる現実状況。"
+        },
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各状況における仮定の真偽。"
+        },
+        {
+          "role": "consequent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ状況における帰結の真偽。"
+        },
+        {
+          "role": "eligible",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況ごとの比較対象範囲。背景を何として固定したかと範囲の根拠を明示する。"
+        },
+        {
+          "role": "closer",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ現実状況で左候補を右候補より優先する厳密な関係。距離の数値や全順序は要求しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "orderedmight": {
+      "arguments": [
+        {
+          "role": "actual",
+          "sort": "situation",
+          "interpretation": "条件文の基準となる現実状況。"
+        },
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各状況における仮定の真偽。"
+        },
+        {
+          "role": "consequent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ状況における帰結の真偽。"
+        },
+        {
+          "role": "eligible",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況ごとの比較対象範囲。背景を何として固定したかと範囲の根拠を明示する。"
+        },
+        {
+          "role": "closer",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ現実状況で左候補を右候補より優先する厳密な関係。距離の数値や全順序は要求しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "counterfactualsupported": {
+      "arguments": [
+        {
+          "role": "viewpoint",
+          "sort": "individual",
+          "interpretation": "比較候補と根拠を採用する視点の人物。"
+        },
+        {
+          "role": "premise",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "前提述語の閉じたNoema記述。これ自体を脱引用して前提として使う。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "規範の適用または比較候補の選択に用いる明示的な根拠の個体。"
+        },
+        {
+          "role": "actual",
+          "sort": "situation",
+          "interpretation": "条件文の基準となる現実状況。"
+        },
+        {
+          "role": "consequent",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ状況における帰結の真偽。"
+        },
+        {
+          "role": "selects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "現実状況と比較候補の対応。前提・帰結で別の候補を使わない。"
+        },
+        {
+          "role": "justifies",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "situation"
+                  ],
+                  "result": "truth"
+                }
+              },
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "視点・前提記述・理由・現実状況・比較候補の選択根拠。根拠の十分性を自動証明しない。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_definitions": [
+    {
+      "document": "examples/v014/described-norms.noema",
+      "names": {
+        "rdm": "permissionclear",
+        "rdn": "demandconflict",
+        "rdo": "permissionconflict",
+        "rdp": "notforbidden",
+        "rdq": "normviolated"
+      }
+    },
+    {
+      "document": "examples/v016/counterfactual-withholding.noema",
+      "names": {
+        "rqrs": "contraryconditional"
+      }
+    }
+  ],
+  "limitations": [
+    "要求・許可・規範の採用・適用・根拠を入力する規約を明示する。定義本体だけでは社会的正当性や例外の優先順位を決定しない。",
+    "比較候補の範囲と優先関係は明示した読みの入力。最良候補が存在しない場合や前提不能を空虚な成功にしない。",
+    "未知の関係は評価を拒否する。空の候補、規範の不在、否定へ変換しない。",
+    "履行を評価する場合だけ行為記述を実行する。許可と能力、規範と事実、反事実と因果を自動的に同一視しない。",
+    "有限モデルと二題材の対照は全自然言語の意味や無限領域の証明ではない。円文字登録と第三者読解は別途必要。"
+  ]
+}
