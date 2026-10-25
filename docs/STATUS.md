@@ -1,6 +1,6 @@
 # 現在地
 
-二作品は明示した解釈の下で全文の意味確認を完了し、円と線の見た目は固定しています。利用者の依頼により言語完成へ進行中です。[候補評価と能力](shared-modality-v1.md)は[円文字の共有辞書第2版](visible-defined-vocabulary-v1.md)へ接続済みです。[時間・相](shared-time-v1.md)、[指示・前提](shared-reference-v1.md)に続き、[省略補完と未決定の読み](shared-readings-v1.md)を構成しました。候補の保持と内容の真偽を区別し、変更根拠と履歴を記述します。新しい共通語の円文字化、他の意味領域、学習用文書と第三者の読解検証は残っています。
+二作品は明示した解釈の下で全文の意味確認を完了し、円と線の見た目は固定しています。利用者の依頼により言語完成へ進行中です。[時間・相](shared-time-v1.md)、[指示・前提](shared-reference-v1.md)、[省略補完と未決定の読み](shared-readings-v1.md)の計50定義を、[円文字の共有複合語辞書第3版](visible-compound-library-v1.md)へ接続しました。既存30語の形と意味を保ち、合計80語を公開定義から導入できます。許可・義務・反事実など他の意味領域、未知個体の導入、学習用文書と第三者の読解検証は残っています。
 
 引き継ぎの正本は `.noema-project/ledger.sqlite`。`python -X utf8 -m scripts.project_notes brief` で現在地と詳細記録のキーを読みます。[更新・検索・復旧](project-records.md)を参照してください。Markdownに詳細を重複保存しません。
 
