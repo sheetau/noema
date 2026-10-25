@@ -1,0 +1,2625 @@
+{
+  "status": "shared_explicit_information_structure",
+  "document": "examples/v016/shared-focus-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "focuspackage": "主張内容と背景内容の閉じた記述を区別して保持する二項の組。選択関数を受ける通常のNoema関数で表す。",
+    "focusclaim": "主張内容の記述を取り出す。",
+    "focusbackground": "背景内容の記述を取り出す。",
+    "focusnegate": "主張内容だけを否定した記述へ変換し、背景の記述をそのまま保持する。",
+    "focusclaimtrue": "主張内容を指定状況で評価する。背景の成立を前提に真偽を補わない。",
+    "focusbackgroundtrue": "背景内容を指定状況で評価する。背景不成立を主張内容の否定へ変換しない。",
+    "focusquestion": "主張内容の肯否を問う発話の記述を作る。元の組は背景を保持するが、返した発話型そのものに背景を埋め込む操作ではない。",
+    "focusorder": "明示した記述列上で、同じ視点と基準文脈の比較関係が非反射的・推移的であることを検査する。全順序は要求しない。",
+    "focusextreme": "焦点の記述以外の比較対象列が非空で、焦点を加えた範囲でrtaが成立し、焦点が全比較対象より指定尺度で上位にある。",
+    "focusadditional": "比較対象のうち少なくとも一つの内容が指定状況で成立する。焦点内容の真偽を検査しない。",
+    "focusscalebackground": "指定視点・基準文脈の尺度条件だけを背景内容にする。",
+    "focusadditivescale": "rtdの尺度条件に、比較対象の少なくとも一つが評価状況で成立する追加条件を併記した背景。",
+    "focusfrombackground": "同じ焦点の記述から主張内容と背景の引数を構成する。構成時に内容を実行しない。",
+    "focusscalar": "尺度条件だけを背景にした組を構成する。",
+    "focusscalaralso": "尺度条件と追加条件を背景にした組を構成する。",
+    "focusaction": "同じ閉じた枠へ一つの行為記述を適用した内容記述を作る。行為自体は実行しない。",
+    "focusactions": "行為記述の列の各要素へ同じ枠を適用し、比較内容の列を作る。",
+    "focusquotedlist": "内容記述の列を、同じ順序・重複を保った列の閉じた記述にする。",
+    "focusactionalso": "同じ枠に焦点の行為記述と全比較対象をそれぞれ適用し、その内容でrthの組を作る。",
+    "focusattributed": "同じ著者・箇所・主張内容・文脈への既存の帰属と、その主張に別範囲の背景を結ぶ明示的な帰属を併記する。内容は実行しない。",
+    "focusthirdrank": "階数2の閉じた内容記述へ、階数3の恒等関数記述を適用し、同じ内容を返す閉じた階数3の記述にする。引用の構成であり、内容やその内部の基本関係を評価しない。元と変換後の構文同一性は要求しない。",
+    "contrastordered": "異なる二箇所に同じ著者・範囲・文脈で第一・第二の内容記述を帰属し、本文順序が第一から第二へ向き、逆順がなく、同じ記述を同じ順で対比として提示する。内容を評価しない。",
+    "focusentails": "固定した比較状況の全てで、焦点内容が真なら比較内容も真である。空の比較域では空虚に成立し、全可能状況での論理的含意とは区別する。",
+    "focusequivalent": "同じ比較状況域で二内容が相互に含意する。記述の構文同一性や一般的な同義性を認定するものではない。",
+    "focuscontent": "段階1の閉じた内容記述から内容を取り出す。真理の評価や段階の無制限な引上げではない。",
+    "focusexclusion": "評価点が同じ比較域に含まれ、比較列が非空で、焦点から従わない各比較内容が評価点では偽である内容。従う弱い内容や同値な別記述は排除しない。焦点の真理は別。",
+    "focusaddition": "評価点が比較域に含まれ、焦点から従わない比較内容の少なくとも一つがその点で成立するという背景内容。単なる別名、弱い帰結、重複を独立した添加として数えない。",
+    "focusonly": "同じ閉じた焦点・比較列・比較域の記述から、排除条件を主張、焦点内容を背景とする組を作る。構成時に内容を実行しない。限定の前提と断言を分けた明示的な読み。",
+    "focusalso": "同じ閉じた焦点・比較列・比較域の記述から、焦点内容を主張、独立した添加条件を背景とする組を作る。構成時に内容を実行しない。",
+    "focusand": "二つの組の主張を論理積にし、二つの背景も論理積として保持する。背景を主張の一部に潰さない。",
+    "focusif": "主張同士を含意にし、両背景は全体に保持するという明示的な投射。前件が偽でも後件の背景を消さない。",
+    "focusfilteredif": "主張同士を含意にし、左背景と、左主張が成立するなら右背景も成立するという条件を背景にする。focusifと異なる投射として区別する。",
+    "focusattributepackage": "同じ主張/背景の組を段階3へ接続し、同じ著者・箇所・文脈へ、主張範囲と背景範囲を分けて帰属する。二内容の真理は要求しない。",
+    "topiccontent": "個体から内容を作る同じ閉じた段階2の枠へ、主題の閉じた個体参照を適用する。条件・否定・量化を枠の内部に保ち、内容を実行しない。",
+    "topicmarked": "主題参照が同じ個体を指し、組の主張記述が同じ枠を同じ参照へ適用した記述と一致し、その主題について述べる明示的な関係と組の帰属がある。文法上の主語や内容真理だけから主題を推測しない。",
+    "contrastconjunction": "二つの内容が共に成立するという主張内容。これだけでは対比・期待違反・原因を表したことにはしない。",
+    "contrastexpectation": "同じ視点・二内容記述・基準文脈の予想候補が非空で、全候補で左内容が成立し右内容は成立しないという背景内容。評価点が変わっても比較の基準文脈を保持する。",
+    "contrastpackage": "同じ閉じた二内容から、両内容の成立を主張、指定視点での予想条件を背景とする組を構成する。両方の成立と期待違反を区別し、構成時に引用内容を実行しない。"
+  },
+  "public_contracts": {
+    "focuspackage": {
+      "arguments": [
+        {
+          "role": "foreground",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 2
+          },
+          "interpretation": "組の主張側の閉じた内容記述。"
+        },
+        {
+          "role": "background",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 2
+          },
+          "interpretation": "組の背景側の閉じた内容記述。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusclaim": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "同じ主張記述と背景記述を区別して保持する組。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 2
+      }
+    },
+    "focusbackground": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "同じ主張記述と背景記述を区別して保持する組。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 2
+      }
+    },
+    "focusnegate": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "同じ主張記述と背景記述を区別して保持する組。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusclaimtrue": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "同じ主張記述と背景記述を区別して保持する組。"
+        },
+        {
+          "role": "point",
+          "sort": "situation",
+          "interpretation": "内容真理を評価する状況。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusbackgroundtrue": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "同じ主張記述と背景記述を区別して保持する組。"
+        },
+        {
+          "role": "point",
+          "sort": "situation",
+          "interpretation": "内容真理を評価する状況。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusquestion": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "同じ主張記述と背景記述を区別して保持する組。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "message",
+        "rank": 2
+      }
+    },
+    "focusorder": {
+      "arguments": [
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "observer",
+          "sort": "individual",
+          "interpretation": "尺度や期待を帰属する同じ視点。生成関数では閉じた個体参照を渡す。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "尺度や期待の固定基準文脈。生成関数では閉じた状況参照を渡す。"
+        },
+        {
+          "role": "ranking",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "視点・二記述・基準文脈についての厳密な比較関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusextreme": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "observer",
+          "sort": "individual",
+          "interpretation": "尺度や期待を帰属する同じ視点。生成関数では閉じた個体参照を渡す。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "尺度や期待の固定基準文脈。生成関数では閉じた状況参照を渡す。"
+        },
+        {
+          "role": "ranking",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "視点・二記述・基準文脈についての厳密な比較関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusadditional": {
+      "arguments": [
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "point",
+          "sort": "situation",
+          "interpretation": "内容真理を評価する状況。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusscalebackground": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "observer",
+          "sort": "individual",
+          "interpretation": "尺度や期待を帰属する同じ視点。生成関数では閉じた個体参照を渡す。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "尺度や期待の固定基準文脈。生成関数では閉じた状況参照を渡す。"
+        },
+        {
+          "role": "ranking",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "視点・二記述・基準文脈についての厳密な比較関係。"
+        }
+      ],
+      "result": "content"
+    },
+    "focusadditivescale": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "observer",
+          "sort": "individual",
+          "interpretation": "尺度や期待を帰属する同じ視点。生成関数では閉じた個体参照を渡す。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "尺度や期待の固定基準文脈。生成関数では閉じた状況参照を渡す。"
+        },
+        {
+          "role": "ranking",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "視点・二記述・基準文脈についての厳密な比較関係。"
+        }
+      ],
+      "result": "content"
+    },
+    "focusfrombackground": {
+      "arguments": [
+        {
+          "role": "backgroundfunction",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "sequence",
+                  "element": {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 1
+                  }
+                },
+                "individual",
+                "situation",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    {
+                      "kind": "description",
+                      "result": "content",
+                      "rank": 1
+                    },
+                    {
+                      "kind": "description",
+                      "result": "content",
+                      "rank": 1
+                    },
+                    "situation"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          },
+          "interpretation": "背景内容を作る閉じた段階2の関数記述。"
+        },
+        {
+          "role": "focuscode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          },
+          "interpretation": "同じ焦点記述を返す閉じた記述。"
+        },
+        {
+          "role": "alternativescode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              }
+            },
+            "rank": 1
+          },
+          "interpretation": "同じ比較記述列を返す閉じた記述。"
+        },
+        {
+          "role": "observercode",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "比較視点の閉じた個体参照。"
+        },
+        {
+          "role": "anchorcode",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "固定基準文脈の閉じた状況参照。"
+        },
+        {
+          "role": "rankingcode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "同じ比較関係の閉じた関数参照。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusscalar": {
+      "arguments": [
+        {
+          "role": "focuscode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          },
+          "interpretation": "同じ焦点記述を返す閉じた記述。"
+        },
+        {
+          "role": "alternativescode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              }
+            },
+            "rank": 1
+          },
+          "interpretation": "同じ比較記述列を返す閉じた記述。"
+        },
+        {
+          "role": "observercode",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "比較視点の閉じた個体参照。"
+        },
+        {
+          "role": "anchorcode",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "固定基準文脈の閉じた状況参照。"
+        },
+        {
+          "role": "rankingcode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "同じ比較関係の閉じた関数参照。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusscalaralso": {
+      "arguments": [
+        {
+          "role": "focuscode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          },
+          "interpretation": "同じ焦点記述を返す閉じた記述。"
+        },
+        {
+          "role": "alternativescode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              }
+            },
+            "rank": 1
+          },
+          "interpretation": "同じ比較記述列を返す閉じた記述。"
+        },
+        {
+          "role": "observercode",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "比較視点の閉じた個体参照。"
+        },
+        {
+          "role": "anchorcode",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "固定基準文脈の閉じた状況参照。"
+        },
+        {
+          "role": "rankingcode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "同じ比較関係の閉じた関数参照。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusaction": {
+      "arguments": [
+        {
+          "role": "actionframe",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual",
+                      "individual"
+                    ],
+                    "result": "content"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          },
+          "interpretation": "行為記述から内容を作る共通の閉じた枠。"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "焦点となる閉じた行為記述。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 1
+      }
+    },
+    "focusactions": {
+      "arguments": [
+        {
+          "role": "actionframe",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual",
+                      "individual"
+                    ],
+                    "result": "content"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          },
+          "interpretation": "行為記述から内容を作る共通の閉じた枠。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual"
+                ],
+                "result": "content"
+              }
+            }
+          },
+          "interpretation": "比較する行為記述の有限列。"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        }
+      }
+    },
+    "focusquotedlist": {
+      "arguments": [
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          },
+          "interpretation": "閉じた内容記述の列。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        "rank": 1
+      }
+    },
+    "focusactionalso": {
+      "arguments": [
+        {
+          "role": "actionframe",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual",
+                      "individual"
+                    ],
+                    "result": "content"
+                  }
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          },
+          "interpretation": "行為記述から内容を作る共通の閉じた枠。"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "interpretation": "焦点となる閉じた行為記述。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  "individual"
+                ],
+                "result": "content"
+              }
+            }
+          },
+          "interpretation": "比較する行為記述の有限列。"
+        },
+        {
+          "role": "observercode",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "比較視点の閉じた個体参照。"
+        },
+        {
+          "role": "anchorcode",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "固定基準文脈の閉じた状況参照。"
+        },
+        {
+          "role": "rankingcode",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "同じ比較関係の閉じた関数参照。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusattributed": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual",
+          "interpretation": "同じ提示・帰属を記録する箇所。"
+        },
+        {
+          "role": "author",
+          "sort": "individual",
+          "interpretation": "同じ提示や主張を帰属する主体。"
+        },
+        {
+          "role": "foreground",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          },
+          "interpretation": "組の主張側の閉じた内容記述。"
+        },
+        {
+          "role": "background",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          },
+          "interpretation": "組の背景側の閉じた内容記述。"
+        },
+        {
+          "role": "foregroundscope",
+          "sort": "individual",
+          "interpretation": "主張の範囲。"
+        },
+        {
+          "role": "backgroundscope",
+          "sort": "individual",
+          "interpretation": "背景の範囲。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ提示・帰属の文脈。"
+        },
+        {
+          "role": "reported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "箇所・主体・段階3の主張記述・範囲・文脈への帰属。"
+        },
+        {
+          "role": "backgrounded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ箇所・主体・二記述・二範囲・文脈への背景付き提示の帰属。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusthirdrank": {
+      "arguments": [
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 2
+          },
+          "interpretation": "段階2の閉じた内容記述。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 3
+      }
+    },
+    "contrastordered": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual",
+          "interpretation": "同じ提示・帰属を記録する箇所。"
+        },
+        {
+          "role": "author",
+          "sort": "individual",
+          "interpretation": "同じ提示や主張を帰属する主体。"
+        },
+        {
+          "role": "first",
+          "sort": "individual",
+          "interpretation": "対比する第一の提示箇所。"
+        },
+        {
+          "role": "second",
+          "sort": "individual",
+          "interpretation": "対比する第二の提示箇所。"
+        },
+        {
+          "role": "left",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          },
+          "interpretation": "左の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          },
+          "interpretation": "右の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "scope",
+          "sort": "individual",
+          "interpretation": "二つの帰属を共有する範囲。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ提示・帰属の文脈。"
+        },
+        {
+          "role": "records",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "箇所・主体・内容記述・範囲・文脈への帰属。"
+        },
+        {
+          "role": "contrasts",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "主体が同じ二記述を指定順で対比して提示する関係。"
+        },
+        {
+          "role": "before",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "二つの本文箇所と文脈の順序。出来事の時系列とは別。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusentails": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternative",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "含意を比較する内容記述。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "含意を判定する固定状況域。生成関数ではその関数の閉じた記述を渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focusequivalent": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternative",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "含意を比較する内容記述。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "含意を判定する固定状況域。生成関数ではその関数の閉じた記述を渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "focuscontent": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        }
+      ],
+      "result": "content"
+    },
+    "focusexclusion": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "含意を判定する固定状況域。生成関数ではその関数の閉じた記述を渡す。"
+        }
+      ],
+      "result": "content"
+    },
+    "focusaddition": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            }
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "含意を判定する固定状況域。生成関数ではその関数の閉じた記述を渡す。"
+        }
+      ],
+      "result": "content"
+    },
+    "focusonly": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              }
+            },
+            "rank": 1
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "含意を判定する固定状況域。生成関数ではその関数の閉じた記述を渡す。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusalso": {
+      "arguments": [
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          },
+          "interpretation": "固定した焦点の内容記述。生成関数ではその記述の閉じた記述を渡す。"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "sequence",
+              "element": {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              }
+            },
+            "rank": 1
+          },
+          "interpretation": "順序と重複を保つ比較内容記述の有限列。生成関数では列の閉じた記述を渡す。"
+        },
+        {
+          "role": "comparisons",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "含意を判定する固定状況域。生成関数ではその関数の閉じた記述を渡す。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusand": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "左の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "右の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusif": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "左の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "右の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusfilteredif": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "左の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "右の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    },
+    "focusattributepackage": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual",
+          "interpretation": "同じ提示・帰属を記録する箇所。"
+        },
+        {
+          "role": "author",
+          "sort": "individual",
+          "interpretation": "同じ提示や主張を帰属する主体。"
+        },
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "同じ主張記述と背景記述を区別して保持する組。"
+        },
+        {
+          "role": "foregroundscope",
+          "sort": "individual",
+          "interpretation": "主張の範囲。"
+        },
+        {
+          "role": "backgroundscope",
+          "sort": "individual",
+          "interpretation": "背景の範囲。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ提示・帰属の文脈。"
+        },
+        {
+          "role": "reported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "箇所・主体・段階3の主張記述・範囲・文脈への帰属。"
+        },
+        {
+          "role": "backgrounded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ箇所・主体・二記述・二範囲・文脈への背景付き提示の帰属。"
+        }
+      ],
+      "result": "truth"
+    },
+    "topiccontent": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          },
+          "interpretation": "個体から内容を作る閉じた段階2の枠。条件や否定を内部に保持する。"
+        },
+        {
+          "role": "reference",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "同じ主題個体の閉じた参照。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content",
+        "rank": 2
+      }
+    },
+    "topicmarked": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual",
+          "interpretation": "同じ提示・帰属を記録する箇所。"
+        },
+        {
+          "role": "author",
+          "sort": "individual",
+          "interpretation": "同じ提示や主張を帰属する主体。"
+        },
+        {
+          "role": "topic",
+          "sort": "individual",
+          "interpretation": "主題として指定する個体。"
+        },
+        {
+          "role": "reference",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "同じ主題個体の閉じた参照。"
+        },
+        {
+          "role": "frame",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          },
+          "interpretation": "個体から内容を作る閉じた段階2の枠。条件や否定を内部に保持する。"
+        },
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content",
+                    "rank": 2
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          },
+          "interpretation": "同じ主張記述と背景記述を区別して保持する組。"
+        },
+        {
+          "role": "foregroundscope",
+          "sort": "individual",
+          "interpretation": "主張の範囲。"
+        },
+        {
+          "role": "backgroundscope",
+          "sort": "individual",
+          "interpretation": "背景の範囲。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ提示・帰属の文脈。"
+        },
+        {
+          "role": "about",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "individual"
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ箇所・主体・主題参照・主張記述・文脈について、その主題について述べる明示的な関係。"
+        },
+        {
+          "role": "reported",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "箇所・主体・段階3の主張記述・範囲・文脈への帰属。"
+        },
+        {
+          "role": "backgrounded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 3
+              },
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ箇所・主体・二記述・二範囲・文脈への背景付き提示の帰属。"
+        }
+      ],
+      "result": "truth"
+    },
+    "contrastconjunction": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "左の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "右の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        }
+      ],
+      "result": "content"
+    },
+    "contrastexpectation": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "左の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          },
+          "interpretation": "右の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "observer",
+          "sort": "individual",
+          "interpretation": "尺度や期待を帰属する同じ視点。生成関数では閉じた個体参照を渡す。"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation",
+          "interpretation": "尺度や期待の固定基準文脈。生成関数では閉じた状況参照を渡す。"
+        },
+        {
+          "role": "expects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 1
+              },
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "視点・左記述・右記述・基準文脈・候補状況の通常予想関係。生成関数では閉じた関数参照を渡す。"
+        }
+      ],
+      "result": "content"
+    },
+    "contrastpackage": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          },
+          "interpretation": "左の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 1
+            },
+            "rank": 1
+          },
+          "interpretation": "右の組または内容記述。型に従い、生成関数では閉じた記述を渡す。"
+        },
+        {
+          "role": "observer",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "尺度や期待を帰属する同じ視点。生成関数では閉じた個体参照を渡す。"
+        },
+        {
+          "role": "anchor",
+          "sort": {
+            "kind": "description",
+            "result": "situation"
+          },
+          "interpretation": "尺度や期待の固定基準文脈。生成関数では閉じた状況参照を渡す。"
+        },
+        {
+          "role": "expects",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 1
+                },
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          "interpretation": "視点・左記述・右記述・基準文脈・候補状況の通常予想関係。生成関数では閉じた関数参照を渡す。"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              },
+              {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content",
+              "rank": 2
+            }
+          }
+        ],
+        "result": {
+          "kind": "description",
+          "result": "content",
+          "rank": 2
+        }
+      }
+    }
+  },
+  "preserved_sources": [
+    {
+      "document": "examples/v016/scalar-backgrounds.noema",
+      "basis": "data/scalar-backgrounds-basis-v1.json",
+      "renaming": {
+        "rst": "focuspackage",
+        "rsu": "focusclaim",
+        "rsv": "focusbackground",
+        "rsw": "focusnegate",
+        "rsx": "focusclaimtrue",
+        "rsy": "focusbackgroundtrue",
+        "rsz": "focusquestion",
+        "rta": "focusorder",
+        "rtb": "focusextreme",
+        "rtc": "focusadditional",
+        "rtd": "focusscalebackground",
+        "rte": "focusadditivescale",
+        "rtf": "focusfrombackground",
+        "rtg": "focusscalar",
+        "rth": "focusscalaralso",
+        "rti": "focusaction",
+        "rtj": "focusactions",
+        "rtk": "focusquotedlist",
+        "rtl": "focusactionalso"
+      }
+    },
+    {
+      "document": "examples/v016/attributed-content-pairs.noema",
+      "basis": "data/attributed-focus-basis-v1.json",
+      "renaming": {
+        "rtq": "focusattributed",
+        "rqtu": "focusthirdrank"
+      }
+    },
+    {
+      "document": "examples/v016/ordered-contrast.noema",
+      "basis": "data/ordered-contrast-basis-v1.json",
+      "renaming": {
+        "rw3": "contrastordered"
+      }
+    }
+  ],
+  "design_sources": [
+    "examples/v014/count-focus.noema",
+    "data/count-focus-basis-v1.json",
+    "examples/v014/concession.noema",
+    "data/concession-basis-v1.json"
+  ],
+  "limitations": [
+    "主張、背景、帰属、主題・比較の選定、実際の真理を分ける。自然言語のonly/also/even/butの全用法や、談話主題の自動認定を提供しない。",
+    "限定は排除を主張、焦点を背景とする一つの読み。添加は焦点から従わない別内容の成立を要求する読み。弱い帰結や同値別名を新しい情報とせず、一般の添加の唯一の定義とも主張しない。",
+    "含意と同値は指定比較域に相対的。限定・添加は評価点の域内所属を要求する。比較域を勝手に狭めて一般的な同義・同一性と見なさない。",
+    "旧尺度背景19定義、背景帰属・段階変換・順序付き対比の3定義を改名だけで保持。新定義は同じ型と組へ接続し、古い意味判断を更新しない。",
+    "尺度の極端性、他の比較内容の成立、通常予想に反する成立、本文上の対比は別条件。予想候補の全てで右内容の不成立を要求する強い読みであり、確率的傾向一般ではない。",
+    "主題は個体参照とその個体を引数に取る明示的な枠へ結合する。一般的な複数主題・談話全体の自動追跡・人間の意図の推測は含まない。",
+    "条件文の全体背景と条件付き背景を別操作として示す。どの投射が文脈に適切かは自動選択しない。質問化は主張側の発話記述を作り、元の組は背景を保持する。",
+    "引用の構成・帰属では未知の内容を保持できるが、真理・含意・期待の評価は未知入力を拒否する。論理式は短絡しない。第三者読解と円文字接続は別の検証。"
+  ]
+}
