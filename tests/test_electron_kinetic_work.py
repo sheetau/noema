@@ -1,0 +1,7 @@
+from scripts.check_electron_kinetic_work import physical_checks,energy_checks,presentation_checks,binding_checks,structure_checks
+
+def test_actual_motion_field_units_and_energy_owners():assert physical_checks()
+def test_balance_assumptions_and_printed_chain():assert energy_checks()
+def test_author_task_assumptions_reasons_and_formula():assert presentation_checks()
+def test_shared_settings_and_all_action_witnesses():assert binding_checks()
+def test_preserved_sources_and_prior_meanings():assert structure_checks()
