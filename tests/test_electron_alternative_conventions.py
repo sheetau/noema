@@ -1,0 +1,7 @@
+from scripts.check_electron_alternative_conventions import numerical_checks,physical_checks,connection_checks,binding_checks,structure_checks
+
+def test_coefficient_identity_and_scaling():assert numerical_checks()
+def test_same_force_with_comoving_acceleration():assert physical_checks()
+def test_conditional_roles_and_actual_component_contract():assert connection_checks()
+def test_all_six_coefficient_identity_binders():assert binding_checks()
+def test_preserved_evidence_and_structure():assert structure_checks()
