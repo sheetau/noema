@@ -1,0 +1,59 @@
+noema p p
+d coveredgroups[va h[a] c vb h[a] c vc h[a a] c] c[w[g vd a[c[v va][v vd]]][w[g ve a[c[v vb][v ve]]][w[f vf a[y[c[v va][v vf]][g vg a[w[c[v vb][v vg]][c[v vc][v vf v vg]]]]]][f vh a[y[c[v vb][v vh]][g vi a[w[c[v va][v vi]][c[v vc][v vi v vh]]]]]]]]].
+d collectiveaction[va h[a] c vb d vc h[a d] c vd h[a a d] c] c[w[g ve a[c[v va][v ve]]][g vf a[w[c[v vc][v vf v vb]][f vg a[y[c[v va][v vg]][c[v vd][v vg v vf v vb]]]]]]].
+d memberof[va j[a] vb a] c[q[v va][e[n p a b][n p b b]][i[vc c vd a][x[v vc][e[v vd][v vb]]]]].
+d distinctmembers[va j[a]] c[c[q[v va][i[vb j[a]][e[n p a b][n p a b]]][i[vc h[j[a]] c vd a][i[ve j[a]][w[u[k memberof[v ve v vd]]][c[v vc][m[v ve][l[a][v vd]]]]]]]][l[a][]]].
+d membercount[va j[a] vb b] c[w[k distinctmembers[v va]][e[d[v va]][v vb]]].
+d groupexists[va h[a] c] c[g vb a[c[v va][v vb]]].
+d groupincludes[va h[a] c vb h[a] c] c[f vc a[y[c[v vb][v vc]][c[v va][v vc]]]].
+d groupall[va h[a] c vb h[a] c] c[w[k groupexists[v va]][f vc a[y[c[v va][v vc]][c[v vb][v vc]]]]].
+d groupplural[va h[a] c] c[g vb a[w[c[v va][v vb]][g vc a[w[c[v va][v vc]][u[e[v vb][v vc]]]]]]].
+d groupinjection[va h[a] c vb h[a] a] c[f vc a[y[c[v va][v vc]][f vd a[y[c[v va][v vd]][y[u[e[v vc][v vd]]][u[e[c[v vb][v vc]][c[v vb][v vd]]]]]]]]].
+d distributedaction[va h[a] c vb d vc h[a d] c vd h[a a d] c] c[w[k groupexists[v va]][f ve a[y[c[v va][v ve]][g vf a[w[c[v vc][v vf v vb]][c[v vd][v ve v vf v vb]]]]]]].
+d assignedactions[va h[a] c vb h[a] a vc d vd h[a d] c ve h[a a d] c] c[w[k groupexists[v va]][f vf a[y[c[v va][v vf]][w[c[v vd][c[v vb][v vf] v vc]][c[v ve][v vf c[v vb][v vf] v vc]]]]]].
+d distinctactions[va h[a] c vb h[a] a vc d vd h[a d] c ve h[a a d] c] c[w[k assignedactions[v va v vb v vc v vd v ve]][k groupinjection[v va v vb]]].
+d exactparticipants[va h[a] c vb a vc d vd h[a a d] c] c[f ve a[z[c[v va][v ve]][c[v vd][v ve v vb v vc]]]].
+d actionobject[va a vb a vc a vd d ve h[a d] c vf h[a a d] c vg h[a a d] c] c[w[w[c[v ve][v vb v vd]][c[v vf][v va v vb v vd]]][c[v vg][v vb v vc v vd]]].
+d collectiveobject[va h[a] c vb h[a] c vc d vd h[a d] c ve h[a a d] c vf h[a a d] c] c[w[k groupexists[v va]][g vg a[w[c[v vb][v vg]][g vh a[f vi a[y[c[v va][v vi]][k actionobject[v vi v vh v vg v vc v vd v ve v vf]]]]]]]].
+d eachobject[va h[a] c vb h[a] c vc d vd h[a d] c ve h[a a d] c vf h[a a d] c] c[w[k groupexists[v va]][f vg a[y[c[v va][v vg]][g vh a[w[c[v vb][v vh]][g vi a[k actionobject[v vg v vi v vh v vc v vd v ve v vf]]]]]]]].
+d sameobject[va h[a] c vb h[a] c vc d vd h[a d] c ve h[a a d] c vf h[a a d] c] c[w[k groupexists[v va]][g vg a[w[c[v vb][v vg]][f vh a[y[c[v va][v vh]][g vi a[k actionobject[v vh v vi v vg v vc v vd v ve v vf]]]]]]]].
+d assignedobjects[va h[a] c vb h[a] c vc h[a] a vd d ve h[a d] c vf h[a a d] c vg h[a a d] c] c[w[k groupexists[v va]][f vh a[y[c[v va][v vh]][w[c[v vb][c[v vc][v vh]]][g vi a[k actionobject[v vh v vi c[v vc][v vh] v vd v ve v vf v vg]]]]]]].
+d distinctobjects[va h[a] c vb h[a] c vc h[a] a vd d ve h[a d] c vf h[a a d] c vg h[a a d] c] c[w[k assignedobjects[v va v vb v vc v vd v ve v vf v vg]][k groupinjection[v va v vc]]].
+d exclusiveobjects[va h[a] c vb h[a] c vc h[a] a vd d ve h[a d] c vf h[a a d] c vg h[a a d] c] c[w[k assignedobjects[v va v vb v vc v vd v ve v vf v vg]][f vh a[y[c[v va][v vh]][f vi a[y[c[v vb][v vi]][y[g vj a[k actionobject[v vh v vj v vi v vd v ve v vf v vg]]][e[v vi][c[v vc][v vh]]]]]]]]].
+d reciprocalall[va h[a] c vb h[a a d] c vc d] c[w[k groupplural[v va]][f vd a[y[c[v va][v vd]][f ve a[y[c[v va][v ve]][y[u[e[v vd][v ve]]][c[v vb][v vd v ve v vc]]]]]]]].
+d reciprocalneighbors[va h[a] c vb h[a a d] c vc d] c[w[k groupplural[v va]][f vd a[y[c[v va][v vd]][w[g ve a[w[c[v va][v ve]][w[u[e[v vd][v ve]]][c[v vb][v vd v ve v vc]]]]][g vf a[w[c[v va][v vf]][w[u[e[v vd][v vf]]][c[v vb][v vf v vd v vc]]]]]]]]].
+d reciprocalpairs[va h[a] c vb h[a a d] c vc d] c[w[k groupplural[v va]][f vd a[y[c[v va][v vd]][g ve a[w[c[v va][v ve]][w[u[e[v vd][v ve]]][w[c[v vb][v vd v ve v vc]][c[v vb][v ve v vd v vc]]]]]]]]].
+r actors[a] c.
+r targets[a] c.
+r pianos[a] c.
+r machines[a] c.
+r occurs[a d] c.
+r participates[a a d] c.
+r affects[a a d] c.
+r lifted[a a d] c.
+r checked[a a d] c.
+r related[a a d] c.
+r paired[a a] c.
+r assignment[a] a.
+r now[] d.
+r alice[] a.
+r bob[] a.
+r piano[] a.
+r machinea[] a.
+r machineb[] a.
+r eventa[] a.
+r eventb[] a.
+r eventc[] a.
+q[k membercount[l[a][k alice[] k bob[]] n p c b]].
+q[k membercount[l[a][k piano[]] n p b b]].
+q[k collectiveobject[p actors p pianos k now[] p occurs p participates p lifted]].
+q[k eachobject[p actors p pianos k now[] p occurs p participates p lifted]].
+q[k sameobject[p actors p pianos k now[] p occurs p participates p lifted]].
+q[k collectiveobject[p actors p machines k now[] p occurs p participates p checked]].
+q[k eachobject[p actors p machines k now[] p occurs p participates p checked]].
+q[k sameobject[p actors p machines k now[] p occurs p participates p checked]].
+q[k assignedobjects[p actors p machines p assignment k now[] p occurs p participates p checked]].
+q[k distinctobjects[p actors p machines p assignment k now[] p occurs p participates p checked]].
+q[k exclusiveobjects[p actors p machines p assignment k now[] p occurs p participates p checked]].
+q[k exactparticipants[p actors k eventa[] k now[] p participates]].
+q[u[k collectiveobject[p actors p machines k now[] p occurs p participates p checked]]].

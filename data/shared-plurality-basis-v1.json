@@ -1,0 +1,1118 @@
+{
+  "status": "shared_plurality_conventions",
+  "document": "examples/v016/shared-plurality-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "coveredgroups": "非空の行為者群と対象群について、各行為者に相手があり、各対象にも担当者がいる。全組合せや担当の一意性は要求しない。旧rpの本体を保持。",
+    "collectiveaction": "非空の行為者群の全員が、同じ状況で生じる一つの出来事に参加する。旧rrの本体を保持。",
+    "memberof": "指定個体が有限列のいずれかの位置に現れる。順序と重複は所属の真偽を変えない。",
+    "distinctmembers": "有限列の個体に重複がない。空列でも成立する。",
+    "membercount": "重複のない有限列の長さが指定した数に等しい。空列は0。列が母集団を尽くすことは別に指定する。",
+    "groupexists": "集団の構成員が存在する。",
+    "groupincludes": "includedの全員がgroupに含まれる。数学的な包含なので空集団も許す。",
+    "groupall": "集団が非空で、全員が指定性質を満たす。",
+    "groupplural": "集団に異なる二個体が存在する。",
+    "groupinjection": "集団内で異なる個体への割当値が異なる。空集団でも成立する。",
+    "distributedaction": "非空の集団の各人が、同じ状況で生じる何らかの出来事に参加する。出来事が同一か別個かは問わない。",
+    "assignedactions": "非空の各行為者に割り当てた出来事が同じ状況で発生し、本人がその出来事に参加する。",
+    "distinctactions": "assignedactionsを満たし、異なる行為者への割当出来事が異なる。他の共同出来事の存在は妨げない。",
+    "exactparticipants": "その出来事の同じ状況における参加者が指定集団とちょうど一致する。発生や非空性は別条件。",
+    "actionobject": "同じ出来事が発生し、同じ行為者が参加し、その出来事が同じ対象へ作用する。",
+    "collectiveobject": "非空の全行為者が、同じ候補対象へ作用する一つの出来事に参加する。",
+    "eachobject": "非空の各行為者が、候補対象の何かへ作用する出来事に参加する。対象と出来事は各人ごとに選べる。",
+    "sameobject": "同じ候補対象について、非空の各行為者がその対象へ作用する出来事に参加する。出来事は各人ごとに選べる。",
+    "assignedobjects": "明示した割当関数が各行為者へ候補対象を指定し、各人がその同じ対象へ作用する出来事に参加する。",
+    "distinctobjects": "assignedobjectsを満たし、異なる行為者への割当対象が異なる。未選択の他の対象への作用を禁止しない。",
+    "exclusiveobjects": "assignedobjectsを満たし、同じ候補対象範囲で各人が作用する対象は割当対象だけである。各人の対象が互いに異なるかは別条件。",
+    "reciprocalall": "二人以上の集団で、異なる全ての順序対について関係が成立する。自己関係は要求しない。",
+    "reciprocalneighbors": "二人以上の集団で、全員に関係を向ける相手と関係を向けてくる相手がいる。二つの相手は異なってよい。",
+    "reciprocalpairs": "二人以上の集団で、全員に双方向の関係を持つ相手が少なくとも一人いる。集団全員の全組合せは要求しない。"
+  },
+  "public_contracts": {
+    "coveredgroups": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で候補とする対象の集団。"
+        },
+        {
+          "role": "relation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定した順序の二個体の関係。相互性の定義では最後に同じ評価状況を取る。"
+        }
+      ],
+      "result": "truth"
+    },
+    "collectiveaction": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        }
+      ],
+      "result": "truth"
+    },
+    "memberof": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        },
+        {
+          "role": "member",
+          "sort": "individual",
+          "interpretation": "所属を調べる個体。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distinctmembers": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "membercount": {
+      "arguments": [
+        {
+          "role": "members",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "個体の明示的な有限列。順序と重複を保持し、母集団の完全な列挙かどうかは別に指定する。"
+        },
+        {
+          "role": "count",
+          "sort": "number",
+          "interpretation": "重複のない列に要求する個体数。有理数型だが成立時には非負整数になる。"
+        }
+      ],
+      "result": "truth"
+    },
+    "groupexists": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記述対象の集団。文脈を反映する場合は、その状況に固定した性質を渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "groupincludes": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記述対象の集団。文脈を反映する場合は、その状況に固定した性質を渡す。"
+        },
+        {
+          "role": "included",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "包含される側の集団。"
+        }
+      ],
+      "result": "truth"
+    },
+    "groupall": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記述対象の集団。文脈を反映する場合は、その状況に固定した性質を渡す。"
+        },
+        {
+          "role": "property",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "各構成員に要求する性質。"
+        }
+      ],
+      "result": "truth"
+    },
+    "groupplural": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記述対象の集団。文脈を反映する場合は、その状況に固定した性質を渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "groupinjection": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記述対象の集団。文脈を反映する場合は、その状況に固定した性質を渡す。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "個体から個体を選ぶ明示的な関数。定義に応じて対象または出来事を割り当てる証人であり、関係全体をこの関数と同一視しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distributedaction": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        }
+      ],
+      "result": "truth"
+    },
+    "assignedactions": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "個体から個体を選ぶ明示的な関数。定義に応じて対象または出来事を割り当てる証人であり、関係全体をこの関数と同一視しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distinctactions": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "個体から個体を選ぶ明示的な関数。定義に応じて対象または出来事を割り当てる証人であり、関係全体をこの関数と同一視しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        }
+      ],
+      "result": "truth"
+    },
+    "exactparticipants": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "同じ行為・出来事を指す個体。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        }
+      ],
+      "result": "truth"
+    },
+    "actionobject": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual",
+          "interpretation": "参加する同じ行為者。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "同じ行為・出来事を指す個体。"
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "interpretation": "作用を受ける同じ対象。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        },
+        {
+          "role": "affects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事・対象・状況についての作用。運搬・点検など具体的な作用を定義して渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "collectiveobject": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で候補とする対象の集団。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        },
+        {
+          "role": "affects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事・対象・状況についての作用。運搬・点検など具体的な作用を定義して渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "eachobject": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で候補とする対象の集団。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        },
+        {
+          "role": "affects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事・対象・状況についての作用。運搬・点検など具体的な作用を定義して渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "sameobject": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で候補とする対象の集団。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        },
+        {
+          "role": "affects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事・対象・状況についての作用。運搬・点検など具体的な作用を定義して渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "assignedobjects": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で候補とする対象の集団。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "個体から個体を選ぶ明示的な関数。定義に応じて対象または出来事を割り当てる証人であり、関係全体をこの関数と同一視しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        },
+        {
+          "role": "affects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事・対象・状況についての作用。運搬・点検など具体的な作用を定義して渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "distinctobjects": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で候補とする対象の集団。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "個体から個体を選ぶ明示的な関数。定義に応じて対象または出来事を割り当てる証人であり、関係全体をこの関数と同一視しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        },
+        {
+          "role": "affects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事・対象・状況についての作用。運搬・点検など具体的な作用を定義して渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "exclusiveobjects": {
+      "arguments": [
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で固定する行為者の集団。所属を個体の性質として与える。"
+        },
+        {
+          "role": "targets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "この記述で候補とする対象の集団。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "個体から個体を選ぶ明示的な関数。定義に応じて対象または出来事を割り当てる証人であり、関係全体をこの関数と同一視しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事と状況に対する発生関係。"
+        },
+        {
+          "role": "participates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為者・出来事・状況についての能動的な参加。単独で結果を起こせることや共同意図は別条件。"
+        },
+        {
+          "role": "affects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "出来事・対象・状況についての作用。運搬・点検など具体的な作用を定義して渡す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "reciprocalall": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記述対象の集団。文脈を反映する場合は、その状況に固定した性質を渡す。"
+        },
+        {
+          "role": "relation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定した順序の二個体の関係。相互性の定義では最後に同じ評価状況を取る。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        }
+      ],
+      "result": "truth"
+    },
+    "reciprocalneighbors": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記述対象の集団。文脈を反映する場合は、その状況に固定した性質を渡す。"
+        },
+        {
+          "role": "relation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定した順序の二個体の関係。相互性の定義では最後に同じ評価状況を取る。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        }
+      ],
+      "result": "truth"
+    },
+    "reciprocalpairs": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "記述対象の集団。文脈を反映する場合は、その状況に固定した性質を渡す。"
+        },
+        {
+          "role": "relation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "指定した順序の二個体の関係。相互性の定義では最後に同じ評価状況を取る。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "発生・参加・作用または相互関係を評価する同じ状況。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_definitions": [
+    {
+      "document": "examples/v014/scoped-groups.noema",
+      "names": {
+        "rp": "coveredgroups",
+        "rr": "collectiveaction"
+      }
+    }
+  ],
+  "design_sources": [
+    "docs/scoped-groups-v1.md",
+    "docs/plural-actions-v1.md",
+    "docs/proportions-v1.md"
+  ],
+  "limitations": [
+    "集団の同定・全列挙、出来事の粒度、参加と作用の意味は明示的な入力規約。共有の意図や単独の因果的十分性を補わない。",
+    "各人への分配は出来事の相違を要求しない。distinctactionsは異なる出来事への割当を要求し、別の共同出来事がないことは要求しない。",
+    "対象割当は具体的な証人を渡す。関係が多値でも別の割当が成立し得るため、ある割当の失敗から全割当の不在を導かない。",
+    "相互性の三条件は区別した読み。自然言語の「互いに」の唯一の意味や連鎖的な全用法とはしない。",
+    "物質量・単位、無限集合の濃度、円文字登録、学習文書・第三者読解は別途扱う。未知入力は否定に置き換えず評価を拒否する。"
+  ]
+}
