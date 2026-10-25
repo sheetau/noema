@@ -1,41 +1,42 @@
 {
   "schema_version": "noema-work-state-1",
   "objective": "カントとアインシュタインの二作品を、明示した解釈の下で全単位Noemaに記述する。翻訳器は保留。二作品の完成を万能性の証明としない。",
-  "review_index": "data/semantic-review-index-v448.json",
-  "progress_report": "reports/written-progress-v425.json",
+  "review_index": "data/semantic-review-index-v449.json",
+  "progress_report": "reports/written-progress-v426.json",
   "next_work": {
     "work": "einstein-1905",
-    "unit": "einstein-1905:u0265、u0268：実験に接続する性質の列挙、独立直接測定と高速振動場の例",
-    "scope": "正本はeinstein-deflection-speed-determination.noema（434主張、全文判断269件）。u0266–u0267は第二(A)からの同じ強さの偏向条件、四つの物理量の校正・取得・記録共有・規格化・比・速度復元、0≤v<Vの全速度での決定可能性、Am/Ae=v/Vの表示まで全文判断済み。u0265の列挙導入はeis3wという参照だけで本文未完。次はこの導入とu0268の実験検証可能性を接続する。直接測定は比からの復元eq5と独立に同じ実速度を測る手段として構成し、高速振動する電場・磁場の例と理由を省かない。旧experimental-comparisonの任意区間モデルだけで全文判断しない。次定義erm、原始記号eis36。未判断はu0239、u0265、u0268–u0278の13単位。原刊M0427のμ欠落と小t/kのτ微分を区別したv2訂正を保持する。",
+    "unit": "einstein-1905:u0269–u0270：運動エネルギーの導出から、通過した電位差と獲得した速度の関係へ",
+    "scope": "正本はeinstein-direct-speed-experiment.noema（435主張、全文判断270件）。u0268は独立直接速度測定・比からの復元との実比較・同じ可能過程の記録共有・高速振動する実電場と実磁場による一例まで全文判断済み。次は原刊920–921頁の第二項u0269–u0270で、通過した電位差と獲得速度の式を、同じ電子・電荷・低速質量・実軌道・電気的仕事・速度単位へ結び、運動エネルギー導出への照応とmußを保持する。第三項u0271–u0274の曲率半径まで揃えてから、u0265の列挙導入とu0275の三関係による完全表現をまとめて接続する。u0265のeis3wは参照だけで本文未完。次定義er4、原始記号eis4f。未判断はu0239、u0265、u0269–u0278の12単位。原刊M0427のμ欠落、小t/kのτ微分を区別したv2訂正を保持する。新規チェックはスキーマを先に読み、その後で過去チェックを読み込むと今回の深いimport連鎖を避けられる。",
     "start_here": [
-      "docs/deflection-speed-determination-v1.md",
-      "scripts/compose_deflection_speed_determination.py",
-      "docs/experimental-comparison-v1.md",
-      "scripts/compose_electron_force_measurement.py",
-      "docs/semantic-review-v1.md"
+      "docs/potential-speed-v1.md",
+      "scripts/compose_potential_speed.py",
+      "docs/electron-kinetic-work-v1.md",
+      "scripts/compose_electron_kinetic_work.py",
+      "scripts/compose_kinetic_energy_consequences.py",
+      "artifacts/written-units-v1/einstein-1905.json"
     ],
     "batch_rule": "一文の意味要件と未解決点を列挙し、関連定義・本文接続・局所検査をまとめる。検査成功を意味判断へ変換しない。存在量化で列を解体するN対象の結合検査は通常二値の個体域で全位置・取り違え・長さを確認し、実際の下位本体は別に実評価する。大きな個体域のN乗を列挙せず、境界と引数の接続証拠を明記する。 新規の意味判断モジュールは生成済みの本文・規約・証拠を読む。パスや定数だけのために最新composeをimportして過去全体のimport連鎖を作らない（review_reflected_light_inquiry.pyで再帰上限を避けた構成を参照）。"
   },
   "verification": {
-    "language_checkpoint": "reports/deflection-speed-determination-v1.json",
-    "whole_unit_reviews": 289,
+    "language_checkpoint": "reports/direct-speed-experiment-v1.json",
+    "whole_unit_reviews": 290,
     "kant_reviewed_nonblank_characters": 15513,
     "kant_additional_sentence_characters": 0,
     "commands": "docs/WORKFLOW.md",
-    "dependency_checkpoint": "reports/electron-deflection-response-v1.json",
-    "source_collation": "data/einstein-deflection-speed-determination-reading-v1.json",
+    "dependency_checkpoint": "reports/deflection-speed-determination-v1.json",
+    "source_collation": "data/einstein-direct-speed-experiment-reading-v1.json",
     "kant_additional_sentence_reviews": [],
     "paragraph_checkpoint": "reports/tenth-paragraph-v1.json",
-    "einstein_whole_unit_reviews": 269,
-    "einstein_reviewed_nonblank_characters": 34572,
-    "einstein_review_checkpoint": "reports/einstein-deflection-speed-determination-review-v1.json",
+    "einstein_whole_unit_reviews": 270,
+    "einstein_reviewed_nonblank_characters": 34754,
+    "einstein_review_checkpoint": "reports/einstein-direct-speed-experiment-review-v1.json",
     "einstein_additional_sentence_reviews": [],
     "einstein_additional_sentence_characters": 0,
     "einstein_paragraph_checkpoint": "reports/einstein-force-interpretation-review-v1.json"
   },
   "limits": [
     "カントは全20単位・15,513/15,513非空白文字（100%）を明示した解釈の下で通読し判断した。第十段落の四文992文字は全単位判断に含むため別加算しない。これはアシスタントによる意味判断であり、独立査読や同義性の自動証明ではない。",
-    "アインシュタインの全単位意味確認は269/282・34,572/35,614非空白本文文字。u0266–u0267の偏向条件、比による全速度での決定可能性と式表示を全文判断した。Ablenkbarkeitは実横加速度の大きさを正の場成分で規格化した応答と明示して読む。四つの量の校正・信号取得・因果的な記録共有・数値変換・算術操作を分け、正しい復元と全速度での可能性は著者の主張へ結ぶ。局所8検査・486対照、全文判断2検査、登録簿v448・監査v425を通過し、旧432主張・意味・判断・証拠を保持した。未判断はu0239、u0265、u0268–u0278の13単位。意味判断はアシスタントによるものであり、独立査読や物理的真理・同義性の自動証明ではない。",
+    "アインシュタインの全単位意味確認は270/282・34,754/35,614非空白本文文字。u0268の実験検証可能性、独立直接速度測定という理由、速く振動する電場と磁場を用いる一例を全文判断した。直接値は校正された実三速度のノルムで、方法と校正が検査対象の比を前提にしない。比較は一致・不一致を区別し、同じ可能過程に属する記録を同じ観測者が用いる。振動場は実二場の同じ使用部位・区間、連続な非定数の最小周期、測定配置に基づく速さの基準、信号取得への物理的結合を保つ。局所7検査・497対照、全文判断2検査、登録簿v449・監査v426を通過し、旧434主張・意味・判断・証拠を保持した。未判断はu0239、u0265、u0269–u0278の12単位。意味判断はアシスタントによるものであり、独立査読や物理的真理・同義性の自動証明ではない。",
     "goalの再開・実行制御はこのファイルでは行わない。"
   ]
 }

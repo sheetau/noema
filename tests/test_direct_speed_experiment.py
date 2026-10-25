@@ -1,0 +1,9 @@
+from scripts.check_direct_speed_experiment import quantity_checks,direct_checks,comparison_checks,oscillation_checks,possibility_checks,presentation_checks,structure_checks
+
+def test_physical_speed_quantity_and_unit():assert quantity_checks()
+def test_independent_calibrated_speed_measurement():assert direct_checks()
+def test_actual_comparison_allows_disagreement():assert comparison_checks()
+def test_oscillating_fields_are_used_by_same_instrument():assert oscillation_checks()
+def test_joint_possibility_and_each_binding():assert possibility_checks()
+def test_reference_reason_addition_example_and_attribution():assert presentation_checks()
+def test_source_and_prior_evidence_preserved():assert structure_checks()
