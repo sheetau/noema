@@ -1,0 +1,1642 @@
+{
+  "status": "shared_public_adoption_state_changes",
+  "document": "examples/v016/shared-conversation-v1.noema",
+  "primitives": {
+    "rationaladd": {
+      "symbol": "rationaladd",
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の和。浮動小数点への丸めはしない。"
+    }
+  },
+  "definitions": {
+    "speechpresented": "指定した同じ発話行為が生起し、同じ人が提示者となり、非空の受け手範囲の各人へ、同じ対象に関する同じ発話記述を示す。受け手が理解・同意したこと、内容の真理、公的使用かどうかは含まない。",
+    "speechto": "同じ生起する行為で同じ人が、指定受け手へ同じ対象・発話記述を提示する。単独受け手への条件であり、他の受け手の存在を排除しない。",
+    "speechreceived": "同じ提示行為・受け手・対象・記述・状況で受領が成立する。理解や同意を含まない。",
+    "speechunderstood": "同じ提示と受領に、同じ行為からの記述の理解を結ぶ。理解は賛同や内容の真理ではない。",
+    "speechaccepted": "同じ提示・受領・理解に、同じ発話について明示的な受諾を結ぶ。行動の実現・内心の誠実さ・規範的有効性を含まない。",
+    "commitmentvalid": "採用記録の人物列と発話記述列の長さが等しく、各位置が人物と記述の組になる。記述内容の真理は要求しない。",
+    "commitmenthas": "妥当な二列の同じ位置に、指定人物と同じ構文の発話記述の組がある。記述を実行しない。",
+    "commitmentsubset": "両状態が妥当で、変更前の全ての人物・記述の組が変更後にもある。順序と重複件数を区別しない。",
+    "commitmentsame": "両状態が妥当で、人物と記述の組の集合が等しい。並べ替える場合も人物と記述を対応させる。",
+    "commitmentexceptsubset": "両状態が妥当で、指定した人物・記述の一組を除く変更前の全組が変更後にもある。",
+    "commitmentincluded": "指定の人物・記述の組を変更前に加えた集合が、変更後の全記録と等しい。既存の同じ組の再受諾も許す。",
+    "commitmentadded": "指定の人物・記述の組が以前はなく、それを新規に加えたことだけが状態差である。",
+    "commitmentremoved": "以前にあった指定の人物・記述の組だけが変更後からなくなる。他人物と他記述は保持する。",
+    "commitmentreplaced": "同じ人物の以前の記述を除き、構文上異なる新記述を加えたことだけが状態差である。新記述が以前からあってもよい。",
+    "utteranceinstance": "一個体引数の閉じた発話関数記述へ、閉じた対象記述を適用し、一つの発話記述を構成する。内容を実行しない。",
+    "commitmentaccepted": "提示・受領・理解・受諾の既存条件を満たし、対象記述が同じ対象を指し、同じ発話の適用記述を受け手の採用記録へ含めた状態になる。他の記録は保持する。",
+    "commitmentwithdrawn": "指定記録だけの除去が成立し、同じ人物・行為・記述・理由・状況について撤回したという明示的な関係が成立する。記述内容の否定は主張しない。",
+    "commitmentcorrected": "指定人物の旧記述から新記述への置換が成立し、同じ行為・新旧記述・理由・状況について訂正したという明示的関係が成立する。新記述の真理は要求しない。",
+    "conversationlinked": "二更新の会話識別子が同じで、前更新の後状態と次更新の前状態が同じ採用記録を持ち、指定した二時点に前後関係がある。個別の更新の妥当性は別に検査する。"
+  },
+  "public_contracts": {
+    "rationaladd": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number",
+          "interpretation": "左側の有理数値。"
+        },
+        {
+          "role": "right",
+          "sort": "number",
+          "interpretation": "右側の有理数値。"
+        }
+      ],
+      "result": "number"
+    },
+    "speechpresented": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "audience",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "実際に提示する非空の受け手範囲。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechto": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechreceived": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "receives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為から同じ受け手が同じ対象・記述を受領した関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechunderstood": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "receives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為から同じ受け手が同じ対象・記述を受領した関係。"
+        },
+        {
+          "role": "understands",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為からの同じ対象・記述を受け手が理解した関係。"
+        }
+      ],
+      "result": "truth"
+    },
+    "speechaccepted": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "receives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為から同じ受け手が同じ対象・記述を受領した関係。"
+        },
+        {
+          "role": "understands",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為からの同じ対象・記述を受け手が理解した関係。"
+        },
+        {
+          "role": "accepts",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為に対する同じ受け手の明示的な受諾。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentvalid": {
+      "arguments": [
+        {
+          "role": "owners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "記述列と位置で対応する人物の有限列。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "人物列と位置で対応する閉じた段階0の発話記述列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmenthas": {
+      "arguments": [
+        {
+          "role": "owners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "記述列と位置で対応する人物の有限列。"
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "人物列と位置で対応する閉じた段階0の発話記述列。"
+        },
+        {
+          "role": "owner",
+          "sort": "individual",
+          "interpretation": "状態変更の対象人物。提示者や別の受け手へ置き換えない。"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "対象とする閉じた発話記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentsubset": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentsame": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentexceptsubset": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        },
+        {
+          "role": "owner",
+          "sort": "individual",
+          "interpretation": "状態変更の対象人物。提示者や別の受け手へ置き換えない。"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "対象とする閉じた発話記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentincluded": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        },
+        {
+          "role": "owner",
+          "sort": "individual",
+          "interpretation": "状態変更の対象人物。提示者や別の受け手へ置き換えない。"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "対象とする閉じた発話記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentadded": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        },
+        {
+          "role": "owner",
+          "sort": "individual",
+          "interpretation": "状態変更の対象人物。提示者や別の受け手へ置き換えない。"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "対象とする閉じた発話記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentremoved": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        },
+        {
+          "role": "owner",
+          "sort": "individual",
+          "interpretation": "状態変更の対象人物。提示者や別の受け手へ置き換えない。"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "対象とする閉じた発話記述。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentreplaced": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        },
+        {
+          "role": "owner",
+          "sort": "individual",
+          "interpretation": "状態変更の対象人物。提示者や別の受け手へ置き換えない。"
+        },
+        {
+          "role": "oldclaim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "取り除く旧発話記述。"
+        },
+        {
+          "role": "newclaim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "追加する新発話記述。旧記述と構文が異なる。"
+        }
+      ],
+      "result": "truth"
+    },
+    "utteranceinstance": {
+      "arguments": [
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "一個体を対象とする閉じた発話関数の記述。"
+        },
+        {
+          "role": "subjectdescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "同じ対象を指す閉じた個体記述。受諾時に対象との同一性だけを評価する。"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "message"
+      }
+    },
+    "commitmentaccepted": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        },
+        {
+          "role": "person",
+          "sort": "individual",
+          "interpretation": "同じ発話の提示者。"
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "interpretation": "同じ発話の生起・提示・受領等を結ぶ行為。"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "interpretation": "実際に提示する一人の受け手。"
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "発話のひな形を適用する対象。行為者と無断で同一視しない。"
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "interpretation": "対象から発話値を作る閉じた関数の記述。記述同一性を使い、内容を評価しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "同じ発話行為を評価する状況。"
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・状況の生起関係。"
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "提示者・行為・状況の提示側参加関係。"
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "行為・受け手・対象・記述・状況の提示関係。"
+        },
+        {
+          "role": "receives",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為から同じ受け手が同じ対象・記述を受領した関係。"
+        },
+        {
+          "role": "understands",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為からの同じ対象・記述を受け手が理解した関係。"
+        },
+        {
+          "role": "accepts",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ行為に対する同じ受け手の明示的な受諾。"
+        },
+        {
+          "role": "subjectdescription",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          },
+          "interpretation": "同じ対象を指す閉じた個体記述。受諾時に対象との同一性だけを評価する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentwithdrawn": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        },
+        {
+          "role": "owner",
+          "sort": "individual",
+          "interpretation": "状態変更の対象人物。提示者や別の受け手へ置き換えない。"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "対象とする閉じた発話記述。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "撤回または訂正の行為。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "撤回・訂正を記録する理由や証拠の識別子。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "撤回または訂正を記録する状況。"
+        },
+        {
+          "role": "withdraws",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "人物・行為・記述・理由・状況に対する撤回の解釈関係。単なる記録の欠落から推測しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "commitmentcorrected": {
+      "arguments": [
+        {
+          "role": "beforeowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更前の人物列。"
+        },
+        {
+          "role": "beforeclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更前の発話記述列。"
+        },
+        {
+          "role": "afterowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "変更後の人物列。"
+        },
+        {
+          "role": "afterclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "変更後の発話記述列。"
+        },
+        {
+          "role": "owner",
+          "sort": "individual",
+          "interpretation": "状態変更の対象人物。提示者や別の受け手へ置き換えない。"
+        },
+        {
+          "role": "oldclaim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "取り除く旧発話記述。"
+        },
+        {
+          "role": "newclaim",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          },
+          "interpretation": "追加する新発話記述。旧記述と構文が異なる。"
+        },
+        {
+          "role": "event",
+          "sort": "individual",
+          "interpretation": "撤回または訂正の行為。"
+        },
+        {
+          "role": "reason",
+          "sort": "individual",
+          "interpretation": "撤回・訂正を記録する理由や証拠の識別子。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "interpretation": "撤回または訂正を記録する状況。"
+        },
+        {
+          "role": "corrects",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              {
+                "kind": "description",
+                "result": "message"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "人物・行為・旧記述・新記述・理由・状況に対する訂正の解釈関係。記述の真理から推測しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "conversationlinked": {
+      "arguments": [
+        {
+          "role": "priorconversation",
+          "sort": "individual",
+          "interpretation": "前更新の会話識別子。"
+        },
+        {
+          "role": "nextconversation",
+          "sort": "individual",
+          "interpretation": "次更新の会話識別子。"
+        },
+        {
+          "role": "priorowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "前更新が残した人物列。"
+        },
+        {
+          "role": "priorclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "前更新が残した記述列。"
+        },
+        {
+          "role": "nextowners",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "interpretation": "次更新が受け取る人物列。"
+        },
+        {
+          "role": "nextclaims",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          },
+          "interpretation": "次更新が受け取る記述列。"
+        },
+        {
+          "role": "priorpoint",
+          "sort": "situation",
+          "interpretation": "前更新の記録時点。"
+        },
+        {
+          "role": "nextpoint",
+          "sort": "situation",
+          "interpretation": "次更新の記録時点。"
+        },
+        {
+          "role": "before",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一時点が第二時点より前だという関係。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_sources": [
+    {
+      "document": "examples/v016/shared-quantities-v1.noema",
+      "basis": "data/shared-quantities-basis-v1.json",
+      "names": [
+        "rationaladd"
+      ]
+    },
+    {
+      "document": "examples/v016/shared-speech-v1.noema",
+      "basis": "data/shared-speech-basis-v1.json",
+      "names": [
+        "speechpresented",
+        "speechto",
+        "speechreceived",
+        "speechunderstood",
+        "speechaccepted"
+      ]
+    }
+  ],
+  "limitations": [
+    "状態は会話上採用した人物・発話記述の有限な組の集合である。心理的信念・内容の真理・法的な義務を自動認定しない。否定的内容や相互に矛盾する内容の記録も保持する。",
+    "二列の長さが違えば不正状態となる。単独で片方を並べ替えると人物と記述の結合が変わる。同一組の重複と組の並び順は状態の差としない。出来事の回数・時間順は別の履歴で表す。",
+    "受諾は同じ記述の既存記録を許す。新規追加は以前の不在を別に要求する。撤回は以前にあった記録を除く読み、訂正は構文上異なる記述への変更という読みである。",
+    "撤回・訂正の認定関係は新しい明示的な解釈入力であり、基本宣言を増やさないことを意味の入力が増えないことと混同しない。単なる状態差から出来事や理由を推測しない。",
+    "採用記述は段階0の発話。関数適用による記述の構成は引用のまま行い、受諾時は対象記述だけを評価する。対象を同定できない場合は拒否する。任意段階の引用や型への自動拡張ではない。",
+    "更新は前後状態の関係を検査する定義であり、外部アプリの状態を自動で書き換える命令ではない。履歴例は旧状態・各行為・根拠・時点を別々に残し、連結だけで個別更新の正当性を補わない。",
+    "記述一致は構文の一致。別構文の同義性や語用論的な受諾を推測しない。未知入力は否定に変えず評価拒否。有限モデルは全ての現実の会話や無限領域の証明ではない。"
+  ]
+}
