@@ -1,0 +1,1246 @@
+{
+  "status": "shared_normal_cases_and_qualitative_degrees",
+  "document": "examples/v016/shared-generality-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "normalcase": "指定した個体事例の範囲に属し、その範囲の他事例に通常性で劣後しない事例を選ぶ。状況型のrqt2と同じ順序条件を、個体型の事例へ適用する。",
+    "normalorder": "指定した個体事例の範囲で通常性順序の非反射性・推移性と、各事例が極小または極小事例に劣後する条件を要求する。比較不能な事例を黙って除かない。",
+    "casegeneric": "r2bfの条件を満たす同じ範囲に極小事例が少なくとも一つあり、その全てで応答が成立する。劣後する事例の例外を許す。数値割合や全事例での成立とは異なる。",
+    "kindwisegeneric": "二つの種類の事例範囲について、同じ通常性関係を各範囲の内部へ制限して既存r2bgを別々に適用し、両方の一般化が成立することを要求する。一方の種類の事例が他方の全事例を劣後させても、後者を無視しない。範囲の重なりを許し、割合や現在の実例数へ換算しない。",
+    "boundedscale": "指定範囲の尺度値について、相異なる最小値と最大値を持つ厳密な全順序を要求する。数値、距離、等間隔、確率を仮定しない。",
+    "modaldegree": "非空の候補範囲で内容を評価し、不可能なら最低値、全候補で成立するなら最高値、その中間なら両端以外の尺度値を要求する。中間の値の選択は文脈的な評価であり、候補の件数から算出しない。",
+    "neartop": "最高値の手前で近いと採る範囲を明示する。非空で、両端を含まず、その範囲内の値より上の中間値も含む。近さの実質的な基準を順序だけから発見したとはしない。",
+    "modalmore": "同じ候補範囲・尺度で二つの内容の程度を比較し、第一の内容を厳密に高く評価する。各値は可能・不可能・必然の両端と整合し、第一だけが成立する候補も要求する。第二を含意する第一を逆に高くするような包含逆転を認めない。",
+    "conditionednear": "基準の候補範囲を指定条件が真の候補に制限し、同じ目標を最高値の手前の近い範囲で評価する。条件を満たす候補は非空とし、現実の条件成立、目標の実現、条件の必要性は要求しない。",
+    "comparedconditionednear": "第一の内容が比較対象より可能性の程度で上にあり、指定条件の下ではその同じ第一の内容がほぼ必然という、二つの判断を同じ尺度へ結ぶ。公衆・個人・自由などの内容は引数で与え、特定の原文語を基本記号へ埋め込まない。",
+    "caseuniversal": "指定された事例すべてで応答が成立する。空範囲では真になる全称であり、非空の通常事例を要求する総称と区別する。",
+    "caseexception": "同じ事例が指定範囲に属し、指定応答を満たさない。通常性の順位や総称の成立は別に調べる。",
+    "scaleordered": "非空の尺度範囲に、非反射的・推移的で相異なる二値を比較できる厳密全順序がある。数値・距離・両端の存在は要求しない。",
+    "uppercriterion": "受理する値は尺度内にあり、それより高い尺度値も受理する。空範囲・全範囲も許す。順序の妥当性は別条件。",
+    "lowercriterion": "受理する値は尺度内にあり、それより低い尺度値も受理する。空範囲・全範囲も許す。順序の妥当性は別条件。",
+    "standardsvalid": "尺度の厳密全順序と、上方に閉じた肯定域・下方に閉じた否定域を要求し、両域の重なりを拒否する。両方の外にある値を許す。",
+    "degreepositive": "妥当な同じ尺度・判定基準で、対象の割当値が尺度内の明確な肯定域にある。",
+    "degreenegative": "妥当な同じ尺度・判定基準で、対象の割当値が尺度内の明確な否定域にある。肯定域への所属の単なる否定ではない。",
+    "degreeborderline": "妥当な同じ尺度・判定基準で、対象の既知の割当値が尺度内にあり、肯定域と否定域のどちらにも入らない。入力の未判明ではない。",
+    "degreemore": "同じ妥当な尺度と割当で、左対象の尺度値が右対象より厳密に高い。左対象が肯定域にあることは要求しない。",
+    "degreeequal": "同じ妥当な尺度と割当で、両対象の尺度値が同一である。対象個体の同一性や、別尺度での同値性は要求しない。",
+    "degreenotless": "同じ妥当な尺度と割当で、左対象の尺度値が右対象と同じか、それより高い。",
+    "degreeenough": "同じ妥当な尺度で対象の割当値が、明示された上方に閉じた目的基準を満たす。形容詞の肯定域とは別の基準で、目的の実現や基準の適切さは導かない。"
+  },
+  "public_contracts": {
+    "normalcase": {
+      "arguments": [
+        {
+          "role": "item",
+          "sort": "individual",
+          "interpretation": "分類・通常性・応答を同じ位置へ結ぶ個体事例。仮定の事例でもよい。"
+        },
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "総称または全称の比較事例の範囲。応答の成功だけから選ばない。"
+        },
+        {
+          "role": "preferred",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一事例が第二事例より通常である厳密な優先関係。結果や件数から自動設定しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "normalorder": {
+      "arguments": [
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "総称または全称の比較事例の範囲。応答の成功だけから選ばない。"
+        },
+        {
+          "role": "preferred",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一事例が第二事例より通常である厳密な優先関係。結果や件数から自動設定しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "casegeneric": {
+      "arguments": [
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "総称または全称の比較事例の範囲。応答の成功だけから選ばない。"
+        },
+        {
+          "role": "preferred",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一事例が第二事例より通常である厳密な優先関係。結果や件数から自動設定しない。"
+        },
+        {
+          "role": "response",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ事例について判断する応答・性質。未知入力は偽にしない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "kindwisegeneric": {
+      "arguments": [
+        {
+          "role": "firstcases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の種類の比較範囲。"
+        },
+        {
+          "role": "secondcases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第二の種類の比較範囲。第一と重なってよい。"
+        },
+        {
+          "role": "preferred",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一事例が第二事例より通常である厳密な優先関係。結果や件数から自動設定しない。"
+        },
+        {
+          "role": "response",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ事例について判断する応答・性質。未知入力は偽にしない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "boundedscale": {
+      "arguments": [
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "low",
+          "sort": "individual",
+          "interpretation": "様相尺度の最低値。不可能に対応する。"
+        },
+        {
+          "role": "high",
+          "sort": "individual",
+          "interpretation": "様相尺度の最高値。必然に対応する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "modaldegree": {
+      "arguments": [
+        {
+          "role": "situations",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "様相の内容を評価する候補状況の範囲。"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ候補で評価する内容の真偽。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "degree",
+          "sort": "individual",
+          "interpretation": "対象内容に割り当てた尺度値。"
+        },
+        {
+          "role": "low",
+          "sort": "individual",
+          "interpretation": "様相尺度の最低値。不可能に対応する。"
+        },
+        {
+          "role": "high",
+          "sort": "individual",
+          "interpretation": "様相尺度の最高値。必然に対応する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "neartop": {
+      "arguments": [
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "near",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "最高値の手前で近いと解釈する範囲。距離を順序から推定しない。"
+        },
+        {
+          "role": "low",
+          "sort": "individual",
+          "interpretation": "様相尺度の最低値。不可能に対応する。"
+        },
+        {
+          "role": "high",
+          "sort": "individual",
+          "interpretation": "様相尺度の最高値。必然に対応する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "modalmore": {
+      "arguments": [
+        {
+          "role": "situations",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "様相の内容を評価する候補状況の範囲。"
+        },
+        {
+          "role": "firstgoal",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する第一の内容。"
+        },
+        {
+          "role": "secondgoal",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する第二の内容。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "low",
+          "sort": "individual",
+          "interpretation": "様相尺度の最低値。不可能に対応する。"
+        },
+        {
+          "role": "high",
+          "sort": "individual",
+          "interpretation": "様相尺度の最高値。必然に対応する。"
+        },
+        {
+          "role": "firstdegree",
+          "sort": "individual",
+          "interpretation": "第一内容の尺度値。"
+        },
+        {
+          "role": "seconddegree",
+          "sort": "individual",
+          "interpretation": "第二内容の尺度値。"
+        }
+      ],
+      "result": "truth"
+    },
+    "conditionednear": {
+      "arguments": [
+        {
+          "role": "situations",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "様相の内容を評価する候補状況の範囲。"
+        },
+        {
+          "role": "condition",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "候補状況を制限する条件。"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ候補で評価する内容の真偽。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "near",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "最高値の手前で近いと解釈する範囲。距離を順序から推定しない。"
+        },
+        {
+          "role": "low",
+          "sort": "individual",
+          "interpretation": "様相尺度の最低値。不可能に対応する。"
+        },
+        {
+          "role": "high",
+          "sort": "individual",
+          "interpretation": "様相尺度の最高値。必然に対応する。"
+        },
+        {
+          "role": "degree",
+          "sort": "individual",
+          "interpretation": "対象内容に割り当てた尺度値。"
+        }
+      ],
+      "result": "truth"
+    },
+    "comparedconditionednear": {
+      "arguments": [
+        {
+          "role": "situations",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "様相の内容を評価する候補状況の範囲。"
+        },
+        {
+          "role": "condition",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "候補状況を制限する条件。"
+        },
+        {
+          "role": "firstgoal",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する第一の内容。"
+        },
+        {
+          "role": "secondgoal",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "比較する第二の内容。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "near",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "最高値の手前で近いと解釈する範囲。距離を順序から推定しない。"
+        },
+        {
+          "role": "low",
+          "sort": "individual",
+          "interpretation": "様相尺度の最低値。不可能に対応する。"
+        },
+        {
+          "role": "high",
+          "sort": "individual",
+          "interpretation": "様相尺度の最高値。必然に対応する。"
+        },
+        {
+          "role": "firstdegree",
+          "sort": "individual",
+          "interpretation": "第一内容の尺度値。"
+        },
+        {
+          "role": "seconddegree",
+          "sort": "individual",
+          "interpretation": "第二内容の尺度値。"
+        },
+        {
+          "role": "conditioneddegree",
+          "sort": "individual",
+          "interpretation": "条件で制限した候補内での第一内容の尺度値。"
+        }
+      ],
+      "result": "truth"
+    },
+    "caseuniversal": {
+      "arguments": [
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "総称または全称の比較事例の範囲。応答の成功だけから選ばない。"
+        },
+        {
+          "role": "response",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ事例について判断する応答・性質。未知入力は偽にしない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "caseexception": {
+      "arguments": [
+        {
+          "role": "item",
+          "sort": "individual",
+          "interpretation": "分類・通常性・応答を同じ位置へ結ぶ個体事例。仮定の事例でもよい。"
+        },
+        {
+          "role": "cases",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "総称または全称の比較事例の範囲。応答の成功だけから選ばない。"
+        },
+        {
+          "role": "response",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ事例について判断する応答・性質。未知入力は偽にしない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "scaleordered": {
+      "arguments": [
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "uppercriterion": {
+      "arguments": [
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "criterion",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "対象の目的・用途を固定した尺度値の受理範囲。数値閾値を自動補完しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "lowercriterion": {
+      "arguments": [
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "criterion",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "対象の目的・用途を固定した尺度値の受理範囲。数値閾値を自動補完しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "standardsvalid": {
+      "arguments": [
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "文脈と比較対象の範囲を固定した、明確な肯定の尺度値。"
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ文脈で明確な否定の尺度値。肯定の補集合で代用しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "degreepositive": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "程度を判定する対象。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "対象から同じ尺度の値への明示的な割当。未測定は既定値で補わない。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "文脈と比較対象の範囲を固定した、明確な肯定の尺度値。"
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ文脈で明確な否定の尺度値。肯定の補集合で代用しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "degreenegative": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "程度を判定する対象。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "対象から同じ尺度の値への明示的な割当。未測定は既定値で補わない。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "文脈と比較対象の範囲を固定した、明確な肯定の尺度値。"
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ文脈で明確な否定の尺度値。肯定の補集合で代用しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "degreeborderline": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "程度を判定する対象。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "対象から同じ尺度の値への明示的な割当。未測定は既定値で補わない。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "文脈と比較対象の範囲を固定した、明確な肯定の尺度値。"
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "同じ文脈で明確な否定の尺度値。肯定の補集合で代用しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "degreemore": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "individual",
+          "interpretation": "比較の左対象。"
+        },
+        {
+          "role": "right",
+          "sort": "individual",
+          "interpretation": "比較の右対象。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "対象から同じ尺度の値への明示的な割当。未測定は既定値で補わない。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "degreeequal": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "individual",
+          "interpretation": "比較の左対象。"
+        },
+        {
+          "role": "right",
+          "sort": "individual",
+          "interpretation": "比較の右対象。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "対象から同じ尺度の値への明示的な割当。未測定は既定値で補わない。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "degreenotless": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "individual",
+          "interpretation": "比較の左対象。"
+        },
+        {
+          "role": "right",
+          "sort": "individual",
+          "interpretation": "比較の右対象。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "対象から同じ尺度の値への明示的な割当。未測定は既定値で補わない。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "degreeenough": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual",
+          "interpretation": "程度を判定する対象。"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "interpretation": "対象から同じ尺度の値への明示的な割当。未測定は既定値で補わない。"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "今回の比較で同じ意味に固定した質的尺度値の範囲。"
+        },
+        {
+          "role": "less",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "第一の尺度値が第二より厳密に低い関係。通常性の優先と向きを取り違えない。"
+        },
+        {
+          "role": "criterion",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          },
+          "interpretation": "対象の目的・用途を固定した尺度値の受理範囲。数値閾値を自動補完しない。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "preserved_definitions": [
+    {
+      "document": "examples/v016/conjoined-kinds.noema",
+      "basis": "data/conjoined-kinds-basis-v1.json",
+      "names": {
+        "r2be": "normalcase",
+        "r2bf": "normalorder",
+        "r2bg": "casegeneric",
+        "r2fa": "kindwisegeneric"
+      }
+    },
+    {
+      "document": "examples/v016/graded-modality.noema",
+      "basis": "data/graded-modality-basis-v1.json",
+      "names": {
+        "rqsq": "boundedscale",
+        "rqsr": "modaldegree",
+        "rqss": "neartop",
+        "rqst": "modalmore",
+        "rqsu": "conditionednear",
+        "rqsv": "comparedconditionednear"
+      }
+    }
+  ],
+  "limitations": [
+    "通常事例による総称は既存r2be/r2bf/r2bg/r2faの明示的な読みを共有する。全ての総称文の唯一の意味や、現在の実例の全称・多数決ではない。",
+    "範囲と通常性の経験的根拠は入力規約。結論から都合よく選ぶことを形式的な順位検査で正当化しない。各種類の通常事例を別々に検査する。",
+    "通常性の半順序と程度の全順序を区別。程度の距離・確率・普遍的な閾値は導かない。文脈・比較集団・目的を変える場合は関数の解釈を明示する。",
+    "境界は既知の割当値が既知の二つの判定域に属さないこと。未知の割当・尺度・基準は拒否し、境界や否定へ変換しない。これは古典真偽上の明示的な境界分類で、一般的な多値論理ではない。",
+    "妥当な判定域は互いに排他的だが、空や全体も許す。不正な尺度や重なる域では各判定は偽になり、妥当性の失敗と対象の否定を区別する。",
+    "上方に閉じた目的基準を満たすことと、実際に目的を達成することを区別。両端を持つ様相尺度の6定義は旧本文を保持し、一般の程度に両端を強制しない。",
+    "有限モデルと束縛診断は無限領域の証明ではない。円文字辞書接続、別領域への学習・第三者読解は続く課題。"
+  ]
+}
