@@ -1,0 +1,923 @@
+{
+  "status": "shared_preserved_cut_arithmetic_and_explicit_domains",
+  "document": "examples/v016/shared-cut-products-v1.noema",
+  "primitives": {
+    "rationalbelow": {
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "左の有理数が右の有理数より厳密に小さい。等しい場合は偽。"
+    },
+    "rationaladd": {
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の和。浮動小数点への丸めはしない。"
+    },
+    "rationalnegate": {
+      "parameters": [
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "value"
+      ],
+      "meaning_ja": "有理数の加法逆元。元の数と加えると0となる有理数。"
+    },
+    "rationalmultiply": {
+      "parameters": [
+        "number",
+        "number"
+      ],
+      "result": "number",
+      "arguments": [
+        "left",
+        "right"
+      ],
+      "meaning_ja": "二つの有理数の通常の積。浮動小数点への丸めはしない。"
+    }
+  },
+  "definitions": {
+    "cutvalid": "有理数上の性質が非空・全域でない・下方閉・最大元なしを満たす。これを実数の下側切断として採用する。",
+    "rationalcut": "有理数の値rを、q<rを満たす有理数qの性質として表す。境界r自身は含まない。",
+    "cutincluded": "左の性質を満たす全有理数が右の性質も満たす。双方が実数の下側切断なら左の値は右以下である。",
+    "cutadd": "左の性質を満たす有理数xと右の性質を満たす有理数yが存在し、q<x+yとなる有理数qの性質を返す。切断の加算として使うときは両入力のcutvalidを別に要求する。",
+    "cutnegate": "元の性質を満たさない有理数uが存在し、q<-uとなる有理数qの性質を返す。補集合の単なる符号反転で境界を含めない。",
+    "cutdifference": "左の性質と右の性質のcutnegateをcutaddで結ぶ。実数の差としての利用には両入力のcutvalidを別に要求する。",
+    "cutless": "左が右に含まれ、右は左に含まれない。双方が実数の下側切断なら左の値は右より厳密に小さい。",
+    "cutmidpoint": "中間−先頭と最後−中間が全有理数で同じ性質になる。三入力のcutvalidや、時計・基準系・単位・物理的な同期条件はこの等式に含めない。",
+    "cutpositivescale": "尺度が正の有理数で、元の性質を満たす有理数xが存在し、q<尺度*xとなる有理数qの性質を返す。尺度が0以下なら空の性質となり、実数の切断条件を満たさない。",
+    "cutmutualrelation": "二つの有理数上の性質について、指定された二項関係が両方向で成立する。指定関係を包含とした場合に値の一致を表す。任意の関係そのものが包含や等号だとは仮定しない。",
+    "cutnonnegativeproduct": "q<0、または左と右にそれぞれ正の有理数xとyが含まれq<x*yとなる、という性質を返す。非負の有効な切断を入力するときにその積として使う。",
+    "cutvalueequal": "左右の性質が互いに含まれる。これは全有理数での外延的一致であり、関数の記述や引用された名前の同一性ではない。実数値の一致として使うときは両入力のcutvalidを要求する。",
+    "cutabsolute": "零の切断が入力に含まれる場合は入力を、それ以外ではcutnegateを選ぶ。有効な切断を入力するときに絶対値として使う。",
+    "cutproduct": "両入力の絶対値の非負積を作り、同符号ならそのまま、異符号なら符号反転する。有効な切断を入力するときに符号付きの積として使う。",
+    "cutpositivereciprocal": "q<0、または正の有理数uが入力に含まれずq*u<1となる、という性質を返す。正の有効な切断だけを逆数の入力にする。零や負の入力に対する出力を逆数としない。",
+    "cutpositivequotient": "分子と、分母のcutpositivereciprocalとのcutproduct。分子のcutvalidと、分母が正の有効な切断であることを利用側で要求する。",
+    "cutnonnegative": "零の切断が入力の性質に含まれる。有効な実切断について零以上の値を表すが、入力の有効性自体は検査しない。",
+    "cutreciprocal": "非負判定に従って正の逆数候補を使うか、入力を符号反転して正の逆数候補を作り再び符号反転する。非零の有効な切断を入力するときだけ逆数として使う。",
+    "cutsqrtcandidate": "q<0または入力がq*qを含む、という性質を返す。非負の有効な切断を入力するときだけ非負の平方根として使う。負の入力を許す平方根の関係ではない。",
+    "cutproductrelation": "左右と結果が全て有効な切断であり、結果が左右のcutproductと外延的に一致する。",
+    "cutreciprocalrelation": "入力と結果が有効な切断で、入力が零と外延的に異なり、結果がcutreciprocalと外延的に一致する。",
+    "cutquotient": "分子と分母のcutreciprocalとのcutproductを返す。符号を問わず非零の有効な分母と有効な分子を利用条件とする。",
+    "cutquotientrelation": "分子・分母・結果が有効な切断で、分母が零と外延的に異なり、結果がcutquotientと外延的に一致する。",
+    "cutsqrtrelation": "入力と結果が有効な切断で、入力が非負であり、結果がcutsqrtcandidateと外延的に一致する。平方根の負の枝を含めない。"
+  },
+  "public_contracts": {
+    "rationalbelow": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number"
+        },
+        {
+          "role": "right",
+          "sort": "number"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "left: 左側の有理数値。",
+        "right: 右側の有理数値。"
+      ]
+    },
+    "rationaladd": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number"
+        },
+        {
+          "role": "right",
+          "sort": "number"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "left: 左側の有理数値。",
+        "right: 右側の有理数値。"
+      ]
+    },
+    "rationalnegate": {
+      "arguments": [
+        {
+          "role": "value",
+          "sort": "number"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "value: 有理数値。"
+      ]
+    },
+    "rationalmultiply": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "number"
+        },
+        {
+          "role": "right",
+          "sort": "number"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "left: 左側の有理数値。",
+        "right: 右側の有理数値。"
+      ]
+    },
+    "cutvalid": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "rationalcut": {
+      "arguments": [
+        {
+          "role": "value",
+          "sort": "number"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "cutincluded": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "cutadd": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "cutnegate": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "cutdifference": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "cutless": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "cutmidpoint": {
+      "arguments": [
+        {
+          "role": "start",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "middle",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "finish",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "cutpositivescale": {
+      "arguments": [
+        {
+          "role": "scale",
+          "sort": "number"
+        },
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "実数として扱う入力にはcutvalidを別に要求する。"
+      ]
+    },
+    "cutmutualrelation": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "relation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutnonnegativeproduct": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutvalueequal": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutabsolute": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutproduct": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutpositivereciprocal": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutpositivequotient": {
+      "arguments": [
+        {
+          "role": "numerator",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "denominator",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutnonnegative": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutreciprocal": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutsqrtcandidate": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutproductrelation": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutreciprocalrelation": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutquotient": {
+      "arguments": [
+        {
+          "role": "numerator",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "denominator",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutquotientrelation": {
+      "arguments": [
+        {
+          "role": "numerator",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "denominator",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    },
+    "cutsqrtrelation": {
+      "arguments": [
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "有理数は標準の正確な算術で解釈する。",
+        "候補関数の利用時に切断の有効性と非零・非負など各演算の定義域を確認する。"
+      ]
+    }
+  },
+  "preserved_sources": [
+    {
+      "document": "examples/v014/einstein-reviewed-complete-v1.noema",
+      "basis": "data/einstein-reviewed-complete-basis-v1.json",
+      "renaming": {
+        "aa": "rationalbelow",
+        "ab": "rationaladd",
+        "ac": "rationalnegate",
+        "ad": "rationalmultiply",
+        "ba": "cutvalid",
+        "bb": "rationalcut",
+        "bc": "cutincluded",
+        "bd": "cutadd",
+        "be": "cutnegate",
+        "bf": "cutdifference",
+        "bg": "cutless",
+        "bi": "cutmidpoint",
+        "bj": "cutpositivescale",
+        "sag": "cutmutualrelation",
+        "sah": "cutnonnegativeproduct",
+        "sca": "cutvalueequal",
+        "shu": "cutabsolute",
+        "shv": "cutproduct",
+        "sjd": "cutpositivereciprocal",
+        "sje": "cutpositivequotient",
+        "sju": "cutnonnegative",
+        "sjt": "cutreciprocal",
+        "sky": "cutsqrtcandidate"
+      }
+    }
+  ],
+  "limitations": [
+    "fn[N]Tは実数専用の型ではない。候補関数の外側でcutvalidと演算ごとの定義域を確認する。関係の不成立は実数演算の値を返さない。",
+    "cutpositivequotientは正の分母用、cutquotientは非零の分母用である。負の分母を正の逆数候補へ渡して代用しない。",
+    "多項式の証明は有理数上の条件付き補題であり、全実切断の体の法則・存在・一意性・完備性の一般証明ではない。",
+    "有限診断では下位演算を明示したモデルへ差し替えて引数の結合と定義域条件を検査する。この診断を実数切断のモデルや証明とはしない。",
+    "原文の別名を統合しない。既存10定義の対応と、新たな5構成定義を区別する。正本の本文と以前の意味判断を変更しない。"
+  ],
+  "new_compositions": [
+    "cutproductrelation",
+    "cutreciprocalrelation",
+    "cutquotient",
+    "cutquotientrelation",
+    "cutsqrtrelation"
+  ]
+}
