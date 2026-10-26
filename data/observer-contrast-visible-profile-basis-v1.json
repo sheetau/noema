@@ -1,0 +1,168 @@
+{
+  "status": "optional_observer_contrast_visible_profile",
+  "document": "examples/v016/observer-contrast-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "presentsclaimunderassumption": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content_description",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が指定の文章箇所で内容の記述を、指定した仮定の範囲内の主張として提示する。文書全体の無条件の断言へ昇格させない。"
+    },
+    "judgescontentpolarity": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "description",
+        "polarity",
+        "context"
+      ],
+      "meaning_ja": "観測者が指定内容を肯定または否定と判断するという関係。想定された運動文脈で用い、現実の観測の発生や正当な推論をそれだけでは主張しない。"
+    },
+    "sentencetokenspanreference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "number",
+        "individual",
+        "number",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "document",
+        "first_sentence",
+        "first_token",
+        "last_sentence",
+        "last_token",
+        "context"
+      ],
+      "meaning_ja": "指定した文書・提示文脈で、最初の文のfirst_tokenから最後の文のlast_tokenまでを両端込みで対象とする連続本文範囲。各文内のトークン位置は1始まりの正整数。提示文脈の明示された転記規約で空白区切りを数え、句読点は隣接文字に付け、数式全体と本文中の数式をそれぞれ一つの原子的トークンとする。数式中の空白・改行・組版をトークン境界にしない。独立したダッシュ等は一つに数える。既知の文の順序と各トークン数に照合して逆転・範囲外を拒否する。文全体の参照と区別し、意味・真理は内容の定義で別に記述する。未知の位置を推測しない。"
+    }
+  },
+  "public_contracts": {
+    "presentsclaimunderassumption": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "content_description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "judgescontentpolarity": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "sentencetokenspanreference": {
+      "arguments": [
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "first_sentence",
+          "sort": "individual"
+        },
+        {
+          "role": "first_token",
+          "sort": "number"
+        },
+        {
+          "role": "last_sentence",
+          "sort": "individual"
+        },
+        {
+          "role": "last_token",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "uh": "presentsclaimunderassumption",
+    "zba": "judgescontentpolarity"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
