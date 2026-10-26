@@ -1,0 +1,509 @@
+{
+  "kant-1784": {
+    "document": "examples/v016/kant-reviewed-complete-v1.noema",
+    "statement_index": 12,
+    "target": "r2em",
+    "visible_names": {
+      "r2em": "wcbookzqabovezqinsidezqbookzq"
+    },
+    "required_context": [
+      {
+        "source_symbol": "hzzq",
+        "role": "first_sentence",
+        "sort": "individual",
+        "parameter": "va",
+        "meaning": "第三段落の、個々人による未成熟からの離脱の困難さを述べる第一文の談話箇所。主張の真理や内容そのものを表す記号ではない。",
+        "meaning_basis": "data/individual-departure-basis-v1.json"
+      },
+      {
+        "source_symbol": "hzzr",
+        "role": "second_sentence",
+        "sort": "individual",
+        "parameter": "vb",
+        "meaning": "カント1784第三段落第二文、固定転写のu0010 [126,292) の談話箇所。第一文の箇所hzzqと別に参照する。",
+        "meaning_basis": "data/affection-sentence-basis-v1.json"
+      },
+      {
+        "source_symbol": "ue",
+        "role": "text_order",
+        "sort": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual",
+            "situation"
+          ],
+          "result": "truth"
+        },
+        "parameter": "vc",
+        "meaning": "指定文脈の本文順序で第一箇所が第二箇所より前にある。出来事の時間順序や因果の向きとは別の関係。",
+        "meaning_basis": "data/benevolent-framing-basis-v1.json"
+      },
+      {
+        "source_symbol": "wh",
+        "role": "presentation_context",
+        "sort": "situation",
+        "parameter": "vd",
+        "meaning": "この段落を提示する文脈。引用された呼びかけの達成状況とは区別する。",
+        "meaning_basis": "data/benevolent-framing-basis-v1.json"
+      }
+    ],
+    "original_assertion": {
+      "kind": "assert",
+      "body": {
+        "kind": "call",
+        "symbol": "r2em",
+        "arguments": []
+      }
+    },
+    "original_declarations": [
+      {
+        "kind": "primitive",
+        "name": "ue",
+        "parameters": [
+          "individual",
+          "individual",
+          "situation"
+        ],
+        "result": "truth"
+      },
+      {
+        "kind": "primitive",
+        "name": "wh",
+        "parameters": [],
+        "result": "situation"
+      },
+      {
+        "kind": "primitive",
+        "name": "hzzq",
+        "parameters": [],
+        "result": "individual"
+      },
+      {
+        "kind": "primitive",
+        "name": "hzzr",
+        "parameters": [],
+        "result": "individual"
+      },
+      {
+        "kind": "definition",
+        "name": "r2em",
+        "parameters": [],
+        "result": "truth",
+        "body": {
+          "kind": "call",
+          "symbol": "ue",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "hzzq",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "hzzr",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "wh",
+              "arguments": []
+            }
+          ]
+        }
+      }
+    ],
+    "reconstituted_source_exact": true,
+    "context_resolved": false,
+    "source_assertion_migrated": false
+  },
+  "einstein-1905": {
+    "document": "examples/v014/einstein-reviewed-complete-v1.noema",
+    "statement_index": 42,
+    "target": "eiab",
+    "visible_names": {
+      "eiaa": "wcbookzqakizqgivezqbookzq",
+      "eiab": "wcbookzqakizqgivezqinsidezq"
+    },
+    "required_context": [
+      {
+        "source_symbol": "eira",
+        "role": "presentation_holds",
+        "sort": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "situation"
+          ],
+          "result": "truth"
+        },
+        "parameter": "va",
+        "meaning": "同じ文脈で指定された提示行為が成立する。物理的な印刷者や執筆者を指定しない。",
+        "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+      },
+      {
+        "source_symbol": "eirb",
+        "role": "designation_applies",
+        "sort": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual",
+            "individual",
+            "situation"
+          ],
+          "result": "truth"
+        },
+        "parameter": "vb",
+        "meaning": "同じ提示行為で名称を対象へ適用する。綴りの一致から対象の同一性を推論しない。",
+        "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+      },
+      {
+        "source_symbol": "eirc",
+        "role": "author_display_role",
+        "sort": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual",
+            "individual",
+            "situation"
+          ],
+          "result": "truth"
+        },
+        "parameter": "vc",
+        "meaning": "指定文書のその提示行為が、同じ対象を文書の著者として表示する役割を持つ。表示の真実性、自筆性、提示者と著者の一致を含意しない。",
+        "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+      },
+      {
+        "source_symbol": "eird",
+        "role": "designation",
+        "sort": "individual",
+        "parameter": "vd",
+        "meaning": "u0002で使う名称個体。A. Einsteinという綴りは別添えの識別表記で保持し、人物rdそのものと区別する。",
+        "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+      },
+      {
+        "source_symbol": "eire",
+        "role": "presentation",
+        "sort": "individual",
+        "parameter": "ve",
+        "meaning": "u0002のvon A. Einstein.という前付の著者表示における名称使用。紙面の印刷行為や自筆署名を特定するものではない。",
+        "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+      },
+      {
+        "source_symbol": "eirf",
+        "role": "document",
+        "sort": "individual",
+        "parameter": "vf",
+        "meaning": "今回記述する1905年の論説を指す文書個体。本文中の著者参照rdがこの文書の表示対象に結ばれる。",
+        "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+      },
+      {
+        "source_symbol": "eirg",
+        "role": "presentation_context",
+        "sort": "situation",
+        "parameter": "vg",
+        "meaning": "同じ論説の前付における著者表示の文脈。本文の推論範囲・物理的設定とは区別する。",
+        "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+      },
+      {
+        "source_symbol": "rd",
+        "role": "author",
+        "sort": "individual",
+        "parameter": "vh",
+        "meaning": "[current の記号名] 著者への局所参照。識別子だけを内容の説明の代用にしない。",
+        "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+      }
+    ],
+    "original_assertion": {
+      "kind": "assert",
+      "body": {
+        "kind": "call",
+        "symbol": "eiab",
+        "arguments": []
+      }
+    },
+    "original_declarations": [
+      {
+        "kind": "primitive",
+        "name": "rd",
+        "parameters": [],
+        "result": "individual"
+      },
+      {
+        "kind": "definition",
+        "name": "eiaa",
+        "parameters": [
+          {
+            "name": "va",
+            "sort": "individual"
+          },
+          {
+            "name": "vb",
+            "sort": "individual"
+          },
+          {
+            "name": "vc",
+            "sort": "individual"
+          },
+          {
+            "name": "vd",
+            "sort": "individual"
+          },
+          {
+            "name": "ve",
+            "sort": "situation"
+          },
+          {
+            "name": "vf",
+            "sort": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          {
+            "name": "vg",
+            "sort": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          },
+          {
+            "name": "vh",
+            "sort": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        ],
+        "result": "truth",
+        "body": {
+          "kind": "and",
+          "arguments": [
+            {
+              "kind": "apply",
+              "function": {
+                "kind": "variable",
+                "name": "vf"
+              },
+              "arguments": [
+                {
+                  "kind": "variable",
+                  "name": "va"
+                },
+                {
+                  "kind": "variable",
+                  "name": "ve"
+                }
+              ]
+            },
+            {
+              "kind": "and",
+              "arguments": [
+                {
+                  "kind": "apply",
+                  "function": {
+                    "kind": "variable",
+                    "name": "vg"
+                  },
+                  "arguments": [
+                    {
+                      "kind": "variable",
+                      "name": "va"
+                    },
+                    {
+                      "kind": "variable",
+                      "name": "vb"
+                    },
+                    {
+                      "kind": "variable",
+                      "name": "vc"
+                    },
+                    {
+                      "kind": "variable",
+                      "name": "ve"
+                    }
+                  ]
+                },
+                {
+                  "kind": "apply",
+                  "function": {
+                    "kind": "variable",
+                    "name": "vh"
+                  },
+                  "arguments": [
+                    {
+                      "kind": "variable",
+                      "name": "va"
+                    },
+                    {
+                      "kind": "variable",
+                      "name": "vd"
+                    },
+                    {
+                      "kind": "variable",
+                      "name": "vc"
+                    },
+                    {
+                      "kind": "variable",
+                      "name": "ve"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "kind": "primitive",
+        "name": "eira",
+        "parameters": [
+          "individual",
+          "situation"
+        ],
+        "result": "truth"
+      },
+      {
+        "kind": "primitive",
+        "name": "eirb",
+        "parameters": [
+          "individual",
+          "individual",
+          "individual",
+          "situation"
+        ],
+        "result": "truth"
+      },
+      {
+        "kind": "primitive",
+        "name": "eirc",
+        "parameters": [
+          "individual",
+          "individual",
+          "individual",
+          "situation"
+        ],
+        "result": "truth"
+      },
+      {
+        "kind": "primitive",
+        "name": "eird",
+        "parameters": [],
+        "result": "individual"
+      },
+      {
+        "kind": "primitive",
+        "name": "eire",
+        "parameters": [],
+        "result": "individual"
+      },
+      {
+        "kind": "primitive",
+        "name": "eirf",
+        "parameters": [],
+        "result": "individual"
+      },
+      {
+        "kind": "primitive",
+        "name": "eirg",
+        "parameters": [],
+        "result": "situation"
+      },
+      {
+        "kind": "definition",
+        "name": "eiab",
+        "parameters": [],
+        "result": "truth",
+        "body": {
+          "kind": "and",
+          "arguments": [
+            {
+              "kind": "not",
+              "arguments": [
+                {
+                  "kind": "equal",
+                  "arguments": [
+                    {
+                      "kind": "call",
+                      "symbol": "eird",
+                      "arguments": []
+                    },
+                    {
+                      "kind": "call",
+                      "symbol": "rd",
+                      "arguments": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "call",
+              "symbol": "eiaa",
+              "arguments": [
+                {
+                  "kind": "call",
+                  "symbol": "eire",
+                  "arguments": []
+                },
+                {
+                  "kind": "call",
+                  "symbol": "eird",
+                  "arguments": []
+                },
+                {
+                  "kind": "call",
+                  "symbol": "rd",
+                  "arguments": []
+                },
+                {
+                  "kind": "call",
+                  "symbol": "eirf",
+                  "arguments": []
+                },
+                {
+                  "kind": "call",
+                  "symbol": "eirg",
+                  "arguments": []
+                },
+                {
+                  "kind": "function_ref",
+                  "symbol": "eira"
+                },
+                {
+                  "kind": "function_ref",
+                  "symbol": "eirb"
+                },
+                {
+                  "kind": "function_ref",
+                  "symbol": "eirc"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "reconstituted_source_exact": true,
+    "context_resolved": false,
+    "source_assertion_migrated": false
+  }
+}
