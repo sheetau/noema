@@ -1,0 +1,589 @@
+{
+  "status": "optional_carried_clock_synchrony_profile",
+  "document": "examples/v016/carried-clock-synchrony-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "attachedendpointclock": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "endpoint",
+        "rod",
+        "context"
+      ],
+      "meaning_ja": "時計が同じ棒の指定端点へ取り付けられ、その設定で端点と共に動く。取り付けの機構は未説明。"
+    },
+    "carriedclocklocation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "event",
+        "place",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "その出来事で時計が現在その場所にある。時計の全期間の設置場所とは区別する。"
+    },
+    "clockcomparisonrecord": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "clock",
+        "context"
+      ],
+      "meaning_ja": "その時計の指示と静止系の局所時刻を照合する出来事の記録。"
+    },
+    "comparisonevent": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "record"
+      ],
+      "meaning_ja": "照合記録の出来事。"
+    },
+    "comparisonplace": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "record"
+      ],
+      "meaning_ja": "その出来事における時計と棒端点の現在位置。"
+    },
+    "comparisonlocalclock": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "record"
+      ],
+      "meaning_ja": "その現在位置に静止する静止系の局所時計。別の出来事では別の時計を使える。"
+    },
+    "comparisonowndisplay": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "record"
+      ],
+      "meaning_ja": "動く時計の当該出来事の読み。"
+    },
+    "comparisonlocaltime": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "record"
+      ],
+      "meaning_ja": "同じ出来事の静止系の局所時刻。"
+    },
+    "completeclockcomparisons": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "zacの記録がこの時計について必要な全出来事を尽くすという前提。有限の観測例だけから認定しない。"
+    },
+    "adoptsynchronyqualification": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "qualification",
+        "frame",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がこの条件を満たす時計を、指定基準系において同期した時計と呼ぶ規約を提示する。時計自体の静止や、動く系での光往復中点条件を含意しない。"
+    },
+    "addsassumption": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "prior_node",
+        "added_node",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "同じ思考上の設定に、先行箇所へ追加して後の条件を置く。別々の無関係な想定として扱わない。"
+    },
+    "appliessynchronydesignation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "designation",
+        "qualification",
+        "subjects",
+        "frame",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、scopeの想定に属するsubjectsを、frameに関してqualificationを満たすものとしてdesignationで呼ぶ。対象の列・条件記述・基準系と呼称の対応を保持する適用であり、想定を現実の事実へ変えない。列外の対象への適用や他系における同じ条件の成立は要求しない。"
+    },
+    "glossesqualification": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "target",
+        "gloss",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでtargetの言い方の内容・適用条件を、同じdocumentのglossによってすなわちという説明として明確化する。説明の向き・同じ対象と想定を保ち、無関係な代案や時間的順序へ替えない。引用した内容の現実の成立や、全文脈での論理的同値の証明は含意しない。"
+    }
+  },
+  "public_contracts": {
+    "attachedendpointclock": {
+      "arguments": [
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "endpoint",
+          "sort": "individual"
+        },
+        {
+          "role": "rod",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "carriedclocklocation": {
+      "arguments": [
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "clockcomparisonrecord": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonevent": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonplace": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonlocalclock": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonowndisplay": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonlocaltime": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "completeclockcomparisons": {
+      "arguments": [
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "adoptsynchronyqualification": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "qualification",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "addsassumption": {
+      "arguments": [
+        {
+          "role": "prior_node",
+          "sort": "individual"
+        },
+        {
+          "role": "added_node",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "appliessynchronydesignation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "qualification",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "subjects",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "glossesqualification": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "gloss",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zaa": "attachedendpointclock",
+    "zab": "carriedclocklocation",
+    "zac": "clockcomparisonrecord",
+    "zad": "comparisonevent",
+    "zae": "comparisonplace",
+    "zaf": "comparisonlocalclock",
+    "zag": "comparisonowndisplay",
+    "zah": "comparisonlocaltime",
+    "zai": "completeclockcomparisons",
+    "zan": "adoptsynchronyqualification",
+    "zao": "addsassumption",
+    "eismc": "appliessynchronydesignation",
+    "eisme": "glossesqualification"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
