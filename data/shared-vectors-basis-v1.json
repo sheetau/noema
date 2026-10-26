@@ -1,0 +1,958 @@
+{
+  "status": "shared_preserved_parameterized_vectors",
+  "document": "examples/v016/shared-vectors-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "vectorcomponents": "成分を識別する個体の有限列が非空で、同じ個体を重複して含まない。成分名だけから次元や物理的な軸を推測しない。",
+    "vectorvalid": "成分列がvectorcomponentsを満たし、指定された妥当性判定がベクトルの全ての選択成分に成立する。未選択成分は検査しない。",
+    "vectorcompare": "成分列がvectorcomponentsを満たし、全ての選択成分で左右の値に指定比較関係が成立する。比較関係が値の等号であることや値の有効性は自動で補わない。",
+    "vectorcombine": "同じ成分を左右のベクトルから読み、指定二項演算を左・右の順で適用する関数を返す。列・妥当性・演算の代数法則は要求しない。",
+    "vectoraffinevalue": "出力成分ごとに、その成分の定数項を初期値とし、指定成分列の順に、行列の出力行・入力列の値と入力成分値の指定積を、指定加算で集計する。空列は定数項、重複列は重複して集計する。妥当な列や演算規約は別に要求する。",
+    "vectorequalincrement": "二つの出発ベクトルに同じ変位を加え、指定変換の前後と二つの増分が全て有効であることを要求する。両出発点の変換後の増分を、同じ選択成分と指定比較関係で比較する。",
+    "vectoruniform": "成分列が有効で対象範囲が非空である。その範囲の全出発点対と、有効かつ両移動先が範囲に残る全変位についてvectorequalincrementを要求する。比較の前提を満たす変位がない場合の空虚な成立を排除せず、対象範囲全体の妥当性やアフィン形を単独では保証しない。",
+    "vectoraffine": "同じ成分列の定数項と全行列成分が有効で、対象範囲が非空である。全対象入力と変換結果が有効で、指定された同じ行列・定数項のvectoraffinevalueと変換結果が指定比較関係で一致する。入力ごとに行列や定数項を選び直さない。"
+  },
+  "public_contracts": {
+    "vectorcomponents": {
+      "arguments": [
+        {
+          "role": "components",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "値の型はfn[N]Tだが、この型だけで実数切断ではない。valid、comparison、各演算の解釈を利用箇所で明示する。",
+        "行列は出力成分・入力成分の順に受け取る。成分は個体で識別し、有限列は順序と重複を保持する。"
+      ]
+    },
+    "vectorvalid": {
+      "arguments": [
+        {
+          "role": "components",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "vector",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "valid",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "値の型はfn[N]Tだが、この型だけで実数切断ではない。valid、comparison、各演算の解釈を利用箇所で明示する。",
+        "行列は出力成分・入力成分の順に受け取る。成分は個体で識別し、有限列は順序と重複を保持する。"
+      ]
+    },
+    "vectorcompare": {
+      "arguments": [
+        {
+          "role": "components",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "comparison",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "値の型はfn[N]Tだが、この型だけで実数切断ではない。valid、comparison、各演算の解釈を利用箇所で明示する。",
+        "行列は出力成分・入力成分の順に受け取る。成分は個体で識別し、有限列は順序と重複を保持する。"
+      ]
+    },
+    "vectorcombine": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "operation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "値の型はfn[N]Tだが、この型だけで実数切断ではない。valid、comparison、各演算の解釈を利用箇所で明示する。",
+        "行列は出力成分・入力成分の順に受け取る。成分は個体で識別し、有限列は順序と重複を保持する。"
+      ]
+    },
+    "vectoraffinevalue": {
+      "arguments": [
+        {
+          "role": "components",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "matrix",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "offset",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "vector",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "addition",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "multiplication",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "値の型はfn[N]Tだが、この型だけで実数切断ではない。valid、comparison、各演算の解釈を利用箇所で明示する。",
+        "行列は出力成分・入力成分の順に受け取る。成分は個体で識別し、有限列は順序と重複を保持する。"
+      ]
+    },
+    "vectorequalincrement": {
+      "arguments": [
+        {
+          "role": "components",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "first",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "second",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "displacement",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "transform",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "valid",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "comparison",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "addition",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "difference",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "値の型はfn[N]Tだが、この型だけで実数切断ではない。valid、comparison、各演算の解釈を利用箇所で明示する。",
+        "行列は出力成分・入力成分の順に受け取る。成分は個体で識別し、有限列は順序と重複を保持する。"
+      ]
+    },
+    "vectoruniform": {
+      "arguments": [
+        {
+          "role": "components",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "domain",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "transform",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "valid",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "comparison",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "addition",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "difference",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "値の型はfn[N]Tだが、この型だけで実数切断ではない。valid、comparison、各演算の解釈を利用箇所で明示する。",
+        "行列は出力成分・入力成分の順に受け取る。成分は個体で識別し、有限列は順序と重複を保持する。"
+      ]
+    },
+    "vectoraffine": {
+      "arguments": [
+        {
+          "role": "components",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "domain",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "transform",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "matrix",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "offset",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "valid",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "comparison",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "addition",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "multiplication",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "値の型はfn[N]Tだが、この型だけで実数切断ではない。valid、comparison、各演算の解釈を利用箇所で明示する。",
+        "行列は出力成分・入力成分の順に受け取る。成分は個体で識別し、有限列は順序と重複を保持する。"
+      ]
+    }
+  },
+  "preserved_sources": [
+    {
+      "document": "examples/v014/einstein-reviewed-complete-v1.noema",
+      "basis": "data/einstein-reviewed-complete-basis-v1.json",
+      "renaming": {
+        "shm": "vectorcomponents",
+        "shn": "vectorvalid",
+        "sho": "vectorcompare",
+        "shp": "vectorcombine",
+        "shq": "vectoraffinevalue",
+        "shr": "vectorequalincrement",
+        "shs": "vectoruniform",
+        "sht": "vectoraffine"
+      }
+    }
+  ],
+  "limitations": [
+    "指定された比較・二項演算が実数の等号・加算・積だとは自動的に仮定しない。群や体の法則は別の前提である。",
+    "vectoraffinevalueだけでは空列や重複列を拒否しない。vectoraffineなど利用側の妥当性条件と分ける。",
+    "vectoruniformから連続性・線形性・アフィン形を導く定理は追加していない。対象域や有効な変位が足りなければ条件は弱くなる。",
+    "定数真偽の関数を値にしたNative診断と、値の型をtruthへ明示変更した有限モデルは、全実切断についての証明ではない。",
+    "二つの成分の有限診断を任意次元の完全な証明とせず、型・元本体・全ての束縛は別に保存して照合する。"
+  ]
+}
