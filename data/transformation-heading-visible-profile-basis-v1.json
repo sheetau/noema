@@ -1,0 +1,141 @@
+{
+  "status": "optional_transformation_heading_visible_profile",
+  "document": "examples/v016/transformation-heading-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "studiesdirectedrepresentationchange": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "inquiry",
+        "correspondence",
+        "context"
+      ],
+      "meaning_ja": "inquiryが、correspondenceの閉じた関係により同じ対象へ結ばれる第一の値表現・第二の値表現と、それぞれの表示系を保って、第一の表示から第二の表示へ移す規則、その条件と理論的な説明・導出を研究の主題とする。関係の引数は第一表現・第二表現・第一表示系・第二表示系・状況の順であり、対象同一性・量・尺度・適格な表示系は引用する関係で指定する。単なる名称変更や二表現の一覧ではなく変換規則を扱うが、この主題の提示自体から規則の発見済み・証明済み・全域性・可逆性・線形性・特定の公式の正しさを導かない。"
+    },
+    "spacetimecoordinatetuple": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "tuple"
+      ],
+      "meaning_ja": "三位置成分と一時刻成分を持つ座標値の組。値と各系・単位・出来事との結合はshcで要求する。"
+    },
+    "coordinatetuplecomponent": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "tuple",
+        "role"
+      ],
+      "meaning_ja": "座標値の組から指定成分の実切断を取り出す。三位置成分は共通長さ単位ta、時刻成分は共通時間単位rbで扱う。役割以外の引数での値は使用しない。"
+    }
+  },
+  "public_contracts": {
+    "studiesdirectedrepresentationchange": {
+      "arguments": [
+        {
+          "role": "inquiry",
+          "sort": "individual"
+        },
+        {
+          "role": "correspondence",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "spacetimecoordinatetuple": {
+      "arguments": [
+        {
+          "role": "tuple",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "coordinatetuplecomponent": {
+      "arguments": [
+        {
+          "role": "tuple",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eismr": "studiesdirectedrepresentationchange",
+    "zc5": "spacetimecoordinatetuple",
+    "zc6": "coordinatetuplecomponent"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
