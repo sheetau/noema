@@ -1,0 +1,417 @@
+{
+  "status": "optional_spatial_method_visible_profile",
+  "document": "examples/v016/spatial-method-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "presentedeasycoordinatecalculation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "prior_result",
+        "coordinate_roles",
+        "task",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が指定先行結果を使い、指定課題の座標成分を容易に求められると提示する。実際の計算完了や負担の計測を主張しない。"
+    },
+    "adoptedcalculationtransition": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "before",
+        "after",
+        "context"
+      ],
+      "meaning_ja": "同じ文脈の計算方法で、前の記述から後の記述への変形を採用できるとする関係。外部検査器による証明済みと同一視しない。"
+    },
+    "contextualstepburden": {
+      "parameters": [
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": "content"
+                },
+                {
+                  "kind": "description",
+                  "result": "content"
+                }
+              ],
+              "result": {
+                "kind": "description",
+                "result": "content"
+              }
+            }
+          ],
+          "result": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "number",
+      "arguments": [
+        "step",
+        "context"
+      ],
+      "meaning_ja": "記述された同じ変形手順の、文脈ごとの負担評価。実際の時間や機械演算回数への固定はしない。"
+    },
+    "contextuallowburden": {
+      "parameters": [
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "burden",
+        "context"
+      ],
+      "meaning_ja": "計算の負担を小さいと評価する文脈基準。原文にない数値閾値は固定しない。"
+    },
+    "availablemethod": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "method",
+        "stage"
+      ],
+      "meaning_ja": "指定主体がその段階で指定方法を利用できるという関係。実行済み、成功済み、心理的な容易さを含意しない。"
+    },
+    "methodsteps": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": "content"
+                },
+                {
+                  "kind": "description",
+                  "result": "content"
+                }
+              ],
+              "result": {
+                "kind": "description",
+                "result": "content"
+              }
+            }
+          ],
+          "result": {
+            "kind": "description",
+            "result": "content"
+          }
+        }
+      },
+      "arguments": [
+        "method",
+        "stage"
+      ],
+      "meaning_ja": "指定方法をその段階で用いるときの有限手順列。前後の記述対で与える。実際の実行ログや原文に列挙された途中式とは限らない。"
+    },
+    "methodspatialcandidate": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "method",
+        "stage"
+      ],
+      "meaning_ja": "同じ方法を同じ段階で用いる計算が答えとして提示する、入力記録と成分役割から実数値を与える候補写像。入力と役割の範囲、値の有効性、対応の正しさは別の条件で要求する。実際の実行済み、解の存在、正答をこの割当だけから導かない。"
+    }
+  },
+  "public_contracts": {
+    "presentedeasycoordinatecalculation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "prior_result",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "coordinate_roles",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "adoptedcalculationtransition": {
+      "arguments": [
+        {
+          "role": "before",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "after",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "contextualstepburden": {
+      "arguments": [
+        {
+          "role": "step",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": "content"
+                  },
+                  {
+                    "kind": "description",
+                    "result": "content"
+                  }
+                ],
+                "result": {
+                  "kind": "description",
+                  "result": "content"
+                }
+              }
+            ],
+            "result": {
+              "kind": "description",
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "contextuallowburden": {
+      "arguments": [
+        {
+          "role": "burden",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "availablemethod": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "methodsteps": {
+      "arguments": [
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": "content"
+                },
+                {
+                  "kind": "description",
+                  "result": "content"
+                }
+              ],
+              "result": {
+                "kind": "description",
+                "result": "content"
+              }
+            }
+          ],
+          "result": {
+            "kind": "description",
+            "result": "content"
+          }
+        }
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "methodspatialcandidate": {
+      "arguments": [
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual",
+          "individual"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zf2": "presentedeasycoordinatecalculation",
+    "zla": "adoptedcalculationtransition",
+    "zlb": "contextualstepburden",
+    "zlc": "contextuallowburden",
+    "zlw": "availablemethod",
+    "zlx": "methodsteps",
+    "eisno": "methodspatialcandidate"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
