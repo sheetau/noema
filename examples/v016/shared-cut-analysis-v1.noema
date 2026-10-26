@@ -1,0 +1,46 @@
+noema p p
+r rationalbelow[b b] c.
+r rationaladd[b b] b.
+r rationalnegate[b] b.
+r rationalmultiply[b b] b.
+d cutvalid[va h[b] c] c[w[g vb b[c[v va][v vb]]][w[g vc b[u[c[v va][v vc]]]][w[f vd b[f ve b[y[w[c[v va][v vd]][k rationalbelow[v ve v vd]]][c[v va][v ve]]]]][f vf b[y[c[v va][v vf]][g vg b[w[c[v va][v vg]][k rationalbelow[v vf v vg]]]]]]]]].
+d rationalcut[va b] h[b] c[i[vb b][k rationalbelow[v vb v va]]].
+d cutincluded[va h[b] c vb h[b] c] c[f vc b[y[c[v va][v vc]][c[v vb][v vc]]]].
+d cutadd[va h[b] c vb h[b] c] h[b] c[i[vc b][g vd b[g ve b[w[c[v va][v vd]][w[c[v vb][v ve]][k rationalbelow[v vc k rationaladd[v vd v ve]]]]]]]].
+d cutnegate[va h[b] c] h[b] c[i[vb b][g vc b[w[u[c[v va][v vc]]][k rationalbelow[v vb k rationalnegate[v vc]]]]]].
+d cutdifference[va h[b] c vb h[b] c] h[b] c[k cutadd[v va k cutnegate[v vb]]].
+d cutless[va h[b] c vb h[b] c] c[w[k cutincluded[v va v vb]][u[k cutincluded[v vb v va]]]].
+d cutmidpoint[va h[b] c vb h[b] c vc h[b] c] c[f vd b[z[c[k cutdifference[v vb v va]][v vd]][c[k cutdifference[v vc v vb]][v vd]]]].
+d cutpositivescale[va b vb h[b] c] h[b] c[i[vc b][w[k rationalbelow[n p a b v va]][g vd b[w[c[v vb][v vd]][k rationalbelow[v vc k rationalmultiply[v va v vd]]]]]]].
+d cutmutualrelation[va h[b] c vb h[b] c vc h[h[b] c h[b] c] c] c[w[c[v vc][v va v vb]][c[v vc][v vb v va]]].
+d cutnonnegativeproduct[va h[b] c vb h[b] c] h[b] c[i[vc b][x[k rationalbelow[v vc n p a b]][g vd b[g ve b[w[k rationalbelow[n p a b v vd]][w[k rationalbelow[n p a b v ve]][w[c[v va][v vd]][w[c[v vb][v ve]][k rationalbelow[v vc k rationalmultiply[v vd v ve]]]]]]]]]]].
+d cutvalueequal[va h[b] c vb h[b] c] c[k cutmutualrelation[v va v vb p cutincluded]].
+d cutabsolute[va h[b] c] h[b] c[i[vb b][x[w[k cutincluded[k rationalcut[n p a b] v va]][c[v va][v vb]]][w[u[k cutincluded[k rationalcut[n p a b] v va]]][c[k cutnegate[v va]][v vb]]]]].
+d cutproduct[va h[b] c vb h[b] c] h[b] c[i[vc b][x[w[z[k cutincluded[k rationalcut[n p a b] v va]][k cutincluded[k rationalcut[n p a b] v vb]]][c[k cutnonnegativeproduct[k cutabsolute[v va] k cutabsolute[v vb]]][v vc]]][w[u[z[k cutincluded[k rationalcut[n p a b] v va]][k cutincluded[k rationalcut[n p a b] v vb]]]][c[k cutnegate[k cutnonnegativeproduct[k cutabsolute[v va] k cutabsolute[v vb]]]][v vc]]]]].
+d cutpositivereciprocal[va h[b] c] h[b] c[i[vb b][x[k rationalbelow[v vb n p a b]][g vc b[w[k rationalbelow[n p a b v vc]][w[u[c[v va][v vc]]][k rationalbelow[k rationalmultiply[v vb v vc] n p b b]]]]]]].
+d cutpositivequotient[va h[b] c vb h[b] c] h[b] c[k cutproduct[v va k cutpositivereciprocal[v vb]]].
+d cutnonnegative[va h[b] c] c[k cutincluded[k rationalcut[n p a b] v va]].
+d cutreciprocal[va h[b] c] h[b] c[i[vb b][x[w[k cutnonnegative[v va]][c[k cutpositivereciprocal[v va]][v vb]]][w[u[k cutnonnegative[v va]]][c[k cutnegate[k cutpositivereciprocal[k cutnegate[v va]]]][v vb]]]]].
+d cutfunctionvalid[va h[h[b] c] c vb h[h[b] c] h[b] c] c[f vc h[b] c[y[w[k cutvalid[v vc]][c[v va][v vc]]][k cutvalid[c[v vb][v vc]]]]].
+d cutnear[va h[b] c vb h[b] c vc h[b] c] c[w[k cutvalid[v va]][w[k cutvalid[v vb]][w[w[k cutvalid[v vc]][k cutless[k rationalcut[n p a b] v vc]]][w[k cutless[v va k cutadd[v vb v vc]]][k cutless[v vb k cutadd[v va v vc]]]]]]].
+d cutaccumulation[va h[h[b] c] c vb h[b] c] c[w[k cutvalid[v vb]][f vc h[b] c[y[w[k cutvalid[v vc]][k cutless[k rationalcut[n p a b] v vc]]][g vd h[b] c[w[w[k cutvalid[v vd]][c[v va][v vd]]][w[u[e[v vd][v vb]]][k cutnear[v vd v vb v vc]]]]]]]].
+d cutlimit[va h[h[b] c] c vb h[h[b] c] h[b] c vc h[b] c vd h[b] c] c[w[k cutfunctionvalid[v va v vb]][w[k cutvalid[v vd]][w[k cutaccumulation[v va v vc]][f ve h[b] c[y[w[k cutvalid[v ve]][k cutless[k rationalcut[n p a b] v ve]]][g vf h[b] c[w[w[k cutvalid[v vf]][k cutless[k rationalcut[n p a b] v vf]]][f vg h[b] c[y[w[w[k cutvalid[v vg]][c[v va][v vg]]][w[u[e[v vg][v vc]]][k cutnear[v vg v vc v vf]]]][k cutnear[c[v vb][v vg] v vd v ve]]]]]]]]]]].
+d cutderivative[va h[h[b] c] c vb h[h[b] c] h[b] c vc h[b] c vd h[b] c] c[w[k cutfunctionvalid[v va v vb]][w[w[k cutvalid[v vc]][c[v va][v vc]]][k cutlimit[i[ve h[b] c][w[c[v va][v ve]][u[e[v ve][v vc]]]] i[vf h[b] c][k cutproduct[k cutdifference[c[v vb][v vf] c[v vb][v vc]] k cutreciprocal[k cutdifference[v vf v vc]]]] v vc v vd]]]].
+d cutsqrtcandidate[va h[b] c] h[b] c[i[vb b][x[k rationalbelow[v vb n p a b]][c[v va][k rationalmultiply[v vb v vb]]]]].
+d cutcontinuousat[va h[h[b] c] c vb h[h[b] c] h[b] c vc h[b] c] c[w[k cutfunctionvalid[v va v vb]][w[w[k cutvalid[v vc]][c[v va][v vc]]][f vd h[b] c[y[w[k cutvalid[v vd]][k cutless[k rationalcut[n p a b] v vd]]][g ve h[b] c[w[w[k cutvalid[v ve]][k cutless[k rationalcut[n p a b] v ve]]][f vf h[b] c[y[w[w[k cutvalid[v vf]][c[v va][v vf]]][k cutnear[v vf v vc v ve]]][k cutnear[c[v vb][v vf] c[v vb][v vc] v vd]]]]]]]]]].
+d cutcontinuous[va h[h[b] c] c vb h[h[b] c] h[b] c] c[w[k cutfunctionvalid[v va v vb]][f vc h[b] c[y[w[k cutvalid[v vc]][c[v va][v vc]]][k cutcontinuousat[v va v vb v vc]]]]].
+d cutclosedinterval[va h[b] c vb h[b] c vc h[b] c] c[w[k cutvalid[v va]][w[k cutvalid[v vb]][w[k cutvalid[v vc]][w[k cutincluded[v va v vc]][k cutincluded[v vc v vb]]]]]].
+d cuttaggedcell[va h[b] h[b] c] c[w[k cutvalid[c[v va][n p a b]]][w[k cutvalid[c[v va][n p b b]]][w[k cutvalid[c[v va][n p c b]]][w[k cutless[c[v va][n p a b] c[v va][n p b b]]][w[k cutincluded[c[v va][n p a b] c[v va][n p c b]]][k cutincluded[c[v va][n p c b] c[v va][n p b b]]]]]]]].
+d cutpartition[va j[h[b] h[b] c] vb h[b] c vc h[b] c] c[w[k cutvalid[v vb]][w[k cutvalid[v vc]][w[k cutless[v vb v vc]][w[k rationalbelow[n p a b d[v va]]][w[q[v va][e[n p a b][n p a b]][i[vd c ve h[b] h[b] c][w[v vd][k cuttaggedcell[v ve]]]]][c[q[v va][i[vf h[b] c][e[v vf][v vb]]][i[vg h[h[b] c] c vh h[b] h[b] c][i[vi h[b] c][w[c[v vg][c[v vh][n p a b]]][e[v vi][c[v vh][n p b b]]]]]]][v vc]]]]]]].
+d cutmeshbelow[va j[h[b] h[b] c] vb h[b] c] c[w[k cutvalid[v vb]][w[k cutless[k rationalcut[n p a b] v vb]][q[v va][e[n p a b][n p a b]][i[vc c vd h[b] h[b] c][w[v vc][w[k cuttaggedcell[v vd]][k cutless[k cutdifference[c[v vd][n p b b] c[v vd][n p a b]] v vb]]]]]]]].
+d cutriemannsum[va j[h[b] h[b] c] vb h[h[b] c] h[b] c] h[b] c[q[v va][k rationalcut[n p a b]][i[vc h[b] c vd h[b] h[b] c][k cutadd[v vc k cutproduct[k cutdifference[c[v vd][n p b b] c[v vd][n p a b]] c[v vb][c[v vd][n p c b]]]]]]].
+d cutintegral[va h[b] c vb h[b] c vc h[h[b] c] h[b] c vd h[b] c] c[w[k cutvalid[v va]][w[k cutvalid[v vb]][w[k cutvalid[v vd]][w[k cutless[v va v vb]][w[k cutfunctionvalid[i[ve h[b] c][k cutclosedinterval[v va v vb v ve]] v vc]][f vf h[b] c[y[w[k cutvalid[v vf]][k cutless[k rationalcut[n p a b] v vf]]][g vg h[b] c[w[w[k cutvalid[v vg]][k cutless[k rationalcut[n p a b] v vg]]][w[g vh j[h[b] h[b] c][w[k cutpartition[v vh v va v vb]][k cutmeshbelow[v vh v vg]]]][f vi j[h[b] h[b] c][y[w[k cutpartition[v vi v va v vb]][k cutmeshbelow[v vi v vg]]][k cutnear[k cutriemannsum[v vi v vc] v vd v vf]]]]]]]]]]]]]].
+d cutinterior[va h[h[b] c] c vb h[b] c] c[w[k cutvalid[v vb]][w[c[v va][v vb]][g vc h[b] c[w[k cutvalid[v vc]][w[k cutless[k rationalcut[n p a b] v vc]][f vd h[b] c[y[k cutnear[v vd v vb v vc]][c[v va][v vd]]]]]]]]].
+d cutleftnear[va h[b] c vb h[b] c vc h[b] c] c[w[k cutvalid[v va]][w[w[k cutvalid[v vb]][k cutless[k rationalcut[n p a b] v vb]]][w[k cutvalid[v vc]][w[k cutless[k cutdifference[v va v vb] v vc]][k cutless[v vc v va]]]]]].
+d cutleftaccumulation[va h[h[b] c] c vb h[b] c] c[w[k cutvalid[v vb]][f vc h[b] c[y[w[k cutvalid[v vc]][k cutless[k rationalcut[n p a b] v vc]]][g vd h[b] c[w[k cutleftnear[v vb v vc v vd]][c[v va][v vd]]]]]]].
+d cutleftdivergespositive[va h[h[b] c] c vb h[h[b] c] h[b] c vc h[b] c] c[w[k cutleftaccumulation[v va v vc]][w[k cutfunctionvalid[v va v vb]][f vd h[b] c[y[k cutvalid[v vd]][g ve h[b] c[w[w[k cutvalid[v ve]][k cutless[k rationalcut[n p a b] v ve]]][f vf h[b] c[y[w[k cutleftnear[v vc v ve v vf]][c[v va][v vf]]][k cutless[v vd c[v vb][v vf]]]]]]]]]]].
+d cutproductrelation[va h[b] c vb h[b] c vc h[b] c] c[w[k cutvalid[v va]][w[k cutvalid[v vb]][w[k cutvalid[v vc]][k cutvalueequal[v vc k cutproduct[v va v vb]]]]]].
+d cutreciprocalrelation[va h[b] c vb h[b] c] c[w[k cutvalid[v va]][w[k cutvalid[v vb]][w[u[k cutvalueequal[v va k rationalcut[n p a b]]]][k cutvalueequal[v vb k cutreciprocal[v va]]]]]].
+d cutquotient[va h[b] c vb h[b] c] h[b] c[k cutproduct[v va k cutreciprocal[v vb]]].
+d cutquotientrelation[va h[b] c vb h[b] c vc h[b] c] c[w[k cutvalid[v va]][w[k cutvalid[v vb]][w[k cutvalid[v vc]][w[u[k cutvalueequal[v vb k rationalcut[n p a b]]]][k cutvalueequal[v vc k cutquotient[v va v vb]]]]]]].
+d cutsqrtrelation[va h[b] c vb h[b] c] c[w[k cutvalid[v va]][w[k cutvalid[v vb]][w[k cutnonnegative[v va]][k cutvalueequal[v vb k cutsqrtcandidate[v va]]]]]].
