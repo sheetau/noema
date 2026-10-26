@@ -1,0 +1,21 @@
+"""Preserved possible trial choice and parallel whole-path contracts."""
+SOURCE_RELATIONS={'zec': 'choosabletrial',
+ 'zed': 'possibletrialoutcome',
+ 'zef': 'wholelightpathparalleltoaxis'}
+CONTRACTS={'choosabletrial': {'parameters': ['individual', 'individual', 'situation'],
+                    'result': 'truth',
+                    'arguments': ['actor', 'trial', 'context'],
+                    'meaning_ja': '指定の議論の設定で主体が選べる候補試行。実行済みの試行の一覧とは区別する。'},
+ 'possibletrialoutcome': {'parameters': ['individual', 'individual', 'situation', 'situation'],
+                          'result': 'truth',
+                          'arguments': ['actor', 'trial', 'context', 'alternative'],
+                          'meaning_ja': 'その主体がその試行を選ぶ場合に考察する可能な結果設定。実際の履歴や全結果の保証ではない。'},
+ 'wholelightpathparalleltoaxis': {'parameters': ['individual',
+                                                 'individual',
+                                                 'individual',
+                                                 'individual',
+                                                 'individual',
+                                                 'situation'],
+                                  'result': 'truth',
+                                  'arguments': ['ray', 'from_event', 'to_event', 'axis', 'frame', 'context'],
+                                  'meaning_ja': 'その系・設定で同じ光の二出来事間の経路全体が、指定軸に平行な一つの直線上にある。進行方向の正負は限定せず、支持線が軸と一致する場合も許す。伝播・反射・場所は別に検査する。'}}
