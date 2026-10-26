@@ -1,0 +1,323 @@
+{
+  "status": "optional_designation_purpose_profile",
+  "document": "examples/v016/designation-purpose-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "designationreference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "number",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "document",
+        "node",
+        "designation_item",
+        "context"
+      ],
+      "meaning_ja": "同じ文書・提示文脈の指定箇所で呼称として採用する名称個体への参照。複数の名称はその箇所で採用する順を1から数える。参照値の供給から、命名行為の成立、目的の達成、対象の性質、同じ表記を持つ名称の同一性を導かない。名称の表記は別に記述する。"
+    },
+    "adoptsdesignation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "designation",
+        "target",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでdesignationを、同じdocumentの議論における同じtargetの呼称として採用する命名行為。対象個体を指す名前の規約であり、閉じた命題内容の略称とは区別する。現在の命名の宣言として行われ、対象の新たな物理的性質や名称の字面の性質を付与しない。文中の引用された呼称の同一性を保持し、以後同じ対象を言い分けるために使える。原文にない改名歴、社会全体の承認や他者による実際の使用は要求しない。"
+    },
+    "actionpurpose": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "action",
+        "goal",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "agentがscopeの活動で同じactionを行う目的として、goalに記述される事柄を目指すという目的関係。行為と目標の対象・向きを保ち、結果が先に生じたという時間順序や、目的が既に達成された事実とは区別する。同じ行為が複数の目的を持つことを許し、目標だけから行為の成功や正当性を推論しない。"
+    },
+    "designationdistinguishes": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "designation",
+        "target",
+        "alternatives",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentの言語上の指示において、designationを用いることでtargetをalternativesの型が指定する別の対象群と取り違えずに言い分けられるという状態。共通の対象分類と本文上の参照を保つ。物理的な相違を新たに作ることや、違う名前を与えれば絶対運動を検出できることとは異なる。alternativesが今後導入予定の対象群の場合も、区別の目標を記述でき、現在それらが導入済み又は現実に存在することは要求しない。"
+    },
+    "anticipatedreferent": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "referent",
+        "document",
+        "after",
+        "context"
+      ],
+      "meaning_ja": "referentが同じdocumentでafterより後に導入されるものとして見越された対象群に属する。これは本文の展開における将来の指示範囲であり、物理的な未来時刻での生成や、現在導入済みの対象の一覧ではない。該当する全予定範囲を扱い、都合のよい比較相手だけを後から選ばない。予定された仮定的対象も含み、現実での存在を断言しない。"
+    },
+    "designationclarifies": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "designation",
+        "target",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "designationをtargetに固定して用いることで、同じdocumentでどの対象を考え、その関係や規約をどう捉えるかという観念が明確に定まるという状態。指示の曖昧さや対象の混同を減らし、後の記述を一つの同じ対象の下で把握するという意味の明確化である。座標値の測定精度、実験の実施、全読者の心理状態や完全理解を要求しない。"
+    }
+  },
+  "public_contracts": {
+    "designationreference": {
+      "arguments": [
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "designation_item",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ名称・対象・行為・目的・本文文脈を保つ。目的の記述をその場で実行せず、行為と目標を交換しない。",
+        "後続対象の全予定範囲を型の記述として保持し、現在の対象の存在を加えない。"
+      ]
+    },
+    "adoptsdesignation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ名称・対象・行為・目的・本文文脈を保つ。目的の記述をその場で実行せず、行為と目標を交換しない。",
+        "後続対象の全予定範囲を型の記述として保持し、現在の対象の存在を加えない。"
+      ]
+    },
+    "actionpurpose": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ名称・対象・行為・目的・本文文脈を保つ。目的の記述をその場で実行せず、行為と目標を交換しない。",
+        "後続対象の全予定範囲を型の記述として保持し、現在の対象の存在を加えない。"
+      ]
+    },
+    "designationdistinguishes": {
+      "arguments": [
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "alternatives",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ名称・対象・行為・目的・本文文脈を保つ。目的の記述をその場で実行せず、行為と目標を交換しない。",
+        "後続対象の全予定範囲を型の記述として保持し、現在の対象の存在を加えない。"
+      ]
+    },
+    "anticipatedreferent": {
+      "arguments": [
+        {
+          "role": "referent",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "after",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ名称・対象・行為・目的・本文文脈を保つ。目的の記述をその場で実行せず、行為と目標を交換しない。",
+        "後続対象の全予定範囲を型の記述として保持し、現在の対象の存在を加えない。"
+      ]
+    },
+    "designationclarifies": {
+      "arguments": [
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ名称・対象・行為・目的・本文文脈を保つ。目的の記述をその場で実行せず、行為と目標を交換しない。",
+        "後続対象の全予定範囲を型の記述として保持し、現在の対象の存在を加えない。"
+      ]
+    }
+  },
+  "limitations": [
+    "名称の取得、命名、目的、目的の達成、物理的な性質は独立である。",
+    "名称のUnicode表記は識別表記であり、自然言語の一文を文字列にして意味の記述を代用するものではない。",
+    "未知の名称参照は有限実行では拒否する。完全なモデルの全域解釈とは区別する。"
+  ],
+  "source_relations": {
+    "eisd4": "adoptsdesignation",
+    "eisd5": "actionpurpose",
+    "eisd6": "designationdistinguishes",
+    "eisd7": "anticipatedreferent",
+    "eisea": "designationclarifies"
+  }
+}

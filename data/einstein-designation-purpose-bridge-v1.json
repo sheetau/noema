@@ -1,0 +1,768 @@
+{
+  "schema": "noema-einstein-visible-designation-purpose-bridge-1",
+  "reviewer": "assistant",
+  "source_statement_index": 58,
+  "source_document": "examples/v014/einstein-reviewed-complete-v1.noema",
+  "source_assertion": {
+    "kind": "assert",
+    "body": {
+      "kind": "call",
+      "symbol": "eih5",
+      "arguments": []
+    }
+  },
+  "source_declarations": [
+    {
+      "kind": "primitive",
+      "name": "ra",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "rd",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "ri",
+      "parameters": [],
+      "result": "situation"
+    },
+    {
+      "kind": "primitive",
+      "name": "va",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "ue",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eirf",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "eir3",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "message"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisd4",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisd5",
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisd6",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisd7",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisea",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eiseb",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisec",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "eised",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "definition",
+      "name": "eihx",
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "va",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "va"
+              }
+            ]
+          },
+          {
+            "kind": "and",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "eisd7",
+                "arguments": [
+                  {
+                    "kind": "variable",
+                    "name": "va"
+                  },
+                  {
+                    "kind": "call",
+                    "symbol": "eirf",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "call",
+                    "symbol": "eised",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "vb"
+                  }
+                ]
+              },
+              {
+                "kind": "not",
+                "arguments": [
+                  {
+                    "kind": "equal",
+                    "arguments": [
+                      {
+                        "kind": "variable",
+                        "name": "va"
+                      },
+                      {
+                        "kind": "call",
+                        "symbol": "ra",
+                        "arguments": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eihy",
+      "parameters": [],
+      "result": "content",
+      "body": {
+        "kind": "content",
+        "variable": "va",
+        "body": {
+          "kind": "call",
+          "symbol": "eisd6",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "eiseb",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "ra",
+              "arguments": []
+            },
+            {
+              "kind": "quote",
+              "body": {
+                "kind": "function_ref",
+                "symbol": "eihx"
+              }
+            },
+            {
+              "kind": "call",
+              "symbol": "eirf",
+              "arguments": []
+            },
+            {
+              "kind": "variable",
+              "name": "va"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eihz",
+      "parameters": [],
+      "result": "content",
+      "body": {
+        "kind": "content",
+        "variable": "va",
+        "body": {
+          "kind": "call",
+          "symbol": "eisea",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "eiseb",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "ra",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "eirf",
+              "arguments": []
+            },
+            {
+              "kind": "variable",
+              "name": "va"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eih2",
+      "parameters": [],
+      "result": "content",
+      "body": {
+        "kind": "content",
+        "variable": "va",
+        "body": {
+          "kind": "call",
+          "symbol": "eisd4",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "eised",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "rd",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "eiseb",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "ra",
+              "arguments": []
+            },
+            {
+              "kind": "call",
+              "symbol": "eirf",
+              "arguments": []
+            },
+            {
+              "kind": "variable",
+              "name": "va"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eih3",
+      "parameters": [],
+      "result": "content",
+      "body": {
+        "kind": "content",
+        "variable": "va",
+        "body": {
+          "kind": "and",
+          "arguments": [
+            {
+              "kind": "evaluate",
+              "content": {
+                "kind": "call",
+                "symbol": "eih2",
+                "arguments": []
+              },
+              "situation": {
+                "kind": "variable",
+                "name": "va"
+              }
+            },
+            {
+              "kind": "and",
+              "arguments": [
+                {
+                  "kind": "call",
+                  "symbol": "eisd5",
+                  "arguments": [
+                    {
+                      "kind": "call",
+                      "symbol": "rd",
+                      "arguments": []
+                    },
+                    {
+                      "kind": "quote",
+                      "body": {
+                        "kind": "call",
+                        "symbol": "eih2",
+                        "arguments": []
+                      }
+                    },
+                    {
+                      "kind": "quote",
+                      "body": {
+                        "kind": "call",
+                        "symbol": "eihy",
+                        "arguments": []
+                      }
+                    },
+                    {
+                      "kind": "call",
+                      "symbol": "eirf",
+                      "arguments": []
+                    },
+                    {
+                      "kind": "variable",
+                      "name": "va"
+                    }
+                  ]
+                },
+                {
+                  "kind": "call",
+                  "symbol": "eisd5",
+                  "arguments": [
+                    {
+                      "kind": "call",
+                      "symbol": "rd",
+                      "arguments": []
+                    },
+                    {
+                      "kind": "quote",
+                      "body": {
+                        "kind": "call",
+                        "symbol": "eih2",
+                        "arguments": []
+                      }
+                    },
+                    {
+                      "kind": "quote",
+                      "body": {
+                        "kind": "call",
+                        "symbol": "eihz",
+                        "arguments": []
+                      }
+                    },
+                    {
+                      "kind": "call",
+                      "symbol": "eirf",
+                      "arguments": []
+                    },
+                    {
+                      "kind": "variable",
+                      "name": "va"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eih4",
+      "parameters": [],
+      "result": "message",
+      "body": {
+        "kind": "message",
+        "force": "assert",
+        "content": {
+          "kind": "call",
+          "symbol": "eih3",
+          "arguments": []
+        }
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eih5",
+      "parameters": [],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "eir3",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "eised",
+                "arguments": []
+              },
+              {
+                "kind": "call",
+                "symbol": "rd",
+                "arguments": []
+              },
+              {
+                "kind": "call",
+                "symbol": "eirf",
+                "arguments": []
+              },
+              {
+                "kind": "quote",
+                "body": {
+                  "kind": "call",
+                  "symbol": "eih4",
+                  "arguments": []
+                }
+              },
+              {
+                "kind": "call",
+                "symbol": "ri",
+                "arguments": []
+              }
+            ]
+          },
+          {
+            "kind": "and",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "ue",
+                "arguments": [
+                  {
+                    "kind": "call",
+                    "symbol": "eisec",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "call",
+                    "symbol": "eised",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "call",
+                    "symbol": "ri",
+                    "arguments": []
+                  }
+                ]
+              },
+              {
+                "kind": "not",
+                "arguments": [
+                  {
+                    "kind": "equal",
+                    "arguments": [
+                      {
+                        "kind": "call",
+                        "symbol": "eisec",
+                        "arguments": []
+                      },
+                      {
+                        "kind": "call",
+                        "symbol": "eised",
+                        "arguments": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "source_unit": "einstein-1905:u0008",
+  "source_unit_sha256": "960405b3c50b4d7e6199f917d9809ad4abadf3f61a30a85bf14d7a00c2793bda",
+  "source_range": [
+    96,
+    266
+  ],
+  "source_text": "Wir nennen dies Koordinatensystem zur sprachlichen Unterscheidung von später einzuführenden Koordinatensystemen und zur Präzisierung der Vorstellung das „ruhende System“.",
+  "paragraph_ranges": [
+    [
+      0,
+      95
+    ],
+    [
+      96,
+      266
+    ]
+  ],
+  "inter_sentence_whitespace": [
+    95,
+    96
+  ],
+  "bindings": {
+    "eised": "sentencereference(ri,4,2)",
+    "eiseb": "designationreference(eirf,eised,1,ri)",
+    "ra": "unchanged first-sentence referent",
+    "rd": "unchanged displayed author",
+    "eirf": "unchanged document",
+    "ri": "unchanged body context"
+  },
+  "local_names": {
+    "eirg": "wcbookzqgivezqakizqhomezqbookzq",
+    "packet": "wcbookzqgivezqakizqbookzqinsidezq",
+    "eire": "wpbookzqgivezqakizqgivezq",
+    "eird": "wpbookzqgivezqakizqbookzq",
+    "rd": "wpbookzqgivezqakizqakizq",
+    "eirf": "wpbookzqgivezqakizqhomezq",
+    "eiaa": "wcbookzqakizqgivezqbookzq",
+    "eiab": "wcbookzqakizqgivezqinsidezqhomezq",
+    "displayuse": "wcbookzqgivezqakizqbookzqgivezq",
+    "displaydesignation": "wcbookzqgivezqakizqbookzqbookzq",
+    "displaytarget": "wcbookzqgivezqakizqbookzqakizq",
+    "displaydocument": "wcbookzqgivezqakizqbookzqhomezq",
+    "makepresentation": "wcbookzqgivezqakizqbookzqroundzq",
+    "ri": "wcbookzqgivezqinsidezqhomezqbookzq",
+    "eisd2": "wpbookzqgivezqinsidezqabovezq",
+    "eisec": "wpbookzqgivezqinsidezqbookzq",
+    "ra": "wpbookzqgivezqinsidezqakizq",
+    "eifb": "wcbookzqgivezqinsidezqtownzqbookzq",
+    "eiht": "wcbookzqgivezqinsidezqroundzqbookzq",
+    "eihu": "wcbookzqgivezqinsidezqinsidezqbookzq",
+    "eihv": "wcbookzqgivezqinsidezqgivezqbookzq",
+    "eihw": "wcbookzqgivezqinsidezqassessmentvalidzqbookzq",
+    "eiseb": "wpbookzqgivezqbookzqakizq",
+    "eised": "wpbookzqgivezqbookzqbookzq",
+    "eihx": "wcbookzqgivezqbookzqhomezqbookzq",
+    "eihy": "wcbookzqgivezqbookzqinsidezqbookzq",
+    "eihz": "wcbookzqgivezqbookzqassessmentvalidzqbookzq",
+    "eih2": "wcbookzqgivezqbookzqakizqbookzq",
+    "eih3": "wcbookzqgivezqbookzqabovezqbookzq",
+    "eih4": "wcbookzqgivezqbookzqgivezqbookzq",
+    "eih5": "wcbookzqgivezqbookzqroundzqbookzq"
+  },
+  "profile_edition": 20,
+  "meanings": {
+    "ra": {
+      "meaning_ja": "[current の記号名] 検討する静止基準系への局所参照。識別子だけを内容の説明の代用にしない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "rd": {
+      "meaning_ja": "[current の記号名] 著者への局所参照。識別子だけを内容の説明の代用にしない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "ri": {
+      "meaning_ja": "[current の記号名] この文章を提示する文脈への局所参照。識別子だけを内容の説明の代用にしない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "va": {
+      "meaning_ja": "[current の記号名] 物理的な状態変化を参照する座標系。座標の構成と測定は未説明。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "ue": {
+      "meaning_ja": "[current の記号名] 指定文脈の本文順序で第一箇所が第二箇所より前にある。出来事の時間順序や因果の向きとは別の関係。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "eirf": {
+      "meaning_ja": "今回記述する1905年の論説を指す文書個体。本文中の著者参照rdがこの文書の表示対象に結ばれる。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "eir3": {
+      "meaning_ja": "著者が同じ文書・提示文脈のこの箇所で、閉じたmessageの記述が指定する発話の力と内容を読者へ提示する。指示・主張・問いを交換しない。帰属された発話の内容をその場で実行せず、読者の遵守、内容の真理、著者による実験実施を含意しない。",
+      "meaning_basis": "data/interaction-example-basis-v1.json"
+    },
+    "eisd4": {
+      "meaning_ja": "authorがnodeでdesignationを、同じdocumentの議論における同じtargetの呼称として採用する命名行為。対象個体を指す名前の規約であり、閉じた命題内容の略称とは区別する。現在の命名の宣言として行われ、対象の新たな物理的性質や名称の字面の性質を付与しない。文中の引用された呼称の同一性を保持し、以後同じ対象を言い分けるために使える。原文にない改名歴、社会全体の承認や他者による実際の使用は要求しない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eisd5": {
+      "meaning_ja": "agentがscopeの活動で同じactionを行う目的として、goalに記述される事柄を目指すという目的関係。行為と目標の対象・向きを保ち、結果が先に生じたという時間順序や、目的が既に達成された事実とは区別する。同じ行為が複数の目的を持つことを許し、目標だけから行為の成功や正当性を推論しない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eisd6": {
+      "meaning_ja": "同じdocumentの言語上の指示において、designationを用いることでtargetをalternativesの型が指定する別の対象群と取り違えずに言い分けられるという状態。共通の対象分類と本文上の参照を保つ。物理的な相違を新たに作ることや、違う名前を与えれば絶対運動を検出できることとは異なる。alternativesが今後導入予定の対象群の場合も、区別の目標を記述でき、現在それらが導入済み又は現実に存在することは要求しない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eisd7": {
+      "meaning_ja": "referentが同じdocumentでafterより後に導入されるものとして見越された対象群に属する。これは本文の展開における将来の指示範囲であり、物理的な未来時刻での生成や、現在導入済みの対象の一覧ではない。該当する全予定範囲を扱い、都合のよい比較相手だけを後から選ばない。予定された仮定的対象も含み、現実での存在を断言しない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eisea": {
+      "meaning_ja": "designationをtargetに固定して用いることで、同じdocumentでどの対象を考え、その関係や規約をどう捉えるかという観念が明確に定まるという状態。指示の曖昧さや対象の混同を減らし、後の記述を一つの同じ対象の下で把握するという意味の明確化である。座標値の測定精度、実験の実施、全読者の心理状態や完全理解を要求しない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eiseb": {
+      "meaning_ja": "この論説で同じ導入した基準系raを呼ぶために採用する呼称個体。原文の印字形ruhende Systemは識別表記へ記録する。名称だけから絶対静止、全物体の停止、系の唯一性を意味させない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eisec": {
+      "meaning_ja": "固定原文einstein-1905:u0008[0,95)の第一文。Newtonの力学方程式が成立する座標系を議論の設定として置く箇所。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eised": {
+      "meaning_ja": "固定原文einstein-1905:u0008[96,266)の第二文。同じ座標系を静止系と呼び、言語的区別と観念の明確化の二目的を示す箇所。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eihx": {
+      "meaning_ja": "同じ論説の命名箇所より後に導入されるものとして見越された、raとは異なる座標系の全範囲。型として目的の内部で参照し、今ここで別系が実在するという存在主張を追加しない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eihy": {
+      "meaning_ja": "同じ呼称eisebによってraを、後で導入する座標系eihxから言語上言い分けられるという、第一の目的内容。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eihz": {
+      "meaning_ja": "同じ呼称をraに固定して考えることで、対象の観念・把握を明確に定めるという第二の目的内容。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eih2": {
+      "meaning_ja": "同じ著者が第二文でeisebを同じraの呼称として採用する行為内容。命題内容の略称や物理的な静止の主張へ替えない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eih3": {
+      "meaning_ja": "同じ命名行為eih2を行い、その同じ行為に対して言語上の区別eihyと観念の明確化eihzの二目的を結ぶ。目的の達成を現在の事実として実行しない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eih4": {
+      "meaning_ja": "第二文の命名と二目的eih3を主張として提示するメッセージ。第一文の設定指示と発話の力を区別する。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eih5": {
+      "meaning_ja": "第二文を同じ著者・論説へ帰属し、第一文の後の別箇所として順序を保持する。導入と命名と後続参照が同じraを使う。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    }
+  },
+  "semantic_review": [
+    "第一文で導入した同じraを、第二文で同じ著者がeisebと呼ぶ。新しい座標系の導入や命題の略称へ替えない。",
+    "eihxは後で導入予定の、raとは異なる物理座標系の全範囲を指定する。存在量化を追加しない。",
+    "eihyの言い分けとeihzの観念明確化を、同じ命名行為eih2の二目的としてeih3で結ぶ。二目的を一つに潰さない。",
+    "二目的は閉じたcontentの記述として参照し、達成の真偽をこの命名と目的の内容で実行しない。",
+    "第二文のmessageの力はassertであり、第一文のdirectと区別する。著者への帰属は引用を実行しない。",
+    "静止系という表記から絶対静止、全物体の停止、唯一の基準系を導かない。",
+    "既存speechadviceの目的は受け手付き内容関数の記述と助言関係を要求し、今回の閉じた命名行為の目的関係とは同義でない。",
+    "段落全体で設定から命名へ同じraを保ち、本文順序と異なる箇所であることを維持する。"
+  ],
+  "identifier_annotation": {
+    "symbol": "eiseb",
+    "role": "designation",
+    "forms": [
+      {
+        "text": "ruhende System",
+        "language": "de",
+        "role": "printed_identifying_form"
+      }
+    ]
+  },
+  "identifier_annotation_path": "data/einstein-reviewed-complete-identifiers-v1.json",
+  "visible_identifier_form": {
+    "designation": "wpbookzqgivezqbookzqakizq",
+    "language": "de",
+    "text": "ruhende System",
+    "context": "wcbookzqgivezqinsidezqhomezqbookzq"
+  },
+  "newly_connected_source_assertions": 1,
+  "total_connected_source_assertions": 3,
+  "orthographic_annotation_assertions": 2,
+  "original_manuscript_modified": false,
+  "old_judgments_rebound": false,
+  "limits": [
+    "名称の取得、命名、目的、目的の達成、物理的な性質は独立である。",
+    "名称のUnicode表記は識別表記であり、自然言語の一文を文字列にして意味の記述を代用するものではない。",
+    "未知の名称参照は有限実行では拒否する。完全なモデルの全域解釈とは区別する。",
+    "u0008の二文を接続した。前後の全段落・節見出しの意味・全文の移行と第三者読解は未完。"
+  ]
+}
