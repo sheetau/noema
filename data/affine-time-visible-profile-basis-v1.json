@@ -1,0 +1,380 @@
+{
+  "status": "optional_affine_time_visible_profile",
+  "document": "examples/v016/affine-time-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "unexcludedcoefficientalternative": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "stage",
+        "alternative"
+      ],
+      "meaning_ja": "主体がその段階で排除していない係数関数の候補状況。候補の選び方を明示する関係。"
+    },
+    "assumedforbrevity": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がその仮定を記述の簡潔さのために採ると位置付ける。仮定の必然性や結論の証明ではない。"
+    },
+    "describedcutfunctionreference": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "document",
+        "node",
+        "role_description",
+        "context"
+      ],
+      "meaning_ja": "同じ文書・箇所・提示文脈で、閉じた役割関係の記述に結び付けて照合する切断から切断への関数への参照。役割は本文で定義する。参照取得から役割の成立、値の実数妥当性、存在の証明や唯一性を導かず、引用した役割を実行しない。未知の参照を拒否し、具体的な関数式や候補の値を補わない。"
+    },
+    "describedsituationcutfunctionfamilyreference": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "situation"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "situation"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      },
+      "arguments": [
+        "document",
+        "node",
+        "role_description",
+        "context"
+      ],
+      "meaning_ja": "同じ文書・箇所・提示文脈で、閉じた役割関係の記述に結び付けて照合する状況ごとに切断から切断への関数を返す関数族への参照。役割は本文で定義する。参照取得から役割の成立、値の実数妥当性、存在の証明や唯一性を導かず、引用した役割を実行しない。未知の参照を拒否し、具体的な関数式や候補の値を補わない。"
+    }
+  },
+  "public_contracts": {
+    "unexcludedcoefficientalternative": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "situation"
+        },
+        {
+          "role": "alternative",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "assumedforbrevity": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "describedcutfunctionreference": {
+      "arguments": [
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "role_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "describedsituationcutfunctionfamilyreference": {
+      "arguments": [
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "role_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "situation"
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      {
+                        "kind": "function",
+                        "parameters": [
+                          "number"
+                        ],
+                        "result": "truth"
+                      }
+                    ],
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  }
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "situation"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zet": "unexcludedcoefficientalternative",
+    "zex": "assumedforbrevity"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
