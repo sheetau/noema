@@ -1,0 +1,2509 @@
+{
+  "status": "optional_two_principles_profile",
+  "document": "examples/v016/two-principles-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "segmentrecord": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "segment",
+        "ray",
+        "emitter",
+        "emission",
+        "start",
+        "end",
+        "frame",
+        "lengthunit",
+        "timeunit",
+        "context"
+      ],
+      "meaning_ja": "segmentの各参照が、指定物体emitterからemissionで放出された同じrayの伝播を、同じ系・単位・文脈で追う一つの区間の記録である。startは放出又はその後の同じ伝播上の出来事、endはそこから先の出来事である。emitterは同一物質部分と運動状態を持つ放出元の物体であり、rayや局所時計と取り違えない。対象を放出元の静止・等速・特定速度だけに限定しない。区間ごとの値を保持するため記録個体は系・単位・設定を含み、異なる系の値を同じ記録へ無条件に代入しない。実際の計器設置や観測済みという条件は要求せず、仮定上の伝播設定も扱う。"
+    },
+    "lawbranch": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "law",
+        "branch",
+        "theory",
+        "context"
+      ],
+      "meaning_ja": "指定した物理的な法則体系theoryにおいてlawがbranchの現象に関する法則に属する。同じ法則は、物理量・適用条件・単位の規約を共有する一つの一般的な関係であり、名前だけが同じ別の式ではない。成立する法則だけを事後に選ぶ条件ではなく、体系が扱う全法則の分類である。分野は重なってよく、電気力学と光学を互いに排他的な法則一覧にはしない。"
+    },
+    "electrodynamics": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "電気力学という分野への参照。eie5と同じく、電荷・電流、電気側と磁気側の場、その生成・変化と物質への作用を法則として扱う。特定のMaxwell理論や当時の通常理解への参照とは別である。"
+    },
+    "optics": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "光学という分野への参照。発光・伝播・方向と速度・反射屈折・干渉など、光による物理的な現象とその関係を法則として扱う。ここで光を特定の粒子モデルや物質的な伝達媒体へ同一視せず、電気力学との重なりも排除しない。"
+    },
+    "fieldlawcompleteness": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "theory",
+        "context"
+      ],
+      "meaning_ja": "この論点のtheoryについて、eisbeが電気力学・光学の対象法則を尽くし、eisbjがその許容・不許容を比較すべき全物理履歴候補を尽くし、vhが各適格座標系での対応する全記述を尽くすという範囲の完全性。法則は物理量とその関係の内容を備え、viはその内容への適合、eisbiは同じ内容の法則としての成立を評価する。観測済みの例・適合する履歴・一致する系・自明な法則だけを選ぶことを認めない。有限の検査標本から完全性を推論せず、全称の物理的な範囲入力として読む。"
+    },
+    "lawgovernsframe": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "law",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "同じlawの物理量と適用条件を指定座標系で解釈したとき、その法則が対象となる現象を支配する一般的な関係として成り立つ。任意の仮想履歴がこの法則に適合することではなく、法則としての成立を述べる。記述候補への適合viや、異なる系での適合の保存とは区別する。法則の文字列が同じというだけでは成立せず、未知の物理入力を真に補完しない。"
+    },
+    "fieldhistory": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "history",
+        "context"
+      ],
+      "meaning_ja": "この論点で法則の許容・不許容を比較する、物体・電荷・電流・電磁場・光などの状態と変化の物理的な候補履歴。対象と量の同一性、空間・時間の範囲、初期条件などの記述条件を備え、vhが同じ履歴を各系の量と座標で表す。実在した履歴だけや、比較対象の法則に適合する履歴だけに限定しない。候補としての物理的な記述可能性と法則への適合を区別する。必要な全候補範囲はeisbhで要求する。"
+    },
+    "absoluterest": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "絶対静止という概念への参照。どの座標系・他物体を選ぶかによらず特権的に定まる静止であり、ある基準系に対する位置不変eiahとは区別する。この概念を記述すること自体は、そのような静止・空間・媒体の物理的実在を主張しない。"
+    },
+    "newtonianmechanics": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "力学という分野への参照。物体の運動、質量、力・運動量などの機械的な作用と状態変化の関係を扱う。ここではeisbdと同じNewtonの力学を参照し、電気力学・光学での主張を機械的作用だけの問題へ縮めない。"
+    },
+    "conceptproperty": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "concept",
+        "branch",
+        "property",
+        "context"
+      ],
+      "meaning_ja": "指定分野の現象におけるpropertyがconceptに対応する物理的な特性である。絶対静止については、選んだ座標で位置が一定という記述上の差ではなく、物理的現象の側にその特権的な静止を特徴付ける違いがあることを指す。名称・座標値・説明形式だけの差や単なる未観測を対応する特性としない。この関係の否定を、物体・運動・相対静止そのものの不存在へ替えない。"
+    },
+    "geometricpath": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "segment",
+        "ray",
+        "start",
+        "end",
+        "frame",
+        "lengthunit",
+        "length",
+        "context"
+      ],
+      "meaning_ja": "同じ区間の同じrayが通る空間経路の長さが、指定系で校正した長さ単位でlengthであるという幾何学的な量の帰属。経路を順に細分した全ての有限折線長の上限としての弧長を採り、基準系の空間計量と同じ物質的な長さ尺度へ結ぶ。端点間距離を曲がった経路の長さに代用せず、屈折率を掛けた媒質の光学長とも区別する。経路の同一性・連続性・長さの存在を物理的入力として要求し、未知の軌跡から値を推測しない。折線上限の一般的計算をここで新たに実装したという意味ではない。"
+    },
+    "calibratedunits": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "frame",
+        "lengthunit",
+        "timeunit",
+        "speedunit",
+        "context"
+      ],
+      "meaning_ja": "同じ系で空間の長さを静止した標準の尺度と比較し、時間をeisb7の理想時計の共通尺度で読むという単位の校正規約。指定速度単位はこの長さ単位を時間単位で割った単位で、数値の商への追加換算係数を要しない。各系で同じ物理的な単位規約を用い、座標名の一致だけで単位を同一視しない。長さと時間の尺度を混ぜず、特定のSI単位や数値を原文へ補わない。"
+    },
+    "lightsegmentrange": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "segment",
+        "frame",
+        "lengthunit",
+        "timeunit",
+        "context"
+      ],
+      "meaning_ja": "この法則の適用範囲に属する、指定系・単位・文脈で記述する真空中の光の伝播区間の候補。放出元の運動状態、放出場所、方向、時刻、全部分区間を変えた仮定上の設定も範囲に含む。速度が所望の値になる記録だけを選ばず、観測済みの一覧や静止光源だけへ範囲を縮めない。各記録の物理的帰属・読みの妥当性・速度関係は別の条件で確認する。"
+    },
+    "lightsegmentcompleteness": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "frame",
+        "lengthunit",
+        "timeunit",
+        "context"
+      ],
+      "meaning_ja": "eiscdがこの法則に必要な全光線・全方向・全時刻・全ての非零部分区間と、放出元の運動状態を変えた全設定を尽くしているという範囲の完全性。光源状態を固定した二標本だけでは足りず、結果が一致する候補だけの抜粋を認めない。有限検査や単位名から完全性を認定するものではない。"
+    },
+    "designatescontent": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "designation",
+        "target",
+        "scope",
+        "reference"
+      ],
+      "meaning_ja": "指定された本文範囲scopeでdesignationという呼称を用いるとき、その呼称が閉じたtargetで指定した同じ内容を指すという命名規約が成立する。綴りの類似、対象がたまたま同じ真偽値を持つこと、当該内容の実証とは区別する。呼称は対象内容の略称として使われ、その内容に無関係な定義を追加しない。scopeの位置と原文上の時制は別に指定する。"
+    },
+    "followingscope": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "document",
+        "after",
+        "reference"
+      ],
+      "meaning_ja": "scopeが同じdocumentの箇所afterより後に続く本文全体を指す。文書の順序による以後の範囲であり、現在の文だけ、過去の箇所、物理的な未来時刻、特定の後続箇所だけへの抜粋とは区別する。これからその名で呼ばれるという本文上の予告を評価するときに使い、後続の全ての文が必ずその語を使うとは要求しない。"
+    },
+    "numberedheading": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "number",
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "division",
+        "parent",
+        "document",
+        "level",
+        "ordinal",
+        "context"
+      ],
+      "meaning_ja": "nodeがdocumentのdivisionを開く番号付き見出しであり、divisionは同じ文書階層でparentに直接属する。levelは文書を深さ0として数えた正の整数の階層深さ、ordinalは紙面に表示された正の整数の部・節番号である。この論説では深さ1は部、深さ2は節を指す。ordinalを単に配列中の位置へ替えず、節番号が部をまたいで続くことも許す。divisionの支配範囲はこの見出しから次の同じ深さ又は上位の見出しの直前までで、下位の見出しとその本文も含む。見出しが指す区分と見出しの箇所を区別し、数字の書体・字形から物理量を作らない。"
+    },
+    "headingtopic": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "division",
+        "topic",
+        "context"
+      ],
+      "meaning_ja": "nodeの見出しが、同じdivisionでこれから扱う論述の主題を、閉じたtopicの研究領域として読者に示す。区分全体の案内であり、各文がその主題名を繰り返すこと、全分野の網羅、本文の物理的主張の真理、定義や導出の完了は意味しない。topicの引用は主題を同定するために用い、具体的な物理的事例をその場で実行しない。"
+    },
+    "anticipatesdefinition": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "target",
+        "definition",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、targetとして同定した原理内容を、同じdocumentの後続箇所definitionで以下の仕方により定式化・定義すると読者に予告する。直後の定義への前方参照であり、単に後で語を使うこと、別内容の定義、過去の定義への振り返りとは分ける。参照先の順序は合成で指定し、この予告から定式化の完了・内容の真理・実証を導かない。"
+    },
+    "framecomparison": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "lengthunit",
+        "timeunit",
+        "context"
+      ],
+      "meaning_ja": "同じ物理的座標系firstとsecondについて、firstの空間配置を原点と正規直交した三軸yn/yo/yp及び静止した長さ尺度で表し、その系に静止する時計の同期・共通参照・校正で時刻を付与する記述規約。lengthunitとtimeunitはその尺度である。secondの原点・軸・格子・計器の設置位置を同じfirstの座標と時刻で記述し、軸の単なる名札や別の系の時計読みを混ぜない。第二系の全配置点や全時点の範囲、値の存在、運動の種類は別に要求する。"
+    },
+    "fixedconfigurationpoint": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "frame",
+        "point",
+        "context"
+      ],
+      "meaning_ja": "frameに固定された原点・三軸・座標格子と計器の設置配置を担う点pointの全範囲。時刻を変えても同じ配置位置を追跡し、各時刻で一致する別物への交換をしない。三次元の配置を決める非共線の方向を含む。時計内部の針や歯車の運動まで静止させる条件ではない。"
+    },
+    "lengthinquiry": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "inquiry",
+        "distance",
+        "context"
+      ],
+      "meaning_ja": "inquiryが、distanceの閉じた関係で与える二地点・基準系・校正した長さ単位・値の対応を用いる空間的な長さを主題とする。物体の長さは測定方法に従って定めた両端の地点の距離として扱う。光の曲がった経路長、経過時間、文字列の長さとは分ける。どの端点事象を選ぶか、物差しの配置、運動する棒の同時刻条件は各測定方法で指定し、この研究主題の指定だけから実際の測定や全方法の一致を要求しない。"
+    },
+    "timeinquiry": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "inquiry",
+        "assignment",
+        "simultaneity",
+        "context"
+      ],
+      "meaning_ja": "inquiryが、assignmentで出来事・系・時間単位・状況へ付与する時刻と、その差による時間間隔及びsimultaneityの時刻一致を主題とする。時刻の数値は各系の静止時計・共通参照・同期・校正に従い、付与の有効性と一意性を同時性の型の規約に保つ。読みの未付与や異なる原点を物理的な時間差の実例へ補わない。時間そのものを時計という物体や呼称の文字列と同一視せず、具体的な出来事の存在や実測をこの分類から導かない。"
+    },
+    "frameinquiry": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "inquiry",
+        "context"
+      ],
+      "meaning_ja": "inquiryで対象とする量について、同じ物理的な対象・出来事の対応と校正した尺度を保ち、基準系とその系での測定規約に対して値や一致の判定がどう依存するかを研究の主題とする。単なる単位換算や名前の変更、主観的な好みとは分ける。全ての系対・方向・事例で必ず値が異なるとは述べず、一致する特例を許す。研究領域の指定であり、特定の変換式や結論の証明済みを意味しない。"
+    },
+    "comparisonmoment": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "moment",
+        "context"
+      ],
+      "meaning_ja": "firstに対するsecondの運動を比較する時間幅を持つ区間の全時点の範囲。firstの同じ時刻規約で数値化され、端点だけ・測定済み標本だけ・等速に見える時点だけへの抜粋を許さない。時点を表す複数の記録が同じ時刻を持つことは許し、値の妥当性と時間幅は別に要求する。"
+    },
+    "motioncompleteness": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "lengthunit",
+        "timeunit",
+        "context"
+      ],
+      "meaning_ja": "この二系・尺度・文脈の運動記述で、eisk7がsecondの全固定配置を、eislaが比較区間の全時点を尽くし、ym/ylが同じfirstの尺度でその配置と時刻を対応させるという範囲と対応の完全性。軸向きの異なる点や途中の加速時点を省かず、未知の範囲を完全と扱わない。値の利用可能性、等速性、法則の成立は含意しない。"
+    },
+    "commonvelocity": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "first",
+        "second",
+        "lengthunit",
+        "timeunit",
+        "axis",
+        "context"
+      ],
+      "meaning_ja": "同じfirstに対するsecondの全配置点・全時点に共通に試す速度ベクトルのaxis成分。数値はlengthunit/timeunitで表し、点又は時点を引数に取って速度を選び直さない。正・負・零を許す候補値であり、一定速度の成立は変位条件で別に要求する。"
+    },
+    "physicalsystem": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "system",
+        "context"
+      ],
+      "meaning_ja": "同じ文脈で状態とその変化を物理的に記述する系。物質の構成部分や場と、それらの位置・運動・電気量・場の値などの物理量及び相互作用の対象を同定し、どの範囲を一つの系として追うかを固定する。剛体や単一粒子、電気力学だけに限らず、力学・場・光を含む。系の孤立、平衡、状態の不変、特定法則への適合は要求しない。"
+    },
+    "generallaw": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "theory",
+        "law",
+        "context"
+      ],
+      "meaning_ja": "同じtheoryで物理系の状態変化を支配する一般的な物理量の関係と適用条件を持つ法則lawの全範囲。量・単位・対象の対応を固定した同じ内容を各座標系へ適用し、系ごとに別の法則へ交換しない。電気力学又は光学だけ、成功した法則だけ、式の字面の一致だけに限定しない。各系での法則としての成立はeisbi、候補記述の適合はviで別に与える。"
+    },
+    "generalhistory": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "theory",
+        "history",
+        "context"
+      ],
+      "meaning_ja": "同じtheoryの各法則の許容・不許容を比較すべき、物理系の状態とその変化を追う全候補履歴。対象となる系、同じ構成部分・場・物理量と出来事の対応を保つ。実際に生じた履歴又は法則に適合する履歴だけへ縮めず、変化しない退化例も候補に含む。vfが同じ系へ結び、vhが同じ履歴の各座標系での記述へ結ぶ。"
+    },
+    "generallawcompleteness": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "theory",
+        "context"
+      ],
+      "meaning_ja": "この原理で比較するtheoryの全物理法則をeisle、全物理的候補履歴をeislf、各適格系における同じ履歴の全対応記述をvhが尽くすという範囲の完全性。許容・不許容両方の候補を対象にし、不一致例や一方で記述が欠ける例を外して保存を成立させない。全法則を有限列挙できたという認定でも、法則の真理の代用でもない。"
+    },
+    "formulatesprinciple": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "designation",
+        "antecedent",
+        "formulation",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeのformulationを、同じdocumentでdesignationにより先にantecedentとして指した原理の定式化として提示する。原理の指示を保つ談話上の対応であり、二つの閉じた式の構文一致又は論理的同値を処理系が証明したことではない。範囲の異なる二表現の差を隠さず、定式化の具体的内容は別に保持する。"
+    },
+    "comparisonlengthunit": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "first",
+        "second",
+        "context"
+      ],
+      "meaning_ja": "この二系の比較に用いるfirstの長さ尺度への参照。同じ組・文脈で固定し、secondの別尺度や時間単位と混ぜない。"
+    },
+    "comparisontimeunit": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "first",
+        "second",
+        "context"
+      ],
+      "meaning_ja": "この二系の比較に用いるfirstの共通時間尺度への参照。同じ組・文脈で固定し、secondの時計読みそのものをfirstの時刻へ無条件に置き換えない。"
+    },
+    "introduceditem": {
+      "parameters": [
+        "individual",
+        "individual",
+        "number",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "intro",
+        "ordinal",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentでintroが導入した番号付き列挙のordinal番目としてnodeを提示する。表示番号を位置・順序へ結び、番号を物理量や対象個数にしない。導入末尾の句読点がコロンであることは要求しない。"
+    },
+    "definesspeed": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "numerical",
+        "applied",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、documentの当該議論に用いる速度を、numericalの経路長・経過時間・速度値の関係で規定し、appliedの同じ区間・経過時間・速度値・状況への対応で物理量へ結ぶ。量の役割と順序はこの二つの閉じた型に固定する。等式の規定であり、ある実測値の報告、法則の実証、無関係な三数の式ではない。引用した規則をその場で実行することは要求しない。"
+    },
+    "quantityrule": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "designation",
+        "rule",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentの当該議論でdesignationが指す量を、同じ対象・値・状況に対する閉じたruleの規約に従って解釈する。語形の類似だけで意味を決めず、別の時計・原点・基準系の量を代入しない。規則の引用から実際の測定や全対象への値の存在を導かない。"
+    },
+    "referstotimerule": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "division",
+        "rule",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、同じdocumentの先行区分divisionにある、出来事・時計・場所・時刻値・状況を結ぶruleの定義を、現在用いる時間量の解釈基準として参照する。節番号だけの連想や新しい時間の定義ではなく、同じ既定の時計・同期・共通参照の規約を引き継ぐ。参照先の定義の実証や実際の読取りの完了は意味しない。"
+    },
+    "historyofsystem": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "history",
+        "system",
+        "context"
+      ],
+      "meaning_ja": "候補履歴が指定した物理系の状態変化を記述するという対応。実際にその変化が起きたことは含意しない。"
+    },
+    "framerepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "history",
+        "frame",
+        "representation",
+        "context"
+      ],
+      "meaning_ja": "同じ候補履歴に、指定座標系に関する状態変化の記述を対応させる。異なる座標系で異なる数値や記述を許す。全記述の対応範囲はvjに明示する。"
+    },
+    "lawpermits": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "law",
+        "representation",
+        "context"
+      ],
+      "meaning_ja": "その状態変化の記述が指定法則の許容条件を満たす。座標系ごとに別の法則を選ぶ関係ではなく、同じ法則を対応する記述に適用する。許容条件の内容は各法則に別途必要。"
+    },
+    "definesprinciple": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "principle",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がその箇所で指定内容を原理の定義として提示する。内容の真理や、その後の推論が成立することは含意しない。"
+    },
+    "emitter": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "emitter"
+      ],
+      "meaning_ja": "放出元となる物体。時計や座標系そのものとの同一視はしない。"
+    },
+    "emittedray": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "ray",
+        "emitter",
+        "emission",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "指定基準系・文脈において、同じ光が指定物体から指定出来事で放出される。"
+    },
+    "restingemitter": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "emitter",
+        "frame",
+        "emission",
+        "context"
+      ],
+      "meaning_ja": "同じ放出出来事で、その物体が指定基準系に対して静止する。"
+    },
+    "movingemitter": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "emitter",
+        "frame",
+        "emission",
+        "context"
+      ],
+      "meaning_ja": "同じ放出出来事で、その物体が指定基準系に対して運動する。物体の速度値や等速性は補わない。"
+    },
+    "momentreading": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "moment",
+        "frame",
+        "time_unit",
+        "context"
+      ],
+      "meaning_ja": "指定時点の指定基準系・時間単位での時刻値。"
+    },
+    "pointcoordinate": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "point",
+        "moment",
+        "frame",
+        "length_unit",
+        "axis",
+        "context"
+      ],
+      "meaning_ja": "同じ物質点・時点・基準系・長さ単位・軸・文脈の座標値。"
+    },
+    "coordinatesavailable": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "point",
+        "moment",
+        "frame",
+        "length_unit",
+        "context"
+      ],
+      "meaning_ja": "指定点・時点に三位置座標ymが存在し一意である。関数から候補値を取り出せるだけではこの条件を認めない。"
+    },
+    "timeavailable": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "moment",
+        "frame",
+        "time_unit",
+        "context"
+      ],
+      "meaning_ja": "指定時点にその系での時刻ylが存在し一意である。動く系の時計の指示を静止系の時刻へ混ぜない。"
+    },
+    "segmententity": {
+      "parameters": [
+        "individual",
+        "number"
+      ],
+      "result": "individual",
+      "arguments": [
+        "segment",
+        "slot"
+      ],
+      "meaning_ja": "同じ光伝播区間の記録から個体候補を取得する。欄0は光、1は放出元、2は放出出来事、3は始点出来事、4は終点出来事、5は始点時計、6は終点時計、7は始点場所、8は終点場所。欄は記録の成分位置であり語義番号ではない。物理的な帰属・真空条件・時刻規約は別の関係で指定する。未知の記録や欄を既定値で補わない。"
+    },
+    "segmentreading": {
+      "parameters": [
+        "individual",
+        "number"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "segment",
+        "slot"
+      ],
+      "meaning_ja": "同じ光伝播区間の記録から切断型の読みの候補を取得する。欄0は始点時計の読み、1は終点時計の読み、2はその区間の幾何学的な光路長。記録は同じ系・単位・設定に結ばれる。経路長を端点間距離や往復距離へ替えない。取得だけでは実数の妥当性・実測・物理的成立を主張せず、未知の記録や欄を補わない。"
+    },
+    "frameaxisreference": {
+      "parameters": [
+        "individual",
+        "number",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "frame",
+        "component",
+        "context"
+      ],
+      "meaning_ja": "同じ座標系・提示文脈で、第一・第二・第三の座標成分を指定する軸への参照を取得する。成分番号は1から3で、座標表示の欄に対応する。軸の物理的な方向・正規直交性・系間の対応は座標規約で別に指定し、名前や番号だけから系間の方向一致を導かない。未知の系・文脈・成分番号を補わない。"
+    }
+  },
+  "public_contracts": {
+    "segmentrecord": {
+      "arguments": [
+        {
+          "role": "segment",
+          "sort": "individual"
+        },
+        {
+          "role": "ray",
+          "sort": "individual"
+        },
+        {
+          "role": "emitter",
+          "sort": "individual"
+        },
+        {
+          "role": "emission",
+          "sort": "individual"
+        },
+        {
+          "role": "start",
+          "sort": "individual"
+        },
+        {
+          "role": "end",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "lawbranch": {
+      "arguments": [
+        {
+          "role": "law",
+          "sort": "individual"
+        },
+        {
+          "role": "branch",
+          "sort": "individual"
+        },
+        {
+          "role": "theory",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "electrodynamics": {
+      "arguments": [],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "optics": {
+      "arguments": [],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "fieldlawcompleteness": {
+      "arguments": [
+        {
+          "role": "theory",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "lawgovernsframe": {
+      "arguments": [
+        {
+          "role": "law",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "fieldhistory": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "absoluterest": {
+      "arguments": [],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "newtonianmechanics": {
+      "arguments": [],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "conceptproperty": {
+      "arguments": [
+        {
+          "role": "concept",
+          "sort": "individual"
+        },
+        {
+          "role": "branch",
+          "sort": "individual"
+        },
+        {
+          "role": "property",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "geometricpath": {
+      "arguments": [
+        {
+          "role": "segment",
+          "sort": "individual"
+        },
+        {
+          "role": "ray",
+          "sort": "individual"
+        },
+        {
+          "role": "start",
+          "sort": "individual"
+        },
+        {
+          "role": "end",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "length",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "calibratedunits": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "speedunit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "lightsegmentrange": {
+      "arguments": [
+        {
+          "role": "segment",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "lightsegmentcompleteness": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "designatescontent": {
+      "arguments": [
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "followingscope": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "after",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "numberedheading": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "division",
+          "sort": "individual"
+        },
+        {
+          "role": "parent",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "level",
+          "sort": "number"
+        },
+        {
+          "role": "ordinal",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "headingtopic": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "division",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "anticipatesdefinition": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "definition",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "framecomparison": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "fixedconfigurationpoint": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "lengthinquiry": {
+      "arguments": [
+        {
+          "role": "inquiry",
+          "sort": "individual"
+        },
+        {
+          "role": "distance",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "timeinquiry": {
+      "arguments": [
+        {
+          "role": "inquiry",
+          "sort": "individual"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "simultaneity",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "frameinquiry": {
+      "arguments": [
+        {
+          "role": "inquiry",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonmoment": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "moment",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "motioncompleteness": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "commonvelocity": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "axis",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "physicalsystem": {
+      "arguments": [
+        {
+          "role": "system",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "generallaw": {
+      "arguments": [
+        {
+          "role": "theory",
+          "sort": "individual"
+        },
+        {
+          "role": "law",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "generalhistory": {
+      "arguments": [
+        {
+          "role": "theory",
+          "sort": "individual"
+        },
+        {
+          "role": "history",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "generallawcompleteness": {
+      "arguments": [
+        {
+          "role": "theory",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "formulatesprinciple": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "antecedent",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "formulation",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonlengthunit": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisontimeunit": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "introduceditem": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "intro",
+          "sort": "individual"
+        },
+        {
+          "role": "ordinal",
+          "sort": "number"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "definesspeed": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "numerical",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "applied",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "quantityrule": {
+      "arguments": [
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "referstotimerule": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "division",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "historyofsystem": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": "individual"
+        },
+        {
+          "role": "system",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "framerepresentation": {
+      "arguments": [
+        {
+          "role": "history",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "representation",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "lawpermits": {
+      "arguments": [
+        {
+          "role": "law",
+          "sort": "individual"
+        },
+        {
+          "role": "representation",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "definesprinciple": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "principle",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "emitter": {
+      "arguments": [
+        {
+          "role": "emitter",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "emittedray": {
+      "arguments": [
+        {
+          "role": "ray",
+          "sort": "individual"
+        },
+        {
+          "role": "emitter",
+          "sort": "individual"
+        },
+        {
+          "role": "emission",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "restingemitter": {
+      "arguments": [
+        {
+          "role": "emitter",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "emission",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "movingemitter": {
+      "arguments": [
+        {
+          "role": "emitter",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "emission",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "momentreading": {
+      "arguments": [
+        {
+          "role": "moment",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "time_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "pointcoordinate": {
+      "arguments": [
+        {
+          "role": "point",
+          "sort": "individual"
+        },
+        {
+          "role": "moment",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "length_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "axis",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "coordinatesavailable": {
+      "arguments": [
+        {
+          "role": "point",
+          "sort": "individual"
+        },
+        {
+          "role": "moment",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "length_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "timeavailable": {
+      "arguments": [
+        {
+          "role": "moment",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "time_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "segmententity": {
+      "arguments": [
+        {
+          "role": "segment",
+          "sort": "individual"
+        },
+        {
+          "role": "slot",
+          "sort": "number"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "segmentreading": {
+      "arguments": [
+        {
+          "role": "segment",
+          "sort": "individual"
+        },
+        {
+          "role": "slot",
+          "sort": "number"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "frameaxisreference": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "component",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eisb6": "segmentrecord",
+    "eisbd": "newtonianframe",
+    "eisbe": "lawbranch",
+    "eisbf": "electrodynamics",
+    "eisbg": "optics",
+    "eisbh": "fieldlawcompleteness",
+    "eisbi": "lawgovernsframe",
+    "eisbj": "fieldhistory",
+    "eisbk": "absoluterest",
+    "eisbl": "newtonianmechanics",
+    "eisbm": "conceptproperty",
+    "eiscb": "geometricpath",
+    "eiscc": "calibratedunits",
+    "eiscd": "lightsegmentrange",
+    "eisce": "lightsegmentcompleteness",
+    "eisch": "designatescontent",
+    "eisci": "followingscope",
+    "eisdv": "numberedheading",
+    "eisdw": "headingtopic",
+    "eisk5": "anticipatesdefinition",
+    "eisk6": "framecomparison",
+    "eisk7": "fixedconfigurationpoint",
+    "eiskw": "lengthinquiry",
+    "eiskx": "timeinquiry",
+    "eisky": "frameinquiry",
+    "eisla": "comparisonmoment",
+    "eislb": "motioncompleteness",
+    "eislc": "commonvelocity",
+    "eisld": "physicalsystem",
+    "eisle": "generallaw",
+    "eislf": "generalhistory",
+    "eislg": "generallawcompleteness",
+    "eislh": "formulatesprinciple",
+    "eisli": "comparisonlengthunit",
+    "eislj": "comparisontimeunit",
+    "eislk": "introduceditem",
+    "eislm": "definesspeed",
+    "eislo": "quantityrule",
+    "eislp": "referstotimerule",
+    "vf": "historyofsystem",
+    "vh": "framerepresentation",
+    "vi": "lawpermits",
+    "vl": "definesprinciple",
+    "wb": "emitter",
+    "wc": "emittedray",
+    "wd": "restingemitter",
+    "we": "movingemitter",
+    "yl": "momentreading",
+    "ym": "pointcoordinate",
+    "zce": "coordinatesavailable",
+    "zcf": "timeavailable"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
