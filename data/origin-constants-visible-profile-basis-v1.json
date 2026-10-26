@@ -1,0 +1,68 @@
+{
+  "status": "optional_origin_constants_visible_profile",
+  "document": "examples/v016/origin-constants-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "originshiftcompatiblecontext": {
+      "parameters": [
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "setting"
+      ],
+      "meaning_ja": "原点と時計の零点以外は先行する物理条件、基準系、単位、V,vおよび尺度φを維持する、原点変更の検討対象設定。物理条件の維持は外部解釈の前提。"
+    },
+    "originzeroassumptionsnotadopted": {
+      "parameters": [
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "stage",
+        "setting"
+      ],
+      "meaning_ja": "指定の論述段階と設定で、運動系の初期空間原点とτの零点についての仮定を採用しない。物理的な不一致を意味しない。"
+    }
+  },
+  "public_contracts": {
+    "originshiftcompatiblecontext": {
+      "arguments": [
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "originzeroassumptionsnotadopted": {
+      "arguments": [
+        {
+          "role": "stage",
+          "sort": "situation"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zfn": "originshiftcompatiblecontext",
+    "zfo": "originzeroassumptionsnotadopted"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
