@@ -1,6 +1,6 @@
 # 現在地
 
-[縦方向の光の伝播と時刻の消去](einstein-longitudinal-elimination-visible-v1.md)を円文字本文へ接続しました。1668宣言・101主張を603ページから復号し、7テスト・独立CLI・全ページの描画確認・全体監査を確認済みです。アルファベットと共通基盤375語を維持しています。二論文全文の可視統合と第三者読解は未完です。
+[横方向の光線と座標式](einstein-transverse-ray-visible-v1.md)を円文字本文へ接続しました。1712宣言・106主張を621ページから復号し、12テスト・独立CLI・全ページの描画確認・全体監査を確認済みです。アルファベットと共通基盤375語を維持しています。二論文全文の可視統合と第三者読解は未完です。
 
 引き継ぎの正本は `.noema-project/ledger.sqlite`。`python -X utf8 -m scripts.project_notes brief` で現在地と詳細記録のキーを読みます。[更新・検索・復旧](project-records.md)を参照してください。Markdownに詳細を重複保存しません。
 
