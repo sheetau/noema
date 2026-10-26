@@ -1,0 +1,102 @@
+{
+  "status": "optional_text_reference_profile",
+  "document": "examples/v016/text-reference-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "textpresentation": {
+      "parameters": [],
+      "result": "situation",
+      "arguments": [],
+      "meaning_ja": "この文書で指示の基準として指定する、対象文章の提示文脈。読む時刻・文章内容の真理・出来事が起こる状況とは同一視しない。対象文章と採用する区分規約は使用時の指示条件で固定する。"
+    },
+    "sentencereference": {
+      "parameters": [
+        "situation",
+        "number",
+        "number"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context",
+        "paragraph",
+        "sentence"
+      ],
+      "meaning_ja": "同じ提示文脈で、指定した本文段落の指定した文の談話箇所を指す。本文段落と文はそれぞれ1始まりの正整数で指定する。文の内容や、その範囲を対象化した別の個体とは区別する。位置は語義の辞書番号ではない。"
+    },
+    "textbefore": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "context"
+      ],
+      "meaning_ja": "指定文脈の本文順序で第一箇所が第二箇所より前にある。出来事の時間順序や因果の向きとは別の関係。"
+    }
+  },
+  "public_contracts": {
+    "textpresentation": {
+      "arguments": [],
+      "result": "situation",
+      "interpretation_inputs": [
+        "対象文章と提示文脈を固定する。本文段落には前付・署名・日付・著者注・編集注を混ぜない。",
+        "文の境界は対象文章に対して明示して検証する。句点で自動分割した結果を無条件に採用しない。",
+        "同じ文脈の同じ段落・文位置は同じ談話箇所を指し、異なる位置は異なる文の出現である。別文脈間の同一性は補わない。"
+      ]
+    },
+    "sentencereference": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "paragraph",
+          "sort": "number"
+        },
+        {
+          "role": "sentence",
+          "sort": "number"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "対象文章と提示文脈を固定する。本文段落には前付・署名・日付・著者注・編集注を混ぜない。",
+        "文の境界は対象文章に対して明示して検証する。句点で自動分割した結果を無条件に採用しない。",
+        "同じ文脈の同じ段落・文位置は同じ談話箇所を指し、異なる位置は異なる文の出現である。別文脈間の同一性は補わない。"
+      ]
+    },
+    "textbefore": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "対象文章と提示文脈を固定する。本文段落には前付・署名・日付・著者注・編集注を混ぜない。",
+        "文の境界は対象文章に対して明示して検証する。句点で自動分割した結果を無条件に採用しない。",
+        "同じ文脈の同じ段落・文位置は同じ談話箇所を指し、異なる位置は異なる文の出現である。別文脈間の同一性は補わない。"
+      ]
+    }
+  },
+  "limitations": [
+    "本文の位置による指示は、指示した文の意味内容を表現する代わりにはならない。参照先の内容は別に記述する。",
+    "Nativeの完全なモデルは全引数の解釈を要する。有限実行で未指定の位置や文脈を要求した場合は未知として拒否し、既定の個体や偽に置換しない。",
+    "このプロファイルは共通基盤375語に追加して選ぶ3語の文書参照語彙であり、旧第16版424語の置換版ではない。",
+    "文番号は指示先の位置であって、語の意味・対象の性質・真理を決定する記号番号ではない。"
+  ]
+}

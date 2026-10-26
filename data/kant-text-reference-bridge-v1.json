@@ -1,0 +1,145 @@
+{
+  "schema": "noema-kant-visible-reference-bridge-1",
+  "reviewer": "assistant",
+  "document": "examples/v016/kant-reviewed-complete-v1.noema",
+  "source_statement_index": 12,
+  "source_assertion": {
+    "kind": "assert",
+    "body": {
+      "kind": "call",
+      "symbol": "r2em",
+      "arguments": []
+    }
+  },
+  "source_declarations": [
+    {
+      "kind": "primitive",
+      "name": "ue",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "wh",
+      "parameters": [],
+      "result": "situation"
+    },
+    {
+      "kind": "primitive",
+      "name": "hzzq",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "hzzr",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "definition",
+      "name": "r2em",
+      "parameters": [],
+      "result": "truth",
+      "body": {
+        "kind": "call",
+        "symbol": "ue",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "hzzq",
+            "arguments": []
+          },
+          {
+            "kind": "call",
+            "symbol": "hzzr",
+            "arguments": []
+          },
+          {
+            "kind": "call",
+            "symbol": "wh",
+            "arguments": []
+          }
+        ]
+      }
+    }
+  ],
+  "profile": "noema/resources/visible-text-reference-profile-v1.json",
+  "core_edition": 12,
+  "profile_edition": 17,
+  "local_names": {
+    "wh": "wcbookzqinsidezqabovezqhomezqbookzq",
+    "hzzq": "wpbookzqabovezqakizq",
+    "hzzr": "wpbookzqabovezqnaozq",
+    "r2em": "wcbookzqabovezqinsidezqbookzqhomezq"
+  },
+  "sentence_locations": [
+    {
+      "paragraph": 3,
+      "sentence": 1,
+      "unit": "kant-1784:u0010",
+      "range": [
+        0,
+        125
+      ],
+      "text_sha256": "12ee421445dcec61b0f168bd7823fd28ba6528f2354e6f28488e26a420fa7d62",
+      "source_symbol": "hzzq",
+      "reading": "data/nature-sentence-reading-v1.json"
+    },
+    {
+      "paragraph": 3,
+      "sentence": 2,
+      "unit": "kant-1784:u0010",
+      "range": [
+        126,
+        292
+      ],
+      "text_sha256": "fdef1354ca4f4a505164c75c9ff3db25f39a93fad4c51aa0b37e3f97defbe552",
+      "source_symbol": "hzzr",
+      "reading": "data/affection-sentence-reading-v1.json"
+    }
+  ],
+  "context_binding": {
+    "source_symbol": "wh",
+    "source_meaning": "この段落を提示する文脈。引用された呼びかけの達成状況とは区別する。",
+    "target": "textpresentation",
+    "interpretation": "この抜粋で扱うカント第三段落の提示文脈を基準とする。同じ文脈の本文段落番号で二つの文を指定する。"
+  },
+  "bindings": [
+    {
+      "source_symbol": "ue",
+      "source_meaning": "指定文脈の本文順序で第一箇所が第二箇所より前にある。出来事の時間順序や因果の向きとは別の関係。",
+      "meaning_basis": "data/benevolent-framing-basis-v1.json"
+    },
+    {
+      "source_symbol": "wh",
+      "source_meaning": "この段落を提示する文脈。引用された呼びかけの達成状況とは区別する。",
+      "meaning_basis": "data/benevolent-framing-basis-v1.json"
+    },
+    {
+      "source_symbol": "hzzq",
+      "source_meaning": "第三段落の、個々人による未成熟からの離脱の困難さを述べる第一文の談話箇所。主張の真理や内容そのものを表す記号ではない。",
+      "meaning_basis": "data/individual-departure-basis-v1.json"
+    },
+    {
+      "source_symbol": "hzzr",
+      "source_meaning": "カント1784第三段落第二文、固定転写のu0010 [126,292) の談話箇所。第一文の箇所hzzqと別に参照する。",
+      "meaning_basis": "data/affection-sentence-basis-v1.json"
+    },
+    {
+      "source_symbol": "r2em",
+      "source_meaning": "第一文hzzqから第二文hzzrへの本文順序を同じ文脈で保持する。愛着が不能を引き起こしたという因果や、時間的な順序を代用しない。",
+      "meaning_basis": "data/affection-sentence-basis-v1.json"
+    }
+  ],
+  "preservation": "The old relation and assertion are unchanged up to injective naming; the three old contextual constants are defined through the explicit anchor and verified sentence coordinates.",
+  "original_manuscript_modified": false,
+  "old_judgments_rebound": false,
+  "full_sentence_contents_migrated": false,
+  "closed_source_assertions": 1,
+  "semantic_boundary": "The assertion concerns textual order only. The contents of the two referred sentences remain in the preserved manuscript and are not encoded by their coordinates."
+}
