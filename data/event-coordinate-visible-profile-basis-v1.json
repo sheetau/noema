@@ -1,0 +1,136 @@
+{
+  "status": "optional_event_coordinate_visible_profile",
+  "document": "examples/v016/event-coordinate-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "coordinatecomparisonevent": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event"
+      ],
+      "meaning_ja": "二系の座標を比較する同じ出来事の範囲。有限観測標本だけではなく、記述が対象とする全出来事を指定する。"
+    },
+    "presentedequationtask": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "individual",
+                    "truth"
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "question",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が記述された質問の答えを見いだすことを課題として提示する。解の存在・唯一性・発見済み・証明済みを含意しない。"
+    }
+  },
+  "public_contracts": {
+    "coordinatecomparisonevent": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "presentedequationtask": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "question",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual",
+                      "individual",
+                      "truth"
+                    ],
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zc4": "coordinatecomparisonevent",
+    "zdc": "presentedequationtask"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}

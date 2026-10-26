@@ -1,0 +1,23 @@
+"""Preserved comparison domain and question-task presentation contracts."""
+SOURCE_RELATIONS={'zc4': 'coordinatecomparisonevent', 'zdc': 'presentedequationtask'}
+CONTRACTS={'coordinatecomparisonevent': {'parameters': ['individual'],
+                               'result': 'truth',
+                               'arguments': ['event'],
+                               'meaning_ja': '二系の座標を比較する同じ出来事の範囲。有限観測標本だけではなく、記述が対象とする全出来事を指定する。'},
+ 'presentedequationtask': {'parameters': ['individual',
+                                          'individual',
+                                          {'kind': 'description',
+                                           'result': {'kind': 'question',
+                                                      'parameters': [{'kind': 'sequence',
+                                                                      'element': {'kind': 'function',
+                                                                                  'parameters': ['individual',
+                                                                                                 'individual',
+                                                                                                 'truth'],
+                                                                                  'result': {'kind': 'function',
+                                                                                             'parameters': ['number'],
+                                                                                             'result': 'truth'}}}]}},
+                                          'individual',
+                                          'situation'],
+                           'result': 'truth',
+                           'arguments': ['node', 'author', 'question', 'scope', 'context'],
+                           'meaning_ja': '著者が記述された質問の答えを見いだすことを課題として提示する。解の存在・唯一性・発見済み・証明済みを含意しない。'}}
