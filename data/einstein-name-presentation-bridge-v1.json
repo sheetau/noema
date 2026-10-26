@@ -1,0 +1,401 @@
+{
+  "schema": "noema-einstein-visible-name-presentation-bridge-1",
+  "reviewer": "assistant",
+  "document": "examples/v014/einstein-reviewed-complete-v1.noema",
+  "source_statement_index": 42,
+  "source_assertion": {
+    "kind": "assert",
+    "body": {
+      "kind": "call",
+      "symbol": "eiab",
+      "arguments": []
+    }
+  },
+  "source_declarations": [
+    {
+      "kind": "primitive",
+      "name": "rd",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "definition",
+      "name": "eiaa",
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "individual"
+        },
+        {
+          "name": "vc",
+          "sort": "individual"
+        },
+        {
+          "name": "vd",
+          "sort": "individual"
+        },
+        {
+          "name": "ve",
+          "sort": "situation"
+        },
+        {
+          "name": "vf",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vg",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "name": "vh",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "apply",
+            "function": {
+              "kind": "variable",
+              "name": "vf"
+            },
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "va"
+              },
+              {
+                "kind": "variable",
+                "name": "ve"
+              }
+            ]
+          },
+          {
+            "kind": "and",
+            "arguments": [
+              {
+                "kind": "apply",
+                "function": {
+                  "kind": "variable",
+                  "name": "vg"
+                },
+                "arguments": [
+                  {
+                    "kind": "variable",
+                    "name": "va"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "vb"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "vc"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "ve"
+                  }
+                ]
+              },
+              {
+                "kind": "apply",
+                "function": {
+                  "kind": "variable",
+                  "name": "vh"
+                },
+                "arguments": [
+                  {
+                    "kind": "variable",
+                    "name": "va"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "vd"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "vc"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "ve"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "primitive",
+      "name": "eira",
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eirb",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eirc",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eird",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "eire",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "eirf",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "eirg",
+      "parameters": [],
+      "result": "situation"
+    },
+    {
+      "kind": "definition",
+      "name": "eiab",
+      "parameters": [],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "not",
+            "arguments": [
+              {
+                "kind": "equal",
+                "arguments": [
+                  {
+                    "kind": "call",
+                    "symbol": "eird",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "call",
+                    "symbol": "rd",
+                    "arguments": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "call",
+            "symbol": "eiaa",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "eire",
+                "arguments": []
+              },
+              {
+                "kind": "call",
+                "symbol": "eird",
+                "arguments": []
+              },
+              {
+                "kind": "call",
+                "symbol": "rd",
+                "arguments": []
+              },
+              {
+                "kind": "call",
+                "symbol": "eirf",
+                "arguments": []
+              },
+              {
+                "kind": "call",
+                "symbol": "eirg",
+                "arguments": []
+              },
+              {
+                "kind": "function_ref",
+                "symbol": "eira"
+              },
+              {
+                "kind": "function_ref",
+                "symbol": "eirb"
+              },
+              {
+                "kind": "function_ref",
+                "symbol": "eirc"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "profile": "noema/resources/visible-name-presentation-profile-v1.json",
+  "profile_edition": 18,
+  "core_edition": 12,
+  "frontmatter_item": 2,
+  "source_unit": "einstein-1905:u0002",
+  "source_unit_sha256": "46be645248888bc989f431b6791db79ecc9ca75ae737495aa4bc4119ff47565b",
+  "reference_fields": [
+    "use",
+    "designation",
+    "target",
+    "document"
+  ],
+  "local_names": {
+    "eirg": "wcbookzqgivezqakizqhomezqbookzq",
+    "packet": "wcbookzqgivezqakizqbookzqinsidezq",
+    "eire": "wpbookzqgivezqakizqgivezq",
+    "eird": "wpbookzqgivezqakizqbookzq",
+    "rd": "wpbookzqgivezqakizqakizq",
+    "eirf": "wpbookzqgivezqakizqhomezq",
+    "eiaa": "wcbookzqakizqgivezqbookzq",
+    "eiab": "wcbookzqakizqgivezqinsidezqhomezq",
+    "displayuse": "wcbookzqgivezqakizqbookzqgivezq",
+    "displaydesignation": "wcbookzqgivezqakizqbookzqbookzq",
+    "displaytarget": "wcbookzqgivezqakizqbookzqakizq",
+    "displaydocument": "wcbookzqgivezqakizqbookzqhomezq",
+    "makepresentation": "wcbookzqgivezqakizqbookzqroundzq"
+  },
+  "context_binding": {
+    "source_symbol": "eirg",
+    "target": "textpresentation",
+    "interpretation": "同じ1905年論説の前付の著者表示を読む提示文脈を指定する。本文の物理的設定や推論範囲ではない。"
+  },
+  "bindings": [
+    {
+      "source_symbol": "eirg",
+      "source_meaning": "同じ論説の前付における著者表示の文脈。本文の推論範囲・物理的設定とは区別する。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "eire",
+      "source_meaning": "u0002のvon A. Einstein.という前付の著者表示における名称使用。紙面の印刷行為や自筆署名を特定するものではない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "eird",
+      "source_meaning": "u0002で使う名称個体。A. Einsteinという綴りは別添えの識別表記で保持し、人物rdそのものと区別する。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "rd",
+      "source_meaning": "[current の記号名] 著者への局所参照。識別子だけを内容の説明の代用にしない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "eirf",
+      "source_meaning": "今回記述する1905年の論説を指す文書個体。本文中の著者参照rdがこの文書の表示対象に結ばれる。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "eira",
+      "source_meaning": "同じ文脈で指定された提示行為が成立する。物理的な印刷者や執筆者を指定しない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "eirb",
+      "source_meaning": "同じ提示行為で名称を対象へ適用する。綴りの一致から対象の同一性を推論しない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "eirc",
+      "source_meaning": "指定文書のその提示行為が、同じ対象を文書の著者として表示する役割を持つ。表示の真実性、自筆性、提示者と著者の一致を含意しない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "eiaa",
+      "source_meaning": "同じ名称使用が同じ文脈で成立し、同じ名称を同じ対象へ適用し、その同じ使用が指定文書の著者としてその対象を表示する。誰が実際に表示を行ったか、表示の真正性・自筆性は要求しない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    {
+      "source_symbol": "eiab",
+      "source_meaning": "前付u0002の名称eirdを既存本文の著者参照rdへ適用し、その同じ表示eireが同じ論説eirfの著者表示であることを結ぶ。名称と人物を区別し、前付文脈eirgを固定する。実際の提示者を著者と同一視しない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    }
+  ],
+  "identifier_annotation": {
+    "symbol": "eird",
+    "role": "designation",
+    "forms": [
+      {
+        "text": "A. Einstein",
+        "language": "de",
+        "role": "printed_identifying_form"
+      }
+    ]
+  },
+  "identifier_annotation_path": "data/einstein-reviewed-complete-identifiers-v1.json",
+  "visible_identifier_form": {
+    "designation": "wpbookzqgivezqakizqbookzq",
+    "language": "de",
+    "text": "A. Einstein",
+    "context": "wcbookzqgivezqakizqhomezqbookzq"
+  },
+  "preservation": "The original three relations, two definition bodies and assertion retain their types and content under injective naming. Five contextual constants are explicitly bound to the presentation and its four reference fields.",
+  "closed_source_assertions": 1,
+  "orthographic_annotation_assertions": 1,
+  "original_manuscript_modified": false,
+  "old_judgments_rebound": false,
+  "referent_identity_inferred_from_spelling": false,
+  "authenticity_inferred": false
+}

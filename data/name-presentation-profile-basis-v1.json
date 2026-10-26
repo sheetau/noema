@@ -1,0 +1,287 @@
+{
+  "status": "optional_name_presentation_profile",
+  "document": "examples/v016/name-presentation-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "presentationrecord": {
+      "parameters": [
+        "situation",
+        "number"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "individual"
+          }
+        ],
+        "result": "individual"
+      },
+      "arguments": [
+        "context",
+        "frontmatter_item"
+      ],
+      "meaning_ja": "同じ提示文脈の、指定した前付項目に結び付けて照合する名称使用・名称個体・対象個体・文書個体をこの順に保持する参照の組。どの選択関数にもこの4値を同じ順で渡す。参照値を供給することから、名称使用の成立、名称の適用、著者役割の成立を導かない。"
+    },
+    "presentationholds": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "use",
+        "context"
+      ],
+      "meaning_ja": "同じ文脈で指定された提示行為が成立する。物理的な印刷者や執筆者を指定しない。"
+    },
+    "nameapplies": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "use",
+        "designation",
+        "target",
+        "context"
+      ],
+      "meaning_ja": "同じ提示行為で名称を対象へ適用する。綴りの一致から対象の同一性を推論しない。"
+    },
+    "authordisplay": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "use",
+        "document",
+        "target",
+        "context"
+      ],
+      "meaning_ja": "指定文書のその提示行為が、同じ対象を文書の著者として表示する役割を持つ。表示の真実性、自筆性、提示者と著者の一致を含意しない。"
+    },
+    "printedform": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "sequence",
+          "element": "number"
+        },
+        {
+          "kind": "sequence",
+          "element": "number"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "designation",
+        "language",
+        "form",
+        "context"
+      ],
+      "meaning_ja": "同じ提示文脈で、名称個体に指定言語ラベルの印刷上の識別表記がある。言語ラベルと表記はUnicodeスカラー値の有限列で、正規化・大小文字変換・翻字をせず完全一致で扱う。同じ表記から人物の同一性や名称の概念内容を推論しない。"
+    }
+  },
+  "public_contracts": {
+    "presentationrecord": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "frontmatter_item",
+          "sort": "number"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "individual"
+          }
+        ],
+        "result": "individual"
+      },
+      "interpretation_inputs": [
+        "提示文脈と対象文書を固定する。前付項目は本文段落と分けて1始まりで数える。",
+        "参照の組はuse/designation/target/documentの4個体であり、その関係の真偽は別に供給する。",
+        "名称個体と対象人物を同じ型の値として扱うが、同一性は型や同じ綴りから補わない。"
+      ]
+    },
+    "presentationholds": {
+      "arguments": [
+        {
+          "role": "use",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "提示文脈と対象文書を固定する。前付項目は本文段落と分けて1始まりで数える。",
+        "参照の組はuse/designation/target/documentの4個体であり、その関係の真偽は別に供給する。",
+        "名称個体と対象人物を同じ型の値として扱うが、同一性は型や同じ綴りから補わない。"
+      ]
+    },
+    "nameapplies": {
+      "arguments": [
+        {
+          "role": "use",
+          "sort": "individual"
+        },
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "提示文脈と対象文書を固定する。前付項目は本文段落と分けて1始まりで数える。",
+        "参照の組はuse/designation/target/documentの4個体であり、その関係の真偽は別に供給する。",
+        "名称個体と対象人物を同じ型の値として扱うが、同一性は型や同じ綴りから補わない。"
+      ]
+    },
+    "authordisplay": {
+      "arguments": [
+        {
+          "role": "use",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "提示文脈と対象文書を固定する。前付項目は本文段落と分けて1始まりで数える。",
+        "参照の組はuse/designation/target/documentの4個体であり、その関係の真偽は別に供給する。",
+        "名称個体と対象人物を同じ型の値として扱うが、同一性は型や同じ綴りから補わない。"
+      ]
+    },
+    "printedform": {
+      "arguments": [
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "language",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "role": "form",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "提示文脈と対象文書を固定する。前付項目は本文段落と分けて1始まりで数える。",
+        "参照の組はuse/designation/target/documentの4個体であり、その関係の真偽は別に供給する。",
+        "名称個体と対象人物を同じ型の値として扱うが、同一性は型や同じ綴りから補わない。"
+      ]
+    }
+  },
+  "limitations": [
+    "有限実行で未知の文脈・前付位置・関係・識別表記を要求したら未知として拒否する。偽や既定の人物で補わない。",
+    "完全なモデルの全域関数と、既知の解釈だけを実行する参照実装を区別する。",
+    "名称の文字列は識別表記であり、自然言語本文を文字列にして意味の記述を代用する機能ではない。",
+    "著者として表示されていることは、実際の執筆・真正性・自筆性・物理的な提示者の同定を含意しない。"
+  ],
+  "record_fields": [
+    "use",
+    "designation",
+    "target",
+    "document"
+  ],
+  "local_accessor_library": "examples/v016/name-presentation-accessors-v1.noema",
+  "local_accessor_spellings": {
+    "displayuse": [
+      "book",
+      "give",
+      "aki",
+      "book",
+      "give"
+    ],
+    "displaydesignation": [
+      "book",
+      "give",
+      "aki",
+      "book",
+      "book"
+    ],
+    "displaytarget": [
+      "book",
+      "give",
+      "aki",
+      "book",
+      "aki"
+    ],
+    "displaydocument": [
+      "book",
+      "give",
+      "aki",
+      "book",
+      "home"
+    ],
+    "makepresentation": [
+      "book",
+      "give",
+      "aki",
+      "book",
+      "round"
+    ]
+  }
+}
