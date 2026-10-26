@@ -1,0 +1,23 @@
+"""Preserved contrast with two source locations and a common dimension."""
+SOURCE_RELATIONS={'eisnp': 'presentscontrastwithdimension'}
+CONTRACTS={'presentscontrastwithdimension': {'parameters': ['individual',
+                                                  'individual',
+                                                  'individual',
+                                                  {'kind': 'description', 'result': 'content'},
+                                                  'individual',
+                                                  {'kind': 'description', 'result': 'content'},
+                                                  {'kind': 'description',
+                                                   'result': {'kind': 'function',
+                                                              'parameters': ['individual'],
+                                                              'result': 'content'}},
+                                                  'situation'],
+                                   'result': 'truth',
+                                   'arguments': ['node',
+                                                 'presenter',
+                                                 'first_node',
+                                                 'first_content',
+                                                 'second_node',
+                                                 'second_content',
+                                                 'common_dimension',
+                                                 'context'],
+                                   'meaning_ja': '提示者が同じ箇所・文脈で、指定された二箇所の内容を、明示した共通観点に関して対照的に提示する。第一から第二への向きを保持するが、前者の否定、論理的矛盾、内容の真理、通常予想への違反をそれだけで要求しない。観点は性質記述であり、対象の語形や単なる文の前後だけで対比を代用しない。'}}
