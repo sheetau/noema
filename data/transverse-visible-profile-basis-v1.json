@@ -1,0 +1,203 @@
+{
+  "status": "optional_transverse_visible_profile",
+  "document": "examples/v016/transverse-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "transverselighttrialscope": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "trial",
+        "axis_role",
+        "context"
+      ],
+      "meaning_ja": "指定した横軸方向と設定で考察する光往復の全試行範囲。既観測の標本に限定せず理想的な試行を含む。"
+    },
+    "trialtransversedistancecandidate": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "trial",
+        "context"
+      ],
+      "meaning_ja": "同じ横方向試行の正の片道距離の候補。座標差と両伝播時間への接続はslpで要求する。"
+    },
+    "trialtransversespeedcandidate": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "trial",
+        "context"
+      ],
+      "meaning_ja": "同じ試行の横方向の成分速度の候補。全速さVと区別し、平方和・平方根・伝播時間に接続する。"
+    },
+    "completetransversetrialscope": {
+      "parameters": [
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "context"
+      ],
+      "meaning_ja": "zejのy,z方向の試行範囲が議論の対象を尽くすという明示的前提。有限検査による認定ではない。"
+    },
+    "analogousearlierargument": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "earlier_argument",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がこの箇所を、指定した先行論法に類似した議論として位置付ける。機械的な同値性や導出済みを意味しない。"
+    }
+  },
+  "public_contracts": {
+    "transverselighttrialscope": {
+      "arguments": [
+        {
+          "role": "trial",
+          "sort": "individual"
+        },
+        {
+          "role": "axis_role",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "trialtransversedistancecandidate": {
+      "arguments": [
+        {
+          "role": "trial",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "trialtransversespeedcandidate": {
+      "arguments": [
+        {
+          "role": "trial",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "completetransversetrialscope": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "analogousearlierargument": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "earlier_argument",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zej": "transverselighttrialscope",
+    "zek": "trialtransversedistancecandidate",
+    "zel": "trialtransversespeedcandidate",
+    "zem": "completetransversetrialscope",
+    "zep": "analogousearlierargument"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
