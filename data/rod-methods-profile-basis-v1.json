@@ -1,0 +1,456 @@
+{
+  "status": "optional_rod_methods_profile",
+  "document": "examples/v016/rod-methods-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "comparesmeasurementprocedure": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "procedure",
+        "movingframe",
+        "restframe",
+        "moving",
+        "comparison",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、movingの操作を、restframeでcomparisonの状況が成立していた場合と同じprocedureの仕方で行うものとして比較する。movingframeとrestframeの対応、同じ対象・道具・観測者・単位・操作規則は引用した規則に固定する。比較するのは物差しを当てて直接読むという手順であり、二状況の実在、同じ数値結果、全物理法則の不変性を要求しない。"
+    },
+    "locatesendpointbyclock": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "endpoint",
+        "event",
+        "clock",
+        "place",
+        "frame",
+        "timeunit",
+        "value",
+        "context"
+      ],
+      "meaning_ja": "同じobserverが、endpointのeventに関して、frameのplaceに設置されたclockの局所表示と既定の時刻規約を手段として、その端点が指定時刻valueに位置するplaceを確定する操作。単に数値が一致しているだけで観測・決定を推測せず、端点の出来事・場所・局所表示・同期・指定値への一致は別条件で要求する。信号を遠隔で受け取った時刻や、物差しによる二地点間距離の測定と分ける。"
+    },
+    "permitsquantitydesignation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "subject",
+        "designation",
+        "methods",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、subjectに対して列methodsの各操作で得る値候補を、同じdesignationの量として呼ぶことを認める。後の方法も先の方法に加えて同じ量の呼称を適用できるという分類上の許容であり、各規則は対象・単位・状況を保つ閉じた記述である。呼称の採用を義務にせず、値の実在・唯一性や方法間の数値的一致は含意しない。"
+    },
+    "presentsmeasurementmethod": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "method",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がこの考察範囲で、記述された長さ候補の条件を測定方法として提示する。値の存在や一意性、二方法の値の一致を主張しない。"
+    }
+  },
+  "public_contracts": {
+    "comparesmeasurementprocedure": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "procedure",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "movingframe",
+          "sort": "individual"
+        },
+        {
+          "role": "restframe",
+          "sort": "individual"
+        },
+        {
+          "role": "moving",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "comparison",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "locatesendpointbyclock": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "endpoint",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "value",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "permitsquantitydesignation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "methods",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  },
+                  "situation"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "presentsmeasurementmethod": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "method",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eisl3": "comparesmeasurementprocedure",
+    "eisl4": "locatesendpointbyclock",
+    "eisl5": "permitsquantitydesignation",
+    "xz": "presentsmeasurementmethod"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
