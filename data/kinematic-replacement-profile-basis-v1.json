@@ -1,0 +1,274 @@
+{
+  "status": "optional_kinematic_replacement_profile",
+  "document": "examples/v016/kinematic-replacement-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "admissiblerestconfiguration": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "body",
+        "moving_context",
+        "resting_context"
+      ],
+      "meaning_ja": "同じ物体について、動く状態に対する比較対象として許容した、特定配置で静止する状態。別物体のコピーとは区別する。可能な配置や加速過程の理論は未完。"
+    },
+    "replacementbodyrange": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "body",
+        "context"
+      ],
+      "meaning_ja": "一般的な置換の主張で扱う物体の範囲。必要な全物体を含むという解釈を別途必要とし、有限例から認定しない。"
+    },
+    "widelyusedsystem": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "system",
+        "context"
+      ],
+      "meaning_ja": "指定体系がその文脈で広く使われている。頻度や採用集団の構成説明は未完。"
+    },
+    "usesassumption": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "system",
+        "assumption",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "体系がこの記述の内容を指定範囲で前提として使う。内容の真理は評価しない。"
+    },
+    "explicitlystatesassumption": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "system",
+        "assumption",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "体系がこの記述の仮定をその範囲で明示的に述べている。非明示はこの関係の否定として別に記述する。"
+    },
+    "rewordsattributedassumption": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "system",
+        "first",
+        "second",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がこの体系に帰属した仮定の第一記述を第二記述で言い換える。論理的な同値の機械証明や、両内容への著者自身の同意を意味しない。"
+    }
+  },
+  "public_contracts": {
+    "admissiblerestconfiguration": {
+      "arguments": [
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "moving_context",
+          "sort": "situation"
+        },
+        {
+          "role": "resting_context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "replacementbodyrange": {
+      "arguments": [
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "widelyusedsystem": {
+      "arguments": [
+        {
+          "role": "system",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "usesassumption": {
+      "arguments": [
+        {
+          "role": "system",
+          "sort": "individual"
+        },
+        {
+          "role": "assumption",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "explicitlystatesassumption": {
+      "arguments": [
+        {
+          "role": "system",
+          "sort": "individual"
+        },
+        {
+          "role": "assumption",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "rewordsattributedassumption": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "system",
+          "sort": "individual"
+        },
+        {
+          "role": "first",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "second",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zl": "admissiblerestconfiguration",
+    "zn": "replacementbodyrange",
+    "zs": "widelyusedsystem",
+    "zt": "usesassumption",
+    "zu": "explicitlystatesassumption",
+    "zx": "rewordsattributedassumption"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
