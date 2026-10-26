@@ -1,0 +1,386 @@
+{
+  "status": "optional_clock_site_visible_profile",
+  "document": "examples/v016/clock-site-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "performedlengthmeasurement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "method",
+        "first",
+        "last",
+        "frame",
+        "unit",
+        "length",
+        "context"
+      ],
+      "meaning_ja": "observerがmethodの長さ比較・移し取り・必要な分割という操作を同じcontextで実行し、同じframeのfirstとlastの距離をunitでlengthとして得る。単なる数値候補、校正済みの方法が存在するだけの状態、別の方法の結果と区別する。使う物差しの全範囲は既存eisejで指定し、個々の道具の校正・剛性・配置・同じ物差しによる読取りxh及び幾何学的距離は合成側で要求する。始点と終点が同じ位置の場合の零距離も含む。"
+    },
+    "spatialmeasurementsetting": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "frame",
+        "reference",
+        "setting"
+      ],
+      "meaning_ja": "settingはreferenceで構想された同じframeの空間測定を実施するための測定配置の一つであるという帰属。単に実施できる別世界や成功例の標本ではなく、その測定構成で使う配置を指す。同じ物差しの置き直しと配置ごとの使用期間の違いは許すが、同じ空間・対象・原点・軸・尺度の保持は合成側で要求する。referenceの一つの時刻区間への包含や、物差しの配置がreferenceと同じであることを意味しない。測定結果、全地点の被覆と一意性は含意しない。"
+    },
+    "eventframemoment": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "moment",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "eventの生起が、同じframeの時刻規約でmomentという時点に属するという出来事と時点の対応。異なる場所の出来事が同じ時点に属する場合はその系での同時性に従い、全系共通の瞬間を仮定しない。同じ時点の複数の記述を許す。数値の一致だけで無関係な出来事をこの対応へ含めず、対応の存在、各時点の値の存在・一意性と局所時計の指示との一致は別に合成する。"
+    },
+    "measuredspatialdomain": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "place",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "指定系で測る空間の地点範囲。標本点だけでなく記述の対象となる全空間を意味規約で指定する。異なる系の地点の同一視は補わない。"
+    },
+    "coordinatevaluecandidate": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "place",
+        "frame",
+        "role",
+        "unit",
+        "context"
+      ],
+      "meaning_ja": "地点の指定成分へ付与する座標候補。測定の存在と全候補の値一致はsgkが要求する。"
+    },
+    "timedeventdomain": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "この空間と時間の記述で時刻付与の対象とする出来事の全範囲。個別の有限観測標本と同一視しない。"
+    },
+    "positiveaxisdirectionrecord": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "axis",
+        "chart",
+        "length_unit",
+        "context"
+      ],
+      "meaning_ja": "指定された軸の正の座標方向に沿う変位の方向記録が、この共通の直交観測座標・単位・状況に属する。記録の全候補を与え、候補が無い場合は空とする。数値だけからこの帰属を認定しない。"
+    },
+    "directionrecordcomponent": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "record",
+        "component_role"
+      ],
+      "meaning_ja": "方向記録の指定空間成分の候補実数値。記録の帰属・共通の座標・単位・状況はzsaで、有効性と三成分の役割は合成条件で確認する。"
+    }
+  },
+  "public_contracts": {
+    "performedlengthmeasurement": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "last",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "length",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "spatialmeasurementsetting": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "eventframemoment": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "moment",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "measuredspatialdomain": {
+      "arguments": [
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "coordinatevaluecandidate": {
+      "arguments": [
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "timedeventdomain": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "positiveaxisdirectionrecord": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "axis",
+          "sort": "individual"
+        },
+        {
+          "role": "chart",
+          "sort": "individual"
+        },
+        {
+          "role": "length_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "directionrecordcomponent": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "component_role",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eisnc": "performedlengthmeasurement",
+    "eisnd": "spatialmeasurementsetting",
+    "eisnk": "eventframemoment",
+    "zcu": "measuredspatialdomain",
+    "zcy": "coordinatevaluecandidate",
+    "zcz": "timedeventdomain",
+    "zsa": "positiveaxisdirectionrecord",
+    "zsb": "directionrecordcomponent"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
