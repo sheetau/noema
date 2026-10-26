@@ -1,0 +1,499 @@
+{
+  "schema": "noema-einstein-visible-discourse-setting-bridge-1",
+  "reviewer": "assistant",
+  "source_statement_index": 57,
+  "source_document": "examples/v014/einstein-reviewed-complete-v1.noema",
+  "source_assertion": {
+    "kind": "assert",
+    "body": {
+      "kind": "call",
+      "symbol": "eihw",
+      "arguments": []
+    }
+  },
+  "source_declarations": [
+    {
+      "kind": "primitive",
+      "name": "ra",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "rd",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "ri",
+      "parameters": [],
+      "result": "situation"
+    },
+    {
+      "kind": "primitive",
+      "name": "ug",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "va",
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "ue",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eirf",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "eir3",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "message"
+        },
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisbd",
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "definition",
+      "name": "eifb",
+      "parameters": [
+        {
+          "name": "va",
+          "sort": "individual"
+        },
+        {
+          "name": "vb",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "va",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "va"
+              }
+            ]
+          },
+          {
+            "kind": "call",
+            "symbol": "eisbd",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "va"
+              },
+              {
+                "kind": "variable",
+                "name": "vb"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "primitive",
+      "name": "eisd2",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisd3",
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth"
+    },
+    {
+      "kind": "primitive",
+      "name": "eisec",
+      "parameters": [],
+      "result": "individual"
+    },
+    {
+      "kind": "definition",
+      "name": "eiht",
+      "parameters": [],
+      "result": "content",
+      "body": {
+        "kind": "content",
+        "variable": "va",
+        "body": {
+          "kind": "call",
+          "symbol": "eifb",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "ra",
+              "arguments": []
+            },
+            {
+              "kind": "variable",
+              "name": "va"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eihu",
+      "parameters": [],
+      "result": "content",
+      "body": {
+        "kind": "content",
+        "variable": "va",
+        "body": {
+          "kind": "and",
+          "arguments": [
+            {
+              "kind": "call",
+              "symbol": "eisd3",
+              "arguments": [
+                {
+                  "kind": "call",
+                  "symbol": "eisec",
+                  "arguments": []
+                },
+                {
+                  "kind": "call",
+                  "symbol": "ra",
+                  "arguments": []
+                },
+                {
+                  "kind": "call",
+                  "symbol": "eirf",
+                  "arguments": []
+                },
+                {
+                  "kind": "variable",
+                  "name": "va"
+                }
+              ]
+            },
+            {
+              "kind": "call",
+              "symbol": "ug",
+              "arguments": [
+                {
+                  "kind": "call",
+                  "symbol": "eisec",
+                  "arguments": []
+                },
+                {
+                  "kind": "call",
+                  "symbol": "rd",
+                  "arguments": []
+                },
+                {
+                  "kind": "quote",
+                  "body": {
+                    "kind": "call",
+                    "symbol": "eiht",
+                    "arguments": []
+                  }
+                },
+                {
+                  "kind": "call",
+                  "symbol": "eirf",
+                  "arguments": []
+                },
+                {
+                  "kind": "variable",
+                  "name": "va"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eihv",
+      "parameters": [],
+      "result": "message",
+      "body": {
+        "kind": "message",
+        "force": "direct",
+        "content": {
+          "kind": "call",
+          "symbol": "eihu",
+          "arguments": []
+        }
+      }
+    },
+    {
+      "kind": "definition",
+      "name": "eihw",
+      "parameters": [],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "eir3",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "eisec",
+                "arguments": []
+              },
+              {
+                "kind": "call",
+                "symbol": "rd",
+                "arguments": []
+              },
+              {
+                "kind": "call",
+                "symbol": "eirf",
+                "arguments": []
+              },
+              {
+                "kind": "quote",
+                "body": {
+                  "kind": "call",
+                  "symbol": "eihv",
+                  "arguments": []
+                }
+              },
+              {
+                "kind": "call",
+                "symbol": "ri",
+                "arguments": []
+              }
+            ]
+          },
+          {
+            "kind": "and",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "ue",
+                "arguments": [
+                  {
+                    "kind": "call",
+                    "symbol": "eisd2",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "call",
+                    "symbol": "eisec",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "call",
+                    "symbol": "ri",
+                    "arguments": []
+                  }
+                ]
+              },
+              {
+                "kind": "not",
+                "arguments": [
+                  {
+                    "kind": "equal",
+                    "arguments": [
+                      {
+                        "kind": "call",
+                        "symbol": "eisd2",
+                        "arguments": []
+                      },
+                      {
+                        "kind": "call",
+                        "symbol": "eisec",
+                        "arguments": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "source_unit": "einstein-1905:u0008",
+  "source_unit_sha256": "960405b3c50b4d7e6199f917d9809ad4abadf3f61a30a85bf14d7a00c2793bda",
+  "source_range": [
+    0,
+    95
+  ],
+  "source_text": "Es liege ein Koordinatensystem vor, in welchem die Newtonschen mechanischen Gleichungen gelten.",
+  "heading_unit": "einstein-1905:u0007",
+  "heading_sha256": "4778c9a9da66d7cc1b8d022af99b21746f3c9584a6787e4b57218eeb85a5f8c0",
+  "bindings": {
+    "rd": "existing author display target",
+    "eirf": "existing author display document",
+    "ri": "documentcontext(eirf)",
+    "eisd2": "headingreference(ri,2)",
+    "eisec": "sentencereference(ri,4,1)",
+    "ra": "discoursereferent(eirf,eisec,1,ri)"
+  },
+  "local_names": {
+    "eirg": "wcbookzqgivezqakizqhomezqbookzq",
+    "packet": "wcbookzqgivezqakizqbookzqinsidezq",
+    "eire": "wpbookzqgivezqakizqgivezq",
+    "eird": "wpbookzqgivezqakizqbookzq",
+    "rd": "wpbookzqgivezqakizqakizq",
+    "eirf": "wpbookzqgivezqakizqhomezq",
+    "eiaa": "wcbookzqakizqgivezqbookzq",
+    "eiab": "wcbookzqakizqgivezqinsidezqhomezq",
+    "displayuse": "wcbookzqgivezqakizqbookzqgivezq",
+    "displaydesignation": "wcbookzqgivezqakizqbookzqbookzq",
+    "displaytarget": "wcbookzqgivezqakizqbookzqakizq",
+    "displaydocument": "wcbookzqgivezqakizqbookzqhomezq",
+    "makepresentation": "wcbookzqgivezqakizqbookzqroundzq",
+    "ri": "wcbookzqgivezqinsidezqhomezqbookzq",
+    "eisd2": "wpbookzqgivezqinsidezqabovezq",
+    "eisec": "wpbookzqgivezqinsidezqbookzq",
+    "ra": "wpbookzqgivezqinsidezqakizq",
+    "eifb": "wcbookzqgivezqinsidezqtownzqbookzq",
+    "eiht": "wcbookzqgivezqinsidezqroundzqbookzq",
+    "eihu": "wcbookzqgivezqinsidezqinsidezqbookzq",
+    "eihv": "wcbookzqgivezqinsidezqgivezqbookzq",
+    "eihw": "wcbookzqgivezqinsidezqassessmentvalidzqbookzq"
+  },
+  "profile_edition": 19,
+  "meanings": {
+    "ra": {
+      "meaning_ja": "[current の記号名] 検討する静止基準系への局所参照。識別子だけを内容の説明の代用にしない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "rd": {
+      "meaning_ja": "[current の記号名] 著者への局所参照。識別子だけを内容の説明の代用にしない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "ri": {
+      "meaning_ja": "[current の記号名] この文章を提示する文脈への局所参照。識別子だけを内容の説明の代用にしない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "ug": {
+      "meaning_ja": "[current の記号名] 著者が指定の文章箇所で内容の記述を仮定として採用し、指定した推論範囲へ置く。内容の真理、信念、証明を含意しない。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "va": {
+      "meaning_ja": "[current の記号名] 物理的な状態変化を参照する座標系。座標の構成と測定は未説明。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "ue": {
+      "meaning_ja": "[current の記号名] 指定文脈の本文順序で第一箇所が第二箇所より前にある。出来事の時間順序や因果の向きとは別の関係。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "eirf": {
+      "meaning_ja": "今回記述する1905年の論説を指す文書個体。本文中の著者参照rdがこの文書の表示対象に結ばれる。",
+      "meaning_basis": "data/einstein-author-credit-basis-v1.json"
+    },
+    "eir3": {
+      "meaning_ja": "著者が同じ文書・提示文脈のこの箇所で、閉じたmessageの記述が指定する発話の力と内容を読者へ提示する。指示・主張・問いを交換しない。帰属された発話の内容をその場で実行せず、読者の遵守、内容の真理、著者による実験実施を含意しない。",
+      "meaning_basis": "data/interaction-example-basis-v1.json"
+    },
+    "eisbd": {
+      "meaning_ja": "この座標系に関する物体の位置と時間、慣性質量と機械的作用の記述で、対象とするNewtonの力学方程式が成り立つという適格性。力を受けない物体の等速直線運動、力と運動変化の関係を同じ空間・時間尺度で記述し、座標選択だけで生じる見かけの力を加えない系を指定する。後続u0008でNewtonの方程式と明記される読みを採る。どの系が実際に適格かは物理的入力であり、座標系という名前だけから認めない。電気力学・光学の法則の成立、特定の相対速度・変換式・絶対静止をこの条件へ先取りしない。",
+      "meaning_basis": "data/conjecture-laws-basis-v1.json"
+    },
+    "eifb": {
+      "meaning_ja": "物理的な座標系vaであり、同じ文脈で力学方程式の成立eisbdを満たす系。旧satの相対等速・回転なし・二系の相異という条件を今回の量化範囲へ代用しない。",
+      "meaning_basis": "data/conjecture-laws-basis-v1.json"
+    },
+    "eisd2": {
+      "meaning_ja": "固定原文einstein-1905:u0007の節見出し全体の箇所。第一節の区分個体とは区別し、同時性の定義という主題を個体名そのものへ隠さない。",
+      "meaning_basis": "data/kinematics-headings-basis-v1.json"
+    },
+    "eisd3": {
+      "meaning_ja": "nodeで、documentの以後の議論に使う一つの対象をreferentとして設定し、後続の指示が同じ対象を保てるよう導入する操作。対象は仮定的な設定の中で選べ、物理的な実在や測定での同定の証明とは区別する。与える条件は別の仮定内容へ保持し、条件を満たす世界唯一の対象だとはしない。名称を付ける操作とも区別する。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eisec": {
+      "meaning_ja": "固定原文einstein-1905:u0008[0,95)の第一文。Newtonの力学方程式が成立する座標系を議論の設定として置く箇所。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eiht": {
+      "meaning_ja": "同じ後続参照raが物理的な座標系であり、Newtonの力学方程式が成り立つという既存eifbの条件内容。現実での成立をここで断言せず、設定として引用する。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eihu": {
+      "meaning_ja": "同じ論説でraという対象参照を導入し、その同じraについてeihtを著者の議論の仮定として採用する設定操作。内容の真理や観測を要求しない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eihv": {
+      "meaning_ja": "eihuの設定操作を行うものとして議論を進める指示のメッセージ。物理法則を現実に成立させよという命令ではない。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    },
+    "eihw": {
+      "meaning_ja": "第一文の設定指示eihvを同じ著者・論説へ帰属し、第一節見出しの後の別箇所として順序を保持する。",
+      "meaning_basis": "data/rest-frame-introduction-basis-v1.json"
+    }
+  },
+  "semantic_review": [
+    "Es liegeを、同じ対象参照を導入し条件内容を仮定に採用して議論を進める指示として保持する。",
+    "Newtonの方程式が成り立つ条件はeihtのcontent内にあり、その真理を外側で断言しない。",
+    "eihuは参照導入と仮定採用を同じ箇所・著者・論説へ結ぶ。eihvはdirectのmessageである。",
+    "eihwはその閉じたmessageの記述を著者へ帰属する。指示内容の実行や読者の遵守を要求しない。",
+    "第一節見出しとは異なる箇所で、同じ本文提示文脈の後続位置であることを保つ。",
+    "既存のspeechpresentedは受け手を取るmessage関数の記述と行為関係を要求するため、今回の閉じたmessageの帰属へ同義とみなして代用しない。"
+  ],
+  "newly_connected_source_assertions": 1,
+  "total_connected_source_assertions": 2,
+  "orthographic_annotation_assertions": 1,
+  "original_manuscript_modified": false,
+  "old_judgments_rebound": false,
+  "limits": [
+    "物理関係は旧正本の基本概念の規約を保持する専門的入力である。座標の構成や測定手続を今回導出したとはしない。",
+    "引用された内容や指示を実行しない。明示的にその内容を検査する診断と、原文の帰属主張を分ける。",
+    "未知の文書、位置、参照、関係は有限実行では拒否する。完全なモデルの全域解釈とは区別する。",
+    "見出しの主題と段落の残りはまだこの文書に接続していない。全文の移行や第三者読解ではない。"
+  ]
+}
