@@ -1,0 +1,3070 @@
+{
+  "status": "optional_synchrony_profile",
+  "document": "examples/v016/synchrony-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "intendsaction": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "action",
+        "scope",
+        "reference"
+      ],
+      "meaning_ja": "指定主体がscopeの議論・活動において、actionで記述された行為をこれから行う方針・意思を明示する。単なる望ましさ、実行能力、命令、既に実行が終わった事実とは区別する。行為の対象と向きは同じ閉じたactionに保持し、この態度の成立から引用された行為やその対象命題の真理を導かない。著者の一人称複数を論述を進める主体の声として読むときにも使えるが、人数や読者全員の同意は規定しない。"
+    },
+    "presentsreason": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "document",
+        "grounds",
+        "conclusion",
+        "reference"
+      ],
+      "meaning_ja": "同じdocumentの説明で、groundsに述べる事情がconclusionに述べる事柄の成り立つ理由として提示される。閉じた両内容の対象・範囲と向きを保ち、単なる並置や時系列とは区別する。理由の唯一性、論理的同値、計算器による導出完了は要求しない。両内容の成立や発話の力は別に合成し、この関係だけから引用を実行しない。"
+    },
+    "seeksdisplay": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "event",
+        "display",
+        "hand",
+        "clock",
+        "frame",
+        "context"
+      ],
+      "meaning_ja": "observerが同じeventに時間的な対応を与えるため、同じclockのhandが示すdisplayを観察・読取りによって探し当てるという操作。単なる表示の存在や偶然の数値一致ではなく、対象と指示を照合する手段である。生起との局所的一致・表示値・割当の成立は合成で別に要求する。探索アルゴリズム・測定所要時間・光受信を新たに指定しない。"
+    },
+    "assignsreading": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "event",
+        "clock",
+        "frame",
+        "unit",
+        "reading",
+        "context"
+      ],
+      "meaning_ja": "observerがeventの時間的評価として、同じclock・frame・unitのreadingを対応付ける。局所時計の読みを対象出来事へ付与する行為・規約であり、別の信号の受信への割当、遠隔時計との比較や実際の実行済みを含意しない。可能性の内部で用いるときはその候補状況の対応を述べる。"
+    },
+    "localcomponent": {
+      "parameters": [
+        "individual",
+        "individual",
+        "number",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "event",
+        "clock",
+        "slot",
+        "context"
+      ],
+      "meaning_ja": "同じeventを同じclockで評価する候補記録の個体欄を取り出す。整数slotの1は対象出来事の発生場所、2は対応させようとする指針表示出来事である。欠落・未知・範囲外を既定個体で埋めず、欄を取り出しただけでは近接や同時の対応が成立すると認定しない。"
+    },
+    "localreading": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "event",
+        "clock",
+        "unit",
+        "context"
+      ],
+      "meaning_ja": "同じeventの候補記録で、同じclockとunitによって付与しようとする実数切断の値候補。候補状況ごとに選び得る表示と値であり、全知の正解生成器ではない。未知値を0や別出来事の値で埋めない。値の有効性・指針との対応・出来事の読みを別に要求する。"
+    },
+    "localtaskrange": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "place",
+        "frame",
+        "document",
+        "reference"
+      ],
+      "meaning_ja": "同じtaskの対象範囲eisgeが、同じdocumentのreferenceでplaceの直近で時間的に評価しようとする出来事の全範囲として定められている。局所的一致に用いる近接尺度を保ち、成功例だけの抜粋や遠隔出来事の混入を許さない。出来事が現実に何件起きたか、対応の成功はこの範囲設定から要求しない。"
+    },
+    "namestime": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "designation",
+        "time",
+        "place",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentのこの記述でdesignationがplaceの局所時間規約timeを指す呼称として使われる。場所文字を伴う引用表現の指示を保持し、文字の形の一致を対象の同一性や物理的な共通時刻へ替えない。"
+    },
+    "conventionassigns": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "time",
+        "event",
+        "place",
+        "frame",
+        "unit",
+        "reading",
+        "context"
+      ],
+      "meaning_ja": "timeという候補の時刻付与規約で、同じplaceのeventへframe・unitを明示してreadingを時刻値として割り当てる関係。既定義又は実測済みであることは要求せず、定義案の下での割当ても扱う。時刻原点は規約内で統一して解釈し、候補値の提示だけでは割当てを認めない。元の局所時計の付与規則との関係は定義案の対応で別に固定する。"
+    },
+    "directioncomponent": {
+      "parameters": [
+        "individual",
+        "number",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "pair",
+        "slot",
+        "context"
+      ],
+      "meaning_ja": "同じ比較組pairの候補記録から、slot=0,1,2で往路の光・出発出来事・到着出来事、slot=3,4,5で復路の光・出発出来事・到着出来事を取り出す。任意の未知欄や範囲外を既知値で埋めない。二方向の各伝播・場所・出来事の型は合成側で別に検査する。同じ光子、反射や往路到着と復路出発の同一性をこの一般記録では強制しない。"
+    },
+    "directionreading": {
+      "parameters": [
+        "individual",
+        "number",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "pair",
+        "slot",
+        "time",
+        "frame",
+        "unit",
+        "context"
+      ],
+      "meaning_ja": "同じpair・time・frame・unitの候補値を、slot=0,1,2で往路の出発時刻・到着時刻・所要時間、slot=3,4,5で復路の出発時刻・到着時刻・所要時間として取り出す。値が有効な実数であること、時刻割当て、終点から始点を引いた差との一致は合成側で要求する。未知又は不正な欄を零で埋めない。"
+    },
+    "localoperationcandidate": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "observer",
+        "clock",
+        "hand",
+        "place",
+        "frame",
+        "unit",
+        "document",
+        "reference",
+        "candidate"
+      ],
+      "meaning_ja": "referenceの同じtask・observer・clock・hand・place・frame・unitについて、観測者が指針の対応を探し出して時間的に評価する操作を実行し得る候補状況がcandidateである。同じ設置時計と場所・対象出来事・表示規約を保ち、結果が成功するかは合成側で判定する。別時計への交換、対象の選び直し、単なる願望・許可・論理上だけの可能性を候補にしない。実際に実行済み、全候補で成功する制御能力は加えない。"
+    },
+    "constructionstandard": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "left",
+        "right",
+        "standard",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "standardが、同じdocumentの同じ二時計のBeschaffenheitを比較するため、その構成を記述する全特徴と共通の記述規約を定める。時計の材質・部品の組合せと結合・周期生成と指針表示の構成、および同じ条件での固有の応答を対象とする。比較に適合した完全な規約であり、一致した項目だけを選んだ検査表ではない。設置場所、個体番号、読みの初期位相・原点設定は構成上の同一性に含めず、時計の同一個体性や同期を認定しない。個々の特徴の一致は別に合成する。"
+    },
+    "constructionfeature": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "standard",
+        "feature",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じstandardで時計の構成を漏れなく比較する全特徴範囲にfeatureが属する。一致した特徴だけや測定済みの項目へ範囲を狭めない。材質や構造を具体的にどの方式へ限定するかは原文に追加せず、方式の違いも比較できる共通の記述規約を用いる。"
+    },
+    "constructionvalue": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "feature",
+        "standard",
+        "value",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じclockの構成について、standardのfeatureに属する質的な内容がvalueで記述される。valueは共通規約で同定された構成記述であり、単なる外見の似た名前・検査結果の真偽・時計の現在の指示値ではない。部品の配置や結合、材質、固有応答などの該当内容を全て含め、他の時計で余分な構成があれば同じ記述集合とはしない。未知の特徴を空集合や共通値で埋めない。数値を含む構成記述も同じ物理単位と規約で同定する。"
+    },
+    "presentsqualification": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "host",
+        "qualification",
+        "intention",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでhostを述べる途中に、qualificationを条件に付け加えるintentionを、ダッシュと引用に相当する挿入として提示する。追加対象を同じ条件内容に固定し、無関係な時計の話や挿入を消した断言へ替えない。挿入の提示から時計の構成一致の現実の真理を導かない。"
+    },
+    "presentsaddition": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "prior",
+        "additional",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、同じdocumentのpriorに対してadditionalも同様に扱うものとして追加するauchの談話関係。二つの対応する内容と向きを保持し、因果・同義性・排他的な選択・双方の無条件の現実成立を含意しない。"
+    },
+    "localtimeconvention": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "time",
+        "task",
+        "observer",
+        "clock",
+        "hand",
+        "place",
+        "frame",
+        "unit",
+        "document",
+        "rule",
+        "context"
+      ],
+      "meaning_ja": "timeが同じtaskの対象について、observer・clock・hand・place・frame・unitを固定し、ruleの局所的な指針表示と出来事の対応で時間値を付与する規約である。timeは物質や絶対的時間そのものではなく、この局所的な時刻付与規則の対象。規則を引用して参照し、全対象の実際の読取り済みや遠隔同期を要求しない。"
+    },
+    "definedbystage": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "time",
+        "author",
+        "stage",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じauthorがdocumentのstageまでの当該二地点の時間規定の議論で、timeを時刻付与の規約として既に定義した範囲に含める。bisherの範囲を論述段階へ固定し、後で導入する規約・単なる候補・他の論説を含めない。全既定義範囲を与え、未知の登録を未定義として補わない。"
+    },
+    "conventionatplace": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "time",
+        "place",
+        "frame",
+        "unit",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "timeという一つの時間規約が、同じframe・unitでplaceの出来事の値を、その規約内で共有された値の解釈と比較関係へ結んで適用される。単に同じ名前を各地で用いることや、位相の関係を定めていない局所尺度の寄せ集めではない。同じtimeが複数地点へ適用される場合は、その一つの規約内で場所をまたぐ比較が意味を持つ。実際の全読取りの存在や特定の光同期方式は先取りしない。"
+    },
+    "comparisonproblem": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "task",
+        "first",
+        "second",
+        "lefttime",
+        "righttime",
+        "leftclock",
+        "rightclock",
+        "leftplace",
+        "rightplace",
+        "frame",
+        "unit",
+        "author",
+        "stage",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じstageで、lefttime・righttimeによりそれぞれ局所的に評価されるfirst・secondの時間的関係を、同じ二時計・二地点・系・単位の下で定める課題がtaskである。先後・同時性などの時間比較を扱い、単に時計盤の数字を並べることや別の二出来事の比較へ替えない。各出来事の型と所在地は合成で別に確認し、課題の達成をこの指定から導かない。"
+    },
+    "comparisonmethod": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "method",
+        "task",
+        "stage",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じtaskに対してstageの議論で検討する実行可能な比較手続きの全範囲にmethodが属する。新たな時間規約を使う候補もここには含み得るため、その使用を別に調べる。成功した手続きだけを選ぶ範囲ではなく、成功と必要な規定は別に要求する。"
+    },
+    "requiredconvention": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "method",
+        "task",
+        "convention",
+        "stage",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じmethodをtaskへ適用するために必要な時間的な規定の全範囲の一つがconventionである。局所値の意味・原点合わせや地点間の対応を定める規約を含み、手続きの中へ隠れた追加規定を入れない。通常の論理や算術の操作そのものを追加の時間規定と数えない。必要な規定の採用済みかどうかは別に判定する。"
+    },
+    "methodrequirement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "method",
+        "task",
+        "requirement",
+        "stage",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "methodが同じstageのtaskの個別の必要条件requirementを満たす。局所規則による対象値の意味を保ち、比較する同じ二出来事の先後・同時性等が規約上定まることを各条件に沿って検査する。全条件の達成・追加規定の不要性を一入力で認めず、未知を不成立へ変換しない。"
+    },
+    "directionpairrange": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "pair",
+        "time",
+        "leftplace",
+        "rightplace",
+        "frame",
+        "unit",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じtimeの規約で、同じ二地点・系・単位について等しい片道時間を定義する対象となる、両方向の対応した光伝播の比較組pairの全範囲。適切に対応する理想的試行も扱い、成功した組だけを選ばず、異なる条件や無関係な伝播を混ぜない。実際の光の発射済みや反射済みを要求しない。範囲の未知を空としない。"
+    },
+    "adoptsequaltime": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "proposal",
+        "time",
+        "leftplace",
+        "rightplace",
+        "frame",
+        "unit",
+        "author",
+        "stage",
+        "document",
+        "rule",
+        "result"
+      ],
+      "meaning_ja": "proposalを用いて同じtimeを定義する際、authorがdocumentのstageで、同じ二地点・系・単位に引数を結んだruleを定義上の条件としてresultで採用する。ruleは時間の規約を定める手段であり、既に測定で確認した法則の報告や無関係な定義の併置ではない。引用した条件を現実の真理として実行せず、定義の登録と両地点への適用は別に要求する。"
+    },
+    "commontimeproposal": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "proposal",
+        "task",
+        "time",
+        "lefttime",
+        "righttime",
+        "leftclock",
+        "rightclock",
+        "leftplace",
+        "rightplace",
+        "frame",
+        "unit",
+        "author",
+        "priorstage",
+        "stage",
+        "document",
+        "reference"
+      ],
+      "meaning_ja": "proposalは同じtaskで、priorstageまでのlefttime・righttimeの局所的な時計による時刻付与から、stageでtimeを両地点の共通時間として導入するための定義案である。二つの局所規則の時計・指針による値の付与方式を保持し、地点間の時刻原点の対応を追加規定で定め得る。元の時計の初期位相の一致や既に同期済みであることは前提にしない。全役割を同じ議論へ結ぶが、採用の実現や共通時間の成立はここから導かない。"
+    },
+    "referstimekind": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "priornode",
+        "priorcontent",
+        "time",
+        "leftplace",
+        "rightplace",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "nodeのDie letztere Zeitは、priornodeのpriorcontentで未定義と述べた同じ二地点の共通時間という種類を引き継ぎ、その候補timeを指す照応である。局所A時間だけ又は局所B時間だけへの照応、先行段階で既に存在した個体の再同定へ替えない。引用した先行内容の真理はこの言説関係から実行しない。"
+    },
+    "presentsparticular": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "general",
+        "particular",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeでgeneralの説明を、同じ対象を持つparticularの設定によって具体化する言説関係。nämlichによる説明の接続に用い、無関係な例、単なる時間的後続、引用した設定が実際に生じたことの証明ではない。"
+    },
+    "adoptssynchrony": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "clocka",
+        "clockb",
+        "placea",
+        "placeb",
+        "frame",
+        "unit",
+        "proposal",
+        "time",
+        "trial",
+        "condition",
+        "rule",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じproposalで導入するtimeの下で、指定された二時計が同期して走るという語を、ruleで与える同じ二地点・系・単位の条件によって定義する採用関係。trialの三読みを用いるconditionは、その仮想設定における具体的な条件式であり、ruleは必要範囲の全試行へ同じ条件を適用する。definitionsgemäßとwennをこの規約上の条件として保持し、conditionの実測済みや一回の偶然の一致だけを時計全体の同期としない。引用を実行せず、各試行の物理的条件・数式・範囲は合成で別に定める。"
+    },
+    "synchronypointrange": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "point",
+        "frame",
+        "reference"
+      ],
+      "meaning_ja": "同じ静止基準系で同期する時計の設置を考える空間点の全範囲にpointが属する。成功した配置だけや既に時計のある二・三点へ絞らず、同じ議論の任意の地点を対象とする。点の未知を範囲外へ補わない。"
+    },
+    "configurationcandidate": {
+      "parameters": [
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "points",
+        "frame",
+        "unit",
+        "document",
+        "reference",
+        "configuration",
+        "result"
+      ],
+      "meaning_ja": "referenceから、指定したpoints・frame・unitの同じ同期定義を実現するために検討する配置候補configurationとその評価状況result。時計の校正・初期指示の調整を含む候補を扱い、成功する候補だけを選別しない。元の地点・系・単位・定義の意味を保持し、整合性と全条件の成立は合成側で別に要求する。"
+    },
+    "configurationclock": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "configuration",
+        "point"
+      ],
+      "meaning_ja": "同じconfigurationでpointに割り当てる時計。全地点でこの一つの配置写像を共有し、比較相手ごとに時計を交換しない。割当て先が有効な静止時計で同じ点にあることと、異なる地点で同じ時計を共用しないことは別に検査する。"
+    },
+    "configurationreading": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "configuration",
+        "clock",
+        "event",
+        "frame",
+        "unit",
+        "result"
+      ],
+      "meaning_ja": "同じconfigurationの同じclockが同じeventに与える指示値の候補。系・単位・評価状況を固定した一つの履歴として共有し、試行や比較する時計対の違いを追加の引数にして値を変更しない。実数条件・許容される時計履歴・同期式は別に要求する。未知の値を零で埋めない。"
+    },
+    "allowedclockhistory": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "configuration",
+        "clock",
+        "frame",
+        "unit",
+        "history",
+        "result"
+      ],
+      "meaning_ja": "historyは同じconfigurationのclockに許容される一つの指示履歴である。各出来事への値を同じ校正・時計の作動に沿って割り当て、局所的な時刻付与を保つ。個々の値だけを別々の許容履歴から拾い集めない。これは一時計の履歴の許容性であり、他時計との同期・全配置の無矛盾性を認める入力ではない。全履歴の未知を許容済みとしない。"
+    },
+    "configurationtrial": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "configuration",
+        "left",
+        "right",
+        "frame",
+        "unit",
+        "document",
+        "result",
+        "trial"
+      ],
+      "meaning_ja": "同じconfiguration・二地点・系・単位・resultで、同期条件を課す必要のある光往復試行trialの全範囲。実際に一回測定した標本だけでなく必要な理想試行を含め、成功した試行だけを選別しない。非空性・同じ光の設定・時刻の等式は別に要求する。"
+    },
+    "referstodefinition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "priornode",
+        "rule",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "nodeの「この同期の定義」は、priornodeで採用した同じruleを指す。新しい無関係な同期概念や二法則だけへ置き換えず、その定義を任意個数へ適用する仮定の対象とする言説参照。引用から定義の実現済みを導かない。"
+    },
+    "introduceslaws": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "firstnode",
+        "secondnode",
+        "firstlaw",
+        "secondlaw",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じnodeがコロンの後で列挙する二関係を、firstnodeのfirstlawとsecondnodeのsecondlawへ順序付きで予告する。一般性を各法則の量化へ結び、別の法則・既に証明済みの結論へ替えない。"
+    },
+    "presentslawform": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "general",
+        "form",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "著者がnodeで一般関係generalを、同じ役割を維持したA/B又はA/B/Cの条件形formによって提示する。文字は対応する時計・場所を固定する代表名であり、一般性をその特定配置だけへ縮めない。引用した一般関係と条件形を同じ内容の具体的な提示として結び、その物理的真理を実行・証明しない。"
+    },
+    "listeditem": {
+      "parameters": [
+        "individual",
+        "individual",
+        "number",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "intro",
+        "ordinal",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentのintroのコロンから続く列挙でnodeがordinal番目の項目として提示される。本文の番号1・2と項目順を保つ。番号を物理量や時計の個数へ替えず、別の列挙へ混ぜない。"
+    },
+    "materialcontent": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "material",
+        "description",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "materialの考察素材の一部が、同じdocumentの閉じたdescriptionで述べる設定・操作・関係の内容で特定される。文の字面や数値だけへの連想ではなく、その場面を考える内容として結ぶ。引用した想定の実現や操作の実施済みは導かない。"
+    },
+    "physicalmaterial": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "material",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "materialは同じdocumentの考察における物理的な経験内容である。時計・光・位置・出来事の観察や操作として意味を持つ素材を扱い、純粋に語の綴りを調べる作業と区別する。実際に実施した経験であるか思考上の経験であるかは別に指定する。"
+    },
+    "imaginedmaterial": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "material",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "materialを同じdocumentで実際の経験記録としてではなく、場面と操作を思考上に置いて考える素材として扱う。物理法則への適合・対象の実在・実験実施済みをこの指定から主張せず、単なる未知とも区別する。"
+    },
+    "adoptssimultaneity": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "rule",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、同じdocumentの二出来事・それぞれの時計と場所・各指示値・文脈を結ぶ閉じたruleを、出来事を同時と呼ぶ適用規則として定義に採用する。二出来事が現実に起きたこと、任意の二出来事が同時であること、規則の引用の物理的真理は要求しない。"
+    },
+    "recapsreasoning": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "priornode",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeで、同じdocumentのpriornodeに至る考察・規定をこの論述段階までに行ったものとして受けて取りまとめる。先行する手続きによる到達の振り返りであり、単に後に並ぶことと区別する。論説のwirを著者の声として扱い、読者や実験者の人数・実際の測定実施を補わない。"
+    },
+    "adoptseventtime": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "assignment_rule",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が指定した範囲で、記述された出来事・時計・場所・読み・文脈の関係を、時刻の付与規則として定義に採用する。規則への帰属であり、全出来事の読みの存在や真理を検査器が認定することではない。"
+    },
+    "presentsobvious": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がこの内容を明らかであると提示するという帰属。検査器による自明性や証明の認定ではない。"
+    },
+    "discoursestageafter": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "document",
+        "boundary",
+        "context"
+      ],
+      "meaning_ja": "同じ文書と提示文脈で、指定された談話箇所までを含めた論述段階を指す。基準にする箇所の境界は本文で固定する。物理的な現在時刻、文全体の最終状態、そこまでの主張の真理とは区別する。未知の文書・境界・文脈を既定の段階で補わない。"
+    }
+  },
+  "public_contracts": {
+    "intendsaction": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "presentsreason": {
+      "arguments": [
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "grounds",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "conclusion",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "seeksdisplay": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "display",
+          "sort": "individual"
+        },
+        {
+          "role": "hand",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "assignsreading": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "reading",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "localcomponent": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "slot",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "localreading": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "localtaskrange": {
+      "arguments": [
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "namestime": {
+      "arguments": [
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "conventionassigns": {
+      "arguments": [
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "reading",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "directioncomponent": {
+      "arguments": [
+        {
+          "role": "pair",
+          "sort": "individual"
+        },
+        {
+          "role": "slot",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "directionreading": {
+      "arguments": [
+        {
+          "role": "pair",
+          "sort": "individual"
+        },
+        {
+          "role": "slot",
+          "sort": "number"
+        },
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "localoperationcandidate": {
+      "arguments": [
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "hand",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "constructionstandard": {
+      "arguments": [
+        {
+          "role": "left",
+          "sort": "individual"
+        },
+        {
+          "role": "right",
+          "sort": "individual"
+        },
+        {
+          "role": "standard",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "constructionfeature": {
+      "arguments": [
+        {
+          "role": "standard",
+          "sort": "individual"
+        },
+        {
+          "role": "feature",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "constructionvalue": {
+      "arguments": [
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "feature",
+          "sort": "individual"
+        },
+        {
+          "role": "standard",
+          "sort": "individual"
+        },
+        {
+          "role": "value",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "presentsqualification": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "host",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "qualification",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "intention",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "presentsaddition": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "prior",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "additional",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "localtimeconvention": {
+      "arguments": [
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "hand",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation",
+                "individual"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "definedbystage": {
+      "arguments": [
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "conventionatplace": {
+      "arguments": [
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonproblem": {
+      "arguments": [
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "lefttime",
+          "sort": "individual"
+        },
+        {
+          "role": "righttime",
+          "sort": "individual"
+        },
+        {
+          "role": "leftclock",
+          "sort": "individual"
+        },
+        {
+          "role": "rightclock",
+          "sort": "individual"
+        },
+        {
+          "role": "leftplace",
+          "sort": "individual"
+        },
+        {
+          "role": "rightplace",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "comparisonmethod": {
+      "arguments": [
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "requiredconvention": {
+      "arguments": [
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "convention",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "methodrequirement": {
+      "arguments": [
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "requirement",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "directionpairrange": {
+      "arguments": [
+        {
+          "role": "pair",
+          "sort": "individual"
+        },
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "leftplace",
+          "sort": "individual"
+        },
+        {
+          "role": "rightplace",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "adoptsequaltime": {
+      "arguments": [
+        {
+          "role": "proposal",
+          "sort": "individual"
+        },
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "leftplace",
+          "sort": "individual"
+        },
+        {
+          "role": "rightplace",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "result",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "commontimeproposal": {
+      "arguments": [
+        {
+          "role": "proposal",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "lefttime",
+          "sort": "individual"
+        },
+        {
+          "role": "righttime",
+          "sort": "individual"
+        },
+        {
+          "role": "leftclock",
+          "sort": "individual"
+        },
+        {
+          "role": "rightclock",
+          "sort": "individual"
+        },
+        {
+          "role": "leftplace",
+          "sort": "individual"
+        },
+        {
+          "role": "rightplace",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "priorstage",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "referstimekind": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "priornode",
+          "sort": "individual"
+        },
+        {
+          "role": "priorcontent",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "leftplace",
+          "sort": "individual"
+        },
+        {
+          "role": "rightplace",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "presentsparticular": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "general",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "particular",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "adoptssynchrony": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "clocka",
+          "sort": "individual"
+        },
+        {
+          "role": "clockb",
+          "sort": "individual"
+        },
+        {
+          "role": "placea",
+          "sort": "individual"
+        },
+        {
+          "role": "placeb",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "proposal",
+          "sort": "individual"
+        },
+        {
+          "role": "time",
+          "sort": "individual"
+        },
+        {
+          "role": "trial",
+          "sort": "individual"
+        },
+        {
+          "role": "condition",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "synchronypointrange": {
+      "arguments": [
+        {
+          "role": "point",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "configurationcandidate": {
+      "arguments": [
+        {
+          "role": "points",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "configuration",
+          "sort": "individual"
+        },
+        {
+          "role": "result",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "configurationclock": {
+      "arguments": [
+        {
+          "role": "configuration",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "configurationreading": {
+      "arguments": [
+        {
+          "role": "configuration",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "result",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "allowedclockhistory": {
+      "arguments": [
+        {
+          "role": "configuration",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "history",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "result",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "configurationtrial": {
+      "arguments": [
+        {
+          "role": "configuration",
+          "sort": "individual"
+        },
+        {
+          "role": "left",
+          "sort": "individual"
+        },
+        {
+          "role": "right",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "result",
+          "sort": "situation"
+        },
+        {
+          "role": "trial",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "referstodefinition": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "priornode",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "introduceslaws": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "firstnode",
+          "sort": "individual"
+        },
+        {
+          "role": "secondnode",
+          "sort": "individual"
+        },
+        {
+          "role": "firstlaw",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "secondlaw",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "presentslawform": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "general",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "form",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "listeditem": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "intro",
+          "sort": "individual"
+        },
+        {
+          "role": "ordinal",
+          "sort": "number"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "materialcontent": {
+      "arguments": [
+        {
+          "role": "material",
+          "sort": "individual"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "physicalmaterial": {
+      "arguments": [
+        {
+          "role": "material",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "imaginedmaterial": {
+      "arguments": [
+        {
+          "role": "material",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "adoptssimultaneity": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "recapsreasoning": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "priornode",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "adoptseventtime": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "assignment_rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "presentsobvious": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "discoursestageafter": {
+      "arguments": [
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "boundary",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eiscf": "intendsaction",
+    "eisdk": "presentsreason",
+    "eish3": "seeksdisplay",
+    "eish4": "assignsreading",
+    "eish5": "localcomponent",
+    "eish6": "localreading",
+    "eish7": "localtaskrange",
+    "eisi4": "namestime",
+    "eisi5": "conventionassigns",
+    "eisi6": "directioncomponent",
+    "eisi7": "directionreading",
+    "eisia": "localoperationcandidate",
+    "eisif": "constructionstandard",
+    "eisig": "constructionfeature",
+    "eisih": "constructionvalue",
+    "eisii": "presentsqualification",
+    "eisij": "presentsaddition",
+    "eisip": "localtimeconvention",
+    "eisiq": "definedbystage",
+    "eisir": "conventionatplace",
+    "eisis": "comparisonproblem",
+    "eisit": "comparisonmethod",
+    "eisiu": "requiredconvention",
+    "eisiv": "methodrequirement",
+    "eisja": "directionpairrange",
+    "eisjb": "adoptsequaltime",
+    "eisjc": "commontimeproposal",
+    "eisji": "referstimekind",
+    "eisjt": "presentsparticular",
+    "eisju": "adoptssynchrony",
+    "eisjv": "synchronypointrange",
+    "eisjw": "configurationcandidate",
+    "eisjx": "configurationclock",
+    "eisjy": "configurationreading",
+    "eisjz": "allowedclockhistory",
+    "eiska": "configurationtrial",
+    "eiskb": "referstodefinition",
+    "eiskf": "introduceslaws",
+    "eiski": "presentslawform",
+    "eiskj": "listeditem",
+    "eiskm": "materialcontent",
+    "eiskn": "physicalmaterial",
+    "eisko": "imaginedmaterial",
+    "eiskp": "adoptssimultaneity",
+    "eiskq": "recapsreasoning",
+    "ug": "adoptsassumption",
+    "uj": "adoptseventtime",
+    "zdg": "presentsobvious"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
