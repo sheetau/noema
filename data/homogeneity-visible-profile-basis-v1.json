@@ -1,0 +1,217 @@
+{
+  "status": "optional_homogeneity_visible_profile",
+  "document": "examples/v016/homogeneity-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "taskmainstage": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "task",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentでtaskに答えるための主要な検討段階の全範囲にnodeが属する。課題を定式化する以前の準備、同じ段階内の理由・挿入説明とは区別する。成功した段階や都合のよい後続箇所だけを選ばず、本文がその課題に対して展開する主要段階を尽くす。順序、最初の段階、各段階の妥当性や課題の解決は別に合成する。"
+    },
+    "coordinatecandidate": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      },
+      "arguments": [
+        "from_frame",
+        "to_frame",
+        "length_unit",
+        "time_unit",
+        "context"
+      ],
+      "meaning_ja": "指定した系・単位・設定での四座標変換の候補。観測された同じ出来事の対応との一致はsibで別に要求する。"
+    },
+    "tasknecessarycondition": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "task_node",
+        "required_content",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "先行する課題への解に、記述された条件が必要だと述べる箇所の対応。解の発見や存在は含意しない。"
+    }
+  },
+  "public_contracts": {
+    "taskmainstage": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "coordinatecandidate": {
+      "arguments": [
+        {
+          "role": "from_frame",
+          "sort": "individual"
+        },
+        {
+          "role": "to_frame",
+          "sort": "individual"
+        },
+        {
+          "role": "length_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "time_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      },
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "tasknecessarycondition": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "task_node",
+          "sort": "individual"
+        },
+        {
+          "role": "required_content",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eisnm": "taskmainstage",
+    "zdd": "coordinatecandidate",
+    "zdh": "tasknecessarycondition"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
