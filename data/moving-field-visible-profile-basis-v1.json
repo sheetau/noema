@@ -1,0 +1,316 @@
+{
+  "status": "optional_moving_field_visible_profile",
+  "document": "examples/v016/moving-field-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "magneticpolestrengthkind": {
+      "parameters": [],
+      "result": "individual",
+      "arguments": [],
+      "meaning_ja": "磁気的な極性と局所作用の強さを表す加法的な符号付き磁極強度の量種。正極を選ぶ規約と反対極の負符号を持つ。試験磁極への局所的な力を比較して尺度を与える理想化であり、慣性質量、電荷、磁石全体への合力とは別である。孤立した磁荷の実在を要求せず、磁石の一方の極を理想化して扱うことを許す。"
+    },
+    "signedtestforceresponse": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": "truth"
+        },
+        "situation",
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "kind",
+        "frame",
+        "lengthunit",
+        "timeunit",
+        "amountunit",
+        "forceunit",
+        "region",
+        "context",
+        "response"
+      ],
+      "meaning_ja": "指定frameの同じ長さ・時間尺度とcontextで、regionの地点時刻に、kindの符号付き量をamountunitで表す試験系を瞬間的に静止させた際の局所的な機械力の理想応答がresponseである。応答の引数は同じ四座標と符号付き量、結果はforceunitと同じ三軸による力の三成分。試験量と大きさを零へ近づけて元の配置への影響を除く一次応答を、任意の符号付き量で規格化して表示する規約であり、大きな有限試験体の厳密な線形応答ではない。力は運動量変化への寄与又はそれを釣り合わせる機械的作用として同定し、支持力・重力や他の種類の寄与との合力を代入しない。磁極の場合は一方の極の局所寄与で、全磁石への合力ではない。物理的な帰属と極限規約を基本入力とし、任意の数値関数だけから認定しない。実測、試験体又は孤立磁荷の実在を含意しない。"
+    },
+    "amountfieldforcecalibration": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "kind",
+        "amountunit",
+        "fieldunit",
+        "forceunit",
+        "conversion",
+        "context"
+      ],
+      "meaning_ja": "同じcontextにおいてkindの符号付き量のamountunitと場のfieldunitの積を、機械力のforceunitへ直す正の係数がconversionであるという校正規約。量種の極性と単位の正の尺度を固定し、電気量と磁極強度、場と機械力を区別する。場の数値や力との比例関係自体は別に合成し、名前の一致や特定のSI換算係数では代用しない。"
+    }
+  },
+  "public_contracts": {
+    "magneticpolestrengthkind": {
+      "arguments": [],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ系・座標尺度・領域・量種・力単位・文脈で物理的な応答を同定する。",
+        "試験量と大きさを零へ近づける一次応答を、符号付き量で規格化して扱う。",
+        "量種・校正・応答の基本規約と、本文で構成する全点全試験量の比例を区別する。"
+      ]
+    },
+    "signedtestforceresponse": {
+      "arguments": [
+        {
+          "role": "kind",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "amountunit",
+          "sort": "individual"
+        },
+        {
+          "role": "forceunit",
+          "sort": "individual"
+        },
+        {
+          "role": "region",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "response",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ系・座標尺度・領域・量種・力単位・文脈で物理的な応答を同定する。",
+        "試験量と大きさを零へ近づける一次応答を、符号付き量で規格化して扱う。",
+        "量種・校正・応答の基本規約と、本文で構成する全点全試験量の比例を区別する。"
+      ]
+    },
+    "amountfieldforcecalibration": {
+      "arguments": [
+        {
+          "role": "kind",
+          "sort": "individual"
+        },
+        {
+          "role": "amountunit",
+          "sort": "individual"
+        },
+        {
+          "role": "fieldunit",
+          "sort": "individual"
+        },
+        {
+          "role": "forceunit",
+          "sort": "individual"
+        },
+        {
+          "role": "conversion",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ系・座標尺度・領域・量種・力単位・文脈で物理的な応答を同定する。",
+        "試験量と大きさを零へ近づける一次応答を、符号付き量で規格化して扱う。",
+        "量種・校正・応答の基本規約と、本文で構成する全点全試験量の比例を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eisps": "magneticpolestrengthkind",
+    "eispt": "signedtestforceresponse",
+    "eispu": "amountfieldforcecalibration"
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持し、採用済み3規約を任意profile69へ公開する。",
+    "電荷と磁極強度を区別し、慣性質量、支持力などを含む合力、全磁石への合力へ読み替えない。",
+    "磁極の局所的理想化は、孤立磁荷や実際の試験体の存在を含意しない。",
+    "理想応答を有限の大きな試験体の厳密な線形応答や、実験を実施した証拠としない。",
+    "正の単位換算係数を同じ文脈で保持し、1や現代SIの定数へ固定しない。",
+    "計算上の混合関数と物理的に定義した移動場を、この規約だけで同一視しない。",
+    "有限例や引用の参照取得を、全実数・全関数域の証明や世界の真理の認定としない。"
+  ]
+}
