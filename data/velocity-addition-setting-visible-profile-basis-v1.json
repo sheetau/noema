@@ -1,0 +1,396 @@
+{
+  "status": "optional_velocity_addition_setting_visible_profile",
+  "document": "examples/v016/velocity-addition-setting-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "studiestriplequantitycomposition": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "inquiry",
+        "relation",
+        "context"
+      ],
+      "meaning_ja": "inquiryが、同じ対象と二つの記述基準・適用状況を保持するrelationの下で、第一の三成分量と第二の三成分量から第三の三成分量へ合成する規則とその適用条件を扱う主題である。三量の物理的な意味、同じ対象と二基準、尺度は引用する関係へ接続する。単なる九数値の一覧や成分ごとの通常の加算を意味せず、見出しだけから規則の存在・全域性・一意性・可換性や特定の公式を認定しない。対象・第一基準・第二基準・適用状況・第一量三成分・第二量三成分・第三量三成分という型順を保つ。"
+    },
+    "theoreminquiry": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "inquiry",
+        "context"
+      ],
+      "meaning_ja": "inquiryを、対象とする規則又は命題を、明示する前提と条件から理由を追って導く定理の論述として位置付ける。一般的な説明や単なる定義の仕事と区別するが、この主題の提示だけで証明の完了・妥当性・処理系での機械的証明を主張しない。"
+    },
+    "presentspositionfunctiontask": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual",
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ]
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "question",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が指定箇所・範囲・提示文脈で、記述された質問の答えを見いだすことを課題として提示する。答えの候補は個体役割と実数量を受け実数量を返す関数で、その対象・尺度・適合条件は引用された質問に保持する。既存zdcと同じ課題提示の一般規約をこの回答型に適用する。解の存在・唯一性・発見済み・証明済み、実際の探索実行を含意しない。"
+    },
+    "referstopriorestablishedcontent": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "division",
+        "established",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "著者がnodeで同じdocumentの先行区分divisionにおいて展開し得たものとしてestablishedの内容を参照し、現在の論述に用いる。参照先の区分と引用内容を共に保持する。節番号だけの類似、新しい内容の導入、将来の導出の予告と区別する。この帰属から内容の真理・導出の妥当性・読者による実行を認定しない。"
+    }
+  },
+  "public_contracts": {
+    "studiestriplequantitycomposition": {
+      "arguments": [
+        {
+          "role": "inquiry",
+          "sort": "individual"
+        },
+        {
+          "role": "relation",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・二基準・適用状況と三つの三成分量を引用関係へ保持する。",
+        "主題、定理の論述、解くべき問い、先行節で展開した内容の参照を区別する。"
+      ]
+    },
+    "theoreminquiry": {
+      "arguments": [
+        {
+          "role": "inquiry",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・二基準・適用状況と三つの三成分量を引用関係へ保持する。",
+        "主題、定理の論述、解くべき問い、先行節で展開した内容の参照を区別する。"
+      ]
+    },
+    "presentspositionfunctiontask": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "question",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・二基準・適用状況と三つの三成分量を引用関係へ保持する。",
+        "主題、定理の論述、解くべき問い、先行節で展開した内容の参照を区別する。"
+      ]
+    },
+    "referstopriorestablishedcontent": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "division",
+          "sort": "individual"
+        },
+        {
+          "role": "established",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・二基準・適用状況と三つの三成分量を引用関係へ保持する。",
+        "主題、定理の論述、解くべき問い、先行節で展開した内容の参照を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eisoo": "studiestriplequantitycomposition",
+    "eisop": "theoreminquiry",
+    "eisou": "presentspositionfunctiontask",
+    "eisov": "referstopriorestablishedcontent"
+  },
+  "limitations": [
+    "共通375語と固定アルファベットを維持し、既存の採用規約4件を任意プロファイルで公開する。",
+    "課題提示の意味は既存zdcと共有し、今回の回答型である個体役割と切断を受け切断を返す関数を保つ。",
+    "見出しや引用から公式の正しさ、規則の全域性、答えの存在・唯一性、証明済みを導かない。",
+    "物理的な量・同一対象・全出来事の条件は既存の本文定義で合成する。数値の一覧で代用しない。",
+    "有限の識別診断、復号、意味判断、独立読解は別に扱う。"
+  ]
+}
