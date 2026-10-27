@@ -1,0 +1,51 @@
+{
+  "status": "optional_rest_spherical_wave_visible_profile",
+  "document": "examples/v016/rest-spherical-wave-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "waveconstituentray": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "wave",
+        "ray",
+        "setting"
+      ],
+      "meaning_ja": "指定設定で同じ放出に由来する波の構成光線として扱う関係。光線の連続的な集合と波動場の構成は未完。"
+    }
+  },
+  "public_contracts": {
+    "waveconstituentray": {
+      "arguments": [
+        {
+          "role": "wave",
+          "sort": "individual"
+        },
+        {
+          "role": "ray",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zft": "waveconstituentray"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。"
+  ]
+}
