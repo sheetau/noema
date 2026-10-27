@@ -1,0 +1,113 @@
+{
+  "status": "optional_physical_meaning_heading_visible_profile",
+  "document": "examples/v016/physical-meaning-heading-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "introducesphysicalequationsinquiry": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "equations",
+        "subject_properties",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が節題で、指定した方程式の物理的な意味を指定した対象の性質について検討すると示す。本文の結論を節題から補わない。"
+    }
+  },
+  "public_contracts": {
+    "introducesphysicalequationsinquiry": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "equations",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "subject_properties",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ方程式、対象の性質の列、著者、節の範囲、文脈を保つ。研究主題の提示から結論や証明の完成を補わない。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zhr": "introducesphysicalequationsinquiry"
+  },
+  "limitations": [
+    "共通375語とアルファベットを維持し、採用済みの物理的意味に関する主題提示を任意プロファイルへ公開する。",
+    "同じ方程式の記述と対象性質の記述列を受け取り、主題の提示、主張の真理、実験、導出の完成を区別する。",
+    "引用した関係や性質を参照取得や主題提示から実行しない。有限診断は実数全域の証明ではない。"
+  ]
+}
