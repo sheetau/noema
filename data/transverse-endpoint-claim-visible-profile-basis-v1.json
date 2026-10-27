@@ -1,0 +1,165 @@
+{
+  "status": "optional_transverse_endpoint_claim_visible_profile",
+  "document": "examples/v016/transverse-endpoint-claim-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "asksphysicalfunctionmeaning": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "function_description",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が指定した関数の物理的な意味を問いとして提示する。値を問う計算問題とは区別する。"
+    },
+    "selectscharacterizedobjectforconsideration": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "object",
+        "characterization",
+        "scope",
+        "reference"
+      ],
+      "meaning_ja": "authorがnodeでobjectを、characterizationに記述された対象としてscopeの考察へ取り上げ、注意をその対象へ向ける論述行為。記述は同じ対象の特徴・設定を指定し、合成側がobjectとの同一参照を保つ。視覚的な目撃、材料の切断、実験の実行、記述内容の真理や考察目的の達成を含意しない。仮定の採用や結果の断言とは別の提示関係。"
+    }
+  },
+  "public_contracts": {
+    "asksphysicalfunctionmeaning": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "function_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "selectscharacterizedobjectforconsideration": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "characterization",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zhg": "asksphysicalfunctionmeaning",
+    "eisnx": "selectscharacterizedobjectforconsideration"
+  },
+  "limitations": [
+    "共通375語とアルファベットを維持する。採用済みの問い・対象選定の意味を任意プロファイルへ公開する。",
+    "同じ関数・対象・特徴・論述範囲・文脈を合成側で保持する。",
+    "問いの提示は解答や計算の成功を、対象選定は視覚的目撃・物質の切断・実験・内容の真理を含意しない。",
+    "参照取得と引用は内容を実行しない。有限診断を一般実数域の証明としない。"
+  ]
+}
