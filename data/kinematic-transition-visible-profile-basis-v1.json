@@ -1,0 +1,421 @@
+{
+  "status": "optional_kinematic_transition_visible_profile",
+  "document": "examples/v016/kinematic-transition-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "taskrequiredproposition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "task",
+        "result",
+        "stage"
+      ],
+      "meaning_ja": "指定主体が指定課題を遂行するため、その段階でこの命題項目を必要とするという関係。論理的必然性や、全ての人に必要な知識を意味しない。"
+    },
+    "presentedexample": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "example",
+        "scene"
+      ],
+      "meaning_ja": "指定主体が当該状況までにこの例を提示しているという関係。利用可能な例の存在や後の提示予定だけでは成立しない。"
+    },
+    "prospectivetaskentry": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "task",
+        "goal",
+        "stage",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者がこの段階から、指定課題に結び付いた記述目標へ取り組むと提示する。目標の達成、課題の解決、後続の提示完了は含意しない。"
+    },
+    "kinematicinquirydomain": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                }
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "inquiry",
+        "body_kind",
+        "reference"
+      ],
+      "meaning_ja": "inquiryがbody_kindの物体の位置・時刻・相対配置とそれらの変化を、運動を生じさせる力や原因の法則に先立って記述する運動学の研究領域である。閉じた型の全物質点・全区間・系・尺度の規約を保持する。単なる静止の研究や力学的原因の理論と同一視しない。全ての物理的運動の実現可能性、特定の時空変換則をこの分類から導かない。"
+    }
+  },
+  "public_contracts": {
+    "taskrequiredproposition": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "result",
+          "sort": "individual"
+        },
+        {
+          "role": "stage",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "必要な命題の集合は同じ主体・課題・基準段階から指定する。",
+        "例の提示、課題開始の提示、目標達成を別々の関係として扱う。",
+        "運動学の研究領域は閉じた型の物体・位置・時刻・配置の規約を引用して指定する。"
+      ]
+    },
+    "presentedexample": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual"
+        },
+        {
+          "role": "example",
+          "sort": "individual"
+        },
+        {
+          "role": "scene",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "必要な命題の集合は同じ主体・課題・基準段階から指定する。",
+        "例の提示、課題開始の提示、目標達成を別々の関係として扱う。",
+        "運動学の研究領域は閉じた型の物体・位置・時刻・配置の規約を引用して指定する。"
+      ]
+    },
+    "prospectivetaskentry": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "stage",
+          "sort": "situation"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "必要な命題の集合は同じ主体・課題・基準段階から指定する。",
+        "例の提示、課題開始の提示、目標達成を別々の関係として扱う。",
+        "運動学の研究領域は閉じた型の物体・位置・時刻・配置の規約を引用して指定する。"
+      ]
+    },
+    "kinematicinquirydomain": {
+      "arguments": [
+        {
+          "role": "inquiry",
+          "sort": "individual"
+        },
+        {
+          "role": "body_kind",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      {
+                        "kind": "function",
+                        "parameters": [
+                          "number"
+                        ],
+                        "result": "truth"
+                      }
+                    ],
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      {
+                        "kind": "function",
+                        "parameters": [
+                          "number"
+                        ],
+                        "result": "truth"
+                      }
+                    ],
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      {
+                        "kind": "function",
+                        "parameters": [
+                          "number"
+                        ],
+                        "result": "truth"
+                      }
+                    ],
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  }
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "必要な命題の集合は同じ主体・課題・基準段階から指定する。",
+        "例の提示、課題開始の提示、目標達成を別々の関係として扱う。",
+        "運動学の研究領域は閉じた型の物体・位置・時刻・配置の規約を引用して指定する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zna": "taskrequiredproposition",
+    "zng": "presentedexample",
+    "znh": "prospectivetaskentry",
+    "eisdh": "kinematicinquirydomain"
+  },
+  "limitations": [
+    "共通375語と固定アルファベットを維持し、既存の採用規約4件を任意プロファイルで公開する。",
+    "文脈的な必要性は論理的必然性や全人類に共通の必要性ではない。",
+    "例の利用可能性や提示予定だけを提示済みと数えない。",
+    "課題への移行から解決・目標達成・後続の実行完了を導かない。",
+    "運動学の分類だけから運動の実現可能性や特定の変換則を導かない。",
+    "引用内容の識別、有限診断、実域全体の証明、独立読解は別に扱う。"
+  ]
+}
