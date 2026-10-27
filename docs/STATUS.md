@@ -1,6 +1,6 @@
 # 現在地
 
-[速度合成の導入と点の運動](einstein-velocity-addition-setting-visible-v1.md)を円文字本文へ接続しました。2579宣言・165主張を1039ページから復号し、27テスト・独立CLI・全ページの描画確認・既存原稿の全体監査との照合を確認済みです。アルファベットと共通基盤375語を維持しています。二論文全文の可視統合と第三者読解は未完です。
+[速さ・角度と速度合成式](einstein-velocity-magnitude-angle-visible-v1.md)を円文字本文へ接続しました。2674宣言・172主張を1077ページから復号し、29テスト・独立CLI・全ページの描画確認・既存原稿の全体監査との照合を確認済みです。アルファベットと共通基盤375語を維持しています。二論文全文の可視統合と第三者読解は未完です。
 
 引き継ぎの正本は `.noema-project/ledger.sqlite`。`python -X utf8 -m scripts.project_notes brief` で現在地と詳細記録のキーを読みます。[更新・検索・復旧](project-records.md)を参照してください。Markdownに詳細を重複保存しません。
 

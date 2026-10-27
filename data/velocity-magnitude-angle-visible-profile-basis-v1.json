@@ -1,0 +1,335 @@
+{
+  "status": "optional_velocity_magnitude_angle_visible_profile",
+  "document": "examples/v016/velocity-magnitude-angle-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "intendedtheorydestination": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "theory",
+        "document",
+        "project",
+        "reference"
+      ],
+      "meaning_ja": "theoryが同じdocumentでこれから展開される、projectの理論構成の到達先として意図された同じ体系であるという指示。先行する構成課題とその見解を継承し、条件を満たす無関係な別理論への交換を許さない。理論個体は予定された体系として指示でき、完成済み・実証済みであることやprojectの真理を引用から要求しない。"
+    },
+    "claimcontentcorrespondence": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "item",
+        "content",
+        "reference"
+      ],
+      "meaning_ja": "命題項目itemが同じreferenceで持つ内容は、閉じたcontentの記述に与えられているという対応。項目の名称や真偽値だけで内容を代用せず、対象・量化・条件・留保・作用域を保持する。前提項目のeiscqとは異なり、帰結や主張も扱い、仮定として使うことを要求しない。どの理論に属するか、誰が述べるか、内容の現実の真理は別に結ぶ。"
+    },
+    "presentsquantityinterpretation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "quantity",
+        "role",
+        "scope",
+        "reference"
+      ],
+      "meaning_ja": "著者がnodeで、quantityの閉じた候補値・状況の規則が同定する量を、同じ値と状況に対するroleの規則で記述する意味・役割として理解するよう提示する。何の量をどの対象・関係・条件の量として捉えるかは両規則の合成内容に保持する。新たな量の命名、単なる式の書換え、法的な命令とは区別し、提示から内容の真理・実験の実施・全値の存在や一意性を導かない。"
+    },
+    "describedtruthcutfunctionreference": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "truth"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "truth"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "document",
+        "node",
+        "role_description",
+        "context"
+      ],
+      "meaning_ja": "同じ文書・箇所・提示文脈で、閉じた役割関係の記述に結び付けて照合する、真理値を受け実数切断型の値を返す関数への参照。役割の定義は本文に示す。参照取得から役割の現実の成立、関数の存在・一意性、返り値の実数としての条件を導かず、引用された役割や候補関数を実行しない。未知の参照を補わない。"
+    }
+  },
+  "public_contracts": {
+    "intendedtheorydestination": {
+      "arguments": [
+        {
+          "role": "theory",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "project",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ理論構成課題と到達先、項目と閉じた内容、同じ数量の指定と解釈を保持する。",
+        "真理値から切断への関数参照は型付きの閉じた役割で取得し、その役割や関数を実行しない。"
+      ]
+    },
+    "claimcontentcorrespondence": {
+      "arguments": [
+        {
+          "role": "item",
+          "sort": "individual"
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ理論構成課題と到達先、項目と閉じた内容、同じ数量の指定と解釈を保持する。",
+        "真理値から切断への関数参照は型付きの閉じた役割で取得し、その役割や関数を実行しない。"
+      ]
+    },
+    "presentsquantityinterpretation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "quantity",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "role",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ理論構成課題と到達先、項目と閉じた内容、同じ数量の指定と解釈を保持する。",
+        "真理値から切断への関数参照は型付きの閉じた役割で取得し、その役割や関数を実行しない。"
+      ]
+    },
+    "describedtruthcutfunctionreference": {
+      "arguments": [
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "role_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "truth"
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "truth"
+        ],
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ理論構成課題と到達先、項目と閉じた内容、同じ数量の指定と解釈を保持する。",
+        "真理値から切断への関数参照は型付きの閉じた役割で取得し、その役割や関数を実行しない。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eisdj": "intendedtheorydestination",
+    "eisox": "claimcontentcorrespondence",
+    "eiso7": "presentsquantityinterpretation"
+  },
+  "limitations": [
+    "共通375語と固定アルファベットを維持し、既存の採用規約3件と既存参照方式の型特殊化1件を任意プロファイルで公開する。",
+    "理論の指示と物理的真理、内容対応と仮定としての使用、数量の解釈と命名を区別する。",
+    "参照取得は存在・一意性・実数条件を証明しない。未知入力を補わず、役割引用と候補関数を実行しない。",
+    "角度、積分、微分、ノルム、符号付き商の条件は既存本文定義で合成する。",
+    "有限の識別診断、復号、意味判断、独立読解は別に扱う。"
+  ]
+}
