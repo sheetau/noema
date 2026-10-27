@@ -1,0 +1,1024 @@
+{
+  "status": "optional_clock_transport_visible_profile",
+  "document": "examples/v016/clock-transport-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "mechanicalpart": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "part",
+        "whole",
+        "setting"
+      ],
+      "meaning_ja": "対象が全体の機械的な構成部分である。単なる同じ場所での共存ではない。"
+    },
+    "restoringrotationaloscillator": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "oscillator",
+        "axis",
+        "spring",
+        "setting"
+      ],
+      "meaning_ja": "慣性体が軸の周りに往復回転し、指定した弾性体が復元作用を与える機械的な振動系。質量・弾性・運動の基礎説明は残る。"
+    },
+    "regulatesclockrate": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "oscillator",
+        "setting"
+      ],
+      "meaning_ja": "時計がその振動系の反復を歩度の調整に用いる。近くに振動系があるだけでは成立しない。"
+    },
+    "clockcondition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "condition",
+        "clock",
+        "setting"
+      ],
+      "meaning_ja": "その時計が指定された比較条件に置かれている。条件の値を含む個体への関係。"
+    },
+    "othercomparisoncondition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "condition",
+        "scope",
+        "setting"
+      ],
+      "meaning_ja": "比較範囲でその他の条件として採用する条件。比較対象の運動と位置そのものはこの範囲の対象外。"
+    },
+    "completecomparisonconditions": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "setting"
+      ],
+      "meaning_ja": "その他の条件の指定範囲が比較に必要な条件を尽くしている。空の選択や恣意的な省略を完全な条件一致とは扱わない。"
+    },
+    "attachedsurfaceclock": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "place",
+        "body",
+        "setting"
+      ],
+      "meaning_ja": "時計を指定物体上の場所に固定し、その場所と共に動く配置。"
+    },
+    "uniformbodyrotation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "body",
+        "axis",
+        "frame",
+        "setting"
+      ],
+      "meaning_ja": "同じ物体が指定基準系で指定した中心回転軸の周りを一様に回転する設定。実際の地球への適用は解釈前提。"
+    },
+    "axialcoordinatequantity": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "place",
+        "body",
+        "axis",
+        "lengthunit",
+        "setting"
+      ],
+      "meaning_ja": "物体の中心を通り回転軸に垂直な面から、場所までの軸方向の符号付き座標。"
+    },
+    "axisdistancequantity": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "place",
+        "body",
+        "axis",
+        "lengthunit",
+        "setting"
+      ],
+      "meaning_ja": "場所から中心回転軸までの垂直距離。同じ長さ単位で測る非負の値。"
+    },
+    "bodysurfacepoint": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "place",
+        "body",
+        "setting"
+      ],
+      "meaning_ja": "指定された場所が同じ物体の表面にある。"
+    },
+    "verysmallratedifference": {
+      "parameters": [
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "difference",
+        "reference_rate",
+        "scope",
+        "setting"
+      ],
+      "meaning_ja": "同じ単位の進み率の差が、この参照率と比較文脈で「非常に小さい」に当たるという程度基準。正の差であることは呼出し側で要求し、具体的な数値閾値は補わない。"
+    },
+    "presentsdistinctivefocus": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "claim",
+        "focus",
+        "discussion",
+        "context"
+      ],
+      "meaning_ja": "同じ主張と提示文脈の中で、指定された先行の議論に関して、焦点の内容を通常の予期から外れる特異な点として特に注意を向けて提示するという帰属。先行議論の文章箇所の列を明示する。客観的な発生頻度・確率、主張の確信度や必然性の増加、引用内容の真理を含意しない。構成版のh224rと同じ一般的な提示規約を、この本文の引用型i[e]へ適用する。時計や特定文に専用の概念ではない。"
+    },
+    "physicalinferencecandidate": {
+      "parameters": [
+        "content",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "subject",
+        "reference",
+        "candidate"
+      ],
+      "meaning_ja": "同じ内容と基準状況について、先行の議論と比較の前提を保って物理的帰結を評価する許容候補状況。候補は内容の真偽を調べる前に定め、後件が成立するものだけを選ばない。全論理的可能世界や規範的な許可とは区別する一般的な推論範囲の入力。候補の非空性と基準状況の包含、全候補での成立は利用側で要求する。"
+    },
+    "designatescurveelapsedtimerule": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "individual"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "individual"
+              },
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation",
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "designation",
+        "rule",
+        "text",
+        "context"
+      ],
+      "meaning_ja": "指定された表記を、同じ文章・提示文脈の型付き量の規則へ結ぶ識別関係。既存eisloと同じ記号解釈の関係を、経路の全引数と秒数を共有する規則の型で用いる。語形の一致だけから物理量の同一性や規則の真理を認定しない。"
+    }
+  },
+  "public_contracts": {
+    "mechanicalpart": {
+      "arguments": [
+        {
+          "role": "part",
+          "sort": "individual"
+        },
+        {
+          "role": "whole",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "restoringrotationaloscillator": {
+      "arguments": [
+        {
+          "role": "oscillator",
+          "sort": "individual"
+        },
+        {
+          "role": "axis",
+          "sort": "individual"
+        },
+        {
+          "role": "spring",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "regulatesclockrate": {
+      "arguments": [
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "oscillator",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "clockcondition": {
+      "arguments": [
+        {
+          "role": "condition",
+          "sort": "individual"
+        },
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "othercomparisoncondition": {
+      "arguments": [
+        {
+          "role": "condition",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "completecomparisonconditions": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "attachedsurfaceclock": {
+      "arguments": [
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "uniformbodyrotation": {
+      "arguments": [
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "axis",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "axialcoordinatequantity": {
+      "arguments": [
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "axis",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "axisdistancequantity": {
+      "arguments": [
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "axis",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "number"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "bodysurfacepoint": {
+      "arguments": [
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "verysmallratedifference": {
+      "arguments": [
+        {
+          "role": "difference",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "reference_rate",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "presentsdistinctivefocus": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "discussion",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "physicalinferencecandidate": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "content"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    },
+    "designatescurveelapsedtimerule": {
+      "arguments": [
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "individual"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "individual"
+                },
+                "individual",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    {
+                      "kind": "function",
+                      "parameters": [
+                        "number"
+                      ],
+                      "result": "truth"
+                    }
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "text",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "機械的な構成・調整、物体・場所・回転軸、同じ比較範囲と設定を引数として保持する。",
+        "著者・主張・焦点・先行議論の順序、推論の基準状況と候補、型付き規則の全引数を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zjg": "mechanicalpart",
+    "zjh": "restoringrotationaloscillator",
+    "zji": "regulatesclockrate",
+    "zjj": "clockcondition",
+    "zjk": "othercomparisoncondition",
+    "zjl": "completecomparisonconditions",
+    "zjm": "attachedsurfaceclock",
+    "zjn": "uniformbodyrotation",
+    "zjo": "axialcoordinatequantity",
+    "zjp": "axisdistancequantity",
+    "zjq": "bodysurfacepoint",
+    "zjv": "verysmallratedifference",
+    "eisoi": "presentsdistinctivefocus",
+    "eisol": "physicalinferencecandidate",
+    "eison": "designatescurveelapsedtimerule"
+  },
+  "limitations": [
+    "共通375語と固定アルファベットを維持し、旧採用規約15件を任意プロファイルとして公開する。原文の文ごとに原始述語を追加するものではない。",
+    "機械の構造一致と時計の校正、その他の条件の完全一致は別々に要求する。物理的な時計の実現や実際の地球への適用を、この規約だけで証明しない。",
+    "曲線経路への拡張は本文の明示した仮定として扱う。特異な点への注意喚起、引用や表記の識別は内容の真理を含意しない。",
+    "物理的帰結の候補を後件の真偽で選別しない。候補の非空性と基準状況の包含、全候補での成立は本文で要求する。",
+    "非常に小さい差の具体的な数値閾値を補わない。有限診断を全実数域の証明や独立読解と扱わない。"
+  ]
+}
