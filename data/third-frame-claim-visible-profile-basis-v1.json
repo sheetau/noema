@@ -1,0 +1,315 @@
+{
+  "status": "optional_third_frame_claim_visible_profile",
+  "document": "examples/v016/third-frame-claim-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "materialline": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "line"
+      ],
+      "meaning_ja": "空間に置かれた物質線。単なる数値方向や記号とは分ける。物質の基礎説明は未完。"
+    },
+    "rigidbodyidealization": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "context"
+      ],
+      "meaning_ja": "指定設定で形状を固定した剛な物体として扱う。物質軸と物差しへ共通に適用する理想化であり、加速中や全ての系で長さが等しいとの法則は含まない。"
+    },
+    "perpendicularmaterialaxes": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_line",
+        "second_line",
+        "context"
+      ],
+      "meaning_ja": "二つの物質軸の方向が直交する。局所的なユークリッド方向の内積が零という意味規約。実方向と物理的測定からの接続は未完。"
+    },
+    "parallelmaterialaxes": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_line",
+        "second_line",
+        "context"
+      ],
+      "meaning_ja": "二物質軸が幾何学的に平行。逆向きもこの関係単体では除かない。位置の一致は要求しない。"
+    },
+    "coincidentsupportinglines": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_line",
+        "second_line",
+        "context"
+      ],
+      "meaning_ja": "二物質軸の幾何学的な支持直線が重なる。物体の同一性ではなく、単なる平行より強い条件。"
+    },
+    "actsforpriorintention": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "action",
+        "intention",
+        "scope",
+        "reference"
+      ],
+      "meaning_ja": "agentがscopeで既にintentionの箇所に表明した同じ目標を目指すため、actionに記述された行為を手段として行うという目的関係。intentionは意図の表明箇所を指し、意図の対象・内容は別の関係で明示する。目的を意図する気持ちの新規発生に替えず、目標の達成、手段の十分性・成功や、客観的な因果関係の証明を要求しない。actionの実行と意図の同一性は合成側で保持する。"
+    },
+    "adoptsquantitydesignation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "designation",
+        "rule",
+        "document",
+        "reference"
+      ],
+      "meaning_ja": "authorがnodeで、同じdocumentの量を呼ぶdesignationを、対象・実数値・状況に対する閉じたruleの規約に従う記号として今採用する命名宣言。単なる既出表記の参照とは区別し、ruleの対象・測定単位・役割を保つ。記号の字面から物理的真理を導かず、規則をここで実行して測定を行うこと、他者の同意や歴史上の最初の命名を要求しない。"
+    }
+  },
+  "public_contracts": {
+    "materialline": {
+      "arguments": [
+        {
+          "role": "line",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "rigidbodyidealization": {
+      "arguments": [
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "perpendicularmaterialaxes": {
+      "arguments": [
+        {
+          "role": "first_line",
+          "sort": "individual"
+        },
+        {
+          "role": "second_line",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "parallelmaterialaxes": {
+      "arguments": [
+        {
+          "role": "first_line",
+          "sort": "individual"
+        },
+        {
+          "role": "second_line",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "coincidentsupportinglines": {
+      "arguments": [
+        {
+          "role": "first_line",
+          "sort": "individual"
+        },
+        {
+          "role": "second_line",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "actsforpriorintention": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual"
+        },
+        {
+          "role": "action",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "intention",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    },
+    "adoptsquantitydesignation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "designation",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ課題・方式・対象・文書・文脈を保持する。見かけ、可能性、採用、実施を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zbp": "materialline",
+    "zbq": "rigidbodyidealization",
+    "zbs": "perpendicularmaterialaxes",
+    "zbt": "parallelmaterialaxes",
+    "zbu": "coincidentsupportinglines",
+    "eisnq": "actsforpriorintention",
+    "eisnw": "adoptsquantitydesignation"
+  },
+  "limitations": [
+    "共通375語は不変。旧関係の型・役割・意味を任意プロファイルとして公開する。",
+    "記録の成分位置は公開されたデータの欄であり語義番号ではない。未知の値を既定値で補わない。",
+    "参照・引用・前方指示はその内容の真理や実験済みを意味しない。有限診断を全実数の証明としない。",
+    "物質線・剛性・軸の幾何は採用済みの理想化を保持する。物質の基礎説明、測定と方向の接続、全ての系での長さ不変を新たに証明しない。",
+    "目的は先行する同じ意図に結ぶ。命名の規約は既出表記の解釈と区別し、目標達成や物理的な結論の真理を含意しない。"
+  ]
+}
