@@ -1,0 +1,189 @@
+{
+  "status": "optional_origin_clock_visible_profile",
+  "document": "examples/v016/origin-clock-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "clockrestcalibrationtrial": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "clock",
+        "frame",
+        "actual",
+        "trial"
+      ],
+      "meaning_ja": "同じ時計を指定系で静止させ時刻に合わせることのできる、実際の設定から許容される試行設定。能力の物理的な機構・実現可能性は外部規約として残る。"
+    },
+    "describedrealquestionpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ]
+          }
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "question",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者が実数値を答えとする記述された質問を提示する。答えの発見済み・存在・一意性は含意しない。"
+    },
+    "timeunitlinearconversion": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "from_unit",
+        "to_unit",
+        "scale",
+        "setting"
+      ],
+      "meaning_ja": "同じ種類の時間量の数値にscaleを掛けると移換先単位の数値になるという、原点移動を含まない線形換算。尺度の正性と時間単位の型はsvpで要求する。"
+    }
+  },
+  "public_contracts": {
+    "clockrestcalibrationtrial": {
+      "arguments": [
+        {
+          "role": "clock",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "actual",
+          "sort": "situation"
+        },
+        {
+          "role": "trial",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ時計・系・実際の設定と許容される代替設定、または同じ時間量・単位・換算尺度を保持する。",
+        "問いの記述と著者による提示を区別し、答えの存在・一意性・発見済みを追加しない。"
+      ]
+    },
+    "describedrealquestionpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "question",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ時計・系・実際の設定と許容される代替設定、または同じ時間量・単位・換算尺度を保持する。",
+        "問いの記述と著者による提示を区別し、答えの存在・一意性・発見済みを追加しない。"
+      ]
+    },
+    "timeunitlinearconversion": {
+      "arguments": [
+        {
+          "role": "from_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "to_unit",
+          "sort": "individual"
+        },
+        {
+          "role": "scale",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "setting",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ時計・系・実際の設定と許容される代替設定、または同じ時間量・単位・換算尺度を保持する。",
+        "問いの記述と著者による提示を区別し、答えの存在・一意性・発見済みを追加しない。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zid": "clockrestcalibrationtrial",
+    "zih": "describedrealquestionpresentation",
+    "zil": "timeunitlinearconversion"
+  },
+  "limitations": [
+    "共通375語と固定アルファベットを維持し、旧採用規約3件を任意プロファイルとして公開する。文ごとの原始述語ではない。",
+    "時計の表示能力の物理的実現、測定装置の精度、秒の歴史的実現方法を、この規約の公開だけで構成済みとしない。",
+    "線形換算に原点移動を加えない。正の尺度と時間単位の型は本文の定義で要求する。",
+    "全時刻・全記録・実数の量化を有限標本に縮めず、有限診断を一般証明や独立読解と扱わない。"
+  ]
+}
