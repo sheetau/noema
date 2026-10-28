@@ -1,0 +1,43 @@
+{
+  "status": "optional_frontmatter_reference_visible_profile",
+  "document": "examples/v016/frontmatter-reference-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "frontmatterreference": {
+      "parameters": [
+        "situation",
+        "number"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context",
+        "frontmatter_item"
+      ],
+      "meaning_ja": "指定した前付提示文脈で、前付項目の出現順を1から数えて指定した談話箇所を指す。表題・著者表示などを本文段落や本文見出しの番号へ混ぜない。同じ文脈の同じ位置は同じ箇所を指し、異なる位置は異なる項目の出現である。項目の主題、名称の対象、著者役割、表示内容の真理はこの位置参照から導かない。"
+    }
+  },
+  "public_contracts": {
+    "frontmatterreference": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "frontmatter_item",
+          "sort": "number"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "前付の提示文脈と1始まりの項目順を使用時に固定する。本文の文脈・段落・見出し順とは分けて照合する。"
+      ]
+    }
+  },
+  "source_relations": {},
+  "limitations": [
+    "固定アルファベットと共通375語は変更しない。",
+    "位置は語義の辞書番号ではなく、項目の内容は別に記述する。",
+    "有限の参照実装は未知の文脈・項目、非正整数や重複した位置対応を拒否し、既定の値で補わない。"
+  ]
+}
