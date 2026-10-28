@@ -1,0 +1,136 @@
+{
+  "schema": "noema-visible-diagnostic-controls-1",
+  "groups": {
+    "cause": {
+      "kg": {
+        "kind": "definition",
+        "name": "kg",
+        "parameters": [
+          {
+            "name": "va",
+            "sort": "individual"
+          }
+        ],
+        "result": "content",
+        "body": {
+          "kind": "content",
+          "variable": "vb",
+          "body": {
+            "kind": "call",
+            "symbol": "jkg",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "va"
+              },
+              {
+                "kind": "variable",
+                "name": "vb"
+              }
+            ]
+          }
+        }
+      },
+      "mq": {
+        "kind": "definition",
+        "name": "mq",
+        "parameters": [
+          {
+            "name": "va",
+            "sort": "individual"
+          }
+        ],
+        "result": "content",
+        "body": {
+          "kind": "content",
+          "variable": "vb",
+          "body": {
+            "kind": "call",
+            "symbol": "jmq",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "va"
+              },
+              {
+                "kind": "variable",
+                "name": "vb"
+              }
+            ]
+          }
+        }
+      },
+      "mr": {
+        "kind": "definition",
+        "name": "mr",
+        "parameters": [
+          {
+            "name": "va",
+            "sort": "individual"
+          }
+        ],
+        "result": "content",
+        "body": {
+          "kind": "content",
+          "variable": "vb",
+          "body": {
+            "kind": "call",
+            "symbol": "jmr",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "va"
+              },
+              {
+                "kind": "variable",
+                "name": "vb"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "attitude": {
+      "bf": {
+        "kind": "definition",
+        "name": "bf",
+        "parameters": [
+          {
+            "name": "va",
+            "sort": "individual"
+          }
+        ],
+        "result": "content",
+        "body": {
+          "kind": "content",
+          "variable": "vb",
+          "body": {
+            "kind": "call",
+            "symbol": "jstate",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "va"
+              },
+              {
+                "kind": "variable",
+                "name": "vb"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "interpretation": {
+    "cause": "元の割合/方法/負担/原因の接続診断がkg/mq/mrを明示的に抽象化する。回収した本体の検証済み件数には含めない。",
+    "attitude": "元の態度範囲診断はbfの能力内容をjstateで明示的に抽象化する。bf自体は先行段落の証拠に保持する。"
+  },
+  "current_motives": "check_evaluated_motivesのrqxb/rqxc/mj/mkを使う。旧check_motive_causesのmj/mkを現在の同名本体として置換しない。",
+  "source_sha256": {
+    ".noema-project/kant-first-cause-content-check-plan-v1.json": "0b8acf22faf85191c9091c66f0dd95c5aa56ed40d49b483a1f92a453e9787646",
+    "scripts/check_first_cause_reading.py": "506c3defec6e6d78578f2ce2fcd9d8c917e613b14c82d1209344a16cf0d5ef6d",
+    "scripts/check_scoped_attitude.py": "8ff6d42277927660a9df4473d8b1cac64acc47abe717c2a8d59cd7c973ef2924",
+    "scripts/check_evaluated_motives.py": "086c7f80a2a9183f9f2fdcb677d841452aad43051c1def4d4986699fd4b0b635"
+  }
+}
