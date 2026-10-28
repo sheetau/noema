@@ -1,0 +1,103 @@
+{
+  "status": "optional_closing_presentation_profile",
+  "document": "examples/v016/closing-presentation-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "closingreference": {
+      "parameters": [
+        "situation",
+        "number"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context",
+        "closing_item"
+      ],
+      "meaning_ja": "同じ対象文章の提示文脈における、本文後の独立した後付項目を印刷順に1から数えた位置への参照。署名や日付などの項目を本文段落・前付・著者注と区別する。項目の内容・著者性・記載の真理を位置から導かない。"
+    },
+    "closingpresentationrecord": {
+      "parameters": [
+        "situation",
+        "number"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "individual"
+          }
+        ],
+        "result": "individual"
+      },
+      "arguments": [
+        "context",
+        "closing_item"
+      ],
+      "meaning_ja": "同じ提示文脈の指定した後付項目に結び付けて照合する名称使用・名称個体・対象個体・文書個体を、この順に保持する参照の組。どの選択関数にも同じ4値を同順で渡す。前付の名称表示とは位置区分を分け、名称使用の成立、名称の適用、著者役割や自筆性を参照値から導かない。"
+    }
+  },
+  "public_contracts": {
+    "closingreference": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "closing_item",
+          "sort": "number"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ対象文章の提示と後付項目の区分規約を固定する。位置は正整数で、本文段落や前付の番号と混同しない。",
+        "名称使用・名称・対象・文書の4役割を保持し、その関係の真偽は別の入力で与える。"
+      ]
+    },
+    "closingpresentationrecord": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "closing_item",
+          "sort": "number"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "individual"
+          }
+        ],
+        "result": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ対象文章の提示と後付項目の区分規約を固定する。位置は正整数で、本文段落や前付の番号と混同しない。",
+        "名称使用・名称・対象・文書の4役割を保持し、その関係の真偽は別の入力で与える。"
+      ]
+    }
+  },
+  "source_relations": {},
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile91。",
+    "位置は語義の番号ではない。本文の意味、対象の同一性、著者役割は位置参照と別に記述する。",
+    "有限実装は未知位置、未知の記録、不正な座標を拒否する。欠けた事実を偽や既定の人物として補わない。"
+  ]
+}

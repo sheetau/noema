@@ -1,0 +1,48 @@
+{
+  "status": "optional_action_occurrence_visible_profile",
+  "document": "examples/v016/action-occurrence-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "actionoccurrence": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "context"
+      ],
+      "meaning_ja": "この文脈で、その行為が実際に生じる。行為の構成員や結果の因果的な説明は別条件である。"
+    }
+  },
+  "public_contracts": {
+    "actionoccurrence": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ行為と評価文脈について、その生起を他の関係と独立に指定する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "dg": {
+      "public": "actionoccurrence",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile92。",
+    "行為の生起は名称適用、著者役割、自筆性、結果の成功を含意しない。",
+    "引用された行為の内容や関係の成立を、引用したことだけで評価・肯定しない。"
+  ]
+}
