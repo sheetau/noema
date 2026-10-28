@@ -1089,7 +1089,8 @@ def _source_pins(*,include_outputs=True):
         'scripts/tenth_energy_reference_roles.py','scripts/check_einstein_tenth_energy_visible.py',
         'scripts/visible_tenth_energy_visible_collection.py','tests/test_tenth_energy_visible.py',
         'tests/test_tenth_energy_reference_roles.py','data/tenth-energy-text-anchors-v1.json',
-        'docs/einstein-tenth-energy-visible-v1.md'}
+        'docs/einstein-tenth-energy-visible-v1.md',
+        'data/tenth-energy-visible-diagnostic-controls-v2.json','tests/test_tenth_energy_auxiliary_physics_visible.py','tests/test_tenth_energy_diagnostic_adapter.py','tests/test_tenth_energy_physics_visible.py'}
     paths.update(catalogs()['einstein-1905'].source_sha256)
     for review in REVIEWS:
         record=author.read(review);validate_hashes(ROOT,record['source_sha256']);paths.update(record['source_sha256'])
