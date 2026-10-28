@@ -1,0 +1,1595 @@
+{
+  "status": "optional_tenth_observables_visible_profile",
+  "document": "examples/v016/tenth-observables-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "instrumentquantitycalibration": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "method",
+        "instrument",
+        "quantity",
+        "frame",
+        "unit",
+        "range",
+        "calibration",
+        "context"
+      ],
+      "meaning_ja": "同じmethodのinstrumentが、quantityで記述された物理量に対する応答と標準との比較によって校正されており、range内の読み取り信号をcalibrationで同じframeとunitの量数値へ変換するという物理的対応。単なる任意の数値関数、装置名又は既知の答えの埋込みとは区別する。量の具体的意味は引用する定義へ与える。実際の使用・成功した読み取り、全装置の校正、対象命題の真理は含意しない。理想化した測定尺度の値を使い、有限装置が任意実数の全桁を出力することは要求しない。"
+    },
+    "physicalsignalacquisition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "method",
+        "instrument",
+        "record",
+        "target",
+        "quantity",
+        "frame",
+        "event",
+        "unit",
+        "signal",
+        "context"
+      ],
+      "meaning_ja": "observerが同じmethodとinstrumentを用い、targetの指定frame・event・unitにおけるquantityのための物理的な観測操作を行い、その読み取り信号signalをrecordに取得したこと。対象への測定結合、同じ出来事と量の選択、観測から記録への因果的な取得を含む。数値が合うだけ、仮定した結果記録、別の量の読み取り又は装置が存在するだけでは成立しない。校正・信号域・変換後の実際の量との一致は合成で別に要求する。"
+    },
+    "performedbinarycalculation": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "rule",
+        "left",
+        "right",
+        "result",
+        "context"
+      ],
+      "meaning_ja": "observerが同じcontextで、引用した二入力一出力の算術関係ruleに従う計算操作を行い、与えられたleft/rightからresultを得たこと。規則の記述と入力順序を保持し、単に関係が成立すること、未実行の計算可能性又はあらゆる関係を解く万能手続きとは区別する。ここで使う絶対値の規格化、非零分母の除算、乗算は別の定義へ明示し、結果の正しさは数値関係を併せて要求する。"
+    },
+    "causalrecordavailability": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "record",
+        "acquisition",
+        "assessment"
+      ],
+      "meaning_ja": "同じobserverがacquisitionで取得した同じrecordが、同じ可能な実験過程の後続又は同じassessmentへ保存・伝達され、そこで利用できるという因果的な記録の対応。別々に可能な相容れない世界の結果を集める関係ではない。過程と取得の同一性を保持し、記録内容の正しさ・理論との一致は別に要求する。"
+    },
+    "orderedcontentpart": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "part",
+        "whole",
+        "ordinal",
+        "context"
+      ],
+      "meaning_ja": "wholeとして記述された順序ある式又は内容のまとまりのordinal番目をpartの内容として取り出す構造的な対応。同じ対象・量・単位・条件を保持し、順序を単なる見た目や任意の数へ交換しない。部分又は全体の真理、導出の妥当性、相互の論理同値は含めない。"
+    },
+    "claimindependentmethod": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "method",
+        "claim",
+        "context"
+      ],
+      "meaning_ja": "methodによる量の算出とその校正が、検査対象claimの成立又はその同値な再表現を算出前提に用いないという手続き上の独立性。同じ方法名であるかでは判定せず、装置の校正にも答えの先取りを許さない。他の全物理法則からの独立性、誤差源の統計的独立性、実行済みや正確性は含めない。具体的な量・装置・取得・算出値は合成側で指定する。"
+    },
+    "performedquantitycomparison": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "claim",
+        "left",
+        "right",
+        "agrees",
+        "context"
+      ],
+      "meaning_ja": "observerが同じcontextでclaimを実験的に調べるため、同じ尺度で比較すべき二量left/rightの一致を調べ、agreesという判定を得る実際の比較操作。二量がどこから得られたか、対象・単位の対応、独立性、判定の数値的正しさは合成側で要求する。単に二数が等しいという事実、未実行の検証計画、普遍法則の証明や実験の成功と同一視しない。"
+    },
+    "oscillatingfieldmeasurementcoupling": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": "truth"
+        },
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "method",
+        "instrument",
+        "record",
+        "target",
+        "quantity",
+        "frame",
+        "event",
+        "unit",
+        "signal",
+        "context",
+        "lengthunit",
+        "timeunit",
+        "region",
+        "chargeunit",
+        "electricunit",
+        "magneticunit",
+        "forceunit",
+        "electricconversion",
+        "magneticconversion",
+        "electricfield",
+        "magneticfield",
+        "lower",
+        "upper",
+        "x",
+        "y",
+        "z"
+      ],
+      "meaning_ja": "observerがmethod/instrumentを使ってtargetの指定event・frame・quantity・unitの信号signalをrecordへ取得する操作に、同じ領域のelectricfieldとmagneticfieldの時間変化を物理的に用いる対応。二場と粒子又は検出系との結合が、時刻情報を取得信号へ反映する測定過程の一部となる。場が付近に存在するだけ、無関係な発振器の表示又は任意の数値関数では成立しない。lower/upperは同じ時間単位の使用区間。x,y,zはその操作で時間変化を利用する局所部位の同じ長さ単位の座標であり、別の場所の速い変動を流用しない。具体的な周期・速さ・校正と独立性は外側に合成し、特定の回路、粒子飛行距離、偏向比の正しさをこの関係へ埋め込まない。"
+    },
+    "measurementperiodthreshold": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "method",
+        "frame",
+        "timeunit",
+        "threshold",
+        "context"
+      ],
+      "meaning_ja": "同じmethodの時間情報を識別する測定配置・応答の時間尺度を背景に、「速い振動」と呼ぶ周期の上限thresholdを同じframe/timeunitで定める文脈上の比較基準。採用する場の周期から逆算して都合よく選ぶ値ではなく、対象となる操作と時間分解の条件に基づく基準である。普遍的な数値境界、単なる非零の振動数、校正の成功又は電磁波の放射を意味しない。"
+    },
+    "potentialworkchargeunit": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "frame",
+        "energyunit",
+        "chargeunit",
+        "potentialunit",
+        "context"
+      ],
+      "meaning_ja": "指定系のpotentialunitを、同じenergyunitの仕事を同じchargeunitの符号付き電荷で割る電位の差の物理的単位とする校正対応。単位電荷に対する仕事の比較を意味し、単位名だけの一致ではない。尺度の正性と積の整合、実際の場・軌道・電荷・電位関数・値は合成側で要求する。特定のエネルギー公式、電荷の正号、実測、全空間での電位の存在を含めない。"
+    },
+    "mechanicalinteractioncontribution": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "matter",
+        "frame",
+        "event",
+        "forceunit",
+        "force",
+        "context"
+      ],
+      "meaning_ja": "recordが、同じmatter・frame・eventで実際に作用する一つの機械的相互作用の寄与を、同じforceunitの三成分forceで記述するという物理的帰属。力は運動量変化への寄与又はそれを釣り合わせる機械的作用により同定する。相互作用の区別はその物理的作用源に基づき、都合のよい数値分割や、異なる作用源を相殺して零とした一記録への集約ではない。この関係の範囲は同じ出来事の全ての実際の寄与を含み、観測済みの記録一覧に限定しない。同じ作用の複数の記述は許す。磁気的分類、他の寄与の不存在・方向、合力、特定の運動方程式又は原文の曲率公式は含めない。"
+    },
+    "undertakesorderedpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "items",
+        "contents",
+        "scope",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeという現在の論述段階で、同じdocument・scopeのitemsの各箇所に、対応するcontentsの内容を順に一項ずつ挙げて示す意向を表明する。二列の同じ位置を対応させ、これから列挙に移る取組として読む。項数・対象分野・個別内容は引数で指定し、既に列挙したこと、内容の真理・証明・実験の実施は含意しない。単に将来の話題に言及すること、量を求める質問、既述の二法則だけの予告とは区別する。"
+    },
+    "backgroundmotioncandidate": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "view",
+        "subject",
+        "frame",
+        "background",
+        "base",
+        "candidate"
+      ],
+      "meaning_ja": "同じviewを記述するbaseで固定したbackgroundの対象・系・校正・理想化の下で、candidateが同じsubjectのframeに対する運動についての候補状況に属すること。背景を同じ内容として解釈し、対象の同一性、場・軌道・出来事・量の各帰属、基本的な運動学と物理量の定義を保持する。候補の範囲はその背景に適合する全ての運動記述であり、既に観測した例、都合のよい有限一覧、検査する運動法則又は比較する式の成否から選ばない。動力学法則に違反する候補も比較対象へ含める。viewにおいて物理的に許容されることは別のeisoeで問う。背景以外の理論の結論を先に要求せず、異なる対象・系・校正へ交換しない。"
+    }
+  },
+  "public_contracts": {
+    "instrumentquantitycalibration": {
+      "arguments": [
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "instrument",
+          "sort": "individual"
+        },
+        {
+          "role": "quantity",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "range",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "calibration",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "physicalsignalacquisition": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "instrument",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "quantity",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "signal",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "performedbinarycalculation": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "causalrecordavailability": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "acquisition",
+          "sort": "situation"
+        },
+        {
+          "role": "assessment",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "orderedcontentpart": {
+      "arguments": [
+        {
+          "role": "part",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "whole",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "ordinal",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "claimindependentmethod": {
+      "arguments": [
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "performedquantitycomparison": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "left",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "agrees",
+          "sort": "truth"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "oscillatingfieldmeasurementcoupling": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "instrument",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "quantity",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "signal",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "region",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "chargeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "electricunit",
+          "sort": "individual"
+        },
+        {
+          "role": "magneticunit",
+          "sort": "individual"
+        },
+        {
+          "role": "forceunit",
+          "sort": "individual"
+        },
+        {
+          "role": "electricconversion",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "magneticconversion",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "electricfield",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "magneticfield",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "lower",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "upper",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "x",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "y",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "z",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "measurementperiodthreshold": {
+      "arguments": [
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "threshold",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "potentialworkchargeunit": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "energyunit",
+          "sort": "individual"
+        },
+        {
+          "role": "chargeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "potentialunit",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "mechanicalinteractioncontribution": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "matter",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "forceunit",
+          "sort": "individual"
+        },
+        {
+          "role": "force",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "undertakesorderedpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "items",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "contents",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    },
+    "backgroundmotioncandidate": {
+      "arguments": [
+        {
+          "role": "view",
+          "sort": "individual"
+        },
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "background",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "base",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・系・出来事・単位・方法・装置・記録・適用状況を保持する。",
+        "校正、取得、計算、記録の利用、比較と、それらを行えるという可能性を区別する。",
+        "引用する量・内容・背景を実行せず、数値関係や物理的な結論は本文で合成する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eis3r": "instrumentquantitycalibration",
+    "eis3s": "physicalsignalacquisition",
+    "eis3t": "performedbinarycalculation",
+    "eis3u": "causalrecordavailability",
+    "eis3v": "orderedcontentpart",
+    "eis36": "claimindependentmethod",
+    "eis37": "performedquantitycomparison",
+    "eis4a": "oscillatingfieldmeasurementcoupling",
+    "eis4b": "measurementperiodthreshold",
+    "eis4f": "potentialworkchargeunit",
+    "eis4t": "mechanicalinteractioncontribution",
+    "eis6v": "undertakesorderedpresentation",
+    "eis6w": "backgroundmotioncandidate"
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile84。一般13契約の型・引数順序・意味を保持する。",
+    "個別の電子・装置・測定値・原文箇所は本文の参照として構成し、一般原始語へ追加しない。",
+    "測定を実行できることと実行済みを区別し、校正や方法名から結果の正しさを補わない。",
+    "物理法則の候補比較では背景を共有し、検査対象の法則に違反する候補も含める。",
+    "語彙の型と意味の保存は、全文接続、物理法則の証明、実SVGからの復号とは別に確認する。"
+  ]
+}
