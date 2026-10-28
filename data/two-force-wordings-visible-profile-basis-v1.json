@@ -1,0 +1,699 @@
+{
+  "status": "optional_two_force_wordings_visible_profile",
+  "document": "examples/v016/two-force-wordings-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "movingtestforceresponse": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          ],
+          "result": "truth"
+        },
+        "situation",
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            },
+            {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "kind",
+        "frame",
+        "lengthunit",
+        "timeunit",
+        "amountunit",
+        "forceunit",
+        "electric",
+        "magnetic",
+        "region",
+        "context",
+        "response"
+      ],
+      "meaning_ja": "同じframeの校正された右手直交三軸・lengthunit/timeunit、同じcontextとregionのelectric/magneticという外部の両場で、kindの符号付き試験量をamountunitで指定し、その地点で指定した座標時刻速度を持たせるときの局所的な機械力の理想応答がresponseである。引数は四座標・符号付き量・三速度、結果は同じ軸とforceunitで表す三成分。試験量と大きさを零へ近づけて配置への影響を除いた応答を単位量へ規格化する既存の静止試験規約を、速度も入力とする関数へ拡張する。異なる速度は同じ背景の下での仮想的な比較であり、同じ出来事に相反する速度が同時に実現したとはしない。力は運動量変化への寄与又はそれを釣り合わせる機械的作用で同定する。この両場による寄与を扱い、重力・支持力等を加えた合力ではない。物理的な帰属を数値から推定せず、実測・有限試験体の実在・特定の力の法則は含意しない。零速度での電気側との一致、寄与の分解、速度依存、外積や近似次数は別に合成する。"
+    },
+    "quotedvectorquantityterm": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "expression",
+        "rule",
+        "wording",
+        "document",
+        "context"
+      ],
+      "meaning_ja": "同じdocumentのwordingでexpressionを引用して取り上げる語として用い、その指すベクトル量の役割を同じ状況での閉じたruleに従って解釈する。規則は三成分の値と状況を引数に取り、対象・系・単位・物理的な役割は規則内へ結ぶ。ここでの引用は用語を取り上げる働きであり、他人の発言の再現、皮肉、命題の否定を自動で加えない。綴りだけの意味代用、引用内容の実行、規則の成立やその物理法則の自動証明ではない。"
+    },
+    "establishednewwordingcontrast": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "established",
+        "new",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "同じscopeの二つの記述の仕方について、establishedをその議論で既に用いられてきた言い方、newを今回の議論で新しく提示する言い方として対置する。発話の時間順だけや一方の真偽・優劣とは区別し、前者の禁止・完全廃棄、後者が歴史上初めてであること、二つが無条件に厳密同値であることは含意しない。"
+    },
+    "physicalcoordinatecorrespondence": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "lengthunit",
+        "timeunit",
+        "mapping",
+        "context"
+      ],
+      "meaning_ja": "同じcontextで、firstとsecondという二つの物理的な座標系の記述を、同じ出来事の座標を再表現するmappingへ結ぶ対応規約。両系の原点・軸の向きと尺度、局所時計の校正・同期・時刻原点を固定し、第一系の四座標を入力、第二系の四座標を出力とする。測定記録のある点だけでなく、当該座標記述の全域で同じ規約を適用し、未占有の場所の座標も含む。lengthunit/timeunitで値を表すが、異なる系での同時性や数値時刻の一致は含意しない。どの数値関数がこの対応を実現するかを物理的な軸・時計の設定へ帰属する関係であり、任意の数値写像だけで認定しない。特定の変換公式、相対速度、対象の静止、場・力の法則は含めず、別に合成する。実験実施や全実数点に物体があることは要求しない。"
+    }
+  },
+  "public_contracts": {
+    "movingtestforceresponse": {
+      "arguments": [
+        {
+          "role": "kind",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "amountunit",
+          "sort": "individual"
+        },
+        {
+          "role": "forceunit",
+          "sort": "individual"
+        },
+        {
+          "role": "electric",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "magnetic",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                },
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "region",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "response",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・出来事・系・単位・背景の両場・提示文脈を保持する。",
+        "速度応答、用語の引用、旧新の言い方、物理的な座標対応を別の関係として合成する。"
+      ]
+    },
+    "quotedvectorquantityterm": {
+      "arguments": [
+        {
+          "role": "expression",
+          "sort": "individual"
+        },
+        {
+          "role": "rule",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "number"
+                    ],
+                    "result": "truth"
+                  }
+                },
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "wording",
+          "sort": "individual"
+        },
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・出来事・系・単位・背景の両場・提示文脈を保持する。",
+        "速度応答、用語の引用、旧新の言い方、物理的な座標対応を別の関係として合成する。"
+      ]
+    },
+    "establishednewwordingcontrast": {
+      "arguments": [
+        {
+          "role": "established",
+          "sort": "individual"
+        },
+        {
+          "role": "new",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・出来事・系・単位・背景の両場・提示文脈を保持する。",
+        "速度応答、用語の引用、旧新の言い方、物理的な座標対応を別の関係として合成する。"
+      ]
+    },
+    "physicalcoordinatecorrespondence": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "mapping",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "number"
+                  ],
+                  "result": "truth"
+                }
+              }
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": {
+                "kind": "function",
+                "parameters": [
+                  "number"
+                ],
+                "result": "truth"
+              }
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・出来事・系・単位・背景の両場・提示文脈を保持する。",
+        "速度応答、用語の引用、旧新の言い方、物理的な座標対応を別の関係として合成する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "eisqp": "movingtestforceresponse",
+    "eisqq": "quotedvectorquantityterm",
+    "eisqr": "establishednewwordingcontrast",
+    "eisqt": "physicalcoordinatecorrespondence"
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持し、採用済み四規約を任意profile73へ公開する。",
+    "速度応答は同じ背景の電磁的寄与であり、合力・実測・特定の力の法則を自動認定しない。",
+    "零速度との一致、外積の順序、一次式と二次以上の留保は本文で合成する。",
+    "引用用語の規則を実行せず、表記だけを物理的な意味の代用にしない。",
+    "旧新の対置は歴史的初出、禁止、優劣、有限速度での厳密同値を含意しない。",
+    "座標全域の同一出来事対応を、数値写像や記録のある一点だけで認定しない。",
+    "瞬間共動と前後の静止を区別し、共動系の力に旧系の成分をコピーしない。",
+    "型付き参照の取得は役割の成立・存在・唯一性や引用内容の真理を保証しない。"
+  ]
+}
