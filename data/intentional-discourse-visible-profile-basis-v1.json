@@ -1,0 +1,685 @@
+{
+  "status": "optional_intentional_discourse_visible_profile",
+  "document": "examples/v016/intentional-discourse-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "goaldirectedcourage": {
+      "parameters": [
+        "individual",
+        "content",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal",
+        "situation"
+      ],
+      "meaning_ja": "その人が目的内容に向けて行動する勇気をその状況で持つ。目的への方向付けを含むが、実行・成功・成功の保証を含まない。勇気一般を目的内容と無関係に当てはめない。"
+    },
+    "activeactionparticipant": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "act",
+        "context"
+      ],
+      "meaning_ja": "この人が、この文脈で当該行為に能動的な当事者として参加する。他人の行為が同時に起きただけでは含めない。"
+    },
+    "attemptsdescribedactivity": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "event",
+        "task_description",
+        "point"
+      ],
+      "meaning_ja": "この人がこの行為で、記述された活動をこの状況で試みる。試みたという経験を行為個体に結び、成功や能力を前提としない。"
+    },
+    "orderedutterancemotto": {
+      "parameters": [
+        {
+          "kind": "sequence",
+          "element": {
+            "kind": "description",
+            "result": "message"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "quoted_parts",
+        "topic_description",
+        "context"
+      ],
+      "meaning_ja": "指定文脈で、順序付きの発話記述のまとまり全体を、指定した事柄の標語として位置付ける。各部分を個別の標語とすること、各発話の実行や達成、部分の同義性は含まない。事柄はNoemaの性質定義の記述で与える。"
+    },
+    "describedcausalcontribution": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "要因側の対象",
+        "要因の性質記述",
+        "結果側の対象",
+        "結果の性質記述",
+        "評価状況"
+      ],
+      "meaning_ja": "指定した評価状況で、第一対象について記述された要因が、第二対象について記述された結果の成立に因果的に寄与する関係。説明としての採用、二内容の単なる共存、時間的先行だけでは成立しない。要因と結果はNoemaの性質記述で指定し、両内容の実際の成立はrqquで別に検査する。唯一・十分・必要な原因であることや、特定の介入モデルを付け加えない。"
+    },
+    "sufficientgoalresolve": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "本人について実現する目標の性質記述",
+        "評価状況"
+      ],
+      "meaning_ja": "指定状況で、同じ本人が指定された目標の性質記述を本人について実現することに向け、文脈上十分な決意を持つ。対象記述を明示し、別の目標への決意から推定しない。決意の採用・維持という態度であり、行為の実行や成功の保証ではない。十分さの閾値は文脈に依存する。"
+    },
+    "sufficientgoalcourage": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "本人について実現する目標の性質記述",
+        "評価状況"
+      ],
+      "meaning_ja": "指定状況で、同じ本人が指定された目標の性質記述を本人について実現することに向け、文脈上十分な勇気を持つ。別の目標への勇気から推定しない。恐れ・困難に直面して行動へ向かう態度の十分さであり、客観的危険の有無・実行・成功を含意しない。"
+    },
+    "sufficientgoalunderstanding": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "本人について実現する目標の性質記述",
+        "評価状況"
+      ],
+      "meaning_ja": "指定状況で、同じ本人が指定された目標の性質記述を本人について実現するのに、理解能力が文脈上十分である。対象の区別・判断に使う能力の十分さをその目標について評価し、別の目標での十分さ、実際の使用、決意や勇気の十分さから推定しない。"
+    },
+    "presentspropertydefinition": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "property_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの文章箇所で、対象から状況ごとの真偽への性質の記述を、概念の説明として提示する。説明対象の性質はNoemaの定義を参照し、未説明の原語で代用しない。提示したことと現実に該当する対象の存在を分ける。"
+    },
+    "quotesutterance": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "message"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "message_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの文章箇所で指定された発話の記述を引用する。発話の働きも記述に含める。引用内容への賛同、引用された要求の実行や達成は含まない。"
+    },
+    "assertsdescribedcontent": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの文章箇所で指定された内容を主張する。著者への帰属であり、解釈器がその内容を真と認定する関係ではない。"
+    },
+    "quotedaddresseereference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "document",
+        "quoted_node",
+        "presentation_context"
+      ],
+      "meaning_ja": "同じ文書・引用箇所・提示文脈で、引用された呼びかけの宛先として解釈する人物への文脈依存参照。一般的な読み手への呼びかけにも解釈上の対象を与えられるが、原文が特定の実在人物一名を名指したこと、実際の受領・同意・実行は含意しない。引用の内容から宛先の実在や性質を補わず、未指定の参照入力は拒否する。"
+    }
+  },
+  "public_contracts": {
+    "goaldirectedcourage": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": "content"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "activeactionparticipant": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "attemptsdescribedactivity": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "task_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "orderedutterancemotto": {
+      "arguments": [
+        {
+          "role": "quoted_parts",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "message"
+            }
+          }
+        },
+        {
+          "role": "topic_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "describedcausalcontribution": {
+      "arguments": [
+        {
+          "role": "要因側の対象",
+          "sort": "individual"
+        },
+        {
+          "role": "要因の性質記述",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "結果側の対象",
+          "sort": "individual"
+        },
+        {
+          "role": "結果の性質記述",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "評価状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "sufficientgoalresolve": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "本人について実現する目標の性質記述",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "評価状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "sufficientgoalcourage": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "本人について実現する目標の性質記述",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "評価状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "sufficientgoalunderstanding": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "本人について実現する目標の性質記述",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "評価状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "presentspropertydefinition": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "property_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "quotesutterance": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "message_description",
+          "sort": {
+            "kind": "description",
+            "result": "message"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "assertsdescribedcontent": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "content_description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    },
+    "quotedaddresseereference": {
+      "arguments": [
+        {
+          "role": "document",
+          "sort": "individual"
+        },
+        {
+          "role": "quoted_node",
+          "sort": "individual"
+        },
+        {
+          "role": "presentation_context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ人・行為・目標記述・文脈を保持し、態度・試み・実行・成功を区別する。",
+        "記述された要因と結果、著者の主張・引用・定義提示と内容の真理を分ける。"
+      ]
+    }
+  },
+  "source_relations": {
+    "al": {
+      "public": "goaldirectedcourage",
+      "source": "kant-1784"
+    },
+    "df": {
+      "public": "activeactionparticipant",
+      "source": "kant-1784"
+    },
+    "f5": {
+      "public": "attemptsdescribedactivity",
+      "source": "kant-1784"
+    },
+    "ga": {
+      "public": "orderedutterancemotto",
+      "source": "kant-1784"
+    },
+    "hzie": {
+      "public": "describedcausalcontribution",
+      "source": "kant-1784"
+    },
+    "hzin": {
+      "public": "sufficientgoalresolve",
+      "source": "kant-1784"
+    },
+    "hzio": {
+      "public": "sufficientgoalcourage",
+      "source": "kant-1784"
+    },
+    "hzip": {
+      "public": "sufficientgoalunderstanding",
+      "source": "kant-1784"
+    },
+    "ua": {
+      "public": "presentspropertydefinition",
+      "source": "kant-1784"
+    },
+    "ub": {
+      "public": "quotesutterance",
+      "source": "kant-1784"
+    },
+    "uc": {
+      "public": "assertsdescribedcontent",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile93。",
+    "11関係は既存の採用済み意味規約の型・引数・意味を保つ一般語であり、特定文章の主張を一語化しない。",
+    "引用の宛先は文書・箇所・文脈への参照であり、原文が特定の実在人物を名指したとは扱わない。",
+    "本文の定義・参照・引用を合成して接続する。有限検査を意味同値や全領域の証明に置き換えない。"
+  ]
+}
