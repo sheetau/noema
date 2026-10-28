@@ -1,0 +1,126 @@
+{
+  "status": "optional_activity_role_visible_profile",
+  "document": "examples/v016/activity-role-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "methodologicalactivityrole": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "participation",
+        "context"
+      ],
+      "meaning_ja": "roleが、participationの閉じた関係記述で主体・活動・適用状況を指定する活動上の立場であるという文脈上の対応。記述は誰がどの活動を担う立場かを定め、実行中の活動だけでなく企図された活動にも適用できる。立場の同定から現実の参加者や活動の存在、実行済み、制度上の職位や権限を導かない。役割を担う個人と役割そのものを区別し、引用した関係を実行しない。"
+    },
+    "ordinaryprocedurestandard": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "standard",
+        "procedure",
+        "context"
+      ],
+      "meaning_ja": "standardが、procedureの閉じた記述で主体・活動ごとに指定する性質又は手続きを、同じ文脈で通常どの程度行うかを比較するための基準であるという対応。対象手続きと文脈を保ち、比較する結果を見て基準を変えない。基準の存在から手続きの実行、成功、完全性、数値による尺度や通常以上という結論を導かない。基準より上か下か、差が大きいかは別に述べ、引用した手続きを実行しない。"
+    }
+  },
+  "public_contracts": {
+    "methodologicalactivityrole": {
+      "arguments": [
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "participation",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "役割を担う主体・活動、引用された手続き、適用文脈の同一性を保つ。",
+        "参照対象の同定、役割の現実成立、実際の実行、程度比較、規範的要求を区別する。"
+      ]
+    },
+    "ordinaryprocedurestandard": {
+      "arguments": [
+        {
+          "role": "standard",
+          "sort": "individual"
+        },
+        {
+          "role": "procedure",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "役割を担う主体・活動、引用された手続き、適用文脈の同一性を保つ。",
+        "参照対象の同定、役割の現実成立、実際の実行、程度比較、規範的要求を区別する。"
+      ]
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile81。特定の原文や人物を原始語にしない。",
+    "方法上の活動役割と通常程度の基準を記述する一般関係であり、原文の比較対象・手続き・程度や要求の内容は本文で合成する。",
+    "語彙の構文・型・綴り検査は意味判断、引用した内容の実行、実SVGからの復号とは別である。"
+  ]
+}
