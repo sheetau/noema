@@ -1647,7 +1647,11 @@ def source_pins(*,include_outputs=True):
         SOURCE,BRIDGE,profile.LIBRARY,profile.BASIS,profile.MANIFEST,*READINGS,*REVIEWS,
         'scripts/seventh_section_visible_profile.py','scripts/seventh_section_visible_profile_contracts.py',
         'scripts/check_einstein_seventh_section_visible.py','scripts/visible_seventh_section_visible_collection.py',
-        'tests/test_seventh_section_visible.py','docs/einstein-seventh-section-visible-v1.md'}
+        'tests/test_seventh_section_visible.py','tests/test_seventh_section_physics_visible.py',
+        'scripts/check_axial_time_condition.py','scripts/check_light_time_expansion.py',
+        'scripts/check_rod_geometry.py','scripts/check_rod_measurements.py',
+        'scripts/check_comoving_labels.py','scripts/check_moving_light_trip.py','scripts/check_rod_comparison.py',
+        'docs/einstein-seventh-section-visible-v1.md'}
     paths.update(catalogs()['einstein-1905'].source_sha256)
     for review in REVIEWS:
         record=author.read(review);validate_hashes(ROOT,record['source_sha256']);paths.update(record['source_sha256'])
