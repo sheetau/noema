@@ -1238,7 +1238,8 @@ def _source_pins(*,include_outputs=True):
         'scripts/early_individual_reference_roles.py','scripts/early_text_references.py',
         'scripts/visible_early_visible_collection.py','tests/test_early_visible.py',
         'tests/test_early_individual_reference_roles.py','tests/test_early_text_references.py',
-        'data/early-text-anchors-v1.json','data/early-individual-reference-reading-v1.json','docs/einstein-early-visible-v1.md'}
+        'data/early-text-anchors-v1.json','data/early-individual-reference-reading-v1.json','docs/einstein-early-visible-v1.md',
+        'scripts/check_charge_transport_current.py','scripts/check_current_distribution.py','scripts/check_electric_response.py','scripts/constructed_tokenizer_scope.py','tests/test_constructed_tokenizer_scope.py','tests/test_early_presentation_visible.py','tests/test_early_semantics_visible.py'}
     for mod in (opening_profile,front_profile,profile):
         paths.update((mod.LIBRARY,mod.BASIS,mod.MANIFEST))
         stem=mod.__name__.replace('.','/')
