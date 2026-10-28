@@ -1,0 +1,465 @@
+{
+  "status": "optional_force_interpretation_visible_profile",
+  "document": "examples/v016/force-interpretation-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "directedcomparisontrial": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "trial",
+        "first",
+        "second",
+        "frame",
+        "event",
+        "context"
+      ],
+      "meaning_ja": "第一対象から第二対象への作用と両者の距離を比較する同じ試行の割当。逆方向や別の出来事を同一試行に混ぜない。"
+    },
+    "baseunitdimensions": {
+      "parameters": [
+        "individual",
+        "number",
+        "number",
+        "number",
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "unit",
+        "length",
+        "mass",
+        "time",
+        "scale",
+        "context"
+      ],
+      "meaning_ja": "同じ文脈でunitの量種と尺度を、長さ・質量・時間の独立した基準によって定める単位規約。length/mass/timeはそれぞれの次元指数で、unitの一単位は基準のm^length kg^mass s^timeのscale倍である。基準の長さは校正された物差しによる距離、時間は校正された時計の経過、質量は機械的作用に対する慣性の量として同定する。基準名だけの文字列比較ではなく、同じ基準へ比較・移換できる尺度の指定である。正の尺度は合成側で要求する。原点の移動、対数量、単位変更による物理量の変化は含まない。本文の歴史的なcm/Dynを比較するための基準であり、現代の特定の標準器や定義定数を原著に追加しない。"
+    },
+    "pointchargecarrier": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "body",
+        "context"
+      ],
+      "meaning_ja": "bodyは同じ文脈で、電気的作用の強さと極性を担う電気量を一つの位置へ集中させて記述する点状担体の理想化である。内部の空間的な広がりと多極構造をこの記述で分解せず、電荷と位置を同じ対象に帰属させる。座標点そのものや電気量という数値を物体と同一視しない。対象の位置・量の値・単位・作用は別に接続する。現代の特定粒子種、点電荷の実在や自己場の正則性、試行の実行を主張しない。"
+    },
+    "unitpositionassignment": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "body",
+        "frame",
+        "event",
+        "lengthunit",
+        "timeunit",
+        "point",
+        "context"
+      ],
+      "meaning_ja": "同じbodyのeventにおける位置と時刻を、frameの明示した長さ・時間単位でpointの四座標へ対応させる物理的な位置割当。三座標はその長さ単位、時刻はその時間単位を用いる。同じ出来事を別単位で記述する場合は数値を換算し、別系の数値座標を等置しない。電気量の校正では同じ試行で比較する対象の電荷位置を追跡し、別の物体の点や別時点の位置を混ぜない。点状理想化は別のeisqcで要求し、位置割当だけから対象の内部構造を消去しない。実測済みを意味しない。"
+    },
+    "directedelectricforcerecord": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "record",
+        "trial",
+        "source",
+        "target",
+        "frame",
+        "event",
+        "unit",
+        "force",
+        "context"
+      ],
+      "meaning_ja": "recordが同じtrialで、sourceからtargetへ、frameのeventにおいて働く電気的な機械力の寄与を、unitの三成分forceとして記述するという作用の帰属。力は同じ状態での運動量変化への寄与又はそれを釣り合わせる機械的作用として同定する基礎量である。作用する側と受ける側を区別し、重力や支持力を加えた合力、逆向きの反作用、source自身に働く力を代入しない。電気量の極性・尺度と同じ物理的規約を用いるが、数値比例だけではこの帰属を認定しない。仮定上の結果も許し、実行済みの標識ではない。"
+    },
+    "definitionbasedclaim": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "definition",
+        "claim",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "authorがnodeにおいて、scopeで既に用いているdefinitionの規約に従ってclaimを述べるという定義参照の提示。定義の内容とその適用結果は別々の閉じた内容として保持する。新しい定義をここで作ること、経験的な証拠だけを根拠にすること、引用の実行や推論の自動証明とは区別する。対象・単位・条件と結果の合成は引用内容の側で明示し、基本関係へ文全体の物理的な真偽を隠さない。"
+    },
+    "canwordcontent": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "wording",
+        "target",
+        "interpretation",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "指定された言葉による記述の仕方wordingを用いて、同じscopeのtargetの式又は内容を、interpretationの対象・量・条件・単位と役割対応の下で述べることができる。数式の記号を自然言語の物理的な役割へ展開するような記述可能性を含む。許される近似や留保は当該の記述に保ち、それを落とした厳密な同値の保証とはしない。語の見た目、両内容がたまたま真であること、実際の発話完了だけでは成立しない。ここでは本文で指示する記述の仕方を引数にし、内容を実行したり同義性を自動判定したりしない。言い方の個数・順序、著者がその可能性を主張することは別に合成する。"
+    }
+  },
+  "public_contracts": {
+    "directedcomparisontrial": {
+      "arguments": [
+        {
+          "role": "trial",
+          "sort": "individual"
+        },
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・試行・系・出来事・単位と提示文脈を保持する。",
+        "校正の条件、原理からの推論、定義に基づく主張、式の言葉による解釈を本文で合成する。"
+      ]
+    },
+    "baseunitdimensions": {
+      "arguments": [
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "length",
+          "sort": "number"
+        },
+        {
+          "role": "mass",
+          "sort": "number"
+        },
+        {
+          "role": "time",
+          "sort": "number"
+        },
+        {
+          "role": "scale",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・試行・系・出来事・単位と提示文脈を保持する。",
+        "校正の条件、原理からの推論、定義に基づく主張、式の言葉による解釈を本文で合成する。"
+      ]
+    },
+    "pointchargecarrier": {
+      "arguments": [
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・試行・系・出来事・単位と提示文脈を保持する。",
+        "校正の条件、原理からの推論、定義に基づく主張、式の言葉による解釈を本文で合成する。"
+      ]
+    },
+    "unitpositionassignment": {
+      "arguments": [
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "lengthunit",
+          "sort": "individual"
+        },
+        {
+          "role": "timeunit",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・試行・系・出来事・単位と提示文脈を保持する。",
+        "校正の条件、原理からの推論、定義に基づく主張、式の言葉による解釈を本文で合成する。"
+      ]
+    },
+    "directedelectricforcerecord": {
+      "arguments": [
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "trial",
+          "sort": "individual"
+        },
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "frame",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "unit",
+          "sort": "individual"
+        },
+        {
+          "role": "force",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "number"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・試行・系・出来事・単位と提示文脈を保持する。",
+        "校正の条件、原理からの推論、定義に基づく主張、式の言葉による解釈を本文で合成する。"
+      ]
+    },
+    "definitionbasedclaim": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "definition",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・試行・系・出来事・単位と提示文脈を保持する。",
+        "校正の条件、原理からの推論、定義に基づく主張、式の言葉による解釈を本文で合成する。"
+      ]
+    },
+    "canwordcontent": {
+      "arguments": [
+        {
+          "role": "wording",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "interpretation",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・試行・系・出来事・単位と提示文脈を保持する。",
+        "校正の条件、原理からの推論、定義に基づく主張、式の言葉による解釈を本文で合成する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "zoh": "directedcomparisontrial",
+    "eisqb": "baseunitdimensions",
+    "eisqc": "pointchargecarrier",
+    "eisqd": "unitpositionassignment",
+    "eisqe": "directedelectricforcerecord",
+    "eisql": "definitionbasedclaim",
+    "eisqo": "canwordcontent"
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持し、採用済み7規約を任意profile72へ公開する。",
+    "有向試行の作用元と受け手を区別し、電気的寄与を合力や反作用へ置き換えない。",
+    "点電荷の理想化は、第二担体の点性、粒子の実在、試行の実施を含意しない。",
+    "長さ・質量・時間の次元と尺度を保持し、本文のcm・Dynを現代SIの定数へ置き換えない。",
+    "静止と瞬間静止、校正出来事と評価出来事、校正座標と場の座標は本文で区別する。",
+    "引用した定義や内容を実行しない。定義適用の帰属は、主張の真理や推論の自動認定ではない。",
+    "言葉で述べる可能性を、留保を除いた厳密同値や発話済みと同一視しない。",
+    "型付き参照の規約は親profileを継承し、役割の成立・存在・唯一性は取得だけでは保証しない。"
+  ]
+}
