@@ -737,7 +737,8 @@ def _source_pins(*,include_outputs=True):
         'scripts/tenth_closing_reference_roles.py','scripts/check_einstein_tenth_closing_visible.py',
         'scripts/visible_tenth_closing_visible_collection.py','tests/test_tenth_closing_visible.py',
         'tests/test_tenth_closing_reference_roles.py','tests/test_closing_function_reference_visible_profile.py',
-        'data/tenth-closing-text-anchors-v1.json','docs/einstein-tenth-closing-visible-v1.md'}
+        'data/tenth-closing-text-anchors-v1.json','docs/einstein-tenth-closing-visible-v1.md',
+        'tests/test_tenth_closing_semantics_visible.py'}
     paths.update(catalogs()['einstein-1905'].source_sha256)
     for review in REVIEWS:
         record=author.read(review);validate_hashes(ROOT,record['source_sha256']);paths.update(record['source_sha256'])
