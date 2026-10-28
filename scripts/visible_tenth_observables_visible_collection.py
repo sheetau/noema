@@ -1,10 +1,10 @@
-"""Read tenth-observables collections with optional profile 83."""
-from scripts.energy_reference_visible_profile import EnergyReferenceVisibleVocabulary
+"""Read tenth-observables collections with optional profile 84."""
+from scripts.tenth_observables_visible_profile import TenthObservablesVisibleVocabulary
 from scripts.visible_collection import compile_collection as _compile,decode_collection as _decode,iter_collection_volumes
 
 
-def compile_collection(document,label,**options):return _compile(document,label,EnergyReferenceVisibleVocabulary(),**options)
-def decode_collection(pages,**options):return _decode(pages,EnergyReferenceVisibleVocabulary(),**options)
+def compile_collection(document,label,**options):return _compile(document,label,TenthObservablesVisibleVocabulary(),**options)
+def decode_collection(pages,**options):return _decode(pages,TenthObservablesVisibleVocabulary(),**options)
 
 
 def main(argv=None):
@@ -17,7 +17,7 @@ def main(argv=None):
     cli=argparse.ArgumentParser(description=__doc__);sub=cli.add_subparsers(dest='command',required=True)
     r=sub.add_parser('render');r.add_argument('source',type=Path);r.add_argument('directory',type=Path);r.add_argument('--label',nargs='+',required=True)
     d=sub.add_parser('decode');d.add_argument('sources',type=Path,nargs='+')
-    args=cli.parse_args(argv);v=EnergyReferenceVisibleVocabulary()
+    args=cli.parse_args(argv);v=TenthObservablesVisibleVocabulary()
     try:
         if args.command=='render':
             doc=parse(args.source.read_text(encoding='utf-8'))
