@@ -1,0 +1,938 @@
+{
+  "status": "optional_agency_inquiry_visible_profile",
+  "document": "examples/v016/agency-inquiry-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "humanperson": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person"
+      ],
+      "meaning_ja": "対象が人である。理解力・勇気・社会的地位の有無を人であることの条件にしない。"
+    },
+    "ownunderstandingfaculty": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "faculty",
+        "person",
+        "situation"
+      ],
+      "meaning_ja": "状況において、その理解能力はその人自身の能力である。他者の能力を使えることとは区別する。理解能力の十分さまでは主張しない。"
+    },
+    "understandinguse": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "faculty",
+        "act",
+        "situation"
+      ],
+      "meaning_ja": "状況において、その人がその能力を使う行為が、その行為個体として成立する。所有だけ、能力の十分さだけ、実行可能性だけでは成立しない。"
+    },
+    "guidesparticularact": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "guide",
+        "person",
+        "act",
+        "situation"
+      ],
+      "meaning_ja": "状況において、指導者がその人のその行為の進め方を指導している。その場にいること、別の行為を指導すること、過去に教えたことだけでは成立しない。"
+    },
+    "choosablemethodexecution": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "plan",
+        "situation"
+      ],
+      "meaning_ja": "その人がその状況で、その方法を選択して実行できる。方法の記述が存在するだけでは成立しない。"
+    },
+    "envisagedmethodoutcome": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "plan",
+        "start",
+        "outcome"
+      ],
+      "meaning_ja": "開始状況でその人が方法を実行した場合に、結果状況が評価対象の結果として想定される。想定結果の範囲は文脈の前提として別途定める。"
+    },
+    "changeprocessendpoints": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "change",
+        "before",
+        "after"
+      ],
+      "meaning_ja": "その変化過程において、先行状況から後行状況へ移る。任意の二状況を並べることや因果関係を主張することとは区別する。"
+    },
+    "selectedassessmentoutcome": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "plan",
+        "start",
+        "outcome"
+      ],
+      "meaning_ja": "その人・方法・開始状況について、この読解で能力の評価対象に採った結果。全ての可能な結果を含むとは限らない。採用基準は文脈の前提であり、原文が一意に指定した基準とは扱わない。"
+    },
+    "facultyopportunitycandidate": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "基準状況",
+        "候補状況"
+      ],
+      "meaning_ja": "自立的な理解力使用を評価するため、その本人の基準状態に対して取る機会の候補。実際の履歴の断言ではなく、能力の文脈上の評価範囲である。"
+    },
+    "facultybasisretained": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "基準状況",
+        "候補状況"
+      ],
+      "meaning_ja": "本人の理解・習慣・決意・勇気など、当該行使能力の基盤として採る状態が基準から保持されていること。結論となる能力そのものの同一性を仮定せず、将来の習得後の状態で基準を置換しない。"
+    },
+    "externalexerciseopportunity": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "候補状況"
+      ],
+      "meaning_ja": "自立的使用を試みる外的な機会が与えられること。本人の技能・決意・成功・規範上の許可の成立とは別である。"
+    },
+    "facultyopportunitypriority": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "基準状況",
+        "優先候補",
+        "劣後候補"
+      ],
+      "meaning_ja": "同じ本人と基準において、行使能力を評価する通常性の厳密な優先関係。成功結果を見て通常性を選び直すことは正当化しない。"
+    },
+    "existingbasisexercisemethod": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "方法",
+        "基準状況",
+        "実行状況"
+      ],
+      "meaning_ja": "自立的理解力使用の評価に採る、既有の判断基盤を行使する方法の範囲。別の基盤を先に習得することを要する準備計画を、その基準時点での行使能力の方法に数えない。考える行為そのものや努力を排除する条件ではない。範囲はNoemaの準備履歴構成などで具体化できる文脈条件であり、本文から特定の測定履歴を捏造しない。"
+    },
+    "existingbasisclassificationknown": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "方法",
+        "基準状況",
+        "実行状況"
+      ],
+      "meaning_ja": "同じ方法についてhzsgの区分を判定できること。範囲外という既知の判定と、履歴や判断基準が未確定であることを区別する。"
+    },
+    "attributablepersonaldefect": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "本人",
+        "本人の状態を指定する性質記述",
+        "評価状況"
+      ],
+      "meaning_ja": "指定状況の評価において、本人について記述された状態が、その本人の選択や不作為に関する落ち度として本人に帰せられる。単に本人の特徴が原因であること、未履行であること、誰かが非難したという発話記録とは区別する。法的制裁、故意、唯一の原因という条件は含めない。一般的な帰責の基本関係として採り、正当な帰責基準の全理論をこの宣言で与えたとはしない。状態の実際の成立は呼出側で別に要求する。"
+    },
+    "undergoeschangeprocess": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "process",
+        "earlier",
+        "later"
+      ],
+      "meaning_ja": "その人が、その前後状況を結ぶ変化過程において、状態変化を受ける対象である。同時に起きた別人の過程、単なる目撃、過程の原因であることとは区別する。"
+    },
+    "constitutivepropertytransition": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "対象",
+        "変化過程",
+        "前状態の性質記述",
+        "後状態の性質記述",
+        "先行状況",
+        "後行状況"
+      ],
+      "meaning_ja": "指定した同じ対象について、前状態の性質から後状態の性質へ移ることが、この前後状況を結ぶ同じ変化過程の構成内容である。別の性質の変化、同時に起きた別の過程、前後の状態がたまたま成立しただけの場合とは区別する。前後の性質は閉じたNoemaの記述で指定する。外部の先行原因や本人の意図的な行為を要求しない。記述の内容が両端で成立するか、対象がその過程に関わるかは、合成定義で別に検査する。"
+    },
+    "presentspropertyquestion": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              }
+            ]
+          },
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "question_description",
+        "context"
+      ],
+      "meaning_ja": "著者が指定箇所に、層1の記述で指定された性質記述型の質問を提示する。表題内の問いも扱い、著者が現実の聞き手に回答を要求した出来事や、答えの正しさは含めない。"
+    },
+    "conceptualconditionexplanation": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "reference",
+        "candidate",
+        "context"
+      ],
+      "meaning_ja": "同じ課題文脈で、候補の性質記述が参照する概念の構成・成立条件を明らかにする説明を与える。外延が偶然同じ実例一覧や未説明の別名だけでは満たさない。記述の定義を展開した説明は使える。著者が提示したという事実、実際の読者の理解、新規性、唯一の正解であることとは区別する。"
+    }
+  },
+  "public_contracts": {
+    "humanperson": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "ownunderstandingfaculty": {
+      "arguments": [
+        {
+          "role": "faculty",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "understandinguse": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "faculty",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "guidesparticularact": {
+      "arguments": [
+        {
+          "role": "guide",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "choosablemethodexecution": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "plan",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "envisagedmethodoutcome": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "plan",
+          "sort": "individual"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "changeprocessendpoints": {
+      "arguments": [
+        {
+          "role": "change",
+          "sort": "individual"
+        },
+        {
+          "role": "before",
+          "sort": "situation"
+        },
+        {
+          "role": "after",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "selectedassessmentoutcome": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "plan",
+          "sort": "individual"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "facultyopportunitycandidate": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "基準状況",
+          "sort": "situation"
+        },
+        {
+          "role": "候補状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "facultybasisretained": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "基準状況",
+          "sort": "situation"
+        },
+        {
+          "role": "候補状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "externalexerciseopportunity": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "候補状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "facultyopportunitypriority": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "基準状況",
+          "sort": "situation"
+        },
+        {
+          "role": "優先候補",
+          "sort": "situation"
+        },
+        {
+          "role": "劣後候補",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "existingbasisexercisemethod": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "方法",
+          "sort": "individual"
+        },
+        {
+          "role": "基準状況",
+          "sort": "situation"
+        },
+        {
+          "role": "実行状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "existingbasisclassificationknown": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "方法",
+          "sort": "individual"
+        },
+        {
+          "role": "基準状況",
+          "sort": "situation"
+        },
+        {
+          "role": "実行状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "attributablepersonaldefect": {
+      "arguments": [
+        {
+          "role": "本人",
+          "sort": "individual"
+        },
+        {
+          "role": "本人の状態を指定する性質記述",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "評価状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "undergoeschangeprocess": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "earlier",
+          "sort": "situation"
+        },
+        {
+          "role": "later",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "constitutivepropertytransition": {
+      "arguments": [
+        {
+          "role": "対象",
+          "sort": "individual"
+        },
+        {
+          "role": "変化過程",
+          "sort": "individual"
+        },
+        {
+          "role": "前状態の性質記述",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "後状態の性質記述",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "先行状況",
+          "sort": "situation"
+        },
+        {
+          "role": "後行状況",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "presentspropertyquestion": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "question_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": {
+                    "kind": "function",
+                    "parameters": [
+                      "individual"
+                    ],
+                    "result": "content"
+                  }
+                }
+              ]
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    },
+    "conceptualconditionexplanation": {
+      "arguments": [
+        {
+          "role": "reference",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "candidate",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・方法・評価基準・候補状況を保持する。能力、行使機会、実行と成功を区別する。",
+        "性質と質問の閉じた記述は型と層を保つ。提示、説明、帰責の関係から内容の真理を導かない。"
+      ]
+    }
+  },
+  "source_relations": {
+    "aa": {
+      "public": "humanperson",
+      "source": "kant-1784"
+    },
+    "ab": {
+      "public": "ownunderstandingfaculty",
+      "source": "kant-1784"
+    },
+    "ac": {
+      "public": "understandinguse",
+      "source": "kant-1784"
+    },
+    "ad": {
+      "public": "guidesparticularact",
+      "source": "kant-1784"
+    },
+    "ae": {
+      "public": "choosablemethodexecution",
+      "source": "kant-1784"
+    },
+    "af": {
+      "public": "envisagedmethodoutcome",
+      "source": "kant-1784"
+    },
+    "ag": {
+      "public": "changeprocessendpoints",
+      "source": "kant-1784"
+    },
+    "ap": {
+      "public": "selectedassessmentoutcome",
+      "source": "kant-1784"
+    },
+    "hzsc": {
+      "public": "facultyopportunitycandidate",
+      "source": "kant-1784"
+    },
+    "hzsd": {
+      "public": "facultybasisretained",
+      "source": "kant-1784"
+    },
+    "hzse": {
+      "public": "externalexerciseopportunity",
+      "source": "kant-1784"
+    },
+    "hzsf": {
+      "public": "facultyopportunitypriority",
+      "source": "kant-1784"
+    },
+    "hzsg": {
+      "public": "existingbasisexercisemethod",
+      "source": "kant-1784"
+    },
+    "hzsh": {
+      "public": "existingbasisclassificationknown",
+      "source": "kant-1784"
+    },
+    "hziq": {
+      "public": "attributablepersonaldefect",
+      "source": "kant-1784"
+    },
+    "la": {
+      "public": "undergoeschangeprocess",
+      "source": "kant-1784"
+    },
+    "hzid": {
+      "public": "constitutivepropertytransition",
+      "source": "kant-1784"
+    },
+    "hzib": {
+      "public": "presentspropertyquestion",
+      "source": "kant-1784"
+    },
+    "hzv6": {
+      "public": "conceptualconditionexplanation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile90。",
+    "人・理解力・方法・状態変化・概念説明についての一般関係であり、特定文書の人物・箇所・主張を原始語にしない。",
+    "能力評価の範囲と通常性は明示した解釈の入力である。有限診断を全領域の証明へ広げない。",
+    "既存の能力定義・量化・質問・引用を合成する。著者や表題の位置は本文の参照定義で接続する。"
+  ]
+}
