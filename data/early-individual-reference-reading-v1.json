@@ -1,0 +1,306 @@
+{
+  "schema": "noema-early-individual-reference-reading-1",
+  "status": "explicit_referent_descriptions_not_full_sentence_review",
+  "source_references": {
+    "eisbo": {
+      "symbol": "eisbo",
+      "kind": "primitive",
+      "meaning_basis": "data/relativity-conjecture-basis-v1.json",
+      "arguments": [],
+      "meaning_ja": "ここで一次の量と呼ぶ展開の小量への参照。系又は物体の相対的な運動速度を光の伝播速度の尺度で無次元化した比として読む。同じ運動方向を保って速度の尺度を小さくし、全適用方向で定数項・一次項を比較する規約である。零速度の一点だけの比較ではなく、光源の運動からの独立性という次の仮定をこの規約から導かない。",
+      "declaration": {
+        "kind": "primitive",
+        "name": "eisbo",
+        "parameters": [],
+        "result": "individual"
+      },
+      "declaration_document": "examples/v014/einstein-relativity-conjecture.noema"
+    },
+    "eisbx": {
+      "symbol": "eisbx",
+      "kind": "primitive",
+      "meaning_basis": "data/relativity-conjecture-basis-v1.json",
+      "arguments": [],
+      "meaning_ja": "原文のErdeが指す地球。特定の実験装置・観測者や太陽との静止を補わず、地球の運動の内容は同じ対象へ別に結ぶ。",
+      "declaration": {
+        "kind": "primitive",
+        "name": "eisbx",
+        "parameters": [],
+        "result": "individual"
+      },
+      "declaration_document": "examples/v014/einstein-relativity-conjecture.noema"
+    },
+    "eisby": {
+      "symbol": "eisby",
+      "kind": "primitive",
+      "meaning_basis": "data/relativity-conjecture-basis-v1.json",
+      "arguments": [],
+      "meaning_ja": "原文が引用符付きのLichtmediumとして取り上げる、光の伝達を担うと仮定される媒体への談話上の参照。光の現象を媒介すると想定する対象であり、説明のない空間名や地球そのものとはしない。その物理的実在や静止する絶対空間はこの参照だけで断言しない。",
+      "declaration": {
+        "kind": "primitive",
+        "name": "eisby",
+        "parameters": [],
+        "result": "individual"
+      },
+      "declaration_document": "examples/v014/einstein-relativity-conjecture.noema"
+    }
+  },
+  "role_definitions": {
+    "eisbo": {
+      "kind": "definition",
+      "name": "earlyroleeisbo",
+      "parameters": [
+        {
+          "name": "candidate",
+          "sort": "individual"
+        },
+        {
+          "name": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "signalvelocityratioparameter",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "candidate"
+              },
+              {
+                "kind": "quote",
+                "body": {
+                  "kind": "function_ref",
+                  "symbol": "radiationpropagation"
+                }
+              },
+              {
+                "kind": "variable",
+                "name": "context"
+              }
+            ]
+          },
+          {
+            "kind": "and",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "directionpreservingscalelimit",
+                "arguments": [
+                  {
+                    "kind": "variable",
+                    "name": "candidate"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "context"
+                  }
+                ]
+              },
+              {
+                "kind": "call",
+                "symbol": "completeparameterdirections",
+                "arguments": [
+                  {
+                    "kind": "variable",
+                    "name": "candidate"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "context"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "eisbx": {
+      "kind": "definition",
+      "name": "earlyroleeisbx",
+      "parameters": [
+        {
+          "name": "candidate",
+          "sort": "individual"
+        },
+        {
+          "name": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "presentationholds",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "earlyearthtoken",
+                "arguments": []
+              },
+              {
+                "kind": "variable",
+                "name": "context"
+              }
+            ]
+          },
+          {
+            "kind": "and",
+            "arguments": [
+              {
+                "kind": "call",
+                "symbol": "nameapplies",
+                "arguments": [
+                  {
+                    "kind": "call",
+                    "symbol": "earlyearthtoken",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "call",
+                    "symbol": "earlyearthdesignation",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "candidate"
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "context"
+                  }
+                ]
+              },
+              {
+                "kind": "not",
+                "arguments": [
+                  {
+                    "kind": "equal",
+                    "arguments": [
+                      {
+                        "kind": "call",
+                        "symbol": "earlyearthdesignation",
+                        "arguments": []
+                      },
+                      {
+                        "kind": "variable",
+                        "name": "candidate"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "eisby": {
+      "kind": "definition",
+      "name": "earlyroleeisby",
+      "parameters": [
+        {
+          "name": "candidate",
+          "sort": "individual"
+        },
+        {
+          "name": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "body": {
+        "kind": "and",
+        "arguments": [
+          {
+            "kind": "call",
+            "symbol": "hypothesizedpropagationmedium",
+            "arguments": [
+              {
+                "kind": "variable",
+                "name": "candidate"
+              },
+              {
+                "kind": "quote",
+                "body": {
+                  "kind": "function_ref",
+                  "symbol": "radiationpropagation"
+                }
+              },
+              {
+                "kind": "variable",
+                "name": "context"
+              }
+            ]
+          },
+          {
+            "kind": "not",
+            "arguments": [
+              {
+                "kind": "equal",
+                "arguments": [
+                  {
+                    "kind": "call",
+                    "symbol": "eisbx",
+                    "arguments": []
+                  },
+                  {
+                    "kind": "variable",
+                    "name": "candidate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "reference_anchors": {
+    "eisbo": "earlyfirstordertoken",
+    "eisbx": "earlyearthtoken",
+    "eisby": "earlymediumtoken"
+  },
+  "new_visible_designation_forms": {
+    "earlyearthdesignation": "Erde"
+  },
+  "designation_anchors": {
+    "earlyearthdesignation": [
+      "earlyearthtoken",
+      1
+    ]
+  },
+  "observations": [
+    "No new primitive represents eifp, eifl, eigr or any complete source sentence.",
+    "The original 137 source definitions, quoted detection goal, conjectural status and order restriction remain separately composed.",
+    "The new constraints explain a referent; opaque lookup must not establish its role, physical existence or any source claim.",
+    "The ratio, limiting direction policy and complete range are separate interpretation inputs; no finite fixture proves full physical coverage.",
+    "Erde is an identifying form of a named individual, not a replacement for the physical motion content.",
+    "The Earth candidate is the target of the retained proper designation Erde; it is distinct from that designation.",
+    "The medium candidate is additionally distinct from the Earth and keeps the same referent in the detection goal and theoretical dispensability claim.",
+    "The nonnegative speed ratio records magnitude; each direction is held separately and all applicable directions remain in scope.",
+    "A fixed denominator scale within the expansion convention does not assert source-independent physical propagation speed."
+  ],
+  "source_identifier_annotations_modified": false,
+  "document_integration_credit": 0,
+  "source_sha256": {
+    "data/relativity-conjecture-basis-v1.json": "a71eb1c2f2862fe105e5f9a1308feaacb70232f88600054869a0e9ede766b9ee",
+    "data/relativity-conjecture-reading-v1.json": "b214142ade1be71fa07e2ebb222b958987fd7564f8a648ff8049edf7cfbc4540",
+    "data/ether-dispensability-basis-v1.json": "4d2cc63e4721597f7fef5a3a8fd14e70d79c2ea596fddcb7ced001316848386c",
+    "data/early-text-anchors-v1.json": "e63f88d5ffdf243f73041df25ce7fd0fb8605f9888dabf4b5294fac3a366db7b",
+    "scripts/observer_time_contracts.py": "89e94ec7c7158599ff546a59bbe0c3bc784a674656823a6bbb6239a581b9f685",
+    "reports/frontmatter-reference-visible-profile-v1.json": "9b191f581bfa2b631c213cb04b2276b4425cf8457ca662336699fa19da07bf38",
+    "scripts/early_reference_visible_profile_contracts.py": "965c6723a4b4532f837e960037f0aff29c0790eb2b8c31455fe45b69cae507a2",
+    "scripts/early_individual_reference_roles.py": "3514a4fb23170ffcb4f88582cf5d21e47179026d948c600e826f1df147ec63f7",
+    "tests/test_early_individual_reference_roles.py": "1f2843291f324cf838df269dc1a586710193eb83a3188955b29c829947622c86",
+    "reports/early-reference-visible-profile-v2.json": "9c3dc1c86e7bf8344309569ef3f2669e4162e3a90df057a4d6c8036d1ee3ae56"
+  }
+}
