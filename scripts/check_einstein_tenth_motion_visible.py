@@ -3596,7 +3596,10 @@ def _source_pins(*,include_outputs=True):
         SOURCE,BRIDGE,profile.LIBRARY,profile.BASIS,profile.MANIFEST,*READINGS,*REVIEWS,
         'scripts/tenth_motion_visible_profile.py','scripts/tenth_motion_visible_profile_contracts.py',
         'scripts/check_einstein_tenth_motion_visible.py','scripts/visible_tenth_motion_visible_collection.py',
-        'tests/test_tenth_motion_visible.py','tests/test_tenth_motion_reference_profile.py',*DIAGNOSTIC_VALIDATORS,
+        'tests/test_tenth_motion_visible.py','tests/test_tenth_motion_reference_profile.py',
+        'tests/test_tenth_motion_physics_visible.py','tests/test_tenth_motion_reference_bindings.py',
+        'tests/test_tenth_motion_diagnostic_adapter.py','data/tenth-motion-visible-diagnostic-controls-v2.json',
+        'scripts/check_electron_comoving_equations_v2.py',*DIAGNOSTIC_VALIDATORS,
         'scripts/visible_pin_snapshot.py','tests/test_visible_pin_snapshot.py',
         'docs/einstein-tenth-motion-visible-v1.md'}
     paths.update(catalogs()['einstein-1905'].source_sha256)
