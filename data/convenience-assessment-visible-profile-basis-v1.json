@@ -1,0 +1,175 @@
+{
+  "status": "optional_convenience_assessment_visible_profile",
+  "document": "examples/v016/convenience-assessment-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "practicalgoalattainment": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "scene"
+      ],
+      "meaning_ja": "その人について、この仮定例で問題となる実用上の目的が満たされる。本人の思考・努力を目的達成の定義に織り込まない。対象の目的は解釈の前提として明示する。"
+    },
+    "contextualconvenienceburden": {
+      "parameters": [
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "burden",
+        "context"
+      ],
+      "meaning_ja": "この文脈で、本人の負担が「これほど便利」と評価する水準に収まるという基準。特定の数値、単位、別の状態との優劣を原文へ補わない。"
+    },
+    "convenienceassessmentperson": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "context"
+      ],
+      "meaning_ja": "便宜さについての一般的な評価をこの文脈で適用する人物の範囲。全人類を無条件に全称化せず、評価する範囲は明示した解釈の前提とする。"
+    },
+    "stateconveniencecandidate": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "state_description",
+        "context",
+        "case"
+      ],
+      "meaning_ja": "指定した状態の性質記述について、その状態にある場合の便宜さを評価するため、同じ本人と基準文脈で採用する仮定状況。対象の状態は閉じた性質記述で指定し、別の状態の候補へ自動的に交換しない。候補への採用だけでは記述された状態や目的の成立、低負担を認定せず、引用記述を実行しない。現実の履歴や別の評価の範囲とは区別し、未知の採用関係は補わない。"
+    }
+  },
+  "public_contracts": {
+    "practicalgoalattainment": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "scene",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "本人・対象状態の記述・基準文脈・仮定状況を保持する。状態の維持、目標達成、同じ方法の負担を合成で結ぶ。",
+        "目的・評価範囲・便宜さの基準は明示的な解釈入力であり、好意、現実の選択や実行とは区別する。"
+      ]
+    },
+    "contextualconvenienceburden": {
+      "arguments": [
+        {
+          "role": "burden",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "本人・対象状態の記述・基準文脈・仮定状況を保持する。状態の維持、目標達成、同じ方法の負担を合成で結ぶ。",
+        "目的・評価範囲・便宜さの基準は明示的な解釈入力であり、好意、現実の選択や実行とは区別する。"
+      ]
+    },
+    "convenienceassessmentperson": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "本人・対象状態の記述・基準文脈・仮定状況を保持する。状態の維持、目標達成、同じ方法の負担を合成で結ぶ。",
+        "目的・評価範囲・便宜さの基準は明示的な解釈入力であり、好意、現実の選択や実行とは区別する。"
+      ]
+    },
+    "stateconveniencecandidate": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "state_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "本人・対象状態の記述・基準文脈・仮定状況を保持する。状態の維持、目標達成、同じ方法の負担を合成で結ぶ。",
+        "目的・評価範囲・便宜さの基準は明示的な解釈入力であり、好意、現実の選択や実行とは区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "sj": {
+      "public": "practicalgoalattainment",
+      "source": "kant-1784"
+    },
+    "uk": {
+      "public": "contextualconvenienceburden",
+      "source": "kant-1784"
+    },
+    "um": {
+      "public": "convenienceassessmentperson",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile95。",
+    "3関係の型・引数・採用済み意味規約を保持する。源ujは特定状態の原始語を追加せず、一般候補関係へ既存bfの性質記述を渡す定義で表す。",
+    "本文の割合・原因・便宜さを一語化せず、既存のrj/rk/ul/unと方法・結果の条件を合成する。",
+    "候補の採用から引用した状態を実行せず、未指定入力を真偽の既定値で埋めない。有限検査は全領域の証明ではない。"
+  ]
+}
