@@ -1093,6 +1093,7 @@ def _source_pins(*,include_outputs=True):
         'scripts/check_einstein_tenth_mass_visible.py','scripts/visible_tenth_mass_visible_collection.py',
         'tests/test_tenth_mass_visible.py','tests/test_tenth_mass_reference_roles.py',
         'tests/test_tenth_mass_visible_profile.py',*DIAGNOSTIC_VALIDATORS,
+        'data/tenth-mass-visible-diagnostic-controls-v2.json','tests/test_tenth_mass_diagnostic_adapter.py','tests/test_tenth_mass_physics_visible.py',
         'docs/einstein-tenth-mass-visible-v1.md'}
     paths.update(catalogs()['einstein-1905'].source_sha256)
     for review in REVIEWS:
