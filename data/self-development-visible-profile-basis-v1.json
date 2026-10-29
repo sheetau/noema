@@ -1,0 +1,290 @@
+{
+  "status": "optional_self_development_visible_profile",
+  "document": "examples/v016/self-development-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "populationfewerthreshold": {
+      "parameters": [
+        "number",
+        "situation"
+      ],
+      "result": "number",
+      "arguments": [
+        "population_size",
+        "context"
+      ],
+      "meaning_ja": "この母集団の全人数と基準文脈で、少ないという数量評価に採る正の上限候補。原文の具体的な数値とはしない。総人数への依存を明示し、絶対人数基準や比率から得た人数基準を区別して設定できる。上限の適切さは別の解釈上の前提。"
+    },
+    "contextualcountpopulation": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "context"
+      ],
+      "meaning_ja": "この基準文脈で、段落末の少数者を数える対象範囲に入る個体。人であることはaaで別に要求し、成功者だけを選んだ標本や、仮定ごとに入れ替わる対象集合とはしない。"
+    },
+    "controlledbodybalance": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "act",
+        "point"
+      ],
+      "meaning_ja": "この同じ脚による移動中、本人の身体の姿勢・支持への荷重の移し方が制御され、均衡を保っている。単に転倒していないことや偶然支えられた結果だけとは区別する。具体的な力学条件・許容差・制御機構は未説明。"
+    },
+    "controlledfootplacement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "act",
+        "point"
+      ],
+      "meaning_ja": "この同じ移動中、本人の足の置き方や接地の更新が、行おうとする移動の方向・支持に沿って制御されている。毎瞬間足を動かしていることではなく、現在の配置や次の配置への移行を制御している。機構と誤差の尺度は未説明。"
+    },
+    "wholeintellectualprocesspoint": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "episode",
+        "last",
+        "point"
+      ],
+      "meaning_ja": "この完了点で記述する同じ知的活動の全過程の範囲に入る状況。失敗した判断の時点を選択的に除かない。準備や判断の間の時点も含む。"
+    },
+    "episodejudgmentpart": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "episode",
+        "point"
+      ],
+      "meaning_ja": "この状況で、この判断が同じ知的活動を構成する部分である。単に同時に行われる別の活動の判断とは区別する。活動の個体化と部分関係の基礎は未完。"
+    },
+    "countfocusalternatives": {
+      "parameters": [
+        "number",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "population_size",
+        "context"
+      ],
+      "meaning_ja": "この母集団の全人数と基準文脈で、数量の焦点に関連する比較条件の列。各要素は人数を受けて真偽を返す同じ型の条件であり、人数以外の性質や対象者は変更しない。予想する状況keとは異なり、確率や驚きは表さない。条件の選定根拠は解釈上の前提。"
+    }
+  },
+  "public_contracts": {
+    "populationfewerthreshold": {
+      "arguments": [
+        {
+          "role": "population_size",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "同じ全母集団・基準文脈・本人・活動・全過程を保持し、成功した部分だけを選ばない。",
+        "数量の比較条件は人数だけに作用し、身体描写と知的活動の対応を物理的同一性や真理一致にしない。"
+      ]
+    },
+    "contextualcountpopulation": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ全母集団・基準文脈・本人・活動・全過程を保持し、成功した部分だけを選ばない。",
+        "数量の比較条件は人数だけに作用し、身体描写と知的活動の対応を物理的同一性や真理一致にしない。"
+      ]
+    },
+    "controlledbodybalance": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ全母集団・基準文脈・本人・活動・全過程を保持し、成功した部分だけを選ばない。",
+        "数量の比較条件は人数だけに作用し、身体描写と知的活動の対応を物理的同一性や真理一致にしない。"
+      ]
+    },
+    "controlledfootplacement": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ全母集団・基準文脈・本人・活動・全過程を保持し、成功した部分だけを選ばない。",
+        "数量の比較条件は人数だけに作用し、身体描写と知的活動の対応を物理的同一性や真理一致にしない。"
+      ]
+    },
+    "wholeintellectualprocesspoint": {
+      "arguments": [
+        {
+          "role": "episode",
+          "sort": "individual"
+        },
+        {
+          "role": "last",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ全母集団・基準文脈・本人・活動・全過程を保持し、成功した部分だけを選ばない。",
+        "数量の比較条件は人数だけに作用し、身体描写と知的活動の対応を物理的同一性や真理一致にしない。"
+      ]
+    },
+    "episodejudgmentpart": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "episode",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ全母集団・基準文脈・本人・活動・全過程を保持し、成功した部分だけを選ばない。",
+        "数量の比較条件は人数だけに作用し、身体描写と知的活動の対応を物理的同一性や真理一致にしない。"
+      ]
+    },
+    "countfocusalternatives": {
+      "arguments": [
+        {
+          "role": "population_size",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": {
+          "kind": "function",
+          "parameters": [
+            "number"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ全母集団・基準文脈・本人・活動・全過程を保持し、成功した部分だけを選ばない。",
+        "数量の比較条件は人数だけに作用し、身体描写と知的活動の対応を物理的同一性や真理一致にしない。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h4h": {
+      "public": "populationfewerthreshold",
+      "source": "kant-1784"
+    },
+    "h4i": {
+      "public": "contextualcountpopulation",
+      "source": "kant-1784"
+    },
+    "h4v": {
+      "public": "controlledbodybalance",
+      "source": "kant-1784"
+    },
+    "h4w": {
+      "public": "controlledfootplacement",
+      "source": "kant-1784"
+    },
+    "h5a": {
+      "public": "wholeintellectualprocesspoint",
+      "source": "kant-1784"
+    },
+    "h5b": {
+      "public": "episodejudgmentpart",
+      "source": "kant-1784"
+    },
+    "h5v": {
+      "public": "countfocusalternatives",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile105。",
+    "7一般関係の採用済み型・引数・意味を保持し、局所参照h222d/h5f/h5tは文書内定義にする。",
+    "少数の正の上限と比較条件の適切さ、身体制御の機構、知的活動の個体化について元の解釈上の限界を保持する。",
+    "安定して立つこと、転倒しなかったこと、単なる同時性を、制御された移動や活動の構成部分と同一化しない。"
+  ]
+}
