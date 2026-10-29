@@ -1,0 +1,556 @@
+{
+  "status": "optional_role_commands_visible_profile",
+  "document": "examples/v016/role-commands-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "patternpracticeactivity": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "practice",
+        "pattern",
+        "point"
+      ],
+      "meaning_ja": "この活動は、指定された遂行の型を身につけ保つために反復して練習する性質を持つ。単にその型と似た動作、偶然の反復、説明を聞くだけとは区別する。現在の生起・参加者・熟達の達成は別に結ぶ。"
+    },
+    "militarydrillpattern": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "pattern",
+        "reference"
+      ],
+      "meaning_ja": "同じ基準で、この遂行の型は、号令への応答、隊形の動作、武器の扱いなど、軍務のための身体的教練に当たる。一般的な体操・算術の練習・実戦の成功そのものとは区別する。全種目の同時実施、特定の国の教範や兵器を指定しない。"
+    },
+    "instructedpaymenttransaction": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "reference",
+        "payer",
+        "transfer"
+      ],
+      "meaning_ja": "同じ基準と本人に対し、この支払指示で履行対象として指定する取引の活動記述に当たる。別件の贈与・自分への移動・要求と無関係な少額移転を代用しない。取引の同定は要求された対象・受取先・額等の文脈に従うが、その成立や正当な義務までは含意しない。特定の金額や税制を本文へ補わず、実行の成否で候補を選別しない。"
+    },
+    "religiousteachingrange": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "reference",
+        "teaching"
+      ],
+      "meaning_ja": "この基準の呼びかけで信仰の対象としている宗教的な教えの全範囲に属する。真だと解釈者が認めた教えや実際に受け入れられた教えだけを選ばず、無関係な日常の推測を対象にしない。特定の教派や原文にない個々の教義は供給しない。"
+    },
+    "teachingcontentdescription": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      },
+      "arguments": [
+        "teaching",
+        "reference"
+      ],
+      "meaning_ja": "同じ基準でこの教えが述べる内容の閉じた記述。表題や語形だけではなく、何が信じられるかの内容を保持する。記述の参照からその教えの真理や信仰の成立を導かない。"
+    },
+    "nonfactivecontentbelief": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "content",
+        "point"
+      ],
+      "meaning_ja": "この本人がこの状況で、記述された同じ内容を真として受け入れる信念を持つ。単に文を知ること、引用、賛成したふり、好ましいという感情、仮定としての採用とは区別する。内容の真理、証拠による正当化、他者との同意、疑いの全不在を要求せず、内容の脱引用はしない。宗教的な対象範囲は呼び出し側で指定する。"
+    },
+    "militaryinstitution": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "point"
+      ],
+      "meaning_ja": "この状況で、この制度的集団は政治的共同体の軍務を担う軍事組織である。単に武器を持つ集団、武装した警察、競技団体とは区別する。現に戦闘中であることやその政治的正当性を要求しない。"
+    },
+    "commissionedofficerrank": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "institution",
+        "point"
+      ],
+      "meaning_ja": "同じ軍事組織・状況の階級制度で、この役職は、兵卒・下士官とは区別される将校の任官階級に位置付く。単に他人へ号令できることや教練を指導した実績では足りない。特定の現代国家の階級表、現在の指揮行為、貴族身分、能力や任官の正当性は付けない。保持者と有効な任用は別に結ぶ。"
+    },
+    "publicrevenueinstitution": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "institution",
+        "point"
+      ],
+      "meaning_ja": "この状況で、この制度は領邦・国家の収入を管理する公的な財務行政の機関である。私人の家計、商店の売上管理、単なる金融会社とは区別する。特定の税制や収入源、行政の正当性は指定しない。"
+    },
+    "revenueadministrationrole": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "institution",
+        "point"
+      ],
+      "meaning_ja": "同じ財務行政機関のこの役職には、領邦・国家の収入の管理を担当する参事・官吏としての行政上の責務がある。個々の納付を窓口で受け取る人、私的な会計係、名誉称号だけとは区別する。唯一の長官・大臣であること、特定の階級や現在の徴収行為は指定しない。"
+    },
+    "directivealternativepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "utterance",
+        "speaker",
+        "recipient",
+        "negative_condition",
+        "positive_condition",
+        "point"
+      ],
+      "meaning_ja": "同じ発話で同じ話者が、この宛先への否定的指示で退ける行為に代えて何をするかとして、指定された肯定的内容を提示する。二つの記述は同じ宛先へ適用する内容族であり、単なる話題の併置や時間的な前後とは区別する。否定・肯定それぞれの命令内容、発話の成立、内容の実行は別に結び、この関係から両内容の論理的矛盾や命令の正当性を導かない。"
+    },
+    "generalcontentexemplification": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "example_node",
+        "author",
+        "general_node",
+        "general_content",
+        "example_content",
+        "context"
+      ],
+      "meaning_ja": "同じ著者・提示文脈で、指定された箇所の一般的な叙述を、この箇所の具体的な内容によって例示する。どの一般叙述をどの内容で具体化するかを保持する。二内容の真理、単なる隣接、普遍命題の論理的証明や一般叙述の全事例の列挙とは区別する。"
+    }
+  },
+  "public_contracts": {
+    "patternpracticeactivity": {
+      "arguments": [
+        {
+          "role": "practice",
+          "sort": "individual"
+        },
+        {
+          "role": "pattern",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "militarydrillpattern": {
+      "arguments": [
+        {
+          "role": "pattern",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "instructedpaymenttransaction": {
+      "arguments": [
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "payer",
+          "sort": "individual"
+        },
+        {
+          "role": "transfer",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "religiousteachingrange": {
+      "arguments": [
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "teaching",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "teachingcontentdescription": {
+      "arguments": [
+        {
+          "role": "teaching",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      },
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "nonfactivecontentbelief": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "militaryinstitution": {
+      "arguments": [
+        {
+          "role": "institution",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "commissionedofficerrank": {
+      "arguments": [
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "institution",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "publicrevenueinstitution": {
+      "arguments": [
+        {
+          "role": "institution",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "revenueadministrationrole": {
+      "arguments": [
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "institution",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "directivealternativepresentation": {
+      "arguments": [
+        {
+          "role": "utterance",
+          "sort": "individual"
+        },
+        {
+          "role": "speaker",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "negative_condition",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "positive_condition",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    },
+    "generalcontentexemplification": {
+      "arguments": [
+        {
+          "role": "example_node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "general_node",
+          "sort": "individual"
+        },
+        {
+          "role": "general_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "example_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・内容・機関・役職・発話・宛先・基準を保持する。",
+        "命令内容の評価と、命令を引用して例示する提示を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h232x": {
+      "public": "patternpracticeactivity",
+      "source": "kant-1784"
+    },
+    "h232y": {
+      "public": "militarydrillpattern",
+      "source": "kant-1784"
+    },
+    "h232z": {
+      "public": "instructedpaymenttransaction",
+      "source": "kant-1784"
+    },
+    "h233a": {
+      "public": "religiousteachingrange",
+      "source": "kant-1784"
+    },
+    "h233b": {
+      "public": "teachingcontentdescription",
+      "source": "kant-1784"
+    },
+    "h233c": {
+      "public": "nonfactivecontentbelief",
+      "source": "kant-1784"
+    },
+    "h233d": {
+      "public": "militaryinstitution",
+      "source": "kant-1784"
+    },
+    "h233e": {
+      "public": "commissionedofficerrank",
+      "source": "kant-1784"
+    },
+    "h233f": {
+      "public": "publicrevenueinstitution",
+      "source": "kant-1784"
+    },
+    "h233g": {
+      "public": "revenueadministrationrole",
+      "source": "kant-1784"
+    },
+    "h233h": {
+      "public": "directivealternativepresentation",
+      "source": "kant-1784"
+    },
+    "h233l": {
+      "public": "generalcontentexemplification",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile113。",
+    "12一般関係の採用済み型・全引数・意味を保持する。三文と三方面の参照は既存演算による局所定義。",
+    "信念は内容の真理・正当化・同意を含意せず、引用中の内容を実行しない。",
+    "将校や財務官の分類を特定現代国家の階級表、全役職者、唯一の話者へ拡張しない。",
+    "命令の正当性、実際の履行、教義の真理、三方面による全社会の網羅を補わない。"
+  ]
+}
