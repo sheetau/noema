@@ -1,0 +1,640 @@
+{
+  "status": "optional_clerical_public_freedom_visible_profile",
+  "document": "examples/v016/clerical-public-freedom-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "reviewconclusioncompleted": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "review",
+        "point"
+      ],
+      "meaning_ja": "この検討判断は、その対象内容の吟味を行う過程として、この時点には一応の結論に至り終えている。単に検討を始めた、予定した、途中にあるという場合と区別する。結論の正しさ・肯定・完全な確実性・永久に再検討しないことは含意しない。"
+    },
+    "reviewaspectscope": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "review",
+        "thought",
+        "aspect",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人が同じ見解内容をこの吟味判断で検討する際、固定基準で注意を配るべき関連事項の完全な範囲に属する。根拠・反例・帰結などのどれが必要かを解釈で指定し、実際に注意した事項や有利な事項だけへ絞らない。判断の正しさや対象内容の真理は含意しない。"
+    },
+    "religiousinstitutionalfield": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "field",
+        "church",
+        "subject",
+        "reference"
+      ],
+      "meaning_ja": "この検討領域は、同じ宗教共同体に関わる宗教的な教え・実践のあり方と、それを共同で営む教会の制度・組織・運営を扱う。指定の宗教主題を含み、一回の儀式、建物の配置や組織集団だけへ限定しない。他の共同体にも共通する制度上の問題を排除しない。具体的な構成案やその優劣は別に結ぶ。"
+    },
+    "institutionalconfiguration": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "configuration",
+        "field",
+        "reference"
+      ],
+      "meaning_ja": "指定の構成は、同じ領域の営みを秩序立てる規則・手続・役割の配分や相互関係を定めるあり方である。既存の構成と構想上の候補をともに分類し、現に実施されること、唯一性や優劣は含意しない。名前だけの違いを制度的な違いと認定しない。"
+    },
+    "institutionalconfigurationimplementation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "configuration",
+        "field",
+        "point"
+      ],
+      "meaning_ja": "この評価点では、指定領域の営みが同じ構成の規則・手続・役割関係に従って実際に組織されている。構想、提案、採用への賛同だけとは区別する。成功・正当性・改善や永久の維持を含意しない。"
+    },
+    "configurationqualitypreorder": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "standard",
+        "field",
+        "left",
+        "right",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "固定基準で明示した同じ評価基準に照らし、この評価点における同じ領域の構成の左は右に少なくとも劣らないと評価される。領域に関係する目的・事情・規範を基準として明示し、結果に合わせて基準を交換しない。相互成立は同程度、双方不成立は比較不能として扱い、未知とは分ける。基準の唯一の正当性や現実の実施を含意しない。"
+    },
+    "referenceboundproposal": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "situation"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "proposal",
+        "target",
+        "bindings",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "この案は同じ本人の提案として、閉じた内容関数へ指定順の個体列と基準点を渡す内容の採用・実現を、他者の検討に付すものとして位置付けられている。単なる真偽の予測・比較評言・他人の案の中立的引用とは区別する。本人の見解を表す提案の内容指定であり、実際の伝達、命令権、採用の義務・実行・実現可能性は要求しない。"
+    },
+    "referenceboundproposalpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "situation"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "recipient",
+        "proposal",
+        "target",
+        "bindings",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ提示活動でこの受け手へ、指定案が、同じ内容関数・個体列・基準点で指定した内容の採用・実現を検討に付す提案として示される。単なる案名への言及、別内容の提案、成立済みの事実としての断言だけとは区別する。提案者・生起は別に結び、受領・理解・賛同・採用の義務や実際の改善は含意しない。"
+    },
+    "scholarlynormsourcereference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "scholar",
+        "reference"
+      ],
+      "meaning_ja": "この本人が学識者として公に理性を用いる立場について、自由と公的に伝える課題を評価する規範の出所。同じ基準で固定し、雇用する教会の命令権や職業資格、現に許した者と同一視しない。具体的な許可・禁止・要求は別に記述し、この参照だけから導かない。"
+    },
+    "scholarlycommunicationperiodframe": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "scholar",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人の学識者としての公的な伝達の課題を適用する全時機を扱う期間枠。原文外の日時・期限・回数を固定せず、明示した解釈で指定する。成功した時機だけへ事後に絞らない。候補経過ごとの履歴と非空の連続した期間はh7q/h7rとtbで別に確認する。"
+    },
+    "scholarlyrolereference": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人が職務上の委任と区別して、自ら理性を用い本来の読者世界へ向けて語る学識者の立場を、この固定基準で参照する。cdの分類と具体的な活動のr2ziは別に要求する。免許・学位・任命や、既に発言した事実を参照だけで補わない。"
+    },
+    "judgmentmessageexamination": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "message"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "subject",
+        "message_description",
+        "context"
+      ],
+      "meaning_ja": "この判断が、この対象について指定された発話記述の内容を検討・評価する判断である。単に同じ話題の別内容を判断したことでは足りない。賛否・判断の正しさ・発話の真理を含まない。"
+    }
+  },
+  "public_contracts": {
+    "reviewconclusioncompleted": {
+      "arguments": [
+        {
+          "role": "review",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "reviewaspectscope": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "review",
+          "sort": "individual"
+        },
+        {
+          "role": "thought",
+          "sort": "individual"
+        },
+        {
+          "role": "aspect",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "religiousinstitutionalfield": {
+      "arguments": [
+        {
+          "role": "field",
+          "sort": "individual"
+        },
+        {
+          "role": "church",
+          "sort": "individual"
+        },
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "institutionalconfiguration": {
+      "arguments": [
+        {
+          "role": "configuration",
+          "sort": "individual"
+        },
+        {
+          "role": "field",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "institutionalconfigurationimplementation": {
+      "arguments": [
+        {
+          "role": "configuration",
+          "sort": "individual"
+        },
+        {
+          "role": "field",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "configurationqualitypreorder": {
+      "arguments": [
+        {
+          "role": "standard",
+          "sort": "individual"
+        },
+        {
+          "role": "field",
+          "sort": "individual"
+        },
+        {
+          "role": "left",
+          "sort": "individual"
+        },
+        {
+          "role": "right",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "referenceboundproposal": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "proposal",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                },
+                "situation"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "referenceboundproposalpresentation": {
+      "arguments": [
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "proposal",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                },
+                "situation"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "scholarlynormsourcereference": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "scholar",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "scholarlycommunicationperiodframe": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "scholar",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "scholarlyrolereference": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    },
+    "judgmentmessageexamination": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "message_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・見解・関連事項と、同じ領域・構成・比較基準を保持する。",
+        "学識者の立場・規範源・課題期間を雇用職務と分け、自由・使命・伝達・改善実施を別に構成する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h246t": {
+      "public": "reviewconclusioncompleted",
+      "source": "kant-1784"
+    },
+    "h246u": {
+      "public": "reviewaspectscope",
+      "source": "kant-1784"
+    },
+    "h246v": {
+      "public": "religiousinstitutionalfield",
+      "source": "kant-1784"
+    },
+    "h246w": {
+      "public": "institutionalconfiguration",
+      "source": "kant-1784"
+    },
+    "h246x": {
+      "public": "institutionalconfigurationimplementation",
+      "source": "kant-1784"
+    },
+    "h246y": {
+      "public": "configurationqualitypreorder",
+      "source": "kant-1784"
+    },
+    "h246z": {
+      "public": "referenceboundproposal",
+      "source": "kant-1784"
+    },
+    "h247a": {
+      "public": "referenceboundproposalpresentation",
+      "source": "kant-1784"
+    },
+    "h247b": {
+      "public": "scholarlynormsourcereference",
+      "source": "kant-1784"
+    },
+    "h247c": {
+      "public": "scholarlycommunicationperiodframe",
+      "source": "kant-1784"
+    },
+    "h247d": {
+      "public": "scholarlyrolereference",
+      "source": "kant-1784"
+    },
+    "hzv": {
+      "public": "judgmentmessageexamination",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile127。",
+    "採用済み12一般関係の型・全引数・意味を保持する。原文箇所は文書内定義。",
+    "判断による検討を受け手の理解と同一化せず、結論の真理や確定原則の採用を追加しない。",
+    "本人の提案と受け手への提示を分け、改善・採用実施を閉じた記述に保持する。",
+    "全見解・全提案・伝達候補の範囲を許可・実行・成功で選び直さない。"
+  ]
+}
