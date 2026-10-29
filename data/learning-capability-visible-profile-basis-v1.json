@@ -1,0 +1,1729 @@
+{
+  "status": "optional_learning_capability_visible_profile",
+  "document": "examples/v016/learning-capability-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "experiencedresultpoint": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "outcome"
+      ],
+      "meaning_ja": "この経験行為において生じた結果状況。行為一般の可能な結果候補ではなく、評価する履歴内の結果である。"
+    },
+    "experienceassessmentpoint": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "event"
+      ],
+      "meaning_ja": "経験行為の評価時点。列内では時点の異なる経験を用いる。具体的な日時を固定しない。"
+    },
+    "contributingexperiencesequence": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "process"
+      ],
+      "meaning_ja": "この能力変化の過程で寄与を調べる経験行為の有限列。全人生の経験の網羅ではない。"
+    },
+    "processinitialassessment": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "process"
+      ],
+      "meaning_ja": "この過程の前状態を評価する状況。能力の評価条件と経験の時点は別途検査する。"
+    },
+    "experiencechangecontribution": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "person",
+        "process",
+        "start",
+        "end"
+      ],
+      "meaning_ja": "この人のこの前後状態を結ぶ能力変化の過程へ、この経験が因果的に寄与する。単なる前後・同時発生からは導かず、認知的な機構や唯一の原因までは指定しない。"
+    },
+    "contextualfewrepetitions": {
+      "parameters": [
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "count",
+        "context"
+      ],
+      "meaning_ja": "この文脈で、経験回数がeinigemahlの少数回という基準を満たす。具体的な上限値を語義へ固定しない。非空性はr4が別に要求する。"
+    },
+    "examplecaseobserver": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "評価事例で、例を知って反応する対象者。失敗した本人と同一とは限らない。"
+    },
+    "examplecaseexperience": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "評価事例で対象者に示される一つの経験行為。世の中にそれしか例がないという唯一性は主張しない。"
+    },
+    "recognizesexperienceexample": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "example",
+        "context"
+      ],
+      "meaning_ja": "この人が、この経験行為の例をこの文脈で知覚・伝聞等により認識している。本人が経験したことや直接目撃したことは要求しない。"
+    },
+    "typicalitycaseeligibility": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "case",
+        "context"
+      ],
+      "meaning_ja": "通常性の評価範囲に属する事例である。回避が成立したかどうかによって選び直さないという意味規約を持つ。"
+    },
+    "typicalitycasesequence": {
+      "parameters": [
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "context"
+      ],
+      "meaning_ja": "この文脈で通常性を評価する事例の有限列。重複・適格性・非空性・網羅性は別に検査する。"
+    },
+    "usualproportioncriterion": {
+      "parameters": [
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "ratio",
+        "context"
+      ],
+      "meaning_ja": "この文脈で、gemeiniglichの通常性に必要な割合の基準。具体値を原文へ固定しない。過半数はr7の別条件である。"
+    },
+    "envisagedactionpoint": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "act"
+      ],
+      "meaning_ja": "考慮している行為の予定・想定時点。実行済みの時点ではない。"
+    },
+    "envisagedactivityattempt": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "task_description",
+        "context"
+      ],
+      "meaning_ja": "この文脈で考慮する行為が、記述された活動を試みることに当たる。実際に試みたことや、実行可能であることは含まない。"
+    },
+    "scopedrankedcontentattribution": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "content",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "著者・本文位置・段階3の内容記述・原文範囲・文脈の帰属関係。"
+    },
+    "comparativecontentprospect": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "left",
+        "right",
+        "context"
+      ],
+      "meaning_ja": "指定した視点からこの文脈で採る見込み評価において、第一の内容記述が第二の内容記述と少なくとも同程度に見込まれる。数値確率や実際の真理ではなく、提示された期待の比較である。二方向とも成立すれば同順位、二方向とも不成立と確認されていれば比較不能であり、情報が未知であることとは区別する。伝記的な著者の内心を自動推定しない。"
+    },
+    "rankedforegroundbackgroundpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "foreground",
+        "background",
+        "foreground_scope",
+        "background_scope",
+        "context"
+      ],
+      "meaning_ja": "同じ箇所・著者・主張記述・背景記述・主張範囲・背景範囲・文脈について、著者がその主張をその背景とともに提示する帰属関係。背景を主張と同じ内容に潰さず、実際の真理や読者の同意は要求しない。"
+    },
+    "uprightbodybalance": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "point"
+      ],
+      "meaning_ja": "この身体主体が、足による支持の上に身体を保つ姿勢・均衡を維持している。歩いていることや歩行技能の保有は別条件であり、静止した立位でもよい。"
+    },
+    "nonfootloadcontact": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "point"
+      ],
+      "meaning_ja": "足底以外の身体部分が地面または下方の支持面に接し、そこで身体の荷重の一部を受ける。立位の足底接地や、手で物に軽く触れただけの状態とは区別する。接触だけから傷害を導かない。"
+    },
+    "downwardbodytransition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "process",
+        "earlier",
+        "later"
+      ],
+      "meaning_ja": "この同じ身体主体の位置が、この同じ過程の前後で、重力に沿う下向きへ移る。別人の下降、単なる時間的な先行、別過程での位置差では成立しない。具体的な距離・加速度は指定しない。"
+    },
+    "intentionalsupporttransition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "process",
+        "earlier",
+        "later"
+      ],
+      "meaning_ja": "この同じ身体主体が、この同じ過程で、前後の姿勢と支持の移行を意図に沿って制御して遂行する。意図を持っただけ、偶然に無事だったこと、他者に支えられたことからは認定しない。"
+    },
+    "activityopportunitycandidate": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "subject",
+        "task",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "指定した活動記述について、その主体の基準状態で能力を評価するための機会候補。候補は実際の履歴の断言ではない。同じ主体・活動・基準を保つ。"
+    },
+    "activitybasisretention": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "subject",
+        "task",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "指定活動の能力基盤として採る主体側の状態が、同じ基準から候補へ保持される。身体や技能の状態を含み得るが、能力の結論自体の同一性を前提とせず、学習後の基盤で学習前を評価しない。"
+    },
+    "externalactivityopportunity": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "subject",
+        "task",
+        "candidate"
+      ],
+      "meaning_ja": "その主体が指定活動を試みる外的機会が候補にある。技能、実行成功、許容の成立を代用しない。"
+    },
+    "activityopportunitypriority": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "subject",
+        "task",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ主体・活動・基準の能力評価で、機会候補の通常性を比較する厳密な優先関係。結果の成功を見て通常性を選び直したことを正当化しない。"
+    },
+    "activitybasismethod": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "subject",
+        "task",
+        "method",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ主体の基準時点の活動基盤を行使する方法として評価範囲に入る。別の技能を先に習得する方法を、まだない技能の行使能力へ流用しない。"
+    },
+    "activitybasismethodclassified": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "subject",
+        "task",
+        "method",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ主体・活動・方法・基準・候補についてhzyjの範囲判定ができる。既知の範囲外と未分類を区別する。"
+    },
+    "reactioncomparisoncandidate": {
+      "parameters": [
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ基準で、先行する不成功例を知った対象者の反応を一般化して述べる比較状況。例との遭遇・認識の環境や対象者間の差を検討する範囲であり、実際に起きた履歴だけに限定しない。活動の意味と指示する対象集団は基準に固定し、異なる課題や学習済みの別の集団へ交換しない。反応の成功だけで選定しない。"
+    },
+    "reactionbackgroundpriority": {
+      "parameters": [
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ基準の比較状況について、背景条件の通常性を比べる厳密な優先関係。認識の環境や外的な阻害などの比較理由を与えるもので、萎縮・回避の成立や観測回数そのものを順位とはしない。反射・循環・推移性違反は構成側で検査する。"
+    },
+    "reactioncasepriority": {
+      "parameters": [
+        "situation",
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "anchor",
+        "candidate",
+        "preferred_case",
+        "other_case"
+      ],
+      "meaning_ja": "同じ基準・比較状況内の事例について、一般的反応を述べるための通常性を比べる厳密な優先関係。特異な受容条件や例の認識環境などを比較理由とする。萎縮した事例だけを優先することは正当化しない。この順位は頻度計算の事例を削除する条件ではない。"
+    },
+    "harmcuecomparisoncandidate": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ本人・活動記述・基準の心理的条件を保ち、活動へ向かう試みについて害の手掛かりに接する仮定の比較状況。手掛かりは背景の強度基準で弱い刺激まで含む。実際の危険の大きさとは区別し、恐れたかどうかで範囲を選ばない。学習や別の性向の獲得により本人を交換する状況は含めない。何が弱い刺激かと比較範囲の適切さは解釈入力として明示する。"
+    },
+    "harmcuebackgroundpriority": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ本人・活動記述・基準の比較状況について、刺激の受容や妨害などの背景条件による通常性の厳密な優先関係。恐れの成立そのものを選別基準としない。非反射性・推移性・極小状況への到達条件は既存rqt4で検査する。"
+    },
+    "undertakingbackgroundcandidate": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "task",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ本人・活動記述・基準から、本人がその活動の試みに取り組むという仮定の背景に適合する候補状況。学習の成功・能力取得・著者の予想の正しさで選別しない。未取得のままの経過も候補になり得る。候補の将来への位置付けは別のtxで検査し、現実に試みが起きたとは断言しない。"
+    },
+    "epistemiccoursepriority": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "person",
+        "task",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ観察者・対象者・活動記述・基準で、仮定した経過の認識的なもっともらしさを比べる厳密な優先関係。観察者の背景知識や推論に基づく判断であり、取得の真偽を読み取って結果が成功するものを自動的に上位へ置く規則ではない。比較不能な候補を保持する。"
+    },
+    "nonliteralboundrelationpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "target_description",
+        "depiction_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの談話箇所・文脈で、対象側の関係記述を描写側の関係記述による非字義的な提示として採る。引数は個体の順序付き列で、対応する位置は両側で同じ対象を指す。現実の描写の成立や両内容の真偽の一致は要求しない。"
+    }
+  },
+  "public_contracts": {
+    "experiencedresultpoint": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "experienceassessmentpoint": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "contributingexperiencesequence": {
+      "arguments": [
+        {
+          "role": "process",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "processinitialassessment": {
+      "arguments": [
+        {
+          "role": "process",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "experiencechangecontribution": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "end",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "contextualfewrepetitions": {
+      "arguments": [
+        {
+          "role": "count",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "examplecaseobserver": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "examplecaseexperience": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "recognizesexperienceexample": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "example",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "typicalitycaseeligibility": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "typicalitycasesequence": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "usualproportioncriterion": {
+      "arguments": [
+        {
+          "role": "ratio",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "envisagedactionpoint": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "envisagedactivityattempt": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "task_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "scopedrankedcontentattribution": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "comparativecontentprospect": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "left",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "right",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "rankedforegroundbackgroundpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "foreground",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "background",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "foreground_scope",
+          "sort": "individual"
+        },
+        {
+          "role": "background_scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "uprightbodybalance": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "nonfootloadcontact": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "downwardbodytransition": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "earlier",
+          "sort": "situation"
+        },
+        {
+          "role": "later",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "intentionalsupporttransition": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "earlier",
+          "sort": "situation"
+        },
+        {
+          "role": "later",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "activityopportunitycandidate": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "activitybasisretention": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "externalactivityopportunity": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "activityopportunitypriority": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "situation"
+        },
+        {
+          "role": "other",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "activitybasismethod": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "activitybasismethodclassified": {
+      "arguments": [
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "reactioncomparisoncandidate": {
+      "arguments": [
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "reactionbackgroundpriority": {
+      "arguments": [
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "situation"
+        },
+        {
+          "role": "other",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "reactioncasepriority": {
+      "arguments": [
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred_case",
+          "sort": "individual"
+        },
+        {
+          "role": "other_case",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "harmcuecomparisoncandidate": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "harmcuebackgroundpriority": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "situation"
+        },
+        {
+          "role": "other",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "undertakingbackgroundcandidate": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "epistemiccoursepriority": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "task",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "situation"
+        },
+        {
+          "role": "other",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    },
+    "nonliteralboundrelationpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "target_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "depiction_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・活動・経験・基準と前後状態を保持する。知的な取得と身体描写を非字義的な対応として区別する。",
+        "通常性の候補・順序・頻度、実際の経験・想定した取り組み・取得見込み、主張・背景・理由を分ける。"
+      ]
+    }
+  },
+  "source_relations": {
+    "f6": {
+      "public": "experiencedresultpoint",
+      "source": "kant-1784"
+    },
+    "f7": {
+      "public": "experienceassessmentpoint",
+      "source": "kant-1784"
+    },
+    "fh": {
+      "public": "contributingexperiencesequence",
+      "source": "kant-1784"
+    },
+    "fi": {
+      "public": "processinitialassessment",
+      "source": "kant-1784"
+    },
+    "fk": {
+      "public": "experiencechangecontribution",
+      "source": "kant-1784"
+    },
+    "fm": {
+      "public": "contextualfewrepetitions",
+      "source": "kant-1784"
+    },
+    "gd": {
+      "public": "examplecaseobserver",
+      "source": "kant-1784"
+    },
+    "ge": {
+      "public": "examplecaseexperience",
+      "source": "kant-1784"
+    },
+    "gg": {
+      "public": "recognizesexperienceexample",
+      "source": "kant-1784"
+    },
+    "gj": {
+      "public": "typicalitycaseeligibility",
+      "source": "kant-1784"
+    },
+    "gk": {
+      "public": "typicalitycasesequence",
+      "source": "kant-1784"
+    },
+    "gl": {
+      "public": "usualproportioncriterion",
+      "source": "kant-1784"
+    },
+    "go": {
+      "public": "envisagedactionpoint",
+      "source": "kant-1784"
+    },
+    "gp": {
+      "public": "envisagedactivityattempt",
+      "source": "kant-1784"
+    },
+    "hznreport": {
+      "public": "scopedrankedcontentattribution",
+      "source": "kant-1784"
+    },
+    "hzpt": {
+      "public": "comparativecontentprospect",
+      "source": "kant-1784"
+    },
+    "hzrbgreport": {
+      "public": "rankedforegroundbackgroundpresentation",
+      "source": "kant-1784"
+    },
+    "hzui": {
+      "public": "uprightbodybalance",
+      "source": "kant-1784"
+    },
+    "hzuj": {
+      "public": "nonfootloadcontact",
+      "source": "kant-1784"
+    },
+    "hzuk": {
+      "public": "downwardbodytransition",
+      "source": "kant-1784"
+    },
+    "hzul": {
+      "public": "intentionalsupporttransition",
+      "source": "kant-1784"
+    },
+    "hzyf": {
+      "public": "activityopportunitycandidate",
+      "source": "kant-1784"
+    },
+    "hzyg": {
+      "public": "activitybasisretention",
+      "source": "kant-1784"
+    },
+    "hzyh": {
+      "public": "externalactivityopportunity",
+      "source": "kant-1784"
+    },
+    "hzyi": {
+      "public": "activityopportunitypriority",
+      "source": "kant-1784"
+    },
+    "hzyj": {
+      "public": "activitybasismethod",
+      "source": "kant-1784"
+    },
+    "hzyk": {
+      "public": "activitybasismethodclassified",
+      "source": "kant-1784"
+    },
+    "hzyl": {
+      "public": "reactioncomparisoncandidate",
+      "source": "kant-1784"
+    },
+    "hzym": {
+      "public": "reactionbackgroundpriority",
+      "source": "kant-1784"
+    },
+    "hzyn": {
+      "public": "reactioncasepriority",
+      "source": "kant-1784"
+    },
+    "hzys": {
+      "public": "harmcuecomparisoncandidate",
+      "source": "kant-1784"
+    },
+    "hzyt": {
+      "public": "harmcuebackgroundpriority",
+      "source": "kant-1784"
+    },
+    "hzyu": {
+      "public": "undertakingbackgroundcandidate",
+      "source": "kant-1784"
+    },
+    "hzyv": {
+      "public": "epistemiccoursepriority",
+      "source": "kant-1784"
+    },
+    "rbt": {
+      "public": "nonliteralboundrelationpresentation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile100。",
+    "35一般関係の採用済み型・引数・意味を保持し、4局所参照は文書内定義にする。",
+    "能力評価・因果的寄与・通常性順序・頻度・比較的な見込みは既存の合成定義で構成する。",
+    "段階1/3の内容記述と順序付き束縛を保持し、未知を偽・同順位・空列へ補わない。",
+    "有限診断を全領域の証明とせず、比喩・予測・評価の帰属からその現実の真理を推論しない。"
+  ]
+}
