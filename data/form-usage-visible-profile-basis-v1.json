@@ -1,0 +1,1192 @@
+{
+  "status": "optional_form_usage_visible_profile",
+  "document": "examples/v016/form-usage-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "objectlimbattachment": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "limb",
+        "person",
+        "context"
+      ],
+      "meaning_ja": "同じ人の同じ身体部位へ、その物体が留められている。単なる近接や、別の人の部位への装着とは区別する。"
+    },
+    "personlowerlimb": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "limb",
+        "person",
+        "context"
+      ],
+      "meaning_ja": "その部位が、その同じ人の足または足首側の身体部位である。腕や首の拘束と区別するための帰属・部位条件で、解剖学の全体系は未定義。"
+    },
+    "unrestrainedmovement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "movement",
+        "context"
+      ],
+      "meaning_ja": "同じ背景で対象の身体拘束がなければ、その人に可能な身体運動である。心理的な試みや規範的な許可とは区別する。"
+    },
+    "physicalmovementrestriction": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "limb",
+        "person",
+        "movement",
+        "context"
+      ],
+      "meaning_ja": "同じ物体が同じ人の同じ部位へ固定されることにより、この身体運動が物理的に制限される。制限のない場合と他の背景を固定して比べる関係。"
+    },
+    "naturallyattributedfaculty": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "faculty",
+        "person",
+        "context"
+      ],
+      "meaning_ja": "この能力が、この人自身に自然に備わる能力として文脈で位置付けられる。理解力だけへ限定せず、後天的な技能の全てや、遺伝的な決定性とも同一視しない。自然的な資質の基礎説明は未完。"
+    },
+    "facultyuseact": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "faculty",
+        "act",
+        "context"
+      ],
+      "meaning_ja": "本人がこの同じ能力を、この同じ行為において使用する。所有や能力の有無だけでは成立せず、別の能力の使用を混ぜない。使用の合理性や適切さは別の条件である。"
+    },
+    "facultyuseassessment": {
+      "parameters": [
+        "individual",
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "positive",
+        "context"
+      ],
+      "meaning_ja": "同じ使用行為に対するこの文脈の評価。positiveが真なら合理的な使用として、偽なら誤用として評価される。二分類は互いの論理的否定ではなく、それぞれ明示的な評価を要する。合理性・適切な用途・誤用の基礎説明は未完。"
+    },
+    "expressionuseact": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "form",
+        "act",
+        "context"
+      ],
+      "meaning_ja": "同じ人が、この表現を同じ活動の用に供している。表現を所有・参照できるだけでは成立せず、本人の能力そのものを表現と同一視しない。"
+    },
+    "applicationjudgment": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "act",
+        "context"
+      ],
+      "meaning_ja": "この判断は、対象の表現を同じ活動に適用してよいかを吟味する判断である。何かを考えたことや、別の活動の吟味で代用しない。"
+    },
+    "fixedexpressioncode": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": "truth"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "form",
+        "code",
+        "context"
+      ],
+      "meaning_ja": "この対象は、同じ文脈で繰り返し参照して用いる固定した表現の構成を、この正規的な関数式コードとして保持する。コードの元の関数は零個以上の任意の型の引数を持てる。内容の真理、使用の実行回数、適切さ、能力、物理的な保存媒体は含めない。"
+    },
+    "generalusecase": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "case"
+      ],
+      "meaning_ja": "同じ第三文の提示文脈で、規定または定型表現を用いる一般的作用を比較する対象・本人・基準の事例。仮定の事例を含められ、作用の成功した事例だけを選ばない。"
+    },
+    "usecaseobject": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "scope",
+        "case"
+      ],
+      "meaning_ja": "同じ提示文脈と事例で使う対象。分類・作用・描写の同じ位置に保持し、結果に合わせて別の対象へ替えない。"
+    },
+    "usecaseperson": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "scope",
+        "case"
+      ],
+      "meaning_ja": "同じ提示文脈と事例の利用者。作用・自然的能力・未成熟を同じ本人へ結ぶ。"
+    },
+    "usecaseanchor": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "scope",
+        "case"
+      ],
+      "meaning_ja": "同じ事例の使用とその継続を比較する基準状況。文章を提示する文脈や実際の現在と自動同一視しない。"
+    },
+    "usecasenormality": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ提示文脈における使用事例の通常性の厳密な優先関係。使用環境や妨害などの背景を比較し、未成熟という結果そのものから優先を作らない。各種類の内部で評価する。"
+    },
+    "usecontinuationbranch": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "branch"
+      ],
+      "meaning_ja": "同じ対象・本人・基準の使用について比較する継続履歴の候補。同じ事例に固定した背景で使い続ける場合とやめる場合を比較し、結果だけを理由に候補を削らない。"
+    },
+    "usebranchhistorypoint": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "branch",
+        "point"
+      ],
+      "meaning_ja": "同じ対象・本人・基準・候補について比較する一つの履歴に属する状況。基準以降はその候補の残りの生涯の全範囲を含める解釈で、結果が続いた観測点だけを集めた範囲や都合のよい途中打切りではない。反事実の別履歴の状況を混ぜない。実際の履歴の完全性は解釈根拠を要する。"
+    },
+    "usebranchprecedence": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "branch",
+        "earlier",
+        "later"
+      ],
+      "meaning_ja": "同じ候補履歴内での厳密な時間的先行。候補・本人・対象を固定し、本文順序や通常性順位と混同しない。履歴内の厳密全順序を構成で検査する。"
+    },
+    "usebranchactivityoccasion": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "branch",
+        "point"
+      ],
+      "meaning_ja": "同じ提示文脈・対象・本人・基準・候補履歴において、その対象を手段に使うか、自分で適用を検討するかが問題になる活動の局面。実際に使用したか・未成熟が成立したかとは独立した背景入力であり、使わなかった反例を消すために局面でないことにしない。局面のない点も履歴と結果評価には残す。"
+    },
+    "referentialclarification": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "author",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "後の箇所が前の箇所の指示を説明するという談話関係。同じ記述を繰り返すことや本文上の順序だけから自動認定しない。"
+    },
+    "nominalizedpropertydesignation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "property_description",
+        "scope",
+        "context"
+      ],
+      "meaning_ja": "指定の著者・範囲・発話文脈の名詞句が、名詞化された性質の記述を指すという解釈。性質を持つ個人そのものや植物個体とは型を分ける。"
+    },
+    "typedtemplatecode": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "code"
+      ],
+      "meaning_ja": "同じ文書の層0の真偽型記述が、型Tの一引数関数x↦(x=x)を閉じた式Mへ適用した構文の引用であり、Tが任意の引数数・引数型・結果型を持つ関数型であること。型付き正規化後の構造をnoema.expression_codes.is_template_codeで検査する。引用内容を実行せず、同じ真理値の別構文を同一化しない。"
+    },
+    "adoptedrequirement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "rule",
+        "source",
+        "role",
+        "condition_description",
+        "goal_description",
+        "positive",
+        "context"
+      ],
+      "meaning_ja": "この出所が、この規則を、この立場で条件に該当する人に記述された目標を満たすよう求める規定として、この文脈で採用している。positiveが偽なら同じ目標の不成立を求める。条件と目標は人から命題内容への式の記述で保持する。採用・要求の存在は、正当性、能力、実現、普遍的な道徳的義務を意味しない。"
+    },
+    "ternarydescriptionreformulation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "earlier_description",
+        "replacement_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの談話箇所・文脈で、先の三項関係の記述を言い直し、後の記述をより適切な表現として採る。両記述の三つの引数位置は同じ対象を保つ。先の内容の偽、後の内容の現実の真、論理的な否定関係、第三者による同意は含まない。"
+    }
+  },
+  "public_contracts": {
+    "objectlimbattachment": {
+      "arguments": [
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "limb",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "personlowerlimb": {
+      "arguments": [
+        {
+          "role": "limb",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "unrestrainedmovement": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "movement",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "physicalmovementrestriction": {
+      "arguments": [
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "limb",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "movement",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "naturallyattributedfaculty": {
+      "arguments": [
+        {
+          "role": "faculty",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "facultyuseact": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "faculty",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "facultyuseassessment": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "positive",
+          "sort": "truth"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "expressionuseact": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "form",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "applicationjudgment": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "fixedexpressioncode": {
+      "arguments": [
+        {
+          "role": "form",
+          "sort": "individual"
+        },
+        {
+          "role": "code",
+          "sort": {
+            "kind": "description",
+            "result": "truth"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "generalusecase": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "usecaseobject": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "usecaseperson": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "usecaseanchor": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "usecasenormality": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "individual"
+        },
+        {
+          "role": "other",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "usecontinuationbranch": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "branch",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "usebranchhistorypoint": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "branch",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "usebranchprecedence": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "branch",
+          "sort": "situation"
+        },
+        {
+          "role": "earlier",
+          "sort": "situation"
+        },
+        {
+          "role": "later",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "usebranchactivityoccasion": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "branch",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "referentialclarification": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "nominalizedpropertydesignation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "property_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "scope",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "typedtemplatecode": {
+      "arguments": [
+        {
+          "role": "code",
+          "sort": {
+            "kind": "description",
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "adoptedrequirement": {
+      "arguments": [
+        {
+          "role": "rule",
+          "sort": "individual"
+        },
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "condition_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "positive",
+          "sort": "truth"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    },
+    "ternarydescriptionreformulation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "earlier_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "replacement_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ対象・本人・使用行為・基準・候補枝を各関係で保持し、結果から比較範囲や通常性を選ばない。",
+        "固定表現の型付きコードを実行せず、要求や評価の極性、同格・言い直し・比喩の帰属を世界の真理と区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h2e": {
+      "public": "objectlimbattachment",
+      "source": "kant-1784"
+    },
+    "h2f": {
+      "public": "personlowerlimb",
+      "source": "kant-1784"
+    },
+    "h2g": {
+      "public": "unrestrainedmovement",
+      "source": "kant-1784"
+    },
+    "h2h": {
+      "public": "physicalmovementrestriction",
+      "source": "kant-1784"
+    },
+    "hh2": {
+      "public": "naturallyattributedfaculty",
+      "source": "kant-1784"
+    },
+    "hi2": {
+      "public": "facultyuseact",
+      "source": "kant-1784"
+    },
+    "hj2": {
+      "public": "facultyuseassessment",
+      "source": "kant-1784"
+    },
+    "hx2": {
+      "public": "expressionuseact",
+      "source": "kant-1784"
+    },
+    "hz2": {
+      "public": "applicationjudgment",
+      "source": "kant-1784"
+    },
+    "hzzza": {
+      "public": "fixedexpressioncode",
+      "source": "kant-1784"
+    },
+    "hzzzb": {
+      "public": "generalusecase",
+      "source": "kant-1784"
+    },
+    "hzzzc": {
+      "public": "usecaseobject",
+      "source": "kant-1784"
+    },
+    "hzzzd": {
+      "public": "usecaseperson",
+      "source": "kant-1784"
+    },
+    "hzzze": {
+      "public": "usecaseanchor",
+      "source": "kant-1784"
+    },
+    "hzzzf": {
+      "public": "usecasenormality",
+      "source": "kant-1784"
+    },
+    "hzzzg": {
+      "public": "usecontinuationbranch",
+      "source": "kant-1784"
+    },
+    "hzzzh": {
+      "public": "usebranchhistorypoint",
+      "source": "kant-1784"
+    },
+    "hzzzi": {
+      "public": "usebranchprecedence",
+      "source": "kant-1784"
+    },
+    "hzzzl": {
+      "public": "usebranchactivityoccasion",
+      "source": "kant-1784"
+    },
+    "ibbclarifies": {
+      "public": "referentialclarification",
+      "source": "kant-1784"
+    },
+    "ibbdenotes": {
+      "public": "nominalizedpropertydesignation",
+      "source": "kant-1784"
+    },
+    "r2fd": {
+      "public": "typedtemplatecode",
+      "source": "kant-1784"
+    },
+    "rba": {
+      "public": "adoptedrequirement",
+      "source": "kant-1784"
+    },
+    "rbf": {
+      "public": "ternarydescriptionreformulation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile103。",
+    "24一般関係の採用済み型・引数・意味を保持し、5局所参照は文書内定義にする。",
+    "任意の関数型を持つ固定表現コードを既存expression_codesで検査し、引数数を原文の例に制限しない。",
+    "引用内容・足枷の実在・規定の正当性・使用の成功を、帰属や型の検査から導かない。",
+    "自然的資質、合理性、社会的規定、履歴完全性についての元の説明上の限界を保持する。"
+  ]
+}
