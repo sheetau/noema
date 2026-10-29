@@ -1,0 +1,1565 @@
+{
+  "status": "optional_guardian_attitudes_visible_profile",
+  "document": "examples/v016/guardian-attitudes-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "contextualfemaleclassification": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "context"
+      ],
+      "meaning_ja": "この歴史的文脈で女性の集団として数える人の分類。美しいという評価や危険だという判断は条件に含めない。性別分類そのものの生物学的・社会的な構成説明は未完であり、語義を説明済みと数えない。"
+    },
+    "supervisoryposition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "target",
+        "context"
+      ],
+      "meaning_ja": "この対象について、行為者が総括的な監督・指図の立場を現在持つ。正当性や制度上の資格を意味しない。監督階層と権限の一般的な説明は未完。"
+    },
+    "situationalprecedence": {
+      "parameters": [
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "earlier",
+        "later"
+      ],
+      "meaning_ja": "第一の状況が第二より時間的に先行する。具体的な時刻、間隔、直前であることは補わない。"
+    },
+    "performedaction": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "act",
+        "point"
+      ],
+      "meaning_ja": "この人がこの時点でこの行為を行った。自ら発意したことは要求しないため、既存のoaとは区別する。"
+    },
+    "aestheticpersonassessment": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "context"
+      ],
+      "meaning_ja": "その人が、この描写の文脈で美的に好ましいと表現される性質。女性集団の分類とは分離し、美の一般理論は未定義とする。"
+    },
+    "propertylabelpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "referent_description",
+        "label_description",
+        "context"
+      ],
+      "meaning_ja": "著者がこの箇所で、前者の性質で指す人々に後者の性質の描写を呼称として用いる。対象全員が実際に後者を満たすという認定や、著者が字義通り信じることは含めない。"
+    },
+    "supervisionundertaking": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "actor",
+        "target",
+        "point"
+      ],
+      "meaning_ja": "この行為により、この人が同じ対象を監督する立場を実際に引き受ける。単にその立場を称する場合も含む既存obより強い条件であり、資格の正当性や行為の自発的な発意は別である。"
+    },
+    "parameterizedactivitypurpose": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "act",
+        "goal_description",
+        "bindings",
+        "context"
+      ],
+      "meaning_ja": "同じ行為者が、その行為の計画・遂行で、閉じた内容関数に同じ順序の引数を渡した目標を目指す。既存のparameterized-goalsのAIMS規約を具体化する。目標を実行評価せず、達成・実現可能性・道徳的な是認を含意しない。"
+    },
+    "describedactivitypurpose": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "activity",
+        "goal_description",
+        "context"
+      ],
+      "meaning_ja": "本人がその活動の計画・遂行で目指す目的内容の記述。活動自体の実行、目的の真理・達成、実現可能性は要求しない。目的の形成や意図の一般理論は未完。"
+    },
+    "supervisoryrankatleast": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first",
+        "second",
+        "target",
+        "context"
+      ],
+      "meaning_ja": "同じ対象について同じ状況で実際に監督の立場を持つ二主体の比較において、第一主体の監督上の位置が第二主体以上である。両方向の成立は同順位を許し、両方向の不成立は比較不能として扱う。本人の価値・能力・合法性を比較せず、別対象での上下を流用しない。比較範囲上の反射性と推移性はrqyiで検査する。"
+    },
+    "describedpositionundertaking": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "actor",
+        "target",
+        "position_description",
+        "context"
+      ],
+      "meaning_ja": "この行為によって、この主体が同じ対象について記述された立場・責務を実際に引き受ける。記述は主体と対象から内容への閉じた関数であり、二位置をその順に適用する意味規約を持つ。自己申告だけ、無関係な地位の取得、単なる結果の共存とは分ける。任命儀礼・正当な権利・自発的な発意は含めない。"
+    },
+    "beneficiarygoodassessment": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "beneficiary",
+        "scene"
+      ],
+      "meaning_ja": "この状況が、指定対象の利益・善を実現する内容として評価される。単に害がないこととは分け、評価基準は解釈で固定する。状況が現実に起きたこと、特定の行為者の意図や受益者の実感は含意しない。"
+    },
+    "intrinsicgoalreadiness": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "goal_description",
+        "bindings",
+        "scene"
+      ],
+      "meaning_ja": "同じ主体が、指定した閉じた内容関数と順序付き引数で表される目標をそれ自体好ましいものとして求め、実現へ進んで取り組む意向と準備を持つ。単に別の利益を得るための手段として狙うこととは分ける。目標は実行評価せず、実行・実現可能性・成功や他の動機の不在は含意しない。"
+    },
+    "highpropertydegree": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "property_description",
+        "bindings",
+        "scene"
+      ],
+      "meaning_ja": "指定した閉じた内容関数と同じ順序付き引数について、その性質の程度をこの評価文脈で高いものとして扱う。数値尺度、他の全対象を上回る最大性、現実の成立は補わない。基礎の性質の成立は呼出側で別に結ぶ。"
+    },
+    "favorableeventpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "claim_description",
+        "event_description",
+        "evaluation_description",
+        "context"
+      ],
+      "meaning_ja": "提示者がこの箇所の同じ主張記述の内で記述された出来事を、指定の好意的な評価記述によって描写して提示する。二記述の三個体と一状況の引数は同じ出来事の主体・対象・行為・時点を指す対応を持つ。実際の出来事や評価の真理、誠実な是認は含意せず、過去に誰かが同じ言葉を発したとも補わない。"
+    },
+    "criticalevaluationdistance": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "claim_description",
+        "event_description",
+        "evaluation_description",
+        "context"
+      ],
+      "meaning_ja": "同じ箇所・主張記述・出来事・評価の描写において、提示者がその好意的な評価をそのまま是認する立場から批判的に距離を置くことを表現している。単なる引用や態度の不明とは分ける。評価の論理的否定、事実としての悪意、正反対の意味、受け手の理解や笑いを自動的に導かない。"
+    },
+    "focusedclaimassurance": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "claim_description",
+        "focused_content_description",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ箇所・文脈の指定主張の中で、指定した焦点内容を確かなものとして確言しているという提示態度。焦点内容と基礎主張を別々に結び、同じ箇所の別の主張や別の焦点へ流用しない。実際の知識・内心の確信度・真理・必然性・成功保証・未来性・既に生じたことは含意しない。"
+    },
+    "additivepropertypresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "claim_description",
+        "background_description",
+        "addition_description",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ箇所・文脈の指定主張の中で、指定した背景の性質記述を既に置いた内容として扱い、それに加えて指定した追加の性質記述を提示する。二つの人物引数は主張内の同じ人物位置へ対応する。単なる無順序の連言と、背景と追加の順序を区別する。引用内容の現実の真理、聞き手の既知・同意、時間的な先後、因果、全ての可能な追加項目を尽くすことは含意しない。"
+    },
+    "propertyjudgmentcandidate": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "property_description",
+        "context",
+        "candidate"
+      ],
+      "meaning_ja": "本人がその記述された性質を判断する際に採用する候補状況。記述ごとに範囲を保持し、著者が可能とする結果uqと同一視しない。"
+    },
+    "recognizedjudgmentproperty": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "property_description",
+        "context"
+      ],
+      "meaning_ja": "本人がこの性質の記述を認識し、判断の対象としている。同じ真理値を持つ別の記述へ自動的に置き換えない。これ単独では肯定判断や真実を含まない。"
+    },
+    "overwhelmingproportioncriterion": {
+      "parameters": [
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "ratio",
+        "context"
+      ],
+      "meaning_ja": "その文脈で、割合が「はるかに最大の部分」に当たる程度の大きさを持つという基準。u5で厳密な過半数も別途要求し、単なる過半数をこの強い表現と同一視しない。"
+    },
+    "goalactivityoutcome": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal_description",
+        "context",
+        "outcome"
+      ],
+      "meaning_ja": "本人が記述された状態へ向かう活動をする場合に可能な結果。成功した結果だけに限定せず、失敗や途中の不利益を含め得る。現実に活動を実行したことは主張しない。"
+    },
+    "adverseoutcome": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "outcome"
+      ],
+      "meaning_ja": "その結果が本人に不利益をもたらすという関係。何を不利益と評価するかは意味規約に含め、恐れていることや実際に起きたことと区別する。"
+    },
+    "goalactivityriskdegree": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "goal_description",
+        "context"
+      ],
+      "meaning_ja": "本人がその状態へ向かう活動について、文脈ごとの危険の程度を尺度上の値として与える。原文にない数値や損失と確率の積は補わない。"
+    },
+    "highriskcriterion": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "degree",
+        "context"
+      ],
+      "meaning_ja": "指定文脈において危険の尺度値が「非常に」に相当する基準に入る。具体的な閾値や尺度算定法は未確定。"
+    },
+    "goalactivityburden": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "number",
+      "arguments": [
+        "person",
+        "goal_description",
+        "context"
+      ],
+      "meaning_ja": "本人が記述された状態へ向かう活動をする場合の負担。達成したことや実行済みであることを含まない。既存の個別方法の負担ocとは、活動全体への評価を区別する。"
+    },
+    "arduousburdencriterion": {
+      "parameters": [
+        "number",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "burden",
+        "context"
+      ],
+      "meaning_ja": "指定文脈で負担が骨の折れる水準にあるという基準。個別の数値を原文へ補わない。"
+    }
+  },
+  "public_contracts": {
+    "contextualfemaleclassification": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "supervisoryposition": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "situationalprecedence": {
+      "arguments": [
+        {
+          "role": "earlier",
+          "sort": "situation"
+        },
+        {
+          "role": "later",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "performedaction": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "aestheticpersonassessment": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "propertylabelpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "referent_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "label_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "supervisionundertaking": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "parameterizedactivitypurpose": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "describedactivitypurpose": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "supervisoryrankatleast": {
+      "arguments": [
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "describedpositionundertaking": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "position_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "beneficiarygoodassessment": {
+      "arguments": [
+        {
+          "role": "beneficiary",
+          "sort": "individual"
+        },
+        {
+          "role": "scene",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "intrinsicgoalreadiness": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "scene",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "highpropertydegree": {
+      "arguments": [
+        {
+          "role": "property_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "scene",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "favorableeventpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "claim_description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "event_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "evaluation_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "criticalevaluationdistance": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "claim_description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "event_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "evaluation_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "focusedclaimassurance": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "claim_description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "focused_content_description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "additivepropertypresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "claim_description",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "background_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "addition_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "propertyjudgmentcandidate": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "property_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "recognizedjudgmentproperty": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "property_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "overwhelmingproportioncriterion": {
+      "arguments": [
+        {
+          "role": "ratio",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "goalactivityoutcome": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "adverseoutcome": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "goalactivityriskdegree": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "highriskcriterion": {
+      "arguments": [
+        {
+          "role": "degree",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "goalactivityburden": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    },
+    "arduousburdencriterion": {
+      "arguments": [
+        {
+          "role": "burden",
+          "sort": "number"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・対象・行為・状況・記述と順序付き引数を保持し、判断の候補と可能結果を混同しない。",
+        "目標・評価・呼称・確言・追加の提示から引用内容の現実の成立を導かない。"
+      ]
+    }
+  },
+  "source_relations": {
+    "da": {
+      "public": "contextualfemaleclassification",
+      "source": "kant-1784"
+    },
+    "dc": {
+      "public": "supervisoryposition",
+      "source": "kant-1784"
+    },
+    "dd": {
+      "public": "situationalprecedence",
+      "source": "kant-1784"
+    },
+    "de": {
+      "public": "performedaction",
+      "source": "kant-1784"
+    },
+    "dt": {
+      "public": "aestheticpersonassessment",
+      "source": "kant-1784"
+    },
+    "du": {
+      "public": "propertylabelpresentation",
+      "source": "kant-1784"
+    },
+    "dv": {
+      "public": "supervisionundertaking",
+      "source": "kant-1784"
+    },
+    "hztl": {
+      "public": "parameterizedactivitypurpose",
+      "source": "kant-1784"
+    },
+    "hzu": {
+      "public": "describedactivitypurpose",
+      "source": "kant-1784"
+    },
+    "hzxn": {
+      "public": "supervisoryrankatleast",
+      "source": "kant-1784"
+    },
+    "hzxo": {
+      "public": "describedpositionundertaking",
+      "source": "kant-1784"
+    },
+    "hzxp": {
+      "public": "beneficiarygoodassessment",
+      "source": "kant-1784"
+    },
+    "hzxq": {
+      "public": "intrinsicgoalreadiness",
+      "source": "kant-1784"
+    },
+    "hzxr": {
+      "public": "highpropertydegree",
+      "source": "kant-1784"
+    },
+    "hzxs": {
+      "public": "favorableeventpresentation",
+      "source": "kant-1784"
+    },
+    "hzxt": {
+      "public": "criticalevaluationdistance",
+      "source": "kant-1784"
+    },
+    "hzxu": {
+      "public": "focusedclaimassurance",
+      "source": "kant-1784"
+    },
+    "hzxv": {
+      "public": "additivepropertypresentation",
+      "source": "kant-1784"
+    },
+    "u2": {
+      "public": "propertyjudgmentcandidate",
+      "source": "kant-1784"
+    },
+    "u3": {
+      "public": "recognizedjudgmentproperty",
+      "source": "kant-1784"
+    },
+    "u4": {
+      "public": "overwhelmingproportioncriterion",
+      "source": "kant-1784"
+    },
+    "uq": {
+      "public": "goalactivityoutcome",
+      "source": "kant-1784"
+    },
+    "ur": {
+      "public": "adverseoutcome",
+      "source": "kant-1784"
+    },
+    "us": {
+      "public": "goalactivityriskdegree",
+      "source": "kant-1784"
+    },
+    "ut": {
+      "public": "highriskcriterion",
+      "source": "kant-1784"
+    },
+    "uu": {
+      "public": "goalactivityburden",
+      "source": "kant-1784"
+    },
+    "uv": {
+      "public": "arduousburdencriterion",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile98。",
+    "27一般関係の採用済み型・引数・意味を保持する。特定文や人物の参照は文書内で定義し、原始語にしない。",
+    "割合・厳密な過半数・順位・引受け・判断・因果的寄与・評価は既存定義の合成を保つ。",
+    "尺度・分類・監督・目的の意味規約に記録された説明の限界を保持し、有限診断を一般理論の証明とはしない。",
+    "未知を偽や0へ補わず、引用の評価や批判的距離から真理や反対命題を導かない。"
+  ]
+}
