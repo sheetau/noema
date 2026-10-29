@@ -1,0 +1,1630 @@
+{
+  "status": "optional_conditional_movement_visible_profile",
+  "document": "examples/v016/conditional-movement-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "judgmentreasonuse": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "reason",
+        "situation"
+      ],
+      "meaning_ja": "その状況で、その判断において指定した理由が用いられる。理由が存在することや、事後的に誰かが理由を付けることだけでは成立しない。"
+    },
+    "judgmentreasonsupport": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "reason",
+        "judgment",
+        "situation"
+      ],
+      "meaning_ja": "その状況の評価基準で、その理由が指定した判断を支える。理由として用いたことだけから支持の成立を推定しない。規範的な評価の基準自体は別途明示する。"
+    },
+    "taskdifficultycomparisonrange": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "scope",
+        "task"
+      ],
+      "meaning_ja": "同じ人物・提示文脈で、困難の最小性を比較する課題の範囲。仮定内の成否に応じて範囲を選び直さない。全ての可能な課題の集合とは限らない。"
+    },
+    "taskdifficultypreorder": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "first_task",
+        "second_task",
+        "case"
+      ],
+      "meaning_ja": "同じ人物・仮定状況において、第一課題は第二課題より難しくないという順序比較。同順位を許す。物理的な幅、成功の確率、結果への期待、課題の実行とは別の意味入力。"
+    },
+    "binaryapplicationexpectation": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "observer",
+        "predicate",
+        "left_actor",
+        "left_task",
+        "right_actor",
+        "right_task",
+        "context"
+      ],
+      "meaning_ja": "観点主体の同じ文脈での期待において、閉じた二引数内容述語を左の人物・課題へ適用する内容が、同じ述語を右の人物・課題へ適用する内容以上に見込まれる。述語を実行せず、実在・真偽・確率値を含意しない。両方向の成立は同順位、両方の不成立は既知の比較不能。未知は偽に補わない。hzptと関連する意味規約だが、二つの記述形式の比較値が自動的に等しいとは定めない。"
+    },
+    "trenchformation": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "ditch",
+        "case"
+      ],
+      "meaning_ja": "描写中の地面にある、両側より低く細長く延びる溝状の地形。ここでは横断する対象として扱う。人工・自然の由来や全地形学は未定義。"
+    },
+    "crossingwidthpreorder": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_ditch",
+        "second_ditch",
+        "case"
+      ],
+      "meaning_ja": "同じ描写状況で横断に関わる幅について、第一の溝が第二以下である。等幅を含み、深さ・長さ・危険度で置き換えない。"
+    },
+    "trenchcomparisonrange": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "ditch",
+        "anchor"
+      ],
+      "meaning_ja": "この基準文脈の同じ人物について、最も狭いという比較に採る溝の候補。仮定状況ごとに都合のよい別の候補群を選び直さない。"
+    },
+    "limbrestrainttermination": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "process",
+        "object",
+        "person",
+        "earlier",
+        "later"
+      ],
+      "meaning_ja": "この同じ過程が、同じ物体による同じ人の足側の拘束状態を終わらせる。前後の状態差だけではなく終結への関与を要求する。"
+    },
+    "depictedhypotheticalhistory": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "case",
+        "point"
+      ],
+      "meaning_ja": "その人について、その仮定状況に至る描写内の同じ履歴に属する状況。現実の履歴iaと混ぜず、仮定ごとの過程を検討する。"
+    },
+    "depictedrestraintreferent": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "person",
+        "anchor"
+      ],
+      "meaning_ja": "この基準文脈の描写で、この人について先行する足枷を受けて指す除去対象。仮定内の後状態だけを見て対象を入れ替えない。規定と定型句の全てへの対応の確定は残る。"
+    },
+    "depictedconditionalsituation": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "anchor",
+        "case"
+      ],
+      "meaning_ja": "この人物・基準文脈の条件文を評価するために採る仮定状況。現実に起きた事実の列ではない。どの状況が比較として適切か、反事実条件の一般的な選択理論は未完。"
+    },
+    "crossgapjump": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "ditch",
+        "act",
+        "case"
+      ],
+      "meaning_ja": "この同じ人が、同じ活動で、足で跳び出し身体を一時的に支持から離して、その溝の一方から他方へ跳ぶという描写。技能の安定、反復可能性や実際の転倒を含意しない。"
+    },
+    "unsettledjumpperformance": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "case"
+      ],
+      "meaning_ja": "この同じ跳躍が、その動作・着地を確かなものとして遂行できない不安定な跳躍として描かれる。確率値、実際の失敗・転倒・傷害を補わない。不確かさの基礎尺度と全語義は未完。"
+    },
+    "narrowtrenchreferent": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "anchor"
+      ],
+      "meaning_ja": "この人物について、この基準文脈で最も狭い溝として指している一つの比較対象。幅の最小性はh3cで別に要求する。仮定状況ごとに指す対象を変えず、同幅の他の溝への跳躍を追加しない。"
+    },
+    "describedactivityexperience": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "event",
+        "activity_description",
+        "point"
+      ],
+      "meaning_ja": "本人が、この出来事で、記述された活動を行う経験をこの時点に持つ。経験の対象を構文として保持し、現在の実行や習熟、成功は含意しない。"
+    },
+    "establishedactivityresponse": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity_description",
+        "case"
+      ],
+      "meaning_ja": "本人に、記述された活動への反応の仕方が現在定着しており、毎回初めてとして対処の仕方を作り直す必要がない。反応の正しさ、成功保証、生得か経験由来かは別条件。定着の程度・安定性の基礎説明は未完。"
+    },
+    "experienceformationcontribution": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "event",
+        "person",
+        "activity_description",
+        "earlier",
+        "case"
+      ],
+      "meaning_ja": "この本人のこの時点の経験が、現在のこの活動への反応の形成に因果的に寄与する。別の活動や人への寄与、単なる前後関係からは導かない。現在まで影響が残るが、定着の基準を満たすとは限らず、唯一・十分・必要な原因とは主張しない。"
+    },
+    "selfbodilydisplacement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "movement",
+        "case"
+      ],
+      "meaning_ja": "本人がこの身体運動によって自分の身体を空間内で移動させるという描写。誰かに運ばれるだけの移送と分ける。具体的な軌道、速度、全運動学は未定義。"
+    },
+    "depictedactivityantecedent": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "anchor",
+        "activity",
+        "depicted_case"
+      ],
+      "meaning_ja": "この人物・基準文脈について、そのような運動の参照元として前の跳躍の描写から選ぶ活動と描写状況。参照元の整合性はh3xで別に検査する。現実の経験や同じ出来事の再現を主張しない。"
+    },
+    "priorpropertyreferent": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "antecedent",
+        "author",
+        "kind",
+        "person",
+        "target",
+        "scope"
+      ],
+      "meaning_ja": "先行箇所の同じ著者・種類記述を受けて、この人物について、この提示文脈で指示される対象。引用された種類を受ける指示の解釈であり、対象の内容や作用の真理、現実の物理的実在を断言する関係ではない。未知の指示を任意の対象で埋めず、仮定内の後状態から選び直さない。"
+    },
+    "depictivereferentcorrespondence": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "antecedent",
+        "author",
+        "person",
+        "depicted",
+        "target",
+        "scope"
+      ],
+      "meaning_ja": "この箇所が同じ著者の先行比喩を受ける際の、同じ人物についての描写側の対象と指示対象の対応。この二つを物理的に同じ物とはしない。対応の解釈は提示文脈で固定し、除去の成否や仮定の後状態から有利な辺を選ばない。対応だけから状態・原因・能力の真理は導かない。"
+    },
+    "toolresponsecomparison": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ提示文脈・対象・本人・基準で、その対象を手段として用いるかが問題になる比較場面。応答の成否から場面を選ばない。本人側の基盤の保持と外的機会は別の入力で全候補について検査する。"
+    },
+    "toolresponsebackground": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "この対象への応答の比較で、基準の本人の関連する構成・理解・習慣・方針などの基盤を保つ。応答の真偽そのものや能力の同一性を保存条件にせず、新たな訓練で別の基盤へ交換しない。前後の基準をまたいで基盤が同一であるという意味ではない。"
+    },
+    "tooluseopportunity": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "person",
+        "candidate"
+      ],
+      "meaning_ja": "この対象を手段として扱う活動を本人が行える外的な局面がある。吟味の能力、実際の使用、適切さ、成功は要求しない。使用しなかった反例を機会がないことにして除かない。"
+    },
+    "toolresponsenormality": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "scope",
+        "object",
+        "person",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ対象・本人・基準の比較場面について、妨害や背景条件から先の場面を通常とする厳密な優先関係。吟味のない使用をしたかどうかを優先根拠にしない。非反射性・推移性・極小候補への到達はrqt4で検査する。"
+    },
+    "judgmenthypothesishistory": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "case",
+        "point"
+      ],
+      "meaning_ja": "この本人について、知的活動側の仮定の終点へ至る同じ履歴に属する状況。身体的な足枷の描写履歴h2rや、別の仮定の履歴を混ぜない。前後の履歴への所属と順序は別に検査する。"
+    },
+    "judgmentperformancecomparison": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "judgment",
+        "topic",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ本人・判断活動・課題・基準について、その活動の遂行の確かさを比較する場面。応答の成否によらず選ぶ。全種類の活動能力や生涯全体を評価する集合ではない。"
+    },
+    "judgmentperformancebackground": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "judgment",
+        "topic",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "比較場面で本人の関連する基盤と課題・取り組み方を保つ。新たな訓練や別の容易な課題への交換を除くが、応答や理由支持の真偽は固定しない。"
+    },
+    "judgmenttaskopportunity": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "topic",
+        "candidate"
+      ],
+      "meaning_ja": "その同じ課題について本人が判断に取り組む外的機会がある。判断の実行、能力、理由の支持を機会そのものの条件にしない。"
+    },
+    "judgmentperformancenormality": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "judgment",
+        "topic",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ活動の比較で、背景条件から先の場面を通常とする厳密な優先関係。成功や理由の有無を優先根拠にしない。"
+    },
+    "correspondingjudgmentactivity": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "judgment",
+        "topic",
+        "anchor",
+        "candidate",
+        "counterpart"
+      ],
+      "meaning_ja": "同じ本人の同じ課題へのこの取り組みを比較場面で評価するための対応活動。実際に判断を遂行できるかは別条件であり、未遂の対応活動も指定できる。対応する活動を全て指定し、応答に失敗する活動を除外しない。"
+    },
+    "relianceexitcomparison": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "scope",
+        "candidate"
+      ],
+      "meaning_ja": "同じ本人と提示文脈について、依存離脱を仮定する対象側の条件文の比較場面。描写側の身体的な履歴や、個別判断の確かさを評価する比較集合とは区別する。"
+    },
+    "judgmenttaskreferent": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "scope"
+      ],
+      "meaning_ja": "同じ本人について、この提示文脈で判断対象として指す課題。比較の結果から選び直さない。最も小さい困難の課題という尺度条件は別途必要である。"
+    }
+  },
+  "public_contracts": {
+    "judgmentreasonuse": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "reason",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "judgmentreasonsupport": {
+      "arguments": [
+        {
+          "role": "reason",
+          "sort": "individual"
+        },
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "taskdifficultycomparisonrange": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "task",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "taskdifficultypreorder": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "first_task",
+          "sort": "individual"
+        },
+        {
+          "role": "second_task",
+          "sort": "individual"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "binaryapplicationexpectation": {
+      "arguments": [
+        {
+          "role": "observer",
+          "sort": "individual"
+        },
+        {
+          "role": "predicate",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "left_actor",
+          "sort": "individual"
+        },
+        {
+          "role": "left_task",
+          "sort": "individual"
+        },
+        {
+          "role": "right_actor",
+          "sort": "individual"
+        },
+        {
+          "role": "right_task",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "trenchformation": {
+      "arguments": [
+        {
+          "role": "ditch",
+          "sort": "individual"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "crossingwidthpreorder": {
+      "arguments": [
+        {
+          "role": "first_ditch",
+          "sort": "individual"
+        },
+        {
+          "role": "second_ditch",
+          "sort": "individual"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "trenchcomparisonrange": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "ditch",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "limbrestrainttermination": {
+      "arguments": [
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "earlier",
+          "sort": "situation"
+        },
+        {
+          "role": "later",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "depictedhypotheticalhistory": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "depictedrestraintreferent": {
+      "arguments": [
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "depictedconditionalsituation": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "crossgapjump": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "ditch",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "unsettledjumpperformance": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "narrowtrenchreferent": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "describedactivityexperience": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "activity_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "establishedactivityresponse": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "experienceformationcontribution": {
+      "arguments": [
+        {
+          "role": "event",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "earlier",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "selfbodilydisplacement": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "movement",
+          "sort": "individual"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "depictedactivityantecedent": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "depicted_case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "priorpropertyreferent": {
+      "arguments": [
+        {
+          "role": "antecedent",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "kind",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "depictivereferentcorrespondence": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "antecedent",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "depicted",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "toolresponsecomparison": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "toolresponsebackground": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "tooluseopportunity": {
+      "arguments": [
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "toolresponsenormality": {
+      "arguments": [
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "situation"
+        },
+        {
+          "role": "other",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "judgmenthypothesishistory": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "judgmentperformancecomparison": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "judgmentperformancebackground": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "judgmenttaskopportunity": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "judgmentperformancenormality": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "situation"
+        },
+        {
+          "role": "other",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "correspondingjudgmentactivity": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        },
+        {
+          "role": "counterpart",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "relianceexitcomparison": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    },
+    "judgmenttaskreferent": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・対象・課題・活動・比較基準・仮定履歴を保持し、結果から比較範囲や外的機会を選び直さない。",
+        "身体描写と知的対象の対応を物理的同一性や真理の一致に置き換えず、閉じた活動記述への指示を実行から分ける。"
+      ]
+    }
+  },
+  "source_relations": {
+    "fc": {
+      "public": "judgmentreasonuse",
+      "source": "kant-1784"
+    },
+    "fd": {
+      "public": "judgmentreasonsupport",
+      "source": "kant-1784"
+    },
+    "h222a": {
+      "public": "taskdifficultycomparisonrange",
+      "source": "kant-1784"
+    },
+    "h222b": {
+      "public": "taskdifficultypreorder",
+      "source": "kant-1784"
+    },
+    "h222c": {
+      "public": "binaryapplicationexpectation",
+      "source": "kant-1784"
+    },
+    "h2n": {
+      "public": "trenchformation",
+      "source": "kant-1784"
+    },
+    "h2o": {
+      "public": "crossingwidthpreorder",
+      "source": "kant-1784"
+    },
+    "h2p": {
+      "public": "trenchcomparisonrange",
+      "source": "kant-1784"
+    },
+    "h2q": {
+      "public": "limbrestrainttermination",
+      "source": "kant-1784"
+    },
+    "h2r": {
+      "public": "depictedhypotheticalhistory",
+      "source": "kant-1784"
+    },
+    "h2s": {
+      "public": "depictedrestraintreferent",
+      "source": "kant-1784"
+    },
+    "h2t": {
+      "public": "depictedconditionalsituation",
+      "source": "kant-1784"
+    },
+    "h2u": {
+      "public": "crossgapjump",
+      "source": "kant-1784"
+    },
+    "h2v": {
+      "public": "unsettledjumpperformance",
+      "source": "kant-1784"
+    },
+    "h3d": {
+      "public": "narrowtrenchreferent",
+      "source": "kant-1784"
+    },
+    "h3e": {
+      "public": "describedactivityexperience",
+      "source": "kant-1784"
+    },
+    "h3f": {
+      "public": "establishedactivityresponse",
+      "source": "kant-1784"
+    },
+    "h3g": {
+      "public": "experienceformationcontribution",
+      "source": "kant-1784"
+    },
+    "h3h": {
+      "public": "selfbodilydisplacement",
+      "source": "kant-1784"
+    },
+    "h3u": {
+      "public": "depictedactivityantecedent",
+      "source": "kant-1784"
+    },
+    "hzzzm": {
+      "public": "priorpropertyreferent",
+      "source": "kant-1784"
+    },
+    "hzzzn": {
+      "public": "depictivereferentcorrespondence",
+      "source": "kant-1784"
+    },
+    "hzzzo": {
+      "public": "toolresponsecomparison",
+      "source": "kant-1784"
+    },
+    "hzzzp": {
+      "public": "toolresponsebackground",
+      "source": "kant-1784"
+    },
+    "hzzzq": {
+      "public": "tooluseopportunity",
+      "source": "kant-1784"
+    },
+    "hzzzr": {
+      "public": "toolresponsenormality",
+      "source": "kant-1784"
+    },
+    "hzzzs": {
+      "public": "judgmenthypothesishistory",
+      "source": "kant-1784"
+    },
+    "hzzzt": {
+      "public": "judgmentperformancecomparison",
+      "source": "kant-1784"
+    },
+    "hzzzu": {
+      "public": "judgmentperformancebackground",
+      "source": "kant-1784"
+    },
+    "hzzzv": {
+      "public": "judgmenttaskopportunity",
+      "source": "kant-1784"
+    },
+    "hzzzw": {
+      "public": "judgmentperformancenormality",
+      "source": "kant-1784"
+    },
+    "hzzzx": {
+      "public": "correspondingjudgmentactivity",
+      "source": "kant-1784"
+    },
+    "hzzzy": {
+      "public": "relianceexitcomparison",
+      "source": "kant-1784"
+    },
+    "hzzzz": {
+      "public": "judgmenttaskreferent",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile104。",
+    "34一般関係の採用済み型・引数・意味を保持し、局所参照h3sは既存文を指す文書内定義にする。",
+    "理由の使用と支持、経験と反応定着、困難と幅と期待を区別する。比較の同順位と比較不能を未知入力で代用しない。",
+    "仮定や引用の帰属だけから実際の成功・転倒・因果・心理的習熟を導かない。",
+    "背景や仮定場面の選択、因果、習熟、不確かさ、地形の元の説明上の限界を保持する。"
+  ]
+}
