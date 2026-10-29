@@ -1,0 +1,2610 @@
+{
+  "status": "optional_public_reversal_visible_profile",
+  "document": "examples/v016/public-reversal-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "coercedstateexitrestriction": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "target",
+        "state",
+        "point"
+      ],
+      "meaning_ja": "この同じ行為は、この本人が記述された状態から離れる選択肢を、身体的な阻止または拒否に伴う不利益の威嚇などの圧力によって制約する。情報や理由を提示するだけの説得、助言、無関係な活動への制約とは区別する。制約の適用を表す関係であり、実際の状態保持・成功・因果的寄与・当人の抵抗の実行は別条件。法的な命令や身体暴力に限定しない。"
+    },
+    "collectiveactionattribution": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "act",
+        "actors",
+        "point"
+      ],
+      "meaning_ja": "この状況の同じ参加者群が担う同じ行為を、指定集団の共同的な働きとして帰属できる。構成員が偶然別々に行ったことや、集団に反して行う私的行為だけでは満たさない。制度的な代表権、全員一致、全構成員の参加は要求しない。参加者の集団所属・行為参加・生起は合成定義で別に検査する。共同作用への帰属の基本関係であり、国家や公衆に限定しない。"
+    },
+    "acquisitionopportunitycandidate": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal",
+        "reference",
+        "start"
+      ],
+      "meaning_ja": "同じ本人が記述された状態を取得する能力を、基準時点から評価するための開始機会の範囲。実際の履歴だけに限定せず、状態を得られる結果から逆算して機会を選ばない。行使活動の成功だけでなく、学習や援助を含む取得方法を評価する文脈を指定する。候補自体の非空性・基準保持・外的条件は別に検査する。"
+    },
+    "acquisitionbasisretention": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal",
+        "reference",
+        "start"
+      ],
+      "meaning_ja": "指定状態の取得を評価するために採る本人側の理解・習慣・身体・方針などの基盤が、同じ基準から候補の開始点へ保たれる。取得可能性の結論そのものを保持条件にせず、既に訓練した別の本人側状態で開始しない。開始後の方法に含まれる学習・変化を禁止する関係ではない。"
+    },
+    "externalacquisitionopportunity": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal",
+        "start"
+      ],
+      "meaning_ja": "同じ本人が、指定状態の取得へ向かう方法を試せる外的な機会を、この開始点が備える。学習・助言などの利用機会を含み得るが、本人の取得能力、方法の実行、成功、社会的な許可を含意しない。指定状態が既に成立することとも区別する。"
+    },
+    "prospectiveactionreadiness": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "action",
+        "point"
+      ],
+      "meaning_ja": "本人が、認知上捉えている指定行為への能動的な参加に向けて、進んで取り組む意向と準備を持つ。行為は予定として指示でき、実際の実行や成功を要求しない。その行為自体を内在的に好ましいと評価すること、熟慮して決めたこと、他の動機の不在は含意しない。別の行為への意欲や単なる知識と区別する。"
+    },
+    "rebelliousaffectappeal": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "recipient",
+        "point"
+      ],
+      "meaning_ja": "この提示行為の表現・遂行の様式が、この受け手の怒り・憤りなどの反抗的な感情に訴えるものである。理由を冷静に示すだけの様式とは区別する。受け手に実際に感情や意欲が生じたこと、行動、因果的な成功、虚偽の内容は含意しない。発話に限らず理解できる身振りや表示も含み得る。"
+    },
+    "actiondirectedrebelliousaffect": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "action",
+        "point"
+      ],
+      "meaning_ja": "本人が、認知上捉えている同じ行為へ向けて、怒り・興奮などの反抗的な感情の高まりを持つ。平静な行動意欲、無関係な対象への怒り、単なる身体運動とは区別する。行為の実行、熟慮、合理的な正当性や、感情の発生原因はこの関係だけから導かない。"
+    },
+    "distributivegroupscope": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "group",
+        "state",
+        "context"
+      ],
+      "meaning_ja": "この文脈で、記述された性質を同じ集団へ分配的に述定する際の、関連する構成員の全対象範囲。集団の全成員と必ず同じではないが、結果が成立した者だけを選んだり、都合の悪い構成員を後から外したりしない。実際の性質の成立・因果・集団所属はこの参照だけから導かず、呼出側で検査する。"
+    },
+    "contextualpriorinfluencecase": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "public",
+        "reference",
+        "case"
+      ],
+      "meaning_ja": "先頭二文と同じ公衆・参照文脈について、先行する後見人からの作用を背景に第三文前半を述べる対象の事例範囲。事例は実際または仮定の経過を識別し、後の扇動や強制の成否を見て選び直さない。行為・人物・期間の各参照は同じ事例から供給する。各事例の関係の真理は合成内容で別に評価する。"
+    },
+    "caseprioractorgroup": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の先行作用を担う後見人群を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "casepriorparticipants": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の先行作用の実際の参加後見人の全列を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "caseincitingparticipants": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の扇動条件で評価する後見人たちの全列を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "casepriorinfluenceact": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の公衆への先行作用の行為を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "casepriorinfluencepoint": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の先行作用とその結果を評価する時点を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "caseincitingpresentation": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の扇動条件で評価する提示行為を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "caseincitementpoint": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の扇動とその動機的結果を評価する局面を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "caseprospectivepressureact": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の後の強制として問題にする行為の参照。生起自体は含意しないを指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "caseaffectedparticipants": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の公衆側の行為参加と扇動の受け手を評価する全対象者列を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "casehistorydescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の期間評価の履歴範囲の閉じた記述を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "caseprecedencedescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation",
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の同じ履歴の先行関係の閉じた記述を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "casepressurestartdescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の後の強制の開始として問題にする時点の閉じた記述を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "caseretentionenddescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の保持期間の終点として問題にする時点の閉じた記述を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "caseretentionassessment": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の保持期間全体とその因果を評価する時点を指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "casepressureactdescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の同じ予定圧力行為の閉じた参照。元の行為との一致はr2nbで検査するを指す局所参照。参照先の意味と各関係の成立は合成定義で検査し、原文内容の代替述語にはしない。"
+    },
+    "scopedrelationaldepictionthree": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          },
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          },
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          },
+          "rank": 3
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "claim",
+        "scope",
+        "target",
+        "depiction",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ主張の中で、指定した範囲に属する順序付き対象列と内容評価点に関する対象側の関係を、描写側の関係によって非字義的に提示する。範囲・対象・描写は同じ列の位置と評価点を共有し、別々の人物や時点を後から同じとみなさない。既存rbtと同種の非字義的な提示を、主張・範囲と段階3の関係記述に結ぶ。引用内容の真理、物理的な出来事の実在、両側の因果の同一性は含意しない。"
+    },
+    "depictionkindanaphora": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "antecedent",
+        "author",
+        "state",
+        "depiction",
+        "context"
+      ],
+      "meaning_ja": "同じ著者・提示文脈で、現在の箇所が先行する非字義的な提示を受け、そこで対応づけられた状態の種類と身体的な描写の種類を、指定された二つの性質記述として再び指す。同じ状態・描写の種類への照応であり、描写上の個々の物体の同一性、状態や出来事の真理、担い手の同一性そのものは含意しない。"
+    },
+    "salientdeparturepresentationthree": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "claim",
+        "focus",
+        "discussion",
+        "context"
+      ],
+      "meaning_ja": "同じ主張と提示文脈の中で、指定された先行の議論に関して、焦点の内容を通常の予期から外れる特異な点として特に注意を向けて提示するという帰属。先行議論の文章箇所の列を明示する。客観的な発生頻度・確率、主張の確信度や必然性の増加、引用内容の真理を含意しない。"
+    },
+    "scopedactorfocuspresentationthree": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          },
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          },
+          "rank": 3
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "claim",
+        "scope",
+        "feature",
+        "context"
+      ],
+      "meaning_ja": "同じ主張の該当する述定を提示するとき、範囲の順序付き対象列の最終位置の担い手自身を、焦点の関係の担い手として取り立てる帰属。範囲と焦点は同じ列と内容評価点を共有する。単に関係者や代理が担うという提示と区別するが、他者の関与を全て排除せず、単独性を要求しない。焦点の述定が元の主張の条件・否定・量化のどこにあるかを保ち、帰属の評価時にその真理を条件の外で断言しない。"
+    },
+    "judgmentprincipleadoption": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "point"
+      ],
+      "meaning_ja": "同じ判断において、肯定する内容を単に仮の見込みとして保留するのでなく、さらに判断する際の確定した原則として受け入れている。内容の真理、理由の十分性、社会的な普及、本人の悪意は含意しない。"
+    },
+    "completedgroundsadequacyexamination": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "topic",
+        "claim",
+        "point"
+      ],
+      "meaning_ja": "この本人は、この話題に適用された同じ内容記述を確定した原則として受け入れるに足る根拠について、その時点までに実際に吟味して確認を済ませている。単に他者からそう教わったこと、本人の確信、吟味したとの自己申告、別の内容の検討だけでは成立しない。吟味の全くの不在と不十分な吟味の両方を、この関係の不成立に含める。"
+    },
+    "opinioncontentdescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "content"
+        }
+      },
+      "arguments": [
+        "opinion"
+      ],
+      "meaning_ja": "同じ意見・教説の対象について肯定される内容の閉じた性質記述。適用先の話題はh224zで別に指す。参照だけから誰かの採用、内容の真理、偏見の分類を導かない。"
+    },
+    "opinionsubjectreferent": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "opinion"
+      ],
+      "meaning_ja": "同じ意見・教説に関してh224yの内容記述を適用する話題の参照。人や集団の任意の別話題へ付け替えず、参照だけで内容の真理や採用を保証しない。"
+    },
+    "practicalrolesuccession": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "prior",
+        "later",
+        "earlier",
+        "after"
+      ],
+      "meaning_ja": "同じ社会的実践の指定役割について、先の局面の担い手から後の局面の担い手へ務めが引き継がれる継続関係がある。中間の担い手を経る場合も含む。血縁、同一職種、単に先に活動しただけでは足りない。両者の実際の役割保持、人物の区別、時点の有効性と前後関係は別に検査する。"
+    },
+    "unexaminedprincipleeffectcase": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "reference",
+        "case"
+      ],
+      "meaning_ja": "同じ提示の参照文脈で、偏見の植え付けと生み手側への反作用について述べる関連事例の全範囲。実際または仮定の経過を識別する。害の成否や帰属の真理を見て事例を選ばず、不都合な事例を省かない。各関係の成立は合成内容で検査する。"
+    },
+    "caseoriginlinkedtargets": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例で、当該の偏見を生んだ本人またはその先任者を通じて関係づけられる対象者の全列。結果の害が成立した者だけを選ばない。実際の生み手・先任者関係、人数・人の分類・重複の不在は合成内容で検査する。"
+    },
+    "caseadoptionoriginator": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の当該の偏見採用を生じさせる人を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "caseadoptionproductionact": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の植え付けの行為を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "caseadoptionrecipient": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の偏見採用を生じさせられる受け手を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "caseopinionreferent": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の同じ意見の個体を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "caseopiniondescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の同じ意見の閉じた個体記述を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "caseadoptionpriorpoint": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の植え付けの先行点を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "caseadoptionpriordescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ固定事例の同じ先行点の閉じた記述を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "casetargetoutcomepoint": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "situation",
+      "arguments": [
+        "case",
+        "target"
+      ],
+      "meaning_ja": "同じ固定事例のこの対象者について経過の帰結を評価する点を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "casetargetsuccessionrole": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case",
+        "target"
+      ],
+      "meaning_ja": "同じ固定事例の生み手とこの対象者の継承を評価する同じ実践の役割を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "casetargetcoursedescription": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "case",
+        "target"
+      ],
+      "meaning_ja": "同じ固定事例のこの対象者に関して問題にする全経過の閉じた範囲記述を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。 範囲は反作用の成否を見て切り詰めず、同じ因果的な展開として扱う関連局面を全て含める。"
+    },
+    "casetargetprecedencedescription": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation",
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "arguments": [
+        "case",
+        "target"
+      ],
+      "meaning_ja": "同じ固定事例の同じ全経過の先行関係の閉じた記述を指す局所参照。参照だけで結果の真理や時間の最終性は保証しない。"
+    },
+    "highpropertydegreeevaluationthree": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          },
+          "rank": 3
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "property",
+        "roles",
+        "reference"
+      ],
+      "meaning_ja": "指定した閉じた内容関数と同じ順序付き引数について、その性質の程度をこの評価文脈で高いものとして扱う。既存hzxrと同じ評価関係を段階3の記述に適用する一般形。数値、最大性、各構成員が一律に高い程度を持つこと、基礎の性質の真理は含意せず、性質の成立は別に検査する。"
+    },
+    "exemplifieddegreepresentationthree": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          },
+          "rank": 3
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "claim",
+        "property",
+        "example_node",
+        "example",
+        "context"
+      ],
+      "meaning_ja": "同じ著者・提示文脈の主張で、指定した性質の程度を、先行箇所の内容が示す程度として指示して取り立てる。例示側の条件・様相・留保は保持する。実際に先行の出来事が起きたこと、二内容の論理的含意、二事例の人物や時点の同一性、数値的な程度の等式は含意しない。"
+    },
+    "rootedplantbody": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "plant",
+        "point"
+      ],
+      "meaning_ja": "この個体が、根を介して培地に定着して生育する植物体である。植え付け済み、成長の成功、特定の種であることは含めない。"
+    },
+    "plantgrowthmedium": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "medium",
+        "point"
+      ],
+      "meaning_ja": "この対象が植物の根を受け入れる土壌または生育用の培地である。特定の植物が実際に定着したことは含めない。"
+    },
+    "rootmediumplacement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "plant",
+        "medium",
+        "point"
+      ],
+      "meaning_ja": "同じ植物体の根の領域がこの培地の内部に収められ、培地と接する状態にある。近くに置いただけ、他の植物の根の接触、実際の生育とは区別する。"
+    },
+    "rootedplantgrowth": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "plant",
+        "medium",
+        "point"
+      ],
+      "meaning_ja": "同じ植物体がこの培地で根づいて生育している状態。目標として引用する場合は、現実の定着・成長の成功を要求しない。"
+    },
+    "caseadoptionrecipientdescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "arguments": [
+        "case"
+      ],
+      "meaning_ja": "同じ事例の受け手h225fを、植え付けの描写の培地として指す閉じた個体記述。元の参照との一致はr2paで検査する。"
+    },
+    "casetargetdepictedresponse": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case",
+        "target"
+      ],
+      "meaning_ja": "同じ事例・対象者の反作用を擬人化して述べる描写上の応答行為。現実の応答行為の存在や意図は参照だけから導かない。"
+    },
+    "casetargetdescription": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "arguments": [
+        "case",
+        "target"
+      ],
+      "meaning_ja": "同じ事例の同じ反作用の対象者を指す閉じた個体記述。描写の意図内容を閉じるために用い、元の対象者との一致はr2pjで検査する。"
+    },
+    "perceivedpersonalwrong": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "prior_act",
+        "point"
+      ],
+      "meaning_ja": "この主体が、この先行行為を自分に対する害・不当な扱いとして受け止めている。先行行為の客観的な不当性、実際の被害、行為者への正当な請求権は保証しない。"
+    },
+    "retributiveresponserelation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "response",
+        "prior_act",
+        "point"
+      ],
+      "meaning_ja": "この応答が、指定した先行行為に対して扱いを返す応報的な対応として位置づけられる。単なる時系列の後続、将来の予防だけを目的とする措置、別の先行行為への対応とは区別する。応答主体・害・意図・因果は別に検査する。"
+    }
+  },
+  "public_contracts": {
+    "coercedstateexitrestriction": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "collectiveactionattribution": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "actors",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "acquisitionopportunitycandidate": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "acquisitionbasisretention": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "externalacquisitionopportunity": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "prospectiveactionreadiness": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "action",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "rebelliousaffectappeal": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "actiondirectedrebelliousaffect": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "action",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "distributivegroupscope": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": "individual"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "contextualpriorinfluencecase": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseprioractorgroup": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casepriorparticipants": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseincitingparticipants": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casepriorinfluenceact": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casepriorinfluencepoint": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseincitingpresentation": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseincitementpoint": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseprospectivepressureact": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseaffectedparticipants": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casehistorydescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseprecedencedescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation",
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casepressurestartdescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseretentionenddescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseretentionassessment": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casepressureactdescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "scopedrelationaldepictionthree": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "depiction",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "depictionkindanaphora": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "antecedent",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "depiction",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "salientdeparturepresentationthree": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "discussion",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "scopedactorfocuspresentationthree": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "feature",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "judgmentprincipleadoption": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "completedgroundsadequacyexamination": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "opinioncontentdescription": {
+      "arguments": [
+        {
+          "role": "opinion",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "content"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "opinionsubjectreferent": {
+      "arguments": [
+        {
+          "role": "opinion",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "practicalrolesuccession": {
+      "arguments": [
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "prior",
+          "sort": "individual"
+        },
+        {
+          "role": "later",
+          "sort": "individual"
+        },
+        {
+          "role": "earlier",
+          "sort": "situation"
+        },
+        {
+          "role": "after",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "unexaminedprincipleeffectcase": {
+      "arguments": [
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseoriginlinkedtargets": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseadoptionoriginator": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseadoptionproductionact": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseadoptionrecipient": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseopinionreferent": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseopiniondescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseadoptionpriorpoint": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseadoptionpriordescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "situation"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casetargetoutcomepoint": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casetargetsuccessionrole": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casetargetcoursedescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casetargetprecedencedescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "situation",
+            "situation"
+          ],
+          "result": "truth"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "highpropertydegreeevaluationthree": {
+      "arguments": [
+        {
+          "role": "property",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "roles",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "exemplifieddegreepresentationthree": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "property",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "example_node",
+          "sort": "individual"
+        },
+        {
+          "role": "example",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "rootedplantbody": {
+      "arguments": [
+        {
+          "role": "plant",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "plantgrowthmedium": {
+      "arguments": [
+        {
+          "role": "medium",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "rootmediumplacement": {
+      "arguments": [
+        {
+          "role": "plant",
+          "sort": "individual"
+        },
+        {
+          "role": "medium",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "rootedplantgrowth": {
+      "arguments": [
+        {
+          "role": "plant",
+          "sort": "individual"
+        },
+        {
+          "role": "medium",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "caseadoptionrecipientdescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casetargetdepictedresponse": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "casetargetdescription": {
+      "arguments": [
+        {
+          "role": "case",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "perceivedpersonalwrong": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "prior_act",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    },
+    "retributiveresponserelation": {
+      "arguments": [
+        {
+          "role": "response",
+          "sort": "individual"
+        },
+        {
+          "role": "prior_act",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事例・公衆・行為・参加者列・時間範囲・記述を各関係に保つ。",
+        "帰属と世界真理、人物と描写の種類、圧力と成功、原則採用と真理を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h223n": {
+      "public": "coercedstateexitrestriction",
+      "source": "kant-1784"
+    },
+    "h223o": {
+      "public": "collectiveactionattribution",
+      "source": "kant-1784"
+    },
+    "h223p": {
+      "public": "acquisitionopportunitycandidate",
+      "source": "kant-1784"
+    },
+    "h223q": {
+      "public": "acquisitionbasisretention",
+      "source": "kant-1784"
+    },
+    "h223r": {
+      "public": "externalacquisitionopportunity",
+      "source": "kant-1784"
+    },
+    "h223s": {
+      "public": "prospectiveactionreadiness",
+      "source": "kant-1784"
+    },
+    "h223t": {
+      "public": "rebelliousaffectappeal",
+      "source": "kant-1784"
+    },
+    "h223u": {
+      "public": "actiondirectedrebelliousaffect",
+      "source": "kant-1784"
+    },
+    "h223v": {
+      "public": "distributivegroupscope",
+      "source": "kant-1784"
+    },
+    "h223w": {
+      "public": "contextualpriorinfluencecase",
+      "source": "kant-1784"
+    },
+    "h223x": {
+      "public": "caseprioractorgroup",
+      "source": "kant-1784"
+    },
+    "h223y": {
+      "public": "casepriorparticipants",
+      "source": "kant-1784"
+    },
+    "h223z": {
+      "public": "caseincitingparticipants",
+      "source": "kant-1784"
+    },
+    "h224a": {
+      "public": "casepriorinfluenceact",
+      "source": "kant-1784"
+    },
+    "h224b": {
+      "public": "casepriorinfluencepoint",
+      "source": "kant-1784"
+    },
+    "h224c": {
+      "public": "caseincitingpresentation",
+      "source": "kant-1784"
+    },
+    "h224d": {
+      "public": "caseincitementpoint",
+      "source": "kant-1784"
+    },
+    "h224e": {
+      "public": "caseprospectivepressureact",
+      "source": "kant-1784"
+    },
+    "h224f": {
+      "public": "caseaffectedparticipants",
+      "source": "kant-1784"
+    },
+    "h224g": {
+      "public": "casehistorydescription",
+      "source": "kant-1784"
+    },
+    "h224h": {
+      "public": "caseprecedencedescription",
+      "source": "kant-1784"
+    },
+    "h224i": {
+      "public": "casepressurestartdescription",
+      "source": "kant-1784"
+    },
+    "h224j": {
+      "public": "caseretentionenddescription",
+      "source": "kant-1784"
+    },
+    "h224k": {
+      "public": "caseretentionassessment",
+      "source": "kant-1784"
+    },
+    "h224l": {
+      "public": "casepressureactdescription",
+      "source": "kant-1784"
+    },
+    "h224n": {
+      "public": "scopedrelationaldepictionthree",
+      "source": "kant-1784"
+    },
+    "h224p": {
+      "public": "depictionkindanaphora",
+      "source": "kant-1784"
+    },
+    "h224r": {
+      "public": "salientdeparturepresentationthree",
+      "source": "kant-1784"
+    },
+    "h224s": {
+      "public": "scopedactorfocuspresentationthree",
+      "source": "kant-1784"
+    },
+    "h224w": {
+      "public": "judgmentprincipleadoption",
+      "source": "kant-1784"
+    },
+    "h224x": {
+      "public": "completedgroundsadequacyexamination",
+      "source": "kant-1784"
+    },
+    "h224y": {
+      "public": "opinioncontentdescription",
+      "source": "kant-1784"
+    },
+    "h224z": {
+      "public": "opinionsubjectreferent",
+      "source": "kant-1784"
+    },
+    "h225a": {
+      "public": "practicalrolesuccession",
+      "source": "kant-1784"
+    },
+    "h225b": {
+      "public": "unexaminedprincipleeffectcase",
+      "source": "kant-1784"
+    },
+    "h225c": {
+      "public": "caseoriginlinkedtargets",
+      "source": "kant-1784"
+    },
+    "h225d": {
+      "public": "caseadoptionoriginator",
+      "source": "kant-1784"
+    },
+    "h225e": {
+      "public": "caseadoptionproductionact",
+      "source": "kant-1784"
+    },
+    "h225f": {
+      "public": "caseadoptionrecipient",
+      "source": "kant-1784"
+    },
+    "h225g": {
+      "public": "caseopinionreferent",
+      "source": "kant-1784"
+    },
+    "h225h": {
+      "public": "caseopiniondescription",
+      "source": "kant-1784"
+    },
+    "h225i": {
+      "public": "caseadoptionpriorpoint",
+      "source": "kant-1784"
+    },
+    "h225j": {
+      "public": "caseadoptionpriordescription",
+      "source": "kant-1784"
+    },
+    "h225k": {
+      "public": "casetargetoutcomepoint",
+      "source": "kant-1784"
+    },
+    "h225l": {
+      "public": "casetargetsuccessionrole",
+      "source": "kant-1784"
+    },
+    "h225m": {
+      "public": "casetargetcoursedescription",
+      "source": "kant-1784"
+    },
+    "h225n": {
+      "public": "casetargetprecedencedescription",
+      "source": "kant-1784"
+    },
+    "h225q": {
+      "public": "highpropertydegreeevaluationthree",
+      "source": "kant-1784"
+    },
+    "h225r": {
+      "public": "exemplifieddegreepresentationthree",
+      "source": "kant-1784"
+    },
+    "h225t": {
+      "public": "rootedplantbody",
+      "source": "kant-1784"
+    },
+    "h225u": {
+      "public": "plantgrowthmedium",
+      "source": "kant-1784"
+    },
+    "h225v": {
+      "public": "rootmediumplacement",
+      "source": "kant-1784"
+    },
+    "h225w": {
+      "public": "rootedplantgrowth",
+      "source": "kant-1784"
+    },
+    "h225x": {
+      "public": "caseadoptionrecipientdescription",
+      "source": "kant-1784"
+    },
+    "h225z": {
+      "public": "casetargetdepictedresponse",
+      "source": "kant-1784"
+    },
+    "h226a": {
+      "public": "casetargetdescription",
+      "source": "kant-1784"
+    },
+    "h226b": {
+      "public": "perceivedpersonalwrong",
+      "source": "kant-1784"
+    },
+    "h226c": {
+      "public": "retributiveresponserelation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile108。",
+    "58一般関係の採用済み型・引数・意味を保持し、11箇所参照と補助全第三文参照は文書内定義にする。",
+    "事例フィールドは同じ事例の値を供給する入力であり、原文の主張全体や成功を返す演算子ではない。",
+    "強制・共同作用・能力基盤・感情・根拠吟味・役割継承の具体的機構は元契約の明示範囲を超えて保証しない。",
+    "階数3の主張・範囲・対象列を保持し、非字義的な植え付け・頚木・報復の提示を現実の出来事へ変えない。"
+  ]
+}
