@@ -1,0 +1,1768 @@
+{
+  "status": "optional_public_revolution_visible_profile",
+  "document": "examples/v016/public-revolution-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "governingdecisioncontrol": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "holder",
+        "order",
+        "point"
+      ],
+      "meaning_ja": "同じ統治・指配の仕組みにおいて、この主体が他の当事者に従わせる決定を事実上統制している。肩書、助言するだけの立場、制度の正当性とは分ける。対象者がこの仕組みに服していることは別関係である。"
+    },
+    "unrestrainedpersonaldiscretion": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "holder",
+        "order",
+        "point"
+      ],
+      "meaning_ja": "同じ仕組みの決定で、この主体自身の裁量が決定的とされ、その個人の意思から独立した拘束的な基準や対抗的な統制によって抑えられない。この個人への裁量の集中を表し、一般的な監督役や単なる役職上位とは区別する。具体的な憲法や制度の法的正当性は主張しない。"
+    },
+    "oppressivechoiceconstraint": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "target",
+        "point"
+      ],
+      "meaning_ja": "同じ行為が、優越的な圧力によって、この対象者の行動・生活上の選択や資源利用をその利益に反して制約し、負担を課す。単なる心理的な気分の重さ、助言、任意に選んだ負担とは区別する。行為の生起・担い手・実際の不利益への因果は別に結ぶ。"
+    },
+    "materialnetgain": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "point"
+      ],
+      "meaning_ja": "この本人が、文脈上の取得・取引において金銭・財などの物質的な純利益を得る。単なる気分の改善や他者だけの利益とは区別する。欲求や目的の内容として引用した場合、現実の利益の取得を要求しない。"
+    },
+    "excessivegoalpursuit": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal",
+        "roles",
+        "point"
+      ],
+      "meaning_ja": "同じ本人の、指定した内容関数と順序付き引数で表された目標への欲求を、文脈上の妥当な限度を越えて強く優先し追求するものとして評価する。単なる利益や支配の希望を過度な執着と同一視せず、具体的な行為の目的・生起や目標の実現は別に要求する。数値閾値や臨床診断は含めない。"
+    },
+    "ordermembershipsubjection": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "order",
+        "target",
+        "point"
+      ],
+      "meaning_ja": "この対象者が、指定した支配・服属の仕組みの下に実際に置かれ、その指配に従う関係にある。仕組みの性質・担い手の動機・法的正当性とは別の継続的な関係で、一行為の終了や担い手の交代だけから不成立としない。"
+    },
+    "selfinvolvedsubjectionexit": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "process",
+        "order",
+        "target",
+        "first",
+        "last"
+      ],
+      "meaning_ja": "同じ過程で同じ対象者が指定した仕組みへの服属を拒み、その結び付きの終結に関与する。単なる自然消滅や、本人が関与しない別人による変更とは区別する。前後の服属状態、時間順、本人の参加と作用は別に検査する。"
+    },
+    "governingorderexercise": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "order",
+        "point"
+      ],
+      "meaning_ja": "この行為が、この同じ指配の仕組みを行使する行為として位置づけられる。単なる同時生起や別の仕組みでの私的行為を混ぜない。行為の生起、参加者、服属者、効果や正当性は別条件である。"
+    },
+    "politicalorderconstitution": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "order",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "この対象は、同じ共同体における公的な決定権と決定の執行を組織する基本的な政治秩序の構成である。現在実施される秩序と提案された構成の双方を分類でき、実際に統治していることは別に要求する。任意の私的な好みや、一職員の人事だけとは区別する。"
+    },
+    "fundamentalpoliticalorderdifference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "old",
+        "proposed",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "同じ共同体について二つの政治秩序を比較すると、公的な決定権の配分・権能・拘束的な規則の根幹に違いがある。単なる名称変更、通常の役職交代、局所的な運用修正ではない。提案が実施されたこと、改善・正当性・住民の啓蒙は含意しない。"
+    },
+    "governingpoweroverthrowattempt": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "old",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "同じ集団的な行為に、指定した政治秩序の既存の統治権力を覆そうとする対抗の実行がある。通常の権力継承としての交代や、提案だけに留まる活動とは分ける。対抗の成功、特定の手段、流血や全住民の参加は要求しない。秩序変更の具体的な目標と参加者は別に結ぶ。"
+    },
+    "politicalorderimplementation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "order",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "同じ共同体の公的な決定と執行が、この政治秩序によって実際に組織されている。案として存在することや、ある個人だけがこの秩序を望むこととは別である。正当性・恒久性・個々の人の服属をこの関係だけから補わない。"
+    },
+    "fixedjudgmenttopicrange": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "scope",
+        "topic"
+      ],
+      "meaning_ja": "同じ本人の判断の仕方を評価する、指定文脈で固定した判断対象の全範囲。文脈上の生活上・公共的な判断領域を選び、変化の前後や成功の有無で対象を入れ替えない。一つの都合のよい結論だけへ限定しない。範囲の適切さは解釈入力であり、非空性の検査だけから適切さを導かない。"
+    },
+    "anchoredjudgmentcomparisonscene": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "topic",
+        "scope",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "同じ人と固定した判断対象について、基準時点の判断の仕方を評価する比較場面。判断の成否によらず対象場面を定める。scopeは前後で共通の領域、anchorは変化する本人側状態の評価点。"
+    },
+    "anchoredjudgmentbasisretention": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "topic",
+        "scope",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "比較場面で、同じ本人の基準時点の判断を組み立てる方針・理解・習慣を保持する。後の訓練を先の状態へ持ち込まず、判断の成功そのものを保持条件にはしない。領域scopeは前後で同じまま、anchorごとの方針の相違を許す。"
+    },
+    "anchoredjudgmentnormalityorder": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "topic",
+        "scope",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "固定領域・本人・判断対象・基準時点について、背景条件から先の比較場面を通常とする厳密な優先関係。自己判断の成否を優先の根拠にせず、例外の除外によって任意の成功を通常にしない。順序と通常場面の非空性は別に検査する。"
+    },
+    "anchoredjudgmentactivitycandidate": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "topic",
+        "scope",
+        "anchor",
+        "candidate",
+        "judgment"
+      ],
+      "meaning_ja": "同じ本人の判断の仕方を同じ話題・比較場面で評価するための対応する取り組み。未遂も含めて対応する全活動を指定し、うまく遂行した判断だけを選ばない。実際の生起・自己判断・理由の支持は別条件。"
+    },
+    "outcomepopulationthreshold": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "number",
+      "arguments": [
+        "public",
+        "result",
+        "reference"
+      ],
+      "meaning_ja": "同じ公衆と基準文脈について、指定結果がその公衆へ広がったと呼ぶ最低比率。結果の種類ごとに基準を分け、候補・革命・実際の成功者数から選び直さない。0と1の間で厳密に超える読みを利用側で検査する。能力取得用のh222jの値を自動流用せず、固定の過半数や全員という数値を原文へ追加しない。"
+    },
+    "publicpoliticalcommunity": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "public",
+        "reference"
+      ],
+      "meaning_ja": "この公衆について政治的変化を述べる文脈上の共同体。公的議論の宛先と政治的共同体を区別して指す。国名・特定国家・現実の革命は指定せず、政治秩序と集団行為の関係は合成内容で要求する。"
+    },
+    "politicalchangeactivitycandidate": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "public",
+        "reference",
+        "act",
+        "candidate"
+      ],
+      "meaning_ja": "同じ公衆・基準で、候補経過における政治的変化の原因として検討する全活動。結果の成否や革命への該当によって先に選別しない。先頭文と同じ候補範囲h222kの内側で用い、活動の種類と生起は別に要求する。"
+    },
+    "politicalchangepreviousorder": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "public",
+        "reference",
+        "act",
+        "candidate"
+      ],
+      "meaning_ja": "同じ比較活動と候補について、変更を目指す旧政治秩序の参照。現に実施されていること・革命への該当は別に検査する。"
+    },
+    "politicalchangeproposedorder": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "public",
+        "reference",
+        "act",
+        "candidate"
+      ],
+      "meaning_ja": "同じ比較活動と候補について、変更目標となる提案政治秩序の参照。旧秩序との相違と変更目標の実在を別に検査し、提案の実施成功は参照から導かない。"
+    },
+    "politicalchangeparticipantlisting": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "public",
+        "reference",
+        "act",
+        "candidate"
+      ],
+      "meaning_ja": "同じ比較活動と候補における政治的な集団行為の全参加者列。公衆の全読者列とは区別する。人・共同体所属・実際の参加・集団への帰属をr2qgで検査する。"
+    },
+    "opinionapplicationexamination": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "review",
+        "opinion",
+        "decision",
+        "point"
+      ],
+      "meaning_ja": "この吟味判断は、指定した同じ意見を同じ後続判断の根拠・判断基準として使ってよいかを検討する判断である。意見そのものへの別の検討、無関係な活動や別意見の適用についての吟味とは分ける。誰が実際に吟味したかはfaで別に結ぶ。"
+    },
+    "substantiveopiniondifference": {
+      "parameters": [
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "old",
+        "new"
+      ],
+      "meaning_ja": "指定された二つの意見・教説には、何をどのように肯定するかという実質的な内容の違いがある。名前・媒体・言い回しの違いだけでは成立しない。相互矛盾、どちらかの真理、新奇さや社会的な採用時期までは含意しない。"
+    },
+    "opinioninfluencethreshold": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "number",
+      "arguments": [
+        "group",
+        "reference"
+      ],
+      "meaning_ja": "同じ集団・基準文脈について、ある意見群の採用やそれによる判断の方向付けが集団に広がっていると呼ぶ最低比率。前後・新旧・結果に応じて変えず、0と1の間を厳密に超える読みを合成定義で検査する。固定の過半数や全員は原文へ追加しない。"
+    },
+    "establishedopinionlisting": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "public",
+        "reference"
+      ],
+      "meaning_ja": "同じ公衆と基準文脈において第五文後半で古い偏見として対照に置く意見群の全参照列。候補ごとに古い意見を選び替えず、各項の実際の採用・働き、複数性はr2rk以下で検査する。特定の歴史的教説名は補わない。"
+    },
+    "candidateopinionlisting": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "public",
+        "reference",
+        "candidate"
+      ],
+      "meaning_ja": "同じ公衆と基準について、候補経過で新しい偏見として言及する意見群の全参照列。成功する項目だけを抽出しない。参照を与えることと、意見が実際に採用され働くことは区別し、新しさ・複数性・新旧の内容差はr2rk以下で要求する。候補ごとに具体的内容が異なってよい。"
+    },
+    "flexiblebandshape": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "object",
+        "point"
+      ],
+      "meaning_ja": "同じ状況で物体が、長手方向に延び、厚みに比べ幅のある、曲げられる帯状の形を持つ。材質、色、数値寸法は固定しない。目的や実際の牽引はこの形状分類に含めない。"
+    },
+    "bandbodytensionconnection": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "band",
+        "body",
+        "point"
+      ],
+      "meaning_ja": "同じ帯と身体が、直接または着衣等を介し、帯の張力を身体へ伝えられるように物理的につながっている。近くにあるだけでは足りず、首への装着や結び方は指定しない。"
+    },
+    "physicalforcebearinghold": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "holder",
+        "object",
+        "point"
+      ],
+      "meaning_ja": "同じ人が同じ物体を、力を加えられるように身体で保持している。所有や、触れているだけの状態とは区別する。"
+    },
+    "bandtensionmovementconstraint": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "band",
+        "body",
+        "movement",
+        "point"
+      ],
+      "meaning_ja": "同じ帯を介して伝わる張力が、同じ身体の同じ移動行為の方向または移動可能な範囲を実際に制約している。帯の存在、接続、保持だけでこの力学的作用を認定しない。特定の操作者の意図、痛み、転倒を含意しない。"
+    },
+    "qualifiedoutcomereservationthree": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "rank": 3
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "claim",
+        "subject_scope",
+        "outcome_family",
+        "qualification_family",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ箇所・主張・文脈で、対象範囲の同じ個体と基準に関する結果族の成立を確定していないものとして提示し、同じ限定族に明示された範囲で成立を認める。結果の成立を限定以上に確言せず、限定自体を疑わしいと述べる関係ではない。内心の信念、客観的な確率、結果の否定や失敗例の実在を含意しない。"
+    },
+    "concessivepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "first_node",
+        "first_content",
+        "second_node",
+        "second_content",
+        "common_dimension",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ箇所・文脈・観点で、第一の内容をその限定を保ったまま一旦認めつつ、第二の内容を退ける理由にはならないものとして譲歩的に扱う。二つの内容の向きを保存する。第一の無条件の真理、両内容の矛盾、通常予想の全候補での逆転は要求しない。"
+    },
+    "correctivepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "first_node",
+        "first_content",
+        "second_node",
+        "second_content",
+        "common_dimension",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ箇所・文脈・共通観点で、第一の否定的内容によって退けた見通しに代えて、第二の肯定的内容を提示する。第一の否定を撤回せず、第二の条件・様相を保つ訂正的な提示関係。第二が第一の論理的否定であること、世界での真理、唯一の残余選択肢であることは含意しない。"
+    }
+  },
+  "public_contracts": {
+    "governingdecisioncontrol": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual"
+        },
+        {
+          "role": "order",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "unrestrainedpersonaldiscretion": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual"
+        },
+        {
+          "role": "order",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "oppressivechoiceconstraint": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "materialnetgain": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "excessivegoalpursuit": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "roles",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "ordermembershipsubjection": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "selfinvolvedsubjectionexit": {
+      "arguments": [
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "order",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "first",
+          "sort": "situation"
+        },
+        {
+          "role": "last",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "governingorderexercise": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "order",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "politicalorderconstitution": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "fundamentalpoliticalorderdifference": {
+      "arguments": [
+        {
+          "role": "old",
+          "sort": "individual"
+        },
+        {
+          "role": "proposed",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "governingpoweroverthrowattempt": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "old",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "politicalorderimplementation": {
+      "arguments": [
+        {
+          "role": "order",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "fixedjudgmenttopicrange": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "anchoredjudgmentcomparisonscene": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "anchoredjudgmentbasisretention": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "anchoredjudgmentnormalityorder": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "situation"
+        },
+        {
+          "role": "other",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "anchoredjudgmentactivitycandidate": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": "situation"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        },
+        {
+          "role": "judgment",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "outcomepopulationthreshold": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "result",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "publicpoliticalcommunity": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "politicalchangeactivitycandidate": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "politicalchangepreviousorder": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "politicalchangeproposedorder": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "politicalchangeparticipantlisting": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "opinionapplicationexamination": {
+      "arguments": [
+        {
+          "role": "review",
+          "sort": "individual"
+        },
+        {
+          "role": "opinion",
+          "sort": "individual"
+        },
+        {
+          "role": "decision",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "substantiveopiniondifference": {
+      "arguments": [
+        {
+          "role": "old",
+          "sort": "individual"
+        },
+        {
+          "role": "new",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "opinioninfluencethreshold": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "establishedopinionlisting": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "candidateopinionlisting": {
+      "arguments": [
+        {
+          "role": "public",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "flexiblebandshape": {
+      "arguments": [
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "bandbodytensionconnection": {
+      "arguments": [
+        {
+          "role": "band",
+          "sort": "individual"
+        },
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "physicalforcebearinghold": {
+      "arguments": [
+        {
+          "role": "holder",
+          "sort": "individual"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "bandtensionmovementconstraint": {
+      "arguments": [
+        {
+          "role": "band",
+          "sort": "individual"
+        },
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "movement",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "qualifiedoutcomereservationthree": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "subject_scope",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "outcome_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "qualification_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            },
+            "rank": 3
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "concessivepresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "first_node",
+          "sort": "individual"
+        },
+        {
+          "role": "first_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "second_node",
+          "sort": "individual"
+        },
+        {
+          "role": "second_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "common_dimension",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    },
+    "correctivepresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "first_node",
+          "sort": "individual"
+        },
+        {
+          "role": "first_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "second_node",
+          "sort": "individual"
+        },
+        {
+          "role": "second_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "common_dimension",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・共同体・候補・活動・対象・基準と前後点を保持する。",
+        "政治的離脱、判断様式の改革、偏見の方向付けと、その提示を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h226i": {
+      "public": "governingdecisioncontrol",
+      "source": "kant-1784"
+    },
+    "h226j": {
+      "public": "unrestrainedpersonaldiscretion",
+      "source": "kant-1784"
+    },
+    "h226k": {
+      "public": "oppressivechoiceconstraint",
+      "source": "kant-1784"
+    },
+    "h226l": {
+      "public": "materialnetgain",
+      "source": "kant-1784"
+    },
+    "h226m": {
+      "public": "excessivegoalpursuit",
+      "source": "kant-1784"
+    },
+    "h226n": {
+      "public": "ordermembershipsubjection",
+      "source": "kant-1784"
+    },
+    "h226o": {
+      "public": "selfinvolvedsubjectionexit",
+      "source": "kant-1784"
+    },
+    "h226p": {
+      "public": "governingorderexercise",
+      "source": "kant-1784"
+    },
+    "h226q": {
+      "public": "politicalorderconstitution",
+      "source": "kant-1784"
+    },
+    "h226r": {
+      "public": "fundamentalpoliticalorderdifference",
+      "source": "kant-1784"
+    },
+    "h226s": {
+      "public": "governingpoweroverthrowattempt",
+      "source": "kant-1784"
+    },
+    "h226t": {
+      "public": "politicalorderimplementation",
+      "source": "kant-1784"
+    },
+    "h226u": {
+      "public": "fixedjudgmenttopicrange",
+      "source": "kant-1784"
+    },
+    "h226v": {
+      "public": "anchoredjudgmentcomparisonscene",
+      "source": "kant-1784"
+    },
+    "h226w": {
+      "public": "anchoredjudgmentbasisretention",
+      "source": "kant-1784"
+    },
+    "h226x": {
+      "public": "anchoredjudgmentnormalityorder",
+      "source": "kant-1784"
+    },
+    "h226y": {
+      "public": "anchoredjudgmentactivitycandidate",
+      "source": "kant-1784"
+    },
+    "h226z": {
+      "public": "outcomepopulationthreshold",
+      "source": "kant-1784"
+    },
+    "h227a": {
+      "public": "publicpoliticalcommunity",
+      "source": "kant-1784"
+    },
+    "h227d": {
+      "public": "politicalchangeactivitycandidate",
+      "source": "kant-1784"
+    },
+    "h227e": {
+      "public": "politicalchangepreviousorder",
+      "source": "kant-1784"
+    },
+    "h227f": {
+      "public": "politicalchangeproposedorder",
+      "source": "kant-1784"
+    },
+    "h227g": {
+      "public": "politicalchangeparticipantlisting",
+      "source": "kant-1784"
+    },
+    "h227i": {
+      "public": "opinionapplicationexamination",
+      "source": "kant-1784"
+    },
+    "h227j": {
+      "public": "substantiveopiniondifference",
+      "source": "kant-1784"
+    },
+    "h227k": {
+      "public": "opinioninfluencethreshold",
+      "source": "kant-1784"
+    },
+    "h227l": {
+      "public": "establishedopinionlisting",
+      "source": "kant-1784"
+    },
+    "h227m": {
+      "public": "candidateopinionlisting",
+      "source": "kant-1784"
+    },
+    "h227p": {
+      "public": "flexiblebandshape",
+      "source": "kant-1784"
+    },
+    "h227q": {
+      "public": "bandbodytensionconnection",
+      "source": "kant-1784"
+    },
+    "h227r": {
+      "public": "physicalforcebearinghold",
+      "source": "kant-1784"
+    },
+    "h227s": {
+      "public": "bandtensionmovementconstraint",
+      "source": "kant-1784"
+    },
+    "h227t": {
+      "public": "qualifiedoutcomereservationthree",
+      "source": "kant-1784"
+    },
+    "h227u": {
+      "public": "concessivepresentation",
+      "source": "kant-1784"
+    },
+    "h227v": {
+      "public": "correctivepresentation",
+      "source": "kant-1784"
+    }
+  },
+  "reused_source_relations": {
+    "h227b": "individualdesignationcandidate",
+    "h227c": "situationdesignationcandidate"
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile110。",
+    "35一般関係の採用済み型・全引数・意味を保持する。原文の箇所参照と既存記述供給への2wrapperは文書内定義。",
+    "留保・譲歩・対比・訂正は世界の真理や内心の心理機構の完全な定義ではない。",
+    "数値確率、全時代への無制限な量化、個人の改善の全面禁止、革命の成功を補わない。"
+  ]
+}
