@@ -1,0 +1,390 @@
+{
+  "status": "optional_office_obedience_visible_profile",
+  "document": "examples/v016/office-obedience-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "institutionalworkactivityscope": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "role",
+        "work",
+        "activity",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人・職務・事務・基準で、指定活動がその事務をその職務で行う活動候補の範囲に属する。実行・許可・要求への適合を分類の条件としない。別の仕事や同じ本人の学識者としての職務外の活動を混ぜず、不都合な要求や禁止された活動を事後に除外しない。"
+    },
+    "precedinginstitutionalworkscope": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "同じ基準で、直前の機構の説明h237wが取り上げ、Hierが受ける事務の範囲。全ての公的事務への一般化ではなく、その説明で扱う事務を固定する。現在許可された、従った、成功した事務だけへ選び直さず、先行説明r3cへの適合と非空性は合成側で確認する。"
+    },
+    "rankedreferenceboundrequirement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation",
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "role",
+        "target",
+        "bindings",
+        "reference",
+        "polarity",
+        "point"
+      ],
+      "meaning_ja": "この規範の出所が、この本人にこの職務で、同じ順序の個体列と指定の基準を段階1の閉じた内容関数へ適用した内容の指定極性を満たすよう要求する。h7kと同じ規範関係を段階1の記述で扱い、内容の基準引数を明示する。要求時に内容を実行せず、現在の履行、正当性、許可の存在を含意しない。"
+    },
+    "scopedfourargumentcorrectivepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 2
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "scope",
+        "negative",
+        "replacement",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ箇所で、指定範囲の同じ本人・職務・事務・基準について、第一の否定的内容が退けた選択に代えて第二の肯定的内容を提示する。範囲と二内容の引数順は共通である。否定を撤回せず、要求や許可の様相を保持する訂正的な対置で、二内容の論理的矛盾、唯一の選択肢、現実の履行は含意しない。"
+    },
+    "rankthreecontentacknowledgment": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "content",
+        "context"
+      ],
+      "meaning_ja": "提示者がこの箇所の限定された内容を、この議論の文脈では確かに認めるものとして提示する。単なる主張への帰属とは別の承認的な取り立てであり、無条件の普遍化、論理的自明性、読者全員の信念、内容の実際の真理を含意しない。後続で別の立場の留保を置く余地を否定しない。"
+    }
+  },
+  "public_contracts": {
+    "institutionalworkactivityscope": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・活動範囲・規範源・基準を保持する。",
+        "許可否定、服従内容、服従への要求、実際の履行を区別する。"
+      ]
+    },
+    "precedinginstitutionalworkscope": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・活動範囲・規範源・基準を保持する。",
+        "許可否定、服従内容、服従への要求、実際の履行を区別する。"
+      ]
+    },
+    "rankedreferenceboundrequirement": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                },
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・活動範囲・規範源・基準を保持する。",
+        "許可否定、服従内容、服従への要求、実際の履行を区別する。"
+      ]
+    },
+    "scopedfourargumentcorrectivepresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "replacement",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・活動範囲・規範源・基準を保持する。",
+        "許可否定、服従内容、服従への要求、実際の履行を区別する。"
+      ]
+    },
+    "rankthreecontentacknowledgment": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・活動範囲・規範源・基準を保持する。",
+        "許可否定、服従内容、服従への要求、実際の履行を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h237x": {
+      "public": "institutionalworkactivityscope",
+      "source": "kant-1784"
+    },
+    "h237y": {
+      "public": "precedinginstitutionalworkscope",
+      "source": "kant-1784"
+    },
+    "h237z": {
+      "public": "rankedreferenceboundrequirement",
+      "source": "kant-1784"
+    },
+    "h242a": {
+      "public": "scopedfourargumentcorrectivepresentation",
+      "source": "kant-1784"
+    },
+    "h242b": {
+      "public": "rankthreecontentacknowledgment",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile120。",
+    "5一般関係の採用済み型・全引数・意味を保持する。",
+    "rank0/1/2/3の記述、内容の基準と評価点、列の順序を区別する。",
+    "全記述域の網羅を有限診断の成功で代用せず、内容を要求や提示の時点で実行しない。"
+  ]
+}
