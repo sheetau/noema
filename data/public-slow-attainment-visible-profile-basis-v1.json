@@ -1,0 +1,189 @@
+{
+  "status": "optional_public_slow_attainment_visible_profile",
+  "document": "examples/v016/public-slow-attainment-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "collectiveacquisitionratescale": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "group",
+        "reference"
+      ],
+      "meaning_ja": "同じ集団・基準文脈の状態取得について進行速度を比較する質的尺度を、遅い方から並べた有限列。最小値は進行なし、最大値は比較上の高速側の端である。正確な時間・数値確率・等間隔を含意しない。尺度の妥当性は合成定義で検査する。"
+    },
+    "lowacquisitionrateband": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "reference",
+        "rate"
+      ],
+      "meaning_ja": "同じ集団・基準で、進行速度を遅いと扱う正の低速度帯。候補や到達結果に合わせて閾値を変更せず、速度以外の単なる難しさや長い待機を判定する帯ではない。非空性・両端の除外・低い方への閉性は別に検査する。"
+    },
+    "collectiveacquisitionrate": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "group",
+        "process",
+        "property",
+        "population",
+        "first",
+        "last",
+        "reference",
+        "candidate"
+      ],
+      "meaning_ja": "同じ候補経過の同じ過程・前後点において、固定した全構成員列の指定状態への取得進行を、その過程の同じ経過時間に対して比較した平均の進行速度の質的評価値。基準文脈と対象状態を固定する。対象量を無視した長さ、開始前の無関係な待ち時間、別過程や別状態の速度は流用しない。個々の瞬間の一様速度は含意しない。測定・判断としての対応を与える基本関係であり、順序や例の通過から値を算出したとはしない。過程の成立、到達、全成員列、尺度所属、低速度の判定は別に検査する。"
+    }
+  },
+  "public_contracts": {
+    "collectiveacquisitionratescale": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ公衆・状態・過程・全構成員列・前後点・基準・候補を保持する。",
+        "遅い進行速度と長い待機、到達可能性と現実の成功を区別する。"
+      ]
+    },
+    "lowacquisitionrateband": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "rate",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・状態・過程・全構成員列・前後点・基準・候補を保持する。",
+        "遅い進行速度と長い待機、到達可能性と現実の成功を区別する。"
+      ]
+    },
+    "collectiveacquisitionrate": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": "individual"
+        },
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "property",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "population",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "first",
+          "sort": "situation"
+        },
+        {
+          "role": "last",
+          "sort": "situation"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・状態・過程・全構成員列・前後点・基準・候補を保持する。",
+        "遅い進行速度と長い待機、到達可能性と現実の成功を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h226e": {
+      "public": "collectiveacquisitionratescale",
+      "source": "kant-1784"
+    },
+    "h226f": {
+      "public": "lowacquisitionrateband",
+      "source": "kant-1784"
+    },
+    "h226g": {
+      "public": "collectiveacquisitionrate",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile109。",
+    "3一般関係の採用済み型・全引数・意味を保持し、原文の箇所参照は文書内定義にする。",
+    "速度値と低速度帯は文脈に基づく解釈入力であり、有限モデルの通過で測定した数値とは扱わない。",
+    "実際の到達、瞬間ごとの一様性、全員同時の変化、正確な日数や数値閾値を補わない。",
+    "非空の可能な到達と全ての到達経路の低速度制約は合成定義で別に検査する。"
+  ]
+}
