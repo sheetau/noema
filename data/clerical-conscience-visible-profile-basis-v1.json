@@ -1,0 +1,323 @@
+{
+  "status": "optional_clerical_conscience_visible_profile",
+  "document": "examples/v016/clerical-conscience-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "judgmentfaultimputation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "person",
+        "matter",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "この判断は、固定基準時に特定された同じ事柄を、この本人の選択・不作為に関する落ち度として本人へ帰している。判断行為の実行・判断主体・道徳的評価であること・その正当性は別に結ぶ。原因であるだけ、単なる不快、他人の落ち度、法的制裁とは区別する。hziqの状況上の帰責評価と異なり、個体として指定された事柄への判断内容を扱い、誤った帰責も記述できる。"
+    },
+    "judgmentwarrant": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "この判断は、同じ固定基準時の対象事情について、当該判断に適用される評価基準と利用すべき根拠に照らして正当化できる。実際の確信、発言、単なる根拠の存在、反論がまだないこととは区別する。道徳的自己判断かどうかはfa/seと対象への結合で別に示す。正当化の全理論・決定手続を与えたとはしない。"
+    },
+    "fixedmatterjudgmentcandidate": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "matter",
+        "reference",
+        "evaluation",
+        "candidate"
+      ],
+      "meaning_ja": "この本人が、固定基準時に特定された同じ事柄を評価するという事情を保ったまま、同じ評価点から判断の候補として考慮する状況。評価を試みる候補の完全な範囲を解釈で固定し、帰責が成功する候補だけを選ばない。判断の実行・帰責・正当化、現実の結果や規範的許可はそれぞれ別である。出来事自体を別のものへ変更する将来の経路や、あらゆる論理的可能世界と同一視しない。"
+    },
+    "arrangementmatterscope": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 2
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "matter",
+        "arrangement",
+        "bindings",
+        "reference"
+      ],
+      "meaning_ja": "固定基準において、この本人の行為・実践上の立場に関し、閉じた段階2の構成記述へ正確な順の個体列と同じ基準を渡した構成それ自体に由来する事柄の完全な範囲。この事柄がその範囲に入る。構成の各部分だけでなく、それらの併存・関係に関する事柄も含める。構成に反する逸脱行為や同じ職場の無関係な出来事は含めない。引用した構成をこの関係で実行せず、無関係な生活全体へ広げず、実行・非難・正当化の成否で事後に選別しない。構成記述自体は別の合成定義で説明する。"
+    },
+    "rankthreeadditivepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "prior_node",
+        "prior_content",
+        "added_node",
+        "added_content",
+        "context"
+      ],
+      "meaning_ja": "同じ提示者がこの箇所・文脈で、先行箇所の指定内容を既に置いた背景として受け、その上に第二の箇所の指定内容を加えて提示する。無順序の連言と区別して追加方向を保持する。先行の撤回、内容の真理・論理的含意、強さや意外性の順位、聞き手の同意、他の追加項目の網羅は含意しない。段階3の両内容は引用し、提示関係から実行しない。"
+    }
+  },
+  "public_contracts": {
+    "judgmentfaultimputation": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "matter",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・事柄・基準・評価点と候補を保持する。",
+        "引用構成の正確な束縛と、先行内容から追加内容への提示方向を分ける。"
+      ]
+    },
+    "judgmentwarrant": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・事柄・基準・評価点と候補を保持する。",
+        "引用構成の正確な束縛と、先行内容から追加内容への提示方向を分ける。"
+      ]
+    },
+    "fixedmatterjudgmentcandidate": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "matter",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "evaluation",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・事柄・基準・評価点と候補を保持する。",
+        "引用構成の正確な束縛と、先行内容から追加内容への提示方向を分ける。"
+      ]
+    },
+    "arrangementmatterscope": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "matter",
+          "sort": "individual"
+        },
+        {
+          "role": "arrangement",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                },
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・事柄・基準・評価点と候補を保持する。",
+        "引用構成の正確な束縛と、先行内容から追加内容への提示方向を分ける。"
+      ]
+    },
+    "rankthreeadditivepresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "prior_node",
+          "sort": "individual"
+        },
+        {
+          "role": "prior_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "added_node",
+          "sort": "individual"
+        },
+        {
+          "role": "added_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・判断・事柄・基準・評価点と候補を保持する。",
+        "引用構成の正確な束縛と、先行内容から追加内容への提示方向を分ける。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h247h": {
+      "public": "judgmentfaultimputation",
+      "source": "kant-1784"
+    },
+    "h247i": {
+      "public": "judgmentwarrant",
+      "source": "kant-1784"
+    },
+    "h247j": {
+      "public": "fixedmatterjudgmentcandidate",
+      "source": "kant-1784"
+    },
+    "h247k": {
+      "public": "arrangementmatterscope",
+      "source": "kant-1784"
+    },
+    "h247l": {
+      "public": "rankthreeadditivepresentation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile128。",
+    "採用済み5一般関係の型・全引数・意味を保持する。原文箇所は文書内定義。",
+    "帰責判断とその正当化、判断の候補、引用構成に由来する事柄の範囲を別に合成する。",
+    "実際の自責や罪悪感、教義の真理、全人生の無過失、根拠の一般理論の完成を追加しない。",
+    "段階3の追加提示に期待の強さ・因果・先行の撤回・引用内容の実行を混ぜない。"
+  ]
+}
