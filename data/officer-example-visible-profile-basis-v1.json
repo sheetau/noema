@@ -1,0 +1,1329 @@
+{
+  "status": "optional_officer_example_visible_profile",
+  "document": "examples/v016/officer-example-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "boundpolarizedmessagepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "truth",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "truth"
+            ],
+            "result": "message"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "notice",
+        "recipient",
+        "bindings",
+        "polarity",
+        "message_family",
+        "point"
+      ],
+      "meaning_ja": "同じ提示行為で、この受け手へ、閉じた発話関数に同じ順序の個体列と同じ極性を渡した発話を示す。f2の対象引数を明示した複数束縛と極性へ一般化する。発話の命令・主張・質問という働きは渡す記述で構成し、関係だけで命令と決めない。生起・提示者・束縛先の受け手との同一性は合成側で結ぶ。内容の真理、受領、理解、服従、制度的な正当性は含意しない。"
+    },
+    "institutionalrolescope": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "institution",
+        "reference"
+      ],
+      "meaning_ja": "この役職が、同じ制度的組織・基準の役職体系の範囲に属する。現在の保持者がいる役職だけに範囲を縮めず、別組織の同名の役職を混ぜない。役職間の上下、特定人物による保持・任用、指示の発出は別に確認する。"
+    },
+    "institutionalrolestrictsuperiority": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "higher",
+        "lower",
+        "institution",
+        "reference"
+      ],
+      "meaning_ja": "同じ組織・基準の役職体系で、第一役職が第二役職より上位の職務上の指揮関係に位置する。単なる社会的名声、年齢、給料の比較とは区別する。直接隣接の報告先だけでなく間接の上位も含めた順序として与え、非反射性・推移性は合成側で確認する。現在の命令発出や個別命令の正当性を含意しない。"
+    },
+    "commandgoaldescription": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      },
+      "arguments": [
+        "notice",
+        "reference"
+      ],
+      "meaning_ja": "同じ命令の提示に結び付けて取り上げる目的内容の閉じた記述。命令の実行内容と目的は区別し、命令が実際に目的へ適うこと、目的の実現、道徳的な正当性を含意しない。比較する間は同じ目的を保つ。"
+    },
+    "commandmodelvariables": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "notice",
+        "point"
+      ],
+      "meaning_ja": "同じ命令について指定評価状況で採る、指定極性への対応とその効果を比較する構造モデルの有限変数列。有害な解や都合の悪い変数を結果から除かない。命令の目的評価と有用性評価に同じモデルを使う。"
+    },
+    "commandmodelequation": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "notice",
+        "point",
+        "variable",
+        "state"
+      ],
+      "meaning_ja": "同じ命令・評価状況の構造モデルで、指定変数にこの割当てから与える二値の方程式の値。指定極性に対応する側としない側で、他の方程式・外生背景を固定する。目的や利益の尺度は別に与える。"
+    },
+    "commandfulfillmentfactor": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "notice",
+        "point"
+      ],
+      "meaning_ja": "同じモデルで、命令の同じ本人・行為・指定極性の内容が成立する側としない側を比較する要因。列内の所属と内容への対応は合成側で検査する。否定命令では単なる行為実行の有無と逆向きになる。従う態度や指示に基づく調整はこの変数だけで表さない。"
+    },
+    "commandmodelview": {
+      "parameters": [
+        "individual",
+        "situation",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "situation",
+      "arguments": [
+        "notice",
+        "point",
+        "state"
+      ],
+      "meaning_ja": "同じ命令・評価状況のモデル割当てが指す比較状況。命令内容への対応と結果の評価に同じ状況を使い、別命令の実行や別組織の成果を借りない。"
+    },
+    "goalprogressevaluated": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "goal",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ固定基準で、指定目的内容への到達の進み具合がこの比較状況について評価されている。達成済みか否かだけに限定せず、不明を達成や無害へ補わない。"
+    },
+    "goalprogressnondecrease": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "goal",
+        "reference",
+        "left",
+        "right"
+      ],
+      "meaning_ja": "同じ固定基準で、左の状況の指定目的への到達の進み具合が右以上である。目的内容自体の是非、金銭価格、命令への服従そのものの大小へ置き換えない。比較の整合性は合成側で検査する。"
+    },
+    "practicalinterestevaluated": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "beneficiary",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ固定基準で、この受益対象の実務上の利害に関する結果が指定状況について評価されている。今回の受益対象は同じ軍事組織であり、論じる本人の私益へ黙って置き換えない。"
+    },
+    "practicalinterestnondecrease": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "beneficiary",
+        "reference",
+        "left",
+        "right"
+      ],
+      "meaning_ja": "同じ固定基準の実務上の利害で、左の状況の指定受益対象にとっての結果が右以上である。具体的に命じた目的への到達だけとは限らず、費用や支障なども採用基準に含み得る。道徳的正当性や全員への利益とは同一視しない。"
+    },
+    "scopedpolarizedquestiontopic": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "truth",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "truth",
+              "situation"
+            ],
+            "result": "message"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "discussion",
+        "first",
+        "second",
+        "third",
+        "fourth",
+        "polarity",
+        "question_family",
+        "reference"
+      ],
+      "meaning_ja": "この議論の活動構成では、指定した同じ順序の四対象・極性・基準を閉じた質問関数へ適用した問いを、理由を述べて検討する対象として扱う。対象の評価への単なる言及や、同じ話題の別の問いとは区別する。問いの二値形式は検討の論点を指定するものであり、議論全体を短い質問発話一つへ縮めない。実際の発言・検討、肯定の結論、内容の真理、特定の宛先や全読者への公開は含意しない。"
+    },
+    "practicalactivityintention": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "reference"
+      ],
+      "meaning_ja": "この本人が、指定活動を自分で行うつもりで取り掛かろうとする実践的な意向を持つ。単に起きてほしいという希望、他人が行う予測、対象命題の肯定、すでに行ったこととは区別する。実行の開始・成功・規範的許可は要求しない。"
+    },
+    "activityinservicecontext": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "office",
+        "institution",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人が同じ組織の職務を遂行する場面の内で行うものとして、指定活動が位置付けられている。役職保持者の全生活、勤務外の学識者としての発信、単なる職場の建物への所在とは区別する。職務への役割帰属cbは別に確認し、議論の実際の開始を含意しない。"
+    },
+    "audiblediscussionmode": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "reference"
+      ],
+      "meaning_ja": "この活動は、他者に聞こえるよう外に声に出して論じる様式で計画・分類される。内心の吟味や黙読とは区別する。叫び、怒り、数値的な大音量、読者世界全体への刊行や実際の聴取は要求しない。"
+    },
+    "activityworkcomparisonvariables": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ本人による同じ活動の実行が同じ事務へ及ぼす影響を比較する有限変数列。同じ固定基準・評価状況の背景を保ち、有害な解を結果から除かない。意向だけの存在を実行の有無へ置き換えない。"
+    },
+    "activityworkcomparisonequation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "point",
+        "variable",
+        "state"
+      ],
+      "meaning_ja": "同じ活動・事務・固定基準・評価状況の構造モデルで、指定変数にこの割当てから与える二値の方程式の値。実行の有無を変える両側で他の方程式と外生背景を固定する。"
+    },
+    "activityworkcomparisonfactor": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じモデルで指定本人による指定活動の実行の有無を比較する要因。列内の所属、両側の解の存在、同じ実行内容との対応は合成側で確認する。命令の不履行や内心の意向をそれだけでこの要因としない。"
+    },
+    "activityworkcomparisonview": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "situation",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "point",
+        "state"
+      ],
+      "meaning_ja": "同じモデル割当てが指す仮定的な比較状況。活動の実行と同じ事務の結果をこの状況で評価する。比較状況を現実の実行や被害の発生として断言しない。"
+    },
+    "workperformancedifferencedegree": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "work",
+        "reference",
+        "on",
+        "off"
+      ],
+      "meaning_ja": "同じ事務・固定基準で、実行側の状況と不実行側の状況の結果の差に与える程度。程度対象は同じ評価観点に依存し、数値である必要はない。低下の方向と重大さは別々に確認する。"
+    },
+    "highworkperformancedifference": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "work",
+        "reference",
+        "degree"
+      ],
+      "meaning_ja": "同じ事務・固定基準で、この程度が文脈上の高い水準に達している。原文にない数値閾値、全面的破壊、取り返しのつかなさを要求しない。差があるだけでこの判定を補わない。"
+    },
+    "rankedpolarizedreferenceboundrequirement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              },
+              "truth",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "truth",
+        "situation",
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "role",
+        "target",
+        "bindings",
+        "target_sign",
+        "reference",
+        "required_sign",
+        "point"
+      ],
+      "meaning_ja": "規範の出所が、同じ本人に同じ立場で、段階1の閉じた内容関数へ同じ順序の個体列・対象極性・基準を渡した内容の要求極性を満たすよう要求する。h237zの対象に極性引数を明示した一般化。対象極性と要求極性を混同しない。要求対象を評価せず、実際の履行・規範の正当性・許可を含意しない。"
+    },
+    "rankthreeexamplepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "example_node",
+        "author",
+        "general_node",
+        "general_content",
+        "example_content",
+        "context"
+      ],
+      "meaning_ja": "著者が同じ提示文脈で、この箇所の内容を先行箇所の一般内容の具体例として示す。h233lと同じ例示関係を段階3の閉じた内容で扱う。帰属された条件や規範を維持し、現実の実例の存在、内容の真理、全事例の網羅、論理的証明を含意しない。"
+    }
+  },
+  "public_contracts": {
+    "boundpolarizedmessagepresentation": {
+      "arguments": [
+        {
+          "role": "notice",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "message_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                },
+                "truth"
+              ],
+              "result": "message"
+            }
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "institutionalrolescope": {
+      "arguments": [
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "institution",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "institutionalrolestrictsuperiority": {
+      "arguments": [
+        {
+          "role": "higher",
+          "sort": "individual"
+        },
+        {
+          "role": "lower",
+          "sort": "individual"
+        },
+        {
+          "role": "institution",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "commandgoaldescription": {
+      "arguments": [
+        {
+          "role": "notice",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      },
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "commandmodelvariables": {
+      "arguments": [
+        {
+          "role": "notice",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "commandmodelequation": {
+      "arguments": [
+        {
+          "role": "notice",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        },
+        {
+          "role": "variable",
+          "sort": "individual"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "commandfulfillmentfactor": {
+      "arguments": [
+        {
+          "role": "notice",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "commandmodelview": {
+      "arguments": [
+        {
+          "role": "notice",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "goalprogressevaluated": {
+      "arguments": [
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "goalprogressnondecrease": {
+      "arguments": [
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "left",
+          "sort": "situation"
+        },
+        {
+          "role": "right",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "practicalinterestevaluated": {
+      "arguments": [
+        {
+          "role": "beneficiary",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "practicalinterestnondecrease": {
+      "arguments": [
+        {
+          "role": "beneficiary",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "left",
+          "sort": "situation"
+        },
+        {
+          "role": "right",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "scopedpolarizedquestiontopic": {
+      "arguments": [
+        {
+          "role": "discussion",
+          "sort": "individual"
+        },
+        {
+          "role": "first",
+          "sort": "individual"
+        },
+        {
+          "role": "second",
+          "sort": "individual"
+        },
+        {
+          "role": "third",
+          "sort": "individual"
+        },
+        {
+          "role": "fourth",
+          "sort": "individual"
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "question_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "truth",
+                "situation"
+              ],
+              "result": "message"
+            }
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "practicalactivityintention": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "activityinservicecontext": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "office",
+          "sort": "individual"
+        },
+        {
+          "role": "institution",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "audiblediscussionmode": {
+      "arguments": [
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "activityworkcomparisonvariables": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "activityworkcomparisonequation": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        },
+        {
+          "role": "variable",
+          "sort": "individual"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "activityworkcomparisonfactor": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "activityworkcomparisonview": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "workperformancedifferencedegree": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "on",
+          "sort": "situation"
+        },
+        {
+          "role": "off",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "highworkperformancedifference": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "degree",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "rankedpolarizedreferenceboundrequirement": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                },
+                "truth",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "target_sign",
+          "sort": "truth"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "required_sign",
+          "sort": "truth"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    },
+    "rankthreeexamplepresentation": {
+      "arguments": [
+        {
+          "role": "example_node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "general_node",
+          "sort": "individual"
+        },
+        {
+          "role": "general_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "example_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・組織・上官・命令提示・対象行為・極性・事務と基準を保持する。",
+        "意向、実際の実行、仮定的な害、命令内容への対応と服従要求を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h242v": {
+      "public": "boundpolarizedmessagepresentation",
+      "source": "kant-1784"
+    },
+    "h242w": {
+      "public": "institutionalrolescope",
+      "source": "kant-1784"
+    },
+    "h242x": {
+      "public": "institutionalrolestrictsuperiority",
+      "source": "kant-1784"
+    },
+    "h242y": {
+      "public": "commandgoaldescription",
+      "source": "kant-1784"
+    },
+    "h242z": {
+      "public": "commandmodelvariables",
+      "source": "kant-1784"
+    },
+    "h243a": {
+      "public": "commandmodelequation",
+      "source": "kant-1784"
+    },
+    "h243b": {
+      "public": "commandfulfillmentfactor",
+      "source": "kant-1784"
+    },
+    "h243c": {
+      "public": "commandmodelview",
+      "source": "kant-1784"
+    },
+    "h243d": {
+      "public": "goalprogressevaluated",
+      "source": "kant-1784"
+    },
+    "h243e": {
+      "public": "goalprogressnondecrease",
+      "source": "kant-1784"
+    },
+    "h243f": {
+      "public": "practicalinterestevaluated",
+      "source": "kant-1784"
+    },
+    "h243g": {
+      "public": "practicalinterestnondecrease",
+      "source": "kant-1784"
+    },
+    "h243h": {
+      "public": "scopedpolarizedquestiontopic",
+      "source": "kant-1784"
+    },
+    "h243i": {
+      "public": "practicalactivityintention",
+      "source": "kant-1784"
+    },
+    "h243j": {
+      "public": "activityinservicecontext",
+      "source": "kant-1784"
+    },
+    "h243k": {
+      "public": "audiblediscussionmode",
+      "source": "kant-1784"
+    },
+    "h243l": {
+      "public": "activityworkcomparisonvariables",
+      "source": "kant-1784"
+    },
+    "h243m": {
+      "public": "activityworkcomparisonequation",
+      "source": "kant-1784"
+    },
+    "h243n": {
+      "public": "activityworkcomparisonfactor",
+      "source": "kant-1784"
+    },
+    "h243o": {
+      "public": "activityworkcomparisonview",
+      "source": "kant-1784"
+    },
+    "h243p": {
+      "public": "workperformancedifferencedegree",
+      "source": "kant-1784"
+    },
+    "h243q": {
+      "public": "highworkperformancedifference",
+      "source": "kant-1784"
+    },
+    "h243r": {
+      "public": "rankedpolarizedreferenceboundrequirement",
+      "source": "kant-1784"
+    },
+    "h243s": {
+      "public": "rankthreeexamplepresentation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile122。",
+    "24一般関係の採用済み型・全引数・意味を保持する。",
+    "命令対象の極性と要求の極性、引用段階、評価基準と評価点を別に保持する。",
+    "有限束縛診断を全域証明とせず、引用した内容を実行しない。"
+  ]
+}
