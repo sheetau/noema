@@ -1,0 +1,383 @@
+{
+  "status": "optional_use_definitions_visible_profile",
+  "document": "examples/v016/use-definitions-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "explicitclassificationdefinition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "term_mention",
+        "classification",
+        "context"
+      ],
+      "meaning_ja": "提示者が指定箇所で、自分はこの語をこの分類として理解する・こう呼ぶと明示し、その語の使用を閉じた分類記述へ結ぶ。分類の引数は本人・活動・立場・基準の順である。外から与えた同義語対応や語の綴りの保存だけとは区別し、実例の存在・実際の活動・心理的理解の成功は含意しない。分類内容は引用先で合成する。"
+    },
+    "entrustedclassificationauthority": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "classification",
+        "entrusted_role",
+        "context"
+      ],
+      "meaning_ja": "提示者がこの定義箇所で、指定分類の本人・活動・立場・基準について、同じ本人・立場・基準の委任関係が与える職務上の権限の範囲として、その活動類型を位置付ける。職務に伴って認められる使用の範囲という規範的な限定であり、単なる物理的能力や職業名の同一性ではない。委任・権限の現実の存在を引用時に実行せず、その時点の各指示への適合、個々の行為への無条件の実行許可、職務外の行為への許可は導かない。本人・立場の組は分類の第一・第三引数を共有する。"
+    },
+    "priorcontentdefinitionclarification": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "antecedent_node",
+        "antecedent_content",
+        "term_mention",
+        "classification",
+        "context"
+      ],
+      "meaning_ja": "提示者が先行箇所の内容を受けて、そこで使った同じ語を指定分類として明確にする説明へ論述を切り替える。先行内容の撤回や論理的否定ではなく、語の使い方を区別して示す補足的な転換である。先行内容を実行せず、単なる本文順序だけでこの説明関係を代用しない。"
+    },
+    "classificationconditionemphasis": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "classification",
+        "focus_condition",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ定義箇所で、閉じた分類記述の構成条件として、同じ四引数を取る指定の条件を取り立てて強調する。内容を実行せず、焦点条件だけで分類に十分であること、他条件の撤回、論理的な排他的唯一性は含意しない。焦点が分類の同じ参与者・立場に属することは合成された記述で保持する。"
+    }
+  },
+  "public_contracts": {
+    "explicitclassificationdefinition": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "term_mention",
+          "sort": "individual"
+        },
+        {
+          "role": "classification",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "定義提示者・語の言及・分類の本人/活動/立場/基準・提示文脈を保持する。",
+        "語の使い方の明確化、委任に伴う権限の範囲、同じ分類条件の強調を区別する。"
+      ]
+    },
+    "entrustedclassificationauthority": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "classification",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "entrusted_role",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "定義提示者・語の言及・分類の本人/活動/立場/基準・提示文脈を保持する。",
+        "語の使い方の明確化、委任に伴う権限の範囲、同じ分類条件の強調を区別する。"
+      ]
+    },
+    "priorcontentdefinitionclarification": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "antecedent_node",
+          "sort": "individual"
+        },
+        {
+          "role": "antecedent_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "term_mention",
+          "sort": "individual"
+        },
+        {
+          "role": "classification",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "定義提示者・語の言及・分類の本人/活動/立場/基準・提示文脈を保持する。",
+        "語の使い方の明確化、委任に伴う権限の範囲、同じ分類条件の強調を区別する。"
+      ]
+    },
+    "classificationconditionemphasis": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "classification",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "focus_condition",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "定義提示者・語の言及・分類の本人/活動/立場/基準・提示文脈を保持する。",
+        "語の使い方の明確化、委任に伴う権限の範囲、同じ分類条件の強調を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h236o": {
+      "public": "explicitclassificationdefinition",
+      "source": "kant-1784"
+    },
+    "h236t": {
+      "public": "entrustedclassificationauthority",
+      "source": "kant-1784"
+    },
+    "h236u": {
+      "public": "priorcontentdefinitionclarification",
+      "source": "kant-1784"
+    },
+    "h236v": {
+      "public": "classificationconditionemphasis",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile118。",
+    "4一般関係の採用済み型・全引数・意味を保持し、二文と語の言及は既存の参照演算で定義する。",
+    "公的/私的使用を排他的・網羅的な二分類にせず、職務に伴う権限と個々の行為への許可を区別する。",
+    "段階0分類と段階3先行内容を引用時に実行しない。"
+  ]
+}
