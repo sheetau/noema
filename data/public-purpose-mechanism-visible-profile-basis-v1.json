@@ -1,0 +1,1244 @@
+{
+  "status": "optional_public_purpose_mechanism_visible_profile",
+  "document": "examples/v016/public-purpose-mechanism-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "publicinterestwork": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "work",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "指定の仕事が、この政治的共同体の共通の利害・公的な運営に関わる事務である。特定者の私的な好みや利益だけに関わる事柄とは分ける。既に実行済み、政府が常に正しい、全員が同じ利害を持つことは要求しない。仕事の集合はこの関係の全範囲であり、機構の必要性や成功した事務だけを分類条件にしない。"
+    },
+    "prescribedworkperformance": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "work",
+        "point"
+      ],
+      "meaning_ja": "その事務が、この場面でその仕事として定められた働きに沿って遂行されている。事務の名前や予定だけ、別の仕事の実行、単に誰かが動いていることとは分ける。全ての遠い公的目標の達成、正当性、最善の成果までは要求しない。"
+    },
+    "institutionalworkmechanism": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "mechanism",
+        "community",
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "同じ共同体の同じ事務について、役割・指示系統・分担を一定の規則で結び付けて執行を組織する仕組みである。計画された仕組みも分類し、既に作動中であることや物理機械であることは含意しない。任意の物をMechanismという名前だけで分類せず、制度的な構成の関係を要求する。"
+    },
+    "institutionalmeansavailable": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "mechanism",
+        "work",
+        "point"
+      ],
+      "meaning_ja": "指定の仕組みが同じ事務に適用できる状態に整えられ、その事務の手段として利用可能である。抽象的な構想があるだけとは分け、現に作動していること、事務の成功、唯一の手段であることは要求しない。"
+    },
+    "externallydirectedroleexecution": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "role",
+        "work",
+        "point"
+      ],
+      "meaning_ja": "本人が同じ役割で同じ事務の執行を担当し、役割に外から与えられた運営方針・指図に沿ってその執行を行う。職名を持つだけ、何もせず静止すること、別の仕事を遂行することとは分ける。命令全体の完全履行や方針の正当性は、この関係だけから導かない。"
+    },
+    "independentworkpolicyrevision": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "role",
+        "work",
+        "point"
+      ],
+      "meaning_ja": "本人がその職務の遂行の中で、同じ事務の運営方針を自分の判断によって独立に決め直す立場を行使する。与えられた方針を適用するための個々の実務判断、内心の思考、職務外で学識者として論じることとは区別する。"
+    },
+    "politicalcommunitymember": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "この人が同じ基準においてこの政治的共同体の成員である。読者として向けられた範囲や、たまたま共同体の場所にいることとは分ける。現在の官職、全政策への同意、実際の事務への参加は別条件である。"
+    },
+    "institutionalrequiredpersons": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "truth"
+      },
+      "arguments": [
+        "mechanism",
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "同じ仕組み・事務・基準において、指定内容をその役割で求める対象者の範囲。評価時点で従った人だけを集め直さず、要求を受ける側を固定する。非空性、人であること、共同体所属、役割への割当ては合成側で検査する。"
+    },
+    "institutionalassignedrolereference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "mechanism",
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人・仕組み・事務についてこの記述で扱う役割。本人の全役割が一つしかないことは含意しない。別の事務や学識者としての立場を無断で流用せず、当該の割当て自体はh237fで検査する。"
+    },
+    "institutionalworkroleassignment": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "role",
+        "mechanism",
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "この仕組みの同じ事務について、同じ人がこの役割の担当者として割り当てられている。役割の自己申告や、その場で似た行動をしたことだけとは分ける。実際の執行、能力、正当な任用は含意しない。"
+    },
+    "institutionalnormsourcereference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "mechanism",
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "この仕組みの同じ事務で職務上の要求を課す規範の出所。特定の歴史的人物、政府本人、機構という対象との同一性を参照だけで補わない。要求の実在・対象内容は既存h7kで別に検査する。"
+    },
+    "workmechanismreference": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "この事務について同じ基準の説明で取り上げる仕組みの参照。唯一可能な仕組みとは主張しない。仕組みとしての構成、必要性、利用可能性、役割の割当てをこの参照の存在だけで代用しない。"
+    },
+    "workcommunityreference": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "この事務について同じ説明が扱う政治的共同体の参照。全世界で唯一の共同体、全ての事務で同じ国家、読者世界全体との同一性は含意しない。利害との関係はh236w、成員関係はh237cで検査する。"
+    },
+    "workgoaldescription": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      },
+      "arguments": [
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "同じ事務・基準で取り上げる目的内容をまとめた閉じた記述。公的かどうかはh237lで別に検査する。目標の実現・実現可能性、全員の私的意図との一致を含意しない。方向付けと破壊の抑止に同じ記述を渡し、結果の良否で目的を取り替えない。原文が特定していない個別の政策目標をここで創作しない。"
+    },
+    "publicworkgoal": {
+      "parameters": [
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "goal",
+        "community",
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "この閉じた内容が、同じ共同体の同じ事務を運営するための公的な目標として置かれている。政府関係者個人の私的利益だけや、実際に偶然生じた結果とは分ける。全住民の同意、目標の正当性、達成は要求しない。"
+    },
+    "workgovernmentreference": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "同じ事務の説明で扱う政府の参照。組織としての政府を人間一人の意図へ置換しない。管轄関係はh237nで別に検査し、全世界で唯一の政府とはしない。"
+    },
+    "governmentcommunityjurisdiction": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "government",
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "この政府が同じ政治的共同体の公的な運営・執行を指揮する制度上の立場にある。肩書だけの人物や私的な希望とは分ける。特定の君主制、道徳的正当性、あらゆる命令の実際の遵守は含意しない。"
+    },
+    "workcoordinationreference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "mechanism",
+        "work",
+        "reference"
+      ],
+      "meaning_ja": "同じ機構・事務について目的内容で用いる協調の配置。本文内で同じ配置を追跡する参照であり、存在するだけで人為性・協調・作用の成功を認定しない。"
+    },
+    "organizedworkcoordination": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "arrangement",
+        "people",
+        "work",
+        "point"
+      ],
+      "meaning_ja": "この配置によって、指定された人々の同じ事務での振る舞いが、共通の執行の方向に整合するよう組織されている。偶然同じ場所にいるだけ、別の人々の整合とは分ける。全員の内心の信念一致、自発的同意、同一の動作は要求しない。"
+    },
+    "institutionallyformedcoordination": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "arrangement",
+        "work",
+        "point"
+      ],
+      "meaning_ja": "同じ事務のこの協調配置が、制度的な規則・指示・分担の設定によって作り出されている。独立した個人の判断が偶然一致しただけの状態とは区別する。人工物の材質や不誠実さという意味ではなく、人為的に整えられた構成を表す。"
+    },
+    "mechanismsuppliescoordination": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "mechanism",
+        "arrangement",
+        "work",
+        "point"
+      ],
+      "meaning_ja": "この機構の同じ事務での働きが、この協調配置を生み支える手段となっている。単なる併存や、別の事務を担当する機構の存在では足りない。各人への方向付け・抑止は、同じ配置を渡した別の関係で検査する。"
+    },
+    "governmentgoaldirection": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "government",
+        "person",
+        "work",
+        "arrangement",
+        "goal",
+        "point"
+      ],
+      "meaning_ja": "この政府による運営の方向付けが、同じ協調配置を通じて、本人の同じ事務での振る舞いを指定の目的へ向けて導く。無視された命令、無関係な人の参加、本人の私的な願望だけでは足りない。本人が同じ目標を内心で意図することや目標の達成は要求しない。"
+    },
+    "governmentgoaldestructionprevention": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "government",
+        "person",
+        "work",
+        "arrangement",
+        "goal",
+        "point"
+      ],
+      "meaning_ja": "この政府の同じ協調配置を通じた働きが、本人によって同じ事務の指定目的が破壊され達成を妨げられることを抑止する。偶然破壊が起きなかっただけ、別人や別目標への抑止では足りない。目的への積極的な貢献や達成を要求せず、破壊の実行も前提にしない。"
+    },
+    "institutionalmeansendpurpose": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "arrangement",
+        "subject",
+        "means_family",
+        "end_family",
+        "reference"
+      ],
+      "meaning_ja": "この制度的な構成では、同じ対象と基準を渡した第一の内容族のように振る舞わせることが、第二の内容族を目指すための仕方として位置付けられている。内容族は対象・基準の順に受ける。個人の心理的意図ではなく、設定された機能上の目的関係であり、手段と目的を実行せず、現在の履行、成果の実現、十分性や確実性を含意しない。"
+    },
+    "perpersonfallbackpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "enclosing_end",
+        "primary",
+        "fallback",
+        "context"
+      ],
+      "meaning_ja": "提示者がこの箇所で、同じ目的内容族の中にある本人ごとの二つの代替を、第一を積極的な結果、第二を少なくとも確保したい控えめな結果として順序づけて示す。外側は対象・基準、内側は同じ対象・本人・基準を引数とする。論理的含意や数値尺度ではなく提示上の最低限の位置付けであり、排他的選言、第二の現実の成立、第一から第二が自動的に成立することは加えない。"
+    }
+  },
+  "public_contracts": {
+    "publicinterestwork": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "prescribedworkperformance": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "institutionalworkmechanism": {
+      "arguments": [
+        {
+          "role": "mechanism",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "institutionalmeansavailable": {
+      "arguments": [
+        {
+          "role": "mechanism",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "externallydirectedroleexecution": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "independentworkpolicyrevision": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "politicalcommunitymember": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "institutionalrequiredpersons": {
+      "arguments": [
+        {
+          "role": "mechanism",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          "individual"
+        ],
+        "result": "truth"
+      },
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "institutionalassignedrolereference": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "mechanism",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "institutionalworkroleassignment": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "mechanism",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "institutionalnormsourcereference": {
+      "arguments": [
+        {
+          "role": "mechanism",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "workmechanismreference": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "workcommunityreference": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "workgoaldescription": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      },
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "publicworkgoal": {
+      "arguments": [
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "workgovernmentreference": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "governmentcommunityjurisdiction": {
+      "arguments": [
+        {
+          "role": "government",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "workcoordinationreference": {
+      "arguments": [
+        {
+          "role": "mechanism",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "organizedworkcoordination": {
+      "arguments": [
+        {
+          "role": "arrangement",
+          "sort": "individual"
+        },
+        {
+          "role": "people",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "institutionallyformedcoordination": {
+      "arguments": [
+        {
+          "role": "arrangement",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "mechanismsuppliescoordination": {
+      "arguments": [
+        {
+          "role": "mechanism",
+          "sort": "individual"
+        },
+        {
+          "role": "arrangement",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "governmentgoaldirection": {
+      "arguments": [
+        {
+          "role": "government",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "arrangement",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "governmentgoaldestructionprevention": {
+      "arguments": [
+        {
+          "role": "government",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "arrangement",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "institutionalmeansendpurpose": {
+      "arguments": [
+        {
+          "role": "arrangement",
+          "sort": "individual"
+        },
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "means_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "end_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    },
+    "perpersonfallbackpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "enclosing_end",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "primary",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "fallback",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ事務・機構・共同体・固定対象者・割当役割・規範源・政府・協調配置・目的を保持する。",
+        "必要性・要求・制度的な目的の提示と、実際の遂行や目的達成を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h236w": {
+      "public": "publicinterestwork",
+      "source": "kant-1784"
+    },
+    "h236x": {
+      "public": "prescribedworkperformance",
+      "source": "kant-1784"
+    },
+    "h236y": {
+      "public": "institutionalworkmechanism",
+      "source": "kant-1784"
+    },
+    "h236z": {
+      "public": "institutionalmeansavailable",
+      "source": "kant-1784"
+    },
+    "h237a": {
+      "public": "externallydirectedroleexecution",
+      "source": "kant-1784"
+    },
+    "h237b": {
+      "public": "independentworkpolicyrevision",
+      "source": "kant-1784"
+    },
+    "h237c": {
+      "public": "politicalcommunitymember",
+      "source": "kant-1784"
+    },
+    "h237d": {
+      "public": "institutionalrequiredpersons",
+      "source": "kant-1784"
+    },
+    "h237e": {
+      "public": "institutionalassignedrolereference",
+      "source": "kant-1784"
+    },
+    "h237f": {
+      "public": "institutionalworkroleassignment",
+      "source": "kant-1784"
+    },
+    "h237g": {
+      "public": "institutionalnormsourcereference",
+      "source": "kant-1784"
+    },
+    "h237h": {
+      "public": "workmechanismreference",
+      "source": "kant-1784"
+    },
+    "h237i": {
+      "public": "workcommunityreference",
+      "source": "kant-1784"
+    },
+    "h237k": {
+      "public": "workgoaldescription",
+      "source": "kant-1784"
+    },
+    "h237l": {
+      "public": "publicworkgoal",
+      "source": "kant-1784"
+    },
+    "h237m": {
+      "public": "workgovernmentreference",
+      "source": "kant-1784"
+    },
+    "h237n": {
+      "public": "governmentcommunityjurisdiction",
+      "source": "kant-1784"
+    },
+    "h237o": {
+      "public": "workcoordinationreference",
+      "source": "kant-1784"
+    },
+    "h237p": {
+      "public": "organizedworkcoordination",
+      "source": "kant-1784"
+    },
+    "h237q": {
+      "public": "institutionallyformedcoordination",
+      "source": "kant-1784"
+    },
+    "h237r": {
+      "public": "mechanismsuppliescoordination",
+      "source": "kant-1784"
+    },
+    "h237s": {
+      "public": "governmentgoaldirection",
+      "source": "kant-1784"
+    },
+    "h237t": {
+      "public": "governmentgoaldestructionprevention",
+      "source": "kant-1784"
+    },
+    "h237u": {
+      "public": "institutionalmeansendpurpose",
+      "source": "kant-1784"
+    },
+    "h237v": {
+      "public": "perpersonfallbackpresentation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile119。",
+    "25一般関係の採用済み型・全引数・意味を保持し、本文の参照は既存の参照演算で定義する。",
+    "職務の受動性を思考停止へ強めず、各人の包含選言と最低限の提示を保持する。",
+    "rank1の内容族、閉じた目的記述を引用時に実行せず、制度的な目的を個人の心理的意図へ置換しない。"
+  ]
+}
