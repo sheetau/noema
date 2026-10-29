@@ -1,0 +1,935 @@
+{
+  "status": "optional_single_ruler_visible_profile",
+  "document": "examples/v016/single-ruler-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "sourceaddressedrecipientrange": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "reference",
+        "recipient"
+      ],
+      "meaning_ja": "同じ発信者が同じ基準場面で「あなた方」と呼びかける全宛先の範囲。受領・許可・実行・服従した人だけに狭めず、発信者を替えればその発信者の呼びかける範囲を照合する。人と複数性は発話への接続時に別に検査する。"
+    },
+    "desiredreasontopicrange": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "topic",
+        "reference"
+      ],
+      "meaning_ja": "この本人が同じ基準場面で自ら論じたいと望む話題の全範囲。実際に論じた、許可された、安全な、正しい話題だけを選ばず、望む話題がない場合も許す。将来の選択や別人の希望を混ぜない。"
+    },
+    "desiredreasonextentrange": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "extent",
+        "reference"
+      ],
+      "meaning_ja": "この本人が同じ基準場面で自ら望む議論の量・程度の全範囲。長さ・回数・詳しさ等、文脈で同定する程度指定を指し、許可された量や実際の遂行量とは区別する。数値単位や有限の上限を原文へ補わず、本人の希望が空の場合も許す。"
+    },
+    "reasonactivitytopicspecification": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "activity",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人の同じ活動候補について、基準で固定した議論の話題指定。複合的な話題も一つの指定として扱える。活動の主題であることはh227zへ別に接続し、実行済みの活動や許可済みの話題へ付け替えない。"
+    },
+    "reasonactivityextentspecification": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "activity",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人の同じ活動候補について、基準で固定した議論の量・程度の指定。実際に達成した量の測定値ではなく、その量だけ論じるという候補の内容上の指定であり、許可結果に合わせて小さな量へ付け替えない。"
+    },
+    "reasonactivityrolereference": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "activity",
+        "reference"
+      ],
+      "meaning_ja": "同じ本人が同じ議論の候補を行う際の立場の参照。許可と反対要求を同じ立場へ照合するために固定する。本文のこの発言だけから公的使用の学識者に限定せず、実行・役職保持・命令の正当性を参照だけで導かない。"
+    },
+    "obediencecivicrolescope": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "reference",
+        "role"
+      ],
+      "meaning_ja": "同じ出所に対するこの本人の服従について、基準場面で扱う政治的・市民的な職務や立場の全範囲。私的な好みや無関係な他者の命令を含めず、不都合な要求がある立場を事後に除かない。正当な命令かどうかの判定とは分ける。"
+    },
+    "obediencerequirementrecordscope": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "reference",
+        "item"
+      ],
+      "meaning_ja": "同じ出所・本人・基準場面について、服従の対象要求を記述する記録項目の範囲。要求の全体を尽くすこと、記録の真実性や履行は合成定義で別に検査し、記録を消して要求を消したことにはしない。"
+    },
+    "requirementrecordrole": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "item"
+      ],
+      "meaning_ja": "同じ要求記録の対象となる本人の立場。実際にその立場の要求であることは別に照合する。"
+    },
+    "requirementrecordactivity": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "item"
+      ],
+      "meaning_ja": "同じ要求記録の対象行為。別の行為の実行で履行を代用せず、要求の照合と内容評価へ同じ参照を渡す。"
+    },
+    "requirementrecordcontentdescription": {
+      "parameters": [
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": "content"
+        }
+      },
+      "arguments": [
+        "item"
+      ],
+      "meaning_ja": "同じ要求記録の閉じた行為内容の記述。第一引数は本人、第二引数は対象行為であり、原語の文や題名だけで代用しない。要求への照合と履行評価で同じ記述を使う。"
+    },
+    "requirementrecordpolarity": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "item"
+      ],
+      "meaning_ja": "同じ要求記録の極性。真は指定内容を満たす要求、偽はその不成立を求める要求。要求の存在や履行の真偽とは別である。"
+    },
+    "requirementguidedperformance": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "truth",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "role",
+        "activity",
+        "content",
+        "polarity",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "この本人が評価点で、同じ出所・立場・行為・記述・極性の基準時の要求を、自分の当該遂行を導く指示として受け入れ、それに従って遂行を調整する。偶然同じ結果になっただけ、別要求を理由にした行動とは区別する。要求への道徳的賛同、無批判な信念、唯一の動機、要求の正当性や実際の履行成功はこの関係だけからは導かない。"
+    },
+    "contemporarypoliticalcommunityrange": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "community",
+        "reference"
+      ],
+      "meaning_ja": "基準で語られる同時代の世界に属する政治的共同体の全範囲。自国・欧州・発言記録が見つかった国・好ましい政策を採る国だけに狭めない。過去と未来の全統治者、別の可能世界を混ぜず、地球に一つの政府しかないことを意味しない。"
+    },
+    "governmentinstitutionrolescope": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "同じ政治的共同体と状況の統治制度における役職の全範囲。この集合の中で保持者と上下関係を照合する。君主より上の役職や比較不能の役職を都合よく除かず、私的な会社だけの組織表とは区別する。"
+    },
+    "governmentrolestrictsuperiority": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "higher",
+        "lower",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "同じ政治的共同体の同じ統治制度・状況で、第一役職が第二役職より上位に位置付く関係。直接の上司だけでなく推移的な上位関係を与える。実際の発令・服従、制度の正当性は含めず、厳密な順序かどうかは合成定義で検査する。"
+    },
+    "monarchicalgoverningrole": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "community",
+        "point"
+      ],
+      "meaning_ja": "この政治的共同体の制度で、この役職にある単独の個人が、その人自身の公的権威において統治の最終的な決定と執行を統べる立場にある。委任された一部門の管理者、私的な所有者、単なる敬称とは区別する。ここでのHerrを君主的な統治者とする語彙的な読みであり、世襲・終身・貴族身分・神授・制度の正当性は一律に要求しない。保持者・任用・最高位・唯一の保持は別に検査する。"
+    },
+    "rankedutterancefamilypresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "message"
+          },
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "utterance",
+        "recipient",
+        "subject",
+        "message_family",
+        "point"
+      ],
+      "meaning_ja": "この発話行為が、この宛先へ、指定対象に適用した同じ発話族の内容と発話の働きを提示する。既存f2と同じ提示関係を、段階0の記述評価を内側に含みうる段階1の閉じた発話族記述へ拡張する。生起・話者は別に結ぶ。提示から受領・理解・賛同・内容の真理・実行・法的な効力を導かず、記述を脱引用しない。"
+    },
+    "rankedutterancecontrastivereservation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "message"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "message"
+          },
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "utterance",
+        "speaker",
+        "recipient",
+        "subject",
+        "first_message",
+        "second_message",
+        "point"
+      ],
+      "meaning_ja": "同じ発話で同じ話者が同じ宛先へ、指定対象について、第一の発話に続けて第二の発話を対照的な留保として提示する。先行内容を撤回せず後続の制約も保持する働きであり、順序を保持する。単なる併置、第一の否定、二内容の論理的矛盾、第二の実行が第一の真理の必要条件であることとは区別する。各内容の提示は別に要求する。"
+    },
+    "parentheticalasidepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "aside_node",
+        "author",
+        "anchor_node",
+        "context"
+      ],
+      "meaning_ja": "同じ著者がこの文脈で、主たる叙述の指定箇所に関連する補足として、この箇所を括弧による挿入の位置に提示する。単に二文が隣接すること、引用符、発話者の私的な独白とは区別する。補足の真理、対照の内容、本文順序は別に結ぶ。"
+    }
+  },
+  "public_contracts": {
+    "sourceaddressedrecipientrange": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "desiredreasontopicrange": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "topic",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "desiredreasonextentrange": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "extent",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "reasonactivitytopicspecification": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "reasonactivityextentspecification": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "reasonactivityrolereference": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "obediencecivicrolescope": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "obediencerequirementrecordscope": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "item",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "requirementrecordrole": {
+      "arguments": [
+        {
+          "role": "item",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "requirementrecordactivity": {
+      "arguments": [
+        {
+          "role": "item",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "requirementrecordcontentdescription": {
+      "arguments": [
+        {
+          "role": "item",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": "content"
+        }
+      },
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "requirementrecordpolarity": {
+      "arguments": [
+        {
+          "role": "item",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "requirementguidedperformance": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "contemporarypoliticalcommunityrange": {
+      "arguments": [
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "governmentinstitutionrolescope": {
+      "arguments": [
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "governmentrolestrictsuperiority": {
+      "arguments": [
+        {
+          "role": "higher",
+          "sort": "individual"
+        },
+        {
+          "role": "lower",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "monarchicalgoverningrole": {
+      "arguments": [
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "community",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "rankedutterancefamilypresentation": {
+      "arguments": [
+        {
+          "role": "utterance",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "message_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "rankedutterancecontrastivereservation": {
+      "arguments": [
+        {
+          "role": "utterance",
+          "sort": "individual"
+        },
+        {
+          "role": "speaker",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "first_message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "second_message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    },
+    "parentheticalasidepresentation": {
+      "arguments": [
+        {
+          "role": "aside_node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor_node",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ出所・本人・役割・活動・基準・評価点と閉じた内容記述を保持する。",
+        "引用による許可方針と服従指令の提示を、実際の許可効力や履行から区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h233p": {
+      "public": "sourceaddressedrecipientrange",
+      "source": "kant-1784"
+    },
+    "h233q": {
+      "public": "desiredreasontopicrange",
+      "source": "kant-1784"
+    },
+    "h233r": {
+      "public": "desiredreasonextentrange",
+      "source": "kant-1784"
+    },
+    "h233s": {
+      "public": "reasonactivitytopicspecification",
+      "source": "kant-1784"
+    },
+    "h233t": {
+      "public": "reasonactivityextentspecification",
+      "source": "kant-1784"
+    },
+    "h233u": {
+      "public": "reasonactivityrolereference",
+      "source": "kant-1784"
+    },
+    "h233v": {
+      "public": "obediencecivicrolescope",
+      "source": "kant-1784"
+    },
+    "h233w": {
+      "public": "obediencerequirementrecordscope",
+      "source": "kant-1784"
+    },
+    "h233x": {
+      "public": "requirementrecordrole",
+      "source": "kant-1784"
+    },
+    "h233y": {
+      "public": "requirementrecordactivity",
+      "source": "kant-1784"
+    },
+    "h233z": {
+      "public": "requirementrecordcontentdescription",
+      "source": "kant-1784"
+    },
+    "h234a": {
+      "public": "requirementrecordpolarity",
+      "source": "kant-1784"
+    },
+    "h234b": {
+      "public": "requirementguidedperformance",
+      "source": "kant-1784"
+    },
+    "h234c": {
+      "public": "contemporarypoliticalcommunityrange",
+      "source": "kant-1784"
+    },
+    "h234d": {
+      "public": "governmentinstitutionrolescope",
+      "source": "kant-1784"
+    },
+    "h234e": {
+      "public": "governmentrolestrictsuperiority",
+      "source": "kant-1784"
+    },
+    "h234f": {
+      "public": "monarchicalgoverningrole",
+      "source": "kant-1784"
+    },
+    "h234g": {
+      "public": "rankedutterancefamilypresentation",
+      "source": "kant-1784"
+    },
+    "h234h": {
+      "public": "rankedutterancecontrastivereservation",
+      "source": "kant-1784"
+    },
+    "h234k": {
+      "public": "parentheticalasidepresentation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile114。",
+    "20一般関係の採用済み型・全引数・意味を保持する。文と三文ブロックは既存参照演算で定義する。",
+    "望む話題と程度の範囲、活動候補の指定、要求記録の欄を混同しない。要求記録を消して実際の要求を消したことにしない。",
+    "統治者の唯一性はその発言をする者に限る合成定義。全世界の統治者が一人であるとはしない。",
+    "rank1の閉じた発話族をrank0へ下げず、引用から内容の真理・実行・正当性を導かない。",
+    "全記述域の量化を有限診断で証明したとせず、未知入力拒否を保持する。"
+  ]
+}
