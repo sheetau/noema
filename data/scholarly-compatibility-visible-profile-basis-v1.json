@@ -1,0 +1,1256 @@
+{
+  "status": "optional_scholarly_compatibility_visible_profile",
+  "document": "examples/v016/scholarly-compatibility-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "boundjudgmentcontentendorsement": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "content",
+        "bindings",
+        "polarity",
+        "reference"
+      ],
+      "meaning_ja": "この判断が、閉じた内容関数へ同じ順序の個体列を適用した内容を、指定の極性で認めている。hznnと同じ判断の肯否を複数の束縛で扱う。判断主体はfaで別に結び、内容の真理・成功・本人の行動を実行しない。同じ真理値の別の記述を自動的に同一視しない。"
+    },
+    "cosmopolitansocietyconception": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "society",
+        "point"
+      ],
+      "meaning_ja": "この社会的な結び付きは、個別の政治的共同体を越えて、人々を同じ世界に属する市民として位置付ける社会の構想である。一国の住民集団や局所的な職務集団だけとは分ける。単一の世界政府、現存する国際機関の名称、全人類の実際の相互承認は含意しない。世界市民社会という対象の読みを明示する分類関係である。"
+    },
+    "cosmopolitansocietymembership": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "society",
+        "point"
+      ],
+      "meaning_ja": "この人が、この市民的な社会の構想における成員として位置付けられる。特定国家の法的国籍や住所とは同一視しない。本人がそう考えていることは別の判断関係で扱い、この関係自体はその成員性を述べる。"
+    },
+    "writtenworkaddressroute": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "written_work",
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "この活動の内容上の構成では、同じ記された作品を介して、同じ宛先へ本人の見解を向ける。作品への単なる言及、別の作品の流通、別の宛先への発信では満たさない。書かれた記録と媒体は別に構成する。特定の印刷・製本技術、実際の発信・読了・理解・賛同は含意しない。"
+    },
+    "firstpersonjudgmentposition": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "judgment",
+        "person",
+        "reference"
+      ],
+      "meaning_ja": "この判断において、指定本人が内容の対象となる本人を自分自身として捉える一人称の位置付けがある。対象が偶然判断者と同一であるだけの第三者についての判断とは分ける。判断主体、具体的な肯定内容、束縛先の同一性は合成側で確認し、自己評価の正しさは要求しない。"
+    },
+    "activityworkmodelvariables": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "start",
+        "method"
+      ],
+      "meaning_ja": "同じ本人・活動・事務・固定基準・開始状況・方法に対する因果比較モデルの有限変数列。実行の有無と事務への効果を比較するための範囲であり、有害な結果を事後に除外しない。モデルの実世界への適合は明示した解釈の仮定である。"
+    },
+    "activityworkmodelequation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "start",
+        "method",
+        "variable",
+        "state"
+      ],
+      "meaning_ja": "同じモデルで、この変数に同じ割当てから与える二値の構造方程式の値。実行側と不実行側で他の方程式と外生背景を固定する。異なる背景の解を混ぜた相関を因果比較としない。"
+    },
+    "activityworkexecutionfactor": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "start",
+        "method"
+      ],
+      "meaning_ja": "同じモデルで、指定本人による指定活動の実行の有無を介入する変数。列内の所属と実行内容zzqとの両介入での一致は合成側で検査する。名前だけで実行対応を認定しない。"
+    },
+    "activityworkmodelview": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "situation",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "start",
+        "method",
+        "state"
+      ],
+      "meaning_ja": "同じモデルの割当てに対応する比較状況。指定活動の実行と同じ事務の遂行を評価する状況であり、実行側と不実行側で別の人物・職務の成功を借りない。仮定の比較状況を現在の出来事へ昇格させない。"
+    },
+    "workperformanceevaluated": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "work",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ固定基準で、指定事務の遂行が指定比較状況について評価されている。品質、遅延、量など採用した評価観点を比較中に替えない。未知の評価を害の不在として補わない。"
+    },
+    "workperformancenondecrease": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "work",
+        "reference",
+        "left",
+        "right"
+      ],
+      "meaning_ja": "同じ固定基準の観点で、左の状況における指定事務の遂行が右の同じ事務の遂行以上である。完全達成か否かの二値や、論じる本人の利益に限定しない。比較の反射性・推移性・比較可能性は合成側で確認する。"
+    },
+    "activityworkmethodavailability": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "start",
+        "method"
+      ],
+      "meaning_ja": "同じ本人が、指定活動と事務を扱うこの方法を指定開始状況から実践的に実行できる。規範的許可だけ、実際の実行、事務を損なわないという結論とは別の入力である。安全な方法だけを利用可能と選び直さない。"
+    },
+    "activityworkmethodoutcome": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "start",
+        "method",
+        "outcome"
+      ],
+      "meaning_ja": "同じ本人・活動・事務・固定基準・開始状況で同じ方法を用いる場合の想定結果に、この状況が含まれる。別方法の成功や違う基準の結果を流用しない。"
+    },
+    "activityworkevaluatedoutcome": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "work",
+        "reference",
+        "start",
+        "method",
+        "outcome"
+      ],
+      "meaning_ja": "同じ方法の想定結果のうち、同じ文脈で評価する結果にこの状況が含まれる。非空性、想定結果の部分集合、同じモデルの実行側全解との一致は合成側で確認し、悪化する解を恣意的に除外しない。"
+    },
+    "scopedthreeargumentprogressiveemphasis": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "outer_content",
+        "scope",
+        "first_focus",
+        "further_focus",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ内容内で、同じ三個体・基準の範囲について第二の焦点を第一にとどまることを越えたものとして段階的に強調する。三内容は同じ引数順を共有する。主張の条件・引用・様相を保持し、第一の撤回、焦点の現実の真理、数値的な程度差を含意しない。問いに限定したh235mと同種の取り立てを叙述内の内容族に適用する。"
+    },
+    "scopednineargumentexplanatorypresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "outer_content",
+        "scope",
+        "explained",
+        "clarification",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ九個体・基準の範囲で、第一の捉え方を第二の立場・活動分類によって説明し具体化する。両族の引数順と外側の条件作用域を保つ。説明としてのつながりであり、第一の自己認識だけから第二の能力・資格が論理的に導かれること、同義性、実際の実行は含意しない。"
+    },
+    "scopednineargumentaspectlimitation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 3
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "outer_content",
+        "scope",
+        "limited_aspect",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ九個体・基準の範囲で、焦点となる役割関係をその人のある側面に限定して述べる。人の全生活・全立場を尽くす規定にはしない。割合の数値、活動時間の一部分だけ、他の立場の不存在へ変換せず、外側の条件や帰属を保持する。"
+    }
+  },
+  "public_contracts": {
+    "boundjudgmentcontentendorsement": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "cosmopolitansocietyconception": {
+      "arguments": [
+        {
+          "role": "society",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "cosmopolitansocietymembership": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "society",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "writtenworkaddressroute": {
+      "arguments": [
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "written_work",
+          "sort": "individual"
+        },
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "firstpersonjudgmentposition": {
+      "arguments": [
+        {
+          "role": "judgment",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "activityworkmodelvariables": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "activityworkmodelequation": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "variable",
+          "sort": "individual"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "activityworkexecutionfactor": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "activityworkmodelview": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "state",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "workperformanceevaluated": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "workperformancenondecrease": {
+      "arguments": [
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "left",
+          "sort": "situation"
+        },
+        {
+          "role": "right",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "activityworkmethodavailability": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "activityworkmethodoutcome": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "activityworkevaluatedoutcome": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "work",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "method",
+          "sort": "individual"
+        },
+        {
+          "role": "outcome",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "scopedthreeargumentprogressiveemphasis": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "outer_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "first_focus",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "further_focus",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "scopednineargumentexplanatorypresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "outer_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "explained",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "clarification",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    },
+    "scopednineargumentaspectlimitation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "outer_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 3
+          }
+        },
+        {
+          "role": "scope",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "limited_aspect",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・職務・事務・自己理解・活動・書面・公衆と基準を保持する。",
+        "一つの方法と因果モデルで、実行能力・全結果の事務非悪化・実行結果内の書面を結ぶ。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h242d": {
+      "public": "boundjudgmentcontentendorsement",
+      "source": "kant-1784"
+    },
+    "h242e": {
+      "public": "cosmopolitansocietyconception",
+      "source": "kant-1784"
+    },
+    "h242f": {
+      "public": "cosmopolitansocietymembership",
+      "source": "kant-1784"
+    },
+    "h242g": {
+      "public": "writtenworkaddressroute",
+      "source": "kant-1784"
+    },
+    "h242h": {
+      "public": "firstpersonjudgmentposition",
+      "source": "kant-1784"
+    },
+    "h242j": {
+      "public": "activityworkmodelvariables",
+      "source": "kant-1784"
+    },
+    "h242k": {
+      "public": "activityworkmodelequation",
+      "source": "kant-1784"
+    },
+    "h242l": {
+      "public": "activityworkexecutionfactor",
+      "source": "kant-1784"
+    },
+    "h242m": {
+      "public": "activityworkmodelview",
+      "source": "kant-1784"
+    },
+    "h242n": {
+      "public": "workperformanceevaluated",
+      "source": "kant-1784"
+    },
+    "h242o": {
+      "public": "workperformancenondecrease",
+      "source": "kant-1784"
+    },
+    "h242p": {
+      "public": "activityworkmethodavailability",
+      "source": "kant-1784"
+    },
+    "h242q": {
+      "public": "activityworkmethodoutcome",
+      "source": "kant-1784"
+    },
+    "h242r": {
+      "public": "activityworkevaluatedoutcome",
+      "source": "kant-1784"
+    },
+    "h242s": {
+      "public": "scopedthreeargumentprogressiveemphasis",
+      "source": "kant-1784"
+    },
+    "h242t": {
+      "public": "scopednineargumentexplanatorypresentation",
+      "source": "kant-1784"
+    },
+    "h242u": {
+      "public": "scopednineargumentaspectlimitation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile121。",
+    "17一般関係の採用済み型・全引数・意味を保持する。",
+    "自己理解と成員性の事実、実践的可能性と規範的許可、引用された説明と現実の実行を区別する。",
+    "有限の束縛診断を全域証明とせず、未知・空解・比較不能を非悪化に数えない。"
+  ]
+}
