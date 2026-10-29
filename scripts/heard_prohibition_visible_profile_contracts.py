@@ -1,0 +1,33 @@
+"""Reasoned discussion, heard calls, social sources and collective recipients."""
+CONTRACTS={'reasoningdiscussionactivity': {'parameters': ['individual', 'situation'],
+                                 'result': 'truth',
+                                 'arguments': ['activity', 'reference'],
+                                 'meaning_ja': '同じ基準で、この活動記述が、事柄について理拠を述べ検討し、問いや異論を論ずる言語的な活動に当たる。単なる音声、従順な復唱、結果のない冗談や全ての内心の思考を一律にこの範囲へ含めない。公的・職務内のいずれも分類でき、実行・正しさ・成功・社会的許可は別条件。本人自身の理性使用caと組み合わせてräsonnirenの採用読解を構成する。'},
+ 'auditoryeventperception': {'parameters': ['individual', 'individual', 'situation'],
+                             'result': 'truth',
+                             'arguments': ['observer', 'event', 'point'],
+                             'meaning_ja': 'この本人が同じ場面で、この出来事からの音を聴覚を通じて知覚する。別の出来事の音、書面を読んだだけ、伝聞や想像だけとは区別する。発話内容の理解、賛同、本人が宛先であることはこの関係だけでは要求しない。'},
+ 'vocalcallingmanner': {'parameters': ['individual', 'situation'],
+                        'result': 'truth',
+                        'arguments': ['event', 'point'],
+                        'meaning_ja': 'この発声は、声を上げて相手へ届くよう呼びかける様式を持つ。音量の数値や怒り・暴力・喉の極限の叫びを必須にせず、単なる黙読・表示と区別する。発声の生起、発信者、受信・理解は別に結ぶ。'},
+ 'socialvoicequarterrange': {'parameters': ['individual', 'situation', 'individual'],
+                             'result': 'truth',
+                             'arguments': ['observer', 'reference', 'quarter'],
+                             'meaning_ja': '同じ観察者と基準文脈で、周囲の呼び声を見渡す対象となる社会的な方面の全範囲に属する。ここでの四方は幾何的な全方位や世界の全員ではなく、後続の軍務・財務・宗教などに例示される諸方面として読む。都合のよい発声が見つかった方面だけを事後に残さない。'},
+ 'socialvoicesource': {'parameters': ['individual', 'individual', 'situation'],
+                       'result': 'truth',
+                       'arguments': ['quarter', 'speaker', 'reference'],
+                       'meaning_ja': '同じ基準で、この話者がその社会的な方面からの声として位置づく。単なる近接や宛先の所属ではなく、声の出所をその方面へ結ぶ。複数方面に属する話者を許す。権限・正当性・実際の発声・全構成員の賛同は含意しない。'},
+ 'collectivecallrecipientrange': {'parameters': ['individual', 'situation', 'individual'],
+                                  'result': 'truth',
+                                  'arguments': ['call', 'reference', 'recipient'],
+                                  'meaning_ja': '同じ呼びかけと基準文脈で、二人称の集団的な宛先として指す全対象者の範囲に属する。実際に受領・理解・服従した人だけに狭めず、呼び声を聞く観察者と宛先を同一視しない。複数性と人の条件は呼び出し側で検査する。'}}
+SOURCE_RELATIONS={'h232p': {'public': 'reasoningdiscussionactivity', 'source': 'kant-1784'},
+ 'h232q': {'public': 'auditoryeventperception', 'source': 'kant-1784'},
+ 'h232r': {'public': 'vocalcallingmanner', 'source': 'kant-1784'},
+ 'h232s': {'public': 'socialvoicequarterrange', 'source': 'kant-1784'},
+ 'h232t': {'public': 'socialvoicesource', 'source': 'kant-1784'},
+ 'h232u': {'public': 'collectivecallrecipientrange', 'source': 'kant-1784'}}
+EXTRA={}
+MATH_ALIASES={}
