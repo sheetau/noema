@@ -1,0 +1,2385 @@
+{
+  "status": "optional_confinement_motion_visible_profile",
+  "document": "examples/v016/confinement-motion-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "sufficientcontextualunderstanding": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "situation"
+      ],
+      "meaning_ja": "その人には、その状況で問題となる行為に必要な理解能力が十分にある。実際に自ら使うこと、決意や勇気が十分であることとは区別する。"
+    },
+    "attemptspropertyactivity": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity_description",
+        "context"
+      ],
+      "meaning_ja": "本人がこの状況で記述された活動を試みる。活動の成功、許可、勇気が十分あることは別条件。"
+    },
+    "presentsparameterizedmessage": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "message"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "recipient",
+        "subject",
+        "message_description",
+        "context"
+      ],
+      "meaning_ja": "この提示行為で、この受け手へ、指定対象について記述された発話を示す。発話記述の関数の引数をsubjectへ対応付ける。内容の真理や証明、受け手の理解や同意を意味しない。"
+    },
+    "presentationagent": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "sender",
+        "act",
+        "context"
+      ],
+      "meaning_ja": "この人が同じ提示行為で示す側の当事者となる。単なる同席者や受け手としての参加とは区別する。"
+    },
+    "riskconditionalcase": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "context",
+        "case"
+      ],
+      "meaning_ja": "この人物と文脈において、自立を試みる場合の危険という条件を評価する仮定状況の範囲。実際に試みたという履歴ではなく、前文の信念候補u2とも区別する。"
+    },
+    "producesdescribedstate": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "person",
+        "condition_description",
+        "context"
+      ],
+      "meaning_ja": "この行為が同じ人について記述された状態を、この文脈で結果として生じさせる。単なる状態の共存、時間的先行、原因だと誰かが説明することとは区別する。因果機構の一般的な基礎説明は未完。"
+    },
+    "wholemovementprocesspoint": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "last",
+        "point"
+      ],
+      "meaning_ja": "この完了点で記述する同じ身体移動の全過程の範囲に入る状況。安定していた部分だけを切り出す範囲ではない。非空性・完了点・時間順序・間の欠落はrcqで別に検査する。"
+    },
+    "requiresboundcontent": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "addressee",
+        "role",
+        "target_description",
+        "bindings",
+        "polarity",
+        "context"
+      ],
+      "meaning_ja": "指定の規範の出所が、名宛人にその立場で、記述へ同じ順序の引数列を渡した対象内容の指定極性を満たすよう要求する。対象内容が別の規範状態でもよく、その現実の成立とは分ける。"
+    },
+    "permitsboundcontent": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "addressee",
+        "role",
+        "target_description",
+        "bindings",
+        "polarity",
+        "context"
+      ],
+      "meaning_ja": "指定の規範の出所が、名宛人にその立場で、同じ記述・引数列で指定された内容の極性を積極的に許可する。許可された内容の実行や、義務との同一視を含まない。"
+    },
+    "sustainedgoalattention": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "act",
+        "goal_description",
+        "bindings",
+        "aspect",
+        "context"
+      ],
+      "meaning_ja": "同じ行為者が、その行為を進める中で、指定した目標記述と順序付き引数について、その事項へ継続して認知的な注意を配る。単に知覚したこと、結果の成功、感情的な好意とは区別する。事項の関連性、目的としての採用、実際の行為参加は別条件。"
+    },
+    "relevantperformanceaspect": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "group",
+        "act",
+        "goal_description",
+        "bindings",
+        "aspect",
+        "context"
+      ],
+      "meaning_ja": "同じ行為者群・行為・目標記述・順序付き引数・文脈について、遂行上考慮すべき事項の範囲に属する。現に注意を払った事項だけを範囲にしない。文脈上の関連範囲を解釈として固定し、注意や成功から逆算しない。"
+    },
+    "functionalfootpart": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "part",
+        "body",
+        "point"
+      ],
+      "meaning_ja": "同じ身体の脚の末端で、地面への支持・接地を担う部位としての足である。手・身体全体・別の身体の足とは区別する。自然の部位か補綴かという材質の区別は固定せず、その時点での身体への所属と機能的な部位分類を与える。現在の接地や歩行の実行は含意しない。"
+    },
+    "supportcontact": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "part",
+        "place",
+        "point"
+      ],
+      "meaning_ja": "同じ身体部位が、その場所の地面または移動の支持面に直接接触している。近接、空中での投影位置、他の部位だけの接触とは区別する。荷重の数量、摩擦、身体全体の均衡、意図的な動作は含意しない。"
+    },
+    "partmovementcontribution": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "part",
+        "process",
+        "start",
+        "end"
+      ],
+      "meaning_ja": "指定した部位の始点から終点への空間的位置変化が、その同じ過程を構成する変化である。別の過程による同時の位置変化や、その過程が部位の別の性質だけを変えることとは区別する。位置の値、接触、移動の意図や身体全体の移動は別条件とする。"
+    },
+    "boundgoalcourage": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "goal",
+        "bindings",
+        "scene"
+      ],
+      "meaning_ja": "同じ本人が、閉じた目標関数の記述と順序付き対象列で指定された内容に向け、同じ状況で文脈上十分な勇気を持つ。恐れ・困難に直面して行動へ向かう態度の十分さであり、客観的危険・実際の試み・目標の成立を含意しない。記述、対象列、本人、状況のいずれも別のものから流用しない。"
+    },
+    "attemptsboundgoal": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "sequence",
+                "element": "individual"
+              }
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "sequence",
+          "element": "individual"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "act",
+        "goal",
+        "bindings",
+        "scene"
+      ],
+      "meaning_ja": "同じ本人が、その同じ行為で、閉じた目標関数の記述と順序付き対象列で指定された内容を同じ状況で試みる。本人の勇気、成功、能力、許容とは別の関係。対象列を行為個体の別名に縮めず、別の行為や同じ記述の別引数への試みを流用しない。"
+    },
+    "nonliteralphaserelationpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "claim",
+        "target",
+        "depiction",
+        "context"
+      ],
+      "meaning_ja": "著者がこの箇所・提示文脈の同じ主張記述の内で、対象側の関係を描写側の関係によって非字義的に提示する。両記述の一個体・二状況の位置は、同じ対象者・先行時点・基準時点を指す対応を持ち、主張内の同じ対象者と時点の束縛に結ぶ。両側で別々に選んだ時点を同じと扱わない。引用された内容の実際の成立、真偽の一致、因果的な同一性は要求しない。"
+    },
+    "bodilymotionoriginator": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "body",
+        "episode",
+        "point"
+      ],
+      "meaning_ja": "この生物の身体が、この状況の同じ出来事において自ら生じさせる外から現れる身体運動の主体である。意図した行為にも反射的・不随意の動きにも使える。別の身体の動きや、外から運ばれただけの移送と区別する。人の能動的な行為参加dfや、運動の実際の生起dgをこの関係だけから導かない。"
+    },
+    "salientbodilyagitation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "body",
+        "episode",
+        "reference",
+        "point"
+      ],
+      "meaning_ja": "同じ身体の同じ運動がこの状況で、反復・速さ・急激な変化などの様式において、基準文脈で外面の動揺として目立つ水準にある。単に運動があることや高い移動速度だけでは決まらず、通常の落ち着いた身体動作との文脈上の比較を要する。尺度の数値や閾値は固定しない。内面的な感情、意図、抵抗、服従、能力、勇気、許容についての関係ではない。身体主体・生起は別条件。"
+    },
+    "insistentviewpointpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "claim",
+        "viewpoint",
+        "focus",
+        "context"
+      ],
+      "meaning_ja": "提示者がこの箇所・文脈の同じ主張記述の中で、指定した視点の担い手に帰属させる強い姿勢として、焦点の内容を緩めず維持するものとして示す。単なる真偽の報告や確実さの評価とは異なる提示上の働き。焦点の一個体・二状況は同じ主張内の対象者・先行時点・基準時点に対応する。担い手は描かれた視点であって、現実の発話者、実際の内心、著者の賛同や命令行為とは限らない。焦点内容の真理、義務や禁止の追加、制裁、聞き手の同意、量化範囲の拡大を含意しない。"
+    },
+    "completepossibilitygraph": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "restriction",
+        "being",
+        "carrier",
+        "context"
+      ],
+      "meaning_ja": "この制限・対象・装置・文脈について、qtの場所とqxの移動辺が検討すべき移動の可能性を尽くすという明示的な前提。現実の完全性の自動認定ではない。"
+    },
+    "animalbeing": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "being"
+      ],
+      "meaning_ja": "動物に分類される生物である。人かどうかはaaで別に判定する。分類の生物学的な基礎説明は未完。"
+    },
+    "maintenancerole": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "keeper",
+        "being",
+        "point"
+      ],
+      "meaning_ja": "この時点で、その飼い手がその生物の生存に必要な条件を継続的に管理する役割を担う。役割の不履行や一時的な給餌の不在を、役割の不在と同一視しない。"
+    },
+    "husbandrycontrol": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "keeper",
+        "being",
+        "point"
+      ],
+      "meaning_ja": "同じ飼い手が、その生物の行動・移動・生活条件を飼育のために管理する立場を持つ。単なる観察や一度だけの接触とは区別する。"
+    },
+    "husbandryusepurpose": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "keeper",
+        "being",
+        "point"
+      ],
+      "meaning_ja": "同じ飼い手によるその生物の維持管理が、人間の生活のためにその生物の活動・産物等を利用する目的に結び付く。具体的な産物や目的達成は固定しない。"
+    },
+    "depictedownership": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "owner",
+        "being",
+        "context"
+      ],
+      "meaning_ja": "この描写でその生物がその所有主体に属するものとして位置付けられる。飼育担当者や場所の同一性だけからは導かない。所有制度や法的正当性の一般説明は未完。"
+    },
+    "husbandryassessmentperiod": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "being",
+        "context",
+        "point"
+      ],
+      "meaning_ja": "この生物の飼育役割をこの文脈で評価する期間。履歴内の非空で間の抜けない期間であることはtbで検査する。"
+    },
+    "husbandryhistory": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "being",
+        "context",
+        "point"
+      ],
+      "meaning_ja": "この生物について飼育役割を評価する同じ時間的履歴。別の描写世界や別個体の履歴と混ぜない。"
+    },
+    "occupieddevice": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "being",
+        "context"
+      ],
+      "meaning_ja": "描写中、その対象が入れられている装置。歩行器の構造や用途はこの識別関数から導かず、未説明とする。"
+    },
+    "deviceplacesequence": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "carrier",
+        "context"
+      ],
+      "meaning_ja": "同じ装置・文脈の移動可能性を検討する有限の場所の列。外部と中間の場所も含む。"
+    },
+    "deviceinteriorplace": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "carrier",
+        "place",
+        "context"
+      ],
+      "meaning_ja": "同じ装置に対してその場所が内部にある。装置と場所は別の対象である。"
+    },
+    "deviceexteriorplace": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "carrier",
+        "place",
+        "context"
+      ],
+      "meaning_ja": "同じ装置に対してその場所が外部にある。内部でないだけでは外部とせず、境界を残す。"
+    },
+    "occupiedplace": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "being",
+        "context"
+      ],
+      "meaning_ja": "同じ対象がこの描写の時点で占める場所。"
+    },
+    "unrestrictedmovementedge": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "restriction",
+        "being",
+        "carrier",
+        "from",
+        "to",
+        "context"
+      ],
+      "meaning_ja": "この制限を取り除き他の背景を固定した場合、この対象が装置周辺で一段階に移動できる方向付きの関係。目的や許可ではない。"
+    },
+    "blockedmovementedge": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "restriction",
+        "being",
+        "carrier",
+        "from",
+        "to",
+        "context"
+      ],
+      "meaning_ja": "同じ制限が同じ対象・装置・文脈で、その移動辺を通れなくする。辺を削除するモデルを明示した読み。"
+    },
+    "restrictionapplication": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "act",
+        "restriction",
+        "being",
+        "carrier",
+        "context"
+      ],
+      "meaning_ja": "この実際の行為が、同じ対象・装置へその制限を適用している。行為者と生起はdf・dgへ別に結ぶ。"
+    },
+    "structuralpartsequence": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "device",
+        "context"
+      ],
+      "meaning_ja": "この装置で枠の構成を記述するために選んだ構造部分の列。全装飾・全材料を列挙する条件ではない。"
+    },
+    "loadbearingpart": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "device",
+        "part",
+        "context"
+      ],
+      "meaning_ja": "その対象が同じ装置の形と荷重の保持に関わる構造部分である。単なる近接や所持とは区別する。"
+    },
+    "structuralconnection": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "first_part",
+        "second_part",
+        "context"
+      ],
+      "meaning_ja": "同じ構成の部分間に、力を伝え形を保つ物理的な接続がある。接続の意味は対称的に使い、因果の向きとは区別する。"
+    },
+    "manufacturedartifact": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "device",
+        "context"
+      ],
+      "meaning_ja": "この対象は、材料の形や配置を意図的に整えて作られた物体である。偶然に似た形になった物を同一視しない。"
+    },
+    "learningdesignpurpose": {
+      "parameters": [
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "device",
+        "users_description",
+        "activity_description",
+        "context"
+      ],
+      "meaning_ja": "この装置の設計上の用途は、記述された利用者群が記述された活動を習得することである。用途の帰属であり、有効性や習得済みという事実は含まない。"
+    },
+    "standingsupportconfiguration": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "device",
+        "part",
+        "context"
+      ],
+      "meaning_ja": "この装置のこの部分は、使用時に利用者の身体を支え、立った姿勢を保つための配置を持つ。現在の支持の実行とは区別する。"
+    },
+    "legmovementclearance": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "device",
+        "context"
+      ],
+      "meaning_ja": "この装置は、身体を支える位置から足を接地させ、脚を動かすための空間を持つ配置である。実際に歩くことや成功は要求しない。"
+    },
+    "earlydevelopmentchild": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person"
+      ],
+      "meaning_ja": "通常の利用者として想定される、人間の身体発達の初期段階の子どもの分類。年齢の数値を固定せず、文化的・生物学的境界の説明は残る。"
+    },
+    "walkingmovement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "act",
+        "context"
+      ],
+      "meaning_ja": "同じ身体が脚を動かし足で支持しながら位置を変える行為である。運動学の詳細や歩行と走行の境界はまだ未説明。"
+    },
+    "externalwalkingsupport": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "act",
+        "context"
+      ],
+      "meaning_ja": "同じ身体移動の行為で、他者や装置が足の接地とは別に身体を支える。地面からの通常の支持まで外部の歩行補助とはしない。"
+    },
+    "restrictionhistory": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "restriction",
+        "being",
+        "carrier",
+        "anchor",
+        "point"
+      ],
+      "meaning_ja": "この対象・装置・制限を基準文脈で振り返るときの同じ時間履歴。端点だけでなく、成立後から基準時までの評価範囲を指定する。"
+    }
+  },
+  "public_contracts": {
+    "sufficientcontextualunderstanding": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "attemptspropertyactivity": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "presentsparameterizedmessage": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "subject",
+          "sort": "individual"
+        },
+        {
+          "role": "message_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "presentationagent": {
+      "arguments": [
+        {
+          "role": "sender",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "riskconditionalcase": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "case",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "producesdescribedstate": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "condition_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "wholemovementprocesspoint": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "last",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "requiresboundcontent": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "addressee",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "target_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "permitsboundcontent": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "addressee",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "target_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "sustainedgoalattention": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "aspect",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "relevantperformanceaspect": {
+      "arguments": [
+        {
+          "role": "group",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "goal_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "aspect",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "functionalfootpart": {
+      "arguments": [
+        {
+          "role": "part",
+          "sort": "individual"
+        },
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "supportcontact": {
+      "arguments": [
+        {
+          "role": "part",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "partmovementcontribution": {
+      "arguments": [
+        {
+          "role": "part",
+          "sort": "individual"
+        },
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "start",
+          "sort": "situation"
+        },
+        {
+          "role": "end",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "boundgoalcourage": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "scene",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "attemptsboundgoal": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "goal",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "sequence",
+                  "element": "individual"
+                }
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "bindings",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "scene",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "nonliteralphaserelationpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "target",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "depiction",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "bodilymotionoriginator": {
+      "arguments": [
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "episode",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "salientbodilyagitation": {
+      "arguments": [
+        {
+          "role": "body",
+          "sort": "individual"
+        },
+        {
+          "role": "episode",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "insistentviewpointpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "viewpoint",
+          "sort": "individual"
+        },
+        {
+          "role": "focus",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "completepossibilitygraph": {
+      "arguments": [
+        {
+          "role": "restriction",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "carrier",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "animalbeing": {
+      "arguments": [
+        {
+          "role": "being",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "maintenancerole": {
+      "arguments": [
+        {
+          "role": "keeper",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "husbandrycontrol": {
+      "arguments": [
+        {
+          "role": "keeper",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "husbandryusepurpose": {
+      "arguments": [
+        {
+          "role": "keeper",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "depictedownership": {
+      "arguments": [
+        {
+          "role": "owner",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "husbandryassessmentperiod": {
+      "arguments": [
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "husbandryhistory": {
+      "arguments": [
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "occupieddevice": {
+      "arguments": [
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "deviceplacesequence": {
+      "arguments": [
+        {
+          "role": "carrier",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "deviceinteriorplace": {
+      "arguments": [
+        {
+          "role": "carrier",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "deviceexteriorplace": {
+      "arguments": [
+        {
+          "role": "carrier",
+          "sort": "individual"
+        },
+        {
+          "role": "place",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "occupiedplace": {
+      "arguments": [
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "unrestrictedmovementedge": {
+      "arguments": [
+        {
+          "role": "restriction",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "carrier",
+          "sort": "individual"
+        },
+        {
+          "role": "from",
+          "sort": "individual"
+        },
+        {
+          "role": "to",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "blockedmovementedge": {
+      "arguments": [
+        {
+          "role": "restriction",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "carrier",
+          "sort": "individual"
+        },
+        {
+          "role": "from",
+          "sort": "individual"
+        },
+        {
+          "role": "to",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "restrictionapplication": {
+      "arguments": [
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "restriction",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "carrier",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "structuralpartsequence": {
+      "arguments": [
+        {
+          "role": "device",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "loadbearingpart": {
+      "arguments": [
+        {
+          "role": "device",
+          "sort": "individual"
+        },
+        {
+          "role": "part",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "structuralconnection": {
+      "arguments": [
+        {
+          "role": "first_part",
+          "sort": "individual"
+        },
+        {
+          "role": "second_part",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "manufacturedartifact": {
+      "arguments": [
+        {
+          "role": "device",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "learningdesignpurpose": {
+      "arguments": [
+        {
+          "role": "device",
+          "sort": "individual"
+        },
+        {
+          "role": "users_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "activity_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "standingsupportconfiguration": {
+      "arguments": [
+        {
+          "role": "device",
+          "sort": "individual"
+        },
+        {
+          "role": "part",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "legmovementclearance": {
+      "arguments": [
+        {
+          "role": "device",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "earlydevelopmentchild": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "walkingmovement": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "externalwalkingsupport": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "act",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    },
+    "restrictionhistory": {
+      "arguments": [
+        {
+          "role": "restriction",
+          "sort": "individual"
+        },
+        {
+          "role": "being",
+          "sort": "individual"
+        },
+        {
+          "role": "carrier",
+          "sort": "individual"
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ人物・行為・装置・場所・過程・時点と順序付き対象列を保持する。身体側の描写と知的側の内容を分ける。",
+        "要求・許可・勇気・試み・設計用途を実行や成功と同一視しない。描写から真理や因果の同一性を補わない。"
+      ]
+    }
+  },
+  "source_relations": {
+    "ak": {
+      "public": "sufficientcontextualunderstanding",
+      "source": "kant-1784"
+    },
+    "ei": {
+      "public": "attemptspropertyactivity",
+      "source": "kant-1784"
+    },
+    "f2": {
+      "public": "presentsparameterizedmessage",
+      "source": "kant-1784"
+    },
+    "f3": {
+      "public": "presentationagent",
+      "source": "kant-1784"
+    },
+    "f4": {
+      "public": "riskconditionalcase",
+      "source": "kant-1784"
+    },
+    "g3": {
+      "public": "producesdescribedstate",
+      "source": "kant-1784"
+    },
+    "h4x": {
+      "public": "wholemovementprocesspoint",
+      "source": "kant-1784"
+    },
+    "h7k": {
+      "public": "requiresboundcontent",
+      "source": "kant-1784"
+    },
+    "h7l": {
+      "public": "permitsboundcontent",
+      "source": "kant-1784"
+    },
+    "hztj": {
+      "public": "sustainedgoalattention",
+      "source": "kant-1784"
+    },
+    "hztk": {
+      "public": "relevantperformanceaspect",
+      "source": "kant-1784"
+    },
+    "hzxw": {
+      "public": "functionalfootpart",
+      "source": "kant-1784"
+    },
+    "hzxx": {
+      "public": "supportcontact",
+      "source": "kant-1784"
+    },
+    "hzxy": {
+      "public": "partmovementcontribution",
+      "source": "kant-1784"
+    },
+    "hzxz": {
+      "public": "boundgoalcourage",
+      "source": "kant-1784"
+    },
+    "hzya": {
+      "public": "attemptsboundgoal",
+      "source": "kant-1784"
+    },
+    "hzyb": {
+      "public": "nonliteralphaserelationpresentation",
+      "source": "kant-1784"
+    },
+    "hzyc": {
+      "public": "bodilymotionoriginator",
+      "source": "kant-1784"
+    },
+    "hzyd": {
+      "public": "salientbodilyagitation",
+      "source": "kant-1784"
+    },
+    "hzye": {
+      "public": "insistentviewpointpresentation",
+      "source": "kant-1784"
+    },
+    "q7": {
+      "public": "completepossibilitygraph",
+      "source": "kant-1784"
+    },
+    "qd": {
+      "public": "animalbeing",
+      "source": "kant-1784"
+    },
+    "qe": {
+      "public": "maintenancerole",
+      "source": "kant-1784"
+    },
+    "ql": {
+      "public": "husbandrycontrol",
+      "source": "kant-1784"
+    },
+    "qm": {
+      "public": "husbandryusepurpose",
+      "source": "kant-1784"
+    },
+    "qn": {
+      "public": "depictedownership",
+      "source": "kant-1784"
+    },
+    "qo": {
+      "public": "husbandryassessmentperiod",
+      "source": "kant-1784"
+    },
+    "qr": {
+      "public": "husbandryhistory",
+      "source": "kant-1784"
+    },
+    "qs": {
+      "public": "occupieddevice",
+      "source": "kant-1784"
+    },
+    "qt": {
+      "public": "deviceplacesequence",
+      "source": "kant-1784"
+    },
+    "qu": {
+      "public": "deviceinteriorplace",
+      "source": "kant-1784"
+    },
+    "qv": {
+      "public": "deviceexteriorplace",
+      "source": "kant-1784"
+    },
+    "qw": {
+      "public": "occupiedplace",
+      "source": "kant-1784"
+    },
+    "qx": {
+      "public": "unrestrictedmovementedge",
+      "source": "kant-1784"
+    },
+    "qy": {
+      "public": "blockedmovementedge",
+      "source": "kant-1784"
+    },
+    "qz": {
+      "public": "restrictionapplication",
+      "source": "kant-1784"
+    },
+    "zaa": {
+      "public": "structuralpartsequence",
+      "source": "kant-1784"
+    },
+    "zab": {
+      "public": "loadbearingpart",
+      "source": "kant-1784"
+    },
+    "zac": {
+      "public": "structuralconnection",
+      "source": "kant-1784"
+    },
+    "zad": {
+      "public": "manufacturedartifact",
+      "source": "kant-1784"
+    },
+    "zae": {
+      "public": "learningdesignpurpose",
+      "source": "kant-1784"
+    },
+    "zaf": {
+      "public": "standingsupportconfiguration",
+      "source": "kant-1784"
+    },
+    "zag": {
+      "public": "legmovementclearance",
+      "source": "kant-1784"
+    },
+    "zah": {
+      "public": "earlydevelopmentchild",
+      "source": "kant-1784"
+    },
+    "zai": {
+      "public": "walkingmovement",
+      "source": "kant-1784"
+    },
+    "zaj": {
+      "public": "externalwalkingsupport",
+      "source": "kant-1784"
+    },
+    "zba": {
+      "public": "restrictionhistory",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile99。",
+    "47一般関係の採用済み型・引数・意味を保持し、特定文/対象/立場の局所参照は文書内定義にする。",
+    "移動経路・到達可能性・時間範囲・身体移動・家畜像・閉じ込め・規範と試みは現行の定義を合成する。",
+    "未知を偽や空列へ補わず、順序付きの束縛を保つ。本文にない継続・禁止・成功を追加しない。",
+    "分類・飼育・装置・身体移動等の説明の限界を保持し、有限診断を全領域の証明とはしない。"
+  ]
+}
