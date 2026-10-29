@@ -1,0 +1,1398 @@
+{
+  "status": "optional_public_enlightenment_visible_profile",
+  "document": "examples/v016/public-enlightenment-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "describedreasonuse": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "situation"
+      ],
+      "meaning_ja": "activityはその人自身の理性を使う活動の記述である。実行済みの出来事に限定せず、これから行う活動や禁じられた活動も分類できる。"
+    },
+    "activityroleparticipation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "role",
+        "situation"
+      ],
+      "meaning_ja": "その活動の記述において、その人はその立場で発言・行動する。職業としてその地位にあるだけでは、全活動をその立場に帰属させない。"
+    },
+    "activityaudience": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "activity",
+        "audience",
+        "situation"
+      ],
+      "meaning_ja": "その活動の記述が、その相手・公衆に向けられている。実際に何人が聞いたかという人数とは区別する。"
+    },
+    "scholarlyreasonrole": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "role",
+        "situation"
+      ],
+      "meaning_ja": "その立場は、自分の理性に基づく見解を公衆の検討へ提示する学識者としての立場である。職業名や資格の有無だけによる分類にはしない。一般的な役割の構成からの定義は未完。"
+    },
+    "readershippublic": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "audience",
+        "situation"
+      ],
+      "meaning_ja": "その相手は読者世界全体としての公衆である。個別の職務内の会衆・受講者や、単に人数の多い集まりと同一視しない。"
+    },
+    "describedactivityperformance": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "person",
+        "activity",
+        "situation"
+      ],
+      "meaning_ja": "その人が記述された活動を、その状況で実際に行う。活動の種類・想定される立場・許可の存在とは別の事実。"
+    },
+    "audiencecomparisonscope": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "同じ参照文脈で一般的な比較を述べる対象の宛先集団の範囲。話題上の範囲を与える入力で、公衆の分類、成功者や許可対象だけの選別ではない。結果・候補を見て範囲を縮めず、公衆としての条件と全対象への主張を利用側で検査する。"
+    },
+    "policysourcereferent": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "同じ宛先集団と参照文脈について、許可政策の出所として談話が仮定する主体。原文のmanを特定の歴史上の統治者へ同定せず、候補を替えても同じ出所を用いる。主体が実際に許可したことは含意しない。"
+    },
+    "audienceperiodframe": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "同じ宛先集団と参照文脈で比較する変化の期間枠。個人側と公衆側、自由の条件と結果で共用する。具体的な日数や、結果に応じて伸縮する期間を意味しない。"
+    },
+    "candidateoriginpoint": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "situation",
+      "arguments": [
+        "audience",
+        "reference",
+        "candidate"
+      ],
+      "meaning_ja": "同じ比較の候補経過内で、将来を区切る起点を指定する。現実の参照文脈とは別の点を許し、公衆の変化・個人の変化・許可維持へ同じ点を渡す。経過内にあることは利用側が検査する。"
+    },
+    "intendedreaderlisting": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "同じ参照文脈の宛先の想定読者を列挙する有限列候補。成功者・受領者・許可された人の標本ではない。完全性・人の分類・非空性・重複は利用側で検査する。実行時の観測標本から全読者を推定しない。"
+    },
+    "collectivechangethreshold": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "number",
+      "arguments": [
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "同じ集団と参照文脈で、その集団の能力変化と呼ぶ広がりの最低比率を定める文脈上の基準。0と1の間で、成功比率がこれを厳密に超える読みとする。原文に固定数値を補わず、変化した人数から逆算して基準を選ばない。"
+    },
+    "audiencecandidatecourse": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "audience",
+        "reference",
+        "candidate"
+      ],
+      "meaning_ja": "同じ集団と参照文脈で比較に採る候補経過の範囲。個人の成功、公衆の成功、自由の成立を見て先に絞らない。自由による条件付き制限は内容の式の内部で別に行う。"
+    },
+    "possibilitydegreeslisting": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "比較に使う質的な可能性尺度の値を低い順に並べた有限列候補。両端・所属・順序・重複を利用側で検査する。候補数から数値確率を作る列ではなく、同じ比較の全内容で共用する。"
+    },
+    "nearnecessityband": {
+      "parameters": [
+        "individual",
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "audience",
+        "reference",
+        "degree"
+      ],
+      "meaning_ja": "指定した比較尺度で必然の端点に近いと採る範囲。利用側のrqssが非空・端点除外・上方への閉性を検査する。基準は文脈の明示入力であり、順序だけから近さを発見したものではない。"
+    },
+    "publicchangeassessment": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "同じ候補と尺度での、その公衆の将来の自己啓蒙への無条件の程度評価。比較個人や自由条件を替えて別の目標にしない。値の意味はrqstの両端と比較条件へ接続する。"
+    },
+    "individualchangeassessment": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "audience",
+        "person",
+        "reference"
+      ],
+      "meaning_ja": "同じ公衆の比較枠で評価する、指定個人の将来の自己形成による自立の程度。先行段落の対象者へ束縛し、別人の程度を流用しない。公衆と同じ候補・期間・尺度における評価である。"
+    },
+    "conditionalpublicassessment": {
+      "parameters": [
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "audience",
+        "reference"
+      ],
+      "meaning_ja": "同じ公衆の同じ目標について、自由の維持を条件にした程度評価。無条件の値h222nとは区別し、条件付きで必然に近いが端点ではないことを式で検査する。"
+    },
+    "contrastivepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "first_node",
+        "first_content",
+        "second_node",
+        "second_content",
+        "common_dimension",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ箇所・文脈で、指定された二箇所の内容を、明示した共通観点に関して対照的に提示する。第一から第二への向きを保持するが、前者の否定、論理的矛盾、内容の真理、通常予想への違反をそれだけで要求しない。観点は性質記述であり、対象の語形や単なる文の前後だけで対比を代用しない。"
+    },
+    "strongerpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "first_node",
+        "first_content",
+        "second_node",
+        "second_content",
+        "common_dimension",
+        "context"
+      ],
+      "meaning_ja": "提示者が同じ箇所・文脈と共通観点で、第一の内容を受け、第二の内容を一段強い言い方として追加提示する。第二に明示された条件・様相・留保をそのまま保持する。論理的含意、二内容の真理、無条件と条件付きの数値確率の大小、第一の撤回を要求しない。強い言い方としての論述上の扱いを表す基本関係で、特定の接続語専用ではない。"
+    },
+    "qualifiedsufficiencypresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "presenter",
+        "subject_scope",
+        "condition_family",
+        "goal_family",
+        "qualification_family",
+        "context"
+      ],
+      "meaning_ja": "提示者が指定箇所・文脈で、対象範囲の同じ個体・参照状況へ適用した条件を、同じ目標について指定の限定付き判断を述べるために足りるものとして取り立て、さらに供給すべき要件を付加しないと提示する。条件と目標は候補で評価する内容の族、限定は同じ二つを結ぶ様相等の判断である。限定を落として無条件の成功へ強めず、背景を消さず、条件の必要性・唯一原因性・現実の真理を含意しない。hzxlに関連する一般化だが人物専用の型を変更しない。"
+    },
+    "processactivitycomponent": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "part_activity",
+        "process",
+        "context"
+      ],
+      "meaning_ja": "この評価文脈で、この活動が同じ変化過程を構成する全体または部分である。単なる同時生起や、無関係な過程の部分とは区別する。過程・部分活動の個体化と詳細な構成機構は未完。"
+    },
+    "audiencereaderextension": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "audience",
+        "reader",
+        "context"
+      ],
+      "meaning_ja": "指定した宛先・公衆が、その文脈で向けられている読者の範囲を表す。実際に受領した人数や有限の構成員列ではなく、想定された宛先の各人への展開である。範囲の社会的な根拠は未完。"
+    },
+    "roleactivityrequirement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "role",
+        "activity",
+        "execution_description",
+        "polarity",
+        "context"
+      ],
+      "meaning_ja": "指定の出所が、その人・立場・行為について、同じ実行記述の指定極性を満たすよう要求する。真は実行、偽はその不実行への要求。現実の実行や正当性とは区別する。"
+    },
+    "roleactivitypermission": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "person",
+        "role",
+        "activity",
+        "execution_description",
+        "polarity",
+        "context"
+      ],
+      "meaning_ja": "指定の出所が、その人・立場・行為について、同じ実行記述の指定極性を積極的に許可する。要求の不在や実行可能性とは区別する。"
+    },
+    "temporalframepoint": {
+      "parameters": [
+        "individual",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "temporal_frame",
+        "evaluation_context",
+        "point"
+      ],
+      "meaning_ja": "指定した期間枠をこの評価状況で解釈するときの、一つの時間的経過に属する状況。反事実的な別経過を同じ並びへ混ぜない。既存icの先行関係をこの経過に制限して使う。"
+    },
+    "attributedrankoneclaim": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "文章箇所",
+        "著者",
+        "階数1の内容記述",
+        "帰属文脈"
+      ],
+      "meaning_ja": "この著者がこの箇所で指定された内容を主張するという帰属。ucと同じ主張帰属の意味を、階数0の記述評価を内側に含む階数1の内容記述へ拡張する。帰属時に引用内容を実行せず、その真理・実現・合理性を含意しない。ucの型を変更せず、記述を低い階数へ強制変換しない。"
+    },
+    "paragraphpresentationcontext": {
+      "parameters": [
+        "situation",
+        "number"
+      ],
+      "result": "situation",
+      "arguments": [
+        "body_presentation",
+        "paragraph_number"
+      ],
+      "meaning_ja": "指定した本文提示文脈に属する段落の提示文脈を、本文の段落を1から数えた位置で参照する。前付・見出し・行折返しを段落として数えず、文参照と同じ段落区分を用いる。同じ本文提示と段落位置は同じ文脈を指し、別の段落位置の文脈および本文全体の提示文脈とは区別する。番号は存在する段落を指す正の整数に限り、存在しない位置や未指定の本文を補完しない。この文脈は当該段落の言語的提示に属し、読む時点・内容の真理・実際の出来事・仮定した候補世界の時点を意味しない。段落内の内容を評価せず、別の本文・版・提示に属する文脈を暗黙に同一化しない。"
+    }
+  },
+  "public_contracts": {
+    "describedreasonuse": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "activityroleparticipation": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "activityaudience": {
+      "arguments": [
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "scholarlyreasonrole": {
+      "arguments": [
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "readershippublic": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "describedactivityperformance": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "situation",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "audiencecomparisonscope": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "policysourcereferent": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "audienceperiodframe": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "candidateoriginpoint": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "intendedreaderlisting": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "collectivechangethreshold": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "number",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "audiencecandidatecourse": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "possibilitydegreeslisting": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "nearnecessityband": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        },
+        {
+          "role": "degree",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "publicchangeassessment": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "individualchangeassessment": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "conditionalpublicassessment": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "contrastivepresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "first_node",
+          "sort": "individual"
+        },
+        {
+          "role": "first_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "second_node",
+          "sort": "individual"
+        },
+        {
+          "role": "second_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "common_dimension",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "strongerpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "first_node",
+          "sort": "individual"
+        },
+        {
+          "role": "first_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "second_node",
+          "sort": "individual"
+        },
+        {
+          "role": "second_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "common_dimension",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "qualifiedsufficiencypresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "presenter",
+          "sort": "individual"
+        },
+        {
+          "role": "subject_scope",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            }
+          }
+        },
+        {
+          "role": "condition_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "goal_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "qualification_family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "situation"
+              ],
+              "result": "truth"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "processactivitycomponent": {
+      "arguments": [
+        {
+          "role": "part_activity",
+          "sort": "individual"
+        },
+        {
+          "role": "process",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "audiencereaderextension": {
+      "arguments": [
+        {
+          "role": "audience",
+          "sort": "individual"
+        },
+        {
+          "role": "reader",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "roleactivityrequirement": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "execution_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "roleactivitypermission": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "activity",
+          "sort": "individual"
+        },
+        {
+          "role": "execution_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "temporalframepoint": {
+      "arguments": [
+        {
+          "role": "temporal_frame",
+          "sort": "individual"
+        },
+        {
+          "role": "evaluation_context",
+          "sort": "situation"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "attributedrankoneclaim": {
+      "arguments": [
+        {
+          "role": "文章箇所",
+          "sort": "individual"
+        },
+        {
+          "role": "著者",
+          "sort": "individual"
+        },
+        {
+          "role": "階数1の内容記述",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "帰属文脈",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    },
+    "paragraphpresentationcontext": {
+      "arguments": [
+        {
+          "role": "body_presentation",
+          "sort": "situation"
+        },
+        {
+          "role": "paragraph_number",
+          "sort": "number"
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ公衆・個人・出所・期間・候補経過・可能性尺度を保持する。",
+        "本文と段落の提示文脈を区別し、引用内容や候補世界の出来事へ変換しない。"
+      ]
+    }
+  },
+  "source_relations": {
+    "ca": {
+      "public": "describedreasonuse",
+      "source": "kant-1784"
+    },
+    "cb": {
+      "public": "activityroleparticipation",
+      "source": "kant-1784"
+    },
+    "cc": {
+      "public": "activityaudience",
+      "source": "kant-1784"
+    },
+    "cd": {
+      "public": "scholarlyreasonrole",
+      "source": "kant-1784"
+    },
+    "ce": {
+      "public": "readershippublic",
+      "source": "kant-1784"
+    },
+    "cg": {
+      "public": "describedactivityperformance",
+      "source": "kant-1784"
+    },
+    "h222e": {
+      "public": "audiencecomparisonscope",
+      "source": "kant-1784"
+    },
+    "h222f": {
+      "public": "policysourcereferent",
+      "source": "kant-1784"
+    },
+    "h222g": {
+      "public": "audienceperiodframe",
+      "source": "kant-1784"
+    },
+    "h222h": {
+      "public": "candidateoriginpoint",
+      "source": "kant-1784"
+    },
+    "h222i": {
+      "public": "intendedreaderlisting",
+      "source": "kant-1784"
+    },
+    "h222j": {
+      "public": "collectivechangethreshold",
+      "source": "kant-1784"
+    },
+    "h222k": {
+      "public": "audiencecandidatecourse",
+      "source": "kant-1784"
+    },
+    "h222l": {
+      "public": "possibilitydegreeslisting",
+      "source": "kant-1784"
+    },
+    "h222m": {
+      "public": "nearnecessityband",
+      "source": "kant-1784"
+    },
+    "h222n": {
+      "public": "publicchangeassessment",
+      "source": "kant-1784"
+    },
+    "h222o": {
+      "public": "individualchangeassessment",
+      "source": "kant-1784"
+    },
+    "h222p": {
+      "public": "conditionalpublicassessment",
+      "source": "kant-1784"
+    },
+    "h222q": {
+      "public": "contrastivepresentation",
+      "source": "kant-1784"
+    },
+    "h222r": {
+      "public": "strongerpresentation",
+      "source": "kant-1784"
+    },
+    "h222s": {
+      "public": "qualifiedsufficiencypresentation",
+      "source": "kant-1784"
+    },
+    "h6a": {
+      "public": "processactivitycomponent",
+      "source": "kant-1784"
+    },
+    "h6t": {
+      "public": "audiencereaderextension",
+      "source": "kant-1784"
+    },
+    "h7a": {
+      "public": "roleactivityrequirement",
+      "source": "kant-1784"
+    },
+    "h7b": {
+      "public": "roleactivitypermission",
+      "source": "kant-1784"
+    },
+    "h7q": {
+      "public": "temporalframepoint",
+      "source": "kant-1784"
+    },
+    "hzon": {
+      "public": "attributedrankoneclaim",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile106。",
+    "27一般関係の採用済み型・引数・意味を保持し、4局所参照は文書内定義にする。",
+    "段落提示文脈の位置参照を一般語として追加する。作品や一文の意味を専用primitiveで代替しない。",
+    "公衆と個人の比較、条件付きのほぼ必然、対比・強調・十分条件提示を無条件の真理へ強めない。",
+    "対象範囲・比率閾値・尺度と近必然帯の適切さは元の解釈上の限界を保持する。"
+  ]
+}
