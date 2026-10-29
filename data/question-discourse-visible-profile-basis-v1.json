@@ -1,0 +1,1327 @@
+{
+  "status": "optional_question_discourse_visible_profile",
+  "document": "examples/v016/question-discourse-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "casedemandactivitytype": {
+      "parameters": [
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case_node"
+      ],
+      "meaning_ja": "指定された発話事例で要求の対象になる行為の型の参照。前三者では議論を行わずに教練・支払い・信仰を行う複合的な行為型、統治者では同じ出所の指示に従って履行する行為型を指す。発話行為そのもの・実行済みの出来事・文章箇所とは区別する。内容は合成定義r2vv〜r2vyで固定し、この参照だけで履行や義務の正当性を主張しない。"
+    },
+    "casedemandrecipientrole": {
+      "parameters": [
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "case_node",
+        "recipient",
+        "reference"
+      ],
+      "meaning_ja": "同じ事例・宛先・基準で、この要求を受ける立場の参照。受け手の立場であり、命令者の職位へ取り替えない。後の公的／私的使用の分類をここで先取りせず、参照だけで実際の役職保持や要求の正当性を保証しない。"
+    },
+    "rankedroleactivityrequirement": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 1
+        },
+        "truth",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "source",
+        "recipient",
+        "role",
+        "activity_type",
+        "content",
+        "polarity",
+        "point"
+      ],
+      "meaning_ja": "同じ出所が宛先にその立場で、その行為型について段階1の内容記述を本人・行為型へ適用した内容の指定極性を満たすよう要求している。h7aの要求対象を段階1へ拡張した関係で、内容・極性・出所を保持する。発話の提示h234gとは別であり、単に言ったことから要求の現実の効力、履行、法的・道徳的な正当性を自動推論しない。"
+    },
+    "comparisonpublicreference": {
+      "parameters": [
+        "situation"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context"
+      ],
+      "meaning_ja": "同じ比較の提示文脈で啓蒙の進行を比べる対象公衆。候補・要求の適用・結果の良否で対象公衆を変更しない。読者全体・期間・起点・広がり基準は同じ公衆と評価基準から既存定義で取り出す。参照だけで公衆分類や実際の啓蒙を肯定しない。"
+    },
+    "restrictioncomparisoncandidaterange": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "context",
+        "candidate"
+      ],
+      "meaning_ja": "同じ比較文脈で、自由の選択肢を要求によって制限する政策・指示の事例として検討する候補の範囲。結果の良否を見て選び直さず、四つの先行事例を尽くす範囲に限定しない。候補の要求内容と比較の有効性は別に構成する。"
+    },
+    "candidaterequirementrecordrange": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "context",
+        "candidate",
+        "record"
+      ],
+      "meaning_ja": "同じ文脈で指定候補を構成する全要求表の行の範囲。要求の出所・宛先・役割・行為型・内容・極性を一つの行へ保持する。効果や履行を見て行を削らず、この候補の全要求を表す。先行四事例は各固定宛先一行に照合し、他の候補では別の索引と複数行を許す。"
+    },
+    "candidaterequirementsource": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context",
+        "candidate",
+        "record"
+      ],
+      "meaning_ja": "指定された同じ候補・要求行の出所。比較する候補世界ごとに替えない。命令の正当性や履行を意味しない。"
+    },
+    "candidaterequirementrecipient": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context",
+        "candidate",
+        "record"
+      ],
+      "meaning_ja": "指定された同じ候補・要求行の宛先本人。自由選択と内容の評価もこの本人へ結ぶ。行の索引と本人は一般には異なってよい。"
+    },
+    "candidaterequirementrole": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context",
+        "candidate",
+        "record"
+      ],
+      "meaning_ja": "指定された同じ候補・要求行で受け手が要求を受ける立場。出所の役職へ取り替えず、比較中に替えない。"
+    },
+    "candidaterequirementactivitytype": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context",
+        "candidate",
+        "record"
+      ],
+      "meaning_ja": "指定された同じ候補・要求行の行為型。内容記述の第二引数と同じもので、文章箇所や実行済みの出来事へ無断で置換しない。"
+    },
+    "candidaterequirementcontent": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": "content"
+        },
+        "rank": 1
+      },
+      "arguments": [
+        "context",
+        "candidate",
+        "record"
+      ],
+      "meaning_ja": "指定された同じ候補・要求行の、本人と行為型を受ける閉じた段階1内容記述。比較中に内容を変更しない。返す記述の意味は既存または追加の合成定義で説明し、原語の文の名前だけを内容として返さない。"
+    },
+    "candidaterequirementpolarity": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual"
+      ],
+      "result": "truth",
+      "arguments": [
+        "context",
+        "candidate",
+        "record"
+      ],
+      "meaning_ja": "指定された同じ候補・要求行の極性。真は内容を満たす要求、偽は内容を満たさない要求。全命令を否定と肯定の連言で表した先行四事例の正極性と、追加候補の否定形の要求を混同しない。"
+    },
+    "requirementrecipientchoicealternative": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "context",
+        "candidate",
+        "record",
+        "alternative"
+      ],
+      "meaning_ja": "同じ文脈の指定要求行の宛先本人について、要求への適合で選別する前の自由選択候補。出所・本人・役割・行為型・内容・極性、他者と関連背景を固定し、本人の選択を変える。単に他人が違反する状況や内容自体を変更した状況ではない。先行四事例では同じh234nへ照合する。"
+    },
+    "candidateinterventionvariables": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "arguments": [
+        "context",
+        "candidate"
+      ],
+      "meaning_ja": "同じ比較文脈の候補に対応する介入モデルの全変数列。重複や要因の範囲は既存のモデル検査で確認する。結果に応じた変数の取り替えは行わない。"
+    },
+    "candidateinterventionequation": {
+      "parameters": [
+        "situation",
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "context",
+        "candidate",
+        "variable",
+        "assignment"
+      ],
+      "meaning_ja": "同じ比較文脈・候補の構造式がこの変数へ与える真偽。候補の要因を有効／無効にする介入の間で、他の式・外生条件・介入前の背景を保持する。異なる候補も同じ文脈で定めた共通背景について検討する。"
+    },
+    "candidateallrequirementsfactor": {
+      "parameters": [
+        "situation",
+        "individual"
+      ],
+      "result": "individual",
+      "arguments": [
+        "context",
+        "candidate"
+      ],
+      "meaning_ja": "同じ候補の全要求の有効／無効に対応させるモデル変数。要求の履行の真偽ではなく全要求の存在を切り替え、その対応はr2vpで検査する。"
+    },
+    "candidateassignmentevaluationcourse": {
+      "parameters": [
+        "situation",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "situation",
+      "arguments": [
+        "context",
+        "candidate",
+        "assignment"
+      ],
+      "meaning_ja": "同じ文脈・候補の割当てに対応する評価経過。要求の適用と啓蒙の進行を同じ経過で評価する。公衆・期間・起点・広がり基準を効果の良否で変更しない。"
+    },
+    "candidateinterventionmatchedpair": {
+      "parameters": [
+        "situation",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        },
+        {
+          "kind": "function",
+          "parameters": [
+            "individual"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "arguments": [
+        "context",
+        "candidate",
+        "on",
+        "off"
+      ],
+      "meaning_ja": "同じ文脈・候補で、共通の外生条件・介入前の背景・非決定的な選択枝を保って要因だけを変更した、あり側・なし側の順の対応。意味上適切な対応を全て含め、結果の良否から事後選別しない。全解に対応先があることはr2wiで検査する。"
+    },
+    "rankedindividualquestionpresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual"
+            ]
+          },
+          "rank": 2
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "question",
+        "context"
+      ],
+      "meaning_ja": "著者が指定箇所・文脈に、段階2の閉じた記述で指定された個体回答型の問いを提示する。修辞的な問いや自ら後で答える問いも含み、現実の聞き手への要求、回答の存在・唯一性、答えへの賛同や真理を含意しない。hzibの帰属と関連するが、質問の回答型と記述段階を保持して別型とする。引用時に質問を実行しない。"
+    },
+    "priorstatementquestioncontrast": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content",
+          "rank": 1
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual"
+            ]
+          },
+          "rank": 2
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "antecedent_node",
+        "antecedent_content",
+        "question",
+        "context"
+      ],
+      "meaning_ja": "著者が同じ文脈で先行箇所の叙述内容を受けながら、この箇所ではその事例について区別すべき点を指定の問いとして対照的に提出する。先行内容を撤回・否定せず、単なる話題の順接とも区別する。先行内容の真理や問いの答えは実行・肯定しない。"
+    },
+    "questionpropertyreplacementcontrast": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 2
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 2
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual"
+            ]
+          },
+          "rank": 2
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "rejected_property",
+        "replacement_property",
+        "question",
+        "context"
+      ],
+      "meaning_ja": "同じ問いで求める対象について、指定された第一の性質を否定側に置き、第二の性質をそれに代わる肯定側として対照的に提示する。二つの性質は同じ未知の回答対象にかかり、別の対象の性質を混ぜない。問いの中の訂正・対置であって、第一問自体の撤回や第二の性質の実際の成立は含意しない。"
+    },
+    "questionpropertytentativepresentation": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 2
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual"
+            ]
+          },
+          "rank": 2
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "focus_property",
+        "question",
+        "context"
+      ],
+      "meaning_ja": "著者が同じ問いの求める対象に指定の焦点性質が当てはまる見込みを、推量を伴う暫定的な提案として提示する。問いの内容を確定した答えとして断言せず、数値確率・客観的な証拠水準・伝記的な内心は付加しない。焦点以外の内容全体を不確定にしたことにもせず、回答対象の存在を主張しない。"
+    },
+    "questionpropertybeyondbaselineemphasis": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 2
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          },
+          "rank": 2
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "question",
+            "parameters": [
+              "individual"
+            ]
+          },
+          "rank": 2
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "node",
+        "author",
+        "baseline_property",
+        "focus_property",
+        "question",
+        "context"
+      ],
+      "meaning_ja": "著者が同じ問いの中で、第二の焦点性質を第一の性質にとどまることを越えたものとして取り立て、強調する。共通対象と問いを保ち、第一の否定や撤回、数値的な程度差、焦点がより高い確率を持つことは要求しない。推量等の別に記述した留保を消さず、実際の成立も断言しない。"
+    },
+    "authorquestionanswerrelation": {
+      "parameters": [
+        "individual",
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "author",
+        "question_node",
+        "response_node",
+        "context"
+      ],
+      "meaning_ja": "著者が第二の本文箇所を第三の本文箇所で回答するという談話関係。本文で後にあるだけでは成立せず、内容の真理や回答の十分性は含まない。"
+    }
+  },
+  "public_contracts": {
+    "casedemandactivitytype": {
+      "arguments": [
+        {
+          "role": "case_node",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "casedemandrecipientrole": {
+      "arguments": [
+        {
+          "role": "case_node",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "reference",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "rankedroleactivityrequirement": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "recipient",
+          "sort": "individual"
+        },
+        {
+          "role": "role",
+          "sort": "individual"
+        },
+        {
+          "role": "activity_type",
+          "sort": "individual"
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 1
+          }
+        },
+        {
+          "role": "polarity",
+          "sort": "truth"
+        },
+        {
+          "role": "point",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "comparisonpublicreference": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "restrictioncomparisoncandidaterange": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidaterequirementrecordrange": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidaterequirementsource": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidaterequirementrecipient": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidaterequirementrole": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidaterequirementactivitytype": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidaterequirementcontent": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual"
+          ],
+          "result": "content"
+        },
+        "rank": 1
+      },
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidaterequirementpolarity": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "requirementrecipientchoicealternative": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "record",
+          "sort": "individual"
+        },
+        {
+          "role": "alternative",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidateinterventionvariables": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "sequence",
+        "element": "individual"
+      },
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidateinterventionequation": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "variable",
+          "sort": "individual"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidateallrequirementsfactor": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        }
+      ],
+      "result": "individual",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidateassignmentevaluationcourse": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "assignment",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "situation",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "candidateinterventionmatchedpair": {
+      "arguments": [
+        {
+          "role": "context",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "individual"
+        },
+        {
+          "role": "on",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "off",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "rankedindividualquestionpresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "question",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                "individual"
+              ]
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "priorstatementquestioncontrast": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "antecedent_node",
+          "sort": "individual"
+        },
+        {
+          "role": "antecedent_content",
+          "sort": {
+            "kind": "description",
+            "result": "content",
+            "rank": 1
+          }
+        },
+        {
+          "role": "question",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                "individual"
+              ]
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "questionpropertyreplacementcontrast": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "rejected_property",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "replacement_property",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "question",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                "individual"
+              ]
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "questionpropertytentativepresentation": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "focus_property",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "question",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                "individual"
+              ]
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "questionpropertybeyondbaselineemphasis": {
+      "arguments": [
+        {
+          "role": "node",
+          "sort": "individual"
+        },
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "baseline_property",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "focus_property",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "question",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "question",
+              "parameters": [
+                "individual"
+              ]
+            },
+            "rank": 2
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    },
+    "authorquestionanswerrelation": {
+      "arguments": [
+        {
+          "role": "author",
+          "sort": "individual"
+        },
+        {
+          "role": "question_node",
+          "sort": "individual"
+        },
+        {
+          "role": "response_node",
+          "sort": "individual"
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ候補・全要求表・宛先・内容・極性・背景を保持する。",
+        "段階付き質問と性質を引用時に実行せず、問いの回答対象・焦点・文脈を保持する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "h234q": {
+      "public": "casedemandactivitytype",
+      "source": "kant-1784"
+    },
+    "h234r": {
+      "public": "casedemandrecipientrole",
+      "source": "kant-1784"
+    },
+    "h234s": {
+      "public": "rankedroleactivityrequirement",
+      "source": "kant-1784"
+    },
+    "h234t": {
+      "public": "comparisonpublicreference",
+      "source": "kant-1784"
+    },
+    "h234u": {
+      "public": "restrictioncomparisoncandidaterange",
+      "source": "kant-1784"
+    },
+    "h234v": {
+      "public": "candidaterequirementrecordrange",
+      "source": "kant-1784"
+    },
+    "h234w": {
+      "public": "candidaterequirementsource",
+      "source": "kant-1784"
+    },
+    "h234x": {
+      "public": "candidaterequirementrecipient",
+      "source": "kant-1784"
+    },
+    "h234y": {
+      "public": "candidaterequirementrole",
+      "source": "kant-1784"
+    },
+    "h234z": {
+      "public": "candidaterequirementactivitytype",
+      "source": "kant-1784"
+    },
+    "h235a": {
+      "public": "candidaterequirementcontent",
+      "source": "kant-1784"
+    },
+    "h235b": {
+      "public": "candidaterequirementpolarity",
+      "source": "kant-1784"
+    },
+    "h235c": {
+      "public": "requirementrecipientchoicealternative",
+      "source": "kant-1784"
+    },
+    "h235d": {
+      "public": "candidateinterventionvariables",
+      "source": "kant-1784"
+    },
+    "h235e": {
+      "public": "candidateinterventionequation",
+      "source": "kant-1784"
+    },
+    "h235f": {
+      "public": "candidateallrequirementsfactor",
+      "source": "kant-1784"
+    },
+    "h235g": {
+      "public": "candidateassignmentevaluationcourse",
+      "source": "kant-1784"
+    },
+    "h235h": {
+      "public": "candidateinterventionmatchedpair",
+      "source": "kant-1784"
+    },
+    "h235i": {
+      "public": "rankedindividualquestionpresentation",
+      "source": "kant-1784"
+    },
+    "h235j": {
+      "public": "priorstatementquestioncontrast",
+      "source": "kant-1784"
+    },
+    "h235k": {
+      "public": "questionpropertyreplacementcontrast",
+      "source": "kant-1784"
+    },
+    "h235l": {
+      "public": "questionpropertytentativepresentation",
+      "source": "kant-1784"
+    },
+    "h235m": {
+      "public": "questionpropertybeyondbaselineemphasis",
+      "source": "kant-1784"
+    },
+    "hzcs": {
+      "public": "authorquestionanswerrelation",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile116。",
+    "24一般関係の採用済み型・全引数・意味を保持し、文章参照は既存参照演算で定義する。",
+    "要因は要求の存在であり履行ではない。全適切対応と全解の被覆を保持し、未評価を非阻害へ置換しない。",
+    "段階2の問いの提示から答えの存在・唯一性・真理を補わず、後続回答の参照から内容の確認を先取りしない。"
+  ]
+}
