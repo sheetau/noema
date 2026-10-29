@@ -1,0 +1,288 @@
+{
+  "status": "optional_affective_response_visible_profile",
+  "document": "examples/v016/affective-response-visible-profile-v1.noema",
+  "definitions": {},
+  "primitives": {
+    "socialattemptallowance": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "agent",
+        "person",
+        "activity_description",
+        "context"
+      ],
+      "meaning_ja": "第一の行為者が、本人による記述された活動の試みをこの状況で許容する。法的許可・命令だけに限定せず、試みをさせておく社会的関係として部分的に読む。実際の試み・成功・能力・物理的機会とは別条件。社会的許容の基礎説明は未完。"
+    },
+    "affectionateresponse": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "target",
+        "description",
+        "scene"
+      ],
+      "meaning_ja": "本人が、記述により捉えた対象のあり方へ向けて、親しみを伴う肯定的な感情を抱く。合理的な賛同、道徳的評価、利益、一時的な気分の快さだけとは分ける。対象とその記述の組が感情の向かう先であり、記述された性質の真実性や本人の信念をこの関係から推論しない。"
+    },
+    "affectioncomparison": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "target",
+        "description",
+        "anchor",
+        "candidate"
+      ],
+      "meaning_ja": "基準での本人の心理的基盤を保ち、同じ対象を同じ記述のもとで意識する比較状況。応答する感情の有無を選別基準にせず、別の性向を訓練で獲得する状況も含めない。比較範囲と心理的基盤の適切さは解釈入力として残す。"
+    },
+    "affectionnormality": {
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation",
+        "situation",
+        "situation"
+      ],
+      "result": "truth",
+      "arguments": [
+        "actor",
+        "target",
+        "description",
+        "anchor",
+        "preferred",
+        "other"
+      ],
+      "meaning_ja": "同じ本人・対象・記述・基準の比較状況における、刺激の受容や妨害などの背景による通常性の厳密な優先関係。感情が成立したかを優先の根拠にしない。非反射性・推移性・極小状況への到達条件をrqt4で検査する。"
+    }
+  },
+  "public_contracts": {
+    "socialattemptallowance": {
+      "arguments": [
+        {
+          "role": "agent",
+          "sort": "individual"
+        },
+        {
+          "role": "person",
+          "sort": "individual"
+        },
+        {
+          "role": "activity_description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "context",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・記述・基準・候補状況を保持し、感情の成立を比較候補や通常性の選別基準にしない。",
+        "社会的許容と試みの実施・能力、肯定的感情と合理的賛同・利益を区別する。"
+      ]
+    },
+    "affectionateresponse": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "scene",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・記述・基準・候補状況を保持し、感情の成立を比較候補や通常性の選別基準にしない。",
+        "社会的許容と試みの実施・能力、肯定的感情と合理的賛同・利益を区別する。"
+      ]
+    },
+    "affectioncomparison": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "candidate",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・記述・基準・候補状況を保持し、感情の成立を比較候補や通常性の選別基準にしない。",
+        "社会的許容と試みの実施・能力、肯定的感情と合理的賛同・利益を区別する。"
+      ]
+    },
+    "affectionnormality": {
+      "arguments": [
+        {
+          "role": "actor",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        },
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": "situation"
+        },
+        {
+          "role": "preferred",
+          "sort": "situation"
+        },
+        {
+          "role": "other",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth",
+      "interpretation_inputs": [
+        "同じ本人・対象・記述・基準・候補状況を保持し、感情の成立を比較候補や通常性の選別基準にしない。",
+        "社会的許容と試みの実施・能力、肯定的感情と合理的賛同・利益を区別する。"
+      ]
+    }
+  },
+  "source_relations": {
+    "g7": {
+      "public": "socialattemptallowance",
+      "source": "kant-1784"
+    },
+    "hzyw": {
+      "public": "affectionateresponse",
+      "source": "kant-1784"
+    },
+    "hzyx": {
+      "public": "affectioncomparison",
+      "source": "kant-1784"
+    },
+    "hzyy": {
+      "public": "affectionnormality",
+      "source": "kant-1784"
+    }
+  },
+  "limitations": [
+    "固定アルファベットと共通375語を維持する任意profile102。",
+    "4一般関係の採用済み型・引数・意味を保持し、3局所参照は文書内定義にする。",
+    "感情の性向と取得、比較の順序・極小候補、不能・理由・確言・焦点は既存合成を用いる。",
+    "未知入力から許容の不在や否定的感情を導かず、感情から記述の真実性を推論しない。",
+    "心理的比較の適切さと社会的許容の基礎説明に関する元の解釈上の限界を保持する。"
+  ]
+}
