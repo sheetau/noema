@@ -39,6 +39,8 @@ python -X utf8 -m scripts.project_work register --index data/semantic-review-ind
 
 ## 全体監査
 
+長時間の処理は実行前に[進捗ログと中断・再開](long-jobs.md)を備えます。所要時間が不明な実コーパスへの旧 `--full` の新規起動も対象です。進行中の旧処理と固定された証拠は維持します。
+
 一文・段落の統合、判断の登録変更、作業の引き渡し時に実行します。通常は変更していない入力に関する検証結果を再利用します。
 
 ```powershell
