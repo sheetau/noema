@@ -49,7 +49,7 @@ python -X utf8 -m scripts.project_work audit --verify reports/written-progress-v
 
 次の集計は `--output reports/written-progress-v3.json` など新しい名前で保存し、成功後に `data/work-state.json` の参照先を更新します。旧集計を上書きしません。
 
-`--full` は永続キャッシュを全面的に迂回し、原来の解析・レビュー・草案監査を実行します。検証器・キャッシュの変更後、定期的な区切り、または不一致の調査に使います。同じ入力で通常監査と出力が一致することも確認します。毎回の小変更やコミットごとに繰り返す必要はありません。
+`--full` は永続キャッシュを全面的に迂回し、原来の解析・レビュー・草案監査を実行します。[検証範囲の規則](verification-boundaries.md)に従い、まず小さい対照コーパスで通常方式との一致を確認し、影響する入力を特定します。検証器・キャッシュの変更だけを理由に、二作品と全歴史版を毎回走査しません。表記だけの変更では、回収した構文と語義・参照規約の一致を確認し、変更なし部分の意味診断を再実行しません。実コーパスの全量再確認は、影響範囲と残る疑問から必要性を説明できる場合に限ります。
 
 ```powershell
 python -X utf8 -m scripts.project_work audit --full --verify reports/written-progress-v2.json
