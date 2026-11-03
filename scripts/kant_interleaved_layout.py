@@ -7,24 +7,43 @@ def compile_stream(stream, *, contacts=True):
     from scripts import kant_public_fragment as p
     def has_multiple(chain):
         return any(e.get('extra_sides') or any(has_multiple(side) for side in p.event_sides(e) if isinstance(side,list)) for e in chain)
+    def attempt(lookahead):
+        try:original=_compile_stream(stream,contacts=contacts,lookahead=lookahead,frontier_window=False)
+        except p.PlacementFailure:
+            if not lookahead:raise
+            return _compile_stream(stream,contacts=contacts,lookahead=True)
+        def excursion(drawing):
+            return max((max(0.,-s['y1'],s['y1']-2*p.PITCH,-s['y2'],s['y2']-2*p.PITCH)
+                for s in drawing['shapes'] if s['kind']=='line'),default=0.)
+        previous=excursion(original)
+        if not lookahead or previous<=2*p.PITCH:return original
+        # Only investigate a large arch. The alternative must actually lower
+        # it; otherwise preserve the original placement and its branch count.
+        try:drawing=_compile_stream(stream,contacts=contacts,lookahead=True)
+        except p.PlacementFailure:
+            original['frontier_window_fallback']=True
+            return original
+        if excursion(drawing)<previous-p.EPS:return drawing
+        original['frontier_window_rejected']=True
+        return original
     lookahead=has_multiple(stream)
     try:
-        return _compile_stream(stream,contacts=contacts,lookahead=lookahead)
+        return attempt(lookahead)
     except p.PlacementFailure:
         if lookahead:raise
         # Single branches also compete with their parent's continuation.
         # Try alternate routes before the caller removes a requested branch.
         # Successful old placements need neither a retry nor a new layout.
-        drawing=_compile_stream(stream,contacts=contacts,lookahead=True)
+        drawing=attempt(True)
         drawing['continuation_search_retry']=True
         return drawing
 
 
-def _compile_stream(stream, *, contacts=True, lookahead=False):
+def _compile_stream(stream, *, contacts=True, lookahead=False, frontier_window=True):
     # Import at the entry point: this layout uses the public grammar's forms,
     # but neither it nor its scheduling metadata is used by the reader.
     from scripts import kant_public_fragment as p
-    flows=[];placed=[];shapes=[];paths=[];invisible=[];moment=0.;right=0.
+    flows=[];placed=[];shapes=[];paths=[];invisible=[];moment=0.;right=0.;frontier_yields=0
     def fork_points(path):
         points=list(path[1:-1])
         for a,b in zip(path,path[1:]):
@@ -109,6 +128,14 @@ def _compile_stream(stream, *, contacts=True, lookahead=False):
             flow=min(pending,key=lambda f:(-f['level'],f['id']) if lookahead else
                 ((f['previous']['glyph']['x'] if f['previous'] else -1)
                 +p.PITCH*(len(f['events'])-f['index']),f['id']))
+            if lookahead and frontier_window:
+                oldest=min(pending,key=lambda f:(f['previous']['glyph']['right'] if f['previous'] else -1,f['id']))
+                # Keep word/entrance obligations above indivisible. Otherwise
+                # advance an old connection once two maximum-size nuclei and
+                # their gaps fit between its source and the drawing frontier.
+                if oldest['previous'] and right-oldest['previous']['glyph']['right']>2*(2*p.LARGE+p.MIN_GAP):
+                    frontier_yields+=flow is not oldest
+                    flow=oldest
         index=flow['index'];event=flow['events'][index];token=event['token']
         parent=flow['previous'];previous=parent['glyph']['exit'] if parent else None
         if event.get('word'):
@@ -213,4 +240,5 @@ def _compile_stream(stream, *, contacts=True, lookahead=False):
             expression_branch=isinstance(event.get('side'),list),lexical_contact=group['lexical_contact'],
             side=centers[0] if centers else None,side_centers=centers))
     return dict(version=p.VERSION,shapes=shapes,groups=groups,width=right+12.,layout='interleaved',
-        flow_count=len(flows),nested_forks=sum(len(g['side_flows']) for f in flows[1:] for g in f['groups']))
+        flow_count=len(flows),nested_forks=sum(len(g['side_flows']) for f in flows[1:] for g in f['groups']),
+        frontier_yields=frontier_yields)
