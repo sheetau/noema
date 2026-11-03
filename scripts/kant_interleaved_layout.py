@@ -4,13 +4,27 @@ import math
 
 
 def compile_stream(stream, *, contacts=True):
+    from scripts import kant_public_fragment as p
+    def has_multiple(chain):
+        return any(e.get('extra_sides') or any(has_multiple(side) for side in p.event_sides(e) if isinstance(side,list)) for e in chain)
+    lookahead=has_multiple(stream)
+    try:
+        return _compile_stream(stream,contacts=contacts,lookahead=lookahead)
+    except p.PlacementFailure:
+        if lookahead:raise
+        # Single branches also compete with their parent's continuation.
+        # Try alternate routes before the caller removes a requested branch.
+        # Successful old placements need neither a retry nor a new layout.
+        drawing=_compile_stream(stream,contacts=contacts,lookahead=True)
+        drawing['continuation_search_retry']=True
+        return drawing
+
+
+def _compile_stream(stream, *, contacts=True, lookahead=False):
     # Import at the entry point: this layout uses the public grammar's forms,
     # but neither it nor its scheduling metadata is used by the reader.
     from scripts import kant_public_fragment as p
     flows=[];placed=[];shapes=[];paths=[];invisible=[];moment=0.;right=0.
-    def has_multiple(chain):
-        return any(e.get('extra_sides') or any(has_multiple(side) for side in p.event_sides(e) if isinstance(side,list)) for e in chain)
-    multiple=has_multiple(stream)
     def fork_points(path):
         points=list(path[1:-1])
         for a,b in zip(path,path[1:]):
@@ -30,7 +44,7 @@ def compile_stream(stream, *, contacts=True):
         for start in starts:
             link=p.route(start,target['entry'],[s for s in obstacles if s['kind']=='circle'],
                 depth,obstacles,forbidden_start=forbidden if start is root_start else (),
-                detours=True,separate=True,accept=allowed if multiple else None,line_detours=multiple)
+                detours=True,separate=True,accept=allowed if lookahead else None,line_detours=lookahead)
             if link is None:continue
             if origin['fan']:
                 try:p.geometry_check(obstacles+link[1],checked_paths+[link[0]])
@@ -92,7 +106,7 @@ def compile_stream(stream, *, contacts=True):
         if forced is not None:
             flow=forced;forced=None
         else:
-            flow=min(pending,key=lambda f:(-f['level'],f['id']) if multiple else
+            flow=min(pending,key=lambda f:(-f['level'],f['id']) if lookahead else
                 ((f['previous']['glyph']['x'] if f['previous'] else -1)
                 +p.PITCH*(len(f['events'])-f['index']),f['id']))
         index=flow['index'];event=flow['events'][index];token=event['token']
@@ -133,13 +147,13 @@ def compile_stream(stream, *, contacts=True):
                                 return preserves_continuations(flow,index,parent,glyph,y,
                                     local+segments,local_paths+[path],dict(kind='visible',path=path),path[0])
                             link=connect(parent,glyph,event['depth'],shapes+local,paths+local_paths,parent['ports'],
-                                accept=keep_open if multiple else None)
+                                accept=keep_open if lookahead else None)
                             if link is None:continue
                             path,segments=link
                             local+=segments;local_paths.append(path)
                             start_port=path[0];entry_port=p.boundary_port(glyph['entry'],path[-2])
                             edge=dict(kind='visible',path=path)
-                    if not (multiple and edge and edge['kind']=='visible') and not preserves_continuations(
+                    if not (lookahead and edge and edge['kind']=='visible') and not preserves_continuations(
                         flow,index,parent,glyph,y,local,local_paths,edge,start_port):continue
                     delta=sum(s['r']**2*(s['y']-p.PITCH)/p.PITCH for s in local if s['kind']=='circle')
                     imbalance=abs(moment+delta)/p.MEDIUM**2
@@ -179,7 +193,7 @@ def compile_stream(stream, *, contacts=True):
             group['side_flow']=group['side_flows'][0];flow['waiting']=group['side_flows'][-1]
             forced=group['side_flows'][0]
         elif flow['index']<len(flow['events']) and (flow['events'][flow['index']].get('lexical_seam') or
-                (multiple and flow['index']<flow['word_end'])):
+                (lookahead and flow['index']<flow['word_end'])):
             # A compact silent boundary is an actual measured gap. Keep its
             # two endpoints together; never insert another flow in that gap.
             # At a fan, finish the current lexical word before placing another
