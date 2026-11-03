@@ -29,8 +29,9 @@ from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
+from scripts.kant_function_grammar import expression_type,require_function
 
-VERSION = 'kant-public-fragment-15-shared-application-branches'
+VERSION = 'kant-public-fragment-16-function-application'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
@@ -54,6 +55,7 @@ GRAMMAR = {
     'and_shared': ((MEDIUM, 'offset-left', 0, 'radius'),),
     'lambda_individual': ((LARGE, 'offset', 4, 'radius'),),
     'evaluate': ((MEDIUM, 'offset-left', 1, 'radius'),),
+    'apply': ((LARGE, 'offset-left', 1, 'radius'),),
     'quote_raise': ((LARGE, 'nested', 1, 'radius'),),
     'bound_shift': ((MEDIUM, 'offset-left', 7, 'radius'),),
     'forall_typed': ((LARGE, 'offset-left', 4, 'radius'),),
@@ -89,14 +91,15 @@ def reserved_forms():
 
 
 def arity(token):
+    if token=='apply':raise ValueError('Application arity requires the visible function type')
     if token in ARITY:
         return ARITY[token]
     return len(words()[token][1]['parameters'])
 
 
-def side_slot(token):
+def side_slot(token,*,count=None):
     """A public signature fixes the side role before any argument is read."""
-    count=arity(token)
+    count=arity(token) if count is None else count
     if count<2:
         return None
     if token in words():
@@ -106,11 +109,12 @@ def side_slot(token):
     return count//2
 
 
-def side_order(token,supplied=()):
+def side_order(token,supplied=(),*,count=None):
     """A prefix of this public order identifies any visible branch count."""
-    available=[i for i in range(arity(token)) if i not in supplied]
+    count=arity(token) if count is None else count
+    available=[i for i in range(count) if i not in supplied]
     if len(available)<2:return []
-    first=side_slot(token)
+    first=side_slot(token,count=count)
     if first not in available:return available[1:]
     continuation=next(i for i in available if i!=first)
     return [first]+[i for i in available if i not in (first,continuation)]
@@ -230,6 +234,9 @@ def split(node, scope=()):
         children,child_scope = [node['body']],(*scope,*(p['name'] for p in params))
     elif kind == 'evaluate' and set(node) == {'kind','content','situation'}:
         token,children,child_scope = kind,[node['content'],node['situation']],scope
+    elif kind == 'apply' and set(node) == {'kind','function','arguments'}:
+        if not isinstance(node['arguments'],list):raise ValueError('Expected function argument list')
+        token,children,child_scope = kind,[node['function'],*node['arguments']],scope
     elif kind in ('and', 'or', 'implies', 'equal', 'not') and set(node) == {'kind', 'arguments'}:
         token, children, child_scope = kind, node['arguments'], scope
         if not isinstance(children, list):
@@ -260,7 +267,7 @@ def split(node, scope=()):
             token, children, child_scope = 'bound_shift', [node], scope[:-1]
     else:
         raise ValueError('Native constructor outside this fragment')
-    if len(children) != arity(token):
+    if token!='apply' and len(children) != arity(token):
         raise ValueError('Public arity mismatch')
     return token, children, child_scope
 
@@ -301,7 +308,7 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
             if i==len(parts)-1 and extra_sides:event['extra_sides']=list(extra_sides)
             output.append(event)
     def application(token,children,child_scope,path,output,allow_branches,supplied=()):
-        order=side_order(token,supplied)
+        order=side_order(token,supplied,count=len(children) if token=='apply' else None)
         limit=(branch_limits or {}).get(path,len(order) if multiple else 1)
         attached={}
         if branch and allow_branches and path not in unbranched and (not supplied or multiple):
@@ -690,8 +697,8 @@ def _decode(shapes):
             index = position; position += 1
             token = linear[index]
             sides = branches.get(main[index],[])
-        count = arity(token)
-        if sides and len(sides)>=count:
+        count = None if token=='apply' else arity(token)
+        if count is not None and sides and len(sides)>=count:
             raise ValueError('Unexpected terminal dependency')
         if token in TYPE_TOKENS | LIST_TOKENS:
             raise ValueError('Type constructor outside a visible type header')
@@ -699,7 +706,7 @@ def _decode(shapes):
             sorts=read_type_list(take_type_token) if token=='lambda_typed' else [read_type(take_type_token)]
             names=tuple('v'+number_word(serial+i) for i in range(len(sorts)))
             serial+=len(sorts)
-            body=read((*scope,*names))
+            body=read((*scope,*zip(names,sorts)))
             if token=='lambda_typed':
                 return dict(kind='lambda',parameters=[dict(name=n,sort=t) for n,t in zip(names,sorts)],body=body)
             return dict(kind=token.removesuffix('_typed'),variable=names[0],sort=sorts[0],body=body)
@@ -708,6 +715,17 @@ def _decode(shapes):
             if attached:
                 raise ValueError('Arguments attached to a bare function reference')
             return dict(kind='function_ref', symbol=name)
+        if token == 'apply':
+            # The function is always child zero on the main continuation.
+            # Its public type supplies arity before any argument is consumed.
+            function=read(scope)
+            type_=require_function(expression_type(function,scope,words()))
+            count=1+len(type_['parameters'])
+            order=side_order(token,count=count)
+            if len(sides)>len(order):raise ValueError('Too many branches for the visible function type')
+            attached=dict(zip(order,sides))
+            arguments=[read(scope,attached[i]) if i in attached else read(scope) for i in range(1,count)]
+            return dict(kind='apply',function=function,arguments=arguments)
         if token == 'bound_shift':
             if len(scope) < 3:
                 raise ValueError('Outward reference outside the visible scope')
@@ -745,7 +763,7 @@ def _decode(shapes):
         if token == 'quote':
             serial = 0
         if token in ('forall', 'exists', 'lambda_individual'):
-            child_scope = (*scope, 'v'+number_word(serial))
+            child_scope = (*scope, ('v'+number_word(serial),'individual'))
             serial += 1
         attached=dict(zip(side_order(token),sides))
         children = [read(child_scope,attached[i]) if i in attached else read(child_scope)
@@ -756,7 +774,7 @@ def _decode(shapes):
             distance = int(token[-1])
             if distance >= len(scope):
                 raise ValueError('Unbound visible variable')
-            return dict(kind='variable', name=scope[-1-distance])
+            return dict(kind='variable', name=scope[-1-distance][0])
         if token == 'quote':
             serial = saved_serial
             return dict(kind='quote', body=children[0])
@@ -766,9 +784,9 @@ def _decode(shapes):
                 raise ValueError('Quotation rank marker must precede a quotation')
             return dict(child, rank=child.get('rank', 0)+1)
         if token in ('forall', 'exists'):
-            return dict(kind=token, variable=child_scope[-1], sort='individual', body=children[0])
+            return dict(kind=token, variable=child_scope[-1][0], sort='individual', body=children[0])
         if token == 'lambda_individual':
-            return dict(kind='lambda',parameters=[dict(name=child_scope[-1],sort='individual')],body=children[0])
+            return dict(kind='lambda',parameters=[dict(name=child_scope[-1][0],sort='individual')],body=children[0])
         if token == 'evaluate':
             return dict(kind='evaluate',content=children[0],situation=children[1])
         return dict(kind=token, arguments=children)
