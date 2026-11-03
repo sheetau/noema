@@ -25,7 +25,7 @@ def boundary_port(circle, toward):
             circle['y']+circle['radius']*dy/length)
 
 
-def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_center=False, forbidden_start=(), forbidden_end=()):
+def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_center=False, forbidden_start=(), forbidden_end=(), detours=False):
     ax, ay, bx, by = a['x'], a['y'], b['x'], b['y']
     dx, dy = bx-ax, by-ay
     candidates = []
@@ -47,6 +47,31 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
     # A single right-angle bend is legal, unlike successive right angles.
     # The radial collar filter decides whether the span is sufficient.
     candidates += [[(ax,ay),(ax,by),(bx,by)],[(ax,ay),(bx,ay),(bx,by)]]
+    if detours:
+        # A compact lexical pair can occupy the direct continuation rail.
+        # Try an adjacent-rail excursion only after the ordinary paths fail.
+        # Both collars stay horizontal; all bends are 45 degrees, never two
+        # consecutive right angles or a diagonal link at a large circle.
+        depart=ax+a['radius']+MIN_RUN
+        approach=bx-b['radius']-MIN_RUN
+        for rail in (0.,PITCH,2*PITCH):
+            if min(ay,by)<=rail<=max(ay,by):continue
+            first=depart+abs(rail-ay);last=approach-abs(rail-by)
+            if first<=last:
+                candidates.append([(ax,ay),(depart,ay),(first,rail),
+                                   (last,rail),(approach,by),(bx,by)])
+        # A middle medium circle plus the required clearance can block all
+        # three horizontal rails. A pair of 45-degree diagonals can pass it
+        # without introducing a horizontal stroke outside the writing grid.
+        for obstacle in circles:
+            cx,cy,r=obstacle['x'],obstacle['y'],obstacle['r']
+            if not depart<cx<approach:continue
+            for sign in (-1,1):
+                peak=cy+sign*math.sqrt(2)*(r+MIN_GAP+EPS)
+                if min(ay,by)<=peak<=max(ay,by):continue
+                left=cx-abs(peak-ay);right=cx+abs(peak-by)
+                if depart<=left and right<=approach:
+                    candidates.append([(ax,ay),(left,ay),(cx,peak),(right,by),(bx,by)])
     for points in candidates:
         points = [p for i, p in enumerate(points) if not i or math.dist(p, points[i-1]) > EPS]
         if len(points) < 2: continue

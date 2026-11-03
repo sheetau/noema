@@ -29,7 +29,7 @@ from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 
-VERSION = 'kant-public-fragment-7-shared-context'
+VERSION = 'kant-public-fragment-8-lexical-contact'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
@@ -286,24 +286,38 @@ def events(statement, branch=True, sharing=True):
     return mark_boundaries(result)
 
 
-def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True):
+def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True):
     with use_context(lexicon):
-        return _compile_statement(statement, branch=branch, silent=silent, sharing=sharing, local_checks=local_checks)
+        return _compile_statement(statement, branch=branch, silent=silent, sharing=sharing, local_checks=local_checks,contacts=contacts)
 
 
-def word_branch(token, main, moment, depth):
-    """Place one closed terminal spelling on an outer rail, connected in order."""
+def single_medium(glyph):
+    return near(glyph['radius'],MEDIUM) and sum(s['kind']=='circle' for s in glyph['shapes'])==1
+
+
+def word_branch(token, main, moment, depth, *, contacts=True):
+    """Place one closed word, with at most one internal medium-circle contact."""
     parts=parts_for().get(token,(token,))
     template=forms(parts[0])[0]
     side_r=template['radius'];radius=main['radius'];x,y=main['x'],main['y']
     side_y=2*PITCH-y if y!=PITCH else (0. if moment>0 else 2*PITCH)
     side_x=x if len(parts)==1 and abs(side_y-y)>=radius+side_r+MIN_GAP else main['right']+side_r+2*MIN_RUN+PITCH
     shapes=[];paths=[];previous=main['exit'];entry=None;first_port=None;centers=[];right=main['right']
+    last_glyph=None;contact_used=False
     for index,part in enumerate(parts):
         local_template=forms(part)[0]
         start=side_x if index==0 else right+MIN_GAP-local_template['left']
         chosen=None
+        if contacts and not contact_used and last_glyph and single_medium(last_glyph) and single_medium(local_template):
+            contact_y=PITCH if not near(previous['y'],PITCH) else side_y
+            glyph=forms(part,previous['x']+PITCH,contact_y)[0]
+            start_port=boundary_port(previous,(glyph['x'],glyph['y']))
+            if entry is None or math.dist(start_port,entry)>=EPS:
+                try:geometry_check(main['shapes']+shapes+glyph['shapes'],main['paths']+paths+glyph['paths'])
+                except ValueError:pass
+                else:chosen=glyph,None,[]
         for extra in (0.,12.,28.,48.,72.,104.,160.):
+            if chosen is not None:break
             glyph=forms(part,start+extra,side_y)[0]
             obstacles=main['shapes']+shapes+glyph['shapes']
             link=route(previous,glyph['entry'],[s for s in obstacles if s['kind']=='circle'],depth,obstacles,
@@ -316,13 +330,15 @@ def word_branch(token, main, moment, depth):
         if chosen is None:return None
         glyph,path,segments=chosen
         if index==0:first_port=path[0]
-        shapes+=glyph['shapes']+segments;paths+=glyph['paths']+[path]
+        shapes+=glyph['shapes']+segments;paths+=glyph['paths']+([] if path is None else [path])
         centers.append([glyph['x'],glyph['y']]);right=glyph['right']
-        previous=glyph['exit'];entry=boundary_port(glyph['entry'],path[-2])
+        entry=boundary_port(glyph['entry'],(previous['x'],previous['y']) if path is None else path[-2])
+        if path is None:contact_used=True
+        previous=glyph['exit'];last_glyph=glyph
     return dict(shapes=shapes,paths=paths,port=first_port,centers=centers)
 
 
-def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True):
+def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True):
     """Reuse the Kant search with public glyphs and visible terminal arguments."""
     stream = events(statement, branch, sharing)
     # A required silent seam joins centers on one rail. If any nucleus in a
@@ -339,7 +355,9 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
     previous = None
     previous_entry = None
     moment = 0.
+    word_contact=False
     for event_index, event in enumerate(stream):
+        if event.get('word') is not None:word_contact=False
         # Same candidate-window strategy as the actual Kant generator. A
         # candidate is provisional: the complete sentence is checked below.
         # Keep the complete-prefix mode for independent equivalence probes.
@@ -349,35 +367,47 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
         token = event['token']
         template = forms(token)[0]
         radius = template['radius']
+        contact_candidate=(contacts and not word_contact and previous is not None
+            and token in root_words() and not event.get('word') and not event.get('lexical_seam')
+            and near(previous['radius'],MEDIUM) and single_medium(template)
+            and single_medium(forms(stream[event_index-1]['token'])[0]))
         choices = []
         for y in ([PITCH] if near(radius, LARGE) else [0., PITCH, 2*PITCH]):
             if event_index in fixed_middle and not near(y, PITCH):
                 continue
             if event.get('lexical_seam') and previous and not near(y, previous['y']):
                 continue
-            for extra in (0., 12., 28., 48., 72., 104., 160.):
-                left = groups[-1]['right']+MIN_GAP+extra if groups else 12.
-                x = left-template['left']
+            can_touch=contact_candidate and near(abs(y-previous['y']),PITCH)
+            for extra in ((None,) if can_touch else ())+(0., 12., 28., 48., 72., 104., 160.):
+                touching=extra is None
+                left = groups[-1]['right']+MIN_GAP+(extra or 0.) if groups else 12.
+                x = previous['x']+PITCH if touching else left-template['left']
                 found = False
                 for main in forms(token, x, y):
                     local, local_paths = deepcopy(main['shapes']), deepcopy(main['paths'])
                     side_ports = []
                     side = None
                     if event['side'] is not None:
-                        side=word_branch(event['side'],main,moment,event['depth'])
+                        side=word_branch(event['side'],main,moment,event['depth'],contacts=contacts)
                         if side is None:continue
                         local+=side['shapes'];local_paths+=side['paths'];side_ports.append(side['port'])
                     edge = None
                     seam = previous and (event.get('lexical_seam') or
                         silent and token == 'quote' and near(previous['y'], y))
                     if previous:
-                        if seam:
+                        if touching:
+                            start_port=boundary_port(previous,(x,y))
+                            if previous_entry is not None and math.dist(start_port,previous_entry)<EPS:continue
+                            entry_port=boundary_port(main['entry'],(previous['x'],previous['y']))
+                            if any(math.dist(entry_port,p)<EPS for p in side_ports):continue
+                            edge=dict(kind='tangent',entry_port=entry_port)
+                        elif seam:
                             edge = dict(kind='invisible', centers=[(previous['x'], previous['y']), (x, y)])
                         else:
                             link = route(previous, main['entry'],
                                 [s for s in recent+local if s['kind'] == 'circle'], event['depth'], recent+local,
                                 forbidden_start=() if previous_entry is None else (previous_entry,),
-                                forbidden_end=side_ports)
+                                forbidden_end=side_ports,detours=True)
                             if link is None:
                                 continue
                             p, segments = link
@@ -405,7 +435,7 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
                             entry_port=edge.get('entry_port') if edge else None
                             link=route(main['exit'],probe['entry'],
                                 [s for s in obstacles if s['kind']=='circle'],stream[next_index]['depth'],obstacles,
-                                forbidden_start=() if entry_port is None else (entry_port,))
+                                    forbidden_start=() if entry_port is None else (entry_port,),detours=True)
                             if link is not None:
                                 available=True;break
                         if not available:continue
@@ -417,7 +447,7 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
                         score += 22
                     choices.append((score, main, side, local, local_paths, edge, delta, right))
                     found = True
-                if found:
+                if found and not touching:
                     break
         if not choices:
             raise ValueError('No legal public placement: '+token+' at '+str(event['path']))
@@ -426,10 +456,12 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
         shapes += local; paths += local_paths; moment += delta
         groups.append(dict(token=token, center=[main['x'], main['y']], right=right,
                            shape_start=shape_start,path_start=path_start,
+                           lexical_contact=bool(edge and edge['kind']=='tangent'),
                            side=None if side is None else side['centers'][0],
                            side_centers=[] if side is None else side['centers']))
         if edge and edge['kind'] == 'invisible':
             invisible.append(edge)
+        if edge and edge['kind']=='tangent':word_contact=True
         previous, previous_entry = main['exit'], edge.get('entry_port') if edge else None
     geometry_check(shapes, paths, invisible)
     # Metadata is diagnostic only; decode() below accepts just the primitives.
@@ -478,9 +510,12 @@ def _decode(shapes):
         stops.add(ends[1])
     position = 0
     serial = 0
+    lexical_pairs=set()
     def take_word():
         nonlocal position
+        start=position
         token, position = read_word(linear, position, stops=stops, sides=side_positions)
+        lexical_pairs.update(tuple(sorted(pair)) for pair in zip(main[start:position-1],main[start+1:position]))
         return token, flow['side'][position-1]
     def read(scope, side_ids=None):
         nonlocal position, serial
@@ -498,6 +533,7 @@ def _decode(shapes):
             if chain[0] in root_words():
                 token,end=read_word(chain,0)
                 if end!=len(chain):raise ValueError('Terminal branch contains more than one word')
+                lexical_pairs.update(tuple(sorted(pair)) for pair in zip(side_ids,side_ids[1:]))
             elif len(chain)==1 and chain[0] in ('bound0','bound1'):
                 token=chain[0]
             else:raise ValueError('Terminal branch is not one public word')
@@ -568,4 +604,11 @@ def _decode(shapes):
     result = dict(kind='assert', body=read(()))
     if position != len(main):
         raise ValueError('Trailing visible words')
+    owners={c:i for i,n in enumerate(flow['nuclei']) for c in n['circles']}
+    for relation in geometry['relations']:
+        if relation['kind']!='tangent':continue
+        pair=tuple(sorted(owners[c] for c in relation['circles']))
+        if pair not in lexical_pairs or any(
+            flow['nuclei'][i]['size']!='medium' or len(flow['nuclei'][i]['circles'])!=1 for i in pair):
+            raise ValueError('Contact must join two single medium components of one word')
     return validate_native(result)

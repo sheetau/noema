@@ -49,10 +49,12 @@ def checked_with_context(index,ctx,reader):
     svg=to_svg(drawing['shapes']);shapes=from_svg(svg)
     recovered=decode(shapes,lexicon=reader)
     if recovered!=row['public']:raise ValueError('Terminal word changed the source syntax')
-    flow=decompose_flow(read_geometry(shapes),terminal_words=True)
+    geometry=read_geometry(shapes)
+    flow=decompose_flow(geometry,terminal_words=True)
     return dict(statement=row['statement'],status='matched',svg=svg,
         circles=sum(s['kind']=='circle' for s in shapes),width=drawing['width'],
         main_nuclei=len(flow['main']),branch_word_lengths=[len(s) for s in flow['side'] if s],
+        lexical_contacts=sum(r['kind']=='tangent' for r in geometry['relations']),
         seconds=round(time.perf_counter()-started,3),
         syntax_sha256=hashlib.sha256(json.dumps(recovered,sort_keys=True).encode()).hexdigest())
 
