@@ -32,7 +32,8 @@ from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, typ
 from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-22-questions-messages'
+VERSION = 'kant-public-fragment-23-statements'
+STATEMENT_TOKENS = frozenset(('ask_truth', 'suppose'))
 APPLICATIONS = frozenset(('apply','quoted_application'))
 SIGNATURE_HEADS = APPLICATIONS | {'answer_matches'}
 DYNAMIC_ARITY = SIGNATURE_HEADS | {'sequence'}
@@ -47,7 +48,7 @@ ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1, 'iff': 2,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
          'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1, 'content': 1,
          'forall_typed': 1, 'exists_typed': 1, 'lambda_typed': 1,
-         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS | NUMBER_STARTS, 0),
+         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS | NUMBER_STARTS | STATEMENT_TOKENS, 0),
          **{name:len(fields) for name,fields in SEQUENCE_FIELDS.items()}}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
@@ -102,6 +103,8 @@ GRAMMAR = {
     'message_ask': ((LARGE, 'small-upper-left-rim', 2, 'radius'),),
     'message_direct': ((LARGE, 'small-upper-left-rim', 4, 'radius'),),
     'message_content': ((LARGE, 'small-upper-left-rim', 1, 'outer'),),
+    'ask_truth': ((LARGE, 'small-upper-left-rim', 3, 'radius'),),
+    'suppose': ((LARGE, 'small-upper-left-rim', 7, 'radius'),),
 }
 
 
@@ -355,8 +358,7 @@ def event_count(stream):
 
 def events(statement, branch=True, sharing=True, subexpressions=True, unbranched=(),nested=True,
            multiple=False,branch_limits=None):
-    if not isinstance(statement, dict) or set(statement) != {'kind', 'body'} or statement['kind'] != 'assert':
-        raise ValueError('Fragment expects one explicit assertion')
+    validate_native(statement)
     result = []
     def contains_sharing(node,scope):
         if shared_argument_token(node,scope) is not None:return True
@@ -421,8 +423,18 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
                 application(predicate['symbol'],predicate['arguments'],scope,path+(j,),output,allow_branches,(slot,))
             return
         application(token,children,child_scope,path,output,allow_branches)
-    visit(statement['body'], (), (),result)
-    validate_native(statement)
+    def visit_statement(node,path):
+        if node['kind']=='suppose':
+            emit('suppose',None,path,result)
+            visit(node['condition'],(),path+(0,),result)
+            for i,child in enumerate(node['statements']):
+                visit_statement(child,path+(i+1,))
+            emit('types_end',None,path,result)
+        else:
+            if node['kind']=='ask' and expression_type(node['body'],(),words())=='truth':
+                emit('ask_truth',None,path,result)
+            visit(node['body'],(),path,result)
+    visit_statement(statement,())
     if event_count(result) > 512:
         raise ValueError('Fragment expression budget')
     return mark_boundaries(result)
@@ -776,6 +788,8 @@ def _decode(shapes):
             raise ValueError('Unexpected terminal dependency')
         if token in TYPE_TOKENS | LIST_TOKENS:
             raise ValueError('Type constructor outside a visible type header')
+        if token in STATEMENT_TOKENS:
+            raise ValueError('Statement head inside an expression')
         if token=='sequence':
             element=read_type(take_type_token)
             items=[read(scope,side) for side in sides]
@@ -902,7 +916,42 @@ def _decode(shapes):
             rank=actual.get('rank',0) if token=='disquote' else 0
             return dict(kind=token,description=children[0],**({'rank':rank} if rank else {}))
         return dict(kind=token, arguments=children)
-    result = dict(kind='assert', body=read(()))
+    def take_statement_token():
+        nonlocal position
+        if main[position] in branches or position in stops:
+            raise ValueError('Statement head/end cannot carry a branch or lexical seam')
+        token=linear[position];position+=1
+        return token
+    def read_statement(depth=0):
+        nonlocal serial
+        if depth>128:raise ValueError('Statement nesting exceeds 128 levels')
+        if position>=len(main):raise ValueError('Incomplete visible statement')
+        serial=0
+        if linear[position]=='suppose':
+            take_statement_token()
+            condition=read(())
+            if expression_type(condition,(),words())!='truth':
+                raise ValueError('Assumption condition requires truth sort')
+            children=[]
+            while position<len(main) and linear[position]!='types_end':
+                children.append(read_statement(depth+1))
+            if position>=len(main):raise ValueError('Missing visible assumption end')
+            take_statement_token()
+            if not children:raise ValueError('Assumption scope requires statements')
+            return dict(kind='suppose',condition=condition,statements=children)
+        explicit=linear[position]=='ask_truth'
+        if explicit:take_statement_token()
+        body=read(())
+        actual=expression_type(body,(),words())
+        if explicit:
+            if actual!='truth':raise ValueError('Truth question marker requires truth sort')
+            kind='ask'
+        elif actual=='truth':kind='assert'
+        elif actual=='message':kind='perform'
+        elif isinstance(actual,dict) and actual.get('kind')=='question':kind='ask'
+        else:raise ValueError('Statement body has wrong sort')
+        return dict(kind=kind,body=body)
+    result = read_statement()
     if position != len(main):
         raise ValueError('Trailing visible words')
     owners={c:i for i,n in enumerate(flow['nuclei']) for c in n['circles']}
