@@ -4,7 +4,7 @@ import pytest
 
 from scripts.check_kant_public_fragment import cases, checked, canonical
 from scripts.kant_public_fragment import (
-    compile_statement, decode, events, forms, table, words, GRAMMAR, feature,
+    compile_statement, decode, events, forms, table, words, GRAMMAR, feature, reserved_forms,
 )
 from scripts.kant_geometry_reader import read_geometry
 from scripts.visible_syntax_geometry import to_svg, from_svg
@@ -38,6 +38,14 @@ def test_every_public_allograph_is_unique_and_legal():
         for form in forms(token):
             geometry = read_geometry(from_svg(to_svg(form['shapes'])))
             assert table()[feature(geometry, range(len(geometry['circles'])))] == token
+
+
+def test_other_published_roots_are_reserved_not_reassigned_to_grammar():
+    from scripts.visible_lexical_script import _glyph
+    assert len(words())+len(reserved_forms()) == 30
+    for form in reserved_forms().values():
+        geometry = read_geometry(_glyph(form)['shapes'])
+        assert feature(geometry, range(len(geometry['circles']))) not in table()
 
 
 def test_reader_does_not_use_writer_or_svg_element_order(monkeypatch):

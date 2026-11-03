@@ -7,7 +7,7 @@ from pathlib import Path
 
 from scripts.kant_public_fragment import (
     compile_statement, decode, vocabulary, words, forms, table, feature,
-    GRAMMAR, VERSION,
+    GRAMMAR, VERSION, reserved_forms,
 )
 from scripts.kant_geometry_reader import read_geometry
 from scripts.visible_syntax_geometry import to_svg, from_svg
@@ -110,9 +110,11 @@ def build_report():
         'scripts/visible_word_forms.py', 'scripts/visible_syntax_geometry.py',
         'scripts/check_visible_syntax.py', 'noema/constructed_discourse.py', 'noema/grammar.py',
         'noema/resources/visible-lexicon-v1.json', 'noema/resources/visible-vocabulary-v1.json',
+        'noema/resources/visible-defined-vocabulary-v1.json',
         'concept/alphabet-concept.md', 'data/writing-freeze-v1.json']
     return dict(schema=VERSION, status='bounded-native-fragment-not-writing-freeze',
         public_roots=len(words()), grammar_tokens=len(GRAMMAR), public_allographs=len(table()),
+        reserved_public_root_forms=len(words())+len(reserved_forms()),
         exact_native_roundtrips=len(rows), main_only_roundtrips=len(plain),
         source_meanings_sha256=hashlib.sha256(json.dumps(vocabulary().document(),
             ensure_ascii=False, sort_keys=True).encode()).hexdigest(),

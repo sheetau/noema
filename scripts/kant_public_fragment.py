@@ -7,6 +7,8 @@ document registry. References to the nearest two binders are bounded here.
 """
 from copy import deepcopy
 from functools import lru_cache
+from importlib.resources import files
+import json
 import math
 
 from scripts.balanced_circle_script import (
@@ -22,16 +24,16 @@ from scripts.visible_word_forms import Word, symbol
 from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 
-VERSION = 'kant-public-fragment-1'
+VERSION = 'kant-public-fragment-2'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
-    'and': ((MEDIUM, None, 1, 'radius'),),
-    'or': ((MEDIUM, None, 7, 'radius'),),
+    'and': ((MEDIUM, 'reverse-right', None, 'none'),),
+    'or': ((MEDIUM, 'reverse-left', None, 'none'),),
     'not': ((MEDIUM, None, 3, 'radius'),),
-    'implies': ((MEDIUM, None, 5, 'radius'),),
+    'implies': ((MEDIUM, 'reverse-right', 4, 'radius'),),
     'equal': tuple((LARGE, None, d, 'outer') for d in (1, 7, 3, 5)),
     'quote': tuple((LARGE, 'nested', d, 'radius') for d in (2, 6)),
     'forall': ((LARGE, 'nested', 4, 'radius'),),
@@ -51,6 +53,20 @@ def words():
     v = vocabulary()
     return {symbol(Word('root', (name,)), v): (name, entry)
             for name, entry in v.document()['entries'].items()}
+
+
+@lru_cache(maxsize=1)
+def reserved_forms():
+    """Reserve the other published roots before extending this native fragment.
+
+    Only their public forms are needed here, not their definitions or models.
+    Keeping those meanings unchanged does not require revalidating them.
+    """
+    source = json.loads(files('noema').joinpath(
+        'resources/visible-defined-vocabulary-v1.json').read_text(encoding='utf-8'))
+    if source['schema'] != 'noema-visible-defined-vocabulary-source-1' or source['edition'] != 2:
+        raise ValueError('Unknown public root reservation')
+    return source['forms']
 
 
 def arity(token):
@@ -74,10 +90,15 @@ def forms(token, x=0., y=PITCH):
         return [result]
     result = []
     for radius, pair, direction, mode in GRAMMAR[token]:
-        g = nucleus(x, y, radius, None if pair == 'small-concentric' else pair,
+        special = pair in ('small-concentric', 'reverse-left', 'reverse-right')
+        g = nucleus(x, y, radius, None if special else pair,
                     direction, mode=mode)
         if pair == 'small-concentric':
             g['shapes'].append(circle(x, y, SMALL))
+        elif pair in ('reverse-left', 'reverse-right'):
+            # The main center is on the SMALL circle's rim, reversing home's
+            # relation. No small-center stroke and no third circle are added.
+            g['shapes'].append(circle(x+(-SMALL if pair == 'reverse-left' else SMALL), y, SMALL))
         result.append(g)
     return result
 
@@ -107,6 +128,13 @@ def table():
             if key in result and result[key] != token:
                 raise ValueError('Public word collision')
             result[key] = token
+    reserved = set()
+    for form in reserved_forms().values():
+        geometry = read_geometry(_glyph(form)['shapes'])
+        key = feature(geometry, range(len(geometry['circles'])))
+        if key in result or key in reserved:
+            raise ValueError('Form collides with another published root')
+        reserved.add(key)
     return result
 
 
