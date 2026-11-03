@@ -32,7 +32,8 @@ from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, typ
 from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-23-statements'
+VERSION = 'kant-public-fragment-24-declarations'
+DECLARATION_TOKENS = frozenset(('primitive', 'definition'))
 STATEMENT_TOKENS = frozenset(('ask_truth', 'suppose'))
 APPLICATIONS = frozenset(('apply','quoted_application'))
 SIGNATURE_HEADS = APPLICATIONS | {'answer_matches'}
@@ -48,7 +49,7 @@ ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1, 'iff': 2,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
          'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1, 'content': 1,
          'forall_typed': 1, 'exists_typed': 1, 'lambda_typed': 1,
-         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS | NUMBER_STARTS | STATEMENT_TOKENS, 0),
+         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS | NUMBER_STARTS | STATEMENT_TOKENS | DECLARATION_TOKENS, 0),
          **{name:len(fields) for name,fields in SEQUENCE_FIELDS.items()}}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
@@ -105,6 +106,8 @@ GRAMMAR = {
     'message_content': ((LARGE, 'small-upper-left-rim', 1, 'outer'),),
     'ask_truth': ((LARGE, 'small-upper-left-rim', 3, 'radius'),),
     'suppose': ((LARGE, 'small-upper-left-rim', 7, 'radius'),),
+    'primitive': ((LARGE, 'small-upper-right-rim', 0, 'radius'),),
+    'definition': ((LARGE, 'small-upper-right-rim', 4, 'radius'),),
 }
 
 
@@ -128,6 +131,7 @@ def arity(token):
     if token=='sequence':raise ValueError('Sequence arity requires its delimited item list')
     if token in ARITY:
         return ARITY[token]
+    if token not in words():raise ValueError('Unknown public word signature')
     return len(words()[token][1]['parameters'])
 
 
@@ -182,7 +186,7 @@ def shared_slot(token):
     return None
 
 
-def validate_native(statement):
+def used_words(value):
     used = set()
     def collect(value):
         if isinstance(value, dict):
@@ -193,7 +197,12 @@ def validate_native(statement):
         elif isinstance(value, list):
             for child in value:
                 collect(child)
-    collect(statement)
+    collect(value)
+    return used
+
+
+def validate_native(statement):
+    used = used_words(statement)
     if not used <= words().keys():
         raise ValueError('Unknown public word')
     declarations = declarations_for(tuple(sorted(used)))
@@ -202,6 +211,22 @@ def validate_native(statement):
     if checked != statement:
         raise ValueError('Fragment requires canonical native syntax')
     return statement
+
+
+def validate_declaration(declaration):
+    if declaration.get('name') not in parts_for():
+        raise ValueError('Declaration requires a published name spelling')
+    used=used_words(declaration)
+    if declaration['name'] in used:
+        raise ValueError('Declaration cannot depend on itself')
+    if not used<=words().keys():raise ValueError('Unknown declaration dependency')
+    dependencies=declarations_for(tuple(sorted(used)))
+    if any(d['name']==declaration['name'] for d in dependencies):
+        raise ValueError('Declaration cannot depend on itself indirectly')
+    checked=normalize_document(dict(schema_version='0.16',lexicon_version='0.16',
+        declarations=[*dependencies,declaration],statements=[]))['declarations'][-1]
+    if checked!=declaration:raise ValueError('Declaration requires canonical native syntax')
+    return declaration
 
 
 def forms(token, x=0., y=PITCH):
@@ -358,7 +383,8 @@ def event_count(stream):
 
 def events(statement, branch=True, sharing=True, subexpressions=True, unbranched=(),nested=True,
            multiple=False,branch_limits=None):
-    validate_native(statement)
+    is_declaration=statement.get('kind') in DECLARATION_TOKENS
+    (validate_declaration if is_declaration else validate_native)(statement)
     result = []
     def contains_sharing(node,scope):
         if shared_argument_token(node,scope) is not None:return True
@@ -369,7 +395,7 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
         for i, part in enumerate(parts):
             event = dict(token=part, side=side if i == len(parts)-1 else None,
                          depth=len(path), path=list(path))
-            if i == 0 and token in words():
+            if i == 0 and token in parts_for():
                 event['word'] = token
             if i==len(parts)-1 and extra_sides:event['extra_sides']=list(extra_sides)
             output.append(event)
@@ -434,13 +460,33 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
             if node['kind']=='ask' and expression_type(node['body'],(),words())=='truth':
                 emit('ask_truth',None,path,result)
             visit(node['body'],(),path,result)
-    visit_statement(statement,())
+    if is_declaration:
+        kind=statement['kind']
+        emit(kind,None,(),result)
+        emit(statement['name'],None,(),result)
+        parameters=statement['parameters']
+        types=parameters if kind=='primitive' else [p['sort'] for p in parameters]
+        for token in type_list_tokens(types):emit(token,None,(),result)
+        if kind=='primitive':
+            for token in type_tokens(statement['result']):emit(token,None,(),result)
+        else:visit(statement['body'],tuple(p['name'] for p in parameters),(0,),result)
+    else:visit_statement(statement,())
     if event_count(result) > 512:
         raise ValueError('Fragment expression budget')
     return mark_boundaries(result)
 
 
-def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True,multiple=False):
+def compile_statement(statement, **options):
+    if statement.get('kind') in DECLARATION_TOKENS:raise ValueError('Expected a statement, not a declaration')
+    return _compile_item(statement,**options)
+
+
+def compile_declaration(declaration, **options):
+    if declaration.get('kind') not in DECLARATION_TOKENS:raise ValueError('Expected a declaration')
+    return _compile_item(declaration,**options)
+
+
+def _compile_item(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True,multiple=False):
     with use_context(lexicon):
         unbranched=set();branch_limits={}
         while True:
@@ -705,7 +751,12 @@ def decode(shapes, *, lexicon=None):
         return _decode(shapes)
 
 
-def _decode(shapes):
+def decode_declaration(shapes, *, lexicon=None):
+    with use_context(lexicon):
+        return _decode(shapes,declaration=True)
+
+
+def _decode(shapes, *, declaration=False):
     geometry = read_geometry(shapes)
     flow = decompose_flow(geometry,terminal_words=True,branch_seams=True,large_branches=True,
         local_continuation=True,nested_branches=True,multiple_branches=True)
@@ -790,6 +841,8 @@ def _decode(shapes):
             raise ValueError('Type constructor outside a visible type header')
         if token in STATEMENT_TOKENS:
             raise ValueError('Statement head inside an expression')
+        if token in DECLARATION_TOKENS:
+            raise ValueError('Declaration head inside an expression')
         if token=='sequence':
             element=read_type(take_type_token)
             items=[read(scope,side) for side in sides]
@@ -951,7 +1004,23 @@ def _decode(shapes):
         elif isinstance(actual,dict) and actual.get('kind')=='question':kind='ask'
         else:raise ValueError('Statement body has wrong sort')
         return dict(kind=kind,body=body)
-    result = read_statement()
+    def read_declaration():
+        nonlocal serial
+        if not main or linear[position] not in DECLARATION_TOKENS:
+            raise ValueError('Expected a visible declaration head')
+        kind=take_statement_token()
+        if position>=len(main):raise ValueError('Missing declaration name')
+        name,sides=take_word()
+        if sides:raise ValueError('Declaration name cannot carry arguments')
+        types=read_type_list(take_type_token)
+        if kind=='primitive':
+            return dict(kind=kind,name=name,parameters=types,result=read_type(take_type_token))
+        parameters=[dict(name='v'+number_word(i),sort=t) for i,t in enumerate(types)]
+        serial=len(parameters)
+        scope=tuple((p['name'],p['sort']) for p in parameters)
+        body=read(scope)
+        return dict(kind=kind,name=name,parameters=parameters,result=expression_type(body,scope,words()),body=body)
+    result = read_declaration() if declaration else read_statement()
     if position != len(main):
         raise ValueError('Trailing visible words')
     owners={c:i for i,n in enumerate(flow['nuclei']) for c in n['circles']}
@@ -961,4 +1030,4 @@ def _decode(shapes):
         if pair not in lexical_pairs or any(
             flow['nuclei'][i]['size']!='medium' or len(flow['nuclei'][i]['circles'])!=1 for i in pair):
             raise ValueError('Contact must join two single medium components of one word or numeral')
-    return validate_native(result)
+    return (validate_declaration if declaration else validate_native)(result)
