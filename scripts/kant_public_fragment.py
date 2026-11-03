@@ -27,10 +27,10 @@ from scripts.kant_public_lexicon import (
 from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 
-VERSION = 'kant-public-fragment-3'
+VERSION = 'kant-public-fragment-4'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
-         'function_ref': 0}
+         'function_ref': 0, 'and_shared': 2}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
@@ -45,6 +45,7 @@ GRAMMAR = {
     'bound0': ((SMALL, None, None, 'none'),),
     'bound1': tuple((LARGE, 'small-concentric', d, 'outer') for d in (1, 7, 3, 5)),
     'function_ref': tuple((LARGE, 'nested', d, 'radius') for d in (5, 3)),
+    'and_shared': ((MEDIUM, 'reverse-left', 0, 'radius'),),
 }
 
 
@@ -173,7 +174,7 @@ def split(node, scope=()):
     return token, children, child_scope
 
 
-def events(statement, branch=True):
+def events(statement, branch=True, sharing=True):
     if not isinstance(statement, dict) or set(statement) != {'kind', 'body'} or statement['kind'] != 'assert':
         raise ValueError('Fragment expects one explicit assertion')
     result = []
@@ -191,6 +192,22 @@ def events(statement, branch=True):
             emit(token, None, path)
             emit(node['symbol'], None, path)
             return
+        if sharing and branch and token == 'and' and all(
+            c.get('kind') == 'call' and set(c) == {'kind', 'symbol', 'arguments'}
+            and c['symbol'] in words() and words()[c['symbol']][1]['parameters'] == ['individual']
+            and words()[c['symbol']][1]['result'] == 'truth' and len(c['arguments']) == 1
+            for c in children):
+            a, b = children
+            if a['arguments'] == b['arguments']:
+                shared, descendants, _ = split(a['arguments'][0], scope)
+                single = shared in root_words() or shared in ('bound0', 'bound1')
+                if single and not descendants and not near(forms(shared)[0]['radius'], LARGE):
+                    # One visible argument is expanded at precisely these two
+                    # call sites. No conjunction flattening or hidden paths.
+                    emit('and_shared', shared, path)
+                    emit(a['symbol'], None, path+(0,))
+                    emit(b['symbol'], None, path+(1,))
+                    return
         # Fixed public argument slot, not the middle of unknown leaf candidates.
         slot = len(children)//2 if len(children) >= 2 else None
         side = None
@@ -213,19 +230,31 @@ def events(statement, branch=True):
     return mark_boundaries(result)
 
 
-def compile_statement(statement, *, branch=True, silent=True):
+def compile_statement(statement, *, branch=True, silent=True, sharing=True):
     """Reuse the Kant search with public glyphs and visible terminal arguments."""
-    stream = events(statement, branch)
+    stream = events(statement, branch, sharing)
+    # A required silent seam joins centers on one rail. If any nucleus in a
+    # consecutive seam run is large, choose the middle rail for the entire
+    # run before placement. Do not discover this only after placing its prefix.
+    fixed_middle = set()
+    start = 0
+    for end in range(1, len(stream)+1):
+        if end == len(stream) or not stream[end].get('lexical_seam'):
+            if any(near(forms(e['token'])[0]['radius'], LARGE) for e in stream[start:end]):
+                fixed_middle.update(range(start, end))
+            start = end
     shapes, paths, groups, invisible = [], [], [], []
     previous = None
     previous_entry = None
     moment = 0.
-    for event in stream:
+    for event_index, event in enumerate(stream):
         token = event['token']
         template = forms(token)[0]
         radius = template['radius']
         choices = []
         for y in ([PITCH] if near(radius, LARGE) else [0., PITCH, 2*PITCH]):
+            if event_index in fixed_middle and not near(y, PITCH):
+                continue
             if event.get('lexical_seam') and previous and not near(y, previous['y']):
                 continue
             for extra in (0., 12., 28., 48., 72., 104., 160.):
@@ -364,6 +393,18 @@ def decode(shapes):
             if attached:
                 raise ValueError('Arguments attached to a bare function reference')
             return dict(kind='function_ref', symbol=name)
+        if token == 'and_shared':
+            if len(sides) != 1:
+                raise ValueError('Shared conjunction requires one visible terminal argument')
+            subject = read(scope, sides[0])
+            applications = []
+            for _ in range(2):
+                name, attached = take_word()
+                entry = words()[name][1]
+                if attached or entry['parameters'] != ['individual'] or entry['result'] != 'truth':
+                    raise ValueError('Shared conjunction requires two unary individual predicates')
+                applications.append(dict(kind='call', symbol=name, arguments=[deepcopy(subject)]))
+            return dict(kind='and', arguments=applications)
         child_scope = () if token == 'quote' else scope
         saved_serial = serial
         if token == 'quote':
