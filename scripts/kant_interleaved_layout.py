@@ -172,7 +172,9 @@ def _compile_stream(stream, *, contacts=True, lookahead=False):
         _,glyph,local,local_paths,edge,start_port,entry_port,delta=min(choices,key=lambda c:c[0])
         group=dict(glyph=glyph,event=event,ports=[] if entry_port is None else [entry_port],
                    shape_start=len(shapes),path_start=len(paths),side_flow=None,side_flows=[],
-                   fan=bool(event.get('extra_sides')),forks=[],level=flow['level'],
+                   # One side and its continuation may share a stem too.
+                   # The reader orders their first nuclei, not their ports.
+                   fan=event.get('side') is not None,forks=[],level=flow['level'],
                    lexical_contact=bool(edge and edge['kind']=='tangent'))
         shapes+=local;paths+=local_paths;moment+=delta;right=max(right,glyph['right'])
         placed.append(group);flow['groups'].append(group);flow['previous']=group;flow['index']+=1
