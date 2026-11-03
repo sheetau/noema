@@ -9,13 +9,14 @@ import json
 import math
 from scripts.balanced_circle_script import line, line_error, radial_clearance, spacing_check, _segment_touches, _on_segment
 from scripts.kant_spacing_extension import spacing_extension
+from scripts.kant_junction_index import JunctionIndex
 from scripts.balanced_circle_script import (
     display_tree, expanded_tree, restore, signature, registry, events, profile,
     ray_order, stroke_mode, near, SMALL, MEDIUM, LARGE, PITCH, EPS, MIN_RUN,
     MIN_GAP, nucleus, geometry_check, pack_lines, STROKE,
 )
 
-VERSION = 'kant-port-separated-flow-2-spacing-prefix'
+VERSION = 'kant-port-separated-flow-3-junction-bounds'
 
 
 def boundary_port(circle, toward):
@@ -139,6 +140,7 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
                             excursion.extend([(left,rail),((left+right)/2,rail+sign*(right-left)/2),(right,rail)])
                         candidates.append(beginning+excursion+ending)
     obstacle_lines=[s for s in obstacles if s['kind']=='line']
+    junctions=JunctionIndex(obstacles) if separate else None
     spacing_prefix_checked=False
     for points in candidates:
         points = [p for i, p in enumerate(points) if not i or math.dist(p, points[i-1]) > EPS]
@@ -156,7 +158,7 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
         if separate:
             # The connection starts at a rim or a declared stem junction.
             # Any further junction with existing ink would change the tree.
-            if joins_away_from_ends(segments,obstacles,(points[0],points[-1])):continue
+            if junctions.joins(segments,(points[0],points[-1])):continue
         # A radial chord may satisfy the per-segment incidence test but still
         # cut through an intermediate circle's center. External connectors
         # stop at rims and must never introduce such a diameter/extra ray.
