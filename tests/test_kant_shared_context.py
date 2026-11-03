@@ -6,6 +6,7 @@ from scripts.kant_lexical_context import LexicalContext,use_context
 from scripts.kant_public_lexicon import vocabulary
 from scripts.kant_public_fragment import compile_statement,decode,events,shared_slot
 from scripts.check_kant_public_fragment import canonical
+from scripts.check_kant_shared_argument import all_events
 from scripts.check_visible_syntax import call,logic,quote,quant,variable
 from scripts.visible_word_forms import Word,symbol
 from scripts.visible_syntax_geometry import to_svg,from_svg
@@ -36,7 +37,7 @@ def test_shared_context_restores_each_public_slot_and_remaining_argument_order(w
     with use_context(ctx):
         source=canonical(body)
         assert (shared_slot(names[0]),shared_slot(names[1]))==(2,0)
-        assert any(e['token']=='and_shared' for e in events(source))
+        assert any(e['token']=='and_shared' for e in all_events(events(source)))
     reader=LexicalContext.from_published(ctx.published())
     for sharing in (True,False):
         drawing=compile_statement(source,lexicon=ctx,sharing=sharing)
@@ -49,7 +50,7 @@ def test_different_contexts_or_only_an_earlier_common_context_do_not_share():
            (apply(1,apply(2),call('book')),apply(1,apply(3),call('book')))]
     with use_context(ctx):
         for pair in pairs:
-            assert not any(e['token']=='and_shared' for e in events(canonical(logic('and',*pair))))
+            assert not any(e['token']=='and_shared' for e in all_events(events(canonical(logic('and',*pair)))))
 
 
 def test_shared_head_rejects_a_predicate_without_a_shared_role():

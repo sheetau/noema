@@ -20,6 +20,14 @@ def pair(subject):
     return logic('and',call('red',subject),call('round',subject))
 
 
+def all_events(stream):
+    """Include expression branches when inspecting the generated event tree."""
+    for event in stream:
+        yield event
+        if isinstance(event['side'],list):
+            yield from all_events(event['side'])
+
+
 @lru_cache(maxsize=1)
 def cases():
     book=call('book');x=variable('x');y=variable('y')
@@ -47,7 +55,7 @@ def checked(index, sharing=True):
     svg=to_svg(compiled['shapes'])
     if decode(from_svg(svg))!=source:
         raise ValueError('Shared argument changed native syntax: '+key)
-    fused=sum(e['token']=='and_shared' for e in events(source,sharing=sharing))
+    fused=sum(e['token']=='and_shared' for e in all_events(events(source,sharing=sharing)))
     if bool(fused)!=(fuses and sharing):
         raise ValueError('Unexpected sharing selection: '+key)
     return dict(key=key,label=label,source=source,compiled=compiled,svg=svg,fused=fused,
