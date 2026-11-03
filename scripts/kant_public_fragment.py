@@ -32,7 +32,7 @@ from scripts.kant_scoped_types import TYPE_TOKENS, LIST_TOKENS, type_tokens, typ
 from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-29-root-overlap'
+VERSION = 'kant-public-fragment-30-bound-argument-contact'
 DECLARATION_TOKENS = frozenset(('primitive', 'definition'))
 STATEMENT_TOKENS = frozenset(('ask_truth', 'suppose'))
 APPLICATIONS = frozenset(('apply','quoted_application'))
@@ -862,13 +862,19 @@ def _decode(shapes, *, declaration=False, reader=None):
     serial = 0
     lexical_pairs=set()
     lexical_word_pairs=set()
+    bound_argument_pairs=set()
     def take_word():
         nonlocal position
         start=position
         token, position = read_word(linear, position, stops=stops, sides=side_positions)
         pairs={tuple(sorted(pair)) for pair in zip(main[start:position-1],main[start+1:position])}
         lexical_pairs.update(pairs);lexical_word_pairs.update(pairs)
-        return token, branches.get(main[position-1],[])
+        owner=main[position-1]
+        sides=branches.get(owner,[])
+        for side in sides:
+            if len(side)==1 and tokens[side[0]]=='bound0':
+                bound_argument_pairs.add(tuple(sorted((owner,side[0]))))
+        return token, sides
     def take_type_token():
         nonlocal position
         if position>=len(main):
@@ -1144,7 +1150,10 @@ def _decode(shapes, *, declaration=False, reader=None):
     for relation in geometry['relations']:
         if relation['kind']!='tangent':continue
         pair=tuple(sorted(owners[c] for c in relation['circles']))
+        if pair in bound_argument_pairs and sorted(flow['nuclei'][i]['size'] for i in pair)==['medium','small'] and all(
+            len(flow['nuclei'][i]['circles'])==1 for i in pair):
+            continue
         if pair not in lexical_pairs or any(
             flow['nuclei'][i]['size']!='medium' or len(flow['nuclei'][i]['circles'])!=1 for i in pair):
-            raise ValueError('Contact must join two single medium components of one word or numeral')
+            raise ValueError('Contact must join word/numeral medium components or a direct bound0 argument')
     return result

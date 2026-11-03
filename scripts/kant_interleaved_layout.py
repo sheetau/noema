@@ -147,13 +147,16 @@ def _compile_stream(stream, *, contacts=True, lookahead=False, frontier_window=T
         choices=[]
         for y in ([p.PITCH] if index in flow['middle'] or p.near(radius,p.LARGE) else [0.,p.PITCH,2*p.PITCH]):
             if seam and not p.near(y,previous['y']):continue
+            bound_touching=(contacts and parent and parent['fan'] and index==0 and
+                len(flow['events'])==1 and token=='bound0' and not seam and
+                p.single_medium(parent['glyph']) and p.near(abs(y-previous['y']),p.PITCH))
             touching=(contacts and not flow['contact'] and parent and placed[-1] is parent and
                 token in p.root_words() and not event.get('word') and not seam and p.single_medium(parent['glyph']) and
                 p.single_medium(template) and p.near(abs(y-previous['y']),p.PITCH))
-            for extra in ((None,) if touching else ())+((0.,) if seam else (0.,12.,28.,48.,72.,104.,160.)):
+            for extra in ((None,) if touching or bound_touching else ())+((0.,) if seam else (0.,12.,28.,48.,72.,104.,160.)):
                 contact=extra is None
                 left=(parent['glyph']['right']+p.MIN_GAP if seam else right+p.MIN_GAP) if placed else 12.
-                x=previous['x']+p.PITCH if contact else left+(extra or 0.)-template['left']
+                x=previous['x']+(0. if bound_touching else p.PITCH) if contact else left+(extra or 0.)-template['left']
                 # A main continuation starts to the right of the first side
                 # nucleus, regardless of where either flow eventually ends.
                 if flow['waiting'] is not None and x<=flow['waiting']['groups'][0]['glyph']['x']+p.EPS:continue
@@ -191,7 +194,10 @@ def _compile_stream(stream, *, contacts=True, lookahead=False, frontier_window=T
                     if parent and flow is not main_flow and index==0:
                         preferred=2*p.PITCH-previous['y'] if not p.near(previous['y'],p.PITCH) else (0. if moment>0 else 2*p.PITCH)
                         if not p.near(y,preferred):score+=100
-                    choices.append((score,glyph,local,local_paths,edge,start_port,entry_port,delta))
+                    # Direct bound arguments prefer a legal tangent. Ordinary
+                    # branches keep their existing placement score/order.
+                    rank=(0 if contact and bound_touching else 1,score)
+                    choices.append((rank,glyph,local,local_paths,edge,start_port,entry_port,delta))
                     found=True
                 if found and not contact:break
         if not choices:
