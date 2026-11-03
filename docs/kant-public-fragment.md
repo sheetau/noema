@@ -2,7 +2,7 @@
 
 この文書はコミットb92fe125時点の限定構文を基礎とし、字形には[偏心配置を禁止する訂正](kant-circle-pair-rule.md)を反映する。公開語彙全体への接続と語境界の後続規則は [複合語の仕様](kant-public-words.md)を参照する。
 
-以下に記した二段までの束縛制限は、後続の[外側参照の共通規則](kant-binding-scope.md)で解除した。individual以外の型と複数引数lambdaへの対応は引き続き残る。
+以下に記した二段までの束縛制限は、後続の[外側参照の共通規則](kant-binding-scope.md)で解除した。[型と複数引数の規則](kant-typed-binders.md)ではindividual以外の型と複数引数lambdaにも対応した。
 
 この試作は [kant-pageの生成規則](kant-generator-decoding-design.md)から、公開語の識別、引数順、引用、変数の束縛を一つの処理として接続する。生成は scripts/kant_public_fragment.py、読取器の入力は円と線だけである。完成候補や新しい固定仕様ではない。
 

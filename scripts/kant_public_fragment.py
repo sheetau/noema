@@ -28,12 +28,15 @@ from scripts.kant_public_lexicon import (
 from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
+from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
 
-VERSION = 'kant-public-fragment-9-binding-scope'
+VERSION = 'kant-public-fragment-10-typed-binders'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
-         'quote_raise': 1, 'bound_shift': 1}
+         'quote_raise': 1, 'bound_shift': 1,
+         'forall_typed': 1, 'exists_typed': 1, 'lambda_typed': 1,
+         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS, 0)}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
@@ -53,6 +56,21 @@ GRAMMAR = {
     'evaluate': ((MEDIUM, 'offset-left', 1, 'radius'),),
     'quote_raise': ((LARGE, 'nested', 1, 'radius'),),
     'bound_shift': ((MEDIUM, 'offset-left', 7, 'radius'),),
+    'forall_typed': ((LARGE, 'offset-left', 4, 'radius'),),
+    'exists_typed': ((LARGE, 'offset-left', 0, 'radius'),),
+    'lambda_typed': ((LARGE, 'offset', 0, 'radius'),),
+    'type_individual': ((LARGE, 'small-offset-left', 0, 'radius'),),
+    'type_number': ((LARGE, 'small-offset-left', 1, 'radius'),),
+    'type_truth': ((LARGE, 'small-offset-left', 2, 'radius'),),
+    'type_situation': ((LARGE, 'small-offset-left', 3, 'radius'),),
+    'type_content': ((LARGE, 'small-offset-left', 5, 'radius'),),
+    'type_message': ((LARGE, 'small-offset-left', 6, 'radius'),),
+    'type_sequence': ((LARGE, 'nested', 1, 'outer'),),
+    'type_description': ((LARGE, 'nested', 3, 'outer'),),
+    'type_question': ((LARGE, 'nested', 5, 'outer'),),
+    'type_function': ((LARGE, 'nested', 7, 'outer'),),
+    'types_more': ((LARGE, 'offset-left', 2, 'radius'),),
+    'types_end': ((LARGE, 'offset-left', 6, 'radius'),),
 }
 
 
@@ -140,8 +158,8 @@ def forms(token, x=0., y=PITCH):
     result = []
     for radius, pair, direction, mode in GRAMMAR[token]:
         special = pair == 'small-concentric'
-        g = nucleus(x, y, radius, None if special else pair,
-                    direction, mode=mode)
+        g = nucleus(x, y, radius, None if special else 'offset-left' if pair=='small-offset-left' else pair,
+                    direction, mode=mode, companion=SMALL if pair=='small-offset-left' else None)
         if pair == 'small-concentric':
             g['shapes'].append(circle(x, y, SMALL))
         result.append(g)
@@ -191,10 +209,11 @@ def split(node, scope=()):
             raise ValueError('Unknown public function reference')
         token, children, child_scope = kind, [], scope
     elif kind == 'lambda' and set(node) == {'kind', 'parameters', 'body'}:
-        if (not isinstance(node['parameters'], list) or len(node['parameters']) != 1
-            or set(node['parameters'][0]) != {'name','sort'} or node['parameters'][0]['sort'] != 'individual'):
-            raise ValueError('Fragment supports one individual lambda parameter')
-        token,children,child_scope = 'lambda_individual',[node['body']],(*scope,node['parameters'][0]['name'])
+        params=node['parameters']
+        if not isinstance(params,list) or any(not isinstance(p,dict) or set(p)!={'name','sort'} for p in params):
+            raise ValueError('Invalid lambda parameters')
+        token='lambda_individual' if len(params)==1 and params[0]['sort']=='individual' else 'lambda_typed'
+        children,child_scope = [node['body']],(*scope,*(p['name'] for p in params))
     elif kind == 'evaluate' and set(node) == {'kind','content','situation'}:
         token,children,child_scope = kind,[node['content'],node['situation']],scope
     elif kind in ('and', 'or', 'implies', 'equal', 'not') and set(node) == {'kind', 'arguments'}:
@@ -213,9 +232,8 @@ def split(node, scope=()):
     elif kind == 'quote' and set(node) == {'kind', 'body'}:
         token, children, child_scope = kind, [node['body']], ()
     elif kind in ('forall', 'exists') and set(node) == {'kind', 'variable', 'sort', 'body'}:
-        if node['sort'] != 'individual':
-            raise ValueError('Fragment supports individual binders')
-        token, children, child_scope = kind, [node['body']], (*scope, node['variable'])
+        token = kind if node['sort']=='individual' else kind+'_typed'
+        children, child_scope = [node['body']], (*scope, node['variable'])
     elif kind == 'variable' and set(node) == {'kind', 'name'}:
         if node['name'] not in scope:
             raise ValueError('Unbound variable, including across a quotation')
@@ -247,6 +265,13 @@ def events(statement, branch=True, sharing=True):
             result.append(event)
     def visit(node, scope, path):
         token, children, child_scope = split(node, scope)
+        if token in ('forall_typed','exists_typed','lambda_typed'):
+            emit(token,None,path)
+            header=(type_list_tokens([p['sort'] for p in node['parameters']]) if token=='lambda_typed'
+                    else type_tokens(node['sort']))
+            for part in header:emit(part,None,path)
+            visit(children[0],child_scope,path+(0,))
+            return
         if token == 'function_ref':
             emit(token, None, path)
             emit(node['symbol'], None, path)
@@ -523,6 +548,14 @@ def _decode(shapes):
         token, position = read_word(linear, position, stops=stops, sides=side_positions)
         lexical_pairs.update(tuple(sorted(pair)) for pair in zip(main[start:position-1],main[start+1:position]))
         return token, flow['side'][position-1]
+    def take_type_token():
+        nonlocal position
+        if position>=len(main):
+            raise ValueError('Incomplete visible type header')
+        if flow['side'][position] or position in stops:
+            raise ValueError('Type header cannot carry a terminal argument or lexical seam')
+        token=linear[position];position+=1
+        return token
     def read(scope, side_ids=None):
         nonlocal position, serial
         if side_ids is None:
@@ -549,6 +582,16 @@ def _decode(shapes):
         count = arity(token)
         if sides and count < 2:
             raise ValueError('Unexpected terminal dependency')
+        if token in TYPE_TOKENS | LIST_TOKENS:
+            raise ValueError('Type constructor outside a visible type header')
+        if token in ('forall_typed','exists_typed','lambda_typed'):
+            sorts=read_type_list(take_type_token) if token=='lambda_typed' else [read_type(take_type_token)]
+            names=tuple('v'+number_word(serial+i) for i in range(len(sorts)))
+            serial+=len(sorts)
+            body=read((*scope,*names))
+            if token=='lambda_typed':
+                return dict(kind='lambda',parameters=[dict(name=n,sort=t) for n,t in zip(names,sorts)],body=body)
+            return dict(kind=token.removesuffix('_typed'),variable=names[0],sort=sorts[0],body=body)
         if token == 'function_ref':
             name, attached = take_word()
             if attached:
