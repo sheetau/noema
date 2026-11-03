@@ -93,3 +93,16 @@ def compile_records(records,*,seed=None,**options):
         else:drawing=writing.compile_statement(item,lexicon=writer.context,**options)
         writer.register(item);drawings.append(drawing)
     return drawings
+
+
+class PublishedStatementReader(Reader):
+    """Read bodies with an explicit immutable public dictionary, not target ASTs."""
+    def __init__(self,published):
+        self.context=LexicalContext.from_published(published)
+        self.seed=deepcopy(self.context.document)
+        self.document=empty_document();self.spellings=[]
+
+    def register(self,item):
+        if item.get('kind') not in ('assert','ask','perform','suppose'):
+            raise ValueError('Published body reader requires statements')
+        return super().register(item)

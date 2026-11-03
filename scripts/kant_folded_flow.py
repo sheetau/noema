@@ -144,7 +144,8 @@ def unfold(shapes):
     return flows
 
 
-def decode_page(shapes,*,seed=None,include_spellings=False):
-    reader=Reader(seed)
+def decode_page(shapes,*,seed=None,include_spellings=False,reader=None):
+    if reader is not None and seed is not None:raise ValueError('Choose a reader or a seed')
+    reader=Reader(seed) if reader is None else reader.fork()
     for flow in unfold(shapes):reader=read_row(flow,reader)
     return reader.result(include_spellings)
