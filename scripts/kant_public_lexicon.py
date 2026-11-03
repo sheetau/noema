@@ -10,6 +10,7 @@ from pathlib import Path
 
 from scripts.visible_senses_vocabulary import SensesVocabulary
 from scripts.visible_word_forms import Word, symbol
+from scripts.kant_lexical_context import ACTIVE
 
 
 @lru_cache(maxsize=1)
@@ -18,11 +19,16 @@ def vocabulary():
 
 
 @lru_cache(maxsize=1)
-def words():
+def _base_words():
     v = vocabulary()
     data = v.document()
     return {symbol(v.word(name), v): (name, v.entry(name))
             for name in (*data['entries'], *data['compounds'])}
+
+
+def words():
+    context = ACTIVE.get()
+    return context.words if context is not None else _base_words()
 
 
 @lru_cache(maxsize=1)
@@ -33,10 +39,10 @@ def root_words():
 
 
 @lru_cache(maxsize=1)
-def spellings():
+def _base_spellings():
     v = vocabulary()
     result = {}
-    for token, (name, _) in words().items():
+    for token, (name, _) in _base_words().items():
         word = v.word(name)
         parts = tuple(symbol(Word('root', (part,)), v) for part in word.parts)
         if parts in result:
@@ -45,14 +51,29 @@ def spellings():
     return result
 
 
+def spellings():
+    context = ACTIVE.get()
+    return context.spellings if context is not None else _base_spellings()
+
+
 @lru_cache(maxsize=1)
+def _base_parts():
+    return {token: parts for parts, token in _base_spellings().items()}
+
+
 def parts_for():
-    return {token: parts for parts, token in spellings().items()}
+    context = ACTIVE.get()
+    return context.parts if context is not None else _base_parts()
 
 
 @lru_cache(maxsize=1)
+def _base_prefixes():
+    return {parts[:i] for parts in _base_spellings() for i in range(1, len(parts)+1)}
+
+
 def prefixes():
-    return {parts[:i] for parts in spellings() for i in range(1, len(parts)+1)}
+    context = ACTIVE.get()
+    return context.prefixes if context is not None else _base_prefixes()
 
 
 def read_word(tokens, start, *, stops=(), sides=()):
@@ -108,9 +129,14 @@ def mark_boundaries(stream):
 
 
 @lru_cache(maxsize=256)
-def declarations_for(tokens):
+def _base_declarations(tokens):
     """Reuse actual definitions, including dependencies, for native type checks."""
-    return vocabulary().imports([words()[token][0] for token in tokens])
+    return vocabulary().imports([_base_words()[token][0] for token in tokens])
+
+
+def declarations_for(tokens):
+    context = ACTIVE.get()
+    return context.declarations_for(tokens) if context is not None else _base_declarations(tokens)
 
 
 def source_paths():

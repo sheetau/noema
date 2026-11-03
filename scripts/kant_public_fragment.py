@@ -27,11 +27,13 @@ from scripts.kant_public_lexicon import (
 )
 from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
+from scripts.kant_lexical_context import use_context
 
-VERSION = 'kant-public-fragment-4-corrected-circle-pairs'
+VERSION = 'kant-public-fragment-5-public-context'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
-         'function_ref': 0, 'and_shared': 2}
+         'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
+         'quote_raise': 1}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
@@ -47,6 +49,9 @@ GRAMMAR = {
     'bound1': tuple((LARGE, 'small-concentric', d, 'outer') for d in (1, 7, 3, 5)),
     'function_ref': tuple((LARGE, 'nested', d, 'radius') for d in (5, 3)),
     'and_shared': ((MEDIUM, 'offset-left', 0, 'radius'),),
+    'lambda_individual': ((LARGE, 'offset', 4, 'radius'),),
+    'evaluate': ((MEDIUM, 'offset-left', 1, 'radius'),),
+    'quote_raise': ((LARGE, 'nested', 1, 'radius'),),
 }
 
 
@@ -149,10 +154,26 @@ def split(node, scope=()):
         if node['symbol'] not in words():
             raise ValueError('Unknown public function reference')
         token, children, child_scope = kind, [], scope
+    elif kind == 'lambda' and set(node) == {'kind', 'parameters', 'body'}:
+        if (len(scope) >= 2 or not isinstance(node['parameters'], list) or len(node['parameters']) != 1
+            or set(node['parameters'][0]) != {'name','sort'} or node['parameters'][0]['sort'] != 'individual'):
+            raise ValueError('Fragment supports one individual lambda parameter')
+        token,children,child_scope = 'lambda_individual',[node['body']],(*scope,node['parameters'][0]['name'])
+    elif kind == 'evaluate' and set(node) == {'kind','content','situation'}:
+        token,children,child_scope = kind,[node['content'],node['situation']],scope
     elif kind in ('and', 'or', 'implies', 'equal', 'not') and set(node) == {'kind', 'arguments'}:
         token, children, child_scope = kind, node['arguments'], scope
         if not isinstance(children, list):
             raise ValueError('Expected argument list')
+    elif kind == 'quote' and set(node) == {'kind', 'body', 'rank'}:
+        if type(node['rank']) is not int or not 1 <= node['rank'] <= 128:
+            raise ValueError('Quotation rank outside the drawing resource limit')
+        child = deepcopy(node)
+        if child['rank'] == 1:
+            del child['rank']
+        else:
+            child['rank'] -= 1
+        token, children, child_scope = 'quote_raise', [child], scope
     elif kind == 'quote' and set(node) == {'kind', 'body'}:
         token, children, child_scope = kind, [node['body']], ()
     elif kind in ('forall', 'exists') and set(node) == {'kind', 'variable', 'sort', 'body'}:
@@ -222,12 +243,17 @@ def events(statement, branch=True, sharing=True):
                 visit(child, child_scope, path+(i,))
     visit(statement['body'], (), ())
     validate_native(statement)
-    if len(result) > 80:
+    if len(result) > 512:
         raise ValueError('Fragment expression budget')
     return mark_boundaries(result)
 
 
-def compile_statement(statement, *, branch=True, silent=True, sharing=True):
+def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True):
+    with use_context(lexicon):
+        return _compile_statement(statement, branch=branch, silent=silent, sharing=sharing, local_checks=local_checks)
+
+
+def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True):
     """Reuse the Kant search with public glyphs and visible terminal arguments."""
     stream = events(statement, branch, sharing)
     # A required silent seam joins centers on one rail. If any nucleus in a
@@ -245,6 +271,12 @@ def compile_statement(statement, *, branch=True, silent=True, sharing=True):
     previous_entry = None
     moment = 0.
     for event_index, event in enumerate(stream):
+        # Same candidate-window strategy as the actual Kant generator. A
+        # candidate is provisional: the complete sentence is checked below.
+        # Keep the complete-prefix mode for independent equivalence probes.
+        first = groups[-3] if local_checks and len(groups) >= 3 else None
+        recent = shapes[first['shape_start']:] if first else shapes
+        recent_paths = paths[first['path_start']:] if first else paths
         token = event['token']
         template = forms(token)[0]
         radius = template['radius']
@@ -287,7 +319,7 @@ def compile_statement(statement, *, branch=True, silent=True, sharing=True):
                             edge = dict(kind='invisible', centers=[(previous['x'], previous['y']), (x, y)])
                         else:
                             link = route(previous, main['entry'],
-                                [s for s in shapes+local if s['kind'] == 'circle'], event['depth'], shapes+local,
+                                [s for s in recent+local if s['kind'] == 'circle'], event['depth'], recent+local,
                                 forbidden_start=() if previous_entry is None else (previous_entry,),
                                 forbidden_end=side_ports)
                             if link is None:
@@ -296,7 +328,7 @@ def compile_statement(statement, *, branch=True, silent=True, sharing=True):
                             local += segments; local_paths.append(p)
                             edge = dict(kind='visible', entry_port=boundary_port(main['entry'], p[-2]))
                     try:
-                        geometry_check(shapes+local, paths+local_paths)
+                        geometry_check(recent+local, recent_paths+local_paths)
                     except ValueError:
                         continue
                     circles = [s for s in local if s['kind'] == 'circle']
@@ -315,8 +347,10 @@ def compile_statement(statement, *, branch=True, silent=True, sharing=True):
         if not choices:
             raise ValueError('No legal public placement: '+token+' at '+str(event['path']))
         _, main, side, local, local_paths, edge, delta, right = min(choices, key=lambda c:c[0])
+        shape_start, path_start = len(shapes), len(paths)
         shapes += local; paths += local_paths; moment += delta
         groups.append(dict(token=token, center=[main['x'], main['y']], right=right,
+                           shape_start=shape_start,path_start=path_start,
                            side=None if side is None else [side['x'], side['y']]))
         if edge and edge['kind'] == 'invisible':
             invisible.append(edge)
@@ -326,7 +360,12 @@ def compile_statement(statement, *, branch=True, silent=True, sharing=True):
     return dict(version=VERSION, shapes=shapes, groups=groups, width=groups[-1]['right']+12.)
 
 
-def decode(shapes):
+def decode(shapes, *, lexicon=None):
+    with use_context(lexicon):
+        return _decode(shapes)
+
+
+def _decode(shapes):
     geometry = read_geometry(shapes)
     flow = decompose_flow(geometry)
     tokens = []
@@ -406,7 +445,7 @@ def decode(shapes):
         saved_serial = serial
         if token == 'quote':
             serial = 0
-        if token in ('forall', 'exists'):
+        if token in ('forall', 'exists', 'lambda_individual'):
             if len(scope) >= 2:
                 raise ValueError('Binder depth outside this fragment')
             child_scope = (*scope, 'v'+number_word(serial))
@@ -423,8 +462,17 @@ def decode(shapes):
         if token == 'quote':
             serial = saved_serial
             return dict(kind='quote', body=children[0])
+        if token == 'quote_raise':
+            child = children[0]
+            if child['kind'] != 'quote':
+                raise ValueError('Quotation rank marker must precede a quotation')
+            return dict(child, rank=child.get('rank', 0)+1)
         if token in ('forall', 'exists'):
             return dict(kind=token, variable=child_scope[-1], sort='individual', body=children[0])
+        if token == 'lambda_individual':
+            return dict(kind='lambda',parameters=[dict(name=child_scope[-1],sort='individual')],body=children[0])
+        if token == 'evaluate':
+            return dict(kind='evaluate',content=children[0],situation=children[1])
         return dict(kind=token, arguments=children)
     result = dict(kind='assert', body=read(()))
     if position != len(main):
