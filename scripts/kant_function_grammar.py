@@ -9,6 +9,7 @@ from noema.constructed_discourse import function_sort,description_sort
 def expression_type(node,scope,words,depth=0):
     if depth>128:raise ValueError('Function type inference exceeds expression depth')
     kind=node['kind']
+    if kind=='number':return 'number'
     if kind in ('call','function_ref'):
         if node['symbol'] not in words:raise ValueError('Unknown public function or value')
         entry=words[node['symbol']][1]

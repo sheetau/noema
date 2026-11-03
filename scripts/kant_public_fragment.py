@@ -30,8 +30,9 @@ from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
 from scripts.kant_function_grammar import expression_type,application_type,require_description
+from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-19-content-binding'
+VERSION = 'kant-public-fragment-20-rational-numbers'
 APPLICATIONS = frozenset(('apply','quoted_application'))
 RAIL_PAIRS={'small-upper-left-rim':(-1,-1),'small-upper-right-rim':(1,-1),
             'small-lower-left-rim':(-1,1),'small-lower-right-rim':(1,1)}
@@ -40,7 +41,7 @@ ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
          'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1, 'content': 1,
          'forall_typed': 1, 'exists_typed': 1, 'lambda_typed': 1,
-         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS, 0)}
+         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS | NUMBER_STARTS, 0)}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
@@ -80,6 +81,8 @@ GRAMMAR = {
     'type_function': ((LARGE, 'nested', 7, 'outer'),),
     'types_more': ((LARGE, 'offset-left', 2, 'radius'),),
     'types_end': ((LARGE, 'offset-left', 6, 'radius'),),
+    'number_positive': ((LARGE, 'offset', 5, 'outer'),),
+    'number_negative': ((LARGE, 'offset', 3, 'outer'),),
 }
 
 
@@ -233,7 +236,9 @@ def split(node, scope=()):
     if not isinstance(node, dict):
         raise ValueError('Expected native expression')
     kind = node.get('kind')
-    if kind == 'call' and set(node) == {'kind', 'symbol', 'arguments'}:
+    if kind == 'number':
+        token,children,child_scope=number_tokens(node)[0],[],scope
+    elif kind == 'call' and set(node) == {'kind', 'symbol', 'arguments'}:
         token = node['symbol']
         if token not in words() or not isinstance(node['arguments'], list):
             raise ValueError('Unknown public root')
@@ -350,6 +355,11 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
                 visit(child,child_scope,path+(i,),output,allow_branches)
     def visit(node, scope, path, output, allow_branches=True):
         token, children, child_scope = split(node, scope)
+        if token in NUMBER_STARTS:
+            # Digits use existing shapes, but are not lexical word entries.
+            for part in number_tokens(node):
+                output.append(dict(token=part,side=None,depth=len(path),path=list(path)))
+            return
         if token in ('forall_typed','exists_typed','lambda_typed'):
             emit(token,None,path,output)
             header=(type_list_tokens([p['sort'] for p in node['parameters']]) if token=='lambda_typed'
@@ -724,6 +734,19 @@ def _decode(shapes):
             raise ValueError('Unexpected terminal dependency')
         if token in TYPE_TOKENS | LIST_TOKENS:
             raise ValueError('Type constructor outside a visible type header')
+        if token in NUMBER_STARTS:
+            previous=None
+            def take_number_token():
+                nonlocal position,previous
+                if position>=len(main):raise ValueError('Incomplete visible numeral')
+                if main[position] in branches or position in stops:
+                    raise ValueError('Numeral cannot carry a branch or lexical seam')
+                current=main[position]
+                if previous is not None:lexical_pairs.add(tuple(sorted((previous,current))))
+                previous=current
+                value=linear[position];position+=1
+                return value
+            return read_number(token,take_number_token)
         if token in ('forall_typed','exists_typed','lambda_typed'):
             sorts=read_type_list(take_type_token) if token=='lambda_typed' else [read_type(take_type_token)]
             names=tuple('v'+number_word(serial+i) for i in range(len(sorts)))
@@ -827,5 +850,5 @@ def _decode(shapes):
         pair=tuple(sorted(owners[c] for c in relation['circles']))
         if pair not in lexical_pairs or any(
             flow['nuclei'][i]['size']!='medium' or len(flow['nuclei'][i]['circles'])!=1 for i in pair):
-            raise ValueError('Contact must join two single medium components of one word')
+            raise ValueError('Contact must join two single medium components of one word or numeral')
     return validate_native(result)
