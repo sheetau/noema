@@ -8,11 +8,12 @@ from collections import defaultdict
 import math
 
 from scripts.balanced_circle_script import (
-    SMALL,MEDIUM,LARGE,PITCH,EPS,geometry_check,near,line,_on_segment,
+    SMALL,MEDIUM,LARGE,PITCH,EPS,near,line,_on_segment,
 )
+from scripts.kant_geometry_rules import geometry_check
 from scripts.visible_syntax_geometry import clean
 
-VERSION='kant-observable-geometry-1'
+VERSION='kant-observable-geometry-2'
 
 
 def point(x,y):return (round(x,7),round(y,7))

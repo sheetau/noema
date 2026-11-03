@@ -12,6 +12,7 @@ from noema.constructed import parse
 from scripts import balanced_circle_script as b
 from scripts.contextual_opening_script import compile_expression
 from scripts.kant_geometry_reader import read_geometry,recover_seams,VERSION
+from scripts.kant_geometry_rules import geometry_check as active_geometry_check
 from scripts.visible_syntax_geometry import to_svg,from_svg
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -118,7 +119,7 @@ def allowed_pairs():
                                         options.append([q for q in n['shapes'] if q['kind']=='line'])
                             legal=None
                             for strokes in options:
-                                try:b.geometry_check(rings+strokes,[])
+                                try:active_geometry_check(rings+strokes,[])
                                 except ValueError:continue
                                 legal=rings+strokes;break
                             if legal is None:continue

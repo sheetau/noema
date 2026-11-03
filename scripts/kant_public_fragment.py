@@ -13,8 +13,9 @@ import math
 
 from scripts.balanced_circle_script import (
     SMALL, MEDIUM, LARGE, PITCH, MIN_GAP, MIN_RUN, EPS, circle, nucleus,
-    geometry_check, near,
+    near,
 )
+from scripts.kant_geometry_rules import geometry_check
 from scripts.kant_readable_flow import route, boundary_port
 from scripts.kant_geometry_reader import read_geometry, recover_seams
 from scripts.kant_flow_reader import decompose_flow
@@ -27,17 +28,17 @@ from scripts.kant_public_lexicon import (
 from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 
-VERSION = 'kant-public-fragment-4'
+VERSION = 'kant-public-fragment-4-corrected-circle-pairs'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
-    'and': ((MEDIUM, 'reverse-right', None, 'none'),),
-    'or': ((MEDIUM, 'reverse-left', None, 'none'),),
+    'and': ((MEDIUM, 'offset-left', None, 'none'),),
+    'or': ((MEDIUM, 'offset-left', 6, 'radius'),),
     'not': ((MEDIUM, None, 3, 'radius'),),
-    'implies': ((MEDIUM, 'reverse-right', 4, 'radius'),),
+    'implies': ((MEDIUM, 'offset-left', 2, 'radius'),),
     'equal': tuple((LARGE, None, d, 'outer') for d in (1, 7, 3, 5)),
     'quote': tuple((LARGE, 'nested', d, 'radius') for d in (2, 6)),
     'forall': ((LARGE, 'nested', 4, 'radius'),),
@@ -45,7 +46,7 @@ GRAMMAR = {
     'bound0': ((SMALL, None, None, 'none'),),
     'bound1': tuple((LARGE, 'small-concentric', d, 'outer') for d in (1, 7, 3, 5)),
     'function_ref': tuple((LARGE, 'nested', d, 'radius') for d in (5, 3)),
-    'and_shared': ((MEDIUM, 'reverse-left', 0, 'radius'),),
+    'and_shared': ((MEDIUM, 'offset-left', 0, 'radius'),),
 }
 
 
@@ -97,15 +98,11 @@ def forms(token, x=0., y=PITCH):
         return [result]
     result = []
     for radius, pair, direction, mode in GRAMMAR[token]:
-        special = pair in ('small-concentric', 'reverse-left', 'reverse-right')
+        special = pair == 'small-concentric'
         g = nucleus(x, y, radius, None if special else pair,
                     direction, mode=mode)
         if pair == 'small-concentric':
             g['shapes'].append(circle(x, y, SMALL))
-        elif pair in ('reverse-left', 'reverse-right'):
-            # The main center is on the SMALL circle's rim, reversing home's
-            # relation. No small-center stroke and no third circle are added.
-            g['shapes'].append(circle(x+(-SMALL if pair == 'reverse-left' else SMALL), y, SMALL))
         result.append(g)
     return result
 
