@@ -8,8 +8,8 @@ from scripts.kant_page_public_context import ROOT,inputs
 from scripts.kant_public_fragment import VERSION
 from scripts.kant_structural_trial import prepare as diagnostic_trial,report as diagnostic_report
 
-OUT=ROOT/'output/kant-compound-fan-page'
-RUN=ROOT/'.noema-project/runs/kant-compound-fan-page-v1'
+OUT=ROOT/'output/kant-compound-fan-page-v2'
+RUN=ROOT/'.noema-project/runs/kant-compound-fan-page-v2'
 
 
 def cases():
@@ -29,7 +29,7 @@ def checked(index):
 def pins():
     result=diagnostic_pins()
     for name in ('scripts/check_kant_compound_fan_page.py','tests/test_kant_compound_fan_page.py',
-                 'reports/kant-compound-fans-v3.json'):
+                 'reports/kant-compound-fans-v4.json'):
         result[name]=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
     return dict(sorted(result.items()))
 

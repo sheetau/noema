@@ -18,9 +18,10 @@ def compile_stream(stream, *, contacts=True):
                 points.append(((a[0]+b[0])/2,(a[1]+b[1])/2))
         return points
     def connect(origin,target,depth,obstacles,checked_paths,forbidden,extra_forks=(),accept=None):
-        starts=[origin['glyph']['exit']]
+        root_start=origin['glyph']['exit'];starts=[root_start]
         if origin['fan']:
             starts += [dict(x=x,y=y,radius=0.) for x,y in (*origin['forks'],*extra_forks)]
+            starts.sort(key=lambda s:math.dist((s['x'],s['y']),(target['entry']['x'],target['entry']['y'])))
         def allowed(path,segments):
             if origin['fan']:
                 try:p.geometry_check(obstacles+segments,checked_paths+[path])
@@ -28,7 +29,7 @@ def compile_stream(stream, *, contacts=True):
             return accept is None or accept(path,segments)
         for start in starts:
             link=p.route(start,target['entry'],[s for s in obstacles if s['kind']=='circle'],
-                depth,obstacles,forbidden_start=forbidden if start is starts[0] else (),
+                depth,obstacles,forbidden_start=forbidden if start is root_start else (),
                 detours=True,separate=True,accept=allowed if multiple else None,line_detours=multiple)
             if link is None:continue
             if origin['fan']:
