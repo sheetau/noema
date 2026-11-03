@@ -17,23 +17,69 @@ def compile_stream(stream, *, contacts=True):
             if math.dist(a,b)>=2*p.MIN_RUN:
                 points.append(((a[0]+b[0])/2,(a[1]+b[1])/2))
         return points
-    def connect(origin,target,depth,obstacles,checked_paths,forbidden,extra_forks=()):
+    def connect(origin,target,depth,obstacles,checked_paths,forbidden,extra_forks=(),accept=None):
         starts=[origin['glyph']['exit']]
         if origin['fan']:
             starts += [dict(x=x,y=y,radius=0.) for x,y in (*origin['forks'],*extra_forks)]
+        def allowed(path,segments):
+            if origin['fan']:
+                try:p.geometry_check(obstacles+segments,checked_paths+[path])
+                except ValueError:return False
+            return accept is None or accept(path,segments)
         for start in starts:
             link=p.route(start,target['entry'],[s for s in obstacles if s['kind']=='circle'],
                 depth,obstacles,forbidden_start=forbidden if start is starts[0] else (),
-                detours=True,separate=True)
+                detours=True,separate=True,accept=allowed if multiple else None,line_detours=multiple)
             if link is None:continue
             if origin['fan']:
                 try:p.geometry_check(obstacles+link[1],checked_paths+[link[0]])
                 except ValueError:continue
             return link
         return None
+
+    def preserves_continuations(flow,index,parent,glyph,y,local,local_paths,edge,start_port):
+        try:p.geometry_check(shapes+local,paths+local_paths,
+            invisible+([edge] if edge and edge['kind']=='invisible' else []))
+        except ValueError:return False
+        reserved=[];reserved_paths=[];tail=glyph
+        for following in flow['events'][index+1:]:
+            if not following.get('lexical_seam'):break
+            form=p.forms(following['token'])[0]
+            tail=p.forms(following['token'],tail['right']+p.MIN_GAP-form['left'],y)[0]
+            reserved+=tail['shapes'];reserved_paths+=tail['paths']
+        for other in flows:
+            if other is flow or other['previous'] is None or other['index']>=len(other['events']):continue
+            if other['entrance_after'] is not None and not other['entrance_after']['groups'] and other['entrance_after'] is not flow:
+                continue
+            if other['waiting'] is not None and not other['waiting']['groups'] and other['waiting'] is not flow and not other['previous']['fan']:
+                continue
+            future=other['events'][other['index']]
+            origin=other['previous']
+            forbidden=origin['ports']+([start_port] if origin is parent and start_port is not None else [])
+            probe_template=p.forms(future['token'])[0]
+            rails=[p.PITCH] if other['index'] in other['middle'] else [0.,p.PITCH,2*p.PITCH]
+            reachable=False
+            for probe_extra in (0.,160.):
+                probe_x=tail['right']+p.MIN_GAP+probe_extra-probe_template['left']
+                for probe_y in rails:
+                    for probe in p.forms(future['token'],probe_x,probe_y):
+                        obstacles=shapes+local+reserved+probe['shapes']
+                        extra_forks=fork_points(edge['path']) if origin is parent and edge and edge['kind']=='visible' else ()
+                        link=connect(origin,probe,future['depth'],obstacles,
+                            paths+local_paths+reserved_paths+probe['paths'],forbidden,extra_forks)
+                        if link is None:continue
+                        trial,segments=link
+                        try:p.geometry_check(obstacles+segments,paths+local_paths+reserved_paths+probe['paths']+[trial])
+                        except ValueError:continue
+                        reachable=True;break
+                    if reachable:break
+                if reachable:break
+            if not reachable:return False
+        return True
     def add_flow(events,parent=None,entrance_after=None):
         flow=dict(id=len(flows),events=events,index=0,previous=parent,groups=[],
-                  middle=p.fixed_middle_events(events),contact=False,waiting=None,entrance_after=entrance_after)
+                  middle=p.fixed_middle_events(events),contact=False,waiting=None,entrance_after=entrance_after,
+                  word_end=0,level=0 if parent is None else parent['level']+1)
         flows.append(flow)
         return flow
     main_flow=add_flow(stream)
@@ -45,12 +91,14 @@ def compile_stream(stream, *, contacts=True):
         if forced is not None:
             flow=forced;forced=None
         else:
-            flow=min(pending,key=lambda f:(bool(f['groups']),f['id']) if multiple else
+            flow=min(pending,key=lambda f:(-f['level'],f['id']) if multiple else
                 ((f['previous']['glyph']['x'] if f['previous'] else -1)
                 +p.PITCH*(len(f['events'])-f['index']),f['id']))
         index=flow['index'];event=flow['events'][index];token=event['token']
         parent=flow['previous'];previous=parent['glyph']['exit'] if parent else None
-        if event.get('word'):flow['contact']=False
+        if event.get('word'):
+            flow['contact']=False
+            flow['word_end']=index+len(p.parts_for().get(event['word'],(event['word'],)))
         template=p.forms(token)[0];radius=template['radius']
         seam=bool(event.get('lexical_seam'))
         choices=[]
@@ -80,51 +128,18 @@ def compile_stream(stream, *, contacts=True):
                         elif seam:
                             edge=dict(kind='invisible',centers=[(previous['x'],previous['y']),(x,y)])
                         else:
-                            link=connect(parent,glyph,event['depth'],shapes+local,paths+local_paths,parent['ports'])
+                            def keep_open(path,segments):
+                                return preserves_continuations(flow,index,parent,glyph,y,
+                                    local+segments,local_paths+[path],dict(kind='visible',path=path),path[0])
+                            link=connect(parent,glyph,event['depth'],shapes+local,paths+local_paths,parent['ports'],
+                                accept=keep_open if multiple else None)
                             if link is None:continue
                             path,segments=link
                             local+=segments;local_paths.append(path)
                             start_port=path[0];entry_port=p.boundary_port(glyph['entry'],path[-2])
                             edge=dict(kind='visible',path=path)
-                    try:p.geometry_check(shapes+local,paths+local_paths,
-                        invisible+([edge] if edge and edge['kind']=='invisible' else []))
-                    except ValueError:continue
-                    reserved=[];reserved_paths=[];tail=glyph
-                    for following in flow['events'][index+1:]:
-                        if not following.get('lexical_seam'):break
-                        form=p.forms(following['token'])[0]
-                        tail=p.forms(following['token'],tail['right']+p.MIN_GAP-form['left'],y)[0]
-                        reserved+=tail['shapes'];reserved_paths+=tail['paths']
-                    reachable=True
-                    for other in flows:
-                        if other is flow or other['previous'] is None or other['index']>=len(other['events']):continue
-                        if other['entrance_after'] is not None and not other['entrance_after']['groups'] and other['entrance_after'] is not flow:
-                            continue
-                        if other['waiting'] is not None and not other['waiting']['groups'] and other['waiting'] is not flow and not other['previous']['fan']:
-                            continue
-                        future=other['events'][other['index']]
-                        origin=other['previous'];port=origin['glyph']['exit']
-                        forbidden=origin['ports']+([start_port] if origin is parent and start_port is not None else [])
-                        probe_template=p.forms(future['token'])[0]
-                        rails=[p.PITCH] if other['index'] in other['middle'] else [0.,p.PITCH,2*p.PITCH]
-                        reachable=False
-                        for probe_extra in (0.,160.):
-                            probe_x=tail['right']+p.MIN_GAP+probe_extra-probe_template['left']
-                            for probe_y in rails:
-                                for probe in p.forms(future['token'],probe_x,probe_y):
-                                    obstacles=shapes+local+reserved+probe['shapes']
-                                    extra_forks=fork_points(edge['path']) if origin is parent and edge and edge['kind']=='visible' else ()
-                                    link=connect(origin,probe,future['depth'],obstacles,
-                                        paths+local_paths+reserved_paths+probe['paths'],forbidden,extra_forks)
-                                    if link is None:continue
-                                    trial,segments=link
-                                    try:p.geometry_check(obstacles+segments,paths+local_paths+reserved_paths+probe['paths']+[trial])
-                                    except ValueError:continue
-                                    reachable=True;break
-                                if reachable:break
-                            if reachable:break
-                        if not reachable:break
-                    if not reachable:continue
+                    if not (multiple and edge and edge['kind']=='visible') and not preserves_continuations(
+                        flow,index,parent,glyph,y,local,local_paths,edge,start_port):continue
                     delta=sum(s['r']**2*(s['y']-p.PITCH)/p.PITCH for s in local if s['kind']=='circle')
                     imbalance=abs(moment+delta)/p.MEDIUM**2
                     score=max(0.,imbalance-2.)*14+imbalance*.35+(glyph['right']-left)*.11
@@ -142,7 +157,7 @@ def compile_stream(stream, *, contacts=True):
         _,glyph,local,local_paths,edge,start_port,entry_port,delta=min(choices,key=lambda c:c[0])
         group=dict(glyph=glyph,event=event,ports=[] if entry_port is None else [entry_port],
                    shape_start=len(shapes),path_start=len(paths),side_flow=None,side_flows=[],
-                   fan=bool(event.get('extra_sides')),forks=[],
+                   fan=bool(event.get('extra_sides')),forks=[],level=flow['level'],
                    lexical_contact=bool(edge and edge['kind']=='tangent'))
         shapes+=local;paths+=local_paths;moment+=delta;right=max(right,glyph['right'])
         placed.append(group);flow['groups'].append(group);flow['previous']=group;flow['index']+=1
@@ -162,9 +177,13 @@ def compile_stream(stream, *, contacts=True):
                 group['side_flows'].append(branch);previous_branch=branch
             group['side_flow']=group['side_flows'][0];flow['waiting']=group['side_flows'][-1]
             forced=group['side_flows'][0]
-        elif flow['index']<len(flow['events']) and flow['events'][flow['index']].get('lexical_seam'):
+        elif flow['index']<len(flow['events']) and (flow['events'][flow['index']].get('lexical_seam') or
+                (multiple and flow['index']<flow['word_end'])):
             # A compact silent boundary is an actual measured gap. Keep its
             # two endpoints together; never insert another flow in that gap.
+            # At a fan, finish the current lexical word before placing another
+            # entrance. A first nucleus alone does not reserve a route for its
+            # remaining parts; competing entrances can trap that continuation.
             forced=flow
     p.geometry_check(shapes,paths,invisible)
     groups=[]

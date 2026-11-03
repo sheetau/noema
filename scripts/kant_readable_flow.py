@@ -38,7 +38,7 @@ def joins_away_from_ends(segments,obstacles,ends):
     return False
 
 
-def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_center=False, forbidden_start=(), forbidden_end=(), detours=False, separate=False):
+def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_center=False, forbidden_start=(), forbidden_end=(), detours=False, separate=False, accept=None, line_detours=False):
     ax, ay, bx, by = a['x'], a['y'], b['x'], b['y']
     dx, dy = bx-ax, by-ay
     candidates = []
@@ -111,15 +111,32 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
                         if distance>=c['r']+MIN_GAP+EPS:continue
                         half=math.sqrt(2)*(c['r']+MIN_GAP+EPS)-distance
                         intervals.append((c['x']-half,c['x']+half))
-                    merged=[]
-                    for left,right in sorted(intervals):
-                        if merged and left<=merged[-1][1]+EPS:merged[-1][1]=max(right,merged[-1][1])
-                        else:merged.append([left,right])
-                    if any(left<lo+EPS or right>hi-EPS for left,right in merged):continue
-                    excursion=[]
-                    for left,right in merged:
-                        excursion.extend([(left,rail),((left+right)/2,rail+sign*(right-left)/2),(right,rail)])
-                    candidates.append(beginning+excursion+ending)
+                    line_intervals=[]
+                    # A neighboring branch's connector is also an obstacle.
+                    # Project its clearance envelope onto an outer rail; the
+                    # two 45-degree sides enclose that interval. Horizontal
+                    # sections still use only the original three rails.
+                    if line_detours:
+                        for s in obstacles:
+                            if s['kind']!='line' or max(s['x1'],s['x2'])<=lo or min(s['x1'],s['x2'])>=hi:continue
+                            line_ends=[(s['x1'],sign*(s['y1']-rail)+math.sqrt(2)*(MIN_GAP+EPS)),
+                                  (s['x2'],sign*(s['y2']-rail)+math.sqrt(2)*(MIN_GAP+EPS))]
+                            if max(h for x,h in line_ends)<=0:continue
+                            if min(h for x,h in line_ends)<0:
+                                inside=0 if line_ends[0][1]<0 else 1
+                                x,h=line_ends[inside];xx,hh=line_ends[1-inside]
+                                line_ends[inside]=(x+(xx-x)*(-h)/(hh-h),0.)
+                            line_intervals.append((min(x-h for x,h in line_ends),max(x+h for x,h in line_ends)))
+                    for occupied in (intervals,intervals+line_intervals) if line_intervals else (intervals,):
+                        merged=[]
+                        for left,right in sorted(occupied):
+                            if merged and left<=merged[-1][1]+EPS:merged[-1][1]=max(right,merged[-1][1])
+                            else:merged.append([left,right])
+                        if any(left<lo+EPS or right>hi-EPS for left,right in merged):continue
+                        excursion=[]
+                        for left,right in merged:
+                            excursion.extend([(left,rail),((left+right)/2,rail+sign*(right-left)/2),(right,rail)])
+                        candidates.append(beginning+excursion+ending)
     for points in candidates:
         points = [p for i, p in enumerate(points) if not i or math.dist(p, points[i-1]) > EPS]
         if len(points) < 2: continue
@@ -157,7 +174,8 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
             except ValueError as error:
                 if diagnostics is not None: diagnostics.append(str(error))
                 continue
-            return points, segments
+            if accept is None or accept(points,segments):
+                return points, segments
     return None
 
 
