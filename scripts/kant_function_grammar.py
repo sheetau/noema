@@ -3,13 +3,17 @@
 This supplies the arity of an already read function. It neither evaluates a
 function nor replaces the final native syntax/type validation.
 """
-from noema.constructed_discourse import function_sort,description_sort
+from noema.constructed_discourse import function_sort,description_sort,sequence_sort
 
 
 def expression_type(node,scope,words,depth=0):
     if depth>128:raise ValueError('Function type inference exceeds expression depth')
     kind=node['kind']
     if kind=='number':return 'number'
+    if kind=='sequence':return sequence_sort(node['element'])
+    if kind=='length':return 'number'
+    if kind=='concat':return expression_type(node['left'],scope,words,depth+1)
+    if kind=='fold':return expression_type(node['initial'],scope,words,depth+1)
     if kind in ('call','function_ref'):
         if node['symbol'] not in words:raise ValueError('Unknown public function or value')
         entry=words[node['symbol']][1]
@@ -37,7 +41,7 @@ def expression_type(node,scope,words,depth=0):
         actual=require_description(expression_type(node['description'],scope,words,depth+1))
         return description_sort(actual,actual.get('rank',0)) if kind=='quoted_lift' else actual['result']
     if kind=='content':return 'content'
-    if kind in ('and','or','implies','equal','not','forall','exists','evaluate'):return 'truth'
+    if kind in ('and','or','implies','equal','not','forall','exists','evaluate','position'):return 'truth'
     raise ValueError('Unsupported expression in visible function type inference')
 
 

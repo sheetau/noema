@@ -32,8 +32,11 @@ from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, typ
 from scripts.kant_function_grammar import expression_type,application_type,require_description
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-20-rational-numbers'
+VERSION = 'kant-public-fragment-21-sequences'
 APPLICATIONS = frozenset(('apply','quoted_application'))
+DYNAMIC_ARITY = APPLICATIONS | {'sequence'}
+SEQUENCE_FIELDS = {'length':('sequence',),'position':('sequence','index','value'),
+                   'concat':('left','right'),'fold':('sequence','initial','step')}
 RAIL_PAIRS={'small-upper-left-rim':(-1,-1),'small-upper-right-rim':(1,-1),
             'small-lower-left-rim':(-1,1),'small-lower-right-rim':(1,1)}
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
@@ -41,7 +44,8 @@ ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
          'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1, 'content': 1,
          'forall_typed': 1, 'exists_typed': 1, 'lambda_typed': 1,
-         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS | NUMBER_STARTS, 0)}
+         **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS | NUMBER_STARTS, 0),
+         **{name:len(fields) for name,fields in SEQUENCE_FIELDS.items()}}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
@@ -83,6 +87,11 @@ GRAMMAR = {
     'types_end': ((LARGE, 'offset-left', 6, 'radius'),),
     'number_positive': ((LARGE, 'offset', 5, 'outer'),),
     'number_negative': ((LARGE, 'offset', 3, 'outer'),),
+    'sequence': ((LARGE, 'offset-left', 7, 'outer'),),
+    'length': ((LARGE, 'offset', 6, 'radius'),),
+    'position': ((LARGE, 'offset', 2, 'radius'),),
+    'concat': ((LARGE, 'offset', 5, 'radius'),),
+    'fold': ((LARGE, 'offset', 3, 'radius'),),
 }
 
 
@@ -102,6 +111,7 @@ def reserved_forms():
 
 def arity(token):
     if token in APPLICATIONS:raise ValueError('Application arity requires the visible function type')
+    if token=='sequence':raise ValueError('Sequence arity requires its delimited item list')
     if token in ARITY:
         return ARITY[token]
     return len(words()[token][1]['parameters'])
@@ -124,6 +134,7 @@ def side_order(token,supplied=(),*,count=None):
     count=arity(token) if count is None else count
     available=[i for i in range(count) if i not in supplied]
     if len(available)<2:return []
+    if token=='sequence':return available[:-1]
     first=side_slot(token,count=count)
     if first not in available:return available[1:]
     continuation=next(i for i in available if i!=first)
@@ -238,6 +249,11 @@ def split(node, scope=()):
     kind = node.get('kind')
     if kind == 'number':
         token,children,child_scope=number_tokens(node)[0],[],scope
+    elif kind=='sequence' and set(node)=={'kind','element','items'}:
+        if not isinstance(node['items'],list):raise ValueError('Sequence items must be an array')
+        token,children,child_scope=kind,node['items'],scope
+    elif kind in SEQUENCE_FIELDS and set(node)=={'kind',*SEQUENCE_FIELDS[kind]}:
+        token,children,child_scope=kind,[node[k] for k in SEQUENCE_FIELDS[kind]],scope
     elif kind == 'call' and set(node) == {'kind', 'symbol', 'arguments'}:
         token = node['symbol']
         if token not in words() or not isinstance(node['arguments'], list):
@@ -294,7 +310,7 @@ def split(node, scope=()):
             token, children, child_scope = 'bound_shift', [node], scope[:-1]
     else:
         raise ValueError('Native constructor outside this fragment')
-    if token not in APPLICATIONS and len(children) != arity(token):
+    if token not in DYNAMIC_ARITY and len(children) != arity(token):
         raise ValueError('Public arity mismatch')
     return token, children, child_scope
 
@@ -334,8 +350,8 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
                 event['word'] = token
             if i==len(parts)-1 and extra_sides:event['extra_sides']=list(extra_sides)
             output.append(event)
-    def application(token,children,child_scope,path,output,allow_branches,supplied=()):
-        order=side_order(token,supplied,count=len(children) if token in APPLICATIONS else None)
+    def application(token,children,child_scope,path,output,allow_branches,supplied=(),header=()):
+        order=side_order(token,supplied,count=len(children) if token in DYNAMIC_ARITY else None)
         limit=(branch_limits or {}).get(path,len(order) if multiple else 1)
         attached={}
         if branch and allow_branches and path not in unbranched and (not supplied or multiple):
@@ -350,6 +366,7 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
                 else:break
         sides=list(attached.values())
         emit(token,sides[0] if sides else None,path,output,sides[1:])
+        for part in header:emit(part,None,path,output)
         for i,child in enumerate(children):
             if i not in supplied and i not in attached:
                 visit(child,child_scope,path+(i,),output,allow_branches)
@@ -359,6 +376,10 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
             # Digits use existing shapes, but are not lexical word entries.
             for part in number_tokens(node):
                 output.append(dict(token=part,side=None,depth=len(path),path=list(path)))
+            return
+        if token=='sequence':
+            application(token,children,child_scope,path,output,allow_branches,header=type_tokens(node['element']))
+            emit('types_end',None,path,output)
             return
         if token in ('forall_typed','exists_typed','lambda_typed'):
             emit(token,None,path,output)
@@ -729,11 +750,22 @@ def _decode(shapes):
             index = position; position += 1
             token = linear[index]
             sides = branches.get(main[index],[])
-        count = None if token in APPLICATIONS else arity(token)
+        count = None if token in DYNAMIC_ARITY else arity(token)
         if count is not None and sides and len(sides)>=count:
             raise ValueError('Unexpected terminal dependency')
         if token in TYPE_TOKENS | LIST_TOKENS:
             raise ValueError('Type constructor outside a visible type header')
+        if token=='sequence':
+            element=read_type(take_type_token)
+            items=[read(scope,side) for side in sides]
+            initial_count=len(items)
+            while position<len(main) and linear[position]!='types_end':
+                items.append(read(scope))
+            if position>=len(main):raise ValueError('Missing visible sequence end')
+            if sides and len(items)==initial_count:
+                raise ValueError('Sequence branches require a final main item')
+            take_type_token()  # The end cannot carry a branch or word seam.
+            return dict(kind='sequence',element=element,items=items)
         if token in NUMBER_STARTS:
             previous=None
             def take_number_token():
@@ -815,6 +847,8 @@ def _decode(shapes):
                     for i in range(count)]
         if token in words():
             return dict(kind='call', symbol=token, arguments=children)
+        if token in SEQUENCE_FIELDS:
+            return dict(kind=token,**dict(zip(SEQUENCE_FIELDS[token],children)))
         if token.startswith('bound'):
             distance = int(token[-1])
             if distance >= len(scope):
