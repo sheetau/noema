@@ -35,6 +35,7 @@ def expression_type(node,scope,words,depth=0):
     if kind in ('quoted_lift','disquote'):
         actual=require_description(expression_type(node['description'],scope,words,depth+1))
         return description_sort(actual,actual.get('rank',0)) if kind=='quoted_lift' else actual['result']
+    if kind=='content':return 'content'
     if kind in ('and','or','implies','equal','not','forall','exists','evaluate'):return 'truth'
     raise ValueError('Unsupported expression in visible function type inference')
 

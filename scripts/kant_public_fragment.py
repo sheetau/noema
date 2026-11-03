@@ -31,12 +31,14 @@ from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
 from scripts.kant_function_grammar import expression_type,application_type,require_description
 
-VERSION = 'kant-public-fragment-18-compact-type-lists'
+VERSION = 'kant-public-fragment-19-content-binding'
 APPLICATIONS = frozenset(('apply','quoted_application'))
+RAIL_PAIRS={'small-upper-left-rim':(-1,-1),'small-upper-right-rim':(1,-1),
+            'small-lower-left-rim':(-1,1),'small-lower-right-rim':(1,1)}
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
-         'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1,
+         'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1, 'content': 1,
          'forall_typed': 1, 'exists_typed': 1, 'lambda_typed': 1,
          **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS, 0)}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
@@ -60,6 +62,7 @@ GRAMMAR = {
     'quoted_application': ((LARGE, 'small-upper-left-rim', 1, 'radius'),),
     'quoted_lift': ((LARGE, 'small-upper-right-rim', 3, 'radius'),),
     'disquote': ((LARGE, 'small-lower-left-rim', 7, 'radius'),),
+    'content': ((LARGE, 'small-lower-right-rim', 5, 'radius'),),
     'quote_raise': ((LARGE, 'nested', 1, 'radius'),),
     'bound_shift': ((MEDIUM, 'offset-left', 7, 'radius'),),
     'forall_typed': ((LARGE, 'offset-left', 4, 'radius'),),
@@ -179,12 +182,11 @@ def forms(token, x=0., y=PITCH):
         return [result]
     result = []
     for radius, pair, direction, mode in GRAMMAR[token]:
-        if pair in ('small-upper-left-rim','small-upper-right-rim','small-lower-left-rim'):
+        if pair in RAIL_PAIRS:
             # One rail of vertical separation, with the small center exactly
             # on the large rim. Both external ports remain on the large ring.
             g=nucleus(x,y,radius,None,direction,mode=mode)
-            sx=1 if pair=='small-upper-right-rim' else -1
-            sy=1 if pair=='small-lower-left-rim' else -1
+            sx,sy=RAIL_PAIRS[pair]
             g['shapes'].append(circle(x+sx*math.sqrt(radius**2-PITCH**2),y+sy*PITCH,SMALL))
             g.update(pair=pair,companion=SMALL)
             result.append(g)
@@ -248,6 +250,8 @@ def split(node, scope=()):
         children,child_scope = [node['body']],(*scope,*(p['name'] for p in params))
     elif kind == 'evaluate' and set(node) == {'kind','content','situation'}:
         token,children,child_scope = kind,[node['content'],node['situation']],scope
+    elif kind == 'content' and set(node) == {'kind','variable','body'}:
+        token,children,child_scope = kind,[node['body']],(*scope,node['variable'])
     elif kind in APPLICATIONS and set(node) == {'kind','function','arguments'}:
         if not isinstance(node['arguments'],list):raise ValueError('Expected function argument list')
         token,children,child_scope = kind,[node['function'],*node['arguments']],scope
@@ -780,8 +784,8 @@ def _decode(shapes):
         saved_serial = serial
         if token == 'quote':
             serial = 0
-        if token in ('forall', 'exists', 'lambda_individual'):
-            child_scope = (*scope, ('v'+number_word(serial),'individual'))
+        if token in ('forall', 'exists', 'lambda_individual', 'content'):
+            child_scope = (*scope, ('v'+number_word(serial),'situation' if token=='content' else 'individual'))
             serial += 1
         attached=dict(zip(side_order(token),sides))
         children = [read(child_scope,attached[i]) if i in attached else read(child_scope)
@@ -807,6 +811,8 @@ def _decode(shapes):
             return dict(kind='lambda',parameters=[dict(name=child_scope[-1][0],sort='individual')],body=children[0])
         if token == 'evaluate':
             return dict(kind='evaluate',content=children[0],situation=children[1])
+        if token == 'content':
+            return dict(kind='content',variable=child_scope[-1][0],body=children[0])
         if token in ('quoted_lift','disquote'):
             actual=require_description(expression_type(children[0],scope,words()))
             rank=actual.get('rank',0) if token=='disquote' else 0
