@@ -9,7 +9,7 @@ def compile_stream(stream, *, contacts=True):
     from scripts import kant_public_fragment as p
     flows=[];placed=[];shapes=[];paths=[];invisible=[];moment=0.;right=0.
     def add_flow(events,parent=None):
-        flow=dict(events=events,index=0,previous=parent,groups=[],
+        flow=dict(id=len(flows),events=events,index=0,previous=parent,groups=[],
                   middle=p.fixed_middle_events(events),contact=False,waiting=None)
         flows.append(flow)
         return flow
@@ -22,7 +22,7 @@ def compile_stream(stream, *, contacts=True):
             flow=forced;forced=None
         else:
             flow=min(pending,key=lambda f:((f['previous']['glyph']['x'] if f['previous'] else -1)
-                +p.PITCH*(len(f['events'])-f['index']),flows.index(f)))
+                +p.PITCH*(len(f['events'])-f['index']),f['id']))
         index=flow['index'];event=flow['events'][index];token=event['token']
         parent=flow['previous'];previous=parent['glyph']['exit'] if parent else None
         if event.get('word'):flow['contact']=False
@@ -72,25 +72,29 @@ def compile_stream(stream, *, contacts=True):
                         tail=p.forms(following['token'],tail['right']+p.MIN_GAP-form['left'],y)[0]
                         reserved+=tail['shapes'];reserved_paths+=tail['paths']
                     reachable=True
-                    for other in pending:
-                        if other is flow or other['previous'] is None:continue
+                    for other in flows:
+                        if other is flow or other['previous'] is None or other['index']>=len(other['events']):continue
+                        if other['waiting'] is not None and not other['waiting']['groups'] and other['waiting'] is not flow:
+                            continue
                         future=other['events'][other['index']]
                         origin=other['previous'];port=origin['glyph']['exit']
                         forbidden=origin['ports']+([start_port] if origin is parent and start_port is not None else [])
                         probe_template=p.forms(future['token'])[0]
-                        probe_x=tail['right']+p.MIN_GAP+160-probe_template['left']
                         rails=[p.PITCH] if other['index'] in other['middle'] else [0.,p.PITCH,2*p.PITCH]
                         reachable=False
-                        for probe_y in rails:
-                            for probe in p.forms(future['token'],probe_x,probe_y):
-                                obstacles=shapes+local+reserved+probe['shapes']
-                                link=p.route(port,probe['entry'],[s for s in obstacles if s['kind']=='circle'],
-                                    future['depth'],obstacles,forbidden_start=forbidden,detours=True,separate=True)
-                                if link is None:continue
-                                trial,segments=link
-                                try:p.geometry_check(obstacles+segments,paths+local_paths+reserved_paths+probe['paths']+[trial])
-                                except ValueError:continue
-                                reachable=True;break
+                        for probe_extra in (0.,160.):
+                            probe_x=tail['right']+p.MIN_GAP+probe_extra-probe_template['left']
+                            for probe_y in rails:
+                                for probe in p.forms(future['token'],probe_x,probe_y):
+                                    obstacles=shapes+local+reserved+probe['shapes']
+                                    link=p.route(port,probe['entry'],[s for s in obstacles if s['kind']=='circle'],
+                                        future['depth'],obstacles,forbidden_start=forbidden,detours=True,separate=True)
+                                    if link is None:continue
+                                    trial,segments=link
+                                    try:p.geometry_check(obstacles+segments,paths+local_paths+reserved_paths+probe['paths']+[trial])
+                                    except ValueError:continue
+                                    reachable=True;break
+                                if reachable:break
                             if reachable:break
                         if not reachable:break
                     if not reachable:continue
@@ -140,4 +144,5 @@ def compile_stream(stream, *, contacts=True):
             shape_start=group['shape_start'],path_start=group['path_start'],
             expression_branch=isinstance(event.get('side'),list),lexical_contact=group['lexical_contact'],
             side=centers[0] if centers else None,side_centers=centers))
-    return dict(version=p.VERSION,shapes=shapes,groups=groups,width=right+12.,layout='interleaved')
+    return dict(version=p.VERSION,shapes=shapes,groups=groups,width=right+12.,layout='interleaved',
+        flow_count=len(flows),nested_forks=sum(g['side_flow'] is not None for f in flows[1:] for g in f['groups']))
