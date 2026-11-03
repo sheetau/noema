@@ -10,7 +10,7 @@ import math
 from scripts.balanced_circle_script import (
     SMALL,MEDIUM,LARGE,PITCH,MIN_GAP,EPS,near,line,_on_segment,
 )
-from scripts.kant_geometry_rules import geometry_check
+from scripts.kant_geometry_rules import geometry_check, merged_lines
 from scripts.visible_syntax_geometry import clean
 
 VERSION='kant-observable-geometry-4-branch-seams'
@@ -37,33 +37,6 @@ def canonical_vertices(points):
         else:
             result[p]=p;buckets[cell].append(p)
     return result
-
-
-def merged_lines(shapes):
-    """Union collinear ink; SVG element breaks carry no information."""
-    rows=defaultdict(list)
-    for s in shapes:
-        if s['kind']!='line':continue
-        ax,ay,bx,by=(s[k] for k in ('x1','y1','x2','y2'))
-        if near(ay,by):key=('h',round(ay,9));span=(ax,bx)
-        elif near(ax,bx):key=('v',round(ax,9));span=(ay,by)
-        elif near(abs(bx-ax),abs(by-ay)):
-            slope=1 if (bx-ax)*(by-ay)>0 else -1
-            key=(str(slope),round(ay-slope*ax,9));span=(ax,bx)
-        else:raise ValueError('Line direction')
-        rows[key].append(tuple(sorted(span)))
-    answer=[]
-    for (direction,offset),spans in sorted(rows.items()):
-        joined=[]
-        for a,b in sorted(spans):
-            if joined and a<=joined[-1][1]+EPS:joined[-1]=(joined[-1][0],max(b,joined[-1][1]))
-            else:joined.append((a,b))
-        for a,b in joined:
-            if direction=='h':ends=((a,offset),(b,offset))
-            elif direction=='v':ends=((offset,a),(offset,b))
-            else:ends=((a,int(direction)*a+offset),(b,int(direction)*b+offset))
-            answer.append(line(*ends))
-    return answer
 
 
 def circle_relations(circles):

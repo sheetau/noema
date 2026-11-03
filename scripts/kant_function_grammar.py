@@ -21,13 +21,20 @@ def expression_type(node,scope,words,depth=0):
         inner=(*scope,*((p['name'],p['sort']) for p in node['parameters']))
         return function_sort([p['sort'] for p in node['parameters']],
             expression_type(node['body'],inner,words,depth+1))
-    if kind=='apply':
-        type_=expression_type(node['function'],scope,words,depth+1)
-        require_function(type_)
+    if kind in ('apply','quoted_application'):
+        actual=expression_type(node['function'],scope,words,depth+1)
+        type_=application_type(kind,actual)
         if len(node['arguments'])!=len(type_['parameters']):raise ValueError('Function argument count mismatch')
+        if kind=='quoted_application':
+            descriptions=[require_description(expression_type(a,scope,words,depth+1)) for a in node['arguments']]
+            rank=max([actual.get('rank',0)]+[t.get('rank',0) for t in descriptions])
+            return description_sort(type_['result'],rank)
         return type_['result']
     if kind=='quote':
         return description_sort(expression_type(node['body'],(),words,depth+1),node.get('rank',0))
+    if kind in ('quoted_lift','disquote'):
+        actual=require_description(expression_type(node['description'],scope,words,depth+1))
+        return description_sort(actual,actual.get('rank',0)) if kind=='quoted_lift' else actual['result']
     if kind in ('and','or','implies','equal','not','forall','exists','evaluate'):return 'truth'
     raise ValueError('Unsupported expression in visible function type inference')
 
@@ -36,3 +43,14 @@ def require_function(type_):
     if not isinstance(type_,dict) or type_.get('kind')!='function':
         raise ValueError('Visible application requires a function type')
     return type_
+
+
+def require_description(type_):
+    if not isinstance(type_,dict) or type_.get('kind')!='description':
+        raise ValueError('Visible quotation operation requires a description type')
+    return type_
+
+
+def application_type(kind,type_):
+    if kind=='quoted_application':type_=require_description(type_)['result']
+    return require_function(type_)

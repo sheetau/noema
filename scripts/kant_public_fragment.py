@@ -29,13 +29,14 @@ from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
-from scripts.kant_function_grammar import expression_type,require_function
+from scripts.kant_function_grammar import expression_type,application_type,require_description
 
-VERSION = 'kant-public-fragment-16-function-application'
+VERSION = 'kant-public-fragment-17-quotation-operations'
+APPLICATIONS = frozenset(('apply','quoted_application'))
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
-         'quote_raise': 1, 'bound_shift': 1,
+         'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1,
          'forall_typed': 1, 'exists_typed': 1, 'lambda_typed': 1,
          **dict.fromkeys(TYPE_TOKENS | LIST_TOKENS, 0)}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
@@ -56,6 +57,9 @@ GRAMMAR = {
     'lambda_individual': ((LARGE, 'offset', 4, 'radius'),),
     'evaluate': ((MEDIUM, 'offset-left', 1, 'radius'),),
     'apply': ((LARGE, 'offset-left', 1, 'radius'),),
+    'quoted_application': ((LARGE, 'small-upper-left-rim', 1, 'radius'),),
+    'quoted_lift': ((LARGE, 'small-upper-right-rim', 3, 'radius'),),
+    'disquote': ((LARGE, 'small-lower-left-rim', 7, 'radius'),),
     'quote_raise': ((LARGE, 'nested', 1, 'radius'),),
     'bound_shift': ((MEDIUM, 'offset-left', 7, 'radius'),),
     'forall_typed': ((LARGE, 'offset-left', 4, 'radius'),),
@@ -91,7 +95,7 @@ def reserved_forms():
 
 
 def arity(token):
-    if token=='apply':raise ValueError('Application arity requires the visible function type')
+    if token in APPLICATIONS:raise ValueError('Application arity requires the visible function type')
     if token in ARITY:
         return ARITY[token]
     return len(words()[token][1]['parameters'])
@@ -175,6 +179,16 @@ def forms(token, x=0., y=PITCH):
         return [result]
     result = []
     for radius, pair, direction, mode in GRAMMAR[token]:
+        if pair in ('small-upper-left-rim','small-upper-right-rim','small-lower-left-rim'):
+            # One rail of vertical separation, with the small center exactly
+            # on the large rim. Both external ports remain on the large ring.
+            g=nucleus(x,y,radius,None,direction,mode=mode)
+            sx=1 if pair=='small-upper-right-rim' else -1
+            sy=1 if pair=='small-lower-left-rim' else -1
+            g['shapes'].append(circle(x+sx*math.sqrt(radius**2-PITCH**2),y+sy*PITCH,SMALL))
+            g.update(pair=pair,companion=SMALL)
+            result.append(g)
+            continue
         special = pair == 'small-concentric'
         g = nucleus(x, y, radius, None if special else 'offset-left' if pair=='small-offset-left' else pair,
                     direction, mode=mode, companion=SMALL if pair=='small-offset-left' else None)
@@ -234,9 +248,13 @@ def split(node, scope=()):
         children,child_scope = [node['body']],(*scope,*(p['name'] for p in params))
     elif kind == 'evaluate' and set(node) == {'kind','content','situation'}:
         token,children,child_scope = kind,[node['content'],node['situation']],scope
-    elif kind == 'apply' and set(node) == {'kind','function','arguments'}:
+    elif kind in APPLICATIONS and set(node) == {'kind','function','arguments'}:
         if not isinstance(node['arguments'],list):raise ValueError('Expected function argument list')
         token,children,child_scope = kind,[node['function'],*node['arguments']],scope
+    elif kind in ('quoted_lift','disquote') and set(node) in ({'kind','description'},{'kind','description','rank'}):
+        if 'rank' in node and (kind!='disquote' or type(node['rank']) is not int or node['rank']<0):
+            raise ValueError('Invalid disquotation rank')
+        token,children,child_scope = kind,[node['description']],scope
     elif kind in ('and', 'or', 'implies', 'equal', 'not') and set(node) == {'kind', 'arguments'}:
         token, children, child_scope = kind, node['arguments'], scope
         if not isinstance(children, list):
@@ -267,7 +285,7 @@ def split(node, scope=()):
             token, children, child_scope = 'bound_shift', [node], scope[:-1]
     else:
         raise ValueError('Native constructor outside this fragment')
-    if token!='apply' and len(children) != arity(token):
+    if token not in APPLICATIONS and len(children) != arity(token):
         raise ValueError('Public arity mismatch')
     return token, children, child_scope
 
@@ -308,7 +326,7 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
             if i==len(parts)-1 and extra_sides:event['extra_sides']=list(extra_sides)
             output.append(event)
     def application(token,children,child_scope,path,output,allow_branches,supplied=()):
-        order=side_order(token,supplied,count=len(children) if token=='apply' else None)
+        order=side_order(token,supplied,count=len(children) if token in APPLICATIONS else None)
         limit=(branch_limits or {}).get(path,len(order) if multiple else 1)
         attached={}
         if branch and allow_branches and path not in unbranched and (not supplied or multiple):
@@ -697,7 +715,7 @@ def _decode(shapes):
             index = position; position += 1
             token = linear[index]
             sides = branches.get(main[index],[])
-        count = None if token=='apply' else arity(token)
+        count = None if token in APPLICATIONS else arity(token)
         if count is not None and sides and len(sides)>=count:
             raise ValueError('Unexpected terminal dependency')
         if token in TYPE_TOKENS | LIST_TOKENS:
@@ -715,17 +733,17 @@ def _decode(shapes):
             if attached:
                 raise ValueError('Arguments attached to a bare function reference')
             return dict(kind='function_ref', symbol=name)
-        if token == 'apply':
+        if token in APPLICATIONS:
             # The function is always child zero on the main continuation.
             # Its public type supplies arity before any argument is consumed.
             function=read(scope)
-            type_=require_function(expression_type(function,scope,words()))
+            type_=application_type(token,expression_type(function,scope,words()))
             count=1+len(type_['parameters'])
             order=side_order(token,count=count)
             if len(sides)>len(order):raise ValueError('Too many branches for the visible function type')
             attached=dict(zip(order,sides))
             arguments=[read(scope,attached[i]) if i in attached else read(scope) for i in range(1,count)]
-            return dict(kind='apply',function=function,arguments=arguments)
+            return dict(kind=token,function=function,arguments=arguments)
         if token == 'bound_shift':
             if len(scope) < 3:
                 raise ValueError('Outward reference outside the visible scope')
@@ -789,6 +807,10 @@ def _decode(shapes):
             return dict(kind='lambda',parameters=[dict(name=child_scope[-1][0],sort='individual')],body=children[0])
         if token == 'evaluate':
             return dict(kind='evaluate',content=children[0],situation=children[1])
+        if token in ('quoted_lift','disquote'):
+            actual=require_description(expression_type(children[0],scope,words()))
+            rank=actual.get('rank',0) if token=='disquote' else 0
+            return dict(kind=token,description=children[0],**({'rank':rank} if rank else {}))
         return dict(kind=token, arguments=children)
     result = dict(kind='assert', body=read(()))
     if position != len(main):
