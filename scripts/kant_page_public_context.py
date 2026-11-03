@@ -23,6 +23,7 @@ BRIDGE = 'data/kant-public-revolution-visible-bridge-v1.json'
 EVIDENCE = 'reports/kant-public-revolution-visible-v1.json'
 REFERENCE_SPELLINGS = 'data/kant-reference-spellings-v1.json'
 DISCOURSE_SPELLINGS = 'data/kant-public-discourse-spellings-v1.json'
+FRAMING_SPELLINGS = 'data/kant-framing-spellings-v1.json'
 
 
 @lru_cache(maxsize=1)
@@ -128,7 +129,7 @@ def semantic_spellings(specification,path,bridge,read_basis):
     return result,paths
 
 
-@lru_cache(maxsize=2)
+@lru_cache(maxsize=3)
 def load_semantic_spellings(path):
     specification=json.loads((ROOT/path).read_text(encoding='utf-8'))
     return semantic_spellings(specification,path,inputs()['bridge'],
@@ -151,3 +152,13 @@ def discourse_context(compact=True):
     discourse,_=load_semantic_spellings(DISCOURSE_SPELLINGS)
     if references.keys() & discourse.keys():raise ValueError('Repeated semantic spelling declaration')
     return LexicalContext(inputs()['native'],compact=compact,declared_spellings=references|discourse)
+
+
+@lru_cache(maxsize=2)
+def framing_context(compact=True):
+    prior=discourse_context(compact)
+    framing,_=load_semantic_spellings(FRAMING_SPELLINGS)
+    if prior.declared_spellings.keys() & framing.keys():
+        raise ValueError('Repeated semantic spelling declaration')
+    return LexicalContext(inputs()['native'],compact=compact,
+                          declared_spellings=prior.declared_spellings|framing)

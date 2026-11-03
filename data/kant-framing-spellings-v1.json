@@ -1,0 +1,144 @@
+{
+  "schema": "kant-semantic-spellings-2",
+  "meaning_basis": "data/kant-reviewed-complete-basis-v1.json",
+  "naming_convention": "book・insideを記述を用いた提示の語群として用い、giveは提示関係、candidateexcludedは対象と描写の記述同一性を除く区別の手掛かりとする。give・book・aki・methodpossibleは仮定的一人称例の公開名であり、akiの個体や著者自身を例の話者に固定しない。book・methodpossible・candidatecontingentは仮定下の不確かな跳躍の文章箇所、末尾のinsideは不慣れによる理由節まで含む箇所との区別に用いる。全て複合語全体の語彙規約で、根語の論理的適用や一般造語規則ではない。描写の真理、現実の不実行、内容の単なる否定を補わない。綴りを文番号・登録順・ハッシュから生成しない。",
+  "entries": {
+    "qa": {
+      "parts": [
+        "book",
+        "inside",
+        "give"
+      ],
+      "kind": "primitive",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "meaning_ja": "その文脈の談話節点で、著者が対象の性質記述を、別の性質記述を用いた非字義的な描写として提示する。二つの記述の人物引数を対応させる。描写を現実の出来事として断言することや、両内容の真偽の同一性は含まない。",
+      "declaration_sha256": "915838611ec58cd9f821a8e952e01613f935d900c6243e0e3f06875e67bebdf4"
+    },
+    "qh": {
+      "parts": [
+        "book",
+        "inside",
+        "candidateexcluded"
+      ],
+      "kind": "definition",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "meaning_ja": "対象と描写の記述が異なり、qaの非字義的な提示関係がある。どちらの記述の内容も実行評価しない。",
+      "declaration_sha256": "828d3d6bbc0df3b2fb2d9dc967002a8d371241eb8be5a9c2d730a756f0247a2a"
+    },
+    "s4": {
+      "parts": [
+        "give",
+        "book",
+        "aki",
+        "methodpossible"
+      ],
+      "kind": "primitive",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "content"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "meaning_ja": "著者がその箇所で、人物を引数とする内容の記述を、仮定的な一人称の例として提示する。人物引数は例の話者位置であり、著者と同一だと固定せず、実在者全員に成立するとも断言しない。",
+      "declaration_sha256": "b92f3027649143bd29a2d537ce5b087a72d35aa311f78c48da7bfc70194f0c12"
+    },
+    "s3": {
+      "parts": [
+        "book",
+        "aki",
+        "methodpossible",
+        "book"
+      ],
+      "kind": "primitive",
+      "parameters": [],
+      "result": "individual",
+      "meaning_ja": "三つの代替供給例を含む一人称条件文の談話箇所。直前の便宜さの文や後続の支払いの文を含めない。",
+      "declaration_sha256": "7947ca807c363fffb24405cc83864fb8a6eec1173147fe63f4a38da1d40ba85f"
+    },
+    "h3a": {
+      "parts": [
+        "book",
+        "methodpossible",
+        "candidatecontingent"
+      ],
+      "kind": "primitive",
+      "parameters": [],
+      "result": "individual",
+      "meaning_ja": "足枷を取り払った場合の不確かな跳躍を提示する条件文の談話箇所。後続の不慣れによる説明は含めない。",
+      "declaration_sha256": "d33d4b85cc999bae053b26beae43321ff7e70c0c173fd52d8e89b0f42fd1e41d"
+    },
+    "h3s": {
+      "parts": [
+        "book",
+        "methodpossible",
+        "candidatecontingent",
+        "inside"
+      ],
+      "kind": "primitive",
+      "parameters": [],
+      "result": "individual",
+      "meaning_ja": "足枷の除去を仮定する条件文に、不慣れという理由節を接続して提示する談話箇所。",
+      "declaration_sha256": "8841d88ef2c5dab74b427c24f3036daaf989118a66341c086b7f14f24628ecc6"
+    }
+  }
+}

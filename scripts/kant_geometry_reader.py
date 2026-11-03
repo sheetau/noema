@@ -13,10 +13,30 @@ from scripts.balanced_circle_script import (
 from scripts.kant_geometry_rules import geometry_check
 from scripts.visible_syntax_geometry import clean
 
-VERSION='kant-observable-geometry-2'
+VERSION='kant-observable-geometry-3'
 
 
 def point(x,y):return (round(x,7),round(y,7))
+
+
+def canonical_vertices(points):
+    """Identify coincident cuts using the existing geometric tolerance.
+
+    Decimal rounding alone can put a computed intersection and its endpoint
+    on opposite sides of a rounding boundary. Do not turn that into a spur.
+    Sorted representatives make the result independent of SVG element order;
+    compare with representatives, not transitive chains of nearby points.
+    """
+    buckets=defaultdict(list);result={}
+    for p in sorted(points):
+        cell=tuple(math.floor(v/EPS) for v in p)
+        close=[q for dx in (-1,0,1) for dy in (-1,0,1)
+               for q in buckets.get((cell[0]+dx,cell[1]+dy),()) if math.dist(p,q)<EPS]
+        if len(close)>1:raise ValueError('Ambiguous geometric vertex within tolerance')
+        if close:result[p]=close[0]
+        else:
+            result[p]=p;buckets[cell].append(p)
+    return result
 
 
 def merged_lines(shapes):
@@ -81,7 +101,9 @@ def stroke_graph(circles,lines):
             t=((bx-ax)*vy-(by-ay)*vx)/det;u=((bx-ax)*uy-(by-ay)*ux)/det
             if -EPS<=t<=1+EPS and -EPS<=u<=1+EPS:
                 p=point(ax+t*ux,ay+t*uy);cuts[i].add(p);cuts[j].add(p)
-    points=sorted(set().union(*cuts)) if cuts else []
+    canonical=canonical_vertices(set().union(*cuts)) if cuts else {}
+    cuts=[{canonical[p] for p in items} for items in cuts]
+    points=sorted(set(canonical.values()))
     indices={p:i for i,p in enumerate(points)};edges=set()
     for s,items in zip(lines,cuts):
         ordered=sorted(items,key=lambda p:math.dist((s['x1'],s['y1']),p))
