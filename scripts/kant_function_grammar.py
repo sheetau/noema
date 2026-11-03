@@ -3,7 +3,7 @@
 This supplies the arity of an already read function. It neither evaluates a
 function nor replaces the final native syntax/type validation.
 """
-from noema.constructed_discourse import function_sort,description_sort,sequence_sort
+from noema.constructed_discourse import function_sort,description_sort,sequence_sort,question_sort
 
 
 def expression_type(node,scope,words,depth=0):
@@ -14,6 +14,12 @@ def expression_type(node,scope,words,depth=0):
     if kind=='length':return 'number'
     if kind=='concat':return expression_type(node['left'],scope,words,depth+1)
     if kind=='fold':return expression_type(node['initial'],scope,words,depth+1)
+    if kind=='question':
+        actual=require_function(expression_type(node['function'],scope,words,depth+1))
+        if actual['result']!='truth':raise ValueError('Question requires a truth-valued function')
+        return question_sort(actual['parameters'])
+    if kind=='message':return 'message'
+    if kind=='message_content':return 'content'
     if kind in ('call','function_ref'):
         if node['symbol'] not in words:raise ValueError('Unknown public function or value')
         entry=words[node['symbol']][1]
@@ -41,7 +47,7 @@ def expression_type(node,scope,words,depth=0):
         actual=require_description(expression_type(node['description'],scope,words,depth+1))
         return description_sort(actual,actual.get('rank',0)) if kind=='quoted_lift' else actual['result']
     if kind=='content':return 'content'
-    if kind in ('and','or','implies','equal','not','forall','exists','evaluate','position'):return 'truth'
+    if kind in ('and','or','implies','equal','not','forall','exists','evaluate','position','iff','answer_matches'):return 'truth'
     raise ValueError('Unsupported expression in visible function type inference')
 
 
@@ -54,6 +60,12 @@ def require_function(type_):
 def require_description(type_):
     if not isinstance(type_,dict) or type_.get('kind')!='description':
         raise ValueError('Visible quotation operation requires a description type')
+    return type_
+
+
+def require_question(type_):
+    if not isinstance(type_,dict) or type_.get('kind')!='question':
+        raise ValueError('Visible answer matching requires a question type')
     return type_
 
 

@@ -29,17 +29,20 @@ from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
-from scripts.kant_function_grammar import expression_type,application_type,require_description
+from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-21-sequences'
+VERSION = 'kant-public-fragment-22-questions-messages'
 APPLICATIONS = frozenset(('apply','quoted_application'))
-DYNAMIC_ARITY = APPLICATIONS | {'sequence'}
+SIGNATURE_HEADS = APPLICATIONS | {'answer_matches'}
+DYNAMIC_ARITY = SIGNATURE_HEADS | {'sequence'}
+MESSAGE_FORCES = ('assert','ask','direct')
 SEQUENCE_FIELDS = {'length':('sequence',),'position':('sequence','index','value'),
                    'concat':('left','right'),'fold':('sequence','initial','step')}
 RAIL_PAIRS={'small-upper-left-rim':(-1,-1),'small-upper-right-rim':(1,-1),
             'small-lower-left-rim':(-1,1),'small-lower-right-rim':(1,1)}
-ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
+ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1, 'iff': 2,
+         'question': 1, 'message_content': 1, **{'message_'+force:1 for force in MESSAGE_FORCES},
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
          'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1, 'content': 1,
@@ -92,6 +95,13 @@ GRAMMAR = {
     'position': ((LARGE, 'offset', 2, 'radius'),),
     'concat': ((LARGE, 'offset', 5, 'radius'),),
     'fold': ((LARGE, 'offset', 3, 'radius'),),
+    'iff': ((LARGE, 'offset-left', 1, 'outer'),),
+    'question': ((LARGE, 'nested', 7, 'radius'),),
+    'answer_matches': ((LARGE, 'offset-left', 7, 'radius'),),
+    'message_assert': ((LARGE, 'small-upper-left-rim', 0, 'radius'),),
+    'message_ask': ((LARGE, 'small-upper-left-rim', 2, 'radius'),),
+    'message_direct': ((LARGE, 'small-upper-left-rim', 4, 'radius'),),
+    'message_content': ((LARGE, 'small-upper-left-rim', 1, 'outer'),),
 }
 
 
@@ -111,6 +121,7 @@ def reserved_forms():
 
 def arity(token):
     if token in APPLICATIONS:raise ValueError('Application arity requires the visible function type')
+    if token=='answer_matches':raise ValueError('Answer arity requires the visible question type')
     if token=='sequence':raise ValueError('Sequence arity requires its delimited item list')
     if token in ARITY:
         return ARITY[token]
@@ -254,6 +265,16 @@ def split(node, scope=()):
         token,children,child_scope=kind,node['items'],scope
     elif kind in SEQUENCE_FIELDS and set(node)=={'kind',*SEQUENCE_FIELDS[kind]}:
         token,children,child_scope=kind,[node[k] for k in SEQUENCE_FIELDS[kind]],scope
+    elif kind=='question' and set(node)=={'kind','function'}:
+        token,children,child_scope=kind,[node['function']],scope
+    elif kind=='answer_matches' and set(node)=={'kind','question','arguments'}:
+        if not isinstance(node['arguments'],list):raise ValueError('Expected answer argument list')
+        token,children,child_scope=kind,[node['question'],*node['arguments']],scope
+    elif kind=='message' and set(node)=={'kind','force','content'}:
+        if node['force'] not in MESSAGE_FORCES:raise ValueError('Unknown message force')
+        token,children,child_scope='message_'+node['force'],[node['content']],scope
+    elif kind=='message_content' and set(node)=={'kind','message'}:
+        token,children,child_scope=kind,[node['message']],scope
     elif kind == 'call' and set(node) == {'kind', 'symbol', 'arguments'}:
         token = node['symbol']
         if token not in words() or not isinstance(node['arguments'], list):
@@ -280,7 +301,7 @@ def split(node, scope=()):
         if 'rank' in node and (kind!='disquote' or type(node['rank']) is not int or node['rank']<0):
             raise ValueError('Invalid disquotation rank')
         token,children,child_scope = kind,[node['description']],scope
-    elif kind in ('and', 'or', 'implies', 'equal', 'not') and set(node) == {'kind', 'arguments'}:
+    elif kind in ('and', 'or', 'implies', 'equal', 'not', 'iff') and set(node) == {'kind', 'arguments'}:
         token, children, child_scope = kind, node['arguments'], scope
         if not isinstance(children, list):
             raise ValueError('Expected argument list')
@@ -792,17 +813,19 @@ def _decode(shapes):
             if attached:
                 raise ValueError('Arguments attached to a bare function reference')
             return dict(kind='function_ref', symbol=name)
-        if token in APPLICATIONS:
-            # The function is always child zero on the main continuation.
+        if token in SIGNATURE_HEADS:
+            # The function/question is child zero on the main continuation.
             # Its public type supplies arity before any argument is consumed.
-            function=read(scope)
-            type_=application_type(token,expression_type(function,scope,words()))
+            head=read(scope)
+            actual=expression_type(head,scope,words())
+            type_=require_question(actual) if token=='answer_matches' else application_type(token,actual)
             count=1+len(type_['parameters'])
             order=side_order(token,count=count)
-            if len(sides)>len(order):raise ValueError('Too many branches for the visible function type')
+            if len(sides)>len(order):
+                raise ValueError('Too many branches for the visible '+('question' if token=='answer_matches' else 'function')+' type')
             attached=dict(zip(order,sides))
             arguments=[read(scope,attached[i]) if i in attached else read(scope) for i in range(1,count)]
-            return dict(kind=token,function=function,arguments=arguments)
+            return dict(kind=token,**{('question' if token=='answer_matches' else 'function'):head},arguments=arguments)
         if token == 'bound_shift':
             if len(scope) < 3:
                 raise ValueError('Outward reference outside the visible scope')
@@ -849,6 +872,10 @@ def _decode(shapes):
             return dict(kind='call', symbol=token, arguments=children)
         if token in SEQUENCE_FIELDS:
             return dict(kind=token,**dict(zip(SEQUENCE_FIELDS[token],children)))
+        if token=='question':return dict(kind=token,function=children[0])
+        if token=='message_content':return dict(kind=token,message=children[0])
+        if token.startswith('message_'):
+            return dict(kind='message',force=token.removeprefix('message_'),content=children[0])
         if token.startswith('bound'):
             distance = int(token[-1])
             if distance >= len(scope):
