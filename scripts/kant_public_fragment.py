@@ -32,7 +32,7 @@ from scripts.kant_scoped_types import TYPE_TOKENS, LIST_TOKENS, type_tokens, typ
 from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-25-type-references'
+VERSION = 'kant-public-fragment-26-new-names'
 DECLARATION_TOKENS = frozenset(('primitive', 'definition'))
 STATEMENT_TOKENS = frozenset(('ask_truth', 'suppose'))
 APPLICATIONS = frozenset(('apply','quoted_application'))
@@ -44,7 +44,7 @@ SEQUENCE_FIELDS = {'length':('sequence',),'position':('sequence','index','value'
 RAIL_PAIRS={'small-upper-left-rim':(-1,-1),'small-upper-right-rim':(1,-1),
             'small-lower-left-rim':(-1,1),'small-lower-right-rim':(1,1)}
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1, 'iff': 2,
-         'question': 1, 'message_content': 1, **{'message_'+force:1 for force in MESSAGE_FORCES},
+         'question': 1, 'message_content': 1, 'full_name': 0, **{'message_'+force:1 for force in MESSAGE_FORCES},
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
          'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1, 'content': 1,
@@ -108,6 +108,7 @@ GRAMMAR = {
     'suppose': ((LARGE, 'small-upper-left-rim', 7, 'radius'),),
     'primitive': ((LARGE, 'small-upper-right-rim', 0, 'radius'),),
     'definition': ((LARGE, 'small-upper-right-rim', 4, 'radius'),),
+    'full_name': ((LARGE, 'small-upper-right-rim', 2, 'radius'),),
 }
 
 
@@ -213,8 +214,12 @@ def validate_native(statement):
     return statement
 
 
-def validate_declaration(declaration):
-    if declaration.get('name') not in parts_for():
+def validate_declaration(declaration, *, new_name=False):
+    if new_name:
+        from scripts.visible_word_forms import read_symbol
+        if read_symbol(declaration.get('name'),vocabulary()).kind not in ('root','compound'):
+            raise ValueError('Declaration requires a root or compound name')
+    elif declaration.get('name') not in parts_for():
         raise ValueError('Declaration requires a published name spelling')
     used=used_words(declaration)
     if declaration['name'] in used:
@@ -382,9 +387,10 @@ def event_count(stream):
 
 
 def events(statement, branch=True, sharing=True, subexpressions=True, unbranched=(),nested=True,
-           multiple=False,branch_limits=None):
+           multiple=False,branch_limits=None,full_names=False):
     is_declaration=statement.get('kind') in DECLARATION_TOKENS
-    (validate_declaration if is_declaration else validate_native)(statement)
+    if is_declaration:validate_declaration(statement,new_name=full_names)
+    else:validate_native(statement)
     result = []
     def contains_sharing(node,scope):
         if shared_argument_token(node,scope) is not None:return True
@@ -463,7 +469,14 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
     if is_declaration:
         kind=statement['kind']
         emit(kind,None,(),result)
-        emit(statement['name'],None,(),result)
+        if full_names:
+            from scripts.visible_word_forms import read_symbol
+            emit('full_name',None,(),result)
+            word=read_symbol(statement['name'],vocabulary())
+            for part in word.parts:
+                result.append(dict(token=symbol(Word('root',(part,)),vocabulary()),side=None,depth=0,path=[]))
+            emit('types_end',None,(),result)
+        else:emit(statement['name'],None,(),result)
         parameters=statement['parameters']
         types=parameters if kind=='primitive' else [p['sort'] for p in parameters]
         for token in type_list_tokens(types):emit(token,None,(),result)
@@ -486,14 +499,14 @@ def compile_declaration(declaration, **options):
     return _compile_item(declaration,**options)
 
 
-def _compile_item(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True,multiple=False):
+def _compile_item(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True,multiple=False,full_names=False):
     with use_context(lexicon):
         unbranched=set();branch_limits={}
         while True:
             try:
                 drawing=_compile_statement(statement, branch=branch, silent=silent, sharing=sharing,
                     local_checks=local_checks,contacts=contacts,subexpressions=subexpressions,unbranched=unbranched,
-                    interleave=interleave,nested=nested,multiple=multiple,branch_limits=branch_limits)
+                    interleave=interleave,nested=nested,multiple=multiple,branch_limits=branch_limits,full_names=full_names)
                 drawing['unbranched_paths']=[list(p) for p in sorted(unbranched)]
                 if multiple:drawing['branch_limits']=[dict(path=list(p),maximum=k) for p,k in sorted(branch_limits.items())]
                 return drawing
@@ -586,10 +599,10 @@ def word_branch(token, main, moment, depth, *, contacts=True):
     return dict(shapes=shapes,paths=paths,port=first_port,centers=centers,invisible=invisible)
 
 
-def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True,subexpressions=True,unbranched=(),interleave=True,nested=True,multiple=False,branch_limits=None):
+def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True,subexpressions=True,unbranched=(),interleave=True,nested=True,multiple=False,branch_limits=None,full_names=False):
     """Reuse the Kant search with public glyphs and visible terminal arguments."""
     stream = events(statement, branch, sharing, subexpressions,unbranched,nested and interleave,
-        multiple and interleave,branch_limits)
+        multiple and interleave,branch_limits,full_names)
     if interleave and any(isinstance(e['side'],list) or e.get('extra_sides') for e in stream):
         from scripts.kant_interleaved_layout import compile_stream
         try:return compile_stream(stream,contacts=contacts)
@@ -756,6 +769,11 @@ def decode_declaration(shapes, *, lexicon=None):
         return _decode(shapes,declaration=True)
 
 
+def decode_item(shapes, *, lexicon=None):
+    with use_context(lexicon):
+        return _decode(shapes,declaration=None)
+
+
 def _decode(shapes, *, declaration=False):
     geometry = read_geometry(shapes)
     flow = decompose_flow(geometry,terminal_words=True,branch_seams=True,large_branches=True,
@@ -841,7 +859,7 @@ def _decode(shapes, *, declaration=False):
             raise ValueError('Type constructor outside a visible type header')
         if token in STATEMENT_TOKENS:
             raise ValueError('Statement head inside an expression')
-        if token in DECLARATION_TOKENS:
+        if token in DECLARATION_TOKENS or token=='full_name':
             raise ValueError('Declaration head inside an expression')
         if token=='sequence':
             element=read_type(take_type_token)
@@ -1004,14 +1022,37 @@ def _decode(shapes, *, declaration=False):
         elif isinstance(actual,dict) and actual.get('kind')=='question':kind='ask'
         else:raise ValueError('Statement body has wrong sort')
         return dict(kind=kind,body=body)
+    new_name=False
+    def read_full_name():
+        nonlocal position
+        from scripts.visible_word_forms import MAX_PARTS,read_symbol
+        take_statement_token()
+        parts=[];previous=None
+        while position<len(main) and linear[position]!='types_end':
+            token=linear[position]
+            if token not in root_words():raise ValueError('Full name requires root components')
+            if len(parts)>=MAX_PARTS:raise ValueError('Full name component budget')
+            if main[position] in branches or position in stops:
+                raise ValueError('Full name cannot carry branches or lexical seams')
+            current=main[position]
+            if previous is not None:lexical_pairs.add(tuple(sorted((previous,current))))
+            previous=current;position+=1
+            parts.append(read_symbol(token,vocabulary()).parts[0])
+        if not parts:raise ValueError('Empty full name')
+        if position>=len(main):raise ValueError('Missing full name end')
+        take_statement_token()
+        return symbol(Word('root' if len(parts)==1 else 'compound',tuple(parts)),vocabulary())
     def read_declaration():
-        nonlocal serial
+        nonlocal serial,new_name
         if not main or linear[position] not in DECLARATION_TOKENS:
             raise ValueError('Expected a visible declaration head')
         kind=take_statement_token()
         if position>=len(main):raise ValueError('Missing declaration name')
-        name,sides=take_word()
-        if sides:raise ValueError('Declaration name cannot carry arguments')
+        if linear[position]=='full_name':
+            name=read_full_name();new_name=True
+        else:
+            name,sides=take_word()
+            if sides:raise ValueError('Declaration name cannot carry arguments')
         types=read_type_list(take_type_token)
         if kind=='primitive':
             return dict(kind=kind,name=name,parameters=types,result=read_type(take_type_token))
@@ -1020,6 +1061,7 @@ def _decode(shapes, *, declaration=False):
         scope=tuple((p['name'],p['sort']) for p in parameters)
         body=read(scope)
         return dict(kind=kind,name=name,parameters=parameters,result=expression_type(body,scope,words()),body=body)
+    if declaration is None:declaration=bool(main and linear[position] in DECLARATION_TOKENS)
     result = read_declaration() if declaration else read_statement()
     if position != len(main):
         raise ValueError('Trailing visible words')
@@ -1030,4 +1072,4 @@ def _decode(shapes, *, declaration=False):
         if pair not in lexical_pairs or any(
             flow['nuclei'][i]['size']!='medium' or len(flow['nuclei'][i]['circles'])!=1 for i in pair):
             raise ValueError('Contact must join two single medium components of one word or numeral')
-    return (validate_declaration if declaration else validate_native)(result)
+    return validate_declaration(result,new_name=new_name) if declaration else validate_native(result)
