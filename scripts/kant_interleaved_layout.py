@@ -195,7 +195,7 @@ def _compile_stream(stream, *, contacts=True, lookahead=False, frontier_window=T
                     found=True
                 if found and not contact:break
         if not choices:
-            raise p.PlacementFailure('No interleaved placement: '+token+' at '+str(event['path']),
+            raise p.PlacementFailure('No interleaved placement: '+str(token)+' at '+str(event['path']),
                 [tuple(e['path']) for e in stream if isinstance(e['side'],list)])
         _,glyph,local,local_paths,edge,start_port,entry_port,delta=min(choices,key=lambda c:c[0])
         group=dict(glyph=glyph,event=event,ports=[] if entry_port is None else [entry_port],

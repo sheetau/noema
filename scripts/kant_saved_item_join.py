@@ -17,7 +17,8 @@ def endpoints(shapes):
         x, y = nucleus['center']
         return dict(x=x, y=y, radius={'small': SMALL, 'medium': MEDIUM, 'large': LARGE}[nucleus['size']])
     first = flow['nuclei'][flow['main'][0]]
-    token = writing.table()[writing.feature(geometry, first['circles'])]
+    from scripts.kant_root_overlap import nucleus_tokens
+    token = nucleus_tokens(geometry,first)[0][0]
     return port(flow['main'][0]), port(flow['main'][-1]), token
 
 

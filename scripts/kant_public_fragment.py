@@ -32,7 +32,7 @@ from scripts.kant_scoped_types import TYPE_TOKENS, LIST_TOKENS, type_tokens, typ
 from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-28-item-runs'
+VERSION = 'kant-public-fragment-29-root-overlap'
 DECLARATION_TOKENS = frozenset(('primitive', 'definition'))
 STATEMENT_TOKENS = frozenset(('ask_truth', 'suppose'))
 APPLICATIONS = frozenset(('apply','quoted_application'))
@@ -253,6 +253,9 @@ def validate_spelling(record):
 
 
 def forms(token, x=0., y=PITCH):
+    if isinstance(token,tuple):
+        from scripts.kant_root_overlap import forms as overlap_forms
+        return overlap_forms(token,x,y)
     if token not in GRAMMAR:
         result = _glyph(root_words()[token][1]['form'], x, y)
         return [result]
@@ -531,14 +534,14 @@ def compile_spelling(record, **options):
     return _compile_item(record,**options)
 
 
-def _compile_item(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True,multiple=False,full_names=False):
+def _compile_item(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True,multiple=False,full_names=False,overlap=False):
     with use_context(lexicon):
         unbranched=set();branch_limits={}
         while True:
             try:
                 drawing=_compile_statement(statement, branch=branch, silent=silent, sharing=sharing,
                     local_checks=local_checks,contacts=contacts,subexpressions=subexpressions,unbranched=unbranched,
-                    interleave=interleave,nested=nested,multiple=multiple,branch_limits=branch_limits,full_names=full_names)
+                    interleave=interleave,nested=nested,multiple=multiple,branch_limits=branch_limits,full_names=full_names,overlap=overlap)
                 drawing['unbranched_paths']=[list(p) for p in sorted(unbranched)]
                 if multiple:drawing['branch_limits']=[dict(path=list(p),maximum=k) for p,k in sorted(branch_limits.items())]
                 return drawing
@@ -631,10 +634,13 @@ def word_branch(token, main, moment, depth, *, contacts=True):
     return dict(shapes=shapes,paths=paths,port=first_port,centers=centers,invisible=invisible)
 
 
-def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True,subexpressions=True,unbranched=(),interleave=True,nested=True,multiple=False,branch_limits=None,full_names=False):
+def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True,subexpressions=True,unbranched=(),interleave=True,nested=True,multiple=False,branch_limits=None,full_names=False,overlap=False):
     """Reuse the Kant search with public glyphs and visible terminal arguments."""
     stream = events(statement, branch, sharing, subexpressions,unbranched,nested and interleave,
         multiple and interleave,branch_limits,full_names)
+    if overlap:
+        from scripts.kant_root_overlap import compact_events
+        stream=compact_events(stream)
     if interleave and any(isinstance(e['side'],list) or e.get('extra_sides') for e in stream):
         from scripts.kant_interleaved_layout import compile_stream
         try:return compile_stream(stream,contacts=contacts)
@@ -661,7 +667,7 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
                 raise PlacementFailure(str(error),candidates) from error
             drawing=_compile_statement(statement,branch=branch,silent=silent,sharing=sharing,
                 local_checks=local_checks,contacts=contacts,subexpressions=subexpressions,
-                unbranched=unbranched,interleave=False,nested=False)
+                unbranched=unbranched,interleave=False,nested=False,overlap=overlap)
             drawing['layout']='serial-fallback'
             drawing['interleaving_failure']=str(error)
             return drawing
@@ -770,7 +776,7 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
                 if found and not touching:
                     break
         if not choices:
-            raise PlacementFailure('No legal public placement: '+token+' at '+str(event['path']),
+            raise PlacementFailure('No legal public placement: '+str(token)+' at '+str(event['path']),
                 [tuple(e['path']) for e in stream[:event_index+1] if isinstance(e['side'],list)])
         _, main, side, local, local_paths, edge, delta, right = min(choices, key=lambda c:c[0])
         shape_start, path_start = len(shapes), len(paths)
@@ -815,14 +821,10 @@ def decode_run(shapes, *, reader):
 
 def _decode(shapes, *, declaration=False, reader=None):
     geometry = read_geometry(shapes)
-    flow = decompose_flow(geometry,terminal_words=True,branch_seams=True,large_branches=True,
+    observed_flow = decompose_flow(geometry,terminal_words=True,branch_seams=True,large_branches=True,
         local_continuation=True,nested_branches=True,multiple_branches=True)
-    tokens = []
-    for nucleus_ in flow['nuclei']:
-        key = feature(geometry, nucleus_['circles'])
-        if key not in table():
-            raise ValueError('Unknown visible public word')
-        tokens.append(table()[key])
+    from scripts.kant_root_overlap import expand_flow
+    tokens,flow,expanded,overlap_pairs=expand_flow(geometry,observed_flow)
     # Only large terminal diagonals may end freely outside a circle in this
     # fragment. Do not silently prune arbitrary line-only decoration.
     for vertex in geometry['vertices']:
@@ -843,12 +845,14 @@ def _decode(shapes, *, declaration=False, reader=None):
     side_positions = {i for i,n in enumerate(main) if n in branches}
     for a, b in recover_seams(geometry,branch_seams=True):
         ends = []
-        for point in (a, b):
-            owners = [i for i, n in enumerate(flow['nuclei']) if any(
+        for endpoint,point in enumerate((a, b)):
+            owners = [i for i, n in enumerate(observed_flow['nuclei']) if any(
                 math.dist(geometry['circles'][c]['center'], point) < 1e-5 for c in n['circles'])]
-            if len(owners) != 1 or owners[0] not in locations:
+            if len(owners) != 1:
                 raise ValueError('Silent seam outside an expression flow')
-            ends.append(locations[owners[0]])
+            owner=expanded[owners[0]][-1 if endpoint==0 else 0]
+            if owner not in locations:raise ValueError('Silent seam outside an expression flow')
+            ends.append(locations[owner])
         (sa,ia),(sb,ib)=ends
         if sa!=sb or ib!=ia+1 or tokens[streams[sb][ib]] not in {*root_words(), 'quote'}:
             raise ValueError('Silent seam outside a word/quotation entry')
@@ -857,11 +861,13 @@ def _decode(shapes, *, declaration=False, reader=None):
     position = 0
     serial = 0
     lexical_pairs=set()
+    lexical_word_pairs=set()
     def take_word():
         nonlocal position
         start=position
         token, position = read_word(linear, position, stops=stops, sides=side_positions)
-        lexical_pairs.update(tuple(sorted(pair)) for pair in zip(main[start:position-1],main[start+1:position]))
+        pairs={tuple(sorted(pair)) for pair in zip(main[start:position-1],main[start+1:position])}
+        lexical_pairs.update(pairs);lexical_word_pairs.update(pairs)
         return token, branches.get(main[position-1],[])
     def take_type_token():
         nonlocal position
@@ -1073,7 +1079,9 @@ def _decode(shapes, *, declaration=False, reader=None):
             if main[position] in branches or position in stops:
                 raise ValueError('Full name cannot carry branches or lexical seams')
             current=main[position]
-            if previous is not None:lexical_pairs.add(tuple(sorted((previous,current))))
+            if previous is not None:
+                pair=tuple(sorted((previous,current)))
+                lexical_pairs.add(pair);lexical_word_pairs.add(pair)
             previous=current;position+=1
             parts.append(read_symbol(token,vocabulary()).parts[0])
         if not parts:raise ValueError('Empty full name')
@@ -1130,6 +1138,8 @@ def _decode(shapes, *, declaration=False, reader=None):
         if not result:raise ValueError('Empty visible item run')
     if position != len(main):
         raise ValueError('Trailing visible words')
+    if not overlap_pairs<=lexical_word_pairs:
+        raise ValueError('Overlapping roots must belong to one lexical word')
     owners={c:i for i,n in enumerate(flow['nuclei']) for c in n['circles']}
     for relation in geometry['relations']:
         if relation['kind']!='tangent':continue
