@@ -21,12 +21,16 @@ from scripts.kant_flow_reader import decompose_flow
 from scripts.visible_lexical_script import _glyph
 from scripts.visible_syntax_vocabulary import Vocabulary
 from scripts.visible_word_forms import Word, symbol
+from scripts.kant_public_lexicon import (
+    vocabulary, words, root_words, parts_for, read_word, mark_boundaries, declarations_for,
+)
 from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 
-VERSION = 'kant-public-fragment-2'
+VERSION = 'kant-public-fragment-3'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
-         'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0}
+         'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
+         'function_ref': 0}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
@@ -40,19 +44,8 @@ GRAMMAR = {
     'exists': ((LARGE, 'nested', 0, 'radius'),),
     'bound0': ((SMALL, None, None, 'none'),),
     'bound1': tuple((LARGE, 'small-concentric', d, 'outer') for d in (1, 7, 3, 5)),
+    'function_ref': tuple((LARGE, 'nested', d, 'radius') for d in (5, 3)),
 }
-
-
-@lru_cache(maxsize=1)
-def vocabulary():
-    return Vocabulary()
-
-
-@lru_cache(maxsize=1)
-def words():
-    v = vocabulary()
-    return {symbol(Word('root', (name,)), v): (name, entry)
-            for name, entry in v.document()['entries'].items()}
 
 
 @lru_cache(maxsize=1)
@@ -76,7 +69,20 @@ def arity(token):
 
 
 def validate_native(statement):
-    declarations = [vocabulary().declaration(name) for name, _ in words().values()]
+    used = set()
+    def collect(value):
+        if isinstance(value, dict):
+            if value.get('kind') in ('call', 'function_ref'):
+                used.add(value['symbol'])
+            for child in value.values():
+                collect(child)
+        elif isinstance(value, list):
+            for child in value:
+                collect(child)
+    collect(statement)
+    if not used <= words().keys():
+        raise ValueError('Unknown public word')
+    declarations = declarations_for(tuple(sorted(used)))
     checked = normalize_document(dict(schema_version='0.16', lexicon_version='0.16',
         declarations=declarations, statements=[statement]))['statements'][0]
     if checked != statement:
@@ -86,7 +92,7 @@ def validate_native(statement):
 
 def forms(token, x=0., y=PITCH):
     if token not in GRAMMAR:
-        result = _glyph(words()[token][1]['form'], x, y)
+        result = _glyph(root_words()[token][1]['form'], x, y)
         return [result]
     result = []
     for radius, pair, direction, mode in GRAMMAR[token]:
@@ -121,20 +127,13 @@ def feature(geometry, ids):
 @lru_cache(maxsize=1)
 def table():
     result = {}
-    for token in (*words(), *GRAMMAR):
+    for token in (*root_words(), *GRAMMAR):
         for g in forms(token):
             geometry = read_geometry(g['shapes'])
             key = feature(geometry, range(len(geometry['circles'])))
             if key in result and result[key] != token:
                 raise ValueError('Public word collision')
             result[key] = token
-    reserved = set()
-    for form in reserved_forms().values():
-        geometry = read_geometry(_glyph(form)['shapes'])
-        key = feature(geometry, range(len(geometry['circles'])))
-        if key in result or key in reserved:
-            raise ValueError('Form collides with another published root')
-        reserved.add(key)
     return result
 
 
@@ -148,6 +147,10 @@ def split(node, scope=()):
         if token not in words() or not isinstance(node['arguments'], list):
             raise ValueError('Unknown public root')
         children, child_scope = node['arguments'], scope
+    elif kind == 'function_ref' and set(node) == {'kind', 'symbol'}:
+        if node['symbol'] not in words():
+            raise ValueError('Unknown public function reference')
+        token, children, child_scope = kind, [], scope
     elif kind in ('and', 'or', 'implies', 'equal', 'not') and set(node) == {'kind', 'arguments'}:
         token, children, child_scope = kind, node['arguments'], scope
         if not isinstance(children, list):
@@ -174,8 +177,20 @@ def events(statement, branch=True):
     if not isinstance(statement, dict) or set(statement) != {'kind', 'body'} or statement['kind'] != 'assert':
         raise ValueError('Fragment expects one explicit assertion')
     result = []
+    def emit(token, side, path):
+        parts = parts_for().get(token, (token,))
+        for i, part in enumerate(parts):
+            event = dict(token=part, side=side if i == len(parts)-1 else None,
+                         depth=len(path), path=list(path))
+            if i == 0 and token in words():
+                event['word'] = token
+            result.append(event)
     def visit(node, scope, path):
         token, children, child_scope = split(node, scope)
+        if token == 'function_ref':
+            emit(token, None, path)
+            emit(node['symbol'], None, path)
+            return
         # Fixed public argument slot, not the middle of unknown leaf candidates.
         slot = len(children)//2 if len(children) >= 2 else None
         side = None
@@ -184,9 +199,10 @@ def events(statement, branch=True):
             # A large circle spans all three rails and blocks a continuation
             # passing beside it. Keep it on the main flow, as in the Kant
             # generator's medium/small-only satellite rule.
-            if not descendants and not near(forms(side_token)[0]['radius'], LARGE):
+            single = side_token in GRAMMAR and side_token != 'function_ref' or side_token in root_words()
+            if single and not descendants and not near(forms(side_token)[0]['radius'], LARGE):
                 side = side_token
-        result.append(dict(token=token, side=side, depth=len(path), path=list(path)))
+        emit(token, side, path)
         for i, child in enumerate(children):
             if side is None or i != slot:
                 visit(child, child_scope, path+(i,))
@@ -194,7 +210,7 @@ def events(statement, branch=True):
     validate_native(statement)
     if len(result) > 80:
         raise ValueError('Fragment expression budget')
-    return result
+    return mark_boundaries(result)
 
 
 def compile_statement(statement, *, branch=True, silent=True):
@@ -210,6 +226,8 @@ def compile_statement(statement, *, branch=True, silent=True):
         radius = template['radius']
         choices = []
         for y in ([PITCH] if near(radius, LARGE) else [0., PITCH, 2*PITCH]):
+            if event.get('lexical_seam') and previous and not near(y, previous['y']):
+                continue
             for extra in (0., 12., 28., 48., 72., 104., 160.):
                 left = groups[-1]['right']+MIN_GAP+extra if groups else 12.
                 x = left-template['left']
@@ -236,7 +254,8 @@ def compile_statement(statement, *, branch=True, silent=True):
                         p, segments = link
                         local += segments; local_paths.append(p); side_ports.append(p[0])
                     edge = None
-                    seam = silent and token == 'quote' and previous and near(previous['y'], y)
+                    seam = previous and (event.get('lexical_seam') or
+                        silent and token == 'quote' and near(previous['y'], y))
                     if previous:
                         if seam:
                             edge = dict(kind='invisible', centers=[(previous['x'], previous['y']), (x, y)])
@@ -302,21 +321,37 @@ def decode(shapes):
                        +c['outer_diagonals']) for c in geometry['circles']):
             raise ValueError('Uninterpreted free terminal stroke')
     main = flow['main']
+    linear = [tokens[i] for i in main]
+    side_positions = {i for i, sides in enumerate(flow['side']) if sides}
+    stops = set()
     for a, b in recover_seams(geometry):
-        # Spaces do not invent a quotation; the destination must visibly name it.
-        targets = [i for i, n in enumerate(flow['nuclei']) if math.dist(n['center'], b) < 1e-5]
-        if len(targets) != 1 or tokens[targets[0]] != 'quote' or targets[0] not in main:
-            raise ValueError('Silent seam outside a quotation entry')
+        ends = []
+        for point in (a, b):
+            owners = [i for i, n in enumerate(flow['nuclei']) if any(
+                math.dist(geometry['circles'][c]['center'], point) < 1e-5 for c in n['circles'])]
+            if len(owners) != 1 or owners[0] not in main:
+                raise ValueError('Silent seam outside the main flow')
+            ends.append(main.index(owners[0]))
+        if ends[1] != ends[0]+1 or linear[ends[1]] not in {*root_words(), 'quote'}:
+            raise ValueError('Silent seam outside a word/quotation entry')
+        stops.add(ends[1])
     position = 0
     serial = 0
+    def take_word():
+        nonlocal position
+        token, position = read_word(linear, position, stops=stops, sides=side_positions)
+        return token, flow['side'][position-1]
     def read(scope, side_id=None):
         nonlocal position, serial
         if side_id is None:
             if position >= len(main):
                 raise ValueError('Incomplete visible expression')
-            index = position; position += 1
-            token = tokens[main[index]]
-            sides = flow['side'][index]
+            if linear[position] in root_words():
+                token, sides = take_word()
+            else:
+                index = position; position += 1
+                token = linear[index]
+                sides = flow['side'][index]
         else:
             token, sides = tokens[side_id], []
             if arity(token) or flow['nuclei'][side_id]['size'] == 'large':
@@ -324,6 +359,11 @@ def decode(shapes):
         count = arity(token)
         if sides and count < 2:
             raise ValueError('Unexpected terminal dependency')
+        if token == 'function_ref':
+            name, attached = take_word()
+            if attached:
+                raise ValueError('Arguments attached to a bare function reference')
+            return dict(kind='function_ref', symbol=name)
         child_scope = () if token == 'quote' else scope
         saved_serial = serial
         if token == 'quote':

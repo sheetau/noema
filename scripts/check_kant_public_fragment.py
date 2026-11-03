@@ -7,11 +7,11 @@ from pathlib import Path
 
 from scripts.kant_public_fragment import (
     compile_statement, decode, vocabulary, words, forms, table, feature,
-    GRAMMAR, VERSION, reserved_forms,
+    GRAMMAR, VERSION, reserved_forms, root_words, declarations_for,
 )
 from scripts.kant_geometry_reader import read_geometry
 from scripts.visible_syntax_geometry import to_svg, from_svg
-from scripts.check_visible_syntax import call, assertion, logic, quant, variable, quote
+from scripts.check_visible_syntax import call, assertion, logic, quant, variable, quote, vocabulary as baseline_vocabulary
 from noema.constructed_discourse import normalize_document
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +19,18 @@ OUT = ROOT/'output/kant-public-fragment'
 
 
 def canonical(body):
-    declarations = [vocabulary().declaration(n) for n, _ in words().values()]
+    used = set()
+    def collect(node):
+        if isinstance(node, dict):
+            if node.get('kind') in ('call', 'function_ref'):
+                used.add(node['symbol'])
+            for value in node.values():
+                collect(value)
+        elif isinstance(node, list):
+            for value in node:
+                collect(value)
+    collect(body)
+    declarations = declarations_for(tuple(sorted(used)))
     return normalize_document(dict(schema_version='0.16', lexicon_version='0.16',
         declarations=declarations, statements=[assertion(body)]))['statements'][0]
 
@@ -64,7 +75,7 @@ def cases():
     ]
     # Every existing public root occurs in a well-typed complete sentence.
     used = {'rain', 'town', 'home', 'above', 'give', 'birdone', 'treeone', 'aki', 'nao', 'book', 'red'}
-    for _, (name, entry) in words().items():
+    for name, entry in baseline_vocabulary().document()['entries'].items():
         if name not in used:
             rows.append(('root-'+name, name, call(name, *([call('book')]*len(entry['parameters'])))))
     return [(key, label, canonical(body)) for key, label, body in rows]
@@ -113,8 +124,8 @@ def build_report():
         'noema/resources/visible-defined-vocabulary-v1.json',
         'concept/alphabet-concept.md', 'data/writing-freeze-v1.json']
     return dict(schema=VERSION, status='bounded-native-fragment-not-writing-freeze',
-        public_roots=len(words()), grammar_tokens=len(GRAMMAR), public_allographs=len(table()),
-        reserved_public_root_forms=len(words())+len(reserved_forms()),
+        public_roots=len(root_words()), public_words=len(words()), grammar_tokens=len(GRAMMAR), public_allographs=len(table()),
+        reserved_public_root_forms=len(root_words()),
         exact_native_roundtrips=len(rows), main_only_roundtrips=len(plain),
         source_meanings_sha256=hashlib.sha256(json.dumps(vocabulary().document(),
             ensure_ascii=False, sort_keys=True).encode()).hexdigest(),
