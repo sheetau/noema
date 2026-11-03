@@ -8,7 +8,8 @@ import math
 from scripts.kant_geometry_reader import recover_seams
 
 
-def decompose_flow(geometry, *, terminal_words=False, branch_seams=False, large_branches=False):
+def decompose_flow(geometry, *, terminal_words=False, branch_seams=False, large_branches=False,
+                   local_continuation=False):
     circles=geometry['circles'];parents=list(range(len(circles)))
     def root(i):
         while parents[i]!=i:parents[i]=parents[parents[i]];i=parents[i]
@@ -86,9 +87,19 @@ def decompose_flow(geometry, *, terminal_words=False, branch_seams=False, large_
         if current<len(nuclei):main.append(current);side.append([])
         children=list(adjacency[current]-{parent})
         if not children:break
-        reach=lambda c:max(nuclei[i]['center'][0] for i in below[(current,c)])
-        farthest=max(reach(c) for c in children)
-        onward=[c for c in children if abs(reach(c)-farthest)<1e-6]
+        def reach(child):
+            if not local_continuation:
+                return max(nuclei[i]['center'][0] for i in below[(current,child)])
+            previous,node=current,child
+            while node>=len(nuclei):
+                following=list(adjacency[node]-{previous})
+                if len(following)!=1:raise ValueError('Ambiguous first nucleus after a branch')
+                previous,node=node,following[0]
+            return nuclei[node]['center'][0]
+        if len(children)==1:onward=children
+        else:
+            farthest=max(reach(c) for c in children)
+            onward=[c for c in children if abs(reach(c)-farthest)<1e-6]
         if len(onward)!=1:raise ValueError('Ambiguous continuation at a branch')
         for child in children:
             if child==onward[0]:continue

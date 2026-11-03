@@ -30,7 +30,7 @@ from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
 
-VERSION = 'kant-public-fragment-11-expression-branches'
+VERSION = 'kant-public-fragment-12-local-continuation'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
@@ -328,13 +328,14 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
     return mark_boundaries(result)
 
 
-def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True):
+def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True):
     with use_context(lexicon):
         unbranched=set()
         while True:
             try:
                 drawing=_compile_statement(statement, branch=branch, silent=silent, sharing=sharing,
-                    local_checks=local_checks,contacts=contacts,subexpressions=subexpressions,unbranched=unbranched)
+                    local_checks=local_checks,contacts=contacts,subexpressions=subexpressions,unbranched=unbranched,
+                    interleave=interleave)
                 drawing['unbranched_paths']=[list(p) for p in sorted(unbranched)]
                 return drawing
             except PlacementFailure as error:
@@ -421,9 +422,19 @@ def word_branch(token, main, moment, depth, *, contacts=True):
     return dict(shapes=shapes,paths=paths,port=first_port,centers=centers,invisible=invisible)
 
 
-def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True,subexpressions=True,unbranched=()):
+def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True,subexpressions=True,unbranched=(),interleave=True):
     """Reuse the Kant search with public glyphs and visible terminal arguments."""
     stream = events(statement, branch, sharing, subexpressions,unbranched)
+    if interleave and any(isinstance(e['side'],list) for e in stream):
+        from scripts.kant_interleaved_layout import compile_stream
+        try:return compile_stream(stream,contacts=contacts)
+        except PlacementFailure as error:
+            drawing=_compile_statement(statement,branch=branch,silent=silent,sharing=sharing,
+                local_checks=local_checks,contacts=contacts,subexpressions=subexpressions,
+                unbranched=unbranched,interleave=False)
+            drawing['layout']='serial-fallback'
+            drawing['interleaving_failure']=str(error)
+            return drawing
     # A required silent seam joins centers on one rail. If any nucleus in a
     # consecutive seam run is large, choose the middle rail for the entire
     # run before placement. Do not discover this only after placing its prefix.
@@ -536,7 +547,7 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
         shapes += local; paths += local_paths; moment += delta
         if side:invisible+=side['invisible']
         groups.append(dict(token=token, center=[main['x'], main['y']], right=right,
-                           shape_start=shape_start,path_start=path_start,
+                           shape_start=shape_start,path_start=path_start,main_right=main['right'],
                            expression_branch=isinstance(event['side'],list),
                            lexical_contact=bool(edge and edge['kind']=='tangent'),
                            side=None if side is None else side['centers'][0],
@@ -547,7 +558,7 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
         previous, previous_entry = main['exit'], edge.get('entry_port') if edge else None
     geometry_check(shapes, paths, invisible)
     # Metadata is diagnostic only; decode() below accepts just the primitives.
-    return dict(version=VERSION, shapes=shapes, groups=groups, width=groups[-1]['right']+12.)
+    return dict(version=VERSION, shapes=shapes, groups=groups, width=max(g['right'] for g in groups)+12.)
 
 
 def decode(shapes, *, lexicon=None):
@@ -557,7 +568,7 @@ def decode(shapes, *, lexicon=None):
 
 def _decode(shapes):
     geometry = read_geometry(shapes)
-    flow = decompose_flow(geometry,terminal_words=True,branch_seams=True,large_branches=True)
+    flow = decompose_flow(geometry,terminal_words=True,branch_seams=True,large_branches=True,local_continuation=True)
     tokens = []
     for nucleus_ in flow['nuclei']:
         key = feature(geometry, nucleus_['circles'])

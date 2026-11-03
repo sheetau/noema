@@ -25,7 +25,7 @@ def boundary_port(circle, toward):
             circle['y']+circle['radius']*dy/length)
 
 
-def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_center=False, forbidden_start=(), forbidden_end=(), detours=False):
+def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_center=False, forbidden_start=(), forbidden_end=(), detours=False, separate=False):
     ax, ay, bx, by = a['x'], a['y'], b['x'], b['y']
     dx, dy = bx-ax, by-ay
     candidates = []
@@ -120,6 +120,16 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
         if any(math.dist(points[0],p)<EPS for p in forbidden_start): continue
         if any(math.dist(terminal,p)<EPS for p in forbidden_end): continue
         segments = [line(p, q) for p, q in zip(points, points[1:]) if math.dist(p, q) > EPS]
+        if separate:
+            # These two flows already have their attachment at a circle.
+            # A second junction with existing ink would change the tree.
+            junctions=[]
+            for s in segments:
+                for old in obstacles:
+                    if old['kind']!='line':continue
+                    junctions.extend(p for p in ((s['x1'],s['y1']),(s['x2'],s['y2'])) if _on_segment(p,old))
+                    junctions.extend(p for p in ((old['x1'],old['y1']),(old['x2'],old['y2'])) if _on_segment(p,s))
+            if any(all(math.dist(p,end)>EPS for end in (points[0],points[-1])) for p in junctions):continue
         # A radial chord may satisfy the per-segment incidence test but still
         # cut through an intermediate circle's center. External connectors
         # stop at rims and must never introduce such a diameter/extra ray.

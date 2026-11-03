@@ -35,7 +35,8 @@ def test_whole_expression_branch_recovers_exact_syntax(variant,contacts):
         assert decode(list(reversed(from_svg(svg))),lexicon=reader)==source
     assert svgs[0]!=svgs[1]
     if variant=='word-boundary':
-        geo=read_geometry(from_svg(svgs[0]));flow=decompose_flow(geo,terminal_words=True,branch_seams=True)
+        geo=read_geometry(from_svg(svgs[0]));flow=decompose_flow(geo,terminal_words=True,
+            branch_seams=True,local_continuation=True)
         assert any(len(side)>=3 for side in flow['side']) and recover_seams(geo,branch_seams=True)
 
 
