@@ -3,7 +3,7 @@
 This is an experimental fragment, not the frozen script. Placement follows the
 actual Kant generator's rail search, radial routing and accumulated ink moment.
 Unlike that generator, neither lexical identity nor branch position uses a
-document registry. References to the nearest two binders are bounded here.
+document registry. Outward references compose over the visible binder scope.
 """
 from copy import deepcopy
 from functools import lru_cache
@@ -29,11 +29,11 @@ from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 
-VERSION = 'kant-public-fragment-8-lexical-contact'
+VERSION = 'kant-public-fragment-9-binding-scope'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
-         'quote_raise': 1}
+         'quote_raise': 1, 'bound_shift': 1}
 # Each tuple is a declared allograph, not an unconstrained rotation search.
 # Existing lexical directions remain unchanged: rain S and above N are distinct.
 GRAMMAR = {
@@ -52,6 +52,7 @@ GRAMMAR = {
     'lambda_individual': ((LARGE, 'offset', 4, 'radius'),),
     'evaluate': ((MEDIUM, 'offset-left', 1, 'radius'),),
     'quote_raise': ((LARGE, 'nested', 1, 'radius'),),
+    'bound_shift': ((MEDIUM, 'offset-left', 7, 'radius'),),
 }
 
 
@@ -190,7 +191,7 @@ def split(node, scope=()):
             raise ValueError('Unknown public function reference')
         token, children, child_scope = kind, [], scope
     elif kind == 'lambda' and set(node) == {'kind', 'parameters', 'body'}:
-        if (len(scope) >= 2 or not isinstance(node['parameters'], list) or len(node['parameters']) != 1
+        if (not isinstance(node['parameters'], list) or len(node['parameters']) != 1
             or set(node['parameters'][0]) != {'name','sort'} or node['parameters'][0]['sort'] != 'individual'):
             raise ValueError('Fragment supports one individual lambda parameter')
         token,children,child_scope = 'lambda_individual',[node['body']],(*scope,node['parameters'][0]['name'])
@@ -212,14 +213,19 @@ def split(node, scope=()):
     elif kind == 'quote' and set(node) == {'kind', 'body'}:
         token, children, child_scope = kind, [node['body']], ()
     elif kind in ('forall', 'exists') and set(node) == {'kind', 'variable', 'sort', 'body'}:
-        if len(scope) >= 2 or node['sort'] != 'individual':
-            raise ValueError('Fragment supports two individual binders per scope')
+        if node['sort'] != 'individual':
+            raise ValueError('Fragment supports individual binders')
         token, children, child_scope = kind, [node['body']], (*scope, node['variable'])
     elif kind == 'variable' and set(node) == {'kind', 'name'}:
         if node['name'] not in scope:
             raise ValueError('Unbound variable, including across a quotation')
-        token = 'bound'+str(len(scope)-1-scope.index(node['name']))
-        children, child_scope = [], scope
+        distance = scope[::-1].index(node['name'])
+        if distance < 2:
+            token, children, child_scope = 'bound'+str(distance), [], scope
+        else:
+            # The reference is unchanged; one nearest binder is excluded from
+            # its search. Repeating this rule needs no indexed glyph inventory.
+            token, children, child_scope = 'bound_shift', [node], scope[:-1]
     else:
         raise ValueError('Native constructor outside this fragment')
     if len(children) != arity(token):
@@ -548,6 +554,12 @@ def _decode(shapes):
             if attached:
                 raise ValueError('Arguments attached to a bare function reference')
             return dict(kind='function_ref', symbol=name)
+        if token == 'bound_shift':
+            if len(scope) < 3:
+                raise ValueError('Outward reference outside the visible scope')
+            if position >= len(main) or linear[position] not in ('bound1', 'bound_shift'):
+                raise ValueError('Outward marker must precede an outer binding reference')
+            return read(scope[:-1])
         if token == 'and_shared':
             if not sides:
                 raise ValueError('Shared conjunction requires one visible terminal argument')
@@ -573,8 +585,6 @@ def _decode(shapes):
         if token == 'quote':
             serial = 0
         if token in ('forall', 'exists', 'lambda_individual'):
-            if len(scope) >= 2:
-                raise ValueError('Binder depth outside this fragment')
             child_scope = (*scope, 'v'+number_word(serial))
             serial += 1
         children = [read(child_scope, sides) if sides and i == side_slot(token) else read(child_scope)

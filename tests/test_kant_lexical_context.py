@@ -102,7 +102,7 @@ def test_rank_marker_cannot_modify_a_nonquotation():
 
 
 def test_new_forms_are_disjoint_from_all_reserved_words():
-    assert len(table())==53
+    assert len(table())==54
 
 
 @pytest.mark.parametrize('index',[0,7,18,22])

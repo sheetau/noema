@@ -75,7 +75,6 @@ def test_source_scope_and_type_errors_are_rejected():
         dict(kind='assert',body=quant('forall','x',logic('equal',quote(variable('x')),quote(call('home'))))),
         dict(kind='assert',body=call('rain',call('rain',call('home')))),
         dict(kind='assert',body=call('rain',variable('missing'))),
-        canonical(quant('forall','x',quant('exists','y',quant('forall','z',call('rain',variable('z')))))),
     ]
     for source in invalid:
         with pytest.raises(ValueError):
