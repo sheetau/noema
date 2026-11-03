@@ -65,7 +65,7 @@ def _compile_stream(stream, *, contacts=True, lookahead=False, frontier_window=T
                 depth,obstacles,forbidden_start=forbidden if start is root_start else (),
                 detours=True,separate=True,accept=allowed if lookahead else None,line_detours=lookahead)
             if link is None:continue
-            if origin['fan']:
+            if origin['fan'] and not lookahead:
                 try:p.geometry_check(obstacles+link[1],checked_paths+[link[0]])
                 except ValueError:continue
             return link
@@ -103,8 +103,9 @@ def _compile_stream(stream, *, contacts=True, lookahead=False, frontier_window=T
                             paths+local_paths+reserved_paths+probe['paths'],forbidden,extra_forks)
                         if link is None:continue
                         trial,segments=link
-                        try:p.geometry_check(obstacles+segments,paths+local_paths+reserved_paths+probe['paths']+[trial])
-                        except ValueError:continue
+                        if not origin['fan']:
+                            try:p.geometry_check(obstacles+segments,paths+local_paths+reserved_paths+probe['paths']+[trial])
+                            except ValueError:continue
                         reachable=True;break
                     if reachable:break
                 if reachable:break

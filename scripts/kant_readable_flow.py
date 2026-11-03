@@ -8,13 +8,14 @@ from collections import Counter
 import json
 import math
 from scripts.balanced_circle_script import line, line_error, radial_clearance, spacing_check, _segment_touches, _on_segment
+from scripts.kant_spacing_extension import spacing_extension
 from scripts.balanced_circle_script import (
     display_tree, expanded_tree, restore, signature, registry, events, profile,
     ray_order, stroke_mode, near, SMALL, MEDIUM, LARGE, PITCH, EPS, MIN_RUN,
     MIN_GAP, nucleus, geometry_check, pack_lines, STROKE,
 )
 
-VERSION = 'kant-port-separated-flow-1'
+VERSION = 'kant-port-separated-flow-2-spacing-prefix'
 
 
 def boundary_port(circle, toward):
@@ -137,6 +138,8 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
                         for left,right in merged:
                             excursion.extend([(left,rail),((left+right)/2,rail+sign*(right-left)/2),(right,rail)])
                         candidates.append(beginning+excursion+ending)
+    obstacle_lines=[s for s in obstacles if s['kind']=='line']
+    spacing_prefix_checked=False
     for points in candidates:
         points = [p for i, p in enumerate(points) if not i or math.dist(p, points[i-1]) > EPS]
         if len(points) < 2: continue
@@ -170,7 +173,13 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
             if any(near(c['r'], LARGE) and any(
                 not near(s['x1'], s['x2']) and not near(s['y1'], s['y2'])
                 and _segment_touches(s, c) for s in segments) for c in circles): continue
-            try: spacing_check(circles+[s for s in obstacles if s['kind']=='line']+segments)
+            if not spacing_prefix_checked:
+                try:spacing_check(circles+obstacle_lines)
+                except ValueError as error:
+                    if diagnostics is not None:diagnostics.append(str(error))
+                    return None
+                spacing_prefix_checked=True
+            try: spacing_extension(circles,obstacle_lines,segments)
             except ValueError as error:
                 if diagnostics is not None: diagnostics.append(str(error))
                 continue
