@@ -30,7 +30,7 @@ from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
 
-VERSION = 'kant-public-fragment-14-multiple-arguments'
+VERSION = 'kant-public-fragment-15-shared-application-branches'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
@@ -106,12 +106,14 @@ def side_slot(token):
     return count//2
 
 
-def side_order(token):
+def side_order(token,supplied=()):
     """A prefix of this public order identifies any visible branch count."""
+    available=[i for i in range(arity(token)) if i not in supplied]
+    if len(available)<2:return []
     first=side_slot(token)
-    if first is None:return []
-    continuation=next(i for i in range(arity(token)) if i!=first)
-    return [first]+[i for i in range(arity(token)) if i not in (first,continuation)]
+    if first not in available:return available[1:]
+    continuation=next(i for i in available if i!=first)
+    return [first]+[i for i in available if i not in (first,continuation)]
 
 
 def event_sides(event):
@@ -298,6 +300,25 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
                 event['word'] = token
             if i==len(parts)-1 and extra_sides:event['extra_sides']=list(extra_sides)
             output.append(event)
+    def application(token,children,child_scope,path,output,allow_branches,supplied=()):
+        order=side_order(token,supplied)
+        limit=(branch_limits or {}).get(path,len(order) if multiple else 1)
+        attached={}
+        if branch and allow_branches and path not in unbranched and (not supplied or multiple):
+            for slot in order[:limit]:
+                side_token, descendants, _ = split(children[slot], child_scope)
+                if not descendants and terminal_word(side_token):
+                    attached[slot]=side_token
+                elif subexpressions and (nested or not (sharing and contains_sharing(children[slot],child_scope))):
+                    candidate=[]
+                    visit(children[slot],child_scope,path+(slot,),candidate,nested)
+                    attached[slot]=mark_boundaries(candidate)
+                else:break
+        sides=list(attached.values())
+        emit(token,sides[0] if sides else None,path,output,sides[1:])
+        for i,child in enumerate(children):
+            if i not in supplied and i not in attached:
+                visit(child,child_scope,path+(i,),output,allow_branches)
     def visit(node, scope, path, output, allow_branches=True):
         token, children, child_scope = split(node, scope)
         if token in ('forall_typed','exists_typed','lambda_typed'):
@@ -315,30 +336,10 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
         if shared is not None:
             slots=[shared_slot(c['symbol']) for c in children]
             emit('and_shared', shared, path,output)
-            for j,(application,slot) in enumerate(zip(children,slots)):
-                emit(application['symbol'], None, path+(j,),output)
-                for i,argument in enumerate(application['arguments']):
-                    if i!=slot:visit(argument,scope,path+(j,i),output,allow_branches)
+            for j,(predicate,slot) in enumerate(zip(children,slots)):
+                application(predicate['symbol'],predicate['arguments'],scope,path+(j,),output,allow_branches,(slot,))
             return
-        # Fixed public argument slot, not the middle of unknown leaf candidates.
-        order=side_order(token)
-        limit=(branch_limits or {}).get(path,len(order) if multiple else 1)
-        attached={}
-        if branch and allow_branches and path not in unbranched:
-            for slot in order[:limit]:
-                side_token, descendants, _ = split(children[slot], child_scope)
-                if not descendants and terminal_word(side_token):
-                    attached[slot]=side_token
-                elif subexpressions and (nested or not (sharing and contains_sharing(children[slot],child_scope))):
-                    candidate=[]
-                    visit(children[slot],child_scope,path+(slot,),candidate,nested)
-                    attached[slot]=mark_boundaries(candidate)
-                else:break
-        sides=list(attached.values())
-        emit(token,sides[0] if sides else None,path,output,sides[1:])
-        for i, child in enumerate(children):
-            if i not in attached:
-                visit(child, child_scope, path+(i,),output,allow_branches)
+        application(token,children,child_scope,path,output,allow_branches)
     visit(statement['body'], (), (),result)
     validate_native(statement)
     if event_count(result) > 512:
@@ -725,13 +726,17 @@ def _decode(shapes):
                 name, attached = take_word()
                 entry = words()[name][1]
                 slot=shared_slot(name)
-                if attached or slot is None:
+                if slot is None:
                     raise ValueError('Shared conjunction requires predicates with a public shared role')
+                order=side_order(name,(slot,))
+                if len(attached)>len(order):
+                    raise ValueError('Too many branches on a shared predicate')
+                attached=dict(zip(order,attached))
                 sort=entry['parameters'][slot]
                 if shared_sort is not None and shared_sort!=sort:
                     raise ValueError('Shared conjunction argument sorts differ')
                 shared_sort=sort
-                arguments=[deepcopy(subject) if i==slot else read(scope)
+                arguments=[deepcopy(subject) if i==slot else read(scope,attached[i]) if i in attached else read(scope)
                            for i in range(len(entry['parameters']))]
                 applications.append(dict(kind='call', symbol=name, arguments=arguments))
             return dict(kind='and', arguments=applications)
