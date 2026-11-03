@@ -29,7 +29,7 @@ from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 
-VERSION = 'kant-public-fragment-6-terminal-words'
+VERSION = 'kant-public-fragment-7-shared-context'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
@@ -93,6 +93,21 @@ def terminal_word(token):
     parts=parts_for().get(token,(token,))
     return (arity(token)==0 and len(parts)<=4
             and all(not near(forms(p)[0]['radius'],LARGE) for p in parts))
+
+
+def shared_slot(token):
+    """One public role per predicate; never choose it from argument values."""
+    if token not in words():
+        return None
+    entry=words()[token][1]
+    if entry['result']!='truth':
+        return None
+    situations=[i for i,t in enumerate(entry['parameters']) if t=='situation']
+    if situations:
+        return situations[-1]
+    if entry['parameters']==['individual']:
+        return 0
+    return None
 
 
 def validate_native(statement):
@@ -232,18 +247,23 @@ def events(statement, branch=True, sharing=True):
             return
         if sharing and branch and token == 'and' and all(
             c.get('kind') == 'call' and set(c) == {'kind', 'symbol', 'arguments'}
-            and c['symbol'] in words() and words()[c['symbol']][1]['parameters'] == ['individual']
-            and words()[c['symbol']][1]['result'] == 'truth' and len(c['arguments']) == 1
+            and shared_slot(c['symbol']) is not None
+            and len(c['arguments']) == arity(c['symbol'])
             for c in children):
             a, b = children
-            if a['arguments'] == b['arguments']:
-                shared, descendants, _ = split(a['arguments'][0], scope)
+            slots=[shared_slot(c['symbol']) for c in children]
+            parameters=[words()[c['symbol']][1]['parameters'][s] for c,s in zip(children,slots)]
+            if parameters[0]==parameters[1] and a['arguments'][slots[0]] == b['arguments'][slots[1]]:
+                shared, descendants, _ = split(a['arguments'][slots[0]], scope)
                 if not descendants and terminal_word(shared):
                     # One visible argument is expanded at precisely these two
                     # call sites. No conjunction flattening or hidden paths.
                     emit('and_shared', shared, path)
-                    emit(a['symbol'], None, path+(0,))
-                    emit(b['symbol'], None, path+(1,))
+                    for j,(application,slot) in enumerate(zip(children,slots)):
+                        emit(application['symbol'], None, path+(j,))
+                        for i,argument in enumerate(application['arguments']):
+                            if i!=slot:
+                                visit(argument,scope,path+(j,i))
                     return
         # Fixed public argument slot, not the middle of unknown leaf candidates.
         slot = side_slot(token)
@@ -370,6 +390,25 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
                     circles = [s for s in local if s['kind'] == 'circle']
                     delta = sum(c['r']**2*(c['y']-PITCH)/PITCH for c in circles)
                     right = max(c['x']+c['r'] for c in circles)
+                    # A branch may occupy the rightward port. Do not commit
+                    # a middle-rail nucleus if its forced-middle successor
+                    # then has no legal continuation. Test the actual next
+                    # form, not an arbitrary direction/semantic allograph.
+                    next_index=event_index+1
+                    if side and near(y,PITCH) and next_index in fixed_middle and not stream[next_index].get('lexical_seam'):
+                        next_token=stream[next_index]['token']
+                        next_template=forms(next_token)[0]
+                        probe_x=right+MIN_GAP+160-next_template['left']
+                        available=False
+                        for probe in forms(next_token,probe_x,PITCH):
+                            obstacles=recent+local+probe['shapes']
+                            entry_port=edge.get('entry_port') if edge else None
+                            link=route(main['exit'],probe['entry'],
+                                [s for s in obstacles if s['kind']=='circle'],stream[next_index]['depth'],obstacles,
+                                forbidden_start=() if entry_port is None else (entry_port,))
+                            if link is not None:
+                                available=True;break
+                        if not available:continue
                     imbalance = abs(moment+delta)/MEDIUM**2
                     score = max(0., imbalance-2.)*14+imbalance*.35+(right-left)*.11
                     if previous and near(previous['y'], y):
@@ -478,12 +517,20 @@ def _decode(shapes):
                 raise ValueError('Shared conjunction requires one visible terminal argument')
             subject = read(scope, sides)
             applications = []
+            shared_sort = None
             for _ in range(2):
                 name, attached = take_word()
                 entry = words()[name][1]
-                if attached or entry['parameters'] != ['individual'] or entry['result'] != 'truth':
-                    raise ValueError('Shared conjunction requires two unary individual predicates')
-                applications.append(dict(kind='call', symbol=name, arguments=[deepcopy(subject)]))
+                slot=shared_slot(name)
+                if attached or slot is None:
+                    raise ValueError('Shared conjunction requires predicates with a public shared role')
+                sort=entry['parameters'][slot]
+                if shared_sort is not None and shared_sort!=sort:
+                    raise ValueError('Shared conjunction argument sorts differ')
+                shared_sort=sort
+                arguments=[deepcopy(subject) if i==slot else read(scope)
+                           for i in range(len(entry['parameters']))]
+                applications.append(dict(kind='call', symbol=name, arguments=arguments))
             return dict(kind='and', arguments=applications)
         child_scope = () if token == 'quote' else scope
         saved_serial = serial

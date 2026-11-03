@@ -59,22 +59,27 @@ def attempted(index):
         return dict(statement=inputs()['selected'][index]['statement'],status='unsupported',error=str(error))
 
 
-def prepare():
-    source_pins=pins();manifest=dict(schema='kant-terminal-word-trial-1',source_sha256=source_pins)
+def prepare_trial(*,out=OUT,baseline=BASELINE,run_path=RUN,pin_function=pins,
+                  case_function=attempted,schema='kant-terminal-words-1',
+                  title='短い参照語を複合語の枝へ置く',
+                  intro='著者・提示文脈・本文順序・主張の帰属に短い公開綴りを与え、複合語を一つの引数として横枝へ置きます。状況引数がある述語では最後の状況引数、それ以外は中央引数が枝の位置です。元の40主張と語義・参照先は変えません。'):
+    OUT,BASELINE,RUN=out,baseline,run_path
+    source_pins=pin_function();manifest=dict(schema='kant-terminal-word-trial-1',source_sha256=source_pins)
     with LongRun(RUN,manifest,resume=RUN.exists()) as run:
         rows=[];total=len(inputs()['selected'])
         for index in range(total):
             run.emit('progress',stage='Read compound terminal branches',completed=index,total=total)
             row=run.step('sentence-'+str(index),dict(context=reference_context().fingerprint,
-                source=inputs()['selected'][index]),lambda index=index:attempted(index))
+                source=inputs()['selected'][index]),lambda index=index:case_function(index))
             rows.append(row)
             print(json.dumps({k:v for k,v in row.items() if k!='svg'}),flush=True)
-        if pins()!=source_pins:raise ValueError('Inputs changed during terminal word trial')
+        if pin_function()!=source_pins:raise ValueError('Inputs changed during terminal word trial')
         baseline=json.loads((ROOT/BASELINE).read_text(encoding='utf-8'))
         old={r['statement']:r for r in baseline['cases']}
         OUT.mkdir(parents=True,exist_ok=True)
         atomic_json(OUT/'dictionary.json',reader_context().published())
-        cards=[];artifacts=['output/kant-terminal-words/dictionary.json'];cases=[]
+        relative=OUT.relative_to(ROOT).as_posix()
+        cards=[];artifacts=[relative+'/dictionary.json'];cases=[]
         for row in rows:
             item={k:v for k,v in row.items() if k!='svg'}
             if row['status']=='matched':
@@ -82,20 +87,20 @@ def prepare():
                     raise ValueError('Recovered public syntax differs from the previous exact bridge')
                 name='statement-'+str(row['statement'])+'.svg'
                 (OUT/name).write_text(row['svg'],encoding='utf-8',newline='\n')
-                artifacts.append('output/kant-terminal-words/'+name)
+                artifacts.append(relative+'/'+name)
                 item.update(previous_circles=old[row['statement']]['circles'],previous_width=old[row['statement']]['width'])
                 body='<div class="ink">'+row['svg']+'</div>'
             else:body='<p>'+html.escape(row['error'])+'</p>'
             cards.append('<section><h2>元の主張 '+str(row['statement'])+'</h2>'+body+'</section>');cases.append(item)
-        markup='''<!doctype html><html lang="ja"><meta charset="utf-8"><title>参照語と複合語の枝</title>
+        markup='''<!doctype html><html lang="ja"><meta charset="utf-8"><title>'''+html.escape(title)+'''</title>
 <style>body{font:16px/1.8 "Yu Gothic",sans-serif;max-width:1500px;margin:auto;padding:24px;background:#f7f6f1;color:#203438}section{padding:18px;background:#fffffe;margin:18px 0}h2{font-size:18px}.ink{overflow:auto}svg{height:130px;max-width:none}</style>
-<h1>短い参照語を複合語の枝へ置く</h1>
-<p>著者・提示文脈・本文順序・主張の帰属に短い公開綴りを与え、複合語を一つの引数として横枝へ置きます。状況引数がある述語では最後の状況引数、それ以外は中央引数が枝の位置です。元の40主張と語義・参照先は変えません。</p>
+<h1>'''+html.escape(title)+'''</h1>
+<p>'''+html.escape(intro)+'''</p>
 <p><a href="dictionary.json">本文を含まない公開辞書</a>と円・線から復号する試作です。長い語形、一般の枝、行・頁の復号が残るため、まだ外観の固定候補ではありません。</p>
 '''+''.join(cards)+'</html>\n'
         (OUT/'index.html').write_text(markup,encoding='utf-8',newline='\n')
         source_pins.update({n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in artifacts})
-        result=dict(schema='kant-terminal-words-1',version=VERSION,total=total,
+        result=dict(schema=schema,version=VERSION,total=total,
             matched=sum(r['status']=='matched' for r in rows),cases=cases,
             source_sha256=dict(sorted(source_pins.items())),
             limits=['Four semantic discourse spellings; other long numbered names remain',
@@ -105,10 +110,14 @@ def prepare():
         run.emit('progress',stage='Published terminal word trial',completed=total,total=total)
 
 
-def build_report():
-    report=json.loads((OUT/'structural-report.json').read_text(encoding='utf-8'))
+def prepare():
+    prepare_trial()
+
+
+def build_report(*,out=OUT,pin_function=pins):
+    report=json.loads((out/'structural-report.json').read_text(encoding='utf-8'))
     if report['matched']!=report['total']:raise ValueError('Terminal word trial has unresolved cases')
-    if any(report['source_sha256'].get(n)!=v for n,v in pins().items()):
+    if any(report['source_sha256'].get(n)!=v for n,v in pin_function().items()):
         raise ValueError('Terminal word trial implementation changed')
     for name,stamp in report['source_sha256'].items():
         if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=stamp:
