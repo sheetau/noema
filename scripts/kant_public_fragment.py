@@ -28,11 +28,11 @@ from scripts.kant_public_lexicon import (
 from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
-from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
+from scripts.kant_scoped_types import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
 from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-24-declarations'
+VERSION = 'kant-public-fragment-25-type-references'
 DECLARATION_TOKENS = frozenset(('primitive', 'definition'))
 STATEMENT_TOKENS = frozenset(('ask_truth', 'suppose'))
 APPLICATIONS = frozenset(('apply','quoted_application'))
