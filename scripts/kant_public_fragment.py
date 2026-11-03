@@ -30,7 +30,7 @@ from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
 
-VERSION = 'kant-public-fragment-13-nested-branches'
+VERSION = 'kant-public-fragment-14-multiple-arguments'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
@@ -104,6 +104,18 @@ def side_slot(token):
         if situations:
             return situations[-1]
     return count//2
+
+
+def side_order(token):
+    """A prefix of this public order identifies any visible branch count."""
+    first=side_slot(token)
+    if first is None:return []
+    continuation=next(i for i in range(arity(token)) if i!=first)
+    return [first]+[i for i in range(arity(token)) if i not in (first,continuation)]
+
+
+def event_sides(event):
+    return ([] if event['side'] is None else [event['side']])+event.get('extra_sides',[])
 
 
 def terminal_word(token):
@@ -264,11 +276,12 @@ def shared_argument_token(node,scope):
 
 
 def event_count(stream):
-    return len(stream)+sum(event_count(e['side']) if isinstance(e['side'],list)
-        else len(parts_for().get(e['side'],(e['side'],))) if e['side'] is not None else 0 for e in stream)
+    return len(stream)+sum(event_count(side) if isinstance(side,list)
+        else len(parts_for().get(side,(side,))) for e in stream for side in event_sides(e))
 
 
-def events(statement, branch=True, sharing=True, subexpressions=True, unbranched=(),nested=True):
+def events(statement, branch=True, sharing=True, subexpressions=True, unbranched=(),nested=True,
+           multiple=False,branch_limits=None):
     if not isinstance(statement, dict) or set(statement) != {'kind', 'body'} or statement['kind'] != 'assert':
         raise ValueError('Fragment expects one explicit assertion')
     result = []
@@ -276,13 +289,14 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
         if shared_argument_token(node,scope) is not None:return True
         _,children,child_scope=split(node,scope)
         return any(contains_sharing(c,child_scope) for c in children)
-    def emit(token, side, path, output):
+    def emit(token, side, path, output,extra_sides=()):
         parts = parts_for().get(token, (token,))
         for i, part in enumerate(parts):
             event = dict(token=part, side=side if i == len(parts)-1 else None,
                          depth=len(path), path=list(path))
             if i == 0 and token in words():
                 event['word'] = token
+            if i==len(parts)-1 and extra_sides:event['extra_sides']=list(extra_sides)
             output.append(event)
     def visit(node, scope, path, output, allow_branches=True):
         token, children, child_scope = split(node, scope)
@@ -307,19 +321,23 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
                     if i!=slot:visit(argument,scope,path+(j,i),output,allow_branches)
             return
         # Fixed public argument slot, not the middle of unknown leaf candidates.
-        slot = side_slot(token)
-        side = None
-        if branch and allow_branches and slot is not None and path not in unbranched:
-            side_token, descendants, _ = split(children[slot], child_scope)
-            if not descendants and terminal_word(side_token):
-                side = side_token
-            elif subexpressions and path not in unbranched and (nested or not (sharing and contains_sharing(children[slot],child_scope))):
-                candidate=[]
-                visit(children[slot],child_scope,path+(slot,),candidate,nested)
-                side=mark_boundaries(candidate)
-        emit(token, side, path,output)
+        order=side_order(token)
+        limit=(branch_limits or {}).get(path,len(order) if multiple else 1)
+        attached={}
+        if branch and allow_branches and path not in unbranched:
+            for slot in order[:limit]:
+                side_token, descendants, _ = split(children[slot], child_scope)
+                if not descendants and terminal_word(side_token):
+                    attached[slot]=side_token
+                elif subexpressions and (nested or not (sharing and contains_sharing(children[slot],child_scope))):
+                    candidate=[]
+                    visit(children[slot],child_scope,path+(slot,),candidate,nested)
+                    attached[slot]=mark_boundaries(candidate)
+                else:break
+        sides=list(attached.values())
+        emit(token,sides[0] if sides else None,path,output,sides[1:])
         for i, child in enumerate(children):
-            if side is None or i != slot:
+            if i not in attached:
                 visit(child, child_scope, path+(i,),output,allow_branches)
     visit(statement['body'], (), (),result)
     validate_native(statement)
@@ -328,17 +346,22 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
     return mark_boundaries(result)
 
 
-def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True):
+def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True,multiple=False):
     with use_context(lexicon):
-        unbranched=set()
+        unbranched=set();branch_limits={}
         while True:
             try:
                 drawing=_compile_statement(statement, branch=branch, silent=silent, sharing=sharing,
                     local_checks=local_checks,contacts=contacts,subexpressions=subexpressions,unbranched=unbranched,
-                    interleave=interleave,nested=nested)
+                    interleave=interleave,nested=nested,multiple=multiple,branch_limits=branch_limits)
                 drawing['unbranched_paths']=[list(p) for p in sorted(unbranched)]
+                if multiple:drawing['branch_limits']=[dict(path=list(p),maximum=k) for p,k in sorted(branch_limits.items())]
                 return drawing
             except PlacementFailure as error:
+                if error.branch_counts:
+                    path,count=error.branch_counts[-1]
+                    branch_limits[path]=count-1
+                    continue
                 candidates=[p for p in error.candidates if p not in unbranched]
                 if not candidates:raise
                 # An optional branch without a legal continuation stays on
@@ -347,9 +370,10 @@ def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexi
 
 
 class PlacementFailure(ValueError):
-    def __init__(self,message,candidates):
+    def __init__(self,message,candidates,branch_counts=()):
         super().__init__(message)
         self.candidates=candidates
+        self.branch_counts=branch_counts
 
 
 def single_medium(glyph):
@@ -422,13 +446,24 @@ def word_branch(token, main, moment, depth, *, contacts=True):
     return dict(shapes=shapes,paths=paths,port=first_port,centers=centers,invisible=invisible)
 
 
-def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True,subexpressions=True,unbranched=(),interleave=True,nested=True):
+def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True,contacts=True,subexpressions=True,unbranched=(),interleave=True,nested=True,multiple=False,branch_limits=None):
     """Reuse the Kant search with public glyphs and visible terminal arguments."""
-    stream = events(statement, branch, sharing, subexpressions,unbranched,nested and interleave)
-    if interleave and any(isinstance(e['side'],list) for e in stream):
+    stream = events(statement, branch, sharing, subexpressions,unbranched,nested and interleave,
+        multiple and interleave,branch_limits)
+    if interleave and any(isinstance(e['side'],list) or e.get('extra_sides') for e in stream):
         from scripts.kant_interleaved_layout import compile_stream
         try:return compile_stream(stream,contacts=contacts)
         except PlacementFailure as error:
+            def branch_counts(chain):
+                result=[]
+                for event in chain:
+                    sides=event_sides(event)
+                    if len(sides)>1:result.append((tuple(event['path']),len(sides)))
+                    for side in sides:
+                        if isinstance(side,list):result+=branch_counts(side)
+                return result
+            counts=sorted(branch_counts(stream),key=lambda item:(len(item[0]),item[0]))
+            if counts:raise PlacementFailure(str(error),[],counts) from error
             def nested_paths(chain,inside=False):
                 result=[]
                 for e in chain:
@@ -579,7 +614,7 @@ def decode(shapes, *, lexicon=None):
 def _decode(shapes):
     geometry = read_geometry(shapes)
     flow = decompose_flow(geometry,terminal_words=True,branch_seams=True,large_branches=True,
-        local_continuation=True,nested_branches=True)
+        local_continuation=True,nested_branches=True,multiple_branches=True)
     tokens = []
     for nucleus_ in flow['nuclei']:
         key = feature(geometry, nucleus_['circles'])
@@ -598,8 +633,8 @@ def _decode(shapes):
                        +c['outer_diagonals']) for c in geometry['circles']):
             raise ValueError('Uninterpreted free terminal stroke')
     main = flow['main']
-    branches=flow['branches']
-    streams=[main,*branches.values()]
+    branches=flow['branch_groups']
+    streams=[main,*(chain for groups in branches.values() for chain in groups)]
     locations={n:(s,i) for s,chain in enumerate(streams) for i,n in enumerate(chain)}
     stream_stops=[set() for _ in streams]
     linear = [tokens[i] for i in main]
@@ -655,7 +690,7 @@ def _decode(shapes):
             token = linear[index]
             sides = branches.get(main[index],[])
         count = arity(token)
-        if sides and count < 2:
+        if sides and len(sides)>=count:
             raise ValueError('Unexpected terminal dependency')
         if token in TYPE_TOKENS | LIST_TOKENS:
             raise ValueError('Type constructor outside a visible type header')
@@ -679,9 +714,9 @@ def _decode(shapes):
                 raise ValueError('Outward marker must precede an outer binding reference')
             return read(scope[:-1])
         if token == 'and_shared':
-            if not sides:
+            if len(sides)!=1:
                 raise ValueError('Shared conjunction requires one visible terminal argument')
-            subject = read(scope, sides)
+            subject = read(scope, sides[0])
             if subject['kind']!='variable' and not (subject['kind']=='call' and not subject['arguments']):
                 raise ValueError('Shared conjunction requires a terminal subject')
             applications = []
@@ -707,7 +742,8 @@ def _decode(shapes):
         if token in ('forall', 'exists', 'lambda_individual'):
             child_scope = (*scope, 'v'+number_word(serial))
             serial += 1
-        children = [read(child_scope, sides) if sides and i == side_slot(token) else read(child_scope)
+        attached=dict(zip(side_order(token),sides))
+        children = [read(child_scope,attached[i]) if i in attached else read(child_scope)
                     for i in range(count)]
         if token in words():
             return dict(kind='call', symbol=token, arguments=children)

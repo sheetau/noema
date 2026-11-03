@@ -9,7 +9,9 @@ from scripts.kant_geometry_reader import recover_seams
 
 
 def decompose_flow(geometry, *, terminal_words=False, branch_seams=False, large_branches=False,
-                   local_continuation=False, nested_branches=False):
+                   local_continuation=False, nested_branches=False, multiple_branches=False):
+    if multiple_branches and not nested_branches:
+        raise ValueError('Multiple branches require recursive flows')
     if nested_branches and not (terminal_words and local_continuation):
         raise ValueError('Nested branches require local continuation and expression flows')
     circles=geometry['circles'];parents=list(range(len(circles)))
@@ -85,7 +87,7 @@ def decompose_flow(geometry, *, terminal_words=False, branch_seams=False, large_
     if len(seen)!=len(adjacency):raise ValueError('Disconnected nucleus flow')
     orient(start,None)
     if nested_branches:
-        branches={};visited=[]
+        branches={};branch_groups={};visited=[]
         def walk(current,parent,is_side=False):
             chain=[]
             while True:
@@ -95,9 +97,25 @@ def decompose_flow(geometry, *, terminal_words=False, branch_seams=False, large_
                     chain.append(current);visited.append(current)
                 children=list(adjacency[current]-{parent})
                 if not children:break
+                if multiple_branches:
+                    def frontier(node,previous):
+                        if node<len(nuclei):return [(node,previous)]
+                        result=[]
+                        for child in adjacency[node]-{previous}:result+=frontier(child,node)
+                        return result
+                    reached=[pair for child in children for pair in frontier(child,current)]
+                    ordered=sorted(reached,key=lambda pair:nuclei[pair[0]]['center'][0])
+                    if any(abs(nuclei[a[0]]['center'][0]-nuclei[b[0]]['center'][0])<1e-6
+                           for a,b in zip(ordered,ordered[1:])):
+                        raise ValueError('Ambiguous continuation at a branch')
+                    if len(ordered)>1:
+                        groups=[walk(node,previous,True) for node,previous in ordered[:-1]]
+                        branches[chain[-1]]=groups[0];branch_groups[chain[-1]]=groups
+                    current,parent=ordered[-1]
+                    continue
                 if len(children)==1:onward=children[0]
                 else:
-                    if len(children)!=2 or not chain or chain[-1] in branches:
+                    if (not multiple_branches and len(children)!=2) or not chain or chain[-1] in branches:
                         raise ValueError('Multiple dependencies at one nucleus')
                     first=[]
                     for child in children:
@@ -107,15 +125,21 @@ def decompose_flow(geometry, *, terminal_words=False, branch_seams=False, large_
                             if len(following)!=1:raise ValueError('Ambiguous first nucleus after a branch')
                             previous,node=node,following[0]
                         first.append(nuclei[node]['center'][0])
-                    if abs(first[0]-first[1])<1e-6:raise ValueError('Ambiguous continuation at a branch')
-                    side_index=0 if first[0]<first[1] else 1
-                    branches[chain[-1]]=walk(children[side_index],current,True)
-                    onward=children[1-side_index]
+                    ordered=sorted(zip(first,children))
+                    if any(abs(a[0]-b[0])<1e-6 for a,b in zip(ordered,ordered[1:])):
+                        raise ValueError('Ambiguous continuation at a branch')
+                    groups=[walk(child,current,True) for _,child in ordered[:-1]]
+                    branches[chain[-1]]=groups[0]
+                    branch_groups[chain[-1]]=groups
+                    onward=ordered[-1][1]
                 parent,current=current,onward
             return chain
         main=walk(start,None)
         if sorted(visited)!=list(range(len(nuclei))):raise ValueError('Unvisited nucleus')
-        return dict(nuclei=nuclei,main=main,side=[branches.get(i,[]) for i in main],branches=branches)
+        if multiple_branches:
+            return dict(nuclei=nuclei,main=main,branch_groups=branch_groups)
+        return dict(nuclei=nuclei,main=main,side=[branches.get(i,[]) for i in main],
+            branches=branches,branch_groups=branch_groups)
     main=[];side=[];current=start;parent=None
     while True:
         if current<len(nuclei):main.append(current);side.append([])
