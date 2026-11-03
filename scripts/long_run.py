@@ -24,7 +24,16 @@ def atomic_json(path, value):
     with temporary.open('w', encoding='utf-8', newline='\n') as stream:
         json.dump(value, stream, ensure_ascii=False, indent=2)
         stream.write('\n'); stream.flush(); os.fsync(stream.fileno())
-    os.replace(temporary, path)
+    # Windows indexers/readers can briefly deny an otherwise valid replace.
+    # Keep the flushed temporary file and the prior destination intact while
+    # retrying only this atomic operation; persistent failures still escape.
+    for attempt in range(5):
+        try:
+            os.replace(temporary, path)
+            return
+        except PermissionError:
+            if attempt==4:raise
+            time.sleep(.01*3**attempt)
 
 
 class PauseRequested(Exception):

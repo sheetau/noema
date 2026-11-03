@@ -7,6 +7,38 @@ import pytest
 from scripts.long_run import LongRun, PauseRequested
 
 
+def test_atomic_json_retries_temporary_permission_denial(tmp_path,monkeypatch):
+    from scripts import long_run
+    path=tmp_path/'status.json';path.write_text('{"old":true}',encoding='utf-8')
+    replace=long_run.os.replace;calls=[];waits=[]
+    def transient(source,destination):
+        calls.append((source,destination))
+        if len(calls)==1:
+            assert json.loads(path.read_text(encoding='utf-8'))=={'old':True}
+            raise PermissionError('Temporary sharing conflict')
+        replace(source,destination)
+    monkeypatch.setattr(long_run.os,'replace',transient)
+    monkeypatch.setattr(long_run.time,'sleep',waits.append)
+    long_run.atomic_json(path,{'completed':3})
+    assert json.loads(path.read_text(encoding='utf-8'))=={'completed':3}
+    assert len(calls)==2 and waits==[.01]
+    assert not path.with_suffix('.json.tmp').exists()
+
+
+def test_atomic_json_persistent_permission_failure_is_not_hidden(tmp_path,monkeypatch):
+    from scripts import long_run
+    path=tmp_path/'status.json';path.write_text('{"old":true}',encoding='utf-8')
+    calls=[];waits=[]
+    def denied(*args):calls.append(args);raise PermissionError('Persistent denial')
+    monkeypatch.setattr(long_run.os,'replace',denied)
+    monkeypatch.setattr(long_run.time,'sleep',waits.append)
+    with pytest.raises(PermissionError,match='Persistent denial'):
+        long_run.atomic_json(path,{'completed':3})
+    assert len(calls)==5 and len(waits)==4 and sum(waits)<1
+    assert json.loads(path.read_text(encoding='utf-8'))=={'old':True}
+    assert json.loads(path.with_suffix('.json.tmp').read_text(encoding='utf-8'))=={'completed':3}
+
+
 def test_pause_keeps_committed_step_and_retries_unfinished_step(tmp_path):
     path = tmp_path / 'run'; calls = []
     with pytest.raises(PauseRequested):
