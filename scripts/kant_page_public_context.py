@@ -21,6 +21,7 @@ SOURCE = 'examples/v016/kant-reviewed-complete-v1.noema'
 NATIVE = 'examples/v016/kant-public-revolution-visible-v1.noema'
 BRIDGE = 'data/kant-public-revolution-visible-bridge-v1.json'
 EVIDENCE = 'reports/kant-public-revolution-visible-v1.json'
+REFERENCE_SPELLINGS = 'data/kant-reference-spellings-v1.json'
 
 
 @lru_cache(maxsize=1)
@@ -81,3 +82,37 @@ def selected(compact=True):
         for row in inputs()['selected']:
             validate_native(row['public'])
     return inputs()['selected']
+
+
+@lru_cache(maxsize=1)
+def reference_spellings():
+    specification=json.loads((ROOT/REFERENCE_SPELLINGS).read_text(encoding='utf-8'))
+    if specification['schema']!='kant-reference-spellings-1':
+        raise ValueError('Unknown reference spelling rules')
+    requested=specification['entries'];pending=set(requested);found={};paths=[REFERENCE_SPELLINGS]
+    name=specification['meaning_basis'];seen=set()
+    # Read only the meaning-basis chain needed for the requested existing entries.
+    # Do not instantiate historical profiles or parse every old manuscript.
+    while pending:
+        if not name or name in seen:raise ValueError('Reference meaning basis is incomplete or cyclic')
+        seen.add(name);paths.append(name)
+        basis=json.loads((ROOT/name).read_text(encoding='utf-8'))
+        for symbol_ in pending.copy():
+            if symbol_ in basis.get('primitives',{}):
+                found[symbol_]=basis['primitives'][symbol_];pending.remove(symbol_)
+        name=basis.get('inherited_meaning_basis') or basis.get('revises_meaning_basis')
+    bridge=inputs()['bridge'];declarations={d['name']:d for d in bridge['source_declarations']}
+    result={}
+    for old,row in requested.items():
+        if any(found[old][k]!=row[k] for k in ('parameters','result','meaning_ja')):
+            raise ValueError('Reference spelling changes the recorded meaning: '+old)
+        if any(declarations[old][k]!=row[k] for k in ('parameters','result')):
+            raise ValueError('Reference spelling changes its source signature: '+old)
+        result[bridge['mapping'][old]]=dict(parts=row['parts'],meaning_ja=row['meaning_ja'])
+    return result,paths
+
+
+@lru_cache(maxsize=2)
+def reference_context(compact=True):
+    spellings,_=reference_spellings()
+    return LexicalContext(inputs()['native'],compact=compact,declared_spellings=spellings)

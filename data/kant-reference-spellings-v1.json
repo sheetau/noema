@@ -1,0 +1,31 @@
+{
+  "schema": "kant-reference-spellings-1",
+  "meaning_basis": "data/kant-reviewed-complete-basis-v1.json",
+  "naming_convention": "文書と人物の組で著者参照、提示場所と文書の組で提示文脈参照を綴る。順序と文書の組は本文順序、伝達・文書・著者の組は主張内容の著者への帰属を表す。複合語全体の参照先と意味を公開辞書で宣言する。部品の単独語であるbookやakiの対象と同一だとは解釈しない。文番号・登録順・ハッシュから綴りを生成しない。",
+  "entries": {
+    "wa": {
+      "parts": ["book", "aki"],
+      "parameters": [],
+      "result": "individual",
+      "meaning_ja": "この文書の著者を指す局所参照。内容の意味は本文中のNoemaの定義で記述する。"
+    },
+    "wh": {
+      "parts": ["home", "book"],
+      "parameters": [],
+      "result": "situation",
+      "meaning_ja": "この段落を提示する文脈。引用された呼びかけの達成状況とは区別する。"
+    },
+    "ue": {
+      "parts": ["above", "book"],
+      "parameters": ["individual", "individual", "situation"],
+      "result": "truth",
+      "meaning_ja": "指定文脈の本文順序で第一箇所が第二箇所より前にある。出来事の時間順序や因果の向きとは別の関係。"
+    },
+    "uc": {
+      "parts": ["give", "book", "aki"],
+      "parameters": ["individual", "individual", {"kind": "description", "result": "content"}, "situation"],
+      "result": "truth",
+      "meaning_ja": "著者がこの文章箇所で指定された内容を主張する。著者への帰属であり、解釈器がその内容を真と認定する関係ではない。"
+    }
+  }
+}

@@ -29,7 +29,7 @@ from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
 from scripts.kant_lexical_context import use_context
 
-VERSION = 'kant-public-fragment-5-public-context'
+VERSION = 'kant-public-fragment-6-terminal-words'
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
@@ -73,6 +73,26 @@ def arity(token):
     if token in ARITY:
         return ARITY[token]
     return len(words()[token][1]['parameters'])
+
+
+def side_slot(token):
+    """A public signature fixes the side role before any argument is read."""
+    count=arity(token)
+    if count<2:
+        return None
+    if token in words():
+        situations=[i for i,t in enumerate(words()[token][1]['parameters']) if t=='situation']
+        if situations:
+            return situations[-1]
+    return count//2
+
+
+def terminal_word(token):
+    if token not in words() and token not in ('bound0','bound1'):
+        return False
+    parts=parts_for().get(token,(token,))
+    return (arity(token)==0 and len(parts)<=4
+            and all(not near(forms(p)[0]['radius'],LARGE) for p in parts))
 
 
 def validate_native(statement):
@@ -218,8 +238,7 @@ def events(statement, branch=True, sharing=True):
             a, b = children
             if a['arguments'] == b['arguments']:
                 shared, descendants, _ = split(a['arguments'][0], scope)
-                single = shared in root_words() or shared in ('bound0', 'bound1')
-                if single and not descendants and not near(forms(shared)[0]['radius'], LARGE):
+                if not descendants and terminal_word(shared):
                     # One visible argument is expanded at precisely these two
                     # call sites. No conjunction flattening or hidden paths.
                     emit('and_shared', shared, path)
@@ -227,15 +246,14 @@ def events(statement, branch=True, sharing=True):
                     emit(b['symbol'], None, path+(1,))
                     return
         # Fixed public argument slot, not the middle of unknown leaf candidates.
-        slot = len(children)//2 if len(children) >= 2 else None
+        slot = side_slot(token)
         side = None
         if branch and slot is not None:
             side_token, descendants, _ = split(children[slot], child_scope)
             # A large circle spans all three rails and blocks a continuation
             # passing beside it. Keep it on the main flow, as in the Kant
             # generator's medium/small-only satellite rule.
-            single = side_token in GRAMMAR and side_token != 'function_ref' or side_token in root_words()
-            if single and not descendants and not near(forms(side_token)[0]['radius'], LARGE):
+            if not descendants and terminal_word(side_token):
                 side = side_token
         emit(token, side, path)
         for i, child in enumerate(children):
@@ -251,6 +269,37 @@ def events(statement, branch=True, sharing=True):
 def compile_statement(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True):
     with use_context(lexicon):
         return _compile_statement(statement, branch=branch, silent=silent, sharing=sharing, local_checks=local_checks)
+
+
+def word_branch(token, main, moment, depth):
+    """Place one closed terminal spelling on an outer rail, connected in order."""
+    parts=parts_for().get(token,(token,))
+    template=forms(parts[0])[0]
+    side_r=template['radius'];radius=main['radius'];x,y=main['x'],main['y']
+    side_y=2*PITCH-y if y!=PITCH else (0. if moment>0 else 2*PITCH)
+    side_x=x if len(parts)==1 and abs(side_y-y)>=radius+side_r+MIN_GAP else main['right']+side_r+2*MIN_RUN+PITCH
+    shapes=[];paths=[];previous=main['exit'];entry=None;first_port=None;centers=[];right=main['right']
+    for index,part in enumerate(parts):
+        local_template=forms(part)[0]
+        start=side_x if index==0 else right+MIN_GAP-local_template['left']
+        chosen=None
+        for extra in (0.,12.,28.,48.,72.,104.,160.):
+            glyph=forms(part,start+extra,side_y)[0]
+            obstacles=main['shapes']+shapes+glyph['shapes']
+            link=route(previous,glyph['entry'],[s for s in obstacles if s['kind']=='circle'],depth,obstacles,
+                       forbidden_start=() if entry is None else (entry,))
+            if link is None:continue
+            path,segments=link
+            try:geometry_check(obstacles+segments,main['paths']+paths+glyph['paths']+[path])
+            except ValueError:continue
+            chosen=glyph,path,segments;break
+        if chosen is None:return None
+        glyph,path,segments=chosen
+        if index==0:first_port=path[0]
+        shapes+=glyph['shapes']+segments;paths+=glyph['paths']+[path]
+        centers.append([glyph['x'],glyph['y']]);right=glyph['right']
+        previous=glyph['exit'];entry=boundary_port(glyph['entry'],path[-2])
+    return dict(shapes=shapes,paths=paths,port=first_port,centers=centers)
 
 
 def _compile_statement(statement, *, branch=True, silent=True, sharing=True, local_checks=True):
@@ -295,22 +344,9 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
                     side_ports = []
                     side = None
                     if event['side'] is not None:
-                        side_template = forms(event['side'])[0]
-                        side_r = side_template['radius']
-                        side_y = PITCH if near(side_r, LARGE) else (
-                            2*PITCH-y if y != PITCH else 0. if moment > 0 else 2*PITCH)
-                        # A large terminal cannot be stacked across rails. Its
-                        # local branch remains asymmetric and ends before main continuation.
-                        side_x = x if side_y != y and abs(side_y-y) >= radius+side_r+MIN_GAP else (
-                            main['right']+side_r+2*MIN_RUN+PITCH)
-                        side = forms(event['side'], side_x, side_y)[0]
-                        local += side['shapes']; local_paths += side['paths']
-                        link = route(main['exit'], side['entry'],
-                                     [s for s in local if s['kind'] == 'circle'], event['depth'], local)
-                        if link is None:
-                            continue
-                        p, segments = link
-                        local += segments; local_paths.append(p); side_ports.append(p[0])
+                        side=word_branch(event['side'],main,moment,event['depth'])
+                        if side is None:continue
+                        local+=side['shapes'];local_paths+=side['paths'];side_ports.append(side['port'])
                     edge = None
                     seam = previous and (event.get('lexical_seam') or
                         silent and token == 'quote' and near(previous['y'], y))
@@ -351,7 +387,8 @@ def _compile_statement(statement, *, branch=True, silent=True, sharing=True, loc
         shapes += local; paths += local_paths; moment += delta
         groups.append(dict(token=token, center=[main['x'], main['y']], right=right,
                            shape_start=shape_start,path_start=path_start,
-                           side=None if side is None else [side['x'], side['y']]))
+                           side=None if side is None else side['centers'][0],
+                           side_centers=[] if side is None else side['centers']))
         if edge and edge['kind'] == 'invisible':
             invisible.append(edge)
         previous, previous_entry = main['exit'], edge.get('entry_port') if edge else None
@@ -367,7 +404,7 @@ def decode(shapes, *, lexicon=None):
 
 def _decode(shapes):
     geometry = read_geometry(shapes)
-    flow = decompose_flow(geometry)
+    flow = decompose_flow(geometry,terminal_words=True)
     tokens = []
     for nucleus_ in flow['nuclei']:
         key = feature(geometry, nucleus_['circles'])
@@ -406,9 +443,9 @@ def _decode(shapes):
         nonlocal position
         token, position = read_word(linear, position, stops=stops, sides=side_positions)
         return token, flow['side'][position-1]
-    def read(scope, side_id=None):
+    def read(scope, side_ids=None):
         nonlocal position, serial
-        if side_id is None:
+        if side_ids is None:
             if position >= len(main):
                 raise ValueError('Incomplete visible expression')
             if linear[position] in root_words():
@@ -418,8 +455,15 @@ def _decode(shapes):
                 token = linear[index]
                 sides = flow['side'][index]
         else:
-            token, sides = tokens[side_id], []
-            if arity(token) or flow['nuclei'][side_id]['size'] == 'large':
+            chain=[tokens[i] for i in side_ids]
+            if chain[0] in root_words():
+                token,end=read_word(chain,0)
+                if end!=len(chain):raise ValueError('Terminal branch contains more than one word')
+            elif len(chain)==1 and chain[0] in ('bound0','bound1'):
+                token=chain[0]
+            else:raise ValueError('Terminal branch is not one public word')
+            sides=[]
+            if arity(token) or any(flow['nuclei'][i]['size']=='large' for i in side_ids):
                 raise ValueError('Nonterminal word used as a terminal dependency')
         count = arity(token)
         if sides and count < 2:
@@ -430,9 +474,9 @@ def _decode(shapes):
                 raise ValueError('Arguments attached to a bare function reference')
             return dict(kind='function_ref', symbol=name)
         if token == 'and_shared':
-            if len(sides) != 1:
+            if not sides:
                 raise ValueError('Shared conjunction requires one visible terminal argument')
-            subject = read(scope, sides[0])
+            subject = read(scope, sides)
             applications = []
             for _ in range(2):
                 name, attached = take_word()
@@ -450,7 +494,7 @@ def _decode(shapes):
                 raise ValueError('Binder depth outside this fragment')
             child_scope = (*scope, 'v'+number_word(serial))
             serial += 1
-        children = [read(child_scope, sides[0]) if sides and i == count//2 else read(child_scope)
+        children = [read(child_scope, sides) if sides and i == side_slot(token) else read(child_scope)
                     for i in range(count)]
         if token in words():
             return dict(kind='call', symbol=token, arguments=children)

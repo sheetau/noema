@@ -28,7 +28,7 @@ def use_context(context):
         ACTIVE.reset(token)
 
 
-def abbreviate(full, *, maximum=4):
+def abbreviate(full, *, maximum=4, declared=None):
     """Shortest uniquely identifying ordered subsequence, else the full name.
 
     All complete public spellings are reserved. A candidate must occur in only
@@ -37,7 +37,11 @@ def abbreviate(full, *, maximum=4):
     This does not generate a code from a name's row number, hash, or spelling.
     """
     selected = {token: parts for parts, token in full.items()}
+    declared=declared or {}
+    reserved={parts:token for token,parts in declared.items()}
+    selected.update(declared)
     pending = {token for parts, token in full.items() if len(parts) > 2}
+    pending.difference_update(declared)
     for size in range(2, maximum+1):
         owners = {}
         candidates = {}
@@ -49,6 +53,8 @@ def abbreviate(full, *, maximum=4):
                 sequence = tuple(parts[i] for i in positions)
                 # Do not steal any already published complete name.
                 if sequence in full and full[sequence] != token:
+                    continue
+                if sequence in reserved and reserved[sequence] != token:
                     continue
                 preference = (-(positions[0] == 0)-(positions[-1] == len(parts)-1),
                               positions[-1]-positions[0], positions)
@@ -76,7 +82,7 @@ def abbreviate(full, *, maximum=4):
 
 class LexicalContext:
     """A declared extension; native input must already have been type checked."""
-    def __init__(self, document, *, compact=True):
+    def __init__(self, document, *, compact=True, declared_spellings=None):
         from scripts.kant_public_lexicon import vocabulary, _base_words, _base_spellings
         v = vocabulary()
         # A decoder's dictionary must never contain the source assertions.
@@ -84,6 +90,7 @@ class LexicalContext:
             lexicon_version=document['lexicon_version'],
             declarations=deepcopy(document['declarations']),statements=[])
         self.compact = compact
+        self.declared_spellings=deepcopy(declared_spellings or {})
         self.words = deepcopy(_base_words())
         self.declarations = {d['name']: deepcopy(d) for d in v.imports([n for n, _ in self.words.values()])}
         self.full_spellings = dict(_base_spellings())
@@ -106,26 +113,42 @@ class LexicalContext:
             if parts in self.full_spellings and self.full_spellings[parts] != token:
                 raise ValueError('Context spelling collision')
             self.full_spellings[parts] = token
-        self.parts, self.spellings = abbreviate(self.full_spellings) if compact else (
+        declared={}
+        for token,row in self.declared_spellings.items():
+            if (token not in self.words or token in _base_words() or not isinstance(row,dict)
+                or set(row)!={'parts','meaning_ja'} or not isinstance(row['meaning_ja'],str)
+                or not row['meaning_ja'].strip() or not isinstance(row['parts'],list)
+                or not 2<=len(row['parts'])<=4):
+                raise ValueError('Invalid explicit semantic spelling')
+            parts=tuple(symbol(Word('root',(p,)),v) for p in row['parts'])
+            if (parts in self.full_spellings and self.full_spellings[parts]!=token
+                or parts in declared.values()):
+                raise ValueError('Explicit spelling collides with a published word')
+            declared[token]=parts
+        self.parts, self.spellings = abbreviate(self.full_spellings,declared=declared) if compact else (
             {t:p for p,t in self.full_spellings.items()}, dict(self.full_spellings))
+        if not compact:
+            self.parts.update(declared)
+            self.spellings.update({parts:token for token,parts in declared.items()})
         self.prefixes = {parts[:i] for parts in self.spellings for i in range(1, len(parts)+1)}
         self.fingerprint = hashlib.sha256(json.dumps(dict(document=self.document,
-            selected=self.parts),ensure_ascii=False,sort_keys=True).encode()).hexdigest()
+            selected=self.parts,declared_spellings=self.declared_spellings),ensure_ascii=False,sort_keys=True).encode()).hexdigest()
         self._imports = {}
 
     def published(self):
-        return dict(schema='kant-public-context-dictionary-1',fingerprint=self.fingerprint,
+        return dict(schema='kant-public-context-dictionary-2',fingerprint=self.fingerprint,
             compact=self.compact,native=deepcopy(self.document),
+            declared_spellings=deepcopy(self.declared_spellings),
             selected_spellings={t:list(p) for t,p in self.parts.items()},
             aliases=[dict(parts=list(p),symbol=t) for p,t in sorted(self.spellings.items())])
 
     @classmethod
     def from_published(cls, value):
-        if (set(value) != {'schema','fingerprint','compact','native','selected_spellings','aliases'}
-            or value['schema'] != 'kant-public-context-dictionary-1'
+        if (set(value) != {'schema','fingerprint','compact','native','selected_spellings','aliases','declared_spellings'}
+            or value['schema'] != 'kant-public-context-dictionary-2'
             or type(value['compact']) is not bool or value['native'].get('statements') != []):
             raise ValueError('Expected a public dictionary without source assertions')
-        result=cls(value['native'],compact=value['compact'])
+        result=cls(value['native'],compact=value['compact'],declared_spellings=value['declared_spellings'])
         if result.published()!=value:
             raise ValueError('Published dictionary spelling or fingerprint differs')
         return result

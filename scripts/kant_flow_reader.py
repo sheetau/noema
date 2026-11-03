@@ -8,7 +8,7 @@ import math
 from scripts.kant_geometry_reader import recover_seams
 
 
-def decompose_flow(geometry):
+def decompose_flow(geometry, *, terminal_words=False):
     circles=geometry['circles'];parents=list(range(len(circles)))
     def root(i):
         while parents[i]!=i:parents[i]=parents[parents[i]];i=parents[i]
@@ -93,10 +93,25 @@ def decompose_flow(geometry):
         for child in children:
             if child==onward[0]:continue
             ids=below[(current,child)]
-            if len(ids)!=1 or not main:raise ValueError('Nonterminal dependency outside main flow')
-            side[-1].append(ids[0])
+            if not main:raise ValueError('Nonterminal dependency outside main flow')
+            if terminal_words:
+                if side[-1]:raise ValueError('Multiple terminal dependencies at one nucleus')
+                chain=[];previous=current;node=child
+                while True:
+                    if node<len(nuclei):
+                        if nuclei[node]['size']=='large':
+                            raise ValueError('Large nucleus in terminal word branch')
+                        chain.append(node)
+                    onward_=list(adjacency[node]-{previous})
+                    if len(onward_)>1:raise ValueError('A terminal word branch cannot fork')
+                    if not onward_:break
+                    previous,node=node,onward_[0]
+                side[-1]=chain
+            else:
+                if len(ids)!=1:raise ValueError('Nonterminal dependency outside main flow')
+                side[-1].append(ids[0])
         parent,current=current,onward[0]
-    if any(len(ids)>1 for ids in side):raise ValueError('Multiple terminal dependencies at one nucleus')
+    if not terminal_words and any(len(ids)>1 for ids in side):raise ValueError('Multiple terminal dependencies at one nucleus')
     if sorted(main+[i for ids in side for i in ids])!=list(range(len(nuclei))):
         raise ValueError('Unvisited nucleus')
     return dict(nuclei=nuclei,main=main,side=side)
