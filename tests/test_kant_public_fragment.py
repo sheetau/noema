@@ -66,8 +66,9 @@ def test_reader_does_not_use_writer_or_svg_element_order(monkeypatch):
 
 def test_quote_can_use_visible_or_silent_entry():
     index = next(i for i,c in enumerate(cases()) if c[0] == 'quote')
-    assert checked(index, True, False)['source'] == checked(index)['source']
-    assert checked(index, True, False)['svg'] != checked(index)['svg']
+    # A main-flow quotation with no preceding branch permits either entry.
+    assert checked(index, False, False)['source'] == checked(index,False)['source']
+    assert checked(index, False, False)['svg'] != checked(index,False)['svg']
 
 
 def test_source_scope_and_type_errors_are_rejected():

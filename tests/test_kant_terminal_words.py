@@ -33,7 +33,8 @@ def test_a_closed_compound_word_can_be_one_terminal_argument(quoted):
     reader=LexicalContext.from_published(ctx.published())
     for drawing in (attached,linear):
         assert decode(from_svg(to_svg(drawing['shapes'])),lexicon=reader)==source
-    flow=decompose_flow(read_geometry(attached['shapes']),terminal_words=True)
+    flow=decompose_flow(read_geometry(attached['shapes']),terminal_words=True,
+        branch_seams=True,large_branches=True)
     assert any(len(chain)==2 for chain in flow['side'])
     assert to_svg(attached['shapes'])!=to_svg(linear['shapes'])
 

@@ -17,7 +17,8 @@ def test_shared_and_explicit_svg_restore_identical_native_syntax(index,sharing):
 def test_sharing_removes_occurrences_without_a_new_header(index):
     a,b=checked(index),checked(index,False)
     assert a['circles']<b['circles']
-    assert len(events(a['source']))<len(events(a['source'],sharing=False))
+    from scripts.kant_public_fragment import event_count
+    assert event_count(events(a['source']))<event_count(events(a['source'],sharing=False))
 
 
 def test_association_remains_visible():

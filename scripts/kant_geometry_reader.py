@@ -8,12 +8,12 @@ from collections import defaultdict
 import math
 
 from scripts.balanced_circle_script import (
-    SMALL,MEDIUM,LARGE,PITCH,EPS,near,line,_on_segment,
+    SMALL,MEDIUM,LARGE,PITCH,MIN_GAP,EPS,near,line,_on_segment,
 )
 from scripts.kant_geometry_rules import geometry_check
 from scripts.visible_syntax_geometry import clean
 
-VERSION='kant-observable-geometry-3'
+VERSION='kant-observable-geometry-4-branch-seams'
 
 
 def point(x,y):return (round(x,7),round(y,7))
@@ -187,7 +187,7 @@ def read_geometry(shapes):
                 visible_components=len(identifiers),silent_candidates=candidates)
 
 
-def recover_seams(geometry):
+def recover_seams(geometry, *, branch_seams=False):
     """A proposed public production: ordered components join at their extremes.
 
     The endpoint centers must be horizontally, vertically or diagonally aligned.
@@ -197,7 +197,41 @@ def recover_seams(geometry):
     components=defaultdict(set)
     for c in geometry['circles']:components[c['component']].add(tuple(c['center']))
     if len(components)!=geometry['visible_components']:raise ValueError('Unattached line-only component')
-    ordered=sorted(components.values(),key=min);result=[]
+    result=[]
+    if branch_seams:
+        # A branch word boundary uses one specified horizontal gap. Contract
+        # only these local connections before the legacy component extremes.
+        # Neither semantic types nor a writer-supplied branch label choose it.
+        radii={'small':SMALL,'medium':MEDIUM,'large':LARGE}
+        companions=set()
+        for relation in geometry['relations']:
+            if relation['kind']=='tangent':continue
+            a,b=relation['circles']
+            companions.add(min((a,b),key=lambda i:radii[geometry['circles'][i]['size']]))
+        centers={}
+        for i,c in enumerate(geometry['circles']):
+            if i in companions:continue
+            p=tuple(c['center']);r=radii[c['size']]
+            if p not in centers or centers[p][0]<r:centers[p]=(r,c['component'])
+        parents={c:c for c in components}
+        def root(c):
+            while parents[c]!=c:c=parents[c]
+            return c
+        rails=defaultdict(list)
+        for p in centers:rails[p[1]].append(p)
+        for points in rails.values():
+            points.sort()
+            for a,b in zip(points,points[1:]):
+                ra,ca=centers[a];rb,cb=centers[b]
+                if ca==cb or not near(b[0]-a[0]-ra-rb,MIN_GAP):continue
+                left,right=root(ca),root(cb)
+                if left==right:raise ValueError('Ambiguous compact silent connections')
+                parents[left]=right
+                result.append([list(a),list(b)])
+        joined=defaultdict(set)
+        for c,points in components.items():joined[root(c)].update(points)
+        components=joined
+    ordered=sorted(components.values(),key=min)
     for left,right in zip(ordered,ordered[1:]):
         a,b=max(left),min(right)
         if a>=b:raise ValueError('Interleaved silent components')

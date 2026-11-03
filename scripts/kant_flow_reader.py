@@ -8,7 +8,7 @@ import math
 from scripts.kant_geometry_reader import recover_seams
 
 
-def decompose_flow(geometry, *, terminal_words=False):
+def decompose_flow(geometry, *, terminal_words=False, branch_seams=False, large_branches=False):
     circles=geometry['circles'];parents=list(range(len(circles)))
     def root(i):
         while parents[i]!=i:parents[i]=parents[parents[i]];i=parents[i]
@@ -38,7 +38,7 @@ def decompose_flow(geometry, *, terminal_words=False):
     for a,b in geometry['edges']:link(vertices[a],vertices[b])
     for relation in geometry['relations']:
         if relation['kind']=='tangent':link(*(owner[c] for c in relation['circles']))
-    for a,b in recover_seams(geometry):
+    for a,b in recover_seams(geometry,branch_seams=branch_seams):
         ends=[]
         for center in (a,b):
             owners={owner[i] for i,c in enumerate(circles) if math.dist(c['center'],center)<1e-6}
@@ -99,7 +99,7 @@ def decompose_flow(geometry, *, terminal_words=False):
                 chain=[];previous=current;node=child
                 while True:
                     if node<len(nuclei):
-                        if nuclei[node]['size']=='large':
+                        if nuclei[node]['size']=='large' and not large_branches:
                             raise ValueError('Large nucleus in terminal word branch')
                         chain.append(node)
                     onward_=list(adjacency[node]-{previous})

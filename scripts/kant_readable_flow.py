@@ -7,7 +7,7 @@ from copy import deepcopy
 from collections import Counter
 import json
 import math
-from scripts.balanced_circle_script import line, line_error, radial_clearance, spacing_check, _segment_touches
+from scripts.balanced_circle_script import line, line_error, radial_clearance, spacing_check, _segment_touches, _on_segment
 from scripts.balanced_circle_script import (
     display_tree, expanded_tree, restore, signature, registry, events, profile,
     ray_order, stroke_mode, near, SMALL, MEDIUM, LARGE, PITCH, EPS, MIN_RUN,
@@ -72,6 +72,41 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
                 left=cx-abs(peak-ay);right=cx+abs(peak-by)
                 if depart<=left and right<=approach:
                     candidates.append([(ax,ay),(left,ay),(cx,peak),(right,by),(bx,by)])
+        # A complete side expression can contain several large circles. Use
+        # local 45-degree excursions from an outer rail, returning to that
+        # rail between obstacles. Overlapping excursions merge into one peak;
+        # this avoids consecutive right-angle turns and an unbounded arch over
+        # the entire branch. Vertical collars can leave an occupied east port.
+        for rail,sign in ((0.,-1),(2*PITCH,1)):
+            first=depart+abs(rail-ay);last=approach-abs(rail-by)
+            collar_a=ay+sign*(a['radius']+MIN_RUN)
+            peak_a=collar_a+sign*MIN_RUN
+            collar_b=by+sign*(b['radius']+MIN_RUN)
+            peak_b=collar_b+sign*MIN_RUN
+            starts=[[(ax,ay),(depart,ay),(first,rail)],
+                    [(ax,ay),(ax,collar_a),(ax+MIN_RUN,peak_a),(ax+MIN_RUN+abs(peak_a-rail),rail)]]
+            ends=[[(last,rail),(approach,by),(bx,by)],
+                  [(bx-MIN_RUN-abs(peak_b-rail),rail),(bx-MIN_RUN,peak_b),(bx,collar_b),(bx,by)]]
+            for beginning in starts:
+                for ending in ends:
+                    lo,hi=beginning[-1][0],ending[0][0]
+                    if lo>=hi:continue
+                    intervals=[]
+                    for c in circles:
+                        if not lo<c['x']<hi:continue
+                        distance=abs(c['y']-rail)
+                        if distance>=c['r']+MIN_GAP+EPS:continue
+                        half=math.sqrt(2)*(c['r']+MIN_GAP+EPS)-distance
+                        intervals.append((c['x']-half,c['x']+half))
+                    merged=[]
+                    for left,right in sorted(intervals):
+                        if merged and left<=merged[-1][1]+EPS:merged[-1][1]=max(right,merged[-1][1])
+                        else:merged.append([left,right])
+                    if any(left<lo+EPS or right>hi-EPS for left,right in merged):continue
+                    excursion=[]
+                    for left,right in merged:
+                        excursion.extend([(left,rail),((left+right)/2,rail+sign*(right-left)/2),(right,rail)])
+                    candidates.append(beginning+excursion+ending)
     for points in candidates:
         points = [p for i, p in enumerate(points) if not i or math.dist(p, points[i-1]) > EPS]
         if len(points) < 2: continue
@@ -85,6 +120,13 @@ def route(a, b, circles, preference=0, obstacles=(), diagnostics=None, end_cente
         if any(math.dist(points[0],p)<EPS for p in forbidden_start): continue
         if any(math.dist(terminal,p)<EPS for p in forbidden_end): continue
         segments = [line(p, q) for p, q in zip(points, points[1:]) if math.dist(p, q) > EPS]
+        # A radial chord may satisfy the per-segment incidence test but still
+        # cut through an intermediate circle's center. External connectors
+        # stop at rims and must never introduce such a diameter/extra ray.
+        if detours and any(_on_segment((c['x'],c['y']),s) and not (
+            end_center and near(c['x'],bx) and near(c['y'],by)
+            and math.dist((s['x2'],s['y2']),(bx,by))<EPS)
+            for c in circles for s in segments):continue
         if not any(line_error(s, circles) for s in segments):
             try: radial_clearance(segments,circles)
             except ValueError as error:
