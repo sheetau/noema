@@ -1,0 +1,150 @@
+{
+  "schema": "kant-semantic-spellings-2",
+  "meaning_basis": "data/kant-reviewed-complete-basis-v1.json",
+  "naming_convention": "既存の提示・記述・本文順序の語群を継ぐ公開綴り。詳しくはdocs/kant-presentation-spellings.md。確言は真理・知識を、記述対応は描写の実行を、本文順序は出来事の時間順を含意しない。根語の論理的適用ではなく複合語全体の語彙規約とする。文番号・登録順・ハッシュを綴りに使わない。",
+  "entries": {
+    "hzxu": {
+      "parts": [
+        "give",
+        "book",
+        "assessmentdecisive"
+      ],
+      "kind": "primitive",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "meaning_ja": "提示者が同じ箇所・文脈の指定主張の中で、指定した焦点内容を確かなものとして確言しているという提示態度。焦点内容と基礎主張を別々に結び、同じ箇所の別の主張や別の焦点へ流用しない。実際の知識・内心の確信度・真理・必然性・成功保証・未来性・既に生じたことは含意しない。",
+      "declaration_sha256": "b7c9f2c8222e29f0a1c51b6eb8af9494513b0a94f4d0c1cbee2f820a29498cf8"
+    },
+    "rqzv": {
+      "parts": [
+        "book",
+        "inside",
+        "candidateexcluded",
+        "home"
+      ],
+      "kind": "definition",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "description",
+          "result": "content"
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "kind": "description",
+          "result": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        "situation"
+      ],
+      "result": "truth",
+      "meaning_ja": "同じ主張内の一個体・二状況を対応させるhzybの非字義的な提示について、対象と描写の記述が異なることを要求する。人物や状況を別の型へ符号化せず、記述内容を実行評価しない。",
+      "declaration_sha256": "39d0e50587946e3a01e1cfd0adbd15086b9a3397957d2bc79a05320e3b1212cf"
+    },
+    "rqtv": {
+      "parts": [
+        "give",
+        "book",
+        "home",
+        "book"
+      ],
+      "kind": "definition",
+      "parameters": [
+        "individual",
+        "individual",
+        {
+          "kind": "function",
+          "parameters": [
+            {
+              "kind": "function",
+              "parameters": [
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                },
+                {
+                  "kind": "description",
+                  "result": "content",
+                  "rank": 2
+                }
+              ],
+              "result": {
+                "kind": "description",
+                "result": "content",
+                "rank": 2
+              }
+            }
+          ],
+          "result": {
+            "kind": "description",
+            "result": "content",
+            "rank": 2
+          }
+        },
+        "individual",
+        "individual",
+        "situation"
+      ],
+      "result": "truth",
+      "meaning_ja": "同じ組から主張と背景を一回ずつ取り出し、rqtuで既存rtqの引用階数へ接続する。同じ箇所・著者・文脈を共用し、主張範囲と背景範囲は別に渡す。既存hznreportとhzrbgreportで帰属し、内容の真理や背景の実際の成立を含意しない。",
+      "declaration_sha256": "b0027c969ecedbcea2dd7b558848fd4c9773b3a859a851d16b63d29d1f59a0de"
+    },
+    "rqvt": {
+      "parts": [
+        "above",
+        "book",
+        "candidateexcluded"
+      ],
+      "kind": "definition",
+      "parameters": [
+        "individual",
+        "individual",
+        "situation",
+        {
+          "kind": "function",
+          "parameters": [
+            "individual",
+            "individual",
+            "situation"
+          ],
+          "result": "truth"
+        }
+      ],
+      "result": "truth",
+      "meaning_ja": "異なる二つの文章箇所について正順が成立し逆順が成立しない。出来事の時間順ではない。文書全体の順序理論を証明するものではない。",
+      "declaration_sha256": "c76076282ef2d6557d7fd8aa293fd73badb89e9312603ef45c95ad0aa5b3a105"
+    }
+  }
+}
