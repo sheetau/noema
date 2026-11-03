@@ -23,7 +23,7 @@ from scripts.visible_lexical_script import _glyph
 from scripts.visible_syntax_vocabulary import Vocabulary
 from scripts.visible_word_forms import Word, symbol
 from scripts.kant_public_lexicon import (
-    vocabulary, words, root_words, parts_for, read_word, mark_boundaries, declarations_for,
+    vocabulary, words, root_words, parts_for, read_word, mark_boundaries, declarations_for, spellings,
 )
 from noema.constructed_discourse import normalize_document
 from noema.grammar import number_word
@@ -32,7 +32,7 @@ from scripts.kant_scoped_types import TYPE_TOKENS, LIST_TOKENS, type_tokens, typ
 from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-26-new-names'
+VERSION = 'kant-public-fragment-27-spellings'
 DECLARATION_TOKENS = frozenset(('primitive', 'definition'))
 STATEMENT_TOKENS = frozenset(('ask_truth', 'suppose'))
 APPLICATIONS = frozenset(('apply','quoted_application'))
@@ -44,7 +44,7 @@ SEQUENCE_FIELDS = {'length':('sequence',),'position':('sequence','index','value'
 RAIL_PAIRS={'small-upper-left-rim':(-1,-1),'small-upper-right-rim':(1,-1),
             'small-lower-left-rim':(-1,1),'small-lower-right-rim':(1,1)}
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1, 'iff': 2,
-         'question': 1, 'message_content': 1, 'full_name': 0, **{'message_'+force:1 for force in MESSAGE_FORCES},
+         'question': 1, 'message_content': 1, 'full_name': 0, 'spelling': 0, **{'message_'+force:1 for force in MESSAGE_FORCES},
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
          'function_ref': 0, 'and_shared': 2, 'lambda_individual': 1, 'evaluate': 2,
          'quote_raise': 1, 'bound_shift': 1, 'quoted_lift': 1, 'disquote': 1, 'content': 1,
@@ -109,6 +109,7 @@ GRAMMAR = {
     'primitive': ((LARGE, 'small-upper-right-rim', 0, 'radius'),),
     'definition': ((LARGE, 'small-upper-right-rim', 4, 'radius'),),
     'full_name': ((LARGE, 'small-upper-right-rim', 2, 'radius'),),
+    'spelling': ((LARGE, 'small-lower-left-rim', 0, 'radius'),),
 }
 
 
@@ -232,6 +233,23 @@ def validate_declaration(declaration, *, new_name=False):
         declarations=[*dependencies,declaration],statements=[]))['declarations'][-1]
     if checked!=declaration:raise ValueError('Declaration requires canonical native syntax')
     return declaration
+
+
+def validate_spelling(record):
+    from scripts.visible_word_forms import canonical
+    if set(record)!={'kind','name','parts'} or record['kind']!='spelling':
+        raise ValueError('Expected a spelling record')
+    name=record['name'];parts=record['parts']
+    if name not in words():raise ValueError('Spelling target is not declared')
+    if name in root_words():raise ValueError('Cannot rename a root word')
+    if not isinstance(parts,list) or not 2<=len(parts)<=4:raise ValueError('Spelling requires two to four root components')
+    word=canonical(Word('compound',tuple(parts)),vocabulary())
+    if list(word.parts)!=parts:raise ValueError('Spelling requires canonical root components')
+    tokens=tuple(symbol(Word('root',(part,)),vocabulary()) for part in parts)
+    existing=spellings().get(tokens)
+    if existing is not None:
+        raise ValueError('Spelling already registered' if existing==name else 'Spelling collides with another word')
+    return record
 
 
 def forms(token, x=0., y=PITCH):
@@ -389,7 +407,9 @@ def event_count(stream):
 def events(statement, branch=True, sharing=True, subexpressions=True, unbranched=(),nested=True,
            multiple=False,branch_limits=None,full_names=False):
     is_declaration=statement.get('kind') in DECLARATION_TOKENS
-    if is_declaration:validate_declaration(statement,new_name=full_names)
+    is_spelling=statement.get('kind')=='spelling'
+    if is_spelling:validate_spelling(statement)
+    elif is_declaration:validate_declaration(statement,new_name=full_names)
     else:validate_native(statement)
     result = []
     def contains_sharing(node,scope):
@@ -466,7 +486,14 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
             if node['kind']=='ask' and expression_type(node['body'],(),words())=='truth':
                 emit('ask_truth',None,path,result)
             visit(node['body'],(),path,result)
-    if is_declaration:
+    if is_spelling:
+        emit('spelling',None,(),result)
+        emit(statement['name'],None,(),result)
+        emit('types_end',None,(),result)
+        for part in statement['parts']:
+            result.append(dict(token=symbol(Word('root',(part,)),vocabulary()),side=None,depth=0,path=[]))
+        emit('types_end',None,(),result)
+    elif is_declaration:
         kind=statement['kind']
         emit(kind,None,(),result)
         if full_names:
@@ -490,13 +517,18 @@ def events(statement, branch=True, sharing=True, subexpressions=True, unbranched
 
 
 def compile_statement(statement, **options):
-    if statement.get('kind') in DECLARATION_TOKENS:raise ValueError('Expected a statement, not a declaration')
+    if statement.get('kind') in DECLARATION_TOKENS|{'spelling'}:raise ValueError('Expected a statement, not a declaration')
     return _compile_item(statement,**options)
 
 
 def compile_declaration(declaration, **options):
     if declaration.get('kind') not in DECLARATION_TOKENS:raise ValueError('Expected a declaration')
     return _compile_item(declaration,**options)
+
+
+def compile_spelling(record, **options):
+    if record.get('kind')!='spelling':raise ValueError('Expected a spelling record')
+    return _compile_item(record,**options)
 
 
 def _compile_item(statement, *, branch=True, silent=True, sharing=True, lexicon=None, local_checks=True, contacts=True, subexpressions=True, interleave=True,nested=True,multiple=False,full_names=False):
@@ -859,7 +891,7 @@ def _decode(shapes, *, declaration=False):
             raise ValueError('Type constructor outside a visible type header')
         if token in STATEMENT_TOKENS:
             raise ValueError('Statement head inside an expression')
-        if token in DECLARATION_TOKENS or token=='full_name':
+        if token in DECLARATION_TOKENS or token in ('full_name','spelling'):
             raise ValueError('Declaration head inside an expression')
         if token=='sequence':
             element=read_type(take_type_token)
@@ -1023,15 +1055,14 @@ def _decode(shapes, *, declaration=False):
         else:raise ValueError('Statement body has wrong sort')
         return dict(kind=kind,body=body)
     new_name=False
-    def read_full_name():
+    def read_root_parts(limit):
         nonlocal position
-        from scripts.visible_word_forms import MAX_PARTS,read_symbol
-        take_statement_token()
+        from scripts.visible_word_forms import read_symbol
         parts=[];previous=None
         while position<len(main) and linear[position]!='types_end':
             token=linear[position]
             if token not in root_words():raise ValueError('Full name requires root components')
-            if len(parts)>=MAX_PARTS:raise ValueError('Full name component budget')
+            if len(parts)>=limit:raise ValueError('Full name component budget')
             if main[position] in branches or position in stops:
                 raise ValueError('Full name cannot carry branches or lexical seams')
             current=main[position]
@@ -1041,6 +1072,11 @@ def _decode(shapes, *, declaration=False):
         if not parts:raise ValueError('Empty full name')
         if position>=len(main):raise ValueError('Missing full name end')
         take_statement_token()
+        return parts
+    def read_full_name():
+        from scripts.visible_word_forms import MAX_PARTS
+        take_statement_token()
+        parts=read_root_parts(MAX_PARTS)
         return symbol(Word('root' if len(parts)==1 else 'compound',tuple(parts)),vocabulary())
     def read_declaration():
         nonlocal serial,new_name
@@ -1061,8 +1097,18 @@ def _decode(shapes, *, declaration=False):
         scope=tuple((p['name'],p['sort']) for p in parameters)
         body=read(scope)
         return dict(kind=kind,name=name,parameters=parameters,result=expression_type(body,scope,words()),body=body)
-    if declaration is None:declaration=bool(main and linear[position] in DECLARATION_TOKENS)
-    result = read_declaration() if declaration else read_statement()
+    is_spelling=declaration is None and bool(main and linear[position]=='spelling')
+    if is_spelling:
+        take_statement_token()
+        if position>=len(main):raise ValueError('Missing spelling target')
+        name,sides=take_word()
+        if sides:raise ValueError('Spelling target cannot carry arguments')
+        if position>=len(main) or linear[position]!='types_end':raise ValueError('Missing spelling target end')
+        take_statement_token()
+        result=dict(kind='spelling',name=name,parts=read_root_parts(4))
+    else:
+        if declaration is None:declaration=bool(main and linear[position] in DECLARATION_TOKENS)
+        result = read_declaration() if declaration else read_statement()
     if position != len(main):
         raise ValueError('Trailing visible words')
     owners={c:i for i,n in enumerate(flow['nuclei']) for c in n['circles']}
@@ -1072,4 +1118,5 @@ def _decode(shapes, *, declaration=False):
         if pair not in lexical_pairs or any(
             flow['nuclei'][i]['size']!='medium' or len(flow['nuclei'][i]['circles'])!=1 for i in pair):
             raise ValueError('Contact must join two single medium components of one word or numeral')
+    if is_spelling:return validate_spelling(result)
     return validate_declaration(result,new_name=new_name) if declaration else validate_native(result)

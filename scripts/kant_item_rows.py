@@ -66,7 +66,7 @@ def read_row(shapes,context):
     return next(iter(decoded.values()))
 
 
-def decode_page(shapes,*,seed=None):
+def decode_page(shapes,*,seed=None,include_spellings=False):
     reader=Reader(seed)
     for row in split_rows(shapes):reader.register(read_row(row,reader.context))
-    return reader.document
+    return reader.result(include_spellings)
