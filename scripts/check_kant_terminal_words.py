@@ -40,10 +40,14 @@ def reader_context():
 
 @lru_cache(maxsize=40)
 def checked(index):
-    row=inputs()['selected'][index];ctx=reference_context();started=time.perf_counter()
+    return checked_with_context(index,reference_context(),reader_context())
+
+
+def checked_with_context(index,ctx,reader):
+    row=inputs()['selected'][index];started=time.perf_counter()
     drawing=compile_statement(row['public'],lexicon=ctx)
     svg=to_svg(drawing['shapes']);shapes=from_svg(svg)
-    recovered=decode(shapes,lexicon=reader_context())
+    recovered=decode(shapes,lexicon=reader)
     if recovered!=row['public']:raise ValueError('Terminal word changed the source syntax')
     flow=decompose_flow(read_geometry(shapes),terminal_words=True)
     return dict(statement=row['statement'],status='matched',svg=svg,
@@ -61,6 +65,8 @@ def attempted(index):
 
 def prepare_trial(*,out=OUT,baseline=BASELINE,run_path=RUN,pin_function=pins,
                   case_function=attempted,schema='kant-terminal-words-1',
+                  context_factory=reference_context,reader_factory=reader_context,
+                  lexical_limit='Four semantic discourse spellings; other long numbered names remain',
                   title='短い参照語を複合語の枝へ置く',
                   intro='著者・提示文脈・本文順序・主張の帰属に短い公開綴りを与え、複合語を一つの引数として横枝へ置きます。状況引数がある述語では最後の状況引数、それ以外は中央引数が枝の位置です。元の40主張と語義・参照先は変えません。'):
     OUT,BASELINE,RUN=out,baseline,run_path
@@ -69,7 +75,7 @@ def prepare_trial(*,out=OUT,baseline=BASELINE,run_path=RUN,pin_function=pins,
         rows=[];total=len(inputs()['selected'])
         for index in range(total):
             run.emit('progress',stage='Read compound terminal branches',completed=index,total=total)
-            row=run.step('sentence-'+str(index),dict(context=reference_context().fingerprint,
+            row=run.step('sentence-'+str(index),dict(context=context_factory().fingerprint,
                 source=inputs()['selected'][index]),lambda index=index:case_function(index))
             rows.append(row)
             print(json.dumps({k:v for k,v in row.items() if k!='svg'}),flush=True)
@@ -77,7 +83,7 @@ def prepare_trial(*,out=OUT,baseline=BASELINE,run_path=RUN,pin_function=pins,
         baseline=json.loads((ROOT/BASELINE).read_text(encoding='utf-8'))
         old={r['statement']:r for r in baseline['cases']}
         OUT.mkdir(parents=True,exist_ok=True)
-        atomic_json(OUT/'dictionary.json',reader_context().published())
+        atomic_json(OUT/'dictionary.json',reader_factory().published())
         relative=OUT.relative_to(ROOT).as_posix()
         cards=[];artifacts=[relative+'/dictionary.json'];cases=[]
         for row in rows:
@@ -103,7 +109,7 @@ def prepare_trial(*,out=OUT,baseline=BASELINE,run_path=RUN,pin_function=pins,
         result=dict(schema=schema,version=VERSION,total=total,
             matched=sum(r['status']=='matched' for r in rows),cases=cases,
             source_sha256=dict(sorted(source_pins.items())),
-            limits=['Four semantic discourse spellings; other long numbered names remain',
+            limits=[lexical_limit,
                     'Terminal words of at most four medium/small nuclei; no arbitrary subtree branches',
                     'No page decoding, general sort/binding completion, semantic re-review or visual freeze'])
         atomic_json(OUT/'structural-report.json',result)

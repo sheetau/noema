@@ -22,6 +22,7 @@ NATIVE = 'examples/v016/kant-public-revolution-visible-v1.noema'
 BRIDGE = 'data/kant-public-revolution-visible-bridge-v1.json'
 EVIDENCE = 'reports/kant-public-revolution-visible-v1.json'
 REFERENCE_SPELLINGS = 'data/kant-reference-spellings-v1.json'
+DISCOURSE_SPELLINGS = 'data/kant-public-discourse-spellings-v1.json'
 
 
 @lru_cache(maxsize=1)
@@ -84,35 +85,69 @@ def selected(compact=True):
     return inputs()['selected']
 
 
-@lru_cache(maxsize=1)
-def reference_spellings():
-    specification=json.loads((ROOT/REFERENCE_SPELLINGS).read_text(encoding='utf-8'))
-    if specification['schema']!='kant-reference-spellings-1':
+def semantic_spellings(specification,path,bridge,read_basis):
+    """Check a lexical alias against its recorded meaning and declaration."""
+    if specification['schema'] not in ('kant-reference-spellings-1','kant-semantic-spellings-2'):
         raise ValueError('Unknown reference spelling rules')
-    requested=specification['entries'];pending=set(requested);found={};paths=[REFERENCE_SPELLINGS]
+    requested=specification['entries'];pending=set(requested);found={};paths=[path]
+    declarations={d['name']:d for d in bridge['source_declarations']}
     name=specification['meaning_basis'];seen=set()
     # Read only the meaning-basis chain needed for the requested existing entries.
     # Do not instantiate historical profiles or parse every old manuscript.
     while pending:
         if not name or name in seen:raise ValueError('Reference meaning basis is incomplete or cyclic')
         seen.add(name);paths.append(name)
-        basis=json.loads((ROOT/name).read_text(encoding='utf-8'))
+        basis=read_basis(name)
         for symbol_ in pending.copy():
-            if symbol_ in basis.get('primitives',{}):
-                found[symbol_]=basis['primitives'][symbol_];pending.remove(symbol_)
+            declaration=declarations.get(symbol_)
+            if declaration is None:raise ValueError('Unknown source declaration: '+symbol_)
+            section='primitives' if declaration['kind']=='primitive' else 'definitions'
+            values=basis.get(section,{})
+            if isinstance(values,dict) and symbol_ in values:
+                found[symbol_]=values[symbol_];pending.remove(symbol_)
         name=basis.get('inherited_meaning_basis') or basis.get('revises_meaning_basis')
-    bridge=inputs()['bridge'];declarations={d['name']:d for d in bridge['source_declarations']}
     result={}
     for old,row in requested.items():
-        if any(found[old][k]!=row[k] for k in ('parameters','result','meaning_ja')):
+        declaration=declarations[old]
+        primitive=declaration['kind']=='primitive'
+        meaning=found[old]['meaning_ja'] if primitive else found[old]
+        if meaning!=row['meaning_ja']:
             raise ValueError('Reference spelling changes the recorded meaning: '+old)
-        if any(declarations[old][k]!=row[k] for k in ('parameters','result')):
+        parameters=declaration['parameters'] if primitive else [p['sort'] for p in declaration['parameters']]
+        if parameters!=row['parameters'] or declaration['result']!=row['result']:
             raise ValueError('Reference spelling changes its source signature: '+old)
+        if primitive and any(found[old][k]!=row[k] for k in ('parameters','result')):
+            raise ValueError('Reference spelling changes the recorded signature: '+old)
+        if specification['schema']=='kant-semantic-spellings-2':
+            stamp=hashlib.sha256(json.dumps(declaration,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+            if row['kind']!=declaration['kind'] or row['declaration_sha256']!=stamp:
+                raise ValueError('Reference spelling changes the original declaration: '+old)
+        elif not primitive:
+            raise ValueError('Definition spelling requires its original declaration hash')
         result[bridge['mapping'][old]]=dict(parts=row['parts'],meaning_ja=row['meaning_ja'])
     return result,paths
+
+
+@lru_cache(maxsize=2)
+def load_semantic_spellings(path):
+    specification=json.loads((ROOT/path).read_text(encoding='utf-8'))
+    return semantic_spellings(specification,path,inputs()['bridge'],
+        lambda name:json.loads((ROOT/name).read_text(encoding='utf-8')))
+
+
+def reference_spellings():
+    return load_semantic_spellings(REFERENCE_SPELLINGS)
 
 
 @lru_cache(maxsize=2)
 def reference_context(compact=True):
     spellings,_=reference_spellings()
     return LexicalContext(inputs()['native'],compact=compact,declared_spellings=spellings)
+
+
+@lru_cache(maxsize=2)
+def discourse_context(compact=True):
+    references,_=reference_spellings()
+    discourse,_=load_semantic_spellings(DISCOURSE_SPELLINGS)
+    if references.keys() & discourse.keys():raise ValueError('Repeated semantic spelling declaration')
+    return LexicalContext(inputs()['native'],compact=compact,declared_spellings=references|discourse)
