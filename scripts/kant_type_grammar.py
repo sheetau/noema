@@ -1,7 +1,8 @@
 """Prefix type grammar shared by typed binders and future declarations.
 
 These are public grammatical categories, not lexical primitives or type IDs.
-Parameter lists have explicit cons/nil structure; no inferred arity is needed.
+Each type is self-delimiting. A list needs its end marker, not a marker before
+every element. The old cons/nil form remains readable as a distinct list mode.
 """
 from noema.constructed_discourse import sort
 
@@ -28,13 +29,13 @@ def type_tokens(value):
 
 
 def type_list_tokens(values):
-    return [token for value in values for token in ('types_more', *type_tokens(value))] + ['types_end']
+    return [token for value in values for token in type_tokens(value)] + ['types_end']
 
 
-def read_type(take, depth=0):
+def read_type(take, depth=0, *, first=None):
     if depth > 128:
         raise ValueError('Type nesting outside the drawing resource limit')
-    token = take()
+    token = take() if first is None else first
     rank=0
     while token=='quote_raise':
         rank+=1
@@ -58,11 +59,15 @@ def read_type(take, depth=0):
 
 
 def read_type_list(take, depth=0):
-    result = []
+    result = [];prefixed=None
     while True:
         token = take()
         if token == 'types_end':
             return result
-        if token != 'types_more':
-            raise ValueError('Expected type-list continuation or end')
-        result.append(read_type(take, depth))
+        legacy=token=='types_more'
+        if not legacy and token not in TYPE_TOKENS and token!='quote_raise':
+            raise ValueError('Expected a type-list element or end')
+        if prefixed is not None and legacy!=prefixed:
+            raise ValueError('Mixed type-list encodings')
+        prefixed=legacy
+        result.append(read_type(take,depth,first=None if legacy else token))

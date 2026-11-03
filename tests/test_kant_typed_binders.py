@@ -39,7 +39,7 @@ def test_description_rank_is_not_counted_as_type_nesting(rank):
     (['types_end'],'outside a visible type header'),
     (['forall_typed','bound0'],'Expected a public type'),
     (['forall_typed','quote_raise','type_number'],'rank marker'),
-    (['forall_typed','type_function','type_number'],'type-list'),
+    (['forall_typed','type_function','type_number'],'Incomplete visible type'),
     (['lambda_typed','types_more','type_number'],'Incomplete visible type'),
     (['forall_typed','type_sequence'],'Incomplete visible type'),
     (['lambda_typed','types_end'],'Incomplete visible expression'),

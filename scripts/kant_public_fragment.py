@@ -31,7 +31,7 @@ from scripts.kant_lexical_context import use_context
 from scripts.kant_type_grammar import TYPE_TOKENS, LIST_TOKENS, type_tokens, type_list_tokens, read_type, read_type_list
 from scripts.kant_function_grammar import expression_type,application_type,require_description
 
-VERSION = 'kant-public-fragment-17-quotation-operations'
+VERSION = 'kant-public-fragment-18-compact-type-lists'
 APPLICATIONS = frozenset(('apply','quoted_application'))
 ARITY = {'and': 2, 'or': 2, 'implies': 2, 'equal': 2, 'not': 1,
          'quote': 1, 'forall': 1, 'exists': 1, 'bound0': 0, 'bound1': 0,
