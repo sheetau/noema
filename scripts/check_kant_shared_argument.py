@@ -8,7 +8,7 @@ from pathlib import Path
 from scripts.kant_public_fragment import compile_statement, decode, events, table, VERSION
 from scripts.kant_public_lexicon import source_paths
 from scripts.check_kant_public_fragment import canonical, cases as prior_cases, checked as prior_checked
-from scripts.check_kant_public_words import checked as word_checked, identities
+from scripts.check_kant_public_words import checked as word_checked, identities, application_checked, application_cases
 from scripts.check_visible_syntax import call, logic, quote, quant, variable
 from scripts.visible_syntax_geometry import to_svg, from_svg
 
@@ -77,19 +77,21 @@ def build_report():
     explicit=[checked(i,False) for i in range(len(cases()))]
     prior=[prior_checked(i,branch) for i in range(len(prior_cases())) for branch in (True,False)]
     probes=[word_checked(i) for i in (0,47,188,len(identities())-1)]
+    applications=[application_checked(i) for i in range(len(application_cases()))]
     pins=set(source_paths())|{
         'scripts/kant_public_fragment.py','scripts/check_kant_shared_argument.py',
         'scripts/check_kant_public_fragment.py','scripts/check_kant_public_words.py',
-        'tests/test_kant_shared_argument.py','tests/test_kant_public_fragment.py',
+        'tests/test_kant_shared_argument.py','tests/test_kant_public_fragment.py','tests/test_kant_public_words.py',
         'docs/kant-shared-argument.md','scripts/kant_readable_flow.py','scripts/kant_flow_reader.py',
         'scripts/kant_geometry_reader.py','scripts/balanced_circle_script.py','scripts/branch_circle_script.py',
         'scripts/circle_contact_script.py','scripts/visible_syntax_geometry.py','scripts/check_visible_syntax.py',
         'concept/alphabet-concept.md','data/writing-freeze-v1.json','reports/kant-public-words-v1.json'}
     return dict(schema='kant-shared-argument-1',version=VERSION,status='reversible-local-fusion-not-writing-freeze',
         exact_native_roundtrips=len(rows)+len(explicit),prior_grammar_roundtrips=len(prior),
+        lexical_boundary_application_regressions=[r['key'] for r in applications],
         reference_regression_probes=[r['name'] for r in probes],
         prior_complete_word_identity=dict(report='reports/kant-public-words-v1.json',commit='7db25d10',
-            scope='375 references at that pinned version; not rerun in full for this and-only change'),
+            scope='375 references at that pinned version; current checks target sharing and lexical seam rail constraints'),
         public_shapes=len(table()),
         cases=[dict(key=a['key'],fused=a['fused'],circles_before=b['circles'],circles_after=a['circles'],
             svg_sha256=hashlib.sha256(a['svg'].encode()).hexdigest()) for a,b in zip(rows,explicit)],

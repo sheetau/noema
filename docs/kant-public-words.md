@@ -1,5 +1,7 @@
 # 共通の開始記号を置かない複合語
 
+この文書はコミット7db25d10時点の語彙接続を記述する。後続の可逆な共有と語境界の段制約は [共有引数の仕様](kant-shared-argument.md)を参照する。
+
 元kant-pageの配置探索と幾何制約を使う限定構文へ、公開済みの30根語・345複合語を接続する。旧語形や語義を再割当てしない。scripts/kant_public_lexicon.py が既存の SensesVocabulary から綴り、型、定義を読み、scripts/kant_public_fragment.py が実際の円と線へ組み立てる。
 
 ## 語境界の規則
