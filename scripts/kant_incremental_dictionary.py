@@ -38,6 +38,14 @@ class Reader:
     def result(self,include_spellings=False):
         return deepcopy(dict(native=self.document,spellings=self.spellings) if include_spellings else self.document)
 
+    def fork(self):
+        # Registration replaces the context instead of mutating it. A pending
+        # read may share this snapshot, but owns its mutable document lists.
+        result=object.__new__(type(self))
+        result.seed=deepcopy(self.seed);result.context=self.context
+        result.document=deepcopy(self.document);result.spellings=deepcopy(self.spellings)
+        return result
+
     def register(self,item):
         if item['kind']=='spelling':
             if self.document['statements']:raise ValueError('Spelling follows a statement')

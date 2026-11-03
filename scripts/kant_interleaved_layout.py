@@ -140,7 +140,7 @@ def _compile_stream(stream, *, contacts=True, lookahead=False, frontier_window=T
         parent=flow['previous'];previous=parent['glyph']['exit'] if parent else None
         if event.get('word'):
             flow['contact']=False
-            flow['word_end']=index+len(p.parts_for().get(event['word'],(event['word'],)))
+            flow['word_end']=index+event.get('word_length',len(p.parts_for().get(event['word'],(event['word'],))))
         template=p.forms(token)[0];radius=template['radius']
         seam=bool(event.get('lexical_seam'))
         choices=[]

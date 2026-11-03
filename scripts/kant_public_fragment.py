@@ -32,7 +32,7 @@ from scripts.kant_scoped_types import TYPE_TOKENS, LIST_TOKENS, type_tokens, typ
 from scripts.kant_function_grammar import expression_type,application_type,require_description,require_question
 from scripts.kant_number_grammar import START_TOKENS as NUMBER_STARTS,number_tokens,read_number
 
-VERSION = 'kant-public-fragment-27-spellings'
+VERSION = 'kant-public-fragment-28-item-runs'
 DECLARATION_TOKENS = frozenset(('primitive', 'definition'))
 STATEMENT_TOKENS = frozenset(('ask_truth', 'suppose'))
 APPLICATIONS = frozenset(('apply','quoted_application'))
@@ -806,7 +806,14 @@ def decode_item(shapes, *, lexicon=None):
         return _decode(shapes,declaration=None)
 
 
-def _decode(shapes, *, declaration=False):
+def decode_run(shapes, *, reader):
+    """Read a whole flow transactionally, learning only completed items."""
+    pending=reader.fork()
+    items=_decode(shapes,declaration=None,reader=pending)
+    return pending,items
+
+
+def _decode(shapes, *, declaration=False, reader=None):
     geometry = read_geometry(shapes)
     flow = decompose_flow(geometry,terminal_words=True,branch_seams=True,large_branches=True,
         local_continuation=True,nested_branches=True,multiple_branches=True)
@@ -1097,18 +1104,30 @@ def _decode(shapes, *, declaration=False):
         scope=tuple((p['name'],p['sort']) for p in parameters)
         body=read(scope)
         return dict(kind=kind,name=name,parameters=parameters,result=expression_type(body,scope,words()),body=body)
-    is_spelling=declaration is None and bool(main and linear[position]=='spelling')
-    if is_spelling:
-        take_statement_token()
-        if position>=len(main):raise ValueError('Missing spelling target')
-        name,sides=take_word()
-        if sides:raise ValueError('Spelling target cannot carry arguments')
-        if position>=len(main) or linear[position]!='types_end':raise ValueError('Missing spelling target end')
-        take_statement_token()
-        result=dict(kind='spelling',name=name,parts=read_root_parts(4))
+    def read_item(mode):
+        nonlocal new_name,serial
+        new_name=False;serial=0
+        is_spelling=mode is None and position<len(main) and linear[position]=='spelling'
+        if is_spelling:
+            take_statement_token()
+            if position>=len(main):raise ValueError('Missing spelling target')
+            name,sides=take_word()
+            if sides:raise ValueError('Spelling target cannot carry arguments')
+            if position>=len(main) or linear[position]!='types_end':raise ValueError('Missing spelling target end')
+            take_statement_token()
+            return validate_spelling(dict(kind='spelling',name=name,parts=read_root_parts(4)))
+        if mode is None:mode=position<len(main) and linear[position] in DECLARATION_TOKENS
+        result=read_declaration() if mode else read_statement()
+        return validate_declaration(result,new_name=new_name) if mode else validate_native(result)
+    if reader is None:
+        result=read_item(declaration)
     else:
-        if declaration is None:declaration=bool(main and linear[position] in DECLARATION_TOKENS)
-        result = read_declaration() if declaration else read_statement()
+        result=[]
+        while position<len(main):
+            with use_context(reader.context):item=read_item(None)
+            reader.register(item)
+            result.append(item)
+        if not result:raise ValueError('Empty visible item run')
     if position != len(main):
         raise ValueError('Trailing visible words')
     owners={c:i for i,n in enumerate(flow['nuclei']) for c in n['circles']}
@@ -1118,5 +1137,4 @@ def _decode(shapes, *, declaration=False):
         if pair not in lexical_pairs or any(
             flow['nuclei'][i]['size']!='medium' or len(flow['nuclei'][i]['circles'])!=1 for i in pair):
             raise ValueError('Contact must join two single medium components of one word or numeral')
-    if is_spelling:return validate_spelling(result)
-    return validate_declaration(result,new_name=new_name) if declaration else validate_native(result)
+    return result
