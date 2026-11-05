@@ -1,5 +1,7 @@
 # 現在地
 
+作品を越えた語彙・構成・仕様の整理が完了しました。[共通仕様](general-language-v1.md)、[検索できる辞書と例](../output/general-language-v1/index.html)、[選択記録](../data/general-language-release-v1.json)、[完了照合](../reports/general-language-completion-v1.json)が入口です。36分野の区別を整理し、19定義を追加。辞書全1,909宣言と追加構成148記録の図形復号を確認しました。次は二作品と共通成果物・証拠を合わせた最終完成版の確定です。
+
 採用済みconcept2 v7の円文字による、二作品全402主張の最終文書統合が完了しました。[二作品の閲覧版](../output/two-work-final-v2/index.html)、[完成版の選択記録](../data/two-work-publication-v1.json)、[最終照合](../reports/two-work-final-publication-v1.json)が入口です。宣言と補助注記を含む10,946記録の図形復号が一致し、原文302単位、識別表記、数式、著者脚注を保持しています。既存の意味判断を引き継ぎ、新しい意味判断は追加していません。
 
 残件1の共通書記・復号基盤は維持しています。[本文見本・字形表](../output/noema-writing-v2/index.html)、[共通規則](circle-writing-v2.md)、[固定記録](../data/writing-freeze-v2.json)を参照してください。

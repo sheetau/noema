@@ -1,0 +1,1069 @@
+{
+  "document": "examples/v016/general-pragmatics-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "featuretransfer": "空でなく重複のない特徴列について、同じ源対象の特徴と、明示された対応写像による同じ先対象の特徴が成立する。対象の同一性、列にない特徴の移転、写像の唯一性は含まない。",
+    "metaphoricalreading": "指定した特徴の対応に、同じ源・先・字義記述・意図記述・写像・文脈を結ぶ解釈の根拠を要求する比喩の読み。源の特徴は比喩の比較場面における特徴でもよく、現実世界に源対象が実在するとは限らない。字義の内容を真として実行しない。この特徴対応型以外の比喩を禁止しない。",
+    "metonymicreference": "同じ文脈での二対象の関係と、同じ出現において一方で他方を指すという明示的な選択を結ぶ。関係があるだけでは参照先を選ばず、対象を同一化しない。",
+    "ironicreading": "同じ話者・行為・文脈で、ある記述を反響させ、それへの距離を表し、指定した別の意図記述として解釈する読み。字義の偽を必須にせず、否定だけから皮肉を認定しない。皮肉の全用法を一つの条件へ還元する定義ではない。",
+    "expressivepresentation": "同じ生起する発話行為・話者・受け手・話題に、引用した態度をその場で表す関係を結ぶ。態度について報告しただけではこの関係は成立しない。態度を実際に持つことや受け手が理解することは含めない。",
+    "expressivesincere": "表出された同じ態度記述を同じ話者に適用し、表出時点でその内容も成立する。表出の存在と内心の成立を区別するための条件であり、表出一般の必須条件ではない。",
+    "declarativepresentation": "同じ生起する発話に、指定した制度・規則の下で指定状態を成立させる宣言をしたという表明を結ぶ。話者の権限・手続の適格さ・実際の成立は別。",
+    "declarativeeffective": "同じ宣言に、その話者・行為・制度・規則・状態に対する権限、前提の成立、後続状況での同じ状態の成立を結ぶ。権限は結果から逆算せず、宣言が実際に効力を生じたとの制度的根拠を含む解釈入力として別に説明する。",
+    "fictionalclaim": "指定された物語枠・語りの声に属する状況で、引用された内容が成立する。現実の状況、別の物語枠、語り手の信頼性には移さない。",
+    "socialregister": "同じ提示に、指定された共同体の慣行で話者が受け手に対して役割上の距離・敬意などを表す関係を結ぶ。実際の身分、内心の敬意、普遍的な礼儀の評価は含めない。"
+  },
+  "public_contracts": {
+    "featuretransfer": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "features",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "contract": null
+        },
+        {
+          "role": "mapping",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "contract": "源の特徴から先の特徴への、読みの根拠として先に固定した対応。"
+        },
+        {
+          "role": "sourcefeature",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "比較場面で源対象に帰属する特徴。現実の実在を要求するかは文脈で固定する。"
+        },
+        {
+          "role": "targetfeature",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "先対象に帰属すると解釈する特徴。源と同じ語義を無条件に適用しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        }
+      ],
+      "result": "truth"
+    },
+    "metaphoricalreading": {
+      "arguments": [
+        {
+          "role": "source",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "features",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          },
+          "contract": null
+        },
+        {
+          "role": "mapping",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "individual"
+          },
+          "contract": "源の特徴から先の特徴への、読みの根拠として先に固定した対応。"
+        },
+        {
+          "role": "sourcefeature",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "比較場面で源対象に帰属する特徴。現実の実在を要求するかは文脈で固定する。"
+        },
+        {
+          "role": "targetfeature",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "先対象に帰属すると解釈する特徴。源と同じ語義を無条件に適用しない。"
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "literal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "contract": null
+        },
+        {
+          "role": "intended",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "contract": null
+        },
+        {
+          "role": "licensed",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "individual"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "この字義と意図をこの特徴対応で読む根拠。単なる二対象の類似とは区別する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "metonymicreference": {
+      "arguments": [
+        {
+          "role": "occurrence",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "sign",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "target",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "associated",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "部分と全体、作者と作品、場所と組織など、先に説明された二対象間の関係。"
+        },
+        {
+          "role": "selected",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "この出現で関係先を参照対象として選ぶ根拠。関連する全対象から自動選択しない。"
+        }
+      ],
+      "result": "truth"
+    },
+    "ironicreading": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "echoed",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "contract": null
+        },
+        {
+          "role": "intended",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "contract": null
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "echoes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "話者が同じ行為で指定記述を反響・引照する。実際の先行発話がなく、期待の引照でもよい。"
+        },
+        {
+          "role": "distances",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "同じ行為で同じ記述への評価上の距離を表す。記述が偽であることではない。"
+        },
+        {
+          "role": "interprets",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "同じ反響する記述と意図した読みを結ぶ、文脈上の解釈根拠。"
+        }
+      ],
+      "result": "truth"
+    },
+    "expressivepresentation": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "contract": null
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "attitude",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "contract": null
+        },
+        {
+          "role": "expresses",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "話者がこの受け手への同じ行為でこの話題に対する態度を表出する。伝聞や中立的な報告と区別し、社会的慣行と提示方法を記す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "expressivesincere": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "contract": null
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "attitude",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          },
+          "contract": null
+        },
+        {
+          "role": "expresses",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "話者がこの受け手への同じ行為でこの話題に対する態度を表出する。伝聞や中立的な報告と区別し、社会的慣行と提示方法を記す。"
+        }
+      ],
+      "result": "truth"
+    },
+    "declarativepresentation": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "contract": null
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "institution",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "rule",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "status",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "contract": null
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "同じ行為で指定制度・規則による状態の成立を宣言すると表明する。単なる状態の予測とは区別する。"
+        }
+      ],
+      "result": "truth"
+    },
+    "declarativeeffective": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "contract": null
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "institution",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "rule",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "status",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "contract": null
+        },
+        {
+          "role": "claims",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "同じ行為で指定制度・規則による状態の成立を宣言すると表明する。単なる状態の予測とは区別する。"
+        },
+        {
+          "role": "authorized",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "指定規則に基づく権限と手続の適格さが同じ宣言に適用され、その宣言による状態の成立を制度的に認める。状態が後に成立しただけでは補わない。"
+        },
+        {
+          "role": "precondition",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "contract": null
+        },
+        {
+          "role": "outcome",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "before",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "situation",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        }
+      ],
+      "result": "truth"
+    },
+    "fictionalclaim": {
+      "arguments": [
+        {
+          "role": "frame",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "voice",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "content",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          },
+          "contract": null
+        },
+        {
+          "role": "world",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "belongs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "同じ物語枠・語りの声に属する評価状況。現実や別の声への移行には明示的な別対応が必要。"
+        }
+      ],
+      "result": "truth"
+    },
+    "socialregister": {
+      "arguments": [
+        {
+          "role": "person",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "activity",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "recipient",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "subject",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "message",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "message"
+            }
+          },
+          "contract": null
+        },
+        {
+          "role": "context",
+          "sort": "situation",
+          "contract": null
+        },
+        {
+          "role": "occurs",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "presents",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "conveys",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "message"
+                }
+              },
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": null
+        },
+        {
+          "role": "community",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "role",
+          "sort": "individual",
+          "contract": null
+        },
+        {
+          "role": "marked",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          },
+          "contract": "指定共同体の慣行で、この発話行為が受け手への指定役割上の態度を表すという位置付け。"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "new_primitives": 0,
+  "limits": [
+    "解釈関係は真と決め打ちしない。欠けた入力は未知として拒否する。",
+    "表出・約束・宣言の社会的働きは基本message.forceの三分類とは別の合成層。performのみから社会的成功を認定しない。",
+    "規約付きの遂行的発話は、この発話行為自身を参照する文として構成できる。報告・引用の出現と行為の出現を同一視しない。"
+  ]
+}

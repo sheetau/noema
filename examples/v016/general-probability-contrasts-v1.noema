@@ -1,0 +1,30 @@
+p:
+r rationaladd[b b] b.
+d weightsum[va j[a] vb h[a] b] b[q[v va][n p a b][i[vc b vd a][k rationaladd[v vc c[v vb][v vd]]]]].
+r rationalmultiply[b b] b.
+r truthindicator[c] b.
+d eventweight[va j[a] vb h[a] b vc h[a] c] b[q[v va][n p a b][i[vd b ve a][k rationaladd[v vd k rationalmultiply[c[v vb][v ve] k truthindicator[c[v vc][v ve]]]]]]].
+d memberof[va j[a] vb a] c[q[v va][e[n p a b][n p b b]][i[vc c vd a][x[v vc][e[v vd][v vb]]]]].
+d distinctmembers[va j[a]] c[c[q[v va][i[vb j[a]][e[n p a b][n p a b]]][i[vc h[j[a]] c vd a][i[ve j[a]][w[u[k memberof[v ve v vd]]][c[v vc][m[v ve][l[a][v vd]]]]]]]][l[a][]]].
+r rationalbelow[b b] c.
+d probabilityspace[va j[a] vb h[a] b] c[w[k distinctmembers[v va]][w[q[v va][e[n p a b][n p a b]][i[vc c vd a][w[v vc][u[k rationalbelow[c[v vb][v vd] n p a b]]]]]][e[k weightsum[v va v vb]][n p b b]]]].
+d indicatorvalid[] c[f va c[w[y[v va][e[k truthindicator[v va]][n p b b]]][y[u[v va]][e[k truthindicator[v va]][n p a b]]]]].
+d probabilityvalue[va j[a] vb h[a] b vc h[a] c vd b] c[w[k probabilityspace[v va v vb]][w[k indicatorvalid[]][e[k eventweight[v va v vb v vc]][v vd]]]].
+d conditionaldefined[va j[a] vb h[a] b vc h[a] c] c[w[k probabilityspace[v va v vb]][w[k indicatorvalid[]][k rationalbelow[n p a b k eventweight[v va v vb v vc]]]]].
+d conditionalprobability[va j[a] vb h[a] b vc h[a] c vd h[a] c ve b] c[w[k conditionaldefined[v va v vb v vc]][e[k eventweight[v va v vb i[vf a][w[c[v vd][v vf]][c[v vc][v vf]]]]][k rationalmultiply[v ve k eventweight[v va v vb v vc]]]]].
+d probabilityinterval[va j[a] vb h[a] b vc h[a] c vd b ve b] c[w[k probabilityspace[v va v vb]][w[k indicatorvalid[]][w[u[k rationalbelow[v vd n p a b]]][w[u[k rationalbelow[v ve v vd]]][w[u[k rationalbelow[n p b b v ve]]][w[u[k rationalbelow[k eventweight[v va v vb v vc] v vd]]][u[k rationalbelow[v ve k eventweight[v va v vb v vc]]]]]]]]]].
+d probabilityindependent[va j[a] vb h[a] b vc h[a] c vd h[a] c] c[w[k probabilityspace[v va v vb]][w[k indicatorvalid[]][e[k eventweight[v va v vb i[ve a][w[c[v vc][v ve]][c[v vd][v ve]]]]][k rationalmultiply[k eventweight[v va v vb v vc] k eventweight[v va v vb v vd]]]]]].
+d probabilityupdated[va j[a] vb h[a] b vc h[a] b vd h[a] b] c[w[k probabilityspace[v va v vb]][w[k probabilityspace[v va v vd]][w[q[v va][e[n p a b][n p a b]][i[ve c vf a][w[v ve][w[u[k rationalbelow[c[v vc][v vf] n p a b]]][u[k rationalbelow[n p b b c[v vc][v vf]]]]]]]][w[k rationalbelow[n p a b k weightsum[v va i[vg a][k rationalmultiply[c[v vb][v vg] c[v vc][v vg]]]]]][q[v va][e[n p a b][n p a b]][i[vh c vi a][w[v vh][e[k rationalmultiply[c[v vd][v vi] k weightsum[v va i[vj a][k rationalmultiply[c[v vb][v vj] c[v vc][v vj]]]]]][k rationalmultiply[c[v vb][v vi] c[v vc][v vi]]]]]]]]]]].
+r first[] a.
+r second[] a.
+q[k probabilityspace[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]]]].
+q[k probabilityvalue[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][e[v vb][k first[]]] n p b e]].
+q[k probabilityvalue[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][e[v vb][k first[]]] n p b c]].
+q[k conditionalprobability[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][e[v vb][v vb]] i[vc a][e[v vc][k first[]]] n p b e]].
+q[k conditionalprobability[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][e[v vb][k first[]]] i[vc a][e[v vc][v vc]] n p b b]].
+q[k conditionaldefined[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][u[e[v vb][v vb]]]]].
+q[k conditionalprobability[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][u[e[v vb][v vb]]] i[vc a][e[v vc][k first[]]] n p a b]].
+q[k probabilityindependent[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][e[v vb][k first[]]] i[vc a][e[v vc][k first[]]]]].
+q[k probabilityinterval[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][e[v vb][k first[]]] n p b f n p b d]].
+q[k probabilityupdated[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][k rationaladd[n p b b k rationalmultiply[n u c d k truthindicator[e[v vb][k second[]]]]]] i[vc a][n p b c]]].
+q[k probabilityupdated[l[a][k first[] k second[]] i[va a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v va][k second[]]]]]] i[vb a][k rationaladd[n p b b k rationalmultiply[n u c d k truthindicator[e[v vb][k second[]]]]]] i[vc a][k rationaladd[n p b e k rationalmultiply[n p b c k truthindicator[e[v vc][k second[]]]]]]]].

@@ -1,0 +1,95 @@
+{
+  "statement_order": [
+    "各人に関係する対象がある",
+    "全員に共通して関係する対象がある",
+    "対象を持たない人がいる",
+    "全員が対象を持たない"
+  ],
+  "interpretations": [
+    {
+      "topic": "読書",
+      "person": "読者の全範囲",
+      "object": "本の全範囲",
+      "related": "同じ時点までに本人がその本を読んだ"
+    },
+    {
+      "topic": "配送",
+      "person": "配達担当者の全範囲",
+      "object": "配送先の全範囲",
+      "related": "同じ時点までに本人がその配送先へ届けた"
+    }
+  ],
+  "model_domain": [
+    "p",
+    "q",
+    "x",
+    "y"
+  ],
+  "models": [
+    {
+      "name": "different-witnesses",
+      "relations": [
+        [
+          "p",
+          "x"
+        ],
+        [
+          "q",
+          "y"
+        ]
+      ],
+      "expected": [
+        true,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "one-person",
+      "relations": [
+        [
+          "p",
+          "x"
+        ]
+      ],
+      "expected": [
+        false,
+        false,
+        true,
+        false
+      ]
+    },
+    {
+      "name": "no-witness",
+      "relations": [],
+      "expected": [
+        false,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "shared-witness",
+      "relations": [
+        [
+          "p",
+          "x"
+        ],
+        [
+          "q",
+          "x"
+        ]
+      ],
+      "expected": [
+        true,
+        true,
+        false,
+        false
+      ]
+    }
+  ],
+  "contract": "person/objectは役割ごとの全範囲、relatedはperson→object→situationの順。結果から範囲を選ばない。語義ごとに入力解釈を固定する。",
+  "boundary": "同じ構文を読書と配送の二つの明示解釈で使う。実在の読者や配送記録についての事実認定ではない。"
+}
