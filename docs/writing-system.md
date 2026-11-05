@@ -1,23 +1,24 @@
 # 現行の書記体系
 
-円と線が接続・分岐・融合する現在の見た目を、利用者の指定により固定した。基準は `contextual-opening-10-draft` と[カント四段落の現行画像](kant-page-script-v3.md)。固定対象と内容ハッシュは [writing-freeze-v1.json](../data/writing-freeze-v1.json) にある。「固定」は字形設計の基準を決めたという意味であり、画像からの一意な読み戻しが完成したという意味ではない。
+利用者は2026年11月5日にconcept2 v7のアルファベットを採用した。基準となる本文は [カント四段落のv7](../output/kant-concept2-v7/index.html)。元のkant-pageの40項目を保ち、円弧、中心線、段参照、ドット、共有・反復を組み合わせている。採用後も、未対応の構造や記法の不足を補いながら復号規則を整合させる。
 
-現行成果物は `output/kant-page-script-v3/` のみ。NoemaのPNG・SVG、対応する英訳PNG、出典と範囲の記録を残した。カント冒頭四段落、原文592語に対応する40主張を18行で配置している。宣言・語義定義の全展開を画像へ載せたものではない。
+本文の語・構文は、公開辞書とSVGの円弧・直線・ドットから読む。文書ごとの番号表、不可視の構文やSVG属性、元の配置記録を復号器へ渡さない。語義・参照先と回収した構文が変わらなければ、確認済みの意味判断を引き継ぐ。詳しい検証の区分は [検証範囲](verification-boundaries.md)に従う。
 
-描画入口は `scripts/contextual_opening_script.py`、ページ生成は `scripts/proof_kant_page_script_v3.py`。前者は過去の描画モジュールの幾何・探索処理を利用するため、旧モジュールをまとめて削除してはいけない。再生成は必要な場合のみ行う。
+規則と実装の入口は次のとおりである。
+
+| 対象 | 規則・実装 |
+| --- | --- |
+| 半径線、円弧の重なり、方向線の上限 | [幾何規則](alphabet-concept2-refined-v4.md)、`scripts/concept2_geometry_v5.py` |
+| ドット、方向付き段選択、任意の合流表記 | [合流規則](alphabet-concept2-confluence-v5.md) |
+| 型・束縛・引用・式 | [型と構文](alphabet-concept2-typed-v6.md) |
+| 既定の幹の参照順、語参照の後方線 | [v7の採用形](alphabet-concept2-trunk-v7.md) |
+| 宣言・定義・綴り登録、仮定範囲、反復の補完 | [文書・辞書規則](alphabet-concept2-document-v8.md)、`scripts/concept2_document.py`、`scripts/concept2_compact.py` |
+
+旧版の文書にある「外観未承認」は、その版を提案した時点の記録である。現行の採用状態は冒頭の利用者指定に従う。残件1全体の進行と未解決事項は [プロジェクト台帳](project-records.md)の `current` を正本とする。
 
 ```powershell
-python -X utf8 -m scripts.proof_kant_page_script_v3
+python -X utf8 -m scripts.project_notes brief
+python -X utf8 -m scripts.project_work check --tests tests/test_concept2_document.py tests/test_concept2_compact.py tests/test_concept2_fast_reader.py
 ```
 
-画像の語の識別、枝の読み順、結合の範囲、文境界と行継続を、不可視のAST・JSON・SVG属性なしで復元する規則は未完成。学習した共通の文法・語彙は利用してよいが、文書ごとの番号対応表を読者に渡して解決してはいけない。具体的な衝突と次の作業は [言語完成への引き継ぎ](language-readiness-handoff.md) にまとめた。
-
-旧32文字の `alphabet-v1.json`、`alphabet-v2.json`、`NoemaWritten.ttf` は処理系の互換資産。旧固有文字の往復試験が成功しても、この円文字の読み戻しを保証しない。旧字体の生成画像は整理したが、互換資産・本文・意味判断・旧検証器は残している。
-
-整理後は固定対象の全ハッシュと旧文字の回帰7件を確認し、全体監査が `reports/written-progress-v432.json` と一致した。読み戻しの衝突を含む検査は次で再現できる（現在の非一意性を診断するもので、復号の完成試験ではない）。
-
-```powershell
-python -X utf8 -m scripts.project_work check --module scripts.check_writing_freeze --tests tests/test_script.py tests/test_script_v2.py --verify reports/writing-readiness-v1.json
-```
-
-旧字体・出力267ファイルの整理は[前回の記録](../reports/writing-cleanup-v1.json)を参照。削除用一覧と退避フォルダは現在存在しません。文書と引き継ぎは[SQLite台帳](project-records.md)へ整理しました。現行画像と依存コードは維持し、旧画像を一括再生成しません。
+旧kant-pageと [writing-freeze-v1.json](../data/writing-freeze-v1.json) は、過去の外観基準と証拠として保存する。旧字体の `alphabet-v1.json`、`alphabet-v2.json`、`NoemaWritten.ttf` も処理系の互換資産として残す。旧字体の往復試験は現行円文字の復号確認とは区別し、保存済みの画像や旧検証器を一括再生成しない。
