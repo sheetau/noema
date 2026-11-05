@@ -21,7 +21,7 @@ python -X utf8 -m scripts.project_notes revisions writing-identity --limit 3
 python -X utf8 -m scripts.project_notes backup --output .noema-project/backups/<new-name>.sqlite
 ```
 
-更新はSQLiteのトランザクションで保存される。作業の区切りで新しい名前のバックアップを作る。初回移行は `.noema-project/backups/initial-migration.sqlite`、検証・互換文書の保持を反映した版は `.noema-project/backups/verified-migration.sqlite`。DB・バックアップ・退役原本はGit対象外であり、別端末への移行にはDBのバックアップも必要。DBがなければコマンドは失敗し、空の引き継ぎを自動作成しない。復旧時は台帳を使うコマンドが終了した状態で、既存DBを別名で保全してからバックアップを `ledger.sqlite` に戻す。
+更新はSQLiteのトランザクションで保存される。作業の区切りで新しい名前のバックアップを `.noema-project/backups/` に作り、その場所を台帳の `current` に記録する。古い重複バックアップは完成後の整理で削除したため、復旧には現在記録されているバックアップを使う。DB・バックアップ・退役原本はGit対象外であり、別端末への移行にはDBのバックアップも必要。DBがなければコマンドは失敗し、空の引き継ぎを自動作成しない。復旧時は台帳を使うコマンドが終了した状態で、既存DBを別名で保全してからバックアップを `ledger.sqlite` に戻す。
 
 Markdownの引き継ぎは入口だけにし、本文を二重に編集しない。`data/work-state.json` は検証対象の登録簿・集計の選択、`docs/STATUS.md` は短い公開チェックポイントとして残す。詳細な作業履歴は追加しない。
 
