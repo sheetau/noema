@@ -1,0 +1,1656 @@
+{
+  "document": "examples/v016/semantic-boundaries-v1.noema",
+  "primitives": {},
+  "definitions": {
+    "anchoredcontent": "閉じた内容関数の記述へ閉じた対象記述を適用し、その構文を保持する。二つの対象記述の指示先が同じでも記述自体を同一化しない。",
+    "actualtargetwitness": "記述された性質を指定状況で満たし、同じ状況で実在すると明示された個体。意味領域の個体であることだけから実在を補わない。",
+    "actualtargetexists": "指定された記述の性質を満たす実在の対象が指定状況に存在する。目標や信念にその記述が現れることだけでは導かない。",
+    "readingconstruction": "字義と意図した内容の両方について、明示した関数記述と対象記述から構文を構成した結果に一致する。読みの妥当性・特徴対応・慣行の適切さは別の根拠として記述する。",
+    "reportedsupport": "指定された出所列の少なくとも一つが、同じ内容記述・状況について指定方向の支持を記録している。内容を実行せず、支持からその真理を導かない。",
+    "supportboth": "同じ内容記述について肯定・否定の双方の支持が指定出所にある。内容とその否定を同時に真とする主張ではない。",
+    "supportneither": "指定出所では肯定・否定いずれの支持もない。指定外の出所や未確認の関係についての不在を補わない。",
+    "supportpositiveonly": "指定出所に肯定の支持があり、否定の支持はない。内容の真理そのものとは別。",
+    "supportnegativeonly": "指定出所に否定の支持があり、肯定の支持はない。内容の偽そのものとは別。",
+    "relationtransitive": "同じ関係で第一から第二、第二から第三へ結ばれるなら、第一から第三へも結ばれる。",
+    "relationreachable": "与えた有向辺を全て含むどの推移的関係でも、同じ始点から終点へ結ばれる。長さ1以上の有限経路による到達であり、零歩の自己到達を無条件には含めない。",
+    "constraintsolvable": "個体ごとに真理値を割り当てる関数について、明示された制約式を満たす割当てが少なくとも一つある。制約は通常のNoema式で任意に合成できる。",
+    "constrainttrue": "制約を満たす割当てが少なくとも一つあり、その全てで同じ節点が真。解なしから任意の真理を引き出さない。",
+    "constraintfalse": "制約を満たす割当てが少なくとも一つあり、その全てで同じ節点が偽。",
+    "truthgraphvalid": "肯定的/否定的な真理参照の対象が同じ節点域にあり、各節点の参照先は高々一つ、同じ参照に両極性はなく、真理を固定する節点も同じ域にある。参照の循環は許す。",
+    "truthgraphassignment": "有効な参照グラフにおいて、固定された真理値と、肯定参照なら同値・否定参照なら反対という式を全て満たす割当て。記述された式を満たす割当てがあるかは別。",
+    "truthgraphsolvable": "同じ参照グラフの全式を満たす二値の割当てが少なくとも一つある。",
+    "truthgraphtrue": "少なくとも一つ解のある同じ参照グラフで、指定節点は全ての解で真。解がない場合の空虚な全称を真理として採用しない。",
+    "truthgraphfalse": "少なくとも一つ解のある同じ参照グラフで、指定節点は全ての解で偽。解なしを内容の偽と同一視しない。",
+    "uniquevalueindividual": "問いの適用条件と候補範囲の完全性が成立し、指定値が唯一の候補である。 型はindividual。",
+    "missingvalueindividual": "問いの適用条件と候補範囲の完全性が成立するが、その範囲に値が存在しない。 型はindividual。",
+    "listeduniquevalueindividual": "適用可能で列挙が完了した非空の候補列に、指定値だけがある。重複は別の候補を増やさない。 型はindividual。",
+    "listedmissingvalueindividual": "適用可能で列挙が完了し、その候補列が空である。未完の空列と区別する。 型はindividual。",
+    "listedalternativevaluesindividual": "候補列に異なる値が少なくとも二つある。列挙の完了、候補の真理、情報源同士の矛盾は含意しない。 型はindividual。",
+    "valueconflictindividual": "同じ項目・同じ状況で値が高々一つであるという条件の下で、指定された出所が異なる二値をそれぞれ断定している。複数値を許す性質や、単なる候補の列挙は矛盾としない。 型はindividual。",
+    "uniquevaluenumber": "問いの適用条件と候補範囲の完全性が成立し、指定値が唯一の候補である。 型はnumber。",
+    "missingvaluenumber": "問いの適用条件と候補範囲の完全性が成立するが、その範囲に値が存在しない。 型はnumber。",
+    "listeduniquevaluenumber": "適用可能で列挙が完了した非空の候補列に、指定値だけがある。重複は別の候補を増やさない。 型はnumber。",
+    "listedmissingvaluenumber": "適用可能で列挙が完了し、その候補列が空である。未完の空列と区別する。 型はnumber。",
+    "listedalternativevaluesnumber": "候補列に異なる値が少なくとも二つある。列挙の完了、候補の真理、情報源同士の矛盾は含意しない。 型はnumber。",
+    "valueconflictnumber": "同じ項目・同じ状況で値が高々一つであるという条件の下で、指定された出所が異なる二値をそれぞれ断定している。複数値を許す性質や、単なる候補の列挙は矛盾としない。 型はnumber。",
+    "uniquevaluedescription": "問いの適用条件と候補範囲の完全性が成立し、指定値が唯一の候補である。 型はdescription。",
+    "missingvaluedescription": "問いの適用条件と候補範囲の完全性が成立するが、その範囲に値が存在しない。 型はdescription。",
+    "listeduniquevaluedescription": "適用可能で列挙が完了した非空の候補列に、指定値だけがある。重複は別の候補を増やさない。 型はdescription。",
+    "listedmissingvaluedescription": "適用可能で列挙が完了し、その候補列が空である。未完の空列と区別する。 型はdescription。",
+    "listedalternativevaluesdescription": "候補列に異なる値が少なくとも二つある。列挙の完了、候補の真理、情報源同士の矛盾は含意しない。 型はdescription。",
+    "valueconflictdescription": "同じ項目・同じ状況で値が高々一つであるという条件の下で、指定された出所が異なる二値をそれぞれ断定している。複数値を許す性質や、単なる候補の列挙は矛盾としない。 型はdescription。",
+    "boundcontentindividual": "閉じた内容関数の記述と、順序付きの型付き引数値を同じ組へ保存する。引数値に名前や閉じた引用記述がなくてもよく、自由変数を引用内に捕獲しない。 引数型列はindividual。",
+    "boundcontentmatchesindividual": "同じ組に保存した関数記述と各引数値が指定と一致する。引数の値を、その表し方の同一性と混同しない。 引数型列はindividual。",
+    "boundcontentholdsindividual": "同じ組の関数記述へ保存した全引数値を適用し、指定状況で内容を評価する。組の作成・照合だけではこの評価をしない。 引数型列はindividual。",
+    "boundcontentindividualnumber": "閉じた内容関数の記述と、順序付きの型付き引数値を同じ組へ保存する。引数値に名前や閉じた引用記述がなくてもよく、自由変数を引用内に捕獲しない。 引数型列はindividualnumber。",
+    "boundcontentmatchesindividualnumber": "同じ組に保存した関数記述と各引数値が指定と一致する。引数の値を、その表し方の同一性と混同しない。 引数型列はindividualnumber。",
+    "boundcontentholdsindividualnumber": "同じ組の関数記述へ保存した全引数値を適用し、指定状況で内容を評価する。組の作成・照合だけではこの評価をしない。 引数型列はindividualnumber。"
+  },
+  "public_contracts": {
+    "uniquevalueindividual": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "chosen",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "missingvalueindividual": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "listeduniquevalueindividual": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "chosen",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "listedmissingvalueindividual": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "listedalternativevaluesindividual": {
+      "arguments": [
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "valueconflictindividual": {
+      "arguments": [
+        {
+          "role": "field",
+          "sort": "individual"
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "firstsource",
+          "sort": "individual"
+        },
+        {
+          "role": "secondsource",
+          "sort": "individual"
+        },
+        {
+          "role": "firstvalue",
+          "sort": "individual"
+        },
+        {
+          "role": "secondvalue",
+          "sort": "individual"
+        },
+        {
+          "role": "reports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "singlevalued",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "uniquevaluenumber": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "chosen",
+          "sort": "number"
+        }
+      ],
+      "result": "truth"
+    },
+    "missingvaluenumber": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "number"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "listeduniquevaluenumber": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        },
+        {
+          "role": "chosen",
+          "sort": "number"
+        }
+      ],
+      "result": "truth"
+    },
+    "listedmissingvaluenumber": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "listedalternativevaluesnumber": {
+      "arguments": [
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": "number"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "valueconflictnumber": {
+      "arguments": [
+        {
+          "role": "field",
+          "sort": "individual"
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "firstsource",
+          "sort": "individual"
+        },
+        {
+          "role": "secondsource",
+          "sort": "individual"
+        },
+        {
+          "role": "firstvalue",
+          "sort": "number"
+        },
+        {
+          "role": "secondvalue",
+          "sort": "number"
+        },
+        {
+          "role": "reports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              "number",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "singlevalued",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "uniquevaluedescription": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "chosen",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "missingvaluedescription": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": "content"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "listeduniquevaluedescription": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "chosen",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "listedmissingvaluedescription": {
+      "arguments": [
+        {
+          "role": "applicable",
+          "sort": "truth"
+        },
+        {
+          "role": "complete",
+          "sort": "truth"
+        },
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "listedalternativevaluesdescription": {
+      "arguments": [
+        {
+          "role": "candidates",
+          "sort": {
+            "kind": "sequence",
+            "element": {
+              "kind": "description",
+              "result": "content"
+            }
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "valueconflictdescription": {
+      "arguments": [
+        {
+          "role": "field",
+          "sort": "individual"
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "firstsource",
+          "sort": "individual"
+        },
+        {
+          "role": "secondsource",
+          "sort": "individual"
+        },
+        {
+          "role": "firstvalue",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "secondvalue",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "reports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "singlevalued",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "boundcontentindividual": {
+      "arguments": [
+        {
+          "role": "template",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "argumenta",
+          "sort": "individual"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual"
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual"
+            ],
+            "result": "truth"
+          }
+        ],
+        "result": "truth"
+      }
+    },
+    "boundcontentmatchesindividual": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "individual"
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "expectedtemplate",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "expectedargumenta",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "boundcontentholdsindividual": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "individual"
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "boundcontentindividualnumber": {
+      "arguments": [
+        {
+          "role": "template",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "number"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "argumenta",
+          "sort": "individual"
+        },
+        {
+          "role": "argumentb",
+          "sort": "number"
+        }
+      ],
+      "result": {
+        "kind": "function",
+        "parameters": [
+          {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "description",
+                "result": {
+                  "kind": "function",
+                  "parameters": [
+                    "individual",
+                    "number"
+                  ],
+                  "result": "content"
+                }
+              },
+              "individual",
+              "number"
+            ],
+            "result": "truth"
+          }
+        ],
+        "result": "truth"
+      }
+    },
+    "boundcontentmatchesindividualnumber": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "individual",
+                        "number"
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "individual",
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "expectedtemplate",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual",
+                "number"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "expectedargumenta",
+          "sort": "individual"
+        },
+        {
+          "role": "expectedargumentb",
+          "sort": "number"
+        }
+      ],
+      "result": "truth"
+    },
+    "boundcontentholdsindividualnumber": {
+      "arguments": [
+        {
+          "role": "package",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  {
+                    "kind": "description",
+                    "result": {
+                      "kind": "function",
+                      "parameters": [
+                        "individual",
+                        "number"
+                      ],
+                      "result": "content"
+                    }
+                  },
+                  "individual",
+                  "number"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "anchoredcontent": {
+      "arguments": [
+        {
+          "role": "family",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "anchor",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          }
+        }
+      ],
+      "result": {
+        "kind": "description",
+        "result": "content"
+      }
+    },
+    "actualtargetwitness": {
+      "arguments": [
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "actual",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "object",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "actualtargetexists": {
+      "arguments": [
+        {
+          "role": "description",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "actual",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        }
+      ],
+      "result": "truth"
+    },
+    "readingconstruction": {
+      "arguments": [
+        {
+          "role": "sourcefamily",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "sourceanchor",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          }
+        },
+        {
+          "role": "literal",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "targetfamily",
+          "sort": {
+            "kind": "description",
+            "result": {
+              "kind": "function",
+              "parameters": [
+                "individual"
+              ],
+              "result": "content"
+            }
+          }
+        },
+        {
+          "role": "targetanchor",
+          "sort": {
+            "kind": "description",
+            "result": "individual"
+          }
+        },
+        {
+          "role": "intended",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "reportedsupport": {
+      "arguments": [
+        {
+          "role": "sources",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "supports",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "supportboth": {
+      "arguments": [
+        {
+          "role": "sources",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "supportneither": {
+      "arguments": [
+        {
+          "role": "sources",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "supportpositiveonly": {
+      "arguments": [
+        {
+          "role": "sources",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "supportnegativeonly": {
+      "arguments": [
+        {
+          "role": "sources",
+          "sort": {
+            "kind": "sequence",
+            "element": "individual"
+          }
+        },
+        {
+          "role": "claim",
+          "sort": {
+            "kind": "description",
+            "result": "content"
+          }
+        },
+        {
+          "role": "world",
+          "sort": "situation"
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              {
+                "kind": "description",
+                "result": "content"
+              },
+              "situation"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "relationtransitive": {
+      "arguments": [
+        {
+          "role": "relation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "relationreachable": {
+      "arguments": [
+        {
+          "role": "edge",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "source",
+          "sort": "individual"
+        },
+        {
+          "role": "target",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "constraintsolvable": {
+      "arguments": [
+        {
+          "role": "constraints",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "constrainttrue": {
+      "arguments": [
+        {
+          "role": "constraints",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "node",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "constraintfalse": {
+      "arguments": [
+        {
+          "role": "constraints",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              {
+                "kind": "function",
+                "parameters": [
+                  "individual"
+                ],
+                "result": "truth"
+              }
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "node",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "truthgraphvalid": {
+      "arguments": [
+        {
+          "role": "nodes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "grounded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "given",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "truthgraphassignment": {
+      "arguments": [
+        {
+          "role": "nodes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "grounded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "given",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "valuation",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "truthgraphsolvable": {
+      "arguments": [
+        {
+          "role": "nodes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "grounded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "given",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        }
+      ],
+      "result": "truth"
+    },
+    "truthgraphtrue": {
+      "arguments": [
+        {
+          "role": "nodes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "grounded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "given",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "node",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    },
+    "truthgraphfalse": {
+      "arguments": [
+        {
+          "role": "nodes",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "positive",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "negative",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual",
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "grounded",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "given",
+          "sort": {
+            "kind": "function",
+            "parameters": [
+              "individual"
+            ],
+            "result": "truth"
+          }
+        },
+        {
+          "role": "node",
+          "sort": "individual"
+        }
+      ],
+      "result": "truth"
+    }
+  },
+  "new_primitives": 0,
+  "limits": [
+    "完全性・実在・出所の支持・基本関係は結果から逆算しない。未知入力を偽に補わない。",
+    "値の五構成は任意の適格な型へ同じ規則で特殊化できる。無限型の量化が記述できることと有限実行器で計算できることは別。",
+    "真理参照グラフは同値・否定と固定値の明示的な意味記述。Noemaの全構文の無制限な真理評価器ではない。",
+    "候補・記述・語義・個体・実在・評価結果を区別する。関係の入力を与えるだけで、その根拠が正しいと証明したことにはしない。"
+  ]
+}
