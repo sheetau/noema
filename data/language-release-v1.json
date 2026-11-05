@@ -1,0 +1,48 @@
+{
+  "schema": "noema-language-release-1",
+  "edition": "1.0",
+  "date": "2026-11-05",
+  "status": "complete_under_stated_scope",
+  "scope": "意味として自然言語に匹敵する表現幅を、型付きの構成原理・拡張規則・対照例によって備える。人の会話や読解によって生じる効果は完成条件に含めない。",
+  "specification": "docs/language-edition-v1.md",
+  "writing": "data/writing-freeze-v2.json",
+  "works": "data/two-work-publication-v1.json",
+  "general_language": "data/general-language-release-v2.json",
+  "catalog": "data/general-language-catalog-v2.json",
+  "semantic_review_index": "data/semantic-review-index-v457.json",
+  "semantic_baseline": "reports/written-progress-v433.json",
+  "native_versions": ["0.14", "0.15", "0.16"],
+  "edition_is_native_version": false,
+  "artifact_lock": "data/language-release-lock-v1.json",
+  "audit": "reports/language-release-v1.json",
+  "snapshot": "output/noema-1.0",
+  "entry": "output/noema-1.0/index.html",
+  "evidence": [
+    "data/writing-freeze-v2.json",
+    "data/two-work-publication-v1.json",
+    "reports/two-work-final-publication-v1.json",
+    "reports/general-language-completion-v1.json",
+    "reports/general-language-review-v2.json",
+    "reports/semantic-boundaries-completion-v1.json",
+    "reports/semantic-boundaries-v3.json",
+    "data/general-language-catalog-v2.json"
+  ],
+  "completion_criteria": [
+    {"id": "specification_and_meanings", "evidence": ["docs/general-language-v1.md", "docs/semantic-boundaries-v1.md", "data/general-language-catalog-v2.json"]},
+    {"id": "model_independent_processing", "evidence": ["reports/language-delivery-regression-v1.json", "data/writing-freeze-v2.json"]},
+    {"id": "two_complete_works", "evidence": ["data/two-work-publication-v1.json", "reports/two-work-final-publication-v1.json"]},
+    {"id": "source_alignment", "evidence": ["output/two-work-final-v2/kant/source-alignment.json", "output/two-work-final-v2/einstein/source-alignment.json"]},
+    {"id": "itemwise_semantic_review", "evidence": ["data/semantic-review-index-v457.json", "reports/written-progress-v433.json"]},
+    {"id": "cross_domain_composition", "evidence": ["reports/general-language-review-v2.json", "reports/semantic-boundaries-v3.json", "docs/semantic-boundaries-v1.md"]},
+    {"id": "actual_visible_decoding", "evidence": ["reports/two-work-final-publication-v1.json", "reports/general-language-completion-v1.json", "reports/semantic-boundaries-completion-v1.json"]}
+  ],
+  "unresolved_completion_items": [],
+  "supersedes_phase_status_only": ["data/general-language-release-v2.json#remaining_phase", "data/writing-freeze-v2.json#limits/0"],
+  "limits": [
+    "二作品の意味判断は明示した読みの下でのアシスタント判断。独立査読や同義性の自動証明ではない。",
+    "構文・型・図形復号・有限モデルの試験はそれぞれの範囲の証拠であり、全自然文の網羅証明とはしない。",
+    "意味の記述と真偽・値の計算可能性を区別し、未知入力を偽へ補わない。",
+    "基本関係の経験的意味や文化規約は明示された入力として残る。未登録概念は説明と合成定義で拡張する。",
+    "自動翻訳器・モデル比較は保留。手書きやラスタ画像のOCRは固定図形復号の対象外。"
+  ]
+}

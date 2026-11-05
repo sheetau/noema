@@ -1,6 +1,6 @@
 # 現在地
 
-意味としての表現幅を、非実在・未定義・情報不足・相反する資料・型付き束縛・反復・自己言及の境界まで補強しました。[共通規則](semantic-boundaries-v1.md)、[追加辞書と例](../output/semantic-boundaries-v1/index.html)、[選択記録](../data/general-language-release-v2.json)、[完了照合](../reports/semantic-boundaries-completion-v1.json)が入口です。既存1,909項目を保持して43定義を追加し、統合辞書は1,952項目。新たな195記録の図形復号も一致しました。人の会話・読解で生じる効果は完成条件に含めず、次は二作品と共通成果物・証拠を合わせた最終完成版の確定です。
+Noema 1.0として言語本体を完成しました。[完成版](../output/noema-1.0/index.html)、[仕様・完成範囲](language-edition-v1.md)、[版の選択](../data/language-release-v1.json)、[証拠の照合](../reports/language-release-v1.json)が入口です。二作品302単位と統合辞書1,952項目、固定円文字、意味・構文・実図形復号の証拠を保存しました。意味としての表現幅を完成条件とし、人の会話・読解で生じる効果は対象外です。完成に必要な未解決項目はありません。
 
 採用済みconcept2 v7の円文字による、二作品全402主張の最終文書統合が完了しました。[二作品の閲覧版](../output/two-work-final-v2/index.html)、[完成版の選択記録](../data/two-work-publication-v1.json)、[最終照合](../reports/two-work-final-publication-v1.json)が入口です。宣言と補助注記を含む10,946記録の図形復号が一致し、原文302単位、識別表記、数式、著者脚注を保持しています。既存の意味判断を引き継ぎ、新しい意味判断は追加していません。
 
