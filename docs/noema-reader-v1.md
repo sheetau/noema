@@ -1,6 +1,8 @@
 # 円文字の読本と読解課題
 
-Noema 0.16・共有語彙第12版のためのオフライン教材を作る。[読本](../output/noema-reader-v1/learner/index.html)、[375語の辞書](../output/noema-reader-v1/learner/dictionary.html)、[17問の読解課題](../output/noema-reader-v1/learner/exercises.html)を収録する。[配布用ZIP](../output/noema-reader-v1/noema-reader-v1.zip)はこの三つだけを含み、通信を必要としない。旧0.3版の教材と、固定して保存した旧論文画像は変更しない。
+この文書は旧字体の検討記録です。旧試作の生成物は整理しました。現行の仕様・本文・証拠は[Noema 1.0](language-edition-v1.md)を参照してください。
+
+Noema 0.16・共有語彙第12版のためのオフライン教材を作る。読本（旧試作・整理済み）、375語の辞書（旧試作・整理済み）、17問の読解課題（旧試作・整理済み）を収録する。配布用ZIP（旧試作・整理済み）はこの三つだけを含み、通信を必要としない。旧0.3版の教材と、固定して保存した旧論文画像は変更しない。
 
 ## 学ぶ範囲
 

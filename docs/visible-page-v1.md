@@ -1,5 +1,7 @@
 # 可視文書の行継続と段落
 
+この文書は旧字体の検討記録です。旧試作の生成物は整理しました。現行の仕様・本文・証拠は[Noema 1.0](language-edition-v1.md)を参照してください。
+
 ## 対象と読み方
 
 一行の[可視構文](visible-syntax-v1.md)を、型付き定義・入れ子の引用・仮定の範囲を維持して複数行へ配置する。意味演算子や基本語は追加せず、固定した円の大きさと方向から行標識を構成する。旧ページや既存の可視構文の証拠は保存する。
@@ -39,7 +41,7 @@ python -X utf8 -m scripts.visible_page decode output/visible-page-v1/reader-exam
 
 通常の復号結果は文書と段落位置を持つJSON、`--native` は意味内容のNoema本文である。後者には段落位置を含めない。描画先に異なる既存ファイルがある場合は、新しい出力先を指定する。
 
-[同一文書のページ画像](../output/visible-page-v1/standalone-page.png)と、幅1800・2400・3600の[検証報告](../reports/visible-page-v1.json)を保存した。原文は前段階の自立文書と同じであり、可視の語形や構文を再定義していない。
+同一文書のページ画像（旧試作・整理済み）と、幅1800・2400・3600の検証報告（旧試作・整理済み）を保存した。原文は前段階の自立文書と同じであり、可視の語形や構文を再定義していない。
 
 ```powershell
 python -X utf8 -m scripts.project_work check --module scripts.check_visible_page --tests tests/test_visible_page.py --verify reports/visible-page-v1.json

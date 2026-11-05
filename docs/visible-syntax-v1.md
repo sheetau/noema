@@ -1,5 +1,7 @@
 # 可視の文法標識と型付き文書
 
+この文書は旧字体の検討記録です。旧試作の生成物は整理しました。現行の仕様・本文・証拠は[Noema 1.0](language-edition-v1.md)を参照してください。
+
 ## 統合する意味関係
 
 語の可視綴りを、関数適用、否定と論理結合、束縛、引用、宣言と主張へ接続する。最初の対照は `above(birdone,treeone)` と `above(aki,nao)`、引数を交換した `above(treeone,birdone)` である。次に「全員について否定」と「全員という主張の否定」、内側と外側の変数への参照、引用とその評価を区別する。
@@ -64,10 +66,10 @@
 
 ## 再現入口
 
-[独立文書のNoema本文](../examples/v016/visible-syntax-document-v1.noema)は、新しい複合名の定義、約分される分数の同一性、二重引用、仮定内の質問を含む。[出力SVG](../output/visible-syntax-v1/standalone-document.svg)には円と線のみを保存する。復号には共有語彙を使い、原本文書を渡さない。[対照図](../output/visible-syntax-v1/syntax-contrasts.png)のラベルは図の説明であり、復号入力ではない。
+[独立文書のNoema本文](../examples/v016/visible-syntax-document-v1.noema)は、新しい複合名の定義、約分される分数の同一性、二重引用、仮定内の質問を含む。出力SVG（旧試作・整理済み）には円と線のみを保存する。復号には共有語彙を使い、原本文書を渡さない。対照図（旧試作・整理済み）のラベルは図の説明であり、復号入力ではない。
 
 ```powershell
 python -X utf8 -m scripts.project_work check --module scripts.check_visible_syntax --tests tests/test_visible_syntax.py --verify reports/visible-syntax-v1.json
 ```
 
-[検証報告](../reports/visible-syntax-v1.json)は、6つの文書の可視出力・依存ファイルのハッシュと、否定・全称の作用範囲を区別する2値の解釈を保存する。3引数と定義の束縛は、他の引数を固定して各位置を変える診断でも検査する。既知の `above(birdone,treeone)` と `above(aki,nao)` の衝突はこの新書式では解消した。旧描画器の衝突記録と固定ページはそのまま残す。
+検証報告（旧試作・整理済み）は、6つの文書の可視出力・依存ファイルのハッシュと、否定・全称の作用範囲を区別する2値の解釈を保存する。3引数と定義の束縛は、他の引数を固定して各位置を変える診断でも検査する。既知の `above(birdone,treeone)` と `above(aki,nao)` の衝突はこの新書式では解消した。旧描画器の衝突記録と固定ページはそのまま残す。

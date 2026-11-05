@@ -1,5 +1,7 @@
 # 語形を可視幾何から識別する最初の規則
 
+この文書は旧字体の検討記録です。旧試作の生成物は整理しました。現行の仕様・本文・証拠は[Noema 1.0](language-edition-v1.md)を参照してください。
+
 ## 対象と実装前の要求
 
 対象は既存の通常文例にある `rain(town)` と `rain(home)` の最小対である。旧描画器では出現した参照に局所番号を振るため、この二文の可視形状が一致する。必要なのは、語ごとの形を公開語彙で固定すること、図形からその語を特定すること、適用先を線で結ぶことの三点である。
@@ -38,7 +40,7 @@
 
 この規則はW1の最初の反例を扱う実装である。語の構成による拡張、文書内の新語・固有名の導入、同義・多義、W2の一般構文、W3の自立文書、画像だけを読む第三者試験がそろうまで、W1全体や言語の完成とは判定しない。既存の全文ページを置き換える段階でもない。
 
-実装入口は `scripts.visible_lexical_script`、検査結果は [visible-lexical-v2.json](../reports/visible-lexical-v2.json)、二つの可視例は `output/visible-lexical-v1/` にある。既存の幾何実装を利用するリポジトリ内の試作であり、インストールされたNoemaパッケージの公開APIにはまだ含めない。変更のない言語解析・意味検証の実装と、書記の試作を別のモジュールに置く。
+実装入口は `scripts.visible_lexical_script`、検査結果は visible-lexical-v2.json（旧試作・整理済み）、二つの可視例は `output/visible-lexical-v1/` にある。既存の幾何実装を利用するリポジトリ内の試作であり、インストールされたNoemaパッケージの公開APIにはまだ含めない。変更のない言語解析・意味検証の実装と、書記の試作を別のモジュールに置く。
 
 ```powershell
 python -X utf8 -m scripts.project_work check --module scripts.check_visible_lexical --prepare --tests tests/test_visible_lexical.py tests/test_script.py tests/test_script_v2.py --verify reports/visible-lexical-v2.json
