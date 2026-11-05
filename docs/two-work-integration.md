@@ -27,3 +27,13 @@ python -X utf8 -m scripts.two_work_run --run .noema-project/runs/two-work-final-
 ```
 
 実装変更がキャッシュ識別子へ影響する場合は、その範囲の再検査が必要になる。保存した意味監査の入力は内容ハッシュで確認し、図形変更だけを理由に全意味モデルを再実行しない。
+
+## 共有候補が成立しない場合
+
+旧共有案では、外側の式の共有によって内側のドットの再使用が消える場合がある。`scripts.two_work_repair.RepairWritingReader` は、この未対ドットの生成エラーだけを検知し、未使用の共有を取り除く既存の局所共有案を選び直す。元の構文への展開一致と、変更していない復号器による実SVGの回収を引き続き要求する。ドットの対を要求する読取規則は緩めない。
+
+```powershell
+python -X utf8 -m scripts.two_work_repair --run .noema-project/runs/two-work-final-v2 --out output/two-work-final-v2 --reuse output/two-work-final-v1
+```
+
+旧生成が成功した場合は同じ実装をそのまま使う。キャッシュに渡す構文・綴り列・依存ハッシュは現在の生成器で再計算する。描画器と復号器が不変であり、それらと実SVGの内容ハッシュも一致するため、同じ綴り列の成功結果を継承できる。生成器の追加はrun manifestへ別に固定する。新しい共有案で綴り列が変わる場合は必ず新しく描画・復号する。
