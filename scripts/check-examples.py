@@ -86,18 +86,14 @@ check('math-commute',{'add':lambda a,b:a-b},False)
 check('math-sequence',{},True)
 check('reading',{'aki':lambda:'aki','book':lambda:'booka','nao':lambda:'nao','give':lambda x,b,y:(x,b,y)==('aki','booka','nao')},True)
 
-# Every generated circle and line must fit within its SVG viewport.
+# Bound all circles, arcs, lines and dots using the adopted geometry parser.
+from scripts import concept2_composition as geometry
 for sample in samples:
-    tree=ET.parse(ROOT / 'public/glyphs' / f'{sample["id"]}.svg').getroot()
+    path=ROOT / 'public/glyphs' / f'{sample["id"]}.svg'
+    raw=path.read_text(encoding='utf-8')
+    tree=ET.fromstring(raw)
     _,_,width,height=map(float,tree.attrib['viewBox'].split())
-    for el in tree.iter():
-        tag=el.tag.split('}')[-1]
-        if tag=='circle':
-            x,y,r=(float(el.attrib[k]) for k in ('cx','cy','r'))
-            assert 1<x-r and x+r<width-1 and 1<y-r and y+r<height-1, sample['id']
-        if tag=='path':
-            pts=el.attrib['d'].replace('M','').replace('L',' ').split()
-            for x,y in zip(pts[::2],pts[1::2]):
-                assert 1<float(x)<width-1 and 1<float(y)<height-1, sample['id']
+    left,top,right,bottom=geometry.bounds(geometry.from_svg(raw))
+    assert 1 < left < right < width-1 and 1 < top < bottom < height-1, sample['id']
 print(f'{checks} distinguishing evaluations passed; all 15 SVG viewports contain their complete geometry.')
-print('Finite examples check scope and interpretation only; no general equivalence or optical decoding claim.')
+print('Finite examples check scope and interpretation, not general natural-language equivalence.')
