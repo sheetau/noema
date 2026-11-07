@@ -24,7 +24,7 @@ export const content = {
   ],
   specimen: ["Opening of Kant’s What Is Enlightenment?", "カント『啓蒙とは何か』の冒頭"],
   specimenNote: ["Enlarge the adopted circle writing", "完成版の円文字を拡大する"],
-  kantComparisonTitle: ["What Is Enlightenment? — a facing-page comparison", "『啓蒙とは何か』を、見開きで読む。"],
+  kantComparisonTitle: ["Immanuel Kant · What Is Enlightenment? · Opening four paragraphs", "カント『啓蒙とは何か』冒頭4段落"],
   kantComparisonAlt: ["Opening four paragraphs of Kant’s What Is Enlightenment? in Noema circle writing", "カント『啓蒙とは何か』冒頭4段落のNoema円文字"],
   kantComparisonEnlarge: ["Enlarge the Noema text", "Noemaの本文を拡大"],
   aboutTitle: ["Compose what you mean.", "伝えたい意味を、組み立てる。"],
