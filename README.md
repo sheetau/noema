@@ -67,9 +67,12 @@ npm run glyphs
 python -X utf8 -B scripts/check-examples.py
 python -X utf8 -B scripts/generate-presentation-assets.py
 python -X utf8 -B scripts/generate-reading-diagrams.py
+python -X utf8 -B scripts/generate-kant-spread.py
 ```
 
 本体は読み取り専用です。例文のSVGは宣言から順に読み戻し、元の構文と照合します。SVG属性の色は認識処理に必要なため、原本を維持してCSSで白く表示します。
+
+ABOUT末尾のA5見開きは、同じ冒頭4段落の英訳と採用円文字を比較します。英訳は本体の`data/kant-page-english-v2.json`（John Richardson、1798年）を保持。円文字は4300単位幅で改行し直し、40項目の構文を図形から読み戻して照合しています。紙面の線幅は縮小表示に合わせ、原図形の2倍です。`public/specimens/provenance.json`に対応段落とハッシュを記録します。
 
 heroは元の円文字から、線幅を含む図形の外周まで余白を詰めた`public/glyphs/hero.svg`です。READINGの3つ目は共有語homeを囲む引用式として、語末・接続を含めて生成し、ガイドを足す前のSVGを復号しています。証拠は`output/reading-scope/`に保存します。
 

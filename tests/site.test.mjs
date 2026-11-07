@@ -115,3 +115,21 @@ test('all roots share the same viewport, center, and scale',async()=>{
   assert.ok(!svg.includes('scale('));
  }
 });
+
+test('the Kant spread pairs the same four source paragraphs and verified visible writing',async()=>{
+  const evidence=JSON.parse(await readFile(publicUrl('specimens/provenance.json'),'utf8'));
+  const englishBytes=await readFile(publicUrl('specimens/kant-english.json'));
+  const english=JSON.parse(englishBytes);
+  assert.equal(hash(englishBytes),evidence.english_sha256);
+  assert.deepEqual(english.paragraphs.map(p=>p.unit),evidence.paragraphs.map(p=>p.unit));
+  assert.equal(evidence.statement_count,40);
+  assert.equal(evidence.visible_decode,true);
+  assert.equal(hash(await readFile(publicUrl('specimens/kant-four-paragraphs.svg'))),evidence.svg_sha256);
+  for(const p of evidence.source_paragraphs) assert.equal(hash(await readFile(publicUrl('glyphs/kant-'+p.svg))),p.sha256);
+  for(const lang of ['ja','en']) {
+    const html=renderPage(lang);
+    assert.match(html,/class="kant-paper kant-english"/);
+    assert.match(html,/specimens\/kant-four-paragraphs.svg/);
+    for(const p of english.paragraphs) assert.ok(html.includes(p.text));
+  }
+});
