@@ -1,6 +1,6 @@
 import {useEffect,useRef} from 'react';
 import {ScrollArea} from './ScrollArea';
-import {asset,docLink} from '../site/web.mjs';
+import {asset,guideLink} from '../site/web.mjs';
 import {getContent} from '../content.mjs';
 import {entryDetailHTML} from '../dictionary-data.mjs';
 import provenance from '../../public/glyphs/provenance.json';
@@ -32,7 +32,7 @@ export default function Details({selection,locale,relation,examples,onClose,retu
     onClick={e=>{const b=e.currentTarget.getBoundingClientRect();if(e.target===e.currentTarget&&(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom))dialog.current.close();}}>
     <div className="dialog-header"><h2 id="dialog-title">{title}</h2><button type="button" className="plus-button dialog-close" aria-label={c.close} onClick={()=>dialog.current.close()}><img src={asset('design/close.svg')} width="14" height="14" alt=""/></button></div>
     {selection&&<ScrollArea className="dialog-body" id="dialog-body" contain resetKey={selection.kind+':'+(selection.id??selection.entry?.name)}><div className="dialog-content">
-      {selection.kind==='word'?<div dangerouslySetInnerHTML={{__html:entryDetailHTML(selection.entry,locale)}}/>:selection.kind==='kant'?<><div className="specimen-pages">{provenance.specimens.map((p,i)=><figure key={p.file}><figcaption>{locale==='ja'?'段落':'Paragraph'} {i+1}</figcaption><img className="ink" src={asset('glyphs/'+p.file)} alt={`${c.specimen} ${i+1}`}/></figure>)}</div><a className="text-link" href={docLink('docs/circle-writing-v2.md')}>{c.primitivesLink} ↗</a></>:item&&<Source item={item} locale={locale}/>}
+      {selection.kind==='word'?<div dangerouslySetInnerHTML={{__html:entryDetailHTML(selection.entry,locale)}}/>:selection.kind==='kant'?<><div className="specimen-pages">{provenance.specimens.map((p,i)=><figure key={p.file}><figcaption>{locale==='ja'?'段落':'Paragraph'} {i+1}</figcaption><img className="ink" src={asset('glyphs/'+p.file)} alt={`${c.specimen} ${i+1}`}/></figure>)}</div><a className="text-link" href={guideLink('writing',locale)} target="_blank" rel="noopener noreferrer">{c.primitivesLink} ↗</a></>:item&&<Source item={item} locale={locale}/>}
     </div></ScrollArea>}
   </dialog>;
 }

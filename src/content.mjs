@@ -24,13 +24,13 @@ export const content = {
   ],
   specimen: ["Opening of Kant’s What Is Enlightenment?", "カント『啓蒙とは何か』の冒頭"],
   specimenNote: ["Enlarge the adopted circle writing", "完成版の円文字を拡大する"],
-  kantComparisonTitle: ["What Is Enlightenment? — a facing-page comparison", "『啓蒙とは何か』を、見開きで読む。"],
-  kantComparisonNote: [
-    "The opening four paragraphs, with John Richardson’s English translation on the left and Noema on the right. Both pages use A5 proportions; the hero shows the first paragraph.",
-    "冒頭4段落を、左にジョン・リチャードソンの英訳、右にNoemaで並べました。両ページともA5比率です。Heroにあるのは、この第1段落です。",
-  ],
+  kantComparisonTitle: ["See it in a document", "実際の文書で確かめる"],
   kantEnglishSource: ["English edition · 1798", "英訳の出典 · 1798年版"],
-  kantComparisonAlt: ["Opening four paragraphs of Kant’s What Is Enlightenment? in Noema circle writing", "『啓蒙とは何か』を、見開きで読む。のNoema円文字"],
+  kantDocumentName: ["Kant · What Is Enlightenment? · Opening four paragraphs", "カント『啓蒙とは何か』冒頭4段落"],
+  kantComparisonAlt: [
+    "Opening four paragraphs of Kant’s What Is Enlightenment? in Noema circle writing",
+    "カント『啓蒙とは何か』冒頭4段落のNoema円文字",
+  ],
   kantComparisonEnlarge: ["Enlarge the Noema text", "Noemaの本文を拡大"],
   aboutTitle: ["Compose what you mean.", "伝えたい意味を、組み立てる。"],
   aboutIntro: [
@@ -212,17 +212,17 @@ export const content = {
     [
       ["Edition 1.0", "完成版1.0"],
       ["Scope of completion, artifacts, release selection, and evidence.", "完成の範囲、成果物、版の選択と証拠。"],
-      ["docs/language-edition-v1.md", "docs/language-edition-v1.md"],
+      ["docs/guide/evidence.md", "docs/ja/evidence.md"],
     ],
     [
       ["Circle writing", "円文字の仕様"],
       ["Spelling, arcs, branching, sharing, and decoding.", "綴り・円弧・分岐・共有・読み戻し。"],
-      ["docs/circle-writing-v2.md", "docs/circle-writing-v2.md"],
+      ["docs/guide/writing.md", "docs/ja/writing.md"],
     ],
     [
       ["Meaning and vocabulary", "意味と語彙の組立て"],
       ["Types, interpretations, extension, and reuse across domains.", "型、解釈、語の拡張と分野をまたぐ利用。"],
-      ["docs/general-language-v1.md", "docs/general-language-v1.md"],
+      ["docs/guide/vocabulary.md", "docs/ja/vocabulary.md"],
     ],
     [
       ["Semantic boundaries", "意味の境界"],
@@ -230,17 +230,17 @@ export const content = {
         "Unknown and undefined values, conflicting reports, nonexistence, and self-reference.",
         "未知、未定義、相反する情報、非実在、自己言及。",
       ],
-      ["docs/semantic-boundaries-v1.md", "docs/semantic-boundaries-v1.md"],
+      ["docs/guide/language.md#keeping-meanings-apart", "docs/ja/language.md#意味の区別を保つ"],
     ],
     [
       ["Syntax and types", "構文と型"],
       ["Relations, functions, quantification, and sequences.", "関係、関数、量化、列を記す基本仕様。"],
-      ["docs/spec-v014.md", "docs/spec-v014.md"],
+      ["docs/guide/language.md", "docs/ja/language.md"],
     ],
     [
       ["Quotation and evaluation", "引用と評価"],
       ["Distinguish describing content from evaluating it.", "記述することと、内容を評価することの区別。"],
-      ["docs/ranked-quotation-v1.md", "docs/ranked-quotation-v1.md"],
+      ["docs/guide/language.md#messages-questions-and-quotation", "docs/ja/language.md#発話質問引用"],
     ],
   ],
   works: [
@@ -263,6 +263,8 @@ export const content = {
       ],
     ],
   ],
+  gettingStartedLink: ["Try the text notation", "テキスト記法で試す"],
+  worksGuideLink: ["Guide to the works and reading editions", "作品と読書版の案内"],
   worksLink: ["Read the complete Noema text", "Noemaの全文を読む"],
   close: ["Close", "閉じる"],
   specimenDialog: ["Kant’s opening · four paragraphs in the adopted script", "カントの冒頭 · 採用字体による四段落"],

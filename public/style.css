@@ -683,6 +683,9 @@ input[type="search"]::-ms-clear {
   font: var(--text-xs)/var(--space-sm) var(--font-mono);
   overflow-wrap: anywhere;
 }
+.detail-dialog .word-spelling {
+  margin-bottom: var(--space-xs);
+}
 .word-meaning {
   font-size: var(--text-xs);
   line-height: var(--space-sm);
@@ -791,9 +794,6 @@ input[type="search"]::-ms-clear {
 .work-count {
   color: var(--fg);
   font-size: var(--text-xs);
-}
-.works-grid .text-link {
-  margin-top: auto;
 }
 .resource-grid {
   display: grid;
@@ -1386,13 +1386,9 @@ pre::-webkit-scrollbar {
 /* A5 facing pages, with only the two texts visible. */
 .kant-comparison {
   width: 100%;
-}
-.kant-viewport {
-  overflow: auto;
-  scrollbar-width: none;
-}
-.kant-viewport::-webkit-scrollbar {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
 .kant-spread {
   display: grid;
@@ -1402,6 +1398,9 @@ pre::-webkit-scrollbar {
 .kant-leaf {
   container-type: inline-size;
   min-width: 0;
+  gap: var(--space-sm);
+  display: flex;
+  flex-direction: column;
 }
 .kant-paper {
   width: 100%;
@@ -1422,6 +1421,7 @@ pre::-webkit-scrollbar {
   text-align: justify;
   hyphens: auto;
   margin: 0 0 1.6cqw;
+  line-height: 1.57;
 }
 .kant-english p:last-child {
   margin-bottom: 0;
@@ -1439,25 +1439,25 @@ pre::-webkit-scrollbar {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: top;
+  object-position: top left;
 }
 @media (max-width: 767px) {
   .kant-spread {
-    width: calc(200% + var(--space-lg));
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 .kant-comparison > figcaption {
   font-size: var(--text-sm);
-  color: var(--secondary);
-  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+  display: flex;
+  flex-direction: column;
 }
 .kant-language {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: var(--space-xs);
-  margin-bottom: var(--space-md);
   font-size: var(--text-xs);
   color: var(--fg);
 }
@@ -1470,14 +1470,4 @@ pre::-webkit-scrollbar {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm) var(--space-md);
-  margin-top: var(--space-sm);
-}
-
-.kant-caption h3 {
-  margin-bottom: var(--space-sm);
-}
-.kant-caption > p {
-  max-width: 680px;
-  color: var(--secondary);
-  font-size: var(--text-sm);
 }

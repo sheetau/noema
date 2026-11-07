@@ -4,6 +4,7 @@ sys.dont_write_bytecode = True
 import hashlib
 import json
 import os
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -58,7 +59,9 @@ for index, paragraph in enumerate(sorted({case['paragraph'] for case in trace}))
     paragraphs.append(dict(unit=english['paragraphs'][index]['unit'], rows=len(rows),
         statements=[case['statement'] for case in cases], visible_decode=True))
     y += 170 * len(rows) + 120
-svg = c.svg(all_shapes, width=4460, height=y - 40, pen=c.PEN * 2)
+pen = c.PEN * 2
+svg = c.svg(all_shapes, pad=pen / 2, pen=pen)
+viewport = ET.fromstring(svg).attrib
 assert codec.read_page(svg)['statements'] == [case['public'] for case in trace]
 (OUT / 'kant-four-paragraphs.svg').write_text(svg, encoding='utf-8', newline='\n')
 (OUT / 'kant-english.json').write_bytes(english_path.read_bytes())
@@ -67,6 +70,7 @@ evidence = dict(scope='Opening four paragraphs, not the entire essay',
     adopted_source='output/noema-writing-v2/report.json',
     source_paragraphs=report['paragraphs'], paragraphs=paragraphs,
     statement_count=sum(len(p['statements']) for p in paragraphs),
-    visible_decode=True, svg_sha256=digest(OUT / 'kant-four-paragraphs.svg'))
+    visible_decode=True, width=float(viewport['width']), height=float(viewport['height']),
+    svg_sha256=digest(OUT / 'kant-four-paragraphs.svg'))
 (OUT / 'provenance.json').write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
 progress(f"Complete: {len(all_shapes)} shapes, {sum(p['rows'] for p in paragraphs)} rows; decoded statements unchanged")

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile,access} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {dictionary} from '../src/page.mjs';
+import {dictionary,englishDictionary,pageData} from '../src/page.mjs';
 const renderPage = lang => readFileSync(new URL(`../out/${lang==='ja'?'ja/':''}index.html`,import.meta.url),'utf8');
 const exampleOrder={en:['en-recommend','en-only','en-unless','ja-scope','zh-topic','fr-relative','es-notall','de-relative','math-fraction','math-commute'],ja:['ja-scope','ja-quote','ja-unread','en-recommend','zh-topic','fr-relative','es-notall','de-relative','math-fraction','math-commute']};
 import {examples,introductory} from '../src/examples.mjs';
@@ -75,8 +75,10 @@ test('the completed catalogue preserves categories and can search meanings, role
 test('edition pages link to current specifications and omit obsolete completion claims',()=>{
   for(const lang of ['ja','en']) {
     const html=renderPage(lang,'/noema');
-    assert.match(html,/docs\/language-edition-v1\.md/);
-    assert.match(html,/docs\/circle-writing-v2\.md/);
+    const directory=lang==='ja'?'ja':'guide';
+    for(const topic of ['writing','evidence','language','vocabulary','getting-started','works']) assert.ok(html.includes(`docs/${directory}/${topic}.md`));
+    assert.ok(!html.includes(`docs/${lang==='ja'?'guide':'ja'}/`));
+    assert.ok(html.includes('examples/v014/einstein-auxiliary-reference-order-v1.noema'));
     assert.ok(!/WORK IN PROGRESS|読み戻しは未完成|recovery.*remains unfinished|docs\/kant-page-script/.test(html));
   }
 });
@@ -131,5 +133,52 @@ test('the Kant spread pairs the same four source paragraphs and verified visible
     assert.match(html,/class="kant-paper kant-english"/);
     assert.match(html,/specimens\/kant-four-paragraphs.svg/);
     for(const p of english.paragraphs) assert.ok(html.includes(p.text));
+  }
+});
+
+
+test('English dictionary prose, initial entries, search and details use the English catalogue',()=>{
+  assert.equal(englishDictionary.entries.length,1952);
+  assert.deepEqual(englishDictionary.counts,dictionary.counts);
+  assert.doesNotMatch(JSON.stringify(englishDictionary.entries),/[\u3040-\u30ff\u3400-\u9fff]/u);
+  for (const [i,entry] of englishDictionary.entries.entries()) {
+    for (const key of ['name','symbol','spelling','kind','parameters','result','portability','sources']) {
+      assert.deepEqual(entry[key],dictionary.entries[i][key],`${entry.name}: ${key}`);
+    }
+    for (const key of ['meaning','roles','context','contrast']) assert.ok(entry[key].length || !dictionary.entries[i][key].length,`${entry.name}: missing ${key}`);
+  }
+  assert.equal(filterEntries(englishDictionary.entries,{query:'spatial vertical'})[0].name,'above');
+  assert.equal(filterEntries(englishDictionary.entries,{query:'上下軸'}).length,0);
+  for (const [locale,catalog,file] of [['ja',dictionary,'dictionary.json'],['en',englishDictionary,'dictionary-en.json']]) {
+    const html=renderPage(locale),data=pageData(locale);
+    assert.deepEqual(data.initialEntries,catalog.entries.slice(0,60));
+    assert.equal(data.source,catalog.source);
+    assert.ok(html.includes(`data-dictionary="/noema/data/${file}"`));
+    assert.ok(html.includes(`href="https://github.com/sheetau/noema/blob/main/${catalog.source}"`));
+    const meanings=[...html.matchAll(/<span class="word-meaning" lang="([^"]+)">([^<]+)<\/span>/g)];
+    assert.equal(meanings.length,60);
+    for (const [,lang,text] of meanings) {
+      assert.equal(lang,locale);
+      if(locale==='en') assert.doesNotMatch(text,/[\u3040-\u30ff\u3400-\u9fff]/u);
+    }
+    assert.match(entryDetailHTML(catalog.entries[0],locale),new RegExp(`<p lang="${locale}">`));
+  }
+  assert.ok(!renderPage('en').includes('Search name, Japanese meaning'));
+});
+
+test('external links open safely in a new tab while site navigation stays in the same tab',()=>{
+  for (const locale of ['en','ja']) {
+    for (const [,attributes] of renderPage(locale).matchAll(/<a\b([^>]+)>/g)) {
+      if (/href="https?:\/\//.test(attributes)) {
+        assert.match(attributes,/target="_blank"/);
+        assert.match(attributes,/rel="[^"]*noopener/);
+      } else {
+        assert.doesNotMatch(attributes,/target="_blank"/);
+      }
+    }
+    for (const [,attributes] of entryDetailHTML(dictionary.entries[0],locale).matchAll(/<a\b([^>]+)>/g)) {
+      assert.match(attributes,/target="_blank"/);
+      assert.match(attributes,/rel="[^"]*noopener/);
+    }
   }
 });

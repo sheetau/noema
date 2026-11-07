@@ -47,7 +47,7 @@ npm run preview
 | `public/design/` | デザイン由来の画像、新ロゴ、変更記録とハッシュ |
 | `public/glyphs/` / `examples/` | 検証済み円文字、宣言とソース |
 | `public/diagrams/` | 読み方の説明図 |
-| `public/data/dictionary.json` | 1,952項目の完成版辞書 |
+| `public/data/dictionary.json` / `dictionary-en.json` | 各1,952項目の日英辞書 |
 
 ## 見た目と操作
 
@@ -59,7 +59,7 @@ npm run preview
 
 ## 円文字と本体の対応
 
-本体の正本は`../noema/data/language-release-v1.json`です。言語版1.0、採用字体concept2 v7、書記固定記録`data/writing-freeze-v2.json`を参照します。カタログは基本宣言1,489と合成定義463で、作品内参照補助27を含みます。原典の語義は日本語のまま掲載しています。
+本体の正本は`../noema/data/language-release-v1.json`です。言語版1.0、採用字体concept2 v7、書記固定記録`data/writing-freeze-v2.json`を参照します。カタログは基本宣言1,489と合成定義463で、作品内参照補助27を含みます。日本語版は`data/general-language-catalog-v2.json`、英語版は`data/general-language-catalog-en-v1.json`を取り込み、語義・引数・文脈・意味の区別を表示言語に合わせます。初期60件と検索用の全件データは同じ言語を使います。
 
 ```powershell
 npm run sync:release
@@ -72,7 +72,7 @@ python -X utf8 -B scripts/generate-kant-spread.py
 
 本体は読み取り専用です。例文のSVGは宣言から順に読み戻し、元の構文と照合します。SVG属性の色は認識処理に必要なため、原本を維持してCSSで白く表示します。
 
-ABOUT末尾のA5見開きは、同じ冒頭4段落の英訳と採用円文字を比較します。英訳は本体の`data/kant-page-english-v2.json`（John Richardson、1798年）を保持。円文字は4300単位幅で改行し直し、40項目の構文を図形から読み戻して照合しています。紙面の線幅は縮小表示に合わせ、原図形の2倍です。`public/specimens/provenance.json`に対応段落とハッシュを記録します。
+ABOUT末尾のA5見開きは、同じ冒頭4段落の英訳と採用円文字を比較します。狭い画面では横スクロールを使わず、英語・Noemaの順に縦並びにします。英訳は本体の`data/kant-page-english-v2.json`（John Richardson、1798年）を保持。円文字は4300単位幅で改行し直し、40項目の構文を図形から読み戻して照合しています。紙面の線幅は縮小表示に合わせ、原図形の2倍です。SVGのviewBoxは線幅を含めた外周まで詰め、余白を除いています。`public/specimens/provenance.json`に対応段落とハッシュを記録します。
 
 heroは元の円文字から、線幅を含む図形の外周まで余白を詰めた`public/glyphs/hero.svg`です。READINGの3つ目は共有語homeを囲む引用式として、語末・接続を含めて生成し、ガイドを足す前のSVGを復号しています。証拠は`output/reading-scope/`に保存します。
 
