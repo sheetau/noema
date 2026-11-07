@@ -6,7 +6,10 @@ import english from '../../public/specimens/kant-english.json';
 export default function KantSpread({locale, onOpen}) {
   const c = getContent(locale);
   return <figure className="kant-comparison" aria-labelledby="kant-comparison-title">
-    <figcaption id="kant-comparison-title">{c.kantComparisonTitle}</figcaption>
+    <figcaption className="kant-caption">
+      <h3 id="kant-comparison-title">{c.kantComparisonTitle}</h3>
+      <p>{c.kantComparisonNote}</p>
+    </figcaption>
     <ScrollArea className="kant-viewport" id="kant-spread" both label={c.kantComparisonTitle}>
       <div className="kant-spread">
         <article className="kant-leaf" lang="en" aria-label="Opening four paragraphs: English translation by John Richardson, 1798">
@@ -23,5 +26,6 @@ export default function KantSpread({locale, onOpen}) {
         </div>
       </div>
     </ScrollArea>
+    <div className="kant-sources"><a className="text-link" href={english.source_url} target="_blank" rel="noopener">{c.kantEnglishSource} ↗</a><button className="text-link" type="button" onClick={onOpen}>{c.kantComparisonEnlarge} ↗</button></div>
   </figure>;
 }
