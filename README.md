@@ -1,32 +1,42 @@
 # Noema
 
-円と線が接続・分岐する書記体系と、定義・量化・数式・引用・言説を扱う独自言語です。**Noema 1.0として言語本体を完成しました。** [完成版の入口](output/noema-1.0/index.html)、[仕様・根拠・完成範囲](docs/language-edition-v1.md)を参照してください。共通辞書1,952項目と、カント20単位・アインシュタイン282単位の全文、原文対応、固定円文字、検証証拠を保存しています。自動翻訳器は引き続き保留しています。
+**English** · [日本語](README.ja.md)
 
-## 開発の再開
+Noema is a constructed language for expressing meaning explicitly, with a writing system made of connected circles, arcs, lines, and dots. It combines typed expressions with definitions, quantification, quotation, questions, and discourse. Its circular writing represents those structures and can be decoded back into the same normalized syntax.
 
-```powershell
-python -X utf8 -m scripts.project_notes brief
+The aim is a language with the semantic range of natural language: a way to describe everyday situations, mathematics, beliefs, hypothetical worlds, and unfamiliar concepts through composition. Noema 1.0 fixes the language and its adopted writing system under that scope. It does not include an automatic translator or a universal procedure for deciding whether a statement is true.
+
+## What makes Noema distinctive?
+
+- **Scope and roles are explicit.** “Everyone read a book” can mean a different book for each person or one book shared by everyone. Noema records that choice and the order of a relation's arguments.
+- **Concepts can be composed and reused.** Definitions build on existing meanings. A new empirical relation still needs a stated interpretation; a type declaration alone does not explain it.
+- **Contents and their descriptions stay distinct.** An object, a belief about it, and a quotation describing it need not collapse into the same thing. Quoting a request does not issue it.
+- **The writing follows the structure.** Branches, scoped sharing, repetition marks, and distant dot pairs can abbreviate expressions without changing their bindings or argument order. Sentences do not all follow one visual template.
+
+For example, “a person is designing a house that does not yet exist” can retain the house's description without asserting its actual existence. “Its value is unknown” can be distinguished from “no value exists.” See the [language guide](docs/guide/language.md) for these distinctions and the native notation.
+
+## Try it
+
+Use Python 3.11 or later. The parser needs no model download, API key, or third-party runtime dependency. Run these commands from the repository root:
+
+```sh
+python -X utf8 -m noema.constructed parse -i examples/intro/scope.noema
+python -X utf8 -m noema.constructed format -i examples/intro/scope.noema --notation full
 ```
 
-見た目は[現行書記体系](docs/writing-system.md)で固定しました。次の課題と着手順はSQLite台帳の `brief` / `get` で読みます。[記録の管理手順](docs/project-records.md)を参照してください。
+The first command returns a typed, normalized JSON document; the second prints its full textual notation. Neither evaluates the truth of the statements. The [getting-started guide](docs/guide/getting-started.md) explains the example, installation, and the distinction between the text CLI and the adopted circle writing.
 
-[現在地](docs/STATUS.md) → [作業・検証手順](docs/WORKFLOW.md) → 必要な個別仕様・判断記録の順に読みます。言語本文と検証の参照先は [work-state.json](data/work-state.json)、次の作業は `.noema-project/ledger.sqlite` にあります。
+## Read more
 
-## 意味と完成の基準
+| Guide | Contents |
+| --- | --- |
+| [Language](docs/guide/language.md) | Types, syntax, scope, quotation, and semantic distinctions |
+| [Circle writing](docs/guide/writing.md) | Geometry, connections, branching, sharing, and visible decoding |
+| [Vocabulary](docs/guide/vocabulary.md) | The dictionary, argument roles, and how to introduce a concept |
+| [Works and examples](docs/guide/works.md) | Kant, Einstein, cross-domain examples, and available files |
+| [Evidence and scope](docs/guide/evidence.md) | What 1.0 establishes and what each kind of check means |
+| [Contributing](CONTRIBUTING.md) | Development, focused checks, and preserving evidence |
 
-- [言語本体の完成条件](docs/language-completion.md)
-- [原文単位の意味確認](docs/semantic-review-v1.md)
-- [進捗の読み方](docs/written-progress-v1.md)
-- [二作品の完成監査](docs/two-work-completion-v1.md)
+The repository includes complete Noema manuscripts for Kant's *An Answer to the Question: What Is Enlightenment?* and Einstein's *On the Electrodynamics of Moving Bodies*, under explicitly recorded readings. A shared catalog contains 1,952 entries. The manuscripts, dictionary data, and evidence are tracked here; the large rendered reading editions are separate local artifacts. [Availability and reading instructions](docs/guide/works.md) explain the distinction.
 
-任意の内容に対する表現率は未測定です。構文・型・往復・有限モデルの検査を、原文との意味一致の自動証明とは扱いません。
-
-## 過去の記録
-
-従来のREADMEは、内容と改行を変えずに [README.history.md](README.history.md) に保存しています。全履歴を毎回読み込まず、必要な話題を検索します。
-
-```powershell
-python -X utf8 -m scripts.project_work history "因果"
-```
-
-SQLiteは引き継ぎ・退役文書の正本と、検証キャッシュ・実行記録を別DBで管理します。言語仕様・意味判断・原文との対応はファイルとGitに保存します。台帳はキャッシュと一緒に削除しないでください。
+The [documentation index](docs/README.md) is the entry to current reader documentation. Older specifications and review records remain available as historical evidence; their progress reports describe the state at the time they were written.
