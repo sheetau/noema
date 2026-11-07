@@ -1082,7 +1082,8 @@ def _source_pins(*,include_outputs=True):
         SOURCE,BRIDGE,profile.LIBRARY,profile.BASIS,profile.MANIFEST,*READINGS,*REVIEWS,
         'scripts/ninth_section_visible_profile.py','scripts/ninth_section_visible_profile_contracts.py',
         'scripts/check_einstein_ninth_section_visible.py','scripts/visible_ninth_section_visible_collection.py',
-        'tests/test_ninth_section_visible.py',*DIAGNOSTIC_VALIDATORS,
+        'tests/test_ninth_section_visible.py','tests/test_ninth_section_physics_visible.py',
+        'data/ninth-section-visible-diagnostic-controls-v2.json',*DIAGNOSTIC_VALIDATORS,
         'scripts/visible_pin_snapshot.py','tests/test_visible_pin_snapshot.py',
         'docs/einstein-ninth-section-visible-v1.md'}
     paths.update(catalogs()['einstein-1905'].source_sha256)

@@ -2253,6 +2253,12 @@ def prepare():
 
 
 def source_pins(*,include_outputs=True):
+    from scripts.visible_pin_snapshot import digest_snapshot
+    with digest_snapshot(author,root=ROOT):
+        return _source_pins(include_outputs=include_outputs)
+
+
+def _source_pins(*,include_outputs=True):
     from noema.semantic_reviews import validate_hashes
     pins=previous.source_pins()
     state=author.read('data/work-state.json');active=author.read(state['review_index'])['works']['einstein-1905']
@@ -2261,7 +2267,8 @@ def source_pins(*,include_outputs=True):
         SOURCE,BRIDGE,profile.LIBRARY,profile.BASIS,profile.MANIFEST,*READINGS,*REVIEWS,
         'scripts/eighth_section_visible_profile.py','scripts/eighth_section_visible_profile_contracts.py',
         'scripts/check_einstein_eighth_section_visible.py','scripts/visible_eighth_section_visible_collection.py',
-        'tests/test_eighth_section_visible.py',*DIAGNOSTIC_VALIDATORS,
+        'tests/test_eighth_section_visible.py','tests/test_eighth_section_physics_visible.py',*DIAGNOSTIC_VALIDATORS,
+        'scripts/visible_pin_snapshot.py','tests/test_visible_pin_snapshot.py',
         'docs/einstein-eighth-section-visible-v1.md'}
     paths.update(catalogs()['einstein-1905'].source_sha256)
     for review in REVIEWS:
