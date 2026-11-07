@@ -33,7 +33,7 @@ If a copy of the rendered artifacts is available locally, open the following HTM
 | `output/semantic-boundaries-v1/index.html` | The additional 43 definitions and contrasting examples |
 | `output/noema-writing-v2/index.html` | Adopted writing inventory and examples |
 
-These retained HTML editions and their original source/meaning descriptions have not been translated by the documentation update. The current guides are English by default; they do not rewrite the frozen edition. If the rendered bundle is absent, start with the tracked manuscripts and examples above. Do not regenerate retired previews merely to follow this guide.
+These retained HTML editions remain sealed in their original form. The [public bilingual dictionary](../dictionary/index.html) provides English-default meanings and conventions separately, without rewriting the frozen edition. If the rendered bundle is absent, start with that dictionary, the tracked manuscripts, and the examples above. Do not regenerate retired previews merely to follow this guide.
 
 ## Smaller examples
 

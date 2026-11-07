@@ -32,7 +32,7 @@ The first command returns a typed, normalized JSON document; the second prints i
 | --- | --- |
 | [Language](docs/guide/language.md) | Types, syntax, scope, quotation, and semantic distinctions |
 | [Circle writing](docs/guide/writing.md) | Geometry, connections, branching, sharing, and visible decoding |
-| [Vocabulary](docs/guide/vocabulary.md) | The dictionary, argument roles, and how to introduce a concept |
+| [Vocabulary](docs/guide/vocabulary.md) · [Dictionary](docs/dictionary/index.html) | English/Japanese meanings, argument roles, conventions, and how to introduce a concept |
 | [Works and examples](docs/guide/works.md) | Kant, Einstein, cross-domain examples, and available files |
 | [Evidence and scope](docs/guide/evidence.md) | What 1.0 establishes and what each kind of check means |
 | [Contributing](CONTRIBUTING.md) | Development, focused checks, and preserving evidence |

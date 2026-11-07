@@ -32,7 +32,7 @@ python -X utf8 -m noema.constructed format -i examples/intro/scope.noema --notat
 | --- | --- |
 | [言語](docs/ja/language.md) | 型、構文、作用域、引用、意味の区別 |
 | [円文字](docs/ja/writing.md) | 幾何、接続、分岐、共有、可視図形の復号 |
-| [語彙](docs/ja/vocabulary.md) | 辞書、引数の役割、新しい概念の導入 |
+| [語彙](docs/ja/vocabulary.md) · [日英辞書](docs/dictionary/index.html?lang=ja) | 日英の語義、引数の役割、規約、新しい概念の導入 |
 | [作品と例](docs/ja/works.md) | カント、アインシュタイン、作品横断例、利用できるファイル |
 | [証拠と完成範囲](docs/ja/evidence.md) | 1.0で確定したことと、各検査の意味 |
 | [開発への参加](CONTRIBUTING.ja.md) | 開発、対象を絞った検査、証拠の保存 |
